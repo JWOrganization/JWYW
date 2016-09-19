@@ -56,10 +56,10 @@
 }
 
 - (void)dataSet{
-    self.searchArr = [[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] valueForKey:Search_Node_History]];
+    self.searchArr = [[NSMutableArray alloc]initWithArray:[KUSERDEFAULT valueForKey:Search_Node_History]];
     if (!self.searchArr){
         self.searchArr = [NSMutableArray arrayWithCapacity:0];
-        [[NSUserDefaults standardUserDefaults] setValue:self.searchArr forKey:Search_Node_History];
+        [KUSERDEFAULT setValue:self.searchArr forKey:Search_Node_History];
     }
     self.tagArr = [NSMutableArray arrayWithCapacity:0];
     
@@ -91,7 +91,7 @@
         [self.searchArr removeLastObject];
         [self.searchArr insertObject:dataDic atIndex:0];
     }
-    [[NSUserDefaults standardUserDefaults] setValue:self.searchArr forKey:Search_Node_History];
+    [KUSERDEFAULT setValue:self.searchArr forKey:Search_Node_History];
     [self pushToDetailVCWithKey:key withType:[type integerValue]];
 }
 - (void)pushToDetailVCWithKey:(NSString *)key withType:(NSInteger)type{
