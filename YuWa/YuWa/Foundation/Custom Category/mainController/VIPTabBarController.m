@@ -11,6 +11,7 @@
 #import "VIPNavigationController.h"
 
 #import "VIPHomePageViewController.h"
+#import "RBHomeViewController.h"
 #import "DiscoverViewController.h"
 #import "YWStormViewController.h"
 #import "YWMessageViewController.h"
@@ -38,7 +39,7 @@
     VIPHomePageViewController*vc=[[VIPHomePageViewController alloc]init];
     [self addChildVC:vc withTitle:@"首页" withImage:@"home-hotel--pre" withSelectedImage:@"home-find"];
     
-    DiscoverViewController*vcDiscover=[[DiscoverViewController alloc]init];
+    RBHomeViewController*vcDiscover=[[RBHomeViewController alloc]init];
     [self addChildVC:vcDiscover withTitle:@"发现" withImage:@"home-hotel--pre" withSelectedImage:@"home-find"];
     
     YWStormViewController*vcStorm=[[YWStormViewController alloc]init];

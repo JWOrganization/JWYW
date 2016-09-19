@@ -143,7 +143,8 @@
 #define COLOR_B(alpha) [UIColor colorWithHex:0xFFFFFF andAlpha:alpha]
 
 
-
+//保存进userdefault  里面的参数
+#define KUSERDEFAULT [NSUserDefaults standardUserDefaults]
 
 
 

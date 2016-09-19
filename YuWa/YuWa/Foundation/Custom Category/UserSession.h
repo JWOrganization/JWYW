@@ -12,6 +12,8 @@
 
 @property(nonatomic,strong)NSString*token;
 
+@property (nonatomic,copy)NSString * account;  //账户
+@property (nonatomic,copy)NSString * password;   //密码
 @property(nonatomic,strong)NSString*rand;
 @property(nonatomic,strong)NSString*qq;     //QQ
 @property(nonatomic,strong)NSString*areaid;   //区id
@@ -29,6 +31,10 @@
 
 +(UserSession*)instance;  //创建单例
 +(void)clearUser;   //退出登录 删除数据
+
++ (void)saveUserLoginWithAccount:(NSString *)account withPassword:(NSString *)password;  //save login data
+
++ (void)saveUserInfoWithDic:(NSDictionary *)dataDic;//save user data
 
 
 @end

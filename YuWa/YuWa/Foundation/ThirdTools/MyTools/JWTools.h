@@ -51,6 +51,17 @@
  */
 + (CGFloat)labelHeightWithLabel:(UILabel *)label withWidth:(CGFloat)width;
 
+
+#pragma mark - FileRead
+/**
+ *  根据文件名获取本地Json文件
+ *
+ *  @param fileName 文件名
+ *
+ *  @return Json字典
+ */
++ (NSDictionary *)jsonWithFileName:(NSString *)fileName;
+
 #pragma mark - FilePath
 
 /**
@@ -113,6 +124,16 @@
  *  @return 修改完的日期字符串
  */
 + (NSString *)dateStr:(NSString *)dateStr;
+
+/**
+ *  传一个日期字符串，判断是否是昨天，或者是多少小时、分钟前
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithStr:(NSString *)dateStr;
+
 #pragma mark - RegEx
 /**
  *  密码长度至少6
@@ -172,5 +193,27 @@
  *  @param QRStr 二维码链接
  */
 + (UIImage *)makeQRCodeWithStr:(NSString *)QRStr;
+
+
+#pragma mark - 图片压缩
+/**
+ *  图片压缩到指定大小
+ *
+ *  @param image      图片
+ *  @param targetSize 大小
+ *
+ *  @return 压缩后图片
+ */
++ (UIImage*)imageByScalingAndCropping:(UIImage *)image ForSize:(CGSize)targetSize;
+
+
+/**
+ *  微信分享图片32K限制
+ *
+ *  @param imageUrl 图片URL
+ *
+ *  @return 压缩后图片
+ */
++ (UIImage *)zipImageWithImage:(UIImage *)image;
 
 @end
