@@ -484,8 +484,8 @@
 		B38B2C6E1D8FAC5A004D5256 /* YuWa */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2CA21D8FACD8004D5256 /* Contents */,
 				B38B2CC51D8FACD8004D5256 /* Foundation */,
+				B38B2CA21D8FACD8004D5256 /* Contents */,
 				B38B2DD31D8FACD8004D5256 /* resource */,
 				B38B2DD71D8FACD8004D5256 /* Supporting File */,
 			);

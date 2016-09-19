@@ -9,7 +9,7 @@
 #import "VIPPersonCenterViewController.h"
 
 #define SECTION0CELL  @"cell"
-#define HEADERVIEWHEIGHT   215
+#define HEADERVIEWHEIGHT   195
 
 @interface VIPPersonCenterViewController()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UIImage*barImage;   //改变导航栏的透明度
@@ -38,7 +38,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     
     UIBarButtonItem*leftItem=[[UIBarButtonItem alloc]initWithTitle:@"left" style:UIBarButtonItemStylePlain target:self action:@selector(TouchLeftItem)];
     self.navigationItem.leftBarButtonItem=leftItem;
@@ -75,7 +75,7 @@
     return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 2;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:SECTION0CELL];
