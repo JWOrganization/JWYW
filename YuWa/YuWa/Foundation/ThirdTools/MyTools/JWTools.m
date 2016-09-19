@@ -78,6 +78,24 @@
     return conRect.size.height;
 }
 
+#pragma mark - FileRead
+/**
+ *  根据文件名获取本地Json文件
+ *
+ *  @param fileName 文件名
+ *
+ *  @return Json字典
+ */
++ (NSDictionary *)jsonWithFileName:(NSString *)fileName{
+    NSData * data = [[NSData alloc]initWithContentsOfFile:[[NSBundle mainBundle]pathForResource:fileName ofType:@"json"]];
+    
+    NSError*error;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    
+    return (NSDictionary *)jsonObject;
+}
+
+
 #pragma mark - FilePath
 
 /**
@@ -224,6 +242,59 @@
     return [dateFormatter stringFromDate:date];
 }
 
+/**
+ *  传一个日期字符串，判断是否是昨天，或者是多少小时、分钟前
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithStr:(NSString *)dateStr{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    
+    //创建一个日历对象
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    if (!date) {
+        return nil;
+    }
+    //通过日历对象，判断date是否是昨天的日期
+    if ([calendar isDateInYesterday:date]) {
+        dateFormatter.dateFormat = @"HH:mm";
+        return [NSString stringWithFormat:@"昨天 %@",[dateFormatter stringFromDate:date]];
+    }
+    //通过日历对象，判断date是否是今天的日期
+    if ([calendar isDateInToday:date]) {
+        dateFormatter.dateFormat = @"HH";
+        NSInteger time = [[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:date]] integerValue];
+        NSInteger timeNow = [[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[NSDate date]]] integerValue];
+        if (timeNow - time == 1){
+            dateFormatter.dateFormat = @"mm";
+            time = [[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:date]] integerValue];
+            timeNow = [[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[NSDate date]]] integerValue];
+            if (timeNow - time >= 0) {
+                //超过1H置返
+                return [NSString stringWithFormat:@"1小时前"];
+            }else{
+                return [NSString stringWithFormat:@"%zi分钟前",timeNow - time + 60];
+            }
+        }
+        if (timeNow - time == 0) {
+            dateFormatter.dateFormat = @"mm";
+            time = [[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:date]] integerValue];
+            timeNow = [[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[NSDate date]]] integerValue];
+            return [NSString stringWithFormat:@"%zi分钟前",timeNow - time];
+        }
+        return [NSString stringWithFormat:@"%zi小时前",timeNow - time];
+    }
+    
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    return [dateFormatter stringFromDate:date];
+}
+
 #pragma mark - RegEx
 /**
  *  密码长度至少6
@@ -349,6 +420,43 @@
     CGContextRelease(bitmapRef);
     CGImageRelease(bitmapImage);
     return [UIImage imageWithCGImage:scaledImage];
+}
+
+
+#pragma mark - 图片压缩
+/**
+ *  图片压缩到指定大小
+ *
+ *  @param image      图片
+ *  @param targetSize 大小
+ *
+ *  @return 压缩后图片
+ */
++ (UIImage*)imageByScalingAndCropping:(UIImage *)image ForSize:(CGSize)targetSize{
+   //缩图片大小，“缩” 文件的尺寸变小，也就是像素数减少。长宽尺寸变小，文件体积同样会减小
+    UIGraphicsBeginImageContext(targetSize);
+    [image drawInRect:CGRectMake(0,0,targetSize.width,targetSize.height)];
+    
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    return newImage;
+    //压图片大小，“压” 文件体积变小，但是像素数不变，长宽尺寸不变，那么质量可能下降
+//    return [UIImage imageWithData:UIImageJPEGRepresentation(newImage, 0.5f)];
+}
+
+/**
+ *  微信分享图片32K限制
+ *
+ *  @param imageUrl 图片URL
+ *
+ *  @return 压缩后图片
+ */
++ (UIImage *)zipImageWithImage:(UIImage *)image{
+    while (UIImageJPEGRepresentation(image, 1.f).length/1024 > 30) {
+        image = [JWTools imageByScalingAndCropping:image ForSize:CGSizeMake(image.size.width * 0.7f, image.size.height * 0.7f)];
+    }
+    return image;
 }
 
 @end
