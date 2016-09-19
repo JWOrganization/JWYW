@@ -237,10 +237,10 @@
 		B38B2F7B1D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F711D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m */; };
 		B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F741D8FC8CD004D5256 /* JWSearchView.m */; };
 		B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */; };
-		B38B2F811D8FD4CA004D5256 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F7F1D8FD4CA004D5256 /* YWRegisterViewController.m */; };
-		B38B2F821D8FD4CA004D5256 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F801D8FD4CA004D5256 /* YWRegisterViewController.xib */; };
 		B38B2F871D8FE91D004D5256 /* YWForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F851D8FE91D004D5256 /* YWForgetPassWordViewController.m */; };
 		B38B2F881D8FE91D004D5256 /* YWForgetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F861D8FE91D004D5256 /* YWForgetPassWordViewController.xib */; };
+		B38B2F8D1D900AA3004D5256 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F8B1D900AA3004D5256 /* YWRegisterViewController.m */; };
+		B38B2F8E1D900AA3004D5256 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F8C1D900AA3004D5256 /* YWRegisterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -663,12 +663,12 @@
 		B38B2F731D8FC8CD004D5256 /* JWSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSearchView.h; sourceTree = "<group>"; };
 		B38B2F741D8FC8CD004D5256 /* JWSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSearchView.m; sourceTree = "<group>"; };
 		B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWSearchView.xib; sourceTree = "<group>"; };
-		B38B2F7E1D8FD4CA004D5256 /* YWRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRegisterViewController.h; sourceTree = "<group>"; };
-		B38B2F7F1D8FD4CA004D5256 /* YWRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRegisterViewController.m; sourceTree = "<group>"; };
-		B38B2F801D8FD4CA004D5256 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
 		B38B2F841D8FE91D004D5256 /* YWForgetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWForgetPassWordViewController.h; sourceTree = "<group>"; };
 		B38B2F851D8FE91D004D5256 /* YWForgetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWForgetPassWordViewController.m; sourceTree = "<group>"; };
 		B38B2F861D8FE91D004D5256 /* YWForgetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWForgetPassWordViewController.xib; sourceTree = "<group>"; };
+		B38B2F8A1D900AA3004D5256 /* YWRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRegisterViewController.h; sourceTree = "<group>"; };
+		B38B2F8B1D900AA3004D5256 /* YWRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRegisterViewController.m; sourceTree = "<group>"; };
+		B38B2F8C1D900AA3004D5256 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
 		BBC1CC6C89770D83C605851F /* libPods-YuWa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuWa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1531,8 +1531,8 @@
 		B38B2E651D8FC160004D5256 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				B38B2F891D900A54004D5256 /* Register */,
 				B38B2F831D8FE8F4004D5256 /* ForgetPassWord */,
-				B38B2E721D8FC400004D5256 /* Forgister */,
 				B38B2E6D1D8FC3F3004D5256 /* YWLoginViewController.h */,
 				B38B2E6E1D8FC3F3004D5256 /* YWLoginViewController.m */,
 				B38B2E6F1D8FC3F3004D5256 /* YWLoginViewController.xib */,
@@ -1548,16 +1548,6 @@
 				B38B2E6A1D8FC3B6004D5256 /* JWBasicViewController.xib */,
 			);
 			path = JWBasicView;
-			sourceTree = "<group>";
-		};
-		B38B2E721D8FC400004D5256 /* Forgister */ = {
-			isa = PBXGroup;
-			children = (
-				B38B2F7E1D8FD4CA004D5256 /* YWRegisterViewController.h */,
-				B38B2F7F1D8FD4CA004D5256 /* YWRegisterViewController.m */,
-				B38B2F801D8FD4CA004D5256 /* YWRegisterViewController.xib */,
-			);
-			path = Forgister;
 			sourceTree = "<group>";
 		};
 		B38B2E761D8FC76A004D5256 /* RBBook */ = {
@@ -1985,6 +1975,16 @@
 			path = ForgetPassWord;
 			sourceTree = "<group>";
 		};
+		B38B2F891D900A54004D5256 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				B38B2F8A1D900AA3004D5256 /* YWRegisterViewController.h */,
+				B38B2F8B1D900AA3004D5256 /* YWRegisterViewController.m */,
+				B38B2F8C1D900AA3004D5256 /* YWRegisterViewController.xib */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		EDD1BC4F3FB283CECFE57A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2102,7 +2102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B38B2F191D8FC82F004D5256 /* RBNodeShowCommentDetailVC.xib in Resources */,
-				B38B2F821D8FD4CA004D5256 /* YWRegisterViewController.xib in Resources */,
 				B38B2F561D8FC83A004D5256 /* 总的笔记个人.json in Resources */,
 				B38B2E501D8FACD8004D5256 /* tb3.png in Resources */,
 				B38B2EF81D8FC82F004D5256 /* RBHomeCollectionViewCell.xib in Resources */,
@@ -2147,6 +2146,7 @@
 				B38B2F251D8FC82F004D5256 /* RBAlbumCollectionViewCell.xib in Resources */,
 				B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */,
 				B38B2E601D8FACD8004D5256 /* Assets.xcassets in Resources */,
+				B38B2F8E1D900AA3004D5256 /* YWRegisterViewController.xib in Resources */,
 				B38B2F511D8FC83A004D5256 /* 发送笔记.json in Resources */,
 				B38B2DEE1D8FACD8004D5256 /* NewLanguage.strings in Resources */,
 				B38B2F4F1D8FC83A004D5256 /* 单条笔记.json in Resources */,
@@ -2310,7 +2310,6 @@
 				B38B2DF81D8FACD8004D5256 /* AFSecurityPolicy.m in Sources */,
 				B38B2E351D8FACD8004D5256 /* UIImage+GIF.m in Sources */,
 				B38B2F0F1D8FC82F004D5256 /* RBNodeShowCommentModel.m in Sources */,
-				B38B2F811D8FD4CA004D5256 /* YWRegisterViewController.m in Sources */,
 				B38B2F1A1D8FC82F004D5256 /* RBNodeDetailBottomView.m in Sources */,
 				B38B2E2A1D8FACD8004D5256 /* UIView+MJExtension.m in Sources */,
 				B38B2E041D8FACD8004D5256 /* MASConstraint.m in Sources */,
@@ -2320,6 +2319,7 @@
 				B38B2DF01D8FACD8004D5256 /* VIPNavigationController.m in Sources */,
 				B38B2EFA1D8FC82F004D5256 /* RBHomeListGoodsModel.m in Sources */,
 				B38B2E371D8FACD8004D5256 /* UIImage+WebP.m in Sources */,
+				B38B2F8D1D900AA3004D5256 /* YWRegisterViewController.m in Sources */,
 				B38B2E111D8FACD8004D5256 /* MJRefreshAutoFooter.m in Sources */,
 				B38B2E3A1D8FACD8004D5256 /* UIView+WebCacheOperation.m in Sources */,
 				B38B2F2A1D8FC82F004D5256 /* RBCenterAlbumModel.m in Sources */,

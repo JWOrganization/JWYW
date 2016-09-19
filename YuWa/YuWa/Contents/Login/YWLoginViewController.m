@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *quickLoginBtn;
 @property (nonatomic,strong)NSTimer * timer;
 @property (nonatomic,assign)NSInteger time;
+@property (nonatomic,assign)NSInteger state;
 
 @end
 
@@ -39,6 +40,15 @@
     [self makeUI];
     self.time = 60;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.state == 0) {
+        [self.accountTextField becomeFirstResponder];
+    }else{
+        [self.mobileTextField becomeFirstResponder];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if (self.timer.isValid) {
@@ -163,6 +173,7 @@
 
 #pragma mark - YJSegmentedControlDelegate
 - (void)segumentSelectionChange:(NSInteger)selection{
+    self.state = selection;
     self.quickLoginView.hidden = selection==0?YES:NO;
 }
 
@@ -199,7 +210,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     });
     
-    //失败后重置
+    //失败后重置验证码
     //        self.time = 0;
     //        [self securityCodeBtnTextSet];
 }
@@ -213,11 +224,6 @@
 //        self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
-    
-        [self showHUDWithStr:@"登录成功" withSuccess:YES];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
 //    } failur:^(id responsObj, NSError *error) {
 //        MyLog(@"Regieter Code pragram is %@",pragram);
 //        MyLog(@"Regieter Code error is %@",responsObj);

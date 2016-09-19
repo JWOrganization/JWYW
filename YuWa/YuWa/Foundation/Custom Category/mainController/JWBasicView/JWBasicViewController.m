@@ -18,6 +18,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
+}
+
 #pragma mark - MBProgressHUD
 - (void)showHUDWithStr:(NSString *)showHud withSuccess:(BOOL)isSuccess{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
