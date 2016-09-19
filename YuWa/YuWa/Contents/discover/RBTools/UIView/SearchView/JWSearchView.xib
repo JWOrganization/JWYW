@@ -18,7 +18,7 @@
                         <constraint firstAttribute="width" constant="25" id="tdo-pw-Bit"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜索笔记和用户" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHy-OI-eCq">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜索笔记" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHy-OI-eCq">
                     <rect key="frame" x="43" y="3" width="244" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="lpC-N4-oBZ"/>

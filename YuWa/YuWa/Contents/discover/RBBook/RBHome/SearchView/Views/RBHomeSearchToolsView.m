@@ -18,6 +18,7 @@
 }
 
 - (IBAction)typeBtnAction:(id)sender {
+    //只有笔记所以暂时不可选
     self.typeChooseBlock(0);
 }
 
