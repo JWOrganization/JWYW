@@ -86,6 +86,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="eZl-c0-cvu"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="登录">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -99,7 +100,7 @@
                                 <constraint firstAttribute="width" constant="150" id="jr0-JN-eac"/>
                                 <constraint firstAttribute="height" constant="30" id="kBb-c0-1d5"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="忘记密码?">
                                 <color key="titleColor" red="0.27450980390000002" green="0.69019607839999997" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -108,7 +109,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWA-L0-jD7">
-                            <rect key="frame" x="0.0" y="81" width="600" height="1"/>
+                            <rect key="frame" x="8" y="81" width="584" height="1"/>
                             <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="z1l-B8-SPn"/>
@@ -124,7 +125,7 @@
                         <constraint firstItem="UHm-uN-lib" firstAttribute="leading" secondItem="gW3-GU-ptz" secondAttribute="leading" constant="10" id="AZj-84-myq"/>
                         <constraint firstAttribute="trailing" secondItem="hP8-aN-bE2" secondAttribute="trailing" constant="10" id="Cev-EH-rgJ"/>
                         <constraint firstItem="EqQ-J0-L3f" firstAttribute="top" secondItem="6dJ-0H-UBB" secondAttribute="bottom" constant="5" id="CgX-cM-hAm"/>
-                        <constraint firstItem="OWA-L0-jD7" firstAttribute="leading" secondItem="gW3-GU-ptz" secondAttribute="leading" id="Dch-in-oR1"/>
+                        <constraint firstItem="OWA-L0-jD7" firstAttribute="leading" secondItem="gW3-GU-ptz" secondAttribute="leading" constant="8" id="Dch-in-oR1"/>
                         <constraint firstItem="6dJ-0H-UBB" firstAttribute="top" secondItem="OWA-L0-jD7" secondAttribute="bottom" constant="20" id="E7N-Jh-tqs"/>
                         <constraint firstAttribute="trailing" secondItem="zqC-VB-Nav" secondAttribute="trailing" constant="8" id="GJP-PT-lsY"/>
                         <constraint firstAttribute="trailing" secondItem="6dJ-0H-UBB" secondAttribute="trailing" constant="10" id="ITx-HW-kef"/>
@@ -135,7 +136,7 @@
                         <constraint firstItem="EqQ-J0-L3f" firstAttribute="centerX" secondItem="gW3-GU-ptz" secondAttribute="centerX" id="bC5-Ac-5sm"/>
                         <constraint firstItem="I8w-Jf-a22" firstAttribute="leading" secondItem="iq1-WQ-MdC" secondAttribute="trailing" constant="15" id="bo3-dF-1ac"/>
                         <constraint firstItem="zqC-VB-Nav" firstAttribute="leading" secondItem="gW3-GU-ptz" secondAttribute="leading" constant="8" id="don-0i-Ql3"/>
-                        <constraint firstAttribute="trailing" secondItem="OWA-L0-jD7" secondAttribute="trailing" id="fdG-HE-ad8"/>
+                        <constraint firstAttribute="trailing" secondItem="OWA-L0-jD7" secondAttribute="trailing" constant="8" id="fdG-HE-ad8"/>
                         <constraint firstItem="zqC-VB-Nav" firstAttribute="top" secondItem="UHm-uN-lib" secondAttribute="bottom" id="icm-gi-YBM"/>
                         <constraint firstItem="iq1-WQ-MdC" firstAttribute="leading" secondItem="UHm-uN-lib" secondAttribute="leading" id="k3X-Fb-IyA"/>
                         <constraint firstItem="UHm-uN-lib" firstAttribute="top" secondItem="gW3-GU-ptz" secondAttribute="top" id="lys-wb-iNN"/>
@@ -216,6 +217,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="3AD-Rx-Axg"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="登录">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
