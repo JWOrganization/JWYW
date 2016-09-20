@@ -9,6 +9,10 @@
 #import "RBHomeCollectionViewCell.h"
 #import "SDWebImageManager.h"
 #import "JWTools.h"
+#import "VIPTabBarController.h"
+#import "VIPNavigationController.h"
+#import "RBHomeViewController.h"
+#import "YWLoginViewController.h"
 
 #define CellWidth ([UIScreen mainScreen].bounds.size.width - 30.f)/2
 @implementation RBHomeCollectionViewCell
@@ -70,9 +74,27 @@
     [self.likeBtn setImage:[UIImage imageNamed:isLike?@"icon-like":@"icon-dislike"] forState:UIControlStateNormal];
 }
 
+- (BOOL)isLogin{
+    if (![UserSession instance].isLogin) {
+        VIPTabBarController * rootTabBarVC = (VIPTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        __block RBHomeViewController * rbRootVC;
+        [rootTabBarVC.viewControllers enumerateObjectsUsingBlock:^(__kindof VIPNavigationController * _Nonnull navi, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([navi.viewControllers[0] isKindOfClass:[RBHomeViewController class]]) {
+                rbRootVC = (RBHomeViewController *)navi.viewControllers[0];
+            }
+        }];
+        if (!rbRootVC)return NO;
+        
+        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
+        [[rbRootVC.navigationController.viewControllers lastObject].navigationController pushViewController:vc animated:YES];
+        return NO;
+    }
+    return YES;
+}
 
 #pragma mark - Button Action
 - (IBAction)likeBtnAction:(id)sender {
+    if (![self isLogin])return;
     self.isLike = !self.isLike;
     
     self.likeCount = self.likeCount + (_isLike? 1:-1);

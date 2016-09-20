@@ -13,6 +13,11 @@
 		B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582331D90F8620096C194 /* YWRegisterViewController.xib */; };
 		B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */; };
 		B315823B1D90F86B0096C194 /* YWForgetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582391D90F86B0096C194 /* YWForgetPassWordViewController.xib */; };
+		B315823C1D9105A80096C194 /* RBHomeSearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2ECD1D8FC82F004D5256 /* RBHomeSearchDetailViewController.m */; };
+		B31582441D9108200096C194 /* MDHotelChooseTypeTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B315823F1D9108200096C194 /* MDHotelChooseTypeTableVC.m */; };
+		B31582451D9108200096C194 /* MDHotelChooseTypeTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582401D9108200096C194 /* MDHotelChooseTypeTableVC.xib */; };
+		B31582461D9108200096C194 /* MDHotelRightBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582421D9108200096C194 /* MDHotelRightBtn.m */; };
+		B31582471D9108200096C194 /* MDHotelRightBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582431D9108200096C194 /* MDHotelRightBtn.xib */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
 		B38B2DE21D8FACD8004D5256 /* VIPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CAC1D8FACD8004D5256 /* VIPHomePageViewController.m */; };
@@ -192,7 +197,6 @@
 		B38B2F1D1D8FC82F004D5256 /* RBHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2EC61D8FC82F004D5256 /* RBHomeViewController.xib */; };
 		B38B2F1E1D8FC82F004D5256 /* RBHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2EC91D8FC82F004D5256 /* RBHomeSearchViewController.m */; };
 		B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2ECA1D8FC82F004D5256 /* RBHomeSearchViewController.xib */; };
-		B38B2F201D8FC82F004D5256 /* RBHomeSearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2ECD1D8FC82F004D5256 /* RBHomeSearchDetailViewController.m */; };
 		B38B2F211D8FC82F004D5256 /* RBHomeSearchDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2ECE1D8FC82F004D5256 /* RBHomeSearchDetailViewController.xib */; };
 		B38B2F221D8FC82F004D5256 /* RBHomeSearchToolsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2ED11D8FC82F004D5256 /* RBHomeSearchToolsView.m */; };
 		B38B2F231D8FC82F004D5256 /* RBHomeSearchToolsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2ED21D8FC82F004D5256 /* RBHomeSearchToolsView.xib */; };
@@ -275,6 +279,12 @@
 		B31582371D90F86B0096C194 /* YWForgetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWForgetPassWordViewController.h; sourceTree = "<group>"; };
 		B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWForgetPassWordViewController.m; sourceTree = "<group>"; };
 		B31582391D90F86B0096C194 /* YWForgetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWForgetPassWordViewController.xib; sourceTree = "<group>"; };
+		B315823E1D9108200096C194 /* MDHotelChooseTypeTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDHotelChooseTypeTableVC.h; sourceTree = "<group>"; };
+		B315823F1D9108200096C194 /* MDHotelChooseTypeTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHotelChooseTypeTableVC.m; sourceTree = "<group>"; };
+		B31582401D9108200096C194 /* MDHotelChooseTypeTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDHotelChooseTypeTableVC.xib; sourceTree = "<group>"; };
+		B31582411D9108200096C194 /* MDHotelRightBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDHotelRightBtn.h; sourceTree = "<group>"; };
+		B31582421D9108200096C194 /* MDHotelRightBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDHotelRightBtn.m; sourceTree = "<group>"; };
+		B31582431D9108200096C194 /* MDHotelRightBtn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDHotelRightBtn.xib; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -748,6 +758,19 @@
 				B31582391D90F86B0096C194 /* YWForgetPassWordViewController.xib */,
 			);
 			path = ForgetPassWord;
+			sourceTree = "<group>";
+		};
+		B315823D1D9108200096C194 /* ChoosetypeViews */ = {
+			isa = PBXGroup;
+			children = (
+				B315823E1D9108200096C194 /* MDHotelChooseTypeTableVC.h */,
+				B315823F1D9108200096C194 /* MDHotelChooseTypeTableVC.m */,
+				B31582401D9108200096C194 /* MDHotelChooseTypeTableVC.xib */,
+				B31582411D9108200096C194 /* MDHotelRightBtn.h */,
+				B31582421D9108200096C194 /* MDHotelRightBtn.m */,
+				B31582431D9108200096C194 /* MDHotelRightBtn.xib */,
+			);
+			path = ChoosetypeViews;
 			sourceTree = "<group>";
 		};
 		B38B2C631D8FAC5A004D5256 = {
@@ -1743,6 +1766,7 @@
 		B38B2ECB1D8FC82F004D5256 /* SerachDetail */ = {
 			isa = PBXGroup;
 			children = (
+				B315823D1D9108200096C194 /* ChoosetypeViews */,
 				B38B2ECC1D8FC82F004D5256 /* RBHomeSearchDetailViewController.h */,
 				B38B2ECD1D8FC82F004D5256 /* RBHomeSearchDetailViewController.m */,
 				B38B2ECE1D8FC82F004D5256 /* RBHomeSearchDetailViewController.xib */,
@@ -2170,12 +2194,14 @@
 				B38B2F4C1D8FC83A004D5256 /* tag  LV.json in Resources */,
 				B38B2F001D8FC82F004D5256 /* RBNodeDCommentTableViewCell.xib in Resources */,
 				B38B2E611D8FACD8004D5256 /* LaunchScreen.storyboard in Resources */,
+				B31582471D9108200096C194 /* MDHotelRightBtn.xib in Resources */,
 				B38B2F0A1D8FC82F004D5256 /* RBNodeDetailHeader.xib in Resources */,
 				B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */,
 				B38B2F231D8FC82F004D5256 /* RBHomeSearchToolsView.xib in Resources */,
 				B38B2E251D8FACD8004D5256 /* MJRefresh.bundle in Resources */,
 				B38B2F0E1D8FC82F004D5256 /* RBNodeDetailRecommendHeader.xib in Resources */,
 				B38B2DEB1D8FACD8004D5256 /* HUDLoadingShowView.xib in Resources */,
+				B31582451D9108200096C194 /* MDHotelChooseTypeTableVC.xib in Resources */,
 				B38B2F5E1D8FC83A004D5256 /* xhsemoji.plist in Resources */,
 				B38B2F291D8FC82F004D5256 /* RBNewNodeCollectionViewCell.xib in Resources */,
 				B315823B1D90F86B0096C194 /* YWForgetPassWordViewController.xib in Resources */,
@@ -2253,6 +2279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B315823C1D9105A80096C194 /* RBHomeSearchDetailViewController.m in Sources */,
 				B38B2E1E1D8FACD8004D5256 /* MJRefreshStateHeader.m in Sources */,
 				B38B2EFD1D8FC82F004D5256 /* RBHomeRecommendModel.m in Sources */,
 				B38B2E271D8FACD8004D5256 /* NSBundle+MJRefresh.m in Sources */,
@@ -2349,6 +2376,7 @@
 				B38B2E011D8FACD8004D5256 /* JRToast.m in Sources */,
 				B38B2F031D8FC82F004D5256 /* RBNodeDRecommendTableViewCell.m in Sources */,
 				B38B2DFA1D8FACD8004D5256 /* AFURLRequestSerialization.m in Sources */,
+				B31582461D9108200096C194 /* MDHotelRightBtn.m in Sources */,
 				B38B2E051D8FACD8004D5256 /* MASConstraintMaker.m in Sources */,
 				B38B2E231D8FACD8004D5256 /* MJDIYBackFooter.m in Sources */,
 				B38B2E631D8FACD8004D5256 /* main.m in Sources */,
@@ -2378,7 +2406,6 @@
 				B38B2E201D8FACD8004D5256 /* MJChiBaoZiFooter2.m in Sources */,
 				B38B2F221D8FC82F004D5256 /* RBHomeSearchToolsView.m in Sources */,
 				B38B2E071D8FACD8004D5256 /* MASViewAttribute.m in Sources */,
-				B38B2F201D8FC82F004D5256 /* RBHomeSearchDetailViewController.m in Sources */,
 				B38B2DEF1D8FACD8004D5256 /* InternationalLanguage.m in Sources */,
 				B38B2E1C1D8FACD8004D5256 /* MJRefreshGifHeader.m in Sources */,
 				B38B2E0D1D8FACD8004D5256 /* README.md in Sources */,
@@ -2391,6 +2418,7 @@
 				B38B2E001D8FACD8004D5256 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				B38B2DF11D8FACD8004D5256 /* VIPTabBar.m in Sources */,
 				B38B2E4B1D8FACD8004D5256 /* SDCycleScrollView.m in Sources */,
+				B31582441D9108200096C194 /* MDHotelChooseTypeTableVC.m in Sources */,
 				B38B2E311D8FACD8004D5256 /* SDWebImageDownloaderOperation.m in Sources */,
 				B38B2DF41D8FACD8004D5256 /* AFHTTPRequestOperation.m in Sources */,
 				B38B2E331D8FACD8004D5256 /* SDWebImagePrefetcher.m in Sources */,

@@ -76,6 +76,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:RECOMMENDCELL bundle:nil] forCellReuseIdentifier:RECOMMENDCELL];
 
     self.recommendCell = [self.tableView dequeueReusableCellWithIdentifier:RECOMMENDCELL];
+    self.recommendCell.selectionStyle = UITableViewCellSelectionStyleNone;
     WEAKSELF;
     self.recommendCell.selectNodeBlock = ^(NSInteger nodeIndex){
         RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
@@ -85,7 +86,6 @@
 }
 
 #pragma mark - UI Make
-
 - (void)makeUI{
     self.toolsBottomView = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailBottomView" owner:nil options:nil] firstObject];
     WEAKSELF;

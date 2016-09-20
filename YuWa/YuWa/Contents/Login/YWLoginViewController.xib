@@ -263,6 +263,19 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="gW3-GU-ptz" secondAttribute="trailing" id="3oT-kb-pdd"/>
+                <constraint firstItem="aTK-FO-P1D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="104" id="9gg-3Q-uSs"/>
+                <constraint firstAttribute="bottom" secondItem="RER-dn-4Gi" secondAttribute="bottom" id="E8v-tS-NZv"/>
+                <constraint firstItem="gW3-GU-ptz" firstAttribute="top" secondItem="aTK-FO-P1D" secondAttribute="bottom" id="Rtf-ca-KeA"/>
+                <constraint firstItem="gW3-GU-ptz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VAV-0m-t7D"/>
+                <constraint firstAttribute="trailing" secondItem="aTK-FO-P1D" secondAttribute="trailing" id="VfF-ba-HNc"/>
+                <constraint firstItem="RER-dn-4Gi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dvz-yc-pcc"/>
+                <constraint firstItem="RER-dn-4Gi" firstAttribute="top" secondItem="aTK-FO-P1D" secondAttribute="bottom" id="hKb-U9-vTE"/>
+                <constraint firstAttribute="bottom" secondItem="gW3-GU-ptz" secondAttribute="bottom" id="m7k-Yc-eD8"/>
+                <constraint firstAttribute="trailing" secondItem="RER-dn-4Gi" secondAttribute="trailing" id="p9c-HD-wLy"/>
+                <constraint firstItem="aTK-FO-P1D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uXd-u6-hGX"/>
+            </constraints>
             <point key="canvasLocation" x="405" y="263"/>
         </view>
     </objects>

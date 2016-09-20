@@ -174,6 +174,11 @@
 - (void)segumentSelectionChange:(NSInteger)selection{
     self.state = selection;
     self.quickLoginView.hidden = selection==0?YES:NO;
+    if (selection == 0) {
+        [self.accountTextField becomeFirstResponder];
+    }else{
+        [self.mobileTextField becomeFirstResponder];
+    }
 }
 
 #pragma mark - Http

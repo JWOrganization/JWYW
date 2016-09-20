@@ -64,7 +64,7 @@
 - (void)layoutSet{
     NSDictionary * attributes = @{NSFontAttributeName:self.nameLabel.font};
     CGRect conRect = [self.nameLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT,self.nameLabel.height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:attributes context:nil];
-    self.nameLabelWidth.constant = conRect.size.width + 10.f;
+    self.nameLabelWidth.constant = conRect.size.width + 5.f;
     [self setNeedsLayout];
 }
 
