@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PersonCenterZeroCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eps-pn-jwL" customClass="defineButton">
+                        <rect key="frame" x="0.0" y="0.0" width="125" height="64.5"/>
+                    </button>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7l-Ue-9Fe" customClass="defineButton">
+                        <rect key="frame" x="125" y="0.0" width="125" height="64.5"/>
+                    </button>
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Cg-mI-dBT" customClass="defineButton">
+                        <rect key="frame" x="250" y="0.0" width="125" height="64.5"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="O7l-Ue-9Fe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0FD-7o-g1w"/>
+                    <constraint firstItem="O7l-Ue-9Fe" firstAttribute="leading" secondItem="Eps-pn-jwL" secondAttribute="trailing" id="15m-s0-qjr"/>
+                    <constraint firstAttribute="bottom" secondItem="Eps-pn-jwL" secondAttribute="bottom" id="5V8-Ra-05r"/>
+                    <constraint firstItem="O7l-Ue-9Fe" firstAttribute="width" secondItem="Eps-pn-jwL" secondAttribute="width" id="AQW-BZ-ekw"/>
+                    <constraint firstAttribute="bottom" secondItem="8Cg-mI-dBT" secondAttribute="bottom" id="Cqg-R8-LKU"/>
+                    <constraint firstItem="8Cg-mI-dBT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HS1-1v-Uno"/>
+                    <constraint firstItem="Eps-pn-jwL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Hpd-AW-EZD"/>
+                    <constraint firstItem="Eps-pn-jwL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Kde-nB-amm"/>
+                    <constraint firstItem="8Cg-mI-dBT" firstAttribute="leading" secondItem="O7l-Ue-9Fe" secondAttribute="trailing" id="KxF-WX-Q5f"/>
+                    <constraint firstItem="Eps-pn-jwL" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1:3" id="NjM-I7-dR6"/>
+                    <constraint firstAttribute="bottom" secondItem="O7l-Ue-9Fe" secondAttribute="bottom" id="fcm-jl-FqT"/>
+                    <constraint firstItem="Eps-pn-jwL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lsN-M1-yBz"/>
+                    <constraint firstItem="Eps-pn-jwL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="rHY-uw-O6s"/>
+                    <constraint firstItem="8Cg-mI-dBT" firstAttribute="width" secondItem="O7l-Ue-9Fe" secondAttribute="width" id="rrt-M8-rf3"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Eps-pn-jwL" secondAttribute="bottom" id="zvb-MO-enc"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Kde-nB-amm"/>
+                        <exclude reference="rHY-uw-O6s"/>
+                        <exclude reference="zvb-MO-enc"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+</document>

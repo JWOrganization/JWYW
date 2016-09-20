@@ -237,10 +237,13 @@
 		B38B2F7B1D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F711D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m */; };
 		B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F741D8FC8CD004D5256 /* JWSearchView.m */; };
 		B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */; };
-		B38B2F871D8FE91D004D5256 /* YWForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F851D8FE91D004D5256 /* YWForgetPassWordViewController.m */; };
-		B38B2F881D8FE91D004D5256 /* YWForgetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F861D8FE91D004D5256 /* YWForgetPassWordViewController.xib */; };
-		B38B2F8D1D900AA3004D5256 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F8B1D900AA3004D5256 /* YWRegisterViewController.m */; };
-		B38B2F8E1D900AA3004D5256 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F8C1D900AA3004D5256 /* YWRegisterViewController.xib */; };
+		B38B2F811D8FD4CA004D5256 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F7F1D8FD4CA004D5256 /* YWRegisterViewController.m */; };
+		B38B2F821D8FD4CA004D5256 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F801D8FD4CA004D5256 /* YWRegisterViewController.xib */; };
+		C1539F7A1D9034E40078D67F /* PersonCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F791D9034E40078D67F /* PersonCenterHeadView.m */; };
+		C1539F7C1D9034F20078D67F /* PersonCenterHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1539F7B1D9034F20078D67F /* PersonCenterHeadView.xib */; };
+		C1539F7F1D90375D0078D67F /* defineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F7E1D90375D0078D67F /* defineButton.m */; };
+		C1539F831D90DE8B0078D67F /* PersonCenterZeroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F811D90DE8B0078D67F /* PersonCenterZeroCell.m */; };
+		C1539F841D90DE8B0078D67F /* PersonCenterZeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1539F821D90DE8B0078D67F /* PersonCenterZeroCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -671,6 +674,14 @@
 		B38B2F8C1D900AA3004D5256 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
 		BBC1CC6C89770D83C605851F /* libPods-YuWa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuWa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
+		C1539F781D9034E40078D67F /* PersonCenterHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterHeadView.h; sourceTree = "<group>"; };
+		C1539F791D9034E40078D67F /* PersonCenterHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterHeadView.m; sourceTree = "<group>"; };
+		C1539F7B1D9034F20078D67F /* PersonCenterHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterHeadView.xib; sourceTree = "<group>"; };
+		C1539F7D1D90375D0078D67F /* defineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defineButton.h; sourceTree = "<group>"; };
+		C1539F7E1D90375D0078D67F /* defineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = defineButton.m; sourceTree = "<group>"; };
+		C1539F801D90DE8B0078D67F /* PersonCenterZeroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterZeroCell.h; sourceTree = "<group>"; };
+		C1539F811D90DE8B0078D67F /* PersonCenterZeroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterZeroCell.m; sourceTree = "<group>"; };
+		C1539F821D90DE8B0078D67F /* PersonCenterZeroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterZeroCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -742,9 +753,9 @@
 		B38B2C6E1D8FAC5A004D5256 /* YuWa */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2CA21D8FACD8004D5256 /* Contents */,
-				B38B2CC51D8FACD8004D5256 /* Foundation */,
 				B38B2DD31D8FACD8004D5256 /* resource */,
+				B38B2CC51D8FACD8004D5256 /* Foundation */,
+				B38B2CA21D8FACD8004D5256 /* Contents */,
 				B38B2DD71D8FACD8004D5256 /* Supporting File */,
 			);
 			path = YuWa;
@@ -771,13 +782,13 @@
 		B38B2CA21D8FACD8004D5256 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
+				B38B2CA91D8FACD8004D5256 /* HomePage */,
 				B38B2E651D8FC160004D5256 /* Login */,
 				B38B2CA31D8FACD8004D5256 /* discover */,
-				B38B2CA91D8FACD8004D5256 /* HomePage */,
 				B38B2CAF1D8FACD8004D5256 /* HomePage副本 4 */,
 				B38B2CB31D8FACD8004D5256 /* message */,
-				B38B2CB91D8FACD8004D5256 /* PersonCenter */,
 				B38B2CBF1D8FACD8004D5256 /* storm */,
+				B38B2CB91D8FACD8004D5256 /* PersonCenter */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -891,9 +902,9 @@
 		B38B2CB91D8FACD8004D5256 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				C1539F761D90344E0078D67F /* View */,
+				C1539F771D90344E0078D67F /* Model */,
 				B38B2CBA1D8FACD8004D5256 /* Controller */,
-				B38B2CBD1D8FACD8004D5256 /* Model */,
-				B38B2CBE1D8FACD8004D5256 /* View */,
 			);
 			path = PersonCenter;
 			sourceTree = "<group>";
@@ -905,20 +916,6 @@
 				B38B2CBC1D8FACD8004D5256 /* VIPPersonCenterViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B38B2CBD1D8FACD8004D5256 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B38B2CBE1D8FACD8004D5256 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B38B2CBF1D8FACD8004D5256 /* storm */ = {
@@ -1949,24 +1946,26 @@
 			path = SearchView;
 			sourceTree = "<group>";
 		};
-		B38B2F831D8FE8F4004D5256 /* ForgetPassWord */ = {
+		C1539F761D90344E0078D67F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2F841D8FE91D004D5256 /* YWForgetPassWordViewController.h */,
-				B38B2F851D8FE91D004D5256 /* YWForgetPassWordViewController.m */,
-				B38B2F861D8FE91D004D5256 /* YWForgetPassWordViewController.xib */,
+				C1539F781D9034E40078D67F /* PersonCenterHeadView.h */,
+				C1539F791D9034E40078D67F /* PersonCenterHeadView.m */,
+				C1539F7B1D9034F20078D67F /* PersonCenterHeadView.xib */,
+				C1539F7D1D90375D0078D67F /* defineButton.h */,
+				C1539F7E1D90375D0078D67F /* defineButton.m */,
+				C1539F801D90DE8B0078D67F /* PersonCenterZeroCell.h */,
+				C1539F811D90DE8B0078D67F /* PersonCenterZeroCell.m */,
+				C1539F821D90DE8B0078D67F /* PersonCenterZeroCell.xib */,
 			);
-			path = ForgetPassWord;
+			path = View;
 			sourceTree = "<group>";
 		};
-		B38B2F891D900A54004D5256 /* Register */ = {
+		C1539F771D90344E0078D67F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2F8A1D900AA3004D5256 /* YWRegisterViewController.h */,
-				B38B2F8B1D900AA3004D5256 /* YWRegisterViewController.m */,
-				B38B2F8C1D900AA3004D5256 /* YWRegisterViewController.xib */,
 			);
-			path = Register;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EDD1BC4F3FB283CECFE57A3B /* Frameworks */ = {
@@ -2137,6 +2136,7 @@
 				B38B2F0C1D8FC82F004D5256 /* RBNodeDetailImageHeader.xib in Resources */,
 				B38B2F301D8FC82F004D5256 /* RBConnectionViewController.xib in Resources */,
 				B38B2F211D8FC82F004D5256 /* RBHomeSearchDetailViewController.xib in Resources */,
+				C1539F7C1D9034F20078D67F /* PersonCenterHeadView.xib in Resources */,
 				B38B2F1D1D8FC82F004D5256 /* RBHomeViewController.xib in Resources */,
 				B38B2F601D8FC83A004D5256 /* xhsemoji2.plist in Resources */,
 				B38B2F1B1D8FC82F004D5256 /* RBNodeDetailBottomView.xib in Resources */,
@@ -2158,6 +2158,7 @@
 				B38B2F5E1D8FC83A004D5256 /* xhsemoji.plist in Resources */,
 				B38B2F291D8FC82F004D5256 /* RBNewNodeCollectionViewCell.xib in Resources */,
 				B38B2F4D1D8FC83A004D5256 /* 个人中心 总的请求（可无视）.json in Resources */,
+				C1539F841D90DE8B0078D67F /* PersonCenterZeroCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2239,6 +2240,7 @@
 				B38B2E701D8FC3F3004D5256 /* YWLoginViewController.m in Sources */,
 				B38B2F0B1D8FC82F004D5256 /* RBNodeDetailImageHeader.m in Sources */,
 				B38B2E1F1D8FACD8004D5256 /* MJChiBaoZiFooter.m in Sources */,
+				C1539F831D90DE8B0078D67F /* PersonCenterZeroCell.m in Sources */,
 				B38B2F2D1D8FC82F004D5256 /* RBNodeBGView.m in Sources */,
 				B38B2DE41D8FACD8004D5256 /* VIPPersonCenterViewController.m in Sources */,
 				B38B2E4C1D8FACD8004D5256 /* TAAbstractDotView.m in Sources */,
@@ -2248,6 +2250,7 @@
 				B38B2F771D8FC8CD004D5256 /* UIScrollView+JWGifRefresh.m in Sources */,
 				B38B2F2B1D8FC82F004D5256 /* RBNodeViewController.m in Sources */,
 				B38B2F761D8FC8CD004D5256 /* NSString+JWAppendOtherStr.m in Sources */,
+				C1539F7F1D90375D0078D67F /* defineButton.m in Sources */,
 				B38B2DEA1D8FACD8004D5256 /* HUDLoadingShowView.m in Sources */,
 				B38B2E1A1D8FACD8004D5256 /* MJRefreshBackNormalFooter.m in Sources */,
 				B38B2EFB1D8FC82F004D5256 /* RBHomeListImagesModel.m in Sources */,
@@ -2287,6 +2290,7 @@
 				B38B2EFE1D8FC82F004D5256 /* RBHomeUserModel.m in Sources */,
 				B38B2DF21D8FACD8004D5256 /* VIPTabBarController.m in Sources */,
 				B38B2E411D8FACD8004D5256 /* NSDictionary+Log.m in Sources */,
+				C1539F7A1D9034E40078D67F /* PersonCenterHeadView.m in Sources */,
 				B38B2EFF1D8FC82F004D5256 /* RBNodeDCommentTableViewCell.m in Sources */,
 				B38B2E281D8FACD8004D5256 /* UIScrollView+MJExtension.m in Sources */,
 				B38B2E3E1D8FACD8004D5256 /* JRSegmentViewController.m in Sources */,

@@ -7,16 +7,23 @@
 //
 
 #import "VIPPersonCenterViewController.h"
+#import "PersonCenterZeroCell.h"
+#import "defineButton.h"
+
 
 #define SECTION0CELL  @"cell"
-#define HEADERVIEWHEIGHT   215
+#define CELL0         @"PersonCenterZeroCell"
+
+#define HEADERVIEWHEIGHT   195     //头视图的高度
+
 
 @interface VIPPersonCenterViewController()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UIImage*barImage;   //改变导航栏的透明度
+
+@property(nonatomic,strong)UIView*belowImageViewView;   //图片下面的视图
+@property(nonatomic,strong)UIView*headerView;   //头视图
 
 @property(nonatomic,strong)UITableView*tableView;
-@property(nonatomic,strong)UIView*bottomView;
-@property(nonatomic,strong)UIImageView*bottomImageView;
+
 
 @end
 
@@ -32,13 +39,16 @@
 
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:SECTION0CELL];
+    [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
     [self addHeaderView];
+    
+    
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     
     UIBarButtonItem*leftItem=[[UIBarButtonItem alloc]initWithTitle:@"left" style:UIBarButtonItemStylePlain target:self action:@selector(TouchLeftItem)];
     self.navigationItem.leftBarButtonItem=leftItem;
@@ -48,66 +58,111 @@
     
    }
 
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    MyLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
-//    
-//    CGFloat contentOffset_y=scrollView.contentOffset.y;
-//    if (contentOffset_y<0) {
-//        CGFloat add_height=-contentOffset_y;
-//        CGFloat scale =-(contentOffset_y-HEADERVIEWHEIGHT)/HEADERVIEWHEIGHT;
-//        
-//        self.bottomView.frame=CGRectMake(0,-add_height, kScreen_Width, HEADERVIEWHEIGHT+add_height);
-//        self.bottomImageView.frame=CGRectMake(-(scale-1)*kScreen_Width/2, 0, kScreen_Width*scale, HEADERVIEWHEIGHT-contentOffset_y);
-//        
-//        
-//    }
-//    
-//    
-//
-//    
-//    
-//    
-//    
-//}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    MyLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+    CGFloat yoffset=scrollView.contentOffset.y;
+    
+    if (yoffset>=HEADERVIEWHEIGHT-64&&yoffset<=HEADERVIEWHEIGHT) {
+        CGFloat alpha=(yoffset-(HEADERVIEWHEIGHT-64))/64;
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:alpha];
+        
+        
+    }else if (yoffset<HEADERVIEWHEIGHT-64){
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
+
+    }else{
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
+
+    }
+    
+    
+}
+
 
 #pragma mark  --UI
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 10;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:SECTION0CELL];
+    if (indexPath.section==0&&indexPath.row==0) {
+        cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+        
+        UIButton*button0=[cell viewWithTag:1];
+        button0.backgroundColor=[UIColor grayColor];
+        
+        UIButton*button1=[cell viewWithTag:2];
+        button1.backgroundColor=[UIColor blueColor];
+        
+        defineButton*button2=[cell viewWithTag:3];
+        button2.backgroundColor=[UIColor redColor];
+        button2.VlineView.hidden=YES;
+        
+        return cell;
+    }
+    
+    
     cell.textLabel.text=@"6666";
     return cell;
     
 }
 
--(void)addHeaderView{
-    UIView*headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, HEADERVIEWHEIGHT)];
-    self.tableView.tableHeaderView=headerView;
-    
-    UIView*BottomView=[[UIView alloc]init];
-    BottomView.frame=headerView.frame;
-    self.bottomView=BottomView;
-    
-    UIImageView*imageView=[[UIImageView alloc]initWithFrame:BottomView.frame];
-    self.bottomImageView=imageView;
-    imageView.contentMode=UIViewContentModeScaleAspectFill;
-    imageView.image=[UIImage imageNamed:@"backImage"];
-    
-    
-    [BottomView addSubview:imageView];
-//    [self.view insertSubview:imageView belowSubview:self.tableView];
-    [headerView addSubview:BottomView];
-    
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==0&&indexPath.row==0) {
+        return 65;
+        
+    }
+    return 44;
 }
+
+
+-(void)addHeaderView{
+    
+    UIImageView*imageView=[[UIImageView alloc]init];
+    imageView.image=[UIImage imageNamed:@"backImage"];
+    imageView.contentMode=UIViewContentModeScaleAspectFill;
+
+    //超出的图片的高度
+    CGFloat OTHERHEADER = ((kScreen_Width * imageView.image.size.height / imageView.image.size.width)-195);
+    imageView.frame=CGRectMake(0, 0, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER);
+
+    
+    
+    self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, -OTHERHEADER, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER)];
+    
+   
+    [self.belowImageViewView addSubview:imageView];
+    
+  
+    self.headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, HEADERVIEWHEIGHT)];
+    self.headerView.backgroundColor=[UIColor blackColor];
+    
+    [self.headerView addSubview:self.belowImageViewView];
+    
+    self.tableView.tableHeaderView=self.headerView;
+    
+    
+    //图片界面装在 上面
+   UIView*showView= [[NSBundle mainBundle]loadNibNamed:@"PersonCenterHeadView" owner:nil options:nil].firstObject;
+    showView.frame=CGRectMake(0, 0, kScreen_Width, HEADERVIEWHEIGHT);
+    showView.backgroundColor=[UIColor clearColor];
+    [self.headerView addSubview:showView];
+    
+     defineButton*button4=[showView viewWithTag:14];
+    button4.VlineView.hidden=YES;
+  
+}
+
 
 
 #pragma mark  --touch
 -(void)TouchLeftItem{
-    MyLog(@"11");
+    MyLog(@"1111");
 }
 
 -(void)touchRightItem{
