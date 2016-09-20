@@ -162,7 +162,7 @@
 
 #pragma mark  --touch
 -(void)TouchLeftItem{
-    MyLog(@"11");
+    MyLog(@"1111");
 }
 
 -(void)touchRightItem{
