@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1200AE09FCCFFA5EBD10470F /* libPods-YuWa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC1CC6C89770D83C605851F /* libPods-YuWa.a */; };
 		B31581F01D90CD070096C194 /* RBHomeSearchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B31581EF1D90CD070096C194 /* RBHomeSearchTableView.m */; };
+		B31582341D90F8620096C194 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582321D90F8620096C194 /* YWRegisterViewController.m */; };
+		B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582331D90F8620096C194 /* YWRegisterViewController.xib */; };
+		B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */; };
+		B315823B1D90F86B0096C194 /* YWForgetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582391D90F86B0096C194 /* YWForgetPassWordViewController.xib */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
 		B38B2DE21D8FACD8004D5256 /* VIPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CAC1D8FACD8004D5256 /* VIPHomePageViewController.m */; };
@@ -237,8 +241,6 @@
 		B38B2F7B1D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F711D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m */; };
 		B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F741D8FC8CD004D5256 /* JWSearchView.m */; };
 		B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */; };
-		B38B2F811D8FD4CA004D5256 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F7F1D8FD4CA004D5256 /* YWRegisterViewController.m */; };
-		B38B2F821D8FD4CA004D5256 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F801D8FD4CA004D5256 /* YWRegisterViewController.xib */; };
 		C1539F7A1D9034E40078D67F /* PersonCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F791D9034E40078D67F /* PersonCenterHeadView.m */; };
 		C1539F7C1D9034F20078D67F /* PersonCenterHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1539F7B1D9034F20078D67F /* PersonCenterHeadView.xib */; };
 		C1539F7F1D90375D0078D67F /* defineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F7E1D90375D0078D67F /* defineButton.m */; };
@@ -267,6 +269,12 @@
 		6D91CFB893AA70B1C9A0D506 /* Pods-YuWa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.debug.xcconfig"; sourceTree = "<group>"; };
 		B31581EE1D90CD070096C194 /* RBHomeSearchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBHomeSearchTableView.h; sourceTree = "<group>"; };
 		B31581EF1D90CD070096C194 /* RBHomeSearchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBHomeSearchTableView.m; sourceTree = "<group>"; };
+		B31582311D90F8620096C194 /* YWRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRegisterViewController.h; sourceTree = "<group>"; };
+		B31582321D90F8620096C194 /* YWRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRegisterViewController.m; sourceTree = "<group>"; };
+		B31582331D90F8620096C194 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
+		B31582371D90F86B0096C194 /* YWForgetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWForgetPassWordViewController.h; sourceTree = "<group>"; };
+		B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWForgetPassWordViewController.m; sourceTree = "<group>"; };
+		B31582391D90F86B0096C194 /* YWForgetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWForgetPassWordViewController.xib; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -666,12 +674,6 @@
 		B38B2F731D8FC8CD004D5256 /* JWSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSearchView.h; sourceTree = "<group>"; };
 		B38B2F741D8FC8CD004D5256 /* JWSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSearchView.m; sourceTree = "<group>"; };
 		B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWSearchView.xib; sourceTree = "<group>"; };
-		B38B2F841D8FE91D004D5256 /* YWForgetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWForgetPassWordViewController.h; sourceTree = "<group>"; };
-		B38B2F851D8FE91D004D5256 /* YWForgetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWForgetPassWordViewController.m; sourceTree = "<group>"; };
-		B38B2F861D8FE91D004D5256 /* YWForgetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWForgetPassWordViewController.xib; sourceTree = "<group>"; };
-		B38B2F8A1D900AA3004D5256 /* YWRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRegisterViewController.h; sourceTree = "<group>"; };
-		B38B2F8B1D900AA3004D5256 /* YWRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRegisterViewController.m; sourceTree = "<group>"; };
-		B38B2F8C1D900AA3004D5256 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
 		BBC1CC6C89770D83C605851F /* libPods-YuWa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuWa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
 		C1539F781D9034E40078D67F /* PersonCenterHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterHeadView.h; sourceTree = "<group>"; };
@@ -726,6 +728,26 @@
 				B31581EF1D90CD070096C194 /* RBHomeSearchTableView.m */,
 			);
 			path = SearchTableView;
+			sourceTree = "<group>";
+		};
+		B31582301D90F8620096C194 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				B31582311D90F8620096C194 /* YWRegisterViewController.h */,
+				B31582321D90F8620096C194 /* YWRegisterViewController.m */,
+				B31582331D90F8620096C194 /* YWRegisterViewController.xib */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		B31582361D90F86B0096C194 /* ForgetPassWord */ = {
+			isa = PBXGroup;
+			children = (
+				B31582371D90F86B0096C194 /* YWForgetPassWordViewController.h */,
+				B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */,
+				B31582391D90F86B0096C194 /* YWForgetPassWordViewController.xib */,
+			);
+			path = ForgetPassWord;
 			sourceTree = "<group>";
 		};
 		B38B2C631D8FAC5A004D5256 = {
@@ -1511,8 +1533,8 @@
 		B38B2E651D8FC160004D5256 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2F891D900A54004D5256 /* Register */,
-				B38B2F831D8FE8F4004D5256 /* ForgetPassWord */,
+				B31582361D90F86B0096C194 /* ForgetPassWord */,
+				B31582301D90F8620096C194 /* Register */,
 				B38B2E6D1D8FC3F3004D5256 /* YWLoginViewController.h */,
 				B38B2E6E1D8FC3F3004D5256 /* YWLoginViewController.m */,
 				B38B2E6F1D8FC3F3004D5256 /* YWLoginViewController.xib */,
@@ -2104,7 +2126,6 @@
 				B38B2F5A1D8FC83A004D5256 /* country.plist in Resources */,
 				B38B2E5C1D8FACD8004D5256 /* head@2x.png in Resources */,
 				B38B2F591D8FC83A004D5256 /* 首页数据.json in Resources */,
-				B38B2F881D8FE91D004D5256 /* YWForgetPassWordViewController.xib in Resources */,
 				B38B2E5B1D8FACD8004D5256 /* backImage.png in Resources */,
 				B38B2E621D8FACD8004D5256 /* Info.plist in Resources */,
 				B38B2F541D8FC83A004D5256 /* 定位.json in Resources */,
@@ -2129,7 +2150,6 @@
 				B38B2F251D8FC82F004D5256 /* RBAlbumCollectionViewCell.xib in Resources */,
 				B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */,
 				B38B2E601D8FACD8004D5256 /* Assets.xcassets in Resources */,
-				B38B2F8E1D900AA3004D5256 /* YWRegisterViewController.xib in Resources */,
 				B38B2F511D8FC83A004D5256 /* 发送笔记.json in Resources */,
 				B38B2DEE1D8FACD8004D5256 /* NewLanguage.strings in Resources */,
 				B38B2F4F1D8FC83A004D5256 /* 单条笔记.json in Resources */,
@@ -2151,12 +2171,14 @@
 				B38B2F001D8FC82F004D5256 /* RBNodeDCommentTableViewCell.xib in Resources */,
 				B38B2E611D8FACD8004D5256 /* LaunchScreen.storyboard in Resources */,
 				B38B2F0A1D8FC82F004D5256 /* RBNodeDetailHeader.xib in Resources */,
+				B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */,
 				B38B2F231D8FC82F004D5256 /* RBHomeSearchToolsView.xib in Resources */,
 				B38B2E251D8FACD8004D5256 /* MJRefresh.bundle in Resources */,
 				B38B2F0E1D8FC82F004D5256 /* RBNodeDetailRecommendHeader.xib in Resources */,
 				B38B2DEB1D8FACD8004D5256 /* HUDLoadingShowView.xib in Resources */,
 				B38B2F5E1D8FC83A004D5256 /* xhsemoji.plist in Resources */,
 				B38B2F291D8FC82F004D5256 /* RBNewNodeCollectionViewCell.xib in Resources */,
+				B315823B1D90F86B0096C194 /* YWForgetPassWordViewController.xib in Resources */,
 				B38B2F4D1D8FC83A004D5256 /* 个人中心 总的请求（可无视）.json in Resources */,
 				C1539F841D90DE8B0078D67F /* PersonCenterZeroCell.xib in Resources */,
 			);
@@ -2287,6 +2309,7 @@
 				B38B2DF51D8FACD8004D5256 /* AFHTTPRequestOperationManager.m in Sources */,
 				B38B2DFE1D8FACD8004D5256 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				B38B2F111D8FC82F004D5256 /* RBNodeShowModel.m in Sources */,
+				B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */,
 				B38B2EFE1D8FC82F004D5256 /* RBHomeUserModel.m in Sources */,
 				B38B2DF21D8FACD8004D5256 /* VIPTabBarController.m in Sources */,
 				B38B2E411D8FACD8004D5256 /* NSDictionary+Log.m in Sources */,
@@ -2306,7 +2329,6 @@
 				B38B2DF01D8FACD8004D5256 /* VIPNavigationController.m in Sources */,
 				B38B2EFA1D8FC82F004D5256 /* RBHomeListGoodsModel.m in Sources */,
 				B38B2E371D8FACD8004D5256 /* UIImage+WebP.m in Sources */,
-				B38B2F8D1D900AA3004D5256 /* YWRegisterViewController.m in Sources */,
 				B38B2E111D8FACD8004D5256 /* MJRefreshAutoFooter.m in Sources */,
 				B38B2E3A1D8FACD8004D5256 /* UIView+WebCacheOperation.m in Sources */,
 				B38B2F2A1D8FC82F004D5256 /* RBCenterAlbumModel.m in Sources */,
@@ -2329,7 +2351,6 @@
 				B38B2DFA1D8FACD8004D5256 /* AFURLRequestSerialization.m in Sources */,
 				B38B2E051D8FACD8004D5256 /* MASConstraintMaker.m in Sources */,
 				B38B2E231D8FACD8004D5256 /* MJDIYBackFooter.m in Sources */,
-				B38B2F871D8FE91D004D5256 /* YWForgetPassWordViewController.m in Sources */,
 				B38B2E631D8FACD8004D5256 /* main.m in Sources */,
 				B38B2E171D8FACD8004D5256 /* MJRefreshAutoNormalFooter.m in Sources */,
 				B38B2E421D8FACD8004D5256 /* NSString+PinYin.m in Sources */,
@@ -2338,6 +2359,7 @@
 				B38B2E4D1D8FACD8004D5256 /* TAAnimatedDotView.m in Sources */,
 				B38B2F051D8FC82F004D5256 /* RBNodeDetailCommendFooter.m in Sources */,
 				B38B2E131D8FACD8004D5256 /* MJRefreshComponent.m in Sources */,
+				B31582341D90F8620096C194 /* YWRegisterViewController.m in Sources */,
 				B38B2E2E1D8FACD8004D5256 /* SDWebImageCompat.m in Sources */,
 				B38B2E4E1D8FACD8004D5256 /* TADotView.m in Sources */,
 				B38B2E4F1D8FACD8004D5256 /* TAPageControl.m in Sources */,
