@@ -123,10 +123,10 @@
 
 
 //FONT_EN
-#define FONT_EN_48 [UIFont fontWithName:@"San Francisco Text" size:24]
-#define FONT_EN_36 [UIFont fontWithName:@"San Francisco Text" size:18]
-#define FONT_EN_30 [UIFont fontWithName:@"San Francisco Text" size:15]
-#define FONT_EN_24 [UIFont fontWithName:@"San Francisco Text" size:12]
+//#define FONT_EN_48 [UIFont fontWithName:@"San Francisco Text" size:24]
+//#define FONT_EN_36 [UIFont fontWithName:@"San Francisco Text" size:18]
+//#define FONT_EN_30 [UIFont fontWithName:@"San Francisco Text" size:15]
+//#define FONT_EN_24 [UIFont fontWithName:@"San Francisco Text" size:12]
 
 //这个 涉及到apple 系统的字体放大的问题
 //UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]
