@@ -33,6 +33,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (![self.searchView.textField.text isEqualToString:@""])[self.searchView.textField becomeFirstResponder];
     [self.tableView reloadData];
 }
 
@@ -44,7 +45,7 @@
 - (void)makeNavi{
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"取消" withTittleColor:[UIColor lightGrayColor] withTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside withWidth:40.f];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"取消" withTittleColor:[UIColor whiteColor] withTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside withWidth:40.f];
     
     self.searchView = [[[NSBundle mainBundle]loadNibNamed:@"RBHomeSearchToolsView" owner:nil options:nil]firstObject];
     self.searchView.textField.delegate = self;
@@ -69,6 +70,12 @@
         [self.tagArr addObject:@""];
     }
     //要删23333333
+}
+
+- (void)removeHistoryBtnAction{
+    self.searchArr = [NSMutableArray arrayWithCapacity:0];
+    [KUSERDEFAULT setValue:self.searchArr forKey:Search_Node_History];
+    [self.tableView reloadData];
 }
 
 - (void)backAction{
@@ -99,10 +106,21 @@
     vc.searchKey = key;
     vc.type = type;
     [self.navigationController pushViewController:vc animated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.searchView.textField.text = key;
+    });
 }
 
 #pragma mark - UITextFieldDelegate
-
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@"\n"]) {
+        if (![textField.text isEqualToString:@""]) {
+            [self rememberSearchDataWithKey:textField.text withType:[NSString stringWithFormat:@"%zi",self.type]];
+        }
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -114,12 +132,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString * key = @"233333";
     NSInteger type = self.type;
-    if (self.searchArr.count == 0) {//无历史记录
-         //self.tagArr[indexPath.row];内数据
-    }else{//有历史记录
+    if (self.searchArr.count > 0 && indexPath.section == 0) {//有历史记录
+        if (indexPath.row == 0)return;
         NSDictionary * searchHistoryDic = self.searchArr[indexPath.row - 1];
         key = searchHistoryDic[@"key"];
         type = [searchHistoryDic[@"type"] integerValue];
+    }else{//无历史记录
+        //self.tagArr[indexPath.row];内数据
     }
     [self rememberSearchDataWithKey:key withType:[NSString stringWithFormat:@"%zi",type]];
 }
@@ -151,6 +170,13 @@
         searchListCell.textLabel.textColor = [UIColor colorWithHexString:indexPath.row == 0?@"#cccccc":@"#7e7e7e"];
         searchListCell.textLabel.font = [UIFont systemFontOfSize:14.f];
         searchListCell.textLabel.text = indexPath.row == 0?@"历史记录":@"23333333";
+        if (![searchListCell viewWithTag:1000] && indexPath.row == 0) {
+            UIButton * deletebtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreen_Width -  32.f, 19.f, 17.f, 17.f)];
+            [deletebtn setBackgroundImage:[UIImage imageNamed:@"remove_history"] forState:UIControlStateNormal];
+            deletebtn.tag = 1000;
+            [deletebtn addTarget:self action:@selector(removeHistoryBtnAction) forControlEvents:UIControlEventTouchUpInside];
+            [searchListCell addSubview:deletebtn];
+        }
         return searchListCell;
     }
     
@@ -163,7 +189,7 @@
         searchHeaderCell.backgroundColor = [UIColor colorWithHexString:@"#F3F6F8"];
         searchHeaderCell.textLabel.font = [UIFont systemFontOfSize:13.f];
         searchHeaderCell.textLabel.textColor = [UIColor colorWithHexString:@"#535353"];
-        searchHeaderCell.textLabel.text = @"热门标签";
+        searchHeaderCell.textLabel.text = @"热门搜索";
         searchHeaderCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return searchHeaderCell;
     }
