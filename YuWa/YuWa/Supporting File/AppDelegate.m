@@ -19,6 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [UserSession instance];
 #pragma mark  ----国际化语言
     [InternationalLanguage initUserLanguage];//初始化应用语言
 #pragma mark  -- 根视图

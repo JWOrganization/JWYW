@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *typeBtn;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
+@property (nonatomic,copy)NSString * searchKey;
+
 
 @end

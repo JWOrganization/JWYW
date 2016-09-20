@@ -98,12 +98,10 @@
 }
 
 #pragma mark  - UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if ([string isEqualToString:@"\n"]) {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if ([self canSendRequset]) {
         [textField resignFirstResponder];
-        if ([self canSendRequset]) {
-            [self requestRegisterWithAccount:self.accountTextField.text withPassword:self.passwordtextField.text  withCode:self.secuirtyCodeTextField.text];
-        }
+        [self requestRegisterWithAccount:self.accountTextField.text withPassword:self.passwordtextField.text  withCode:self.secuirtyCodeTextField.text];
     }
     return YES;
 }

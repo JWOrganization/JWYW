@@ -30,6 +30,7 @@
 - (void)makeNavi{
     self.searchView = [[[NSBundle mainBundle]loadNibNamed:@"RBHomeSearchToolsView" owner:nil options:nil]firstObject];
     [self.searchView.textField setUserInteractionEnabled:NO];
+    self.searchView.searchKey = [NSString stringWithFormat:@" %@  x",self.searchKey];
     WEAKSELF;
     self.searchView.typeChooseBlock = ^(NSInteger type){
         weakSelf.type = type;

@@ -13,6 +13,8 @@
 @property (nonatomic,strong)RBCommentToolsView * commentToolsView;
 @property (nonatomic,strong)NSMutableDictionary * commentSendDic;
 
+- (BOOL)isLogin;
+
 - (void)publishNodeAction;
 - (void)publishAlbumAction;
 

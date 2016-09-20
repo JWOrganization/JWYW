@@ -22,5 +22,25 @@
     self.typeChooseBlock(0);
 }
 
+- (void)setSearchKey:(NSString *)searchKey{
+    if (!searchKey)return;
+    _searchKey = searchKey;
+    [self makeSearchKeyView];
+}
+
+- (void)makeSearchKeyView{
+    self.textField.placeholder = @"";
+    NSDictionary * attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14.f]};
+    CGRect conRect = [self.searchKey boundingRectWithSize:CGSizeMake(MAXFLOAT,20.f) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:attributes context:nil];
+    UILabel * searchLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.typeBtn.width + 5.f, 4.f, conRect.size.width + 10.f, 22.f)];
+    searchLabel.backgroundColor = CNaviColor;
+    searchLabel.textAlignment = NSTextAlignmentCenter;
+    searchLabel.textColor = [UIColor whiteColor];
+    searchLabel.text = self.searchKey;
+    searchLabel.font = [UIFont systemFontOfSize:14.f];
+    searchLabel.layer.cornerRadius = 3.f;
+    searchLabel.layer.masksToBounds = YES;
+    [self addSubview:searchLabel];
+}
 
 @end

@@ -9,6 +9,7 @@
 #import "RBHomeSearchViewController.h"
 #import "RBHomeSearchToolsView.h"
 #import "RBHomeSearchDetailViewController.h"
+#import "RBHomeSearchTableView.h"
 
 #define Search_Node_History @"SearchNodeHistory"
 @interface RBHomeSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -17,8 +18,8 @@
 @property (nonatomic,strong)NSMutableArray * searchArr;//历史记录
 @property (nonatomic,strong)NSMutableArray * tagArr;
 @property (nonatomic,assign)NSInteger type;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong)RBHomeSearchTableView * searchTableView;
 
 @end
 
@@ -27,13 +28,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self makeNavi];
+//    [self makeUI];
     [self dataSet];
     [self requestdata];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (![self.searchView.textField.text isEqualToString:@""])[self.searchView.textField becomeFirstResponder];
+    if (![self.searchView.textField.text isEqualToString:@""]){
+        [self.searchView.textField becomeFirstResponder];
+        self.searchTableView.hidden = NO;
+    }else{
+        self.searchTableView.hidden = YES;
+    }
     [self.tableView reloadData];
 }
 
@@ -54,6 +61,11 @@
         weakSelf.type = type;
     };
     self.navigationItem.titleView = self.searchView;
+}
+
+- (void)makeUI{
+    self.searchTableView = [[RBHomeSearchTableView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width, kScreen_Height - NavigationHeight) style:UITableViewStyleGrouped];
+    [self.view addSubview:self.searchTableView];
 }
 
 - (void)dataSet{
@@ -79,6 +91,7 @@
 }
 
 - (void)backAction{
+    [self.searchView.textField resignFirstResponder];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -92,12 +105,13 @@
         }
     }
     if (self.searchArr.count <= 2) {
-        [self.searchArr addObject:dataDic];
+        [self.searchArr insertObject:dataDic atIndex:0];
     }else{
         //记录数据上限为3个
         [self.searchArr removeLastObject];
         [self.searchArr insertObject:dataDic atIndex:0];
     }
+    [self.searchView.textField resignFirstResponder];
     [KUSERDEFAULT setValue:self.searchArr forKey:Search_Node_History];
     [self pushToDetailVCWithKey:key withType:[type integerValue]];
 }
@@ -112,13 +126,17 @@
 }
 
 #pragma mark - UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if ([string isEqualToString:@"\n"]) {
-        if (![textField.text isEqualToString:@""]) {
-            [self rememberSearchDataWithKey:textField.text withType:[NSString stringWithFormat:@"%zi",self.type]];
-        }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (![textField.text isEqualToString:@""]) {
+        [self rememberSearchDataWithKey:textField.text withType:[NSString stringWithFormat:@"%zi",self.type]];
         [textField resignFirstResponder];
+        return YES;
+    }else{
+        return NO;
     }
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    self.searchTableView.searchKey = self.searchView.textField.text;
     return YES;
 }
 
@@ -169,7 +187,7 @@
         searchListCell.selectionStyle = UITableViewCellSelectionStyleNone;
         searchListCell.textLabel.textColor = [UIColor colorWithHexString:indexPath.row == 0?@"#cccccc":@"#7e7e7e"];
         searchListCell.textLabel.font = [UIFont systemFontOfSize:14.f];
-        searchListCell.textLabel.text = indexPath.row == 0?@"历史记录":@"23333333";
+        searchListCell.textLabel.text = indexPath.row == 0?@"历史记录":self.searchArr[indexPath.row - 1][@"key"];
         if (![searchListCell viewWithTag:1000] && indexPath.row == 0) {
             UIButton * deletebtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreen_Width -  32.f, 19.f, 17.f, 17.f)];
             [deletebtn setBackgroundImage:[UIImage imageNamed:@"remove_history"] forState:UIControlStateNormal];
@@ -215,7 +233,6 @@
 
 #pragma mark - Http
 - (void)requestdata{
-    
     [self.tableView reloadData];
 }
 

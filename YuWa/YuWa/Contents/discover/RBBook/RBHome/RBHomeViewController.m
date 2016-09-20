@@ -16,10 +16,6 @@
 #import "RBHomeCollectionViewCell.h"
 
 #define HOMECELL @"RBHomeCollectionViewCell"
-
-//要删2333333333
-#import "YWLoginViewController.h"
-//要删2333333333
 @interface RBHomeViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,JWWaterflowLayoutDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -128,14 +124,6 @@
 
 #pragma mark - UICollectionViewDataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //要删2333333333
-    if (![UserSession instance].isLogin && indexPath.row == 0) {
-        //测试登录
-        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
-    //要删2333333333
     RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
     vc.model = self.dataArr[indexPath.row];
     [self.navigationController pushViewController:vc animated:NO];

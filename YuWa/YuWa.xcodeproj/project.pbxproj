@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1200AE09FCCFFA5EBD10470F /* libPods-YuWa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC1CC6C89770D83C605851F /* libPods-YuWa.a */; };
+		B31581F01D90CD070096C194 /* RBHomeSearchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B31581EF1D90CD070096C194 /* RBHomeSearchTableView.m */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
-		B38B2DE11D8FACD8004D5256 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CA61D8FACD8004D5256 /* DiscoverViewController.m */; };
 		B38B2DE21D8FACD8004D5256 /* VIPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CAC1D8FACD8004D5256 /* VIPHomePageViewController.m */; };
 		B38B2DE31D8FACD8004D5256 /* YWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CB61D8FACD8004D5256 /* YWMessageViewController.m */; };
 		B38B2DE41D8FACD8004D5256 /* VIPPersonCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CBC1D8FACD8004D5256 /* VIPPersonCenterViewController.m */; };
@@ -262,6 +262,8 @@
 
 /* Begin PBXFileReference section */
 		6D91CFB893AA70B1C9A0D506 /* Pods-YuWa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.debug.xcconfig"; sourceTree = "<group>"; };
+		B31581EE1D90CD070096C194 /* RBHomeSearchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBHomeSearchTableView.h; sourceTree = "<group>"; };
+		B31581EF1D90CD070096C194 /* RBHomeSearchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBHomeSearchTableView.m; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -269,8 +271,6 @@
 		B38B2C901D8FAC5A004D5256 /* YuWaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaUITests.m; sourceTree = "<group>"; };
 		B38B2C961D8FAC5A004D5256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B38B2CA51D8FACD8004D5256 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
-		B38B2CA61D8FACD8004D5256 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		B38B2CAB1D8FACD8004D5256 /* VIPHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPHomePageViewController.h; sourceTree = "<group>"; };
 		B38B2CAC1D8FACD8004D5256 /* VIPHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPHomePageViewController.m; sourceTree = "<group>"; };
 		B38B2CB51D8FACD8004D5256 /* YWMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageViewController.h; sourceTree = "<group>"; };
@@ -708,6 +708,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B31581ED1D90CCB10096C194 /* SearchTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B31581EE1D90CD070096C194 /* RBHomeSearchTableView.h */,
+				B31581EF1D90CD070096C194 /* RBHomeSearchTableView.m */,
+			);
+			path = SearchTableView;
+			sourceTree = "<group>";
+		};
 		B38B2C631D8FAC5A004D5256 = {
 			isa = PBXGroup;
 			children = (
@@ -778,34 +787,8 @@
 			children = (
 				B38B2F611D8FC8A5004D5256 /* RBTools */,
 				B38B2E761D8FC76A004D5256 /* RBBook */,
-				B38B2CA41D8FACD8004D5256 /* Controller */,
-				B38B2CA71D8FACD8004D5256 /* Model */,
-				B38B2CA81D8FACD8004D5256 /* View */,
 			);
 			path = discover;
-			sourceTree = "<group>";
-		};
-		B38B2CA41D8FACD8004D5256 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B38B2CA51D8FACD8004D5256 /* DiscoverViewController.h */,
-				B38B2CA61D8FACD8004D5256 /* DiscoverViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B38B2CA71D8FACD8004D5256 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B38B2CA81D8FACD8004D5256 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B38B2CA91D8FACD8004D5256 /* HomePage */ = {
@@ -1728,6 +1711,7 @@
 		B38B2EC71D8FC82F004D5256 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
+				B31581ED1D90CCB10096C194 /* SearchTableView */,
 				B38B2EC81D8FC82F004D5256 /* RBHomeSearchViewController.h */,
 				B38B2EC91D8FC82F004D5256 /* RBHomeSearchViewController.m */,
 				B38B2ECA1D8FC82F004D5256 /* RBHomeSearchViewController.xib */,
@@ -2287,7 +2271,6 @@
 				B38B2F7A1D8FC8CD004D5256 /* JWTagCollectionView.m in Sources */,
 				B38B2E0C1D8FACD8004D5256 /* ViewController+MASAdditions.m in Sources */,
 				B38B2E221D8FACD8004D5256 /* MJDIYAutoFooter.m in Sources */,
-				B38B2DE11D8FACD8004D5256 /* DiscoverViewController.m in Sources */,
 				B38B2E031D8FACD8004D5256 /* MASCompositeConstraint.m in Sources */,
 				B38B2E591D8FACD8004D5256 /* AdvertiseView.m in Sources */,
 				B38B2E141D8FACD8004D5256 /* MJRefreshFooter.m in Sources */,
@@ -2389,6 +2372,7 @@
 				B38B2E561D8FACD8004D5256 /* ImageCache.m in Sources */,
 				B38B2E551D8FACD8004D5256 /* UIView+Frame.m in Sources */,
 				B38B2E101D8FACD8004D5256 /* MBProgressHUD.m in Sources */,
+				B31581F01D90CD070096C194 /* RBHomeSearchTableView.m in Sources */,
 				B38B2EF71D8FC82F004D5256 /* RBHomeCollectionViewCell.m in Sources */,
 				B38B2E3D1D8FACD8004D5256 /* JRSegmentControl.m in Sources */,
 				B38B2E341D8FACD8004D5256 /* UIButton+WebCache.m in Sources */,

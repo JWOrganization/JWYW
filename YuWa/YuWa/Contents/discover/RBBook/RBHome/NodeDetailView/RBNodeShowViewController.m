@@ -57,6 +57,10 @@
     [self requestData];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     self.toolsBottomView.frame = CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f);
@@ -80,22 +84,28 @@
     };
 }
 
+#pragma mark - UI Make
+
 - (void)makeUI{
     self.toolsBottomView = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailBottomView" owner:nil options:nil] firstObject];
     WEAKSELF;
     self.toolsBottomView.likeBlock = ^(BOOL isLike){
-        weakSelf.dataModel.inlikes = [NSString stringWithFormat:@"%zi",isLike];
-        weakSelf.dataModel.likes = [NSString stringWithFormat:@"%zi",isLike == YES?([weakSelf.dataModel.likes integerValue] + 1):([weakSelf.dataModel.likes integerValue] -1)];
-        [weakSelf reSetBottomToolsView];
+        if ([weakSelf isLogin]) {
+            weakSelf.dataModel.inlikes = [NSString stringWithFormat:@"%zi",isLike];
+            weakSelf.dataModel.likes = [NSString stringWithFormat:@"%zi",isLike == YES?([weakSelf.dataModel.likes integerValue] + 1):([weakSelf.dataModel.likes integerValue] -1)];
+            [weakSelf reSetBottomToolsView];
+        }
     };
     
     self.toolsBottomView.commentBlock = ^(){
         [weakSelf commentActionWithNodeDic:@{@"233333":@"2333333"}];
     };
     self.toolsBottomView.collectionBlock = ^(BOOL isCollection){
-        weakSelf.dataModel.infavs = [NSString stringWithFormat:@"%zi",isCollection];
-        weakSelf.dataModel.fav_count = [NSString stringWithFormat:@"%zi",isCollection == YES?([weakSelf.dataModel.fav_count integerValue] + 1):([weakSelf.dataModel.fav_count integerValue] - 1)];
-        [weakSelf reSetBottomToolsView];
+        if ([weakSelf isLogin]) {
+            weakSelf.dataModel.infavs = [NSString stringWithFormat:@"%zi",isCollection];
+            weakSelf.dataModel.fav_count = [NSString stringWithFormat:@"%zi",isCollection == YES?([weakSelf.dataModel.fav_count integerValue] + 1):([weakSelf.dataModel.fav_count integerValue] - 1)];
+            [weakSelf reSetBottomToolsView];
+        }
     };
     [self.view addSubview:self.toolsBottomView];
 }
@@ -108,6 +118,47 @@
     self.toolsBottomView.isLike = [self.dataModel.inlikes isEqualToString:@"0"]?NO:YES;
     [self.toolsBottomView.likeBtn setTitle:self.dataModel.likes forState:UIControlStateNormal];
     [self.toolsBottomView.commentBtn setTitle:self.dataModel.comments forState:UIControlStateNormal];
+}
+- (RBNodeDetailHeader *)authorHeaderMake{
+    if (!self.authorHeader) {
+        self.authorHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailHeader" owner:nil options:nil] firstObject];
+        WEAKSELF;
+        self.authorHeader.careBlock = ^(){
+            [weakSelf isLogin];
+        };
+        self.authorHeader.otherBlock = ^(){
+            if ([weakSelf isLogin]&& !weakSelf.authorHeader.isUser) {
+                //23333333进入他人主页
+            }
+        };
+    }
+    if (self.dataModel&&!self.authorHeader.model)self.authorHeader.model = self.dataModel.user;
+    return self.authorHeader;
+}
+- (RBNodeDetailImageHeader *)imageHeaderMake{
+    if (!self.imageHeader) {
+        self.imageHeader = [[RBNodeDetailImageHeader alloc]initWithFrame:CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Height)];
+        self.imageHeader.scrollImageView.delegate = self;
+    }
+    if (self.dataModel){
+        if (!self.imageHeader.imageList)self.imageHeader.imageList = self.dataModel.images_list;
+        [self.imageHeader refreshWithHeight:_scrollImageHeight];
+    }
+    return self.imageHeader;
+}
+- (RBNodeDetailCommentHeader *)commentHeaderMake{
+    if (!self.commentHeader) {
+        self.commentHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailCommentHeader" owner:nil options:nil] firstObject];
+        WEAKSELF;
+        self.commentHeader.commentBlock = ^(){
+            [weakSelf commentActionWithNodeDic:@{@"2333333":@"2333333"}];
+        };
+    }
+    if (self.dataModel&&!self.commentHeader.iconURL){
+        self.commentHeader.commentCount = self.dataModel.comments_list.count;
+        self.commentHeader.iconURL = self.dataModel.user.images;
+    }
+    return self.commentHeader;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -201,34 +252,11 @@
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        if (!self.authorHeader) {
-            self.authorHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailHeader" owner:nil options:nil] firstObject];
-        }
-        if (self.dataModel&&!self.authorHeader.model)self.authorHeader.model = self.dataModel.user;
-        return self.authorHeader;
+        return [self authorHeaderMake];
     }else if (section == 1){
-        if (!self.imageHeader) {
-            self.imageHeader = [[RBNodeDetailImageHeader alloc]initWithFrame:CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Height)];
-            self.imageHeader.scrollImageView.delegate = self;
-        }
-        if (self.dataModel){
-            if (!self.imageHeader.imageList)self.imageHeader.imageList = self.dataModel.images_list;
-            [self.imageHeader refreshWithHeight:_scrollImageHeight];
-        }
-        return self.imageHeader;
+        return [self imageHeaderMake];
     }else if (section == 2){
-        if (!self.commentHeader) {
-            self.commentHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailCommentHeader" owner:nil options:nil] firstObject];
-            WEAKSELF;
-            self.commentHeader.commentBlock = ^(){
-                [weakSelf commentActionWithNodeDic:@{@"2333333":@"2333333"}];
-            };
-        }
-        if (self.dataModel&&!self.commentHeader.iconURL){
-            self.commentHeader.commentCount = self.dataModel.comments_list.count;
-            self.commentHeader.iconURL = self.dataModel.user.images;
-        }
-        return self.commentHeader;
+        return [self commentHeaderMake];
     }
     if (!self.recommendHeader) {
         self.recommendHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailRecommendHeader" owner:nil options:nil] firstObject];

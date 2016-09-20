@@ -154,18 +154,17 @@
     self.time--;
 }
 
-#pragma mark  - UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if ([string isEqualToString:@"\n"]) {
-        [textField resignFirstResponder];
-        if (textField.tag == 1) {//passwordTextField
-            if ([self canSendRequset]) {
-                [self requestLoginWithAccount:self.accountTextField.text withPassword:self.passwordtextField.text];
-            }
-        }else{//secuirtyCodeTextField
-            if ([self canQuickSendRequset]) {
-                [self requestLoginWithMobile:self.mobileTextField.text withSecuirtyCode:self.secuirtyCodeTextField.text];
-            }
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField.tag == 1) {//passwordTextField
+        if ([self canSendRequset]) {
+            [textField resignFirstResponder];
+            [self requestLoginWithAccount:self.accountTextField.text withPassword:self.passwordtextField.text];
+        }
+    }else{//secuirtyCodeTextField
+        if ([self canQuickSendRequset]) {
+            [textField resignFirstResponder];
+            [self requestLoginWithMobile:self.mobileTextField.text withSecuirtyCode:self.secuirtyCodeTextField.text];
         }
     }
     return YES;

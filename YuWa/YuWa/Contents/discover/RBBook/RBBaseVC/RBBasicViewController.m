@@ -7,6 +7,7 @@
 //
 
 #import "RBBasicViewController.h"
+#import "YWLoginViewController.h"
 
 @interface RBBasicViewController ()<UITextFieldDelegate>
 @property (nonatomic,assign)BOOL isRePlayComment;//是否是回复用户评论
@@ -40,6 +41,13 @@
     }
 }
 
+- (BOOL)isLogin{
+    if (![UserSession instance].isLogin) {
+        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    return [UserSession instance].isLogin;
+}
 
 - (void)makeCommentToolsView{
     self.commentToolsView = [[[NSBundle mainBundle]loadNibNamed:@"RBCommentToolsView" owner:nil options:nil] firstObject];
@@ -54,32 +62,38 @@
         };
         [weakSelf presentViewController:vc animated:YES completion:nil];
     };
+    self.commentToolsView.sendTextField.delegate = self;
     [self.view addSubview:self.commentToolsView];
 }
 
 //发笔记
 - (void)publishNodeAction{
+    if (![self isLogin])return;
     MyLog(@"Add Node");
 }
 
 //发专辑
 - (void)publishAlbumAction{
+    if (![self isLogin])return;
     MyLog(@"Add Album");
 }
 
 //添加评论
 - (void)commentActionWithNodeDic:(NSDictionary *)node{
+    if (![self isLogin])return;
     self.commentToolsView.hidden = NO;
+    if (self.commentToolsView.y > kScreen_Height - 30.f)self.commentToolsView.y = kScreen_Height - 30.f;
     self.commentToolsView.sendTextField.text = @"";
     self.commentToolsView.sendTextField.placeholder = @"添加评论";
-    self.commentToolsView.sendTextField.delegate = self;
     self.isRePlayComment = NO;
     self.commentSendDic = [NSMutableDictionary dictionaryWithDictionary:node];
     [self.commentToolsView.sendTextField becomeFirstResponder];
 }
 //回复用户评论
 - (void)commentActionWithUserDic:(NSDictionary *)user{
+    if (![self isLogin])return;
     self.commentToolsView.hidden = NO;
+    if (self.commentToolsView.y > kScreen_Height - 30.f)self.commentToolsView.y = kScreen_Height - 30.f;
     self.commentToolsView.sendTextField.text = @"";
     self.commentToolsView.sendTextField.placeholder = @"回复 2333333 :";
     self.isRePlayComment = YES;
@@ -113,15 +127,13 @@
 
 
 #pragma mark - UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if ([string isEqualToString:@"\n"]){
-        if ([textField.text isEqualToString:@""]) {
-            [self showHUDWithStr:@"评论不能为空哟" withSuccess:NO];
-            return YES;
-        }
-        [self requestSendComment];
-        [textField resignFirstResponder];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if ([textField.text isEqualToString:@""]) {
+        [self showHUDWithStr:@"评论不能为空哟" withSuccess:NO];
+        return YES;
     }
+    [self requestSendComment];
+    [textField resignFirstResponder];
     return YES;
 }
 

@@ -12,7 +12,6 @@
 
 #import "VIPHomePageViewController.h"
 #import "RBHomeViewController.h"
-#import "DiscoverViewController.h"
 #import "YWStormViewController.h"
 #import "YWMessageViewController.h"
 #import "VIPPersonCenterViewController.h"

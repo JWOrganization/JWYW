@@ -14,7 +14,7 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="添加一条评论" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3nK-Jp-1HP">
                     <rect key="frame" x="13" y="0.0" width="316" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="send"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfN-pT-R2X">
                     <rect key="frame" x="329" y="8" width="1" height="15"/>

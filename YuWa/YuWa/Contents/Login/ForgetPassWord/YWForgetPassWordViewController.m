@@ -93,15 +93,14 @@
 }
 
 #pragma mark  - UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if ([string isEqualToString:@"\n"]) {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if ([self canSendRequset]) {
         [textField resignFirstResponder];
-        if ([self canSendRequset]) {
-            [self requestReSetPasswordCodeWithAccount:self.accountTextField.text withPassword:self.passwordtextField.text  withCode:self.secuirtyCodeTextField.text];
-        }
+        [self requestReSetPasswordCodeWithAccount:self.accountTextField.text withPassword:self.passwordtextField.text  withCode:self.secuirtyCodeTextField.text];
     }
     return YES;
 }
+
 
 #pragma mark - Http
 - (void)requestReSetPasswordCodeWithAccount:(NSString *)account withPassword:(NSString *)password withCode:(NSString *)code{

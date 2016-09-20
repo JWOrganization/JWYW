@@ -20,6 +20,13 @@
     self.iconImageView.layer.masksToBounds = YES;
     
     self.frame = CGRectMake(0.f, 0.f, kScreen_Width, 55.f);
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
+    [self addGestureRecognizer:tap];
+}
+
+- (void)tapAction{
+    self.otherBlock();
 }
 
 - (void)setIsUser:(BOOL)isUser{
@@ -56,17 +63,22 @@
 
 - (void)layoutSet{
     NSDictionary * attributes = @{NSFontAttributeName:self.nameLabel.font};
-    CGRect conRect = [self.nameLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT,self.nameLabel.height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil];
-    self.nameLabelWidth.constant = conRect.size.width;
+    CGRect conRect = [self.nameLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT,self.nameLabel.height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:attributes context:nil];
+    self.nameLabelWidth.constant = conRect.size.width + 10.f;
     [self setNeedsLayout];
 }
 
 - (IBAction)attentiionBtnAction:(id)sender {
-    self.infavs = [self.infavs isEqualToString:@"0"]?@"1":@"0";
-//    dispatch_get_main_queue()
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self requestAttention];
-    });
+    if ([UserSession instance].isLogin) {
+        self.infavs = [self.infavs isEqualToString:@"0"]?@"1":@"0";
+        //    dispatch_get_main_queue()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self requestAttention];
+        });
+    }else{
+        self.careBlock();
+    }
+    
 }
 
 #pragma mark - Http

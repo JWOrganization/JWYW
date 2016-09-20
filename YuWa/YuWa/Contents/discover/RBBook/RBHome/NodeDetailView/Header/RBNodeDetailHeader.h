@@ -11,6 +11,9 @@
 
 @interface RBNodeDetailHeader : UIView
 
+@property (nonatomic,copy)void (^otherBlock)();
+@property (nonatomic,copy)void (^careBlock)();
+
 @property (nonatomic,assign)BOOL isUser;//是否是自己
 @property (nonatomic,copy)NSString * infavs;
 @property (nonatomic,strong)RBNodeUserModel * model;
