@@ -8,6 +8,7 @@
 
 #import "JWBasicViewController.h"
 
+#import "RBCommentToolsView.h"
 @interface RBBasicViewController : JWBasicViewController
 
 @property (nonatomic,strong)RBCommentToolsView * commentToolsView;

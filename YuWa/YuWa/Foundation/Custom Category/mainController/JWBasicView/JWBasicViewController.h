@@ -12,7 +12,6 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "JWTools.h"
 
-#import "RBCommentToolsView.h"
 @interface JWBasicViewController : UIViewController
 
 - (void)showHUDWithStr:(NSString *)showHud withSuccess:(BOOL)isSuccess;

@@ -25,6 +25,7 @@
 @property (nonatomic,assign)NSInteger states;
 @property (nonatomic,strong)RBNodeDRecommendTableViewCell * recommendCell;
 @property (nonatomic,strong)UIView * sortHeaderView;
+@property (nonatomic,strong)MDHotelRightBtn * sortBarBtn;
 
 @end
 
@@ -42,6 +43,11 @@
     [super viewDidLayoutSubviews];
     self.searchView.height = 30.f;
     self.searchView.width = kScreen_Width - 40.f;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (self.sortBarBtn.isOn)[self.sortBarBtn tapAction];
 }
 
 - (void)makeNavi{
@@ -90,13 +96,14 @@
     if (!self.sortHeaderView) {
         self.sortHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kScreen_Width, 30.f)];
         self.sortHeaderView.backgroundColor = [UIColor whiteColor];
-        MDHotelRightBtn * sortBarBtn = [[[NSBundle mainBundle]loadNibNamed:@"MDHotelRightBtn" owner:nil options:nil]firstObject];
-        sortBarBtn.frame = CGRectMake(0.f, 3.f, kScreen_Width, 24.f);
-        sortBarBtn.chooseTypeBlock = ^(NSString * chooseType){
-            self.states = [chooseType integerValue];
-            [self.tableView.mj_header beginRefreshing];
+        self.sortBarBtn = [[[NSBundle mainBundle]loadNibNamed:@"MDHotelRightBtn" owner:nil options:nil]firstObject];
+        self.sortBarBtn.frame = CGRectMake(0.f, 3.f, kScreen_Width, 24.f);
+        WEAKSELF;
+        self.sortBarBtn.chooseTypeBlock = ^(NSString * chooseType){
+            weakSelf.states = [chooseType integerValue];
+            [weakSelf.tableView.mj_header beginRefreshing];
         };
-        [self.sortHeaderView addSubview:sortBarBtn];
+        [self.sortHeaderView addSubview:self.sortBarBtn];
     }
     return self.sortHeaderView;
 }

@@ -9,7 +9,6 @@
 #import "RBHomeSearchViewController.h"
 #import "RBHomeSearchToolsView.h"
 #import "RBHomeSearchDetailViewController.h"
-#import "RBHomeSearchTableView.h"
 
 #define Search_Node_History @"SearchNodeHistory"
 @interface RBHomeSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -17,9 +16,9 @@
 @property (nonatomic,strong)RBHomeSearchToolsView * searchView;
 @property (nonatomic,strong)NSMutableArray * searchArr;//历史记录
 @property (nonatomic,strong)NSMutableArray * tagArr;
+@property (nonatomic,strong)NSMutableArray * searchResaultArr;//搜索
 @property (nonatomic,assign)NSInteger type;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,strong)RBHomeSearchTableView * searchTableView;
 
 @end
 
@@ -28,7 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self makeNavi];
-//    [self makeUI];
     [self dataSet];
     [self requestdata];
 }
@@ -37,9 +35,6 @@
     [super viewWillAppear:animated];
     if (![self.searchView.textField.text isEqualToString:@""]){
         [self.searchView.textField becomeFirstResponder];
-        self.searchTableView.hidden = NO;
-    }else{
-        self.searchTableView.hidden = YES;
     }
     [self.tableView reloadData];
 }
@@ -63,11 +58,6 @@
     self.navigationItem.titleView = self.searchView;
 }
 
-- (void)makeUI{
-    self.searchTableView = [[RBHomeSearchTableView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width, kScreen_Height - NavigationHeight) style:UITableViewStyleGrouped];
-    [self.view addSubview:self.searchTableView];
-}
-
 - (void)dataSet{
     self.searchArr = [[NSMutableArray alloc]initWithArray:[KUSERDEFAULT valueForKey:Search_Node_History]];
     if (!self.searchArr){
@@ -75,7 +65,7 @@
         [KUSERDEFAULT setValue:self.searchArr forKey:Search_Node_History];
     }
     self.tagArr = [NSMutableArray arrayWithCapacity:0];
-    
+    self.searchResaultArr = [NSMutableArray arrayWithCapacity:0];
     
     //要删2333333
     for (int i = 0; i<3; i++) {
@@ -136,7 +126,9 @@
     }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    self.searchTableView.searchKey = self.searchView.textField.text;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self requestSearchResaultData];
+    });
     return YES;
 }
 
@@ -145,12 +137,24 @@
     if ((self.searchArr.count == 0 && indexPath.section == 0) || (self.searchArr.count > 0 && indexPath.section == 1)) {
         return 40.f;
     }
+    if (indexPath.section == 0) {
+        if (![self.searchView.textField.text isEqualToString:@""] || self.searchArr.count > 0) {
+            return 40.f;
+        }
+    }
     return 55.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString * key = @"233333";
     NSInteger type = self.type;
-    if (self.searchArr.count > 0 && indexPath.section == 0) {//有历史记录
+    if (![self.searchView.textField.text isEqualToString:@""] && indexPath.section == 0) {//有输入文字
+        if (self.searchResaultArr.count > 0) {
+            if (indexPath.row == 0)return;
+            key = (indexPath.row >= self.searchResaultArr.count + 1)?self.searchView.textField.text:self.searchResaultArr[indexPath.row - 1][@"key"];
+        }else{
+            key = self.searchView.textField.text;
+        }
+    }else if (self.searchArr.count > 0 && indexPath.section == 0) {//有历史记录
         if (indexPath.row == 0)return;
         NSDictionary * searchHistoryDic = self.searchArr[indexPath.row - 1];
         key = searchHistoryDic[@"key"];
@@ -163,23 +167,51 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (![self.searchView.textField.text isEqualToString:@""])return 3;
     return self.searchArr.count == 0?2:3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (![self.searchView.textField.text isEqualToString:@""]&&section == 0)return self.searchResaultArr.count + (self.searchResaultArr.count == 0?1:2);
+    
     if (self.searchArr.count == 0)return section == 0?1:self.tagArr.count;//无历史记录
     //有历史记录
     return section == 0?(self.searchArr.count + 1):section == 1?1:self.tagArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (![self.searchView.textField.text isEqualToString:@""]&&indexPath.section == 0){//搜索
+        UITableViewCell * searchResultCell = [tableView dequeueReusableCellWithIdentifier:@"searchResultCell"];
+        if (!searchResultCell) {
+            searchResultCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchResultCell"];
+        }
+        if (![searchResultCell viewWithTag:1001]) {
+            UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(13.f, 39.f, kScreen_Width - 26.f, 1.f)];
+            lineView.backgroundColor = [UIColor colorWithHexString:@"#F3F6F8"];
+            lineView.tag = 1001;
+            [searchResultCell addSubview:lineView];
+        }
+        searchResultCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        searchResultCell.textLabel.textColor = [UIColor colorWithHexString:indexPath.row == 0?@"#cccccc":@"#7e7e7e"];
+        searchResultCell.textLabel.font = [UIFont systemFontOfSize:14.f];
+        if ((self.searchResaultArr.count == 0)||(indexPath.row == self.searchResaultArr.count + 1)) {
+            searchResultCell.textLabel.textColor = [UIColor colorWithHexString:@"#cccccc"];
+            searchResultCell.textLabel.text = [NSString stringWithFormat:@"查看所有叫“%@”的笔记",self.searchView.textField.text];
+            searchResultCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }else{
+            searchResultCell.textLabel.text = indexPath.row == 0?@"你是否想搜":self.searchResaultArr[indexPath.row - 1][@"key"];
+        }
+        
+        return searchResultCell;
+    }
+    
     if (self.searchArr.count > 0 && indexPath.section == 0) {//历史记录
         UITableViewCell * searchListCell = [tableView dequeueReusableCellWithIdentifier:@"searchListCell"];
         if (!searchListCell) {
             searchListCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchListCell"];
         }
         if (![searchListCell viewWithTag:1001]) {
-            UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(13.f, 54.f, kScreen_Width - 26.f, 1.f)];
+            UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(13.f, 39.f, kScreen_Width - 26.f, 1.f)];
             lineView.backgroundColor = [UIColor colorWithHexString:@"#F3F6F8"];
             lineView.tag = 1001;
             [searchListCell addSubview:lineView];
@@ -189,7 +221,7 @@
         searchListCell.textLabel.font = [UIFont systemFontOfSize:14.f];
         searchListCell.textLabel.text = indexPath.row == 0?@"历史记录":self.searchArr[indexPath.row - 1][@"key"];
         if (![searchListCell viewWithTag:1000] && indexPath.row == 0) {
-            UIButton * deletebtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreen_Width -  32.f, 19.f, 17.f, 17.f)];
+            UIButton * deletebtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreen_Width -  32.f, 12.5f, 17.f, 17.f)];
             [deletebtn setBackgroundImage:[UIImage imageNamed:@"remove_history"] forState:UIControlStateNormal];
             deletebtn.tag = 1000;
             [deletebtn addTarget:self action:@selector(removeHistoryBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -233,6 +265,17 @@
 
 #pragma mark - Http
 - (void)requestdata{
+    [self.tableView reloadData];
+}
+
+- (void)requestSearchResaultData{
+//    self.searchView.textField.text
+    
+    [self.searchResaultArr removeAllObjects];
+    for (int i = 0; i<3; i++) {
+        [self.searchResaultArr addObject:@{@"key":self.searchView.textField.text,@"type":@"233333"}];//最多三个
+        //233333333333 searchView.textField.text要换成正确数据
+    }
     [self.tableView reloadData];
 }
 

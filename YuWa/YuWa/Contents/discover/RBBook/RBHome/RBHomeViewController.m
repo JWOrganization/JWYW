@@ -29,6 +29,7 @@
 @property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;
 @property (nonatomic, strong)JWCollectionViewFlowLayout *waterFlowLayout;
 @property (nonatomic,strong)JWSearchView * searchView;
+@property (nonatomic,assign)BOOL isPhoto;
 
 @end
 
@@ -46,15 +47,18 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.isPhoto = NO;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"#fe2641"]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setBarTintColor:CNaviColor];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    if (!self.isPhoto) {
+        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        [self.navigationController.navigationBar setBarTintColor:CNaviColor];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    }
 }
 
 - (void)viewDidLayoutSubviews{
@@ -71,6 +75,11 @@
     self.navigationItem.titleView = self.searchView;
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:@"white_camera" withSelectImage:@"white_camera" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(publishNodeAction) forControlEvents:UIControlEventTouchUpInside withSize:CGSizeMake(30.f, 30.f)];
+}
+
+- (void)publishNodeAction{
+    [super publishNodeAction];
+    self.isPhoto = YES;
 }
 
 - (void)makeTagCollectionViewWithArr:(NSArray *)tagArr{

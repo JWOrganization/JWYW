@@ -55,6 +55,10 @@
 }
 
 - (IBAction)likeBtnAction:(id)sender {
+    if (![UserSession instance].isLogin) {
+        self.likeBlock(_isLike);
+        return;
+    }
     self.isLike = !_isLike;
 }
 - (IBAction)commentBtnAction:(id)sender {
@@ -62,6 +66,10 @@
 }
 
 - (IBAction)collectionAction:(id)sender {
+    if (![UserSession instance].isLogin) {
+        self.collectionBlock(_isCollection);
+        return;
+    }
     self.isCollection = !_isCollection;
 }
 

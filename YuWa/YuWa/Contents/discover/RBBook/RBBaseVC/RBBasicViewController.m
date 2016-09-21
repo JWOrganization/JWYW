@@ -8,8 +8,9 @@
 
 #import "RBBasicViewController.h"
 #import "YWLoginViewController.h"
+#import "TZImagePickerController.h"
 
-@interface RBBasicViewController ()<UITextFieldDelegate>
+@interface RBBasicViewController ()<UITextFieldDelegate,TZImagePickerControllerDelegate>
 @property (nonatomic,assign)BOOL isRePlayComment;//是否是回复用户评论
 
 @end
@@ -69,7 +70,13 @@
 //发笔记
 - (void)publishNodeAction{
     if (![self isLogin])return;
-    MyLog(@"Add Node");
+    TZImagePickerController *imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+    imagePickerVC.allowPickingVideo = NO;
+    [imagePickerVC setDidFinishPickingPhotosHandle:^(NSArray * photos , NSArray * assets,BOOL isSelectOriginalPhoto){
+        
+    }];
+    
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
 //发专辑

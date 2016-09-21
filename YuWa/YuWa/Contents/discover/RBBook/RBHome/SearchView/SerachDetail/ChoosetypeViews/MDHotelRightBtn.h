@@ -20,6 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *tittleLabel;
 
-
+- (void)tapAction;
 
 @end

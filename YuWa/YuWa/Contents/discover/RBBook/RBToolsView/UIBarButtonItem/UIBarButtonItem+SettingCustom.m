@@ -68,7 +68,7 @@
     [btn setTitleColor:tittleColor forState:UIControlStateNormal];
     
     btn.contentHorizontalAlignment = alignment;
-    
+    btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [btn addTarget:target action:action forControlEvents:controlEvent];
     UIBarButtonItem * item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
