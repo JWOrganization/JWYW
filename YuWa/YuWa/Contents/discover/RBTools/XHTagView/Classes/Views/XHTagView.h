@@ -33,11 +33,8 @@
  */
 @property (nonatomic, assign) BOOL panGestureOnTagViewed;
 
-/**
- *  标签分支的文本，总共三个
- */
-@property (nonatomic, strong) NSMutableArray *branchTexts;
 
+@property (nonatomic, strong) NSMutableArray *branchPoints;
 @property (nonatomic, strong) XHBranchLayer *topBranchLayer;
 @property (nonatomic, strong) XHBranchLayer *midBranchLayer;
 @property (nonatomic, strong) XHBranchLayer *bottomBranchLayer;
@@ -54,7 +51,10 @@
  *  动画方向
  */
 @property (nonatomic, assign) XHTagAnimationStyle tagAnimationStyle;
-@property (nonatomic, strong) NSMutableArray *branchPoints;
+/**
+ *  标签分支的文本，总共三个
+ */
+@property (nonatomic, strong) NSMutableArray *branchTexts;
 @property (nonatomic,assign)CGPoint centerLocationPoint;//起始位置
 
 - (void)showInPoint:(CGPoint)point;

@@ -278,6 +278,10 @@
 		B3FFF4851D93B45500EDD2AB /* RBPublicTagEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4831D93B45500EDD2AB /* RBPublicTagEditorViewController.m */; };
 		B3FFF4861D93B45500EDD2AB /* RBPublicTagEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4841D93B45500EDD2AB /* RBPublicTagEditorViewController.xib */; };
 		B3FFF48A1D93D3AF00EDD2AB /* JWEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4891D93D3AF00EDD2AB /* JWEditTextField.m */; };
+		B3FFF48E1D93FF4700EDD2AB /* RBPublicSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF48D1D93FF4700EDD2AB /* RBPublicSaveModel.m */; };
+		B3FFF4931D94037D00EDD2AB /* RBPublicEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4911D94037D00EDD2AB /* RBPublicEditorViewController.m */; };
+		B3FFF4941D94037D00EDD2AB /* RBPublicEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4921D94037D00EDD2AB /* RBPublicEditorViewController.xib */; };
+		B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */; };
 		C1539F7A1D9034E40078D67F /* PersonCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F791D9034E40078D67F /* PersonCenterHeadView.m */; };
 		C1539F7C1D9034F20078D67F /* PersonCenterHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1539F7B1D9034F20078D67F /* PersonCenterHeadView.xib */; };
 		C1539F7F1D90375D0078D67F /* defineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F7E1D90375D0078D67F /* defineButton.m */; };
@@ -774,6 +778,13 @@
 		B3FFF4841D93B45500EDD2AB /* RBPublicTagEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicTagEditorViewController.xib; sourceTree = "<group>"; };
 		B3FFF4881D93D3AF00EDD2AB /* JWEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWEditTextField.h; sourceTree = "<group>"; };
 		B3FFF4891D93D3AF00EDD2AB /* JWEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWEditTextField.m; sourceTree = "<group>"; };
+		B3FFF48C1D93FF4700EDD2AB /* RBPublicSaveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicSaveModel.h; sourceTree = "<group>"; };
+		B3FFF48D1D93FF4700EDD2AB /* RBPublicSaveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicSaveModel.m; sourceTree = "<group>"; };
+		B3FFF4901D94037D00EDD2AB /* RBPublicEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicEditorViewController.h; sourceTree = "<group>"; };
+		B3FFF4911D94037D00EDD2AB /* RBPublicEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicEditorViewController.m; sourceTree = "<group>"; };
+		B3FFF4921D94037D00EDD2AB /* RBPublicEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicEditorViewController.xib; sourceTree = "<group>"; };
+		B3FFF4951D94051A00EDD2AB /* RBPublicTagSaveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicTagSaveModel.h; sourceTree = "<group>"; };
+		B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicTagSaveModel.m; sourceTree = "<group>"; };
 		BBC1CC6C89770D83C605851F /* libPods-YuWa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuWa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
 		C1539F781D9034E40078D67F /* PersonCenterHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterHeadView.h; sourceTree = "<group>"; };
@@ -2146,6 +2157,8 @@
 		B3AE4DB91D915BAF000A389F /* RBPublic */ = {
 			isa = PBXGroup;
 			children = (
+				B3FFF48F1D9402D500EDD2AB /* RBPublicEditorVC */,
+				B3FFF48B1D93FF1700EDD2AB /* Model */,
 				B3FFF4811D93B41600EDD2AB /* TagEditorVC */,
 				B3192ADB1D927B6300FD6578 /* ImageEditor */,
 				B3192AC91D92467400FD6578 /* PublicToolBar */,
@@ -2265,6 +2278,27 @@
 				B3FFF4891D93D3AF00EDD2AB /* JWEditTextField.m */,
 			);
 			path = JWTextField;
+			sourceTree = "<group>";
+		};
+		B3FFF48B1D93FF1700EDD2AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF48C1D93FF4700EDD2AB /* RBPublicSaveModel.h */,
+				B3FFF48D1D93FF4700EDD2AB /* RBPublicSaveModel.m */,
+				B3FFF4951D94051A00EDD2AB /* RBPublicTagSaveModel.h */,
+				B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B3FFF48F1D9402D500EDD2AB /* RBPublicEditorVC */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4901D94037D00EDD2AB /* RBPublicEditorViewController.h */,
+				B3FFF4911D94037D00EDD2AB /* RBPublicEditorViewController.m */,
+				B3FFF4921D94037D00EDD2AB /* RBPublicEditorViewController.xib */,
+			);
+			path = RBPublicEditorVC;
 			sourceTree = "<group>";
 		};
 		C1539F761D90344E0078D67F /* View */ = {
@@ -2425,6 +2459,7 @@
 				B38B2F321D8FC82F004D5256 /* RBCommentToolsView.xib in Resources */,
 				B38B2F2C1D8FC82F004D5256 /* RBNodeViewController.xib in Resources */,
 				B38B2F5A1D8FC83A004D5256 /* country.plist in Resources */,
+				B3FFF4941D94037D00EDD2AB /* RBPublicEditorViewController.xib in Resources */,
 				B38B2E5C1D8FACD8004D5256 /* head@2x.png in Resources */,
 				B38B2F591D8FC83A004D5256 /* 首页数据.json in Resources */,
 				B38B2E5B1D8FACD8004D5256 /* backImage.png in Resources */,
@@ -2679,6 +2714,7 @@
 				B3AE4D751D91302B000A389F /* TZPhotoPickerController.m in Sources */,
 				B38B2E631D8FACD8004D5256 /* main.m in Sources */,
 				B38B2E171D8FACD8004D5256 /* MJRefreshAutoNormalFooter.m in Sources */,
+				B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */,
 				B3FFF47D1D93A3C700EDD2AB /* XHCenterView.m in Sources */,
 				B3FFF48A1D93D3AF00EDD2AB /* JWEditTextField.m in Sources */,
 				B38B2E421D8FACD8004D5256 /* NSString+PinYin.m in Sources */,
@@ -2713,6 +2749,7 @@
 				B38B2DEF1D8FACD8004D5256 /* InternationalLanguage.m in Sources */,
 				B38B2E1C1D8FACD8004D5256 /* MJRefreshGifHeader.m in Sources */,
 				B38B2E0D1D8FACD8004D5256 /* README.md in Sources */,
+				B3FFF48E1D93FF4700EDD2AB /* RBPublicSaveModel.m in Sources */,
 				B38B2F1E1D8FC82F004D5256 /* RBHomeSearchViewController.m in Sources */,
 				B38B2E261D8FACD8004D5256 /* MJRefreshConst.m in Sources */,
 				B38B2F091D8FC82F004D5256 /* RBNodeDetailHeader.m in Sources */,
@@ -2721,6 +2758,7 @@
 				B38B2F131D8FC82F004D5256 /* RBNodeShowTagModel.m in Sources */,
 				B38B2E001D8FACD8004D5256 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				B38B2DF11D8FACD8004D5256 /* VIPTabBar.m in Sources */,
+				B3FFF4931D94037D00EDD2AB /* RBPublicEditorViewController.m in Sources */,
 				B38B2E4B1D8FACD8004D5256 /* SDCycleScrollView.m in Sources */,
 				B31582441D9108200096C194 /* MDHotelChooseTypeTableVC.m in Sources */,
 				B38B2E311D8FACD8004D5256 /* SDWebImageDownloaderOperation.m in Sources */,

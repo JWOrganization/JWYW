@@ -167,7 +167,7 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self scrollCollectionViewToBottom];
+//    [self scrollCollectionViewToBottom];
     // Determine the size of the thumbnails to request from the PHCachingImageManager
     CGFloat scale = 2.0;
     if ([UIScreen mainScreen].bounds.size.width > 600) {
@@ -331,6 +331,7 @@ static CGSize AssetGridThumbnailSize;
             [tzImagePickerVc hideProgressHUD];
             RBPublicNodeViewController * vc = [[RBPublicNodeViewController alloc]init];
             vc.photos = photos;
+            vc.imageChangeSaveArr = self.imageChangeSaveArr;
             [self.navigationController pushViewController:vc animated:YES];
 //            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }];
@@ -601,8 +602,8 @@ static CGSize AssetGridThumbnailSize;
             }
             [_collectionView reloadData];
             
-            _shouldScrollToBottom = YES;
-            [self scrollCollectionViewToBottom];
+//            _shouldScrollToBottom = YES;
+//            [self scrollCollectionViewToBottom];
         }];
     }];
 }

@@ -7,21 +7,21 @@
 //
 
 #import "RBPublicNodeViewController.h"
+#import "RBPublicTagEditorViewController.h"
+
 #import "RBPublicToolView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "XHTagView.h"
-#import "RBPublicTagEditorViewController.h"
 
 @interface RBPublicNodeViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong)RBPublicToolView * imgToolsBar;
-@property (nonatomic,assign)NSInteger imagePage;
 @property (nonatomic,strong)UIScrollView * scrollView;
 
 @property (nonatomic,strong)NSMutableArray * typeArr;//图片改变滤镜记录
-@property (nonatomic,strong)NSMutableArray * tagArr;//图片改变标签记录
 @property (nonatomic,strong)NSMutableArray * imagesArr;
-@property (nonatomic,strong)NSMutableArray * tagSaveArr;//图片改变标签数据
+@property (nonatomic,strong)NSMutableArray * tagSaveArr;//图片改变标签数据(保存)
+@property (nonatomic,strong)NSMutableArray * tagSaveTempArr;//图片改变标签数据(读取)
 
 @property (nonatomic,strong)ALAssetsLibrary *library;
 
@@ -48,13 +48,30 @@
 - (void)dataSet{
     self.imagesArr = [NSMutableArray arrayWithArray:[self.photos mutableCopy]];
     self.typeArr = [NSMutableArray arrayWithCapacity:0];
-    self.tagArr = [NSMutableArray arrayWithCapacity:0];
     self.tagSaveArr = [NSMutableArray arrayWithCapacity:0];
+    if (!self.photos&&self.imageChangeSaveArr){//编辑过后push
+        NSMutableArray * arrTemp = [NSMutableArray arrayWithCapacity:0];
+        for (RBPublicSaveModel * model in self.imageChangeSaveArr) {
+            [arrTemp addObject:model.origionalImage];
+        }
+        self.photos = [NSArray arrayWithArray:arrTemp];
+    }//else imagePicker push
     [self.photos enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.typeArr addObject:@(0)];
-        [self.tagArr addObject:@(0)];
         [self.tagSaveArr addObject:[NSMutableArray arrayWithCapacity:0]];
+        [self.tagSaveTempArr addObject:[NSMutableArray arrayWithCapacity:0]];
     }];
+    if (self.imageChangeSaveArr) {//有修改
+        [self.imageChangeSaveArr enumerateObjectsUsingBlock:^(RBPublicSaveModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.photos enumerateObjectsUsingBlock:^(UIImage * _Nonnull photo, NSUInteger photoIdx, BOOL * _Nonnull stop) {
+                if ([UIImagePNGRepresentation(photo) isEqual:UIImagePNGRepresentation(model.origionalImage)]) {//sort by photoIdx
+                    [self.typeArr replaceObjectAtIndex:photoIdx withObject:@(model.type)];
+                    [self.imagesArr replaceObjectAtIndex:photoIdx withObject:model.changedImage];
+                    [self.tagSaveTempArr replaceObjectAtIndex:photoIdx withObject:model.tagArr];
+                }
+            }];
+        }];
+    }
 }
 
 #pragma mark - UI Make
@@ -79,6 +96,11 @@
     };
     [self.view addSubview:self.imgToolsBar];
     
+    if (self.imagePage > 0) {
+        [self makeTittleStrWithIndex:self.imagePage + 1];
+        [self.scrollView setContentOffset:CGPointMake(self.imagePage * kScreen_Width, 0.f)];
+        self.imgToolsBar.selectType = [self.typeArr[self.imagePage] integerValue];
+    }
 }
 
 - (void)scrollViewMake{
@@ -106,6 +128,14 @@
         x +=kScreen_Width;
         imageView.tag = i;
         [self.scrollView addSubview:imageView];
+        
+        NSMutableArray * tagDataArr = self.tagSaveTempArr[i];
+        if (tagDataArr.count > 0) {
+            for (int j = 0; j<tagDataArr.count; j++) {
+                RBPublicTagSaveModel * model = tagDataArr[i];
+                
+            }
+        }
     }
     
     [self.view addSubview:self.scrollView];
@@ -117,8 +147,8 @@
     for (NSNumber * effect in self.typeArr) {
         effectCount += [effect integerValue];
     }
-    for (NSNumber * effect in self.tagArr) {
-        effectCount += [effect integerValue];
+    for (NSMutableArray * effectArr in self.tagSaveArr) {
+        effectCount += effectArr.count;
     }
     if (effectCount >0) {//照片已修改
         UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -146,35 +176,49 @@
     [self.typeArr enumerateObjectsUsingBlock:^(NSNumber * _Nonnull count, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([count integerValue]>0) {//修改了滤镜,保存至相册
             [self saveImgToAlbumWithImgIdx:idx];
-        }else if ([self.tagArr[idx] integerValue] != 0){//修改了标签,保存至相册
-            [self saveImgToAlbumWithImgIdx:idx];
         }
     }];
     
+    RBPublicEditorViewController * vc = [[RBPublicEditorViewController alloc]init];
+    NSMutableArray * saveArr = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i<self.photos.count; i++) {
+        RBPublicSaveModel * model = [[RBPublicSaveModel alloc]init];
+        model.origionalImage = self.photos[i];
+        model.changedImage = self.imagesArr[i];
+        model.type = [self.typeArr[i] integerValue];
+        model.tagArr = self.tagSaveArr[i];
+        [saveArr addObject:model];
+    }
+    vc.imageChangeSaveArr = saveArr;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)imageAddTagWithPoint:(CGPoint)point withView:(UIView *)view{
     RBPublicTagEditorViewController * vc = [[RBPublicTagEditorViewController alloc]init];
     vc.tagAddBlock = ^(NSArray * tagArr){
-        XHTagView * tagView = [[XHTagView alloc]init];
-        NSMutableArray * dataArr = self.tagSaveArr[self.imagePage];
-        tagView.branchTexts = [NSMutableArray arrayWithArray:tagArr];
-        tagView.tag = 1009;
-        tagView.tagAnimationStyle = XHTagAnimationStyleAllRight;
-        tagView.centerLocationPoint = point;
-        [dataArr addObject:tagView];
-        
-        UIView * actionView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, 60.f, 60.f)];//操作视图
-        actionView.center = point;
-        [view addSubview:actionView];
-        [actionView addSubview:tagView];
-        [self tagViewAddGestureRecognizer:actionView];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [tagView showInPoint:CGPointMake(30.f, 30.f)];
-        });
+        [self tagViewmakeWithTagArr:tagArr withPoint:point withBaseView:view];
     };
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)tagViewmakeWithTagArr:(NSArray *)tagArr withPoint:(CGPoint)point withBaseView:(UIView *)view{
+    XHTagView * tagView = [[XHTagView alloc]init];
+    NSMutableArray * dataArr = self.tagSaveArr[self.imagePage];
+    tagView.branchTexts = [NSMutableArray arrayWithArray:tagArr];
+    tagView.tag = 1009;
+    tagView.tagAnimationStyle = XHTagAnimationStyleAllRight;
+    tagView.centerLocationPoint = point;
+    [dataArr addObject:tagView];
+    
+    UIView * actionView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, 60.f, 60.f)];//操作视图
+    actionView.center = point;
+    [view addSubview:actionView];
+    [actionView addSubview:tagView];
+    [self tagViewAddGestureRecognizer:actionView];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [tagView showInPoint:CGPointMake(30.f, 30.f)];
+    });
 }
 
 - (void)imageAddTagTapAction:(UITapGestureRecognizer *)tap{

@@ -12,6 +12,7 @@
 #import "JWTagCollectionView.h"
 #import "JWCollectionViewFlowLayout.h"
 #import "JWSearchView.h"
+#import "YWLoginViewController.h"
 
 #import "RBHomeCollectionViewCell.h"
 
@@ -75,6 +76,15 @@
     self.navigationItem.titleView = self.searchView;
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:@"white_camera" withSelectImage:@"white_camera" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(publishNodeAction) forControlEvents:UIControlEventTouchUpInside withSize:CGSizeMake(30.f, 30.f)];
+}
+
+- (BOOL)isLogin{
+    if (![UserSession instance].isLogin) {
+        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    self.isPhoto = YES;
+    return [UserSession instance].isLogin;
 }
 
 - (void)publishNodeAction{

@@ -7,9 +7,13 @@
 //
 
 #import "RBBasicViewController.h"
+#import "RBPublicEditorViewController.h"
 
 @interface RBPublicNodeViewController : RBBasicViewController
 
 @property (nonatomic,strong)NSArray * photos;
+
+@property (nonatomic,strong)NSMutableArray * imageChangeSaveArr;//小红书编辑照片后数据
+@property (nonatomic,assign)NSInteger imagePage;
 
 @end
