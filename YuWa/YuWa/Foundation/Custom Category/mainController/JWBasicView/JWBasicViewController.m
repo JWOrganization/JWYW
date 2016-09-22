@@ -35,5 +35,9 @@
     [hud hide:YES afterDelay:0.8];
 }
 
+- (void)backBarAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

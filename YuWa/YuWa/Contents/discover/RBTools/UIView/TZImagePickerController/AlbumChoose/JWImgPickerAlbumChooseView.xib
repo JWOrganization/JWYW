@@ -22,7 +22,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageTypeChoose_down" translatesAutoresizingMaskIntoConstraints="NO" id="UAa-nh-weN">
-                    <rect key="frame" x="130" y="12" width="10" height="6"/>
+                    <rect key="frame" x="133" y="12" width="10" height="6"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="6" id="GWb-AK-xpp"/>
                         <constraint firstAttribute="width" constant="10" id="oRE-8o-Xzg"/>
@@ -32,7 +32,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="UAa-nh-weN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HDx-hI-OBV"/>
-                <constraint firstItem="UAa-nh-weN" firstAttribute="leading" secondItem="Nd1-0A-pss" secondAttribute="trailing" id="L4G-Us-xeI"/>
+                <constraint firstItem="UAa-nh-weN" firstAttribute="leading" secondItem="Nd1-0A-pss" secondAttribute="trailing" constant="3" id="L4G-Us-xeI"/>
                 <constraint firstItem="Nd1-0A-pss" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aDm-Gk-zLQ"/>
                 <constraint firstItem="Nd1-0A-pss" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="z6Y-MR-qWF"/>
             </constraints>

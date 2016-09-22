@@ -194,6 +194,17 @@
  */
 + (UIImage *)makeQRCodeWithStr:(NSString *)QRStr;
 
+#pragma mark - 图片大小
+/**
+ *  图片适应屏幕大小
+ *
+ *  @param image  图片
+ *  @param height 适应高度
+ *  @param width  适应宽度
+ *
+ *  @return 图片大小
+ */
++ (CGSize)getScaleImageSizeWithImageView:(UIImage *)image withHeight:(CGFloat)height withWidth:(CGFloat)width;
 
 #pragma mark - 图片压缩
 /**
@@ -215,5 +226,23 @@
  *  @return 压缩后图片
  */
 + (UIImage *)zipImageWithImage:(UIImage *)image;
+
+#pragma mark - 图片滤镜
+/**
+ *  图片加滤镜
+ *
+ *  @param image      修改图片
+ *  @param filterName 滤镜效果名称
+ *
+ *  @return 修改后图片
+ */
++ (UIImage*)filteredImage:(UIImage*)image withFilterName:(NSString*)filterName;
+
+/**
+ *  滤镜效果数组
+ *
+ *  @return 滤镜效果数组
+ */
++ (NSArray *)imageFilterArr;
 
 @end

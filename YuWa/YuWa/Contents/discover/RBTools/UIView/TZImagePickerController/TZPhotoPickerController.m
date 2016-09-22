@@ -128,6 +128,7 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    if (self.naviIMGTittleView.isOn)[self.naviIMGTittleView tapAction];
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
     tzImagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
     if (self.backButtonClickHandle) {

@@ -14,6 +14,7 @@
 #import "UIView+Layout.h"
 #import "TZImageManager.h"
 
+#import "UIBarButtonItem+SettingCustom.h"
 @interface TZImagePickerController () {
     NSTimer *_timer;
     UILabel *_tipLable;
@@ -273,19 +274,19 @@
     if (_timer) { [_timer invalidate]; _timer = nil;}
     
     if (self.childViewControllers.count > 0) {
-        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(3, 0, 50, 44)];
-        [backButton setImage:[UIImage imageNamedFromMyBundle:@"navi_back.png"] forState:UIControlStateNormal];
-        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
-        [backButton setTitle:@"" forState:UIControlStateNormal];
-        backButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [backButton addTarget:self action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem* backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        backButtonItem.style = UIBarButtonItemStyleBordered;
-#pragma clang diagnostic pop
-        self.topViewController.navigationItem.backBarButtonItem = backButtonItem;
+//        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(3, 0, 50, 44)];
+//        [backButton setImage:[UIImage imageNamedFromMyBundle:@"navi_back.png"] forState:UIControlStateNormal];
+//        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+//        [backButton setTitle:@"" forState:UIControlStateNormal];
+//        backButton.titleLabel.font = [UIFont systemFontOfSize:15];
+//        [backButton addTarget:self action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem* backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//        
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+//        backButtonItem.style = UIBarButtonItemStyleBordered;
+//#pragma clang diagnostic pop
+//        self.topViewController.navigationItem.backBarButtonItem = backButtonItem;
         
         /**
          另外一种只有箭头的返回键

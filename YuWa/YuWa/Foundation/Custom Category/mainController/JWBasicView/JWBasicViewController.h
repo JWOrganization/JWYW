@@ -16,4 +16,6 @@
 
 - (void)showHUDWithStr:(NSString *)showHud withSuccess:(BOOL)isSuccess;
 
+- (void)backBarAction;
+
 @end

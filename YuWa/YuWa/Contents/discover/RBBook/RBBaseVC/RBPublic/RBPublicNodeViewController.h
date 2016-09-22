@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
-#import "JWBasicViewController.h"
+#import "RBBasicViewController.h"
 
-@interface RBPublicNodeViewController : JWBasicViewController
+@interface RBPublicNodeViewController : RBBasicViewController
 
 @property (nonatomic,strong)NSArray * photos;
 

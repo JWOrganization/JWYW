@@ -20,6 +20,11 @@
 		B3192AC51D92224A00FD6578 /* JWImagePickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192AC31D92224A00FD6578 /* JWImagePickerTableViewCell.m */; };
 		B3192AC61D92224A00FD6578 /* JWImagePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AC41D92224A00FD6578 /* JWImagePickerCell.xib */; };
 		B3192AC81D9229E100FD6578 /* JWImgPickerAlbumChooseTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AC71D9229E000FD6578 /* JWImgPickerAlbumChooseTableView.xib */; };
+		B3192ACC1D9246FB00FD6578 /* RBPublicToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ACB1D9246FB00FD6578 /* RBPublicToolView.m */; };
+		B3192ACE1D92470F00FD6578 /* RBPublicToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192ACD1D92470F00FD6578 /* RBPublicToolView.xib */; };
+		B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */; };
+		B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */; };
+		B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
 		B38B2DE21D8FACD8004D5256 /* VIPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CAC1D8FACD8004D5256 /* VIPHomePageViewController.m */; };
@@ -262,6 +267,17 @@
 		B3AE4DC21D91812D000A389F /* JWImgPickerAlbumChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4DC11D91812D000A389F /* JWImgPickerAlbumChooseView.m */; };
 		B3AE4DC61D918170000A389F /* JWImgPickerAlbumChooseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4DC51D918170000A389F /* JWImgPickerAlbumChooseTableView.m */; };
 		B3AE4DC81D918550000A389F /* JWImgPickerAlbumChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AE4DC71D918550000A389F /* JWImgPickerAlbumChooseView.xib */; };
+		B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */; };
+		B3FFF47A1D93A3C700EDD2AB /* XHFocusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46B1D93A3C700EDD2AB /* XHFocusLayer.m */; };
+		B3FFF47B1D93A3C700EDD2AB /* XHBranchPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46E1D93A3C700EDD2AB /* XHBranchPoint.m */; };
+		B3FFF47C1D93A3C700EDD2AB /* XHBranchTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4711D93A3C700EDD2AB /* XHBranchTextView.m */; };
+		B3FFF47D1D93A3C700EDD2AB /* XHCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4731D93A3C700EDD2AB /* XHCenterView.m */; };
+		B3FFF47E1D93A3C700EDD2AB /* XHTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4751D93A3C700EDD2AB /* XHTagView.m */; };
+		B3FFF47F1D93A3C700EDD2AB /* tag-center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4771D93A3C700EDD2AB /* tag-center@2x.png */; };
+		B3FFF4801D93A3C700EDD2AB /* tag-center@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4781D93A3C700EDD2AB /* tag-center@3x.png */; };
+		B3FFF4851D93B45500EDD2AB /* RBPublicTagEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4831D93B45500EDD2AB /* RBPublicTagEditorViewController.m */; };
+		B3FFF4861D93B45500EDD2AB /* RBPublicTagEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4841D93B45500EDD2AB /* RBPublicTagEditorViewController.xib */; };
+		B3FFF48A1D93D3AF00EDD2AB /* JWEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4891D93D3AF00EDD2AB /* JWEditTextField.m */; };
 		C1539F7A1D9034E40078D67F /* PersonCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F791D9034E40078D67F /* PersonCenterHeadView.m */; };
 		C1539F7C1D9034F20078D67F /* PersonCenterHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1539F7B1D9034F20078D67F /* PersonCenterHeadView.xib */; };
 		C1539F7F1D90375D0078D67F /* defineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C1539F7E1D90375D0078D67F /* defineButton.m */; };
@@ -304,6 +320,14 @@
 		B3192AC31D92224A00FD6578 /* JWImagePickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWImagePickerTableViewCell.m; sourceTree = "<group>"; };
 		B3192AC41D92224A00FD6578 /* JWImagePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWImagePickerCell.xib; sourceTree = "<group>"; };
 		B3192AC71D9229E000FD6578 /* JWImgPickerAlbumChooseTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWImgPickerAlbumChooseTableView.xib; sourceTree = "<group>"; };
+		B3192ACA1D9246FB00FD6578 /* RBPublicToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicToolView.h; sourceTree = "<group>"; };
+		B3192ACB1D9246FB00FD6578 /* RBPublicToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicToolView.m; sourceTree = "<group>"; };
+		B3192ACD1D92470F00FD6578 /* RBPublicToolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicToolView.xib; sourceTree = "<group>"; };
+		B3192AD01D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBIMGToolsCollectionViewCell.h; sourceTree = "<group>"; };
+		B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBIMGToolsCollectionViewCell.m; sourceTree = "<group>"; };
+		B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBIMGToolsCollectionViewCell.xib; sourceTree = "<group>"; };
+		B3192ADC1D927C3600FD6578 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
+		B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -730,6 +754,26 @@
 		B3AE4DC41D918170000A389F /* JWImgPickerAlbumChooseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWImgPickerAlbumChooseTableView.h; sourceTree = "<group>"; };
 		B3AE4DC51D918170000A389F /* JWImgPickerAlbumChooseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWImgPickerAlbumChooseTableView.m; sourceTree = "<group>"; };
 		B3AE4DC71D918550000A389F /* JWImgPickerAlbumChooseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWImgPickerAlbumChooseView.xib; sourceTree = "<group>"; };
+		B3FFF4661D93A3C700EDD2AB /* XHTagHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTagHeader.h; sourceTree = "<group>"; };
+		B3FFF4681D93A3C700EDD2AB /* XHBranchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHBranchLayer.h; sourceTree = "<group>"; };
+		B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHBranchLayer.m; sourceTree = "<group>"; };
+		B3FFF46A1D93A3C700EDD2AB /* XHFocusLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHFocusLayer.h; sourceTree = "<group>"; };
+		B3FFF46B1D93A3C700EDD2AB /* XHFocusLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHFocusLayer.m; sourceTree = "<group>"; };
+		B3FFF46D1D93A3C700EDD2AB /* XHBranchPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHBranchPoint.h; sourceTree = "<group>"; };
+		B3FFF46E1D93A3C700EDD2AB /* XHBranchPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHBranchPoint.m; sourceTree = "<group>"; };
+		B3FFF4701D93A3C700EDD2AB /* XHBranchTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHBranchTextView.h; sourceTree = "<group>"; };
+		B3FFF4711D93A3C700EDD2AB /* XHBranchTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHBranchTextView.m; sourceTree = "<group>"; };
+		B3FFF4721D93A3C700EDD2AB /* XHCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCenterView.h; sourceTree = "<group>"; };
+		B3FFF4731D93A3C700EDD2AB /* XHCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCenterView.m; sourceTree = "<group>"; };
+		B3FFF4741D93A3C700EDD2AB /* XHTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTagView.h; sourceTree = "<group>"; };
+		B3FFF4751D93A3C700EDD2AB /* XHTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTagView.m; sourceTree = "<group>"; };
+		B3FFF4771D93A3C700EDD2AB /* tag-center@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-center@2x.png"; sourceTree = "<group>"; };
+		B3FFF4781D93A3C700EDD2AB /* tag-center@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-center@3x.png"; sourceTree = "<group>"; };
+		B3FFF4821D93B45500EDD2AB /* RBPublicTagEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicTagEditorViewController.h; sourceTree = "<group>"; };
+		B3FFF4831D93B45500EDD2AB /* RBPublicTagEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicTagEditorViewController.m; sourceTree = "<group>"; };
+		B3FFF4841D93B45500EDD2AB /* RBPublicTagEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicTagEditorViewController.xib; sourceTree = "<group>"; };
+		B3FFF4881D93D3AF00EDD2AB /* JWEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWEditTextField.h; sourceTree = "<group>"; };
+		B3FFF4891D93D3AF00EDD2AB /* JWEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWEditTextField.m; sourceTree = "<group>"; };
 		BBC1CC6C89770D83C605851F /* libPods-YuWa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuWa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
 		C1539F781D9034E40078D67F /* PersonCenterHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterHeadView.h; sourceTree = "<group>"; };
@@ -818,6 +862,36 @@
 				B3192AC41D92224A00FD6578 /* JWImagePickerCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B3192AC91D92467400FD6578 /* PublicToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				B3192ACF1D92577000FD6578 /* Cell */,
+				B3192ACA1D9246FB00FD6578 /* RBPublicToolView.h */,
+				B3192ACB1D9246FB00FD6578 /* RBPublicToolView.m */,
+				B3192ACD1D92470F00FD6578 /* RBPublicToolView.xib */,
+			);
+			path = PublicToolBar;
+			sourceTree = "<group>";
+		};
+		B3192ACF1D92577000FD6578 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B3192AD01D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.h */,
+				B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */,
+				B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B3192ADB1D927B6300FD6578 /* ImageEditor */ = {
+			isa = PBXGroup;
+			children = (
+				B3192ADC1D927C3600FD6578 /* UIImage+Utility.h */,
+				B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */,
+			);
+			path = ImageEditor;
 			sourceTree = "<group>";
 		};
 		B38B2C631D8FAC5A004D5256 = {
@@ -1973,6 +2047,7 @@
 		B38B2F611D8FC8A5004D5256 /* RBTools */ = {
 			isa = PBXGroup;
 			children = (
+				B3FFF4631D93A3C700EDD2AB /* XHTagView */,
 				B38B2F621D8FC8CD004D5256 /* Category */,
 				B38B2F671D8FC8CD004D5256 /* TagCollectionView */,
 				B38B2F6E1D8FC8CD004D5256 /* UIView */,
@@ -2014,6 +2089,7 @@
 		B38B2F6E1D8FC8CD004D5256 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				B3FFF4871D93D36000EDD2AB /* JWTextField */,
 				B3AE4D5C1D91302B000A389F /* TZImagePickerController */,
 				B38B2F6F1D8FC8CD004D5256 /* JWWaterFlow */,
 				B38B2F721D8FC8CD004D5256 /* SearchView */,
@@ -2070,6 +2146,9 @@
 		B3AE4DB91D915BAF000A389F /* RBPublic */ = {
 			isa = PBXGroup;
 			children = (
+				B3FFF4811D93B41600EDD2AB /* TagEditorVC */,
+				B3192ADB1D927B6300FD6578 /* ImageEditor */,
+				B3192AC91D92467400FD6578 /* PublicToolBar */,
 				B3AE4DBA1D915C2C000A389F /* RBPublicNodeViewController.h */,
 				B3AE4DBB1D915C2C000A389F /* RBPublicNodeViewController.m */,
 				B3AE4DBC1D915C2C000A389F /* RBPublicNodeViewController.xib */,
@@ -2097,6 +2176,95 @@
 				B3192AC71D9229E000FD6578 /* JWImgPickerAlbumChooseTableView.xib */,
 			);
 			path = AlbumTableView;
+			sourceTree = "<group>";
+		};
+		B3FFF4631D93A3C700EDD2AB /* XHTagView */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4641D93A3C700EDD2AB /* Classes */,
+				B3FFF4761D93A3C700EDD2AB /* Resources */,
+			);
+			path = XHTagView;
+			sourceTree = "<group>";
+		};
+		B3FFF4641D93A3C700EDD2AB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4651D93A3C700EDD2AB /* Header */,
+				B3FFF4671D93A3C700EDD2AB /* Layers */,
+				B3FFF46C1D93A3C700EDD2AB /* Model */,
+				B3FFF46F1D93A3C700EDD2AB /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B3FFF4651D93A3C700EDD2AB /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4661D93A3C700EDD2AB /* XHTagHeader.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		B3FFF4671D93A3C700EDD2AB /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4681D93A3C700EDD2AB /* XHBranchLayer.h */,
+				B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */,
+				B3FFF46A1D93A3C700EDD2AB /* XHFocusLayer.h */,
+				B3FFF46B1D93A3C700EDD2AB /* XHFocusLayer.m */,
+			);
+			path = Layers;
+			sourceTree = "<group>";
+		};
+		B3FFF46C1D93A3C700EDD2AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF46D1D93A3C700EDD2AB /* XHBranchPoint.h */,
+				B3FFF46E1D93A3C700EDD2AB /* XHBranchPoint.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B3FFF46F1D93A3C700EDD2AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4701D93A3C700EDD2AB /* XHBranchTextView.h */,
+				B3FFF4711D93A3C700EDD2AB /* XHBranchTextView.m */,
+				B3FFF4721D93A3C700EDD2AB /* XHCenterView.h */,
+				B3FFF4731D93A3C700EDD2AB /* XHCenterView.m */,
+				B3FFF4741D93A3C700EDD2AB /* XHTagView.h */,
+				B3FFF4751D93A3C700EDD2AB /* XHTagView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3FFF4761D93A3C700EDD2AB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4771D93A3C700EDD2AB /* tag-center@2x.png */,
+				B3FFF4781D93A3C700EDD2AB /* tag-center@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B3FFF4811D93B41600EDD2AB /* TagEditorVC */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4821D93B45500EDD2AB /* RBPublicTagEditorViewController.h */,
+				B3FFF4831D93B45500EDD2AB /* RBPublicTagEditorViewController.m */,
+				B3FFF4841D93B45500EDD2AB /* RBPublicTagEditorViewController.xib */,
+			);
+			path = TagEditorVC;
+			sourceTree = "<group>";
+		};
+		B3FFF4871D93D36000EDD2AB /* JWTextField */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFF4881D93D3AF00EDD2AB /* JWEditTextField.h */,
+				B3FFF4891D93D3AF00EDD2AB /* JWEditTextField.m */,
+			);
+			path = JWTextField;
 			sourceTree = "<group>";
 		};
 		C1539F761D90344E0078D67F /* View */ = {
@@ -2248,6 +2416,7 @@
 				B3AE4DC81D918550000A389F /* JWImgPickerAlbumChooseView.xib in Resources */,
 				B38B2E511D8FACD8004D5256 /* tb4.png in Resources */,
 				B38B2E451D8FACD8004D5256 /* banner_selected6.png in Resources */,
+				B3192ACE1D92470F00FD6578 /* RBPublicToolView.xib in Resources */,
 				B38B2F791D8FC8CD004D5256 /* JWTagCollectionViewCell.xib in Resources */,
 				B38B2F5C1D8FC83A004D5256 /* EmojisList.plist in Resources */,
 				B38B2F571D8FC83A004D5256 /* 点进个人中心的一个专辑.json in Resources */,
@@ -2264,6 +2433,7 @@
 				B38B2F501D8FC83A004D5256 /* 单条笔记下面的 相关笔记.json in Resources */,
 				B38B2F5B1D8FC83A004D5256 /* countrycoderule.plist in Resources */,
 				B38B2F081D8FC82F004D5256 /* RBNodeDetailCommentHeader.xib in Resources */,
+				B3FFF47F1D93A3C700EDD2AB /* tag-center@2x.png in Resources */,
 				B38B2E471D8FACD8004D5256 /* h2.jpg in Resources */,
 				B38B2E5D1D8FACD8004D5256 /* head@3x.png in Resources */,
 				B38B2F5D1D8FC83A004D5256 /* EmotionTextKeys.plist in Resources */,
@@ -2289,6 +2459,7 @@
 				B38B2F4F1D8FC83A004D5256 /* 单条笔记.json in Resources */,
 				B38B2F0C1D8FC82F004D5256 /* RBNodeDetailImageHeader.xib in Resources */,
 				B38B2F301D8FC82F004D5256 /* RBConnectionViewController.xib in Resources */,
+				B3FFF4861D93B45500EDD2AB /* RBPublicTagEditorViewController.xib in Resources */,
 				B38B2F211D8FC82F004D5256 /* RBHomeSearchDetailViewController.xib in Resources */,
 				C1539F7C1D9034F20078D67F /* PersonCenterHeadView.xib in Resources */,
 				B3AE4D731D91302B000A389F /* TZImagePickerController.bundle in Resources */,
@@ -2300,6 +2471,7 @@
 				B38B2F581D8FC83A004D5256 /* 红领巾 下载的.zip in Resources */,
 				B38B2F531D8FC83A004D5256 /* 地点城市.json in Resources */,
 				B38B2F061D8FC82F004D5256 /* RBNodeDetailCommendFooter.xib in Resources */,
+				B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */,
 				B38B2F021D8FC82F004D5256 /* RBNodeDetailTableViewCell.xib in Resources */,
 				B38B2E491D8FACD8004D5256 /* h4.jpg in Resources */,
 				B38B2F4C1D8FC83A004D5256 /* tag  LV.json in Resources */,
@@ -2313,6 +2485,7 @@
 				B38B2F0E1D8FC82F004D5256 /* RBNodeDetailRecommendHeader.xib in Resources */,
 				B38B2DEB1D8FACD8004D5256 /* HUDLoadingShowView.xib in Resources */,
 				B31582451D9108200096C194 /* MDHotelChooseTypeTableVC.xib in Resources */,
+				B3FFF4801D93A3C700EDD2AB /* tag-center@3x.png in Resources */,
 				B38B2F5E1D8FC83A004D5256 /* xhsemoji.plist in Resources */,
 				B38B2F291D8FC82F004D5256 /* RBNewNodeCollectionViewCell.xib in Resources */,
 				B3192AC61D92224A00FD6578 /* JWImagePickerCell.xib in Resources */,
@@ -2409,6 +2582,7 @@
 				B38B2E191D8FACD8004D5256 /* MJRefreshBackGifFooter.m in Sources */,
 				B38B2E291D8FACD8004D5256 /* UIScrollView+MJRefresh.m in Sources */,
 				B38B2DE21D8FACD8004D5256 /* VIPHomePageViewController.m in Sources */,
+				B3FFF47A1D93A3C700EDD2AB /* XHFocusLayer.m in Sources */,
 				B38B2F771D8FC8CD004D5256 /* UIScrollView+JWGifRefresh.m in Sources */,
 				B38B2F2B1D8FC82F004D5256 /* RBNodeViewController.m in Sources */,
 				B38B2F761D8FC8CD004D5256 /* NSString+JWAppendOtherStr.m in Sources */,
@@ -2417,6 +2591,7 @@
 				B38B2E1A1D8FACD8004D5256 /* MJRefreshBackNormalFooter.m in Sources */,
 				B38B2EFB1D8FC82F004D5256 /* RBHomeListImagesModel.m in Sources */,
 				B38B2E211D8FACD8004D5256 /* MJChiBaoZiHeader.m in Sources */,
+				B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */,
 				B38B2E0B1D8FACD8004D5256 /* View+MASAdditions.m in Sources */,
 				B38B2DFB1D8FACD8004D5256 /* AFURLResponseSerialization.m in Sources */,
 				B38B2DF91D8FACD8004D5256 /* AFURLConnectionOperation.m in Sources */,
@@ -2426,12 +2601,14 @@
 				B38B2F141D8FC82F004D5256 /* RBNodeUserLevelModel.m in Sources */,
 				B38B2F311D8FC82F004D5256 /* RBCommentToolsView.m in Sources */,
 				B38B2F181D8FC82F004D5256 /* RBNodeShowCommentDetailVC.m in Sources */,
+				B3FFF47E1D93A3C700EDD2AB /* XHTagView.m in Sources */,
 				B38B2E3C1D8FACD8004D5256 /* UIColor+HexString.m in Sources */,
 				B38B2E381D8FACD8004D5256 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B38B2F331D8FC82F004D5256 /* UIBarButtonItem+SettingCustom.m in Sources */,
 				B38B2F261D8FC82F004D5256 /* RBNewAlbumCollectionViewCell.m in Sources */,
 				B38B2F161D8FC82F004D5256 /* RBNodeShowViewController.m in Sources */,
 				B38B2E531D8FACD8004D5256 /* STCountDownButton.m in Sources */,
+				B3192ACC1D9246FB00FD6578 /* RBPublicToolView.m in Sources */,
 				B38B2E0F1D8FACD8004D5256 /* MBHUD.m in Sources */,
 				B38B2E151D8FACD8004D5256 /* MJRefreshHeader.m in Sources */,
 				B38B2F7A1D8FC8CD004D5256 /* JWTagCollectionView.m in Sources */,
@@ -2458,6 +2635,7 @@
 				C1539F7A1D9034E40078D67F /* PersonCenterHeadView.m in Sources */,
 				B3AE4D761D91302B000A389F /* TZPhotoPreviewCell.m in Sources */,
 				B38B2EFF1D8FC82F004D5256 /* RBNodeDCommentTableViewCell.m in Sources */,
+				B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */,
 				B38B2E281D8FACD8004D5256 /* UIScrollView+MJExtension.m in Sources */,
 				B38B2E3E1D8FACD8004D5256 /* JRSegmentViewController.m in Sources */,
 				B38B2DF81D8FACD8004D5256 /* AFSecurityPolicy.m in Sources */,
@@ -2468,6 +2646,7 @@
 				B38B2E041D8FACD8004D5256 /* MASConstraint.m in Sources */,
 				B38B2F071D8FC82F004D5256 /* RBNodeDetailCommentHeader.m in Sources */,
 				B38B2DF31D8FACD8004D5256 /* UserSession.m in Sources */,
+				B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */,
 				B38B2E121D8FACD8004D5256 /* MJRefreshBackFooter.m in Sources */,
 				B38B2DF01D8FACD8004D5256 /* VIPNavigationController.m in Sources */,
 				B38B2EFA1D8FC82F004D5256 /* RBHomeListGoodsModel.m in Sources */,
@@ -2477,6 +2656,7 @@
 				B38B2F2A1D8FC82F004D5256 /* RBCenterAlbumModel.m in Sources */,
 				B38B2F281D8FC82F004D5256 /* RBNewNodeCollectionViewCell.m in Sources */,
 				B38B2F0D1D8FC82F004D5256 /* RBNodeDetailRecommendHeader.m in Sources */,
+				B3FFF47B1D93A3C700EDD2AB /* XHBranchPoint.m in Sources */,
 				B38B2F101D8FC82F004D5256 /* RBNodeShowCommentTargetModel.m in Sources */,
 				B38B2E321D8FACD8004D5256 /* SDWebImageManager.m in Sources */,
 				B38B2F7B1D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m in Sources */,
@@ -2499,6 +2679,8 @@
 				B3AE4D751D91302B000A389F /* TZPhotoPickerController.m in Sources */,
 				B38B2E631D8FACD8004D5256 /* main.m in Sources */,
 				B38B2E171D8FACD8004D5256 /* MJRefreshAutoNormalFooter.m in Sources */,
+				B3FFF47D1D93A3C700EDD2AB /* XHCenterView.m in Sources */,
+				B3FFF48A1D93D3AF00EDD2AB /* JWEditTextField.m in Sources */,
 				B38B2E421D8FACD8004D5256 /* NSString+PinYin.m in Sources */,
 				B38B2E061D8FACD8004D5256 /* MASLayoutConstraint.m in Sources */,
 				B38B2E391D8FACD8004D5256 /* UIImageView+WebCache.m in Sources */,
@@ -2550,6 +2732,7 @@
 				B38B2E551D8FACD8004D5256 /* UIView+Frame.m in Sources */,
 				B38B2E101D8FACD8004D5256 /* MBProgressHUD.m in Sources */,
 				B3AE4DBD1D915C2C000A389F /* RBPublicNodeViewController.m in Sources */,
+				B3FFF4851D93B45500EDD2AB /* RBPublicTagEditorViewController.m in Sources */,
 				B38B2EF71D8FC82F004D5256 /* RBHomeCollectionViewCell.m in Sources */,
 				B38B2E3D1D8FACD8004D5256 /* JRSegmentControl.m in Sources */,
 				B38B2E341D8FACD8004D5256 /* UIButton+WebCache.m in Sources */,
@@ -2562,6 +2745,7 @@
 				B38B2E4A1D8FACD8004D5256 /* SDCollectionViewCell.m in Sources */,
 				B38B2DF61D8FACD8004D5256 /* AFHTTPSessionManager.m in Sources */,
 				B38B2EFC1D8FC82F004D5256 /* RBHomeModel.m in Sources */,
+				B3FFF47C1D93A3C700EDD2AB /* XHBranchTextView.m in Sources */,
 				B38B2DE61D8FACD8004D5256 /* UIImage+imageColor.m in Sources */,
 				B38B2E431D8FACD8004D5256 /* SAMTextView.m in Sources */,
 				B3AE4D741D91302B000A389F /* TZImagePickerController.m in Sources */,

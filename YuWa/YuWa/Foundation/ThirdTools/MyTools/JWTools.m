@@ -422,6 +422,24 @@
     return [UIImage imageWithCGImage:scaledImage];
 }
 
+#pragma mark - 图片大小
+/**
+ *  图片适应屏幕大小
+ *
+ *  @param image  图片
+ *  @param height 适应高度
+ *  @param width  适应宽度
+ *
+ *  @return 图片大小
+ */
++ (CGSize)getScaleImageSizeWithImageView:(UIImage *)image withHeight:(CGFloat)height withWidth:(CGFloat)width{
+    float heightScale = height/image.size.height/1.0;
+    float widthScale = width/image.size.width/1.0;
+    float scale = MIN(heightScale, widthScale);
+    float h = image.size.height*scale;
+    float w = image.size.width*scale;
+    return CGSizeMake(w, h);
+}
 
 #pragma mark - 图片压缩
 /**
@@ -457,6 +475,75 @@
         image = [JWTools imageByScalingAndCropping:image ForSize:CGSizeMake(image.size.width * 0.7f, image.size.height * 0.7f)];
     }
     return image;
+}
+
+#pragma mark - 图片滤镜
+/**
+ *  图片加滤镜
+ *
+ *  @param image      修改图片
+ *  @param filterName 滤镜效果名称
+ *
+ *  @return 修改后图片
+ */
++ (UIImage*)filteredImage:(UIImage*)image withFilterName:(NSString*)filterName{
+    if([filterName isEqualToString:@"Original"])return image;
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:filterName keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setDefaults];
+    
+    //部分阴影
+//        if([filterName isEqualToString:@"CIVignetteEffect"]){
+//            CGFloat R = MIN(image.size.width, image.size.height)/2;
+//            CIVector *vct = [[CIVector alloc] initWithX:image.size.width/2 Y:image.size.height/2];
+//            [filter setValue:vct forKey:@"inputCenter"];
+//            [filter setValue:[NSNumber numberWithFloat:0.9] forKey:@"inputIntensity"];
+//            [filter setValue:[NSNumber numberWithFloat:R] forKey:@"inputRadius"];
+//        }
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    
+    return result;
+}
+/**
+ *  滤镜效果数组
+ *
+ *  @return 滤镜效果数组
+ */
++ (NSArray *)imageFilterArr{
+//    return @[
+//      @{@"name":@"Original",@"title":@"原图"},
+//      @{@"name":@"CISRGBToneCurveToLinear",@"title":@"挪威的森林"},
+//      @{@"name":@"CIPhotoEffectChrome",@"title":@"迷失京东"},
+//      @{@"name":@"CIPhotoEffectInstant",@"title":@"一页台北"},
+//      @{@"name":@"CIPhotoEffectProcess",@"title":@"罗马假日"},
+//      @{@"name":@"CIPhotoEffectTransfer",@"title":@"恋战冲绳"},
+//      @{@"name":@"CISepiaTone",@"title":@"情迷翡冷翠"},
+//      @{@"name":@"CILinearToSRGBToneCurve",@"title":@"布拉格之恋"},
+//      @{@"name":@"CIPhotoEffectFade",@"title":@"旺角卡门"},
+//      @{@"name":@"CIVignetteEffect",@"title":@"广岛之恋"},
+//      @{@"name":@"CIPhotoEffectTonal",@"title":@"冰岛之梦"},
+//      @{@"name":@"CIPhotoEffectNoir",@"title":@"挪威风情"},
+//      @{@"name":@"CIPhotoEffectMono",@"title":@"夏威夷海滩"}];
+    return @[
+             @{@"name":@"Original",@"title":@"原图"},
+             @{@"name":@"CISRGBToneCurveToLinear",@"title":@"挪威的森林"},
+             @{@"name":@"CIPhotoEffectChrome",@"title":@"迷失京东"},
+             @{@"name":@"CIPhotoEffectInstant",@"title":@"一页台北"},
+             @{@"name":@"CIPhotoEffectProcess",@"title":@"罗马假日"},
+             @{@"name":@"CIPhotoEffectTransfer",@"title":@"恋战冲绳"},
+             @{@"name":@"CISepiaTone",@"title":@"情迷翡冷翠"},
+             @{@"name":@"CILinearToSRGBToneCurve",@"title":@"布拉格之恋"},
+             @{@"name":@"CIPhotoEffectFade",@"title":@"旺角卡门"},
+             @{@"name":@"CIPhotoEffectNoir",@"title":@"挪威风情"},
+             @{@"name":@"CIPhotoEffectMono",@"title":@"广岛之恋"},
+           @{@"name":@"CIPhotoEffectTonal",@"title":@"冰岛之梦"}];
 }
 
 @end
