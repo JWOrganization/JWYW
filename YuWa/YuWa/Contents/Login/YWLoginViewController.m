@@ -59,6 +59,7 @@
 
 - (void)makeNavi{
     self.title = @"登录";
+    
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImageName:@"alert_error_icon" withSelectImage:@"alert_error_icon" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(backBarAction) forControlEvents:UIControlEventTouchUpInside withSize:CGSizeMake(25.f, 25.f)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(registerAction)];
 }

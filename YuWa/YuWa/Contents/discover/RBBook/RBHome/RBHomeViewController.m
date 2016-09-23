@@ -13,11 +13,12 @@
 #import "JWCollectionViewFlowLayout.h"
 #import "JWSearchView.h"
 #import "YWLoginViewController.h"
+#import "TZImagePickerController.h"
 
 #import "RBHomeCollectionViewCell.h"
 
 #define HOMECELL @"RBHomeCollectionViewCell"
-@interface RBHomeViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,JWWaterflowLayoutDelegate>
+@interface RBHomeViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,JWWaterflowLayoutDelegate,TZImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic,strong)JWTagCollectionView * tagCollectionView;
@@ -80,16 +81,23 @@
 
 - (BOOL)isLogin{
     if (![UserSession instance].isLogin) {
+        self.isPhoto = NO;
         YWLoginViewController * vc = [[YWLoginViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    self.isPhoto = YES;
     return [UserSession instance].isLogin;
 }
 
 - (void)publishNodeAction{
-    [super publishNodeAction];
+    if (![self isLogin])return;
     self.isPhoto = YES;
+    TZImagePickerController *imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+    imagePickerVC.allowPickingVideo = NO;
+    [imagePickerVC setDidFinishPickingPhotosHandle:^(NSArray * photos , NSArray * assets,BOOL isSelectOriginalPhoto){
+        
+    }];
+    
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
 - (void)makeTagCollectionViewWithArr:(NSArray *)tagArr{
