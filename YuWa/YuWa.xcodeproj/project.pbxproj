@@ -273,6 +273,7 @@
 		B3CD68AF1D94F9F300C26B1C /* RBPublicLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3CD68AD1D94F9F300C26B1C /* RBPublicLocationViewController.xib */; };
 		B3CD68B41D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68B21D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m */; };
 		B3CD68B51D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3CD68B31D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib */; };
+		B3CD68B61D95390200C26B1C /* DetailStorePreferentialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C14F54341D94D2E200A6C1E0 /* DetailStorePreferentialTableViewCell.m */; };
 		B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */; };
 		B3FFF47A1D93A3C700EDD2AB /* XHFocusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46B1D93A3C700EDD2AB /* XHFocusLayer.m */; };
 		B3FFF47B1D93A3C700EDD2AB /* XHBranchPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46E1D93A3C700EDD2AB /* XHBranchPoint.m */; };
@@ -339,7 +340,6 @@
 		C14F542D1D94303F00A6C1E0 /* menuData.plist in Resources */ = {isa = PBXBuildFile; fileRef = C14F540E1D94303F00A6C1E0 /* menuData.plist */; };
 		C14F54311D94C96100A6C1E0 /* DetailStoreFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C14F542F1D94C96100A6C1E0 /* DetailStoreFirstTableViewCell.m */; };
 		C14F54321D94C96100A6C1E0 /* DetailStoreFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14F54301D94C96100A6C1E0 /* DetailStoreFirstTableViewCell.xib */; };
-		C14F54351D94D2E200A6C1E0 /* DetailStorePreferentialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C14F54341D94D2E200A6C1E0 /* DetailStorePreferentialTableViewCell.m */; };
 		C14F54391D94FE9A00A6C1E0 /* ShowShoppingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C14F54371D94FE9A00A6C1E0 /* ShowShoppingTableViewCell.m */; };
 		C14F543A1D94FE9A00A6C1E0 /* ShowShoppingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14F54381D94FE9A00A6C1E0 /* ShowShoppingTableViewCell.xib */; };
 		C14F543E1D95191100A6C1E0 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C14F543C1D95191100A6C1E0 /* CommentTableViewCell.m */; };
@@ -2884,6 +2884,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3CD68B61D95390200C26B1C /* DetailStorePreferentialTableViewCell.m in Sources */,
 				C14F53E71D94300400A6C1E0 /* VIPPersonCenterViewController.m in Sources */,
 				B315823C1D9105A80096C194 /* RBHomeSearchDetailViewController.m in Sources */,
 				B3CD68A01D94C96300C26B1C /* JWTextView.m in Sources */,
