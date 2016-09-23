@@ -17,6 +17,7 @@
 @property (nonatomic,strong)NSMutableArray * albumArr;//所有照片数组
 
 @property (nonatomic,strong)NSMutableArray * imageChangeSaveArr;//小红书编辑照片后数据
+@property (nonatomic,strong)NSMutableArray * photoSaveArr;//小红书存储对照数据
 
 @property (nonatomic, copy) void (^backButtonClickHandle)(TZAlbumModel *model);
 

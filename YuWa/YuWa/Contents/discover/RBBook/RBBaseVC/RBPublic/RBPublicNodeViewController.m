@@ -45,10 +45,16 @@
     self.imgToolsBar.frame = CGRectMake(0.f, kScreen_Height - 204.f, kScreen_Width, 204.f);
 }
 
+- (void)reSetData{
+    [self dataSet];
+    [self makeUI];
+    [self makeNavi];
+}
+
 - (void)dataSet{
-    self.imagesArr = [NSMutableArray arrayWithArray:[self.photos mutableCopy]];
     self.typeArr = [NSMutableArray arrayWithCapacity:0];
     self.tagSaveArr = [NSMutableArray arrayWithCapacity:0];
+    self.tagSaveTempArr = [NSMutableArray arrayWithCapacity:0];
     if (!self.photos&&self.imageChangeSaveArr){//编辑过后push
         NSMutableArray * arrTemp = [NSMutableArray arrayWithCapacity:0];
         for (RBPublicSaveModel * model in self.imageChangeSaveArr) {
@@ -56,6 +62,8 @@
         }
         self.photos = [NSArray arrayWithArray:arrTemp];
     }//else imagePicker push
+    self.imagesArr = [NSMutableArray arrayWithArray:[self.photos mutableCopy]];
+    
     [self.photos enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.typeArr addObject:@(0)];
         [self.tagSaveArr addObject:[NSMutableArray arrayWithCapacity:0]];
@@ -67,7 +75,7 @@
                 if ([UIImagePNGRepresentation(photo) isEqual:UIImagePNGRepresentation(model.origionalImage)]) {//sort by photoIdx
                     [self.typeArr replaceObjectAtIndex:photoIdx withObject:@(model.type)];
                     [self.imagesArr replaceObjectAtIndex:photoIdx withObject:model.changedImage];
-                    [self.tagSaveTempArr replaceObjectAtIndex:photoIdx withObject:model.tagArr];
+                    if (model.tagArr)[self.tagSaveTempArr replaceObjectAtIndex:photoIdx withObject:model.tagArr];
                 }
             }];
         }];
@@ -81,35 +89,49 @@
 - (void)makeNavi{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImageName:@"img_navi_back" withSelectImage:@"img_navi_back" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(backBarAction) forControlEvents:UIControlEventTouchUpInside withWidth:20.f];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"继续" withTittleColor:[UIColor colorWithHexString:@"#ff2741"] withTarget:self action:@selector(pushAction) forControlEvents:UIControlEventTouchUpInside withWidth:40.f];
-    [self makeTittleStrWithIndex:1];
+    if (self.imagePage <= 0) {
+        [self makeTittleStrWithIndex:1];
+    }
 }
 
 - (void)makeUI{
     [self scrollViewMake];
-    self.imgToolsBar = [[[NSBundle mainBundle]loadNibNamed:@"RBPublicToolView" owner:nil options:nil]firstObject];
-    WEAKSELF;
-//    self.imgToolsBar.tagBlock = ^(){//标签
-//        [weakSelf imageAddTagWithPoint:];
-//    };
-    self.imgToolsBar.effectChooseBlock = ^(NSString * filterName,NSInteger typeIdx){//滤镜添加
-        [weakSelf addEffectActionWithFilterName:filterName withIdx:typeIdx];
-    };
-    [self.view addSubview:self.imgToolsBar];
-    
-    if (self.imagePage > 0) {
-        [self makeTittleStrWithIndex:self.imagePage + 1];
-        [self.scrollView setContentOffset:CGPointMake(self.imagePage * kScreen_Width, 0.f)];
-        self.imgToolsBar.selectType = [self.typeArr[self.imagePage] integerValue];
+    if (!self.imgToolsBar) {
+        self.imgToolsBar = [[[NSBundle mainBundle]loadNibNamed:@"RBPublicToolView" owner:nil options:nil]firstObject];
+        WEAKSELF;
+        //    self.imgToolsBar.tagBlock = ^(){//标签
+        //        [weakSelf imageAddTagWithPoint:];
+        //    };
+        self.imgToolsBar.effectChooseBlock = ^(NSString * filterName,NSInteger typeIdx){//滤镜添加
+            [weakSelf addEffectActionWithFilterName:filterName withIdx:typeIdx];
+        };
+        [self.view addSubview:self.imgToolsBar];
     }
+    
+    [self.scrollView setContentOffset:CGPointMake(self.imagePage * kScreen_Width, 0.f)];
+    self.imgToolsBar.selectType = [self.typeArr[self.imagePage] integerValue];
+    [self makeTittleStrWithIndex:self.imagePage + 1];
 }
 
 - (void)scrollViewMake{
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 44.f, kScreen_Width, kScreen_Height - 44.f - 204.f)];
-    self.scrollView.backgroundColor = [UIColor blackColor];
-    self.scrollView.delegate = self;
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
+    if (!self.scrollView) {
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 44.f, kScreen_Width, kScreen_Height - 44.f - 204.f)];
+        self.scrollView.backgroundColor = [UIColor blackColor];
+        self.scrollView.delegate = self;
+        self.scrollView.pagingEnabled = YES;
+        self.scrollView.showsVerticalScrollIndicator = NO;
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        
+        [self.view addSubview:self.scrollView];
+    }
+    
+    for (NSInteger i = self.scrollView.subviews.count - 1; i > 0; i--) {
+        if ([self.scrollView.subviews[i] isKindOfClass:[UIImageView class]]) {
+            UIImageView * imageView = self.scrollView.subviews[i];
+            [imageView removeFromSuperview];
+            imageView = nil;
+        }
+    }
     self.scrollView.contentSize = CGSizeMake(kScreen_Width * self.photos.count, self.scrollView.height);
     CGFloat x = 0.f;
     for (int i = 1; i<=self.imagesArr.count; i++) {
@@ -129,16 +151,14 @@
         imageView.tag = i;
         [self.scrollView addSubview:imageView];
         
-        NSMutableArray * tagDataArr = self.tagSaveTempArr[i];
-        if (tagDataArr.count > 0) {
+        NSMutableArray * tagDataArr = self.tagSaveTempArr[i-1];
+        if (tagDataArr.count > 0) {//展示保存的标签数据
             for (int j = 0; j<tagDataArr.count; j++) {
-                RBPublicTagSaveModel * model = tagDataArr[i];
-                
+                RBPublicTagSaveModel * model = tagDataArr[j];
+                [self tagViewmakeWithTagArr:model.tagTextArr withPoint:model.centerLocationPoint withBaseView:tapView];
             }
         }
     }
-    
-    [self.view addSubview:self.scrollView];
 }
 
 #pragma mark - Action

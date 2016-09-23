@@ -265,6 +265,14 @@
 		B3AE4DC21D91812D000A389F /* JWImgPickerAlbumChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4DC11D91812D000A389F /* JWImgPickerAlbumChooseView.m */; };
 		B3AE4DC61D918170000A389F /* JWImgPickerAlbumChooseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4DC51D918170000A389F /* JWImgPickerAlbumChooseTableView.m */; };
 		B3AE4DC81D918550000A389F /* JWImgPickerAlbumChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AE4DC71D918550000A389F /* JWImgPickerAlbumChooseView.xib */; };
+		B3CD68A01D94C96300C26B1C /* JWTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD689F1D94C96300C26B1C /* JWTextView.m */; };
+		B3CD68A41D94CE4600C26B1C /* YWLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68A31D94CE4600C26B1C /* YWLocation.m */; };
+		B3CD68A71D94CF3200C26B1C /* RBPublicEditorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68A61D94CF3200C26B1C /* RBPublicEditorScrollView.m */; };
+		B3CD68A91D94CF4C00C26B1C /* RBPublicEditorScroll.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3CD68A81D94CF4C00C26B1C /* RBPublicEditorScroll.xib */; };
+		B3CD68AE1D94F9F300C26B1C /* RBPublicLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68AC1D94F9F300C26B1C /* RBPublicLocationViewController.m */; };
+		B3CD68AF1D94F9F300C26B1C /* RBPublicLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3CD68AD1D94F9F300C26B1C /* RBPublicLocationViewController.xib */; };
+		B3CD68B41D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68B21D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m */; };
+		B3CD68B51D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3CD68B31D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib */; };
 		B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */; };
 		B3FFF47A1D93A3C700EDD2AB /* XHFocusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46B1D93A3C700EDD2AB /* XHFocusLayer.m */; };
 		B3FFF47B1D93A3C700EDD2AB /* XHBranchPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46E1D93A3C700EDD2AB /* XHBranchPoint.m */; };
@@ -796,6 +804,19 @@
 		B3AE4DC41D918170000A389F /* JWImgPickerAlbumChooseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWImgPickerAlbumChooseTableView.h; sourceTree = "<group>"; };
 		B3AE4DC51D918170000A389F /* JWImgPickerAlbumChooseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWImgPickerAlbumChooseTableView.m; sourceTree = "<group>"; };
 		B3AE4DC71D918550000A389F /* JWImgPickerAlbumChooseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWImgPickerAlbumChooseView.xib; sourceTree = "<group>"; };
+		B3CD689E1D94C96300C26B1C /* JWTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWTextView.h; sourceTree = "<group>"; };
+		B3CD689F1D94C96300C26B1C /* JWTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWTextView.m; sourceTree = "<group>"; };
+		B3CD68A21D94CE4600C26B1C /* YWLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWLocation.h; sourceTree = "<group>"; };
+		B3CD68A31D94CE4600C26B1C /* YWLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWLocation.m; sourceTree = "<group>"; };
+		B3CD68A51D94CF3200C26B1C /* RBPublicEditorScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicEditorScrollView.h; sourceTree = "<group>"; };
+		B3CD68A61D94CF3200C26B1C /* RBPublicEditorScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicEditorScrollView.m; sourceTree = "<group>"; };
+		B3CD68A81D94CF4C00C26B1C /* RBPublicEditorScroll.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicEditorScroll.xib; sourceTree = "<group>"; };
+		B3CD68AB1D94F9F300C26B1C /* RBPublicLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicLocationViewController.h; sourceTree = "<group>"; };
+		B3CD68AC1D94F9F300C26B1C /* RBPublicLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicLocationViewController.m; sourceTree = "<group>"; };
+		B3CD68AD1D94F9F300C26B1C /* RBPublicLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicLocationViewController.xib; sourceTree = "<group>"; };
+		B3CD68B11D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicEditorCollectionViewCell.h; sourceTree = "<group>"; };
+		B3CD68B21D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicEditorCollectionViewCell.m; sourceTree = "<group>"; };
+		B3CD68B31D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicEditorCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3FFF4661D93A3C700EDD2AB /* XHTagHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTagHeader.h; sourceTree = "<group>"; };
 		B3FFF4681D93A3C700EDD2AB /* XHBranchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHBranchLayer.h; sourceTree = "<group>"; };
 		B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHBranchLayer.m; sourceTree = "<group>"; };
@@ -1192,6 +1213,8 @@
 				B38B2CE61D8FACD8004D5256 /* UserSession.h */,
 				B38B2CE71D8FACD8004D5256 /* UserSession.m */,
 				B38B2CE81D8FACD8004D5256 /* VipxoxPrefixHeader.pch */,
+				B3CD68A21D94CE4600C26B1C /* YWLocation.h */,
+				B3CD68A31D94CE4600C26B1C /* YWLocation.m */,
 			);
 			path = "Custom Category";
 			sourceTree = "<group>";
@@ -2142,6 +2165,7 @@
 		B38B2F6E1D8FC8CD004D5256 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				B3CD689D1D94C96300C26B1C /* JWTextView */,
 				B3FFF4871D93D36000EDD2AB /* JWTextField */,
 				B3AE4D5C1D91302B000A389F /* TZImagePickerController */,
 				B38B2F6F1D8FC8CD004D5256 /* JWWaterFlow */,
@@ -2231,6 +2255,46 @@
 				B3192AC71D9229E000FD6578 /* JWImgPickerAlbumChooseTableView.xib */,
 			);
 			path = AlbumTableView;
+			sourceTree = "<group>";
+		};
+		B3CD689D1D94C96300C26B1C /* JWTextView */ = {
+			isa = PBXGroup;
+			children = (
+				B3CD689E1D94C96300C26B1C /* JWTextView.h */,
+				B3CD689F1D94C96300C26B1C /* JWTextView.m */,
+			);
+			path = JWTextView;
+			sourceTree = "<group>";
+		};
+		B3CD68A11D94CD3E00C26B1C /* PublicEditorScroll */ = {
+			isa = PBXGroup;
+			children = (
+				B3CD68B01D94FC2E00C26B1C /* Cell */,
+				B3CD68A51D94CF3200C26B1C /* RBPublicEditorScrollView.h */,
+				B3CD68A61D94CF3200C26B1C /* RBPublicEditorScrollView.m */,
+				B3CD68A81D94CF4C00C26B1C /* RBPublicEditorScroll.xib */,
+			);
+			path = PublicEditorScroll;
+			sourceTree = "<group>";
+		};
+		B3CD68AA1D94F9B500C26B1C /* RBPublicLocationVC */ = {
+			isa = PBXGroup;
+			children = (
+				B3CD68AB1D94F9F300C26B1C /* RBPublicLocationViewController.h */,
+				B3CD68AC1D94F9F300C26B1C /* RBPublicLocationViewController.m */,
+				B3CD68AD1D94F9F300C26B1C /* RBPublicLocationViewController.xib */,
+			);
+			path = RBPublicLocationVC;
+			sourceTree = "<group>";
+		};
+		B3CD68B01D94FC2E00C26B1C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B3CD68B11D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.h */,
+				B3CD68B21D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m */,
+				B3CD68B31D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B3FFF4631D93A3C700EDD2AB /* XHTagView */ = {
@@ -2336,6 +2400,8 @@
 		B3FFF48F1D9402D500EDD2AB /* RBPublicEditorVC */ = {
 			isa = PBXGroup;
 			children = (
+				B3CD68AA1D94F9B500C26B1C /* RBPublicLocationVC */,
+				B3CD68A11D94CD3E00C26B1C /* PublicEditorScroll */,
 				B3FFF4901D94037D00EDD2AB /* RBPublicEditorViewController.h */,
 				B3FFF4911D94037D00EDD2AB /* RBPublicEditorViewController.m */,
 				B3FFF4921D94037D00EDD2AB /* RBPublicEditorViewController.xib */,
@@ -2654,6 +2720,7 @@
 				B38B2F041D8FC82F004D5256 /* RBNodeDRecommendTableViewCell.xib in Resources */,
 				B38B2F251D8FC82F004D5256 /* RBAlbumCollectionViewCell.xib in Resources */,
 				B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */,
+				B3CD68B51D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib in Resources */,
 				C14F541C1D94303F00A6C1E0 /* icon_homepage_foottreatCategory.png in Resources */,
 				B38B2E601D8FACD8004D5256 /* Assets.xcassets in Resources */,
 				B3192AC81D9229E100FD6578 /* JWImgPickerAlbumChooseTableView.xib in Resources */,
@@ -2684,8 +2751,10 @@
 				B38B2F531D8FC83A004D5256 /* 地点城市.json in Resources */,
 				C14F53EB1D94300400A6C1E0 /* PersonCenterHeadView.xib in Resources */,
 				C14F541D1D94303F00A6C1E0 /* icon_homepage_hotelCategory.png in Resources */,
+				B3CD68A91D94CF4C00C26B1C /* RBPublicEditorScroll.xib in Resources */,
 				B38B2F061D8FC82F004D5256 /* RBNodeDetailCommendFooter.xib in Resources */,
 				B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */,
+				B3CD68AF1D94F9F300C26B1C /* RBPublicLocationViewController.xib in Resources */,
 				B38B2F021D8FC82F004D5256 /* RBNodeDetailTableViewCell.xib in Resources */,
 				C14F542B1D94303F00A6C1E0 /* todaySpecialHeaderTitleImage@2x.png in Resources */,
 				B38B2E491D8FACD8004D5256 /* h4.jpg in Resources */,
@@ -2785,6 +2854,7 @@
 			files = (
 				C14F53E71D94300400A6C1E0 /* VIPPersonCenterViewController.m in Sources */,
 				B315823C1D9105A80096C194 /* RBHomeSearchDetailViewController.m in Sources */,
+				B3CD68A01D94C96300C26B1C /* JWTextView.m in Sources */,
 				B38B2E1E1D8FACD8004D5256 /* MJRefreshStateHeader.m in Sources */,
 				B38B2EFD1D8FC82F004D5256 /* RBHomeRecommendModel.m in Sources */,
 				B38B2E271D8FACD8004D5256 /* NSBundle+MJRefresh.m in Sources */,
@@ -2815,6 +2885,7 @@
 				B38B2E091D8FACD8004D5256 /* NSArray+MASAdditions.m in Sources */,
 				B38B2DE31D8FACD8004D5256 /* YWMessageViewController.m in Sources */,
 				B38B2F141D8FC82F004D5256 /* RBNodeUserLevelModel.m in Sources */,
+				B3CD68A71D94CF3200C26B1C /* RBPublicEditorScrollView.m in Sources */,
 				B38B2F311D8FC82F004D5256 /* RBCommentToolsView.m in Sources */,
 				B38B2F181D8FC82F004D5256 /* RBNodeShowCommentDetailVC.m in Sources */,
 				B3FFF47E1D93A3C700EDD2AB /* XHTagView.m in Sources */,
@@ -2851,6 +2922,7 @@
 				B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */,
 				B38B2EFE1D8FC82F004D5256 /* RBHomeUserModel.m in Sources */,
 				B38B2DF21D8FACD8004D5256 /* VIPTabBarController.m in Sources */,
+				B3CD68B41D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m in Sources */,
 				B38B2E411D8FACD8004D5256 /* NSDictionary+Log.m in Sources */,
 				B3AE4D761D91302B000A389F /* TZPhotoPreviewCell.m in Sources */,
 				B38B2EFF1D8FC82F004D5256 /* RBNodeDCommentTableViewCell.m in Sources */,
@@ -2898,6 +2970,7 @@
 				B31582461D9108200096C194 /* MDHotelRightBtn.m in Sources */,
 				B38B2E051D8FACD8004D5256 /* MASConstraintMaker.m in Sources */,
 				B38B2E231D8FACD8004D5256 /* MJDIYBackFooter.m in Sources */,
+				B3CD68A41D94CE4600C26B1C /* YWLocation.m in Sources */,
 				B3AE4D751D91302B000A389F /* TZPhotoPickerController.m in Sources */,
 				B38B2E631D8FACD8004D5256 /* main.m in Sources */,
 				B38B2E171D8FACD8004D5256 /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -2946,6 +3019,7 @@
 				B38B2F781D8FC8CD004D5256 /* JWTagCollectionViewCell.m in Sources */,
 				B38B2DE51D8FACD8004D5256 /* YWStormViewController.m in Sources */,
 				B38B2F131D8FC82F004D5256 /* RBNodeShowTagModel.m in Sources */,
+				B3CD68AE1D94F9F300C26B1C /* RBPublicLocationViewController.m in Sources */,
 				B38B2E001D8FACD8004D5256 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				B38B2DF11D8FACD8004D5256 /* VIPTabBar.m in Sources */,
 				B3FFF4931D94037D00EDD2AB /* RBPublicEditorViewController.m in Sources */,

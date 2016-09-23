@@ -16,4 +16,6 @@
 @property (nonatomic,strong)NSMutableArray * imageChangeSaveArr;//小红书编辑照片后数据
 @property (nonatomic,assign)NSInteger imagePage;
 
+- (void)reSetData;
+
 @end

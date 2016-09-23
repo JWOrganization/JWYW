@@ -189,6 +189,34 @@ static CGSize AssetGridThumbnailSize;
     return YES;
 }
 
+- (void)setImageChangeSaveArr:(NSMutableArray *)imageChangeSaveArr{
+    if (!imageChangeSaveArr)return;
+    _imageChangeSaveArr = imageChangeSaveArr;
+    
+    TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
+    NSMutableArray *selectedModels = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *unSelectedModels = [tzImagePickerVc.selectedModels mutableCopy];
+    
+    [imageChangeSaveArr enumerateObjectsUsingBlock:^(RBPublicSaveModel * _Nonnull saveModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        for (int i = 0; i<self.photoSaveArr.count; i++) {
+            UIImage * photo = self.photoSaveArr[i];
+            if ([UIImagePNGRepresentation(photo) isEqual:UIImagePNGRepresentation(saveModel.origionalImage)]) {
+                [selectedModels addObject:tzImagePickerVc.selectedModels[i]];
+                [unSelectedModels removeObject:tzImagePickerVc.selectedModels[i]];
+                break;
+            }
+        }
+        if (idx >= self.imageChangeSaveArr.count-1) {
+            tzImagePickerVc.selectedModels = selectedModels;
+            for (TZAssetModel * model in unSelectedModels) {
+                model.isSelected = NO;
+            }
+            [self.collectionView reloadData];
+            [self refreshBottomToolBarStatus];
+        }
+    }];
+}
+
 - (void)configBottomToolBar {
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
     UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.tz_height - 50, self.view.tz_width, 50)];
@@ -300,7 +328,9 @@ static CGSize AssetGridThumbnailSize;
     NSMutableArray *photos = [NSMutableArray array];
     NSMutableArray *assets = [NSMutableArray array];
     NSMutableArray *infoArr = [NSMutableArray array];
-    for (NSInteger i = 0; i < tzImagePickerVc.selectedModels.count; i++) { [photos addObject:@1];[assets addObject:@1];[infoArr addObject:@1]; }
+    for (NSInteger i = 0; i < tzImagePickerVc.selectedModels.count; i++) {
+        [photos addObject:@1];[assets addObject:@1];[infoArr addObject:@1];
+    }
     
     [TZImageManager manager].shouldFixOrientation = YES;
     for (NSInteger i = 0; i < tzImagePickerVc.selectedModels.count; i++) {
@@ -331,6 +361,7 @@ static CGSize AssetGridThumbnailSize;
             [tzImagePickerVc hideProgressHUD];
             RBPublicNodeViewController * vc = [[RBPublicNodeViewController alloc]init];
             vc.photos = photos;
+            self.photoSaveArr = photos;
             vc.imageChangeSaveArr = self.imageChangeSaveArr;
             [self.navigationController pushViewController:vc animated:YES];
 //            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -720,7 +751,6 @@ static CGSize AssetGridThumbnailSize;
     }
     return indexPaths;
 }
-
 
 - (void)imageArrGet{
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;

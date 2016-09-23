@@ -11,6 +11,7 @@
 #import "InternationalLanguage.h"    //国际化语言
 #import "GlobalInfo.h"         //保存地址
 #import "UserSession.h"         //登录信息
+#import "YWLocation.h"          //Location
 
 //库
 #import "JRToast.h"
