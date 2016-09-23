@@ -8,11 +8,16 @@
 
 #import "VIPPersonCenterViewController.h"
 #import "PersonCenterZeroCell.h"
-#import "defineButton.h"
+#import "PersonCenterOneCell.h"
 
+#import "defineButton.h"
+#import "MJChiBaoZiHeader.h"
+#import "MJChiBaoZiFooter2.h"
 
 #define SECTION0CELL  @"cell"
 #define CELL0         @"PersonCenterZeroCell"
+#define CELL1         @"PersonCenterOneCell"
+
 
 #define HEADERVIEWHEIGHT   195     //头视图的高度
 
@@ -40,10 +45,20 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:SECTION0CELL];
     [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
-    [self addHeaderView];
+    [self.tableView registerClass:[PersonCenterOneCell class] forCellReuseIdentifier:CELL1];
+////    self.tableView.mj_header=[MJChiBaoZiHeader headerWithRefreshingBlock:^{
+////        [self getFitstDatas];
+////        
+////    }];
+//    
+//    self.tableView.mj_header=[MJRefreshHeader headerWithRefreshingBlock:^{
+//        
+//    }];
+//    
+//    
+////    [self.tableView.mj_header insertSubview:self.tableView belowSubview:self.headerView ];
     
-    
-    
+        [self addHeaderView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -92,8 +107,9 @@
     if (indexPath.section==0&&indexPath.row==0) {
         cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
         
-        UIButton*button0=[cell viewWithTag:1];
+        defineButton*button0=[cell viewWithTag:1];
         button0.backgroundColor=[UIColor grayColor];
+      
         
         UIButton*button1=[cell viewWithTag:2];
         button1.backgroundColor=[UIColor blueColor];
@@ -103,7 +119,12 @@
         button2.VlineView.hidden=YES;
         
         return cell;
+    }else if (indexPath.section==1&&indexPath.row==0){
+         cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+        
+        return cell;
     }
+    
     
     
     cell.textLabel.text=@"6666";
@@ -116,10 +137,18 @@
     if (indexPath.section==0&&indexPath.row==0) {
         return 65;
         
+    }else if (indexPath.section==1&&indexPath.row==0){
+        return 157;
     }
     return 44;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10;
+}
 
 -(void)addHeaderView{
     
@@ -168,6 +197,19 @@
 -(void)touchRightItem{
     MyLog(@"22");
 }
+
+#pragma mark  --  getDatas
+-(void)getFitstDatas{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+        [self.tableView.mj_footer resetNoMoreData];
+    });
+    
+}
+
 
 #pragma mark  --set get
 -(UITableView *)tableView{
