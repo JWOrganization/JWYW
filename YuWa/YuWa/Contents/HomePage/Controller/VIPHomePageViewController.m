@@ -88,7 +88,7 @@
     // 设置正在刷新状态的动画图片
     [gifHeader setImages:refreshingImages forState:MJRefreshStateRefreshing];
     //自动刷新
-    [gifHeader beginRefreshing];
+//    [gifHeader beginRefreshing];
     
     
     
