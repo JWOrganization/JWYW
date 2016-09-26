@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
-#import "JWBasicViewController.h"
+#import "JWLocationBasicViewController.h"
 
-@interface RBPublicLocationViewController : JWBasicViewController
+@interface RBPublicLocationViewController : JWLocationBasicViewController
 
 @property (nonatomic,copy)void (^locationChooseBlock)(NSString *);
 

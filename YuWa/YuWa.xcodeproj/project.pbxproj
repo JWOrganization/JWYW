@@ -25,6 +25,8 @@
 		B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */; };
 		B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */; };
 		B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */; };
+		B35778A11D98CD8E0058A998 /* JWLocationBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */; };
+		B35778A21D98CD8E0058A998 /* JWLocationBasicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
 		B38B2DE31D8FACD8004D5256 /* YWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CB61D8FACD8004D5256 /* YWMessageViewController.m */; };
@@ -389,6 +391,9 @@
 		B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBIMGToolsCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3192ADC1D927C3600FD6578 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
 		B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
+		B357789E1D98CD8E0058A998 /* JWLocationBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWLocationBasicViewController.h; sourceTree = "<group>"; };
+		B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWLocationBasicViewController.m; sourceTree = "<group>"; };
+		B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWLocationBasicViewController.xib; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -1786,6 +1791,9 @@
 				B38B2E681D8FC3B6004D5256 /* JWBasicViewController.h */,
 				B38B2E691D8FC3B6004D5256 /* JWBasicViewController.m */,
 				B38B2E6A1D8FC3B6004D5256 /* JWBasicViewController.xib */,
+				B357789E1D98CD8E0058A998 /* JWLocationBasicViewController.h */,
+				B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */,
+				B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */,
 			);
 			path = JWBasicView;
 			sourceTree = "<group>";
@@ -2647,6 +2655,7 @@
 				TargetAttributes = {
 					B38B2C6B1D8FAC5A004D5256 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5D5Z473WJW;
 					};
 					B38B2C841D8FAC5A004D5256 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -2747,6 +2756,7 @@
 				C14F53EE1D94300500A6C1E0 /* PersonCenterZeroCell.xib in Resources */,
 				B38B2DED1D8FACD8004D5256 /* InfoPlist.strings in Resources */,
 				B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */,
+				B35778A21D98CD8E0058A998 /* JWLocationBasicViewController.xib in Resources */,
 				B38B2F521D8FC83A004D5256 /* 国家 选择币种.json in Resources */,
 				B38B2F041D8FC82F004D5256 /* RBNodeDRecommendTableViewCell.xib in Resources */,
 				B38B2F251D8FC82F004D5256 /* RBAlbumCollectionViewCell.xib in Resources */,
@@ -2968,6 +2978,7 @@
 				B38B2E351D8FACD8004D5256 /* UIImage+GIF.m in Sources */,
 				B38B2F0F1D8FC82F004D5256 /* RBNodeShowCommentModel.m in Sources */,
 				B38B2F1A1D8FC82F004D5256 /* RBNodeDetailBottomView.m in Sources */,
+				B35778A11D98CD8E0058A998 /* JWLocationBasicViewController.m in Sources */,
 				B38B2E2A1D8FACD8004D5256 /* UIView+MJExtension.m in Sources */,
 				B38B2E041D8FACD8004D5256 /* MASConstraint.m in Sources */,
 				C14F54311D94C96100A6C1E0 /* DetailStoreFirstTableViewCell.m in Sources */,
@@ -3243,11 +3254,12 @@
 			baseConfigurationReference = 6D91CFB893AA70B1C9A0D506 /* Pods-YuWa.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YuWa/Foundation/Custom Category/VipxoxPrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/YuWa/Supporting File/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa233;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -3257,11 +3269,12 @@
 			baseConfigurationReference = BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YuWa/Foundation/Custom Category/VipxoxPrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/YuWa/Supporting File/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa233;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

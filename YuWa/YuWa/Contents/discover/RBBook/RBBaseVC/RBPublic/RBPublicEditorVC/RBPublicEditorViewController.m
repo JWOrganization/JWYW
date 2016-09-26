@@ -52,7 +52,11 @@
     self.scrollView.chooseLocationBlock = ^(){//选地点
         RBPublicLocationViewController * vc = [[RBPublicLocationViewController alloc]init];
         vc.locationChooseBlock = ^(NSString * locationName){
-            if (![locationName isEqualToString:@""])weakSelf.scrollView.locationnameLabel.text = locationName;
+            if (![locationName isEqualToString:@""]){
+                weakSelf.scrollView.locationnameLabel.text = locationName;
+            }else{
+                weakSelf.scrollView.locationnameLabel.text = @"添加地点";
+            }
         };
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
@@ -66,7 +70,8 @@
 }
 
 - (void)publishBtnAction{
-    
+    //数据发布
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)backAction{
@@ -179,7 +184,10 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(nonnull NSIndexPath *)sourceIndexPath toIndexPath:(nonnull NSIndexPath *)destinationIndexPath{
-    [self.imageChangeSaveArr exchangeObjectAtIndex:sourceIndexPath.item withObjectAtIndex:destinationIndexPath.item];
+    if (self.imageChangeSaveArr.count <= 1)return;
+    RBPublicSaveModel * model = self.imageChangeSaveArr[sourceIndexPath.item];
+    [self.imageChangeSaveArr removeObject:model];
+    [self.imageChangeSaveArr insertObject:model atIndex:destinationIndexPath.item];
     [self.scrollView.collectionView reloadData];
 }
 

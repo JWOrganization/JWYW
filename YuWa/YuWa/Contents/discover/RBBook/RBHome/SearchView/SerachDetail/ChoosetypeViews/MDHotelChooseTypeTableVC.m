@@ -62,9 +62,12 @@
     typeCell.textLabel.text = self.dataArr[indexPath.row];
     typeCell.textLabel.font = [UIFont systemFontOfSize:15.f];
     typeCell.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
-    UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 29.f, kScreen_Width, 1.f)];
-    lineView.backgroundColor = [UIColor colorWithHexString:@"#d6d6d6"];
-    [typeCell addSubview:lineView];
+    if (![typeCell viewWithTag:10086]) {
+        UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 29.f, kScreen_Width, 1.f)];
+        lineView.backgroundColor = [UIColor colorWithHexString:@"#d6d6d6"];
+        lineView.tag = 10086;
+        [typeCell addSubview:lineView];
+    }
     typeCell.alpha = 1.f;
     return typeCell;
 }

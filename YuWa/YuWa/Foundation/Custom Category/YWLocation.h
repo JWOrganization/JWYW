@@ -17,5 +17,6 @@
 @property (nonatomic,assign)CLLocationCoordinate2D coordinate;
 
 + (instancetype)shareLocation;
++ (void)saveLocationInfoWithLat:(CGFloat)lat withLon:(CGFloat)lon;
 
 @end

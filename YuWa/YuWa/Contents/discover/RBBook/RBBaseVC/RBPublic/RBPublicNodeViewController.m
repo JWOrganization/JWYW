@@ -22,6 +22,7 @@
 @property (nonatomic,strong)NSMutableArray * imagesArr;
 @property (nonatomic,strong)NSMutableArray * tagSaveArr;//图片改变标签数据(保存)
 @property (nonatomic,strong)NSMutableArray * tagSaveTempArr;//图片改变标签数据(读取)
+@property (nonatomic,assign)BOOL isChanged;
 
 @property (nonatomic,strong)ALAssetsLibrary *library;
 
@@ -55,6 +56,10 @@
     self.typeArr = [NSMutableArray arrayWithCapacity:0];
     self.tagSaveArr = [NSMutableArray arrayWithCapacity:0];
     self.tagSaveTempArr = [NSMutableArray arrayWithCapacity:0];
+    self.isChanged = NO;
+    if (self.photos&&self.photos.count>self.imageChangeSaveArr.count) {
+        self.isChanged = YES;
+    }
     if (!self.photos&&self.imageChangeSaveArr){//编辑过后push
         NSMutableArray * arrTemp = [NSMutableArray arrayWithCapacity:0];
         for (RBPublicSaveModel * model in self.imageChangeSaveArr) {
@@ -114,16 +119,19 @@
 }
 
 - (void)scrollViewMake{
-    if (!self.scrollView) {
-        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 44.f, kScreen_Width, kScreen_Height - 44.f - 204.f)];
-        self.scrollView.backgroundColor = [UIColor blackColor];
-        self.scrollView.delegate = self;
-        self.scrollView.pagingEnabled = YES;
-        self.scrollView.showsVerticalScrollIndicator = NO;
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-        
-        [self.view addSubview:self.scrollView];
+    if (self.scrollView) {
+        [self.scrollView removeFromSuperview];
+        self.scrollView = nil;
     }
+    
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 44.f, kScreen_Width, kScreen_Height - 44.f - 204.f)];
+    self.scrollView.backgroundColor = [UIColor blackColor];
+    self.scrollView.delegate = self;
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    
+    [self.view addSubview:self.scrollView];
     
     for (NSInteger i = self.scrollView.subviews.count - 1; i > 0; i--) {
         if ([self.scrollView.subviews[i] isKindOfClass:[UIImageView class]]) {
@@ -155,7 +163,7 @@
         if (tagDataArr.count > 0) {//展示保存的标签数据
             for (int j = 0; j<tagDataArr.count; j++) {
                 RBPublicTagSaveModel * model = tagDataArr[j];
-                [self tagViewmakeWithTagArr:model.tagTextArr withPoint:model.centerLocationPoint withBaseView:tapView];
+                [self tagViewmakeWithTagArr:model.tagTextArr withPoint:model.centerLocationPoint withBaseView:tapView withStyle:model.tagAnimationStyle];
             }
         }
     }
@@ -169,6 +177,9 @@
     }
     for (NSMutableArray * effectArr in self.tagSaveArr) {
         effectCount += effectArr.count;
+    }
+    if (self.isChanged) {
+        effectCount++;
     }
     if (effectCount >0) {//照片已修改
         UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -216,18 +227,19 @@
 - (void)imageAddTagWithPoint:(CGPoint)point withView:(UIView *)view{
     RBPublicTagEditorViewController * vc = [[RBPublicTagEditorViewController alloc]init];
     vc.tagAddBlock = ^(NSArray * tagArr){
-        [self tagViewmakeWithTagArr:tagArr withPoint:point withBaseView:view];
+        [self tagViewmakeWithTagArr:tagArr withPoint:point withBaseView:view withStyle:XHTagAnimationStyleAllRight];
     };
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)tagViewmakeWithTagArr:(NSArray *)tagArr withPoint:(CGPoint)point withBaseView:(UIView *)view{
+- (void)tagViewmakeWithTagArr:(NSArray *)tagArr withPoint:(CGPoint)point withBaseView:(UIView *)view withStyle:(XHTagAnimationStyle)animationStyle{
     XHTagView * tagView = [[XHTagView alloc]init];
     NSMutableArray * dataArr = self.tagSaveArr[self.imagePage];
     tagView.branchTexts = [NSMutableArray arrayWithArray:tagArr];
     tagView.tag = 1009;
     tagView.tagAnimationStyle = XHTagAnimationStyleAllRight;
     tagView.centerLocationPoint = point;
+    tagView.tagAnimationStyle = animationStyle;
     [dataArr addObject:tagView];
     
     UIView * actionView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, 60.f, 60.f)];//操作视图
@@ -263,7 +275,7 @@
     pan.view.transform = CGAffineTransformTranslate(pan.view.transform, point.x, point.y);
     [pan setTranslation:CGPointZero inView:pan.view];
     XHTagView * view = [pan.view viewWithTag:1009];
-    view.centerLocationPoint = pan.view.center;
+    view.centerLocationPoint = CGPointMake(view.centerLocationPoint.x + point.x, view.centerLocationPoint.y + point.y);
 }
 - (void)longPressAction:(UILongPressGestureRecognizer *)longPress{
     UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

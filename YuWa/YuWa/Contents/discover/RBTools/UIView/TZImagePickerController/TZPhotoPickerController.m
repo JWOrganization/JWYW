@@ -17,6 +17,7 @@
 
 #import "RBPublicNodeViewController.h"
 #import "JWImgPickerAlbumChooseView.h"
+#import "RBPublicSaveModel.h"
 #import "UIBarButtonItem+SettingCustom.h"
 @interface TZPhotoPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate> {
     NSMutableArray *_models;
@@ -362,7 +363,28 @@ static CGSize AssetGridThumbnailSize;
             RBPublicNodeViewController * vc = [[RBPublicNodeViewController alloc]init];
             vc.photos = photos;
             self.photoSaveArr = photos;
-            vc.imageChangeSaveArr = self.imageChangeSaveArr;
+            
+            __block NSMutableArray * imageChangeArrTemp = [NSMutableArray arrayWithCapacity:0];
+            if (self.imageChangeSaveArr) {
+                [photos enumerateObjectsUsingBlock:^(UIImage * photo, NSUInteger idx, BOOL * _Nonnull stop) {
+                    for (int i = 0; i <self.imageChangeSaveArr.count; i++) {
+                        RBPublicSaveModel * saveModel = self.imageChangeSaveArr[i];
+                        if ([UIImagePNGRepresentation(photo) isEqual:UIImagePNGRepresentation(saveModel.origionalImage)]) {
+                            [imageChangeArrTemp addObject:saveModel];
+                            break;
+                        }
+                    }
+                    if (imageChangeArrTemp.count <= idx) {
+                        RBPublicSaveModel * saveModel = [[RBPublicSaveModel alloc]init];
+                        saveModel.origionalImage = photo;
+                        saveModel.changedImage = photo;
+                        [imageChangeArrTemp addObject:saveModel];
+                    }
+                    
+                }];
+            }
+            
+            vc.imageChangeSaveArr = self.imageChangeSaveArr?imageChangeArrTemp:self.imageChangeSaveArr;
             [self.navigationController pushViewController:vc animated:YES];
 //            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }];
