@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="295" height="27"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-page-search-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kFa-lb-DmM">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rb_home-page-search-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kFa-lb-DmM">
                     <rect key="frame" x="10" y="1" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="sAA-Dl-3Px"/>
@@ -47,6 +47,6 @@
         </view>
     </objects>
     <resources>
-        <image name="home-page-search-icon" width="22" height="22"/>
+        <image name="rb_home-page-search-icon" width="22" height="22"/>
     </resources>
 </document>

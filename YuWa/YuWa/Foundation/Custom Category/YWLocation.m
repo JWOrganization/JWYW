@@ -34,13 +34,11 @@ static YWLocation * location = nil;
     if (_lat == lat)return;
     _lat = lat;
     [KUSERDEFAULT setObject:[NSString stringWithFormat:@"%f",lat] forKey:LOCATION_LAT];
-    MyLog(@"Location lat is %f,lon is %f",lat,location.lon);
 }
 - (void)setLon:(CGFloat)lon{
     if (_lon == lon)return;
     _lon = lon;
     [KUSERDEFAULT setObject:[NSString stringWithFormat:@"%f",lon] forKey:LOCATION_LON];
-    MyLog(@"Location lat is %f,lon is %f",location.lat,lon);
 }
 
 + (void)getDataFromDefault{

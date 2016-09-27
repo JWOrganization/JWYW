@@ -25,12 +25,22 @@
 		B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */; };
 		B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */; };
 		B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */; };
+		B3332F411D9A0FF200121B88 /* YWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3332F401D9A0FF200121B88 /* YWMessageModel.m */; };
+		B3332F461D9A10E000121B88 /* YWMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3332F441D9A10E000121B88 /* YWMessageTableViewCell.m */; };
+		B3332F471D9A10E000121B88 /* YWMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3332F451D9A10E000121B88 /* YWMessageTableViewCell.xib */; };
+		B3332F4B1D9A115300121B88 /* YWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3332F491D9A115300121B88 /* YWMessageViewController.m */; };
+		B3332F4C1D9A115300121B88 /* YWMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3332F4A1D9A115300121B88 /* YWMessageViewController.xib */; };
 		B35778A11D98CD8E0058A998 /* JWLocationBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */; };
 		B35778A21D98CD8E0058A998 /* JWLocationBasicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */; };
+		B35778A41D99209E0058A998 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35778A31D99209E0058A998 /* MapKit.framework */; };
+		B35778A81D99229D0058A998 /* YWStormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778A61D99229D0058A998 /* YWStormViewController.m */; };
+		B35778A91D99229D0058A998 /* YWStormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778A71D99229D0058A998 /* YWStormViewController.xib */; };
+		B35778AF1D9962180058A998 /* YWStormAnnotationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778AE1D9962180058A998 /* YWStormAnnotationModel.m */; };
+		B35778B21D9962550058A998 /* YWStormPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778B11D9962550058A998 /* YWStormPinAnnotationView.m */; };
+		B35778B81D996B0B0058A998 /* YWStormSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */; };
+		B35778B91D996B0B0058A998 /* YWStormSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
-		B38B2DE31D8FACD8004D5256 /* YWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CB61D8FACD8004D5256 /* YWMessageViewController.m */; };
-		B38B2DE51D8FACD8004D5256 /* YWStormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CC21D8FACD8004D5256 /* YWStormViewController.m */; };
 		B38B2DE61D8FACD8004D5256 /* UIImage+imageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CCA1D8FACD8004D5256 /* UIImage+imageColor.m */; };
 		B38B2DE71D8FACD8004D5256 /* GifBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B38B2CCC1D8FACD8004D5256 /* GifBundle.bundle */; };
 		B38B2DE81D8FACD8004D5256 /* HUDFailureShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CCE1D8FACD8004D5256 /* HUDFailureShowView.m */; };
@@ -391,9 +401,28 @@
 		B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBIMGToolsCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3192ADC1D927C3600FD6578 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
 		B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
+		B3332F3F1D9A0FF200121B88 /* YWMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageModel.h; sourceTree = "<group>"; };
+		B3332F401D9A0FF200121B88 /* YWMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageModel.m; sourceTree = "<group>"; };
+		B3332F431D9A10E000121B88 /* YWMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageTableViewCell.h; sourceTree = "<group>"; };
+		B3332F441D9A10E000121B88 /* YWMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageTableViewCell.m; sourceTree = "<group>"; };
+		B3332F451D9A10E000121B88 /* YWMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageTableViewCell.xib; sourceTree = "<group>"; };
+		B3332F481D9A115300121B88 /* YWMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageViewController.h; sourceTree = "<group>"; };
+		B3332F491D9A115300121B88 /* YWMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageViewController.m; sourceTree = "<group>"; };
+		B3332F4A1D9A115300121B88 /* YWMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageViewController.xib; sourceTree = "<group>"; };
 		B357789E1D98CD8E0058A998 /* JWLocationBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWLocationBasicViewController.h; sourceTree = "<group>"; };
 		B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWLocationBasicViewController.m; sourceTree = "<group>"; };
 		B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWLocationBasicViewController.xib; sourceTree = "<group>"; };
+		B35778A31D99209E0058A998 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B35778A51D99229D0058A998 /* YWStormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormViewController.h; sourceTree = "<group>"; };
+		B35778A61D99229D0058A998 /* YWStormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormViewController.m; sourceTree = "<group>"; };
+		B35778A71D99229D0058A998 /* YWStormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWStormViewController.xib; sourceTree = "<group>"; };
+		B35778AD1D9962180058A998 /* YWStormAnnotationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormAnnotationModel.h; sourceTree = "<group>"; };
+		B35778AE1D9962180058A998 /* YWStormAnnotationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormAnnotationModel.m; sourceTree = "<group>"; };
+		B35778B01D9962550058A998 /* YWStormPinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormPinAnnotationView.h; sourceTree = "<group>"; };
+		B35778B11D9962550058A998 /* YWStormPinAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormPinAnnotationView.m; sourceTree = "<group>"; };
+		B35778B51D996B0B0058A998 /* YWStormSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSearchViewController.h; sourceTree = "<group>"; };
+		B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSearchViewController.m; sourceTree = "<group>"; };
+		B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWStormSearchViewController.xib; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -401,10 +430,6 @@
 		B38B2C901D8FAC5A004D5256 /* YuWaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaUITests.m; sourceTree = "<group>"; };
 		B38B2C961D8FAC5A004D5256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B38B2CB51D8FACD8004D5256 /* YWMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageViewController.h; sourceTree = "<group>"; };
-		B38B2CB61D8FACD8004D5256 /* YWMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageViewController.m; sourceTree = "<group>"; };
-		B38B2CC11D8FACD8004D5256 /* YWStormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormViewController.h; sourceTree = "<group>"; };
-		B38B2CC21D8FACD8004D5256 /* YWStormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormViewController.m; sourceTree = "<group>"; };
 		B38B2CC91D8FACD8004D5256 /* UIImage+imageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+imageColor.h"; sourceTree = "<group>"; };
 		B38B2CCA1D8FACD8004D5256 /* UIImage+imageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+imageColor.m"; sourceTree = "<group>"; };
 		B38B2CCC1D8FACD8004D5256 /* GifBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GifBundle.bundle; sourceTree = "<group>"; };
@@ -938,6 +963,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35778A41D99209E0058A998 /* MapKit.framework in Frameworks */,
 				1200AE09FCCFFA5EBD10470F /* libPods-YuWa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,6 +1065,34 @@
 				B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */,
 			);
 			path = ImageEditor;
+			sourceTree = "<group>";
+		};
+		B3332F421D9A107600121B88 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B3332F431D9A10E000121B88 /* YWMessageTableViewCell.h */,
+				B3332F441D9A10E000121B88 /* YWMessageTableViewCell.m */,
+				B3332F451D9A10E000121B88 /* YWMessageTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B35778B31D996AB80058A998 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				B35778B41D996ACD0058A998 /* SearchView */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		B35778B41D996ACD0058A998 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				B35778B51D996B0B0058A998 /* YWStormSearchViewController.h */,
+				B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */,
+				B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 		B38B2C631D8FAC5A004D5256 = {
@@ -1159,8 +1213,9 @@
 		B38B2CB41D8FACD8004D5256 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2CB51D8FACD8004D5256 /* YWMessageViewController.h */,
-				B38B2CB61D8FACD8004D5256 /* YWMessageViewController.m */,
+				B3332F481D9A115300121B88 /* YWMessageViewController.h */,
+				B3332F491D9A115300121B88 /* YWMessageViewController.m */,
+				B3332F4A1D9A115300121B88 /* YWMessageViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1168,20 +1223,26 @@
 		B38B2CB71D8FACD8004D5256 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B3332F3F1D9A0FF200121B88 /* YWMessageModel.h */,
+				B3332F401D9A0FF200121B88 /* YWMessageModel.m */,
 			);
-			path = Model;
+			name = Model;
+			path = ../storm/SubView/SearchView/Model;
 			sourceTree = "<group>";
 		};
 		B38B2CB81D8FACD8004D5256 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3332F421D9A107600121B88 /* Cell */,
 			);
-			path = View;
+			name = View;
+			path = ../storm/SubView/SearchView/View;
 			sourceTree = "<group>";
 		};
 		B38B2CBF1D8FACD8004D5256 /* storm */ = {
 			isa = PBXGroup;
 			children = (
+				B35778B31D996AB80058A998 /* SubView */,
 				B38B2CC01D8FACD8004D5256 /* Controller */,
 				B38B2CC31D8FACD8004D5256 /* Model */,
 				B38B2CC41D8FACD8004D5256 /* View */,
@@ -1192,8 +1253,9 @@
 		B38B2CC01D8FACD8004D5256 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2CC11D8FACD8004D5256 /* YWStormViewController.h */,
-				B38B2CC21D8FACD8004D5256 /* YWStormViewController.m */,
+				B35778A51D99229D0058A998 /* YWStormViewController.h */,
+				B35778A61D99229D0058A998 /* YWStormViewController.m */,
+				B35778A71D99229D0058A998 /* YWStormViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1201,6 +1263,8 @@
 		B38B2CC31D8FACD8004D5256 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B35778AD1D9962180058A998 /* YWStormAnnotationModel.h */,
+				B35778AE1D9962180058A998 /* YWStormAnnotationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1208,6 +1272,8 @@
 		B38B2CC41D8FACD8004D5256 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B35778B01D9962550058A998 /* YWStormPinAnnotationView.h */,
+				B35778B11D9962550058A998 /* YWStormPinAnnotationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2579,6 +2645,7 @@
 		EDD1BC4F3FB283CECFE57A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B35778A31D99209E0058A998 /* MapKit.framework */,
 				BBC1CC6C89770D83C605851F /* libPods-YuWa.a */,
 			);
 			name = Frameworks;
@@ -2699,6 +2766,8 @@
 				B38B2E501D8FACD8004D5256 /* tb3.png in Resources */,
 				B38B2EF81D8FC82F004D5256 /* RBHomeCollectionViewCell.xib in Resources */,
 				B38B2F171D8FC82F004D5256 /* RBNodeShowViewController.xib in Resources */,
+				B35778A91D99229D0058A998 /* YWStormViewController.xib in Resources */,
+				B3332F4C1D9A115300121B88 /* YWMessageViewController.xib in Resources */,
 				C14F54151D94303F00A6C1E0 /* icon_collect_highlighted.png in Resources */,
 				B38B2E481D8FACD8004D5256 /* h3.jpg in Resources */,
 				B38B2E461D8FACD8004D5256 /* h1.jpg in Resources */,
@@ -2763,6 +2832,7 @@
 				B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */,
 				B3CD68B51D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib in Resources */,
 				C14F541C1D94303F00A6C1E0 /* icon_homepage_foottreatCategory.png in Resources */,
+				B3332F471D9A10E000121B88 /* YWMessageTableViewCell.xib in Resources */,
 				B38B2E601D8FACD8004D5256 /* Assets.xcassets in Resources */,
 				B3192AC81D9229E100FD6578 /* JWImgPickerAlbumChooseTableView.xib in Resources */,
 				C14F541E1D94303F00A6C1E0 /* icon_homepage_KTVCategory.png in Resources */,
@@ -2780,6 +2850,7 @@
 				C14F542C1D94303F00A6C1E0 /* todaySpecialHeaderTitleImage@3x.png in Resources */,
 				C14F54271D94303F00A6C1E0 /* icon_homepage_takeoutCategory.png in Resources */,
 				C14F54251D94303F00A6C1E0 /* icon_homepage_search.png in Resources */,
+				B35778B91D996B0B0058A998 /* YWStormSearchViewController.xib in Resources */,
 				B3AE4D731D91302B000A389F /* TZImagePickerController.bundle in Resources */,
 				B38B2F1D1D8FC82F004D5256 /* RBHomeViewController.xib in Resources */,
 				C14F541A1D94303F00A6C1E0 /* icon_homepage_entertainmentCategory.png in Resources */,
@@ -2898,6 +2969,7 @@
 				C14F53E71D94300400A6C1E0 /* VIPPersonCenterViewController.m in Sources */,
 				B315823C1D9105A80096C194 /* RBHomeSearchDetailViewController.m in Sources */,
 				B3CD68A01D94C96300C26B1C /* JWTextView.m in Sources */,
+				B35778B21D9962550058A998 /* YWStormPinAnnotationView.m in Sources */,
 				B38B2E1E1D8FACD8004D5256 /* MJRefreshStateHeader.m in Sources */,
 				B38B2EFD1D8FC82F004D5256 /* RBHomeRecommendModel.m in Sources */,
 				B38B2E271D8FACD8004D5256 /* NSBundle+MJRefresh.m in Sources */,
@@ -2927,7 +2999,6 @@
 				B38B2DF91D8FACD8004D5256 /* AFURLConnectionOperation.m in Sources */,
 				B3AE4DC61D918170000A389F /* JWImgPickerAlbumChooseTableView.m in Sources */,
 				B38B2E091D8FACD8004D5256 /* NSArray+MASAdditions.m in Sources */,
-				B38B2DE31D8FACD8004D5256 /* YWMessageViewController.m in Sources */,
 				B38B2F141D8FC82F004D5256 /* RBNodeUserLevelModel.m in Sources */,
 				B3CD68A71D94CF3200C26B1C /* RBPublicEditorScrollView.m in Sources */,
 				B38B2F311D8FC82F004D5256 /* RBCommentToolsView.m in Sources */,
@@ -2971,6 +3042,8 @@
 				B3AE4D761D91302B000A389F /* TZPhotoPreviewCell.m in Sources */,
 				B38B2EFF1D8FC82F004D5256 /* RBNodeDCommentTableViewCell.m in Sources */,
 				B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */,
+				B3332F411D9A0FF200121B88 /* YWMessageModel.m in Sources */,
+				B35778B81D996B0B0058A998 /* YWStormSearchViewController.m in Sources */,
 				B38B2E281D8FACD8004D5256 /* UIScrollView+MJExtension.m in Sources */,
 				C14F53E81D94300400A6C1E0 /* defineButton.m in Sources */,
 				B38B2E3E1D8FACD8004D5256 /* JRSegmentViewController.m in Sources */,
@@ -3039,8 +3112,10 @@
 				B38B2F121D8FC82F004D5256 /* RBNodeShowShowInfoModel.m in Sources */,
 				B38B2DFD1D8FACD8004D5256 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				B38B2E401D8FACD8004D5256 /* NSArray+Log.m in Sources */,
+				B35778A81D99229D0058A998 /* YWStormViewController.m in Sources */,
 				C14F53CD1D942FE500A6C1E0 /* HomeMenuCell.m in Sources */,
 				B38B2E161D8FACD8004D5256 /* MJRefreshAutoGifFooter.m in Sources */,
+				B35778AF1D9962180058A998 /* YWStormAnnotationModel.m in Sources */,
 				B3AE4D771D91302B000A389F /* TZPhotoPreviewController.m in Sources */,
 				B38B2E081D8FACD8004D5256 /* MASViewConstraint.m in Sources */,
 				B38B2EF91D8FC82F004D5256 /* RBHomeListCommentsModel.m in Sources */,
@@ -3063,10 +3138,10 @@
 				C14F53CB1D942FE500A6C1E0 /* VIPHomePageViewController.m in Sources */,
 				B38B2F091D8FC82F004D5256 /* RBNodeDetailHeader.m in Sources */,
 				B38B2F781D8FC8CD004D5256 /* JWTagCollectionViewCell.m in Sources */,
-				B38B2DE51D8FACD8004D5256 /* YWStormViewController.m in Sources */,
 				B38B2F131D8FC82F004D5256 /* RBNodeShowTagModel.m in Sources */,
 				B3CD68AE1D94F9F300C26B1C /* RBPublicLocationViewController.m in Sources */,
 				B38B2E001D8FACD8004D5256 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				B3332F4B1D9A115300121B88 /* YWMessageViewController.m in Sources */,
 				B38B2DF11D8FACD8004D5256 /* VIPTabBar.m in Sources */,
 				B3FFF4931D94037D00EDD2AB /* RBPublicEditorViewController.m in Sources */,
 				B38B2E4B1D8FACD8004D5256 /* SDCycleScrollView.m in Sources */,
@@ -3089,6 +3164,7 @@
 				B38B2DE81D8FACD8004D5256 /* HUDFailureShowView.m in Sources */,
 				C14F54391D94FE9A00A6C1E0 /* ShowShoppingTableViewCell.m in Sources */,
 				B38B2F011D8FC82F004D5256 /* RBNodeDetailTableViewCell.m in Sources */,
+				B3332F461D9A10E000121B88 /* YWMessageTableViewCell.m in Sources */,
 				B38B2E3B1D8FACD8004D5256 /* UIColor+Art.m in Sources */,
 				B38B2E241D8FACD8004D5256 /* MJDIYHeader.m in Sources */,
 				B38B2E4A1D8FACD8004D5256 /* SDCollectionViewCell.m in Sources */,

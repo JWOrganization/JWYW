@@ -1,9 +1,9 @@
 //
 //  YWMessageViewController.m
-//  NewVipxox
+//  YuWa
 //
-//  Created by 黄佳峰 on 16/9/19.
-//  Copyright © 2016年 黄蜂大魔王. All rights reserved.
+//  Created by Tian Wei You on 16/9/27.
+//  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
 #import "YWMessageViewController.h"
@@ -16,9 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor=[UIColor blueColor];
-    
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
