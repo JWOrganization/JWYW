@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YWMessageViewController">
             <connections>
+                <outlet property="tableView" destination="T07-aF-Hsb" id="RwS-tz-NqO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +15,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T07-aF-Hsb">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="tTA-a6-Se0"/>
+                        <outlet property="delegate" destination="-1" id="YVl-6v-pfn"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="0.96078431372549022" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="T07-aF-Hsb" secondAttribute="trailing" id="CEd-ix-5fZ"/>
+                <constraint firstItem="T07-aF-Hsb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FK8-19-CYC"/>
+                <constraint firstItem="T07-aF-Hsb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vvl-yc-JGY"/>
+                <constraint firstAttribute="bottom" secondItem="T07-aF-Hsb" secondAttribute="bottom" id="e8H-rC-0Ug"/>
+            </constraints>
         </view>
     </objects>
 </document>

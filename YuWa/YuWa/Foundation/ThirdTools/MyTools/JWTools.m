@@ -295,6 +295,35 @@
     return [dateFormatter stringFromDate:date];
 }
 
+/**
+ *  传一个日期字符串，判断是否是今天(无年)
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithOutYearStr:(NSString *)dateStr{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    
+    //创建一个日历对象
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    if (!date) {
+        return nil;
+    }
+    //通过日历对象，判断date是否是今天的日期
+    if ([calendar isDateInToday:date]) {
+        dateFormatter.dateFormat = @"HH:mm";
+        return [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:date]];
+    }
+    
+    dateFormatter.dateFormat = @"MM-dd HH:mm";
+    return [dateFormatter stringFromDate:date];
+}
+
 #pragma mark - RegEx
 /**
  *  密码长度至少6

@@ -89,7 +89,7 @@
     userCell.selectionStyle = UITableViewCellSelectionStyleNone;
     userCell.imageView.layer.cornerRadius = userCell.imageView.height/2;
     userCell.imageView.layer.masksToBounds = YES;
-    userCell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    userCell.detailTextLabel.textColor = CsubtitleColor;
     if (![userCell viewWithTag:1001] && indexPath.row!=0) {
         UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kScreen_Width, 1.f)];
         lineView.backgroundColor = [UIColor colorWithHexString:@"#F3F6F8"];
@@ -106,7 +106,6 @@
     //要删23333333
     userCell.imageView.image = [UIImage imageNamed:@"Head-portrait"];
     userCell.textLabel.text = @"name";
-    userCell.detailTextLabel.textColor = [UIColor lightGrayColor];
     userCell.detailTextLabel.text = @"2个粉丝";
     //要删23333333
     

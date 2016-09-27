@@ -134,6 +134,15 @@
  */
 + (NSString *)dateWithStr:(NSString *)dateStr;
 
+/**
+ *  传一个日期字符串，判断是否是今天(无年)
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithOutYearStr:(NSString *)dateStr;
+
 #pragma mark - RegEx
 /**
  *  密码长度至少6

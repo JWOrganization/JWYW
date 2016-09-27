@@ -8,6 +8,9 @@
 
 #ifndef VipxoxPrefixHeader_pch
 #define VipxoxPrefixHeader_pch
+
+#ifdef __OBJC__
+
 #import "InternationalLanguage.h"    //国际化语言
 #import "GlobalInfo.h"         //保存地址
 #import "UserSession.h"         //登录信息
@@ -34,6 +37,11 @@
 #import "HUDFailureShowView.h"     //加载失败 重试
 #import "HUDLoadingShowView.h"   //加载中。。
 
+//EaseUI
+#define NSEaseLocalizedString(key, comment) [[NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"EaseUIResource" withExtension:@"bundle"]] localizedStringForKey:(key) value:@"" table:nil]
+#import "EMSDKFull.h"
+
+#endif
 
 #pragma mark  --- 全局宏
 //判断设备是什么
@@ -151,8 +159,5 @@
 //保存进userdefault  里面的参数
 #define KUSERDEFAULT [NSUserDefaults standardUserDefaults]
 
-
-
-
-
 #endif /* VipxoxPrefixHeader_pch */
+
