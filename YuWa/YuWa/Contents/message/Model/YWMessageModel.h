@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "IConversationModel.h"
 
 @interface YWMessageModel : NSObject
 

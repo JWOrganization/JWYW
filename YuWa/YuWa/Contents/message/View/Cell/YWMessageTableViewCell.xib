@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIf-xP-FLT">
-                        <rect key="frame" x="21" y="12" width="286" height="21"/>
+                        <rect key="frame" x="21" y="16" width="286" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Ggv-0d-c9J"/>
                         </constraints>
@@ -61,7 +61,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ycZ-g9-thU">
-                        <rect key="frame" x="0.0" y="73" width="320" height="1"/>
+                        <rect key="frame" x="10" y="73" width="300" height="1"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="AI4-Cj-48z"/>
@@ -72,14 +72,15 @@
                     <constraint firstItem="DPk-Zr-0RE" firstAttribute="top" secondItem="uF8-ma-Aiz" secondAttribute="top" id="ArV-gG-MtI"/>
                     <constraint firstItem="uF8-ma-Aiz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="DFr-dy-dwv"/>
                     <constraint firstItem="gIf-xP-FLT" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="GBF-rj-wqS"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ycZ-g9-thU" secondAttribute="trailing" constant="-8" id="Go6-ac-BWS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ycZ-g9-thU" secondAttribute="trailing" constant="2" id="Go6-ac-BWS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ycZ-g9-thU" secondAttribute="bottom" constant="-8" id="L1e-QK-16D"/>
                     <constraint firstAttribute="trailingMargin" secondItem="DPk-Zr-0RE" secondAttribute="trailing" constant="13" id="LO8-3f-onw"/>
                     <constraint firstItem="DPk-Zr-0RE" firstAttribute="leading" secondItem="uF8-ma-Aiz" secondAttribute="trailing" constant="13" id="ZxK-Tf-a0n"/>
-                    <constraint firstItem="ycZ-g9-thU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="asW-BJ-QNc"/>
+                    <constraint firstItem="ycZ-g9-thU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="asW-BJ-QNc"/>
                     <constraint firstItem="gIf-xP-FLT" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-5" id="fWx-zo-OlR"/>
                     <constraint firstItem="uF8-ma-Aiz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fac-uT-3a9"/>
                     <constraint firstItem="kAG-qG-kw5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="36" id="fdJ-su-I6o"/>
+                    <constraint firstItem="gIf-xP-FLT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="g4H-pD-ntG"/>
                     <constraint firstItem="gIf-xP-FLT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="h43-43-bAi"/>
                     <constraint firstItem="RVk-05-PFC" firstAttribute="leading" secondItem="DPk-Zr-0RE" secondAttribute="leading" id="nNd-JQ-AHV"/>
                     <constraint firstItem="DPk-Zr-0RE" firstAttribute="leading" secondItem="kAG-qG-kw5" secondAttribute="trailing" constant="10" id="rHR-tm-a2h"/>
@@ -91,6 +92,7 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="GBF-rj-wqS"/>
+                        <exclude reference="vtA-s3-nYs"/>
                         <exclude reference="fdJ-su-I6o"/>
                     </mask>
                 </variation>

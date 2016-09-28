@@ -1,15 +1,15 @@
 //
-//  YWMessageTableViewCell.h
+//  YWMessageNotificationCell.h
 //  YuWa
 //
-//  Created by Tian Wei You on 16/9/27.
+//  Created by Tian Wei You on 16/9/28.
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "YWMessageModel.h"
 
-@interface YWMessageTableViewCell : UITableViewCell
+@interface YWMessageNotificationCell : UITableViewCell
 
 @property (nonatomic,strong)YWMessageModel * model;
 
@@ -18,6 +18,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *conLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbael;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
-
 
 @end

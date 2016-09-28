@@ -33,6 +33,10 @@ static UserSession * user=nil;
     user=[[UserSession alloc]init];
     user.token=@"";
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[EMClient sharedClient].options setIsAutoLogin:NO];
+        
+        EMError *error = [[EMClient sharedClient] logout:YES];
+        if (!error)MyLog(@"环信退出成功");
         [UserSession getDataFromUserDefault];
     });
 }
@@ -52,6 +56,11 @@ static UserSession * user=nil;
         user.account = accountDefault;
         user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
         [UserSession autoLoginRequestWithPragram:@{@"tel":user.account,@"pwd":user.password}];//根据接口改2333333
+        EMError *errorLog = [[EMClient sharedClient] loginWithUsername:user.account password:user.password];
+        if (!errorLog){
+            [[EMClient sharedClient].options setIsAutoLogin:NO];
+            MyLog(@"环信登录成功");
+        }
     }
 }
 

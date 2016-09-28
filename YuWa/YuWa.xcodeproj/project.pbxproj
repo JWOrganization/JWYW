@@ -25,11 +25,6 @@
 		B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */; };
 		B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */; };
 		B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */; };
-		B3332F411D9A0FF200121B88 /* YWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3332F401D9A0FF200121B88 /* YWMessageModel.m */; };
-		B3332F461D9A10E000121B88 /* YWMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3332F441D9A10E000121B88 /* YWMessageTableViewCell.m */; };
-		B3332F471D9A10E000121B88 /* YWMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3332F451D9A10E000121B88 /* YWMessageTableViewCell.xib */; };
-		B3332F4B1D9A115300121B88 /* YWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3332F491D9A115300121B88 /* YWMessageViewController.m */; };
-		B3332F4C1D9A115300121B88 /* YWMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3332F4A1D9A115300121B88 /* YWMessageViewController.xib */; };
 		B33A1BEF1D9A46A40092CB12 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */; };
 		B33A1BF11D9A46B10092CB12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */; };
 		B33A1BF31D9A46B90092CB12 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */; };
@@ -395,6 +390,23 @@
 		B3CD68B41D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68B21D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m */; };
 		B3CD68B51D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3CD68B31D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib */; };
 		B3CD68B61D95390200C26B1C /* DetailStorePreferentialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C14F54341D94D2E200A6C1E0 /* DetailStorePreferentialTableViewCell.m */; };
+		B3FEB9F31D9B5BFB003CDEF2 /* NSDictionary+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEB9F21D9B5BFB003CDEF2 /* NSDictionary+Attributes.m */; };
+		B3FEB9FD1D9B6465003CDEF2 /* YWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEB9F71D9B6465003CDEF2 /* YWMessageModel.m */; };
+		B3FEB9FE1D9B6465003CDEF2 /* YWMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEB9FB1D9B6465003CDEF2 /* YWMessageTableViewCell.m */; };
+		B3FEB9FF1D9B6465003CDEF2 /* YWMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEB9FC1D9B6465003CDEF2 /* YWMessageTableViewCell.xib */; };
+		B3FEBA031D9B64C1003CDEF2 /* YWMessageNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA011D9B64C1003CDEF2 /* YWMessageNotificationViewController.m */; };
+		B3FEBA041D9B64C1003CDEF2 /* YWMessageNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA021D9B64C1003CDEF2 /* YWMessageNotificationViewController.xib */; };
+		B3FEBA071D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA061D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.m */; };
+		B3FEBA0B1D9B71D4003CDEF2 /* YWPayNotificationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA0A1D9B71D4003CDEF2 /* YWPayNotificationTableView.m */; };
+		B3FEBA191D9B9C46003CDEF2 /* YWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA171D9B9C46003CDEF2 /* YWMessageViewController.m */; };
+		B3FEBA1A1D9B9C46003CDEF2 /* YWMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA181D9B9C46003CDEF2 /* YWMessageViewController.xib */; };
+		B3FEBA201D9BA069003CDEF2 /* YWMessageAddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA1F1D9BA069003CDEF2 /* YWMessageAddressBookModel.m */; };
+		B3FEBA241D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA221D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.m */; };
+		B3FEBA251D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA231D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.xib */; };
+		B3FEBA291D9BC2C2003CDEF2 /* YWMessageAddressBookHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA281D9BC2C2003CDEF2 /* YWMessageAddressBookHeader.m */; };
+		B3FEBA2B1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA2A1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib */; };
+		B3FEBA321D9BE4EE003CDEF2 /* YWMessageNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA301D9BE4EE003CDEF2 /* YWMessageNotificationCell.m */; };
+		B3FEBA331D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA311D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib */; };
 		B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */; };
 		B3FFF47A1D93A3C700EDD2AB /* XHFocusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46B1D93A3C700EDD2AB /* XHFocusLayer.m */; };
 		B3FFF47B1D93A3C700EDD2AB /* XHBranchPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46E1D93A3C700EDD2AB /* XHBranchPoint.m */; };
@@ -510,14 +522,6 @@
 		B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBIMGToolsCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3192ADC1D927C3600FD6578 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
 		B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
-		B3332F3F1D9A0FF200121B88 /* YWMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageModel.h; sourceTree = "<group>"; };
-		B3332F401D9A0FF200121B88 /* YWMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageModel.m; sourceTree = "<group>"; };
-		B3332F431D9A10E000121B88 /* YWMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageTableViewCell.h; sourceTree = "<group>"; };
-		B3332F441D9A10E000121B88 /* YWMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageTableViewCell.m; sourceTree = "<group>"; };
-		B3332F451D9A10E000121B88 /* YWMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageTableViewCell.xib; sourceTree = "<group>"; };
-		B3332F481D9A115300121B88 /* YWMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageViewController.h; sourceTree = "<group>"; };
-		B3332F491D9A115300121B88 /* YWMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageViewController.m; sourceTree = "<group>"; };
-		B3332F4A1D9A115300121B88 /* YWMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageViewController.xib; sourceTree = "<group>"; };
 		B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1224,6 +1228,34 @@
 		B3CD68B11D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicEditorCollectionViewCell.h; sourceTree = "<group>"; };
 		B3CD68B21D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicEditorCollectionViewCell.m; sourceTree = "<group>"; };
 		B3CD68B31D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicEditorCollectionViewCell.xib; sourceTree = "<group>"; };
+		B3FEB9F11D9B5BFB003CDEF2 /* NSDictionary+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Attributes.h"; sourceTree = "<group>"; };
+		B3FEB9F21D9B5BFB003CDEF2 /* NSDictionary+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Attributes.m"; sourceTree = "<group>"; };
+		B3FEB9F61D9B6465003CDEF2 /* YWMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageModel.h; sourceTree = "<group>"; };
+		B3FEB9F71D9B6465003CDEF2 /* YWMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageModel.m; sourceTree = "<group>"; };
+		B3FEB9FA1D9B6465003CDEF2 /* YWMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageTableViewCell.h; sourceTree = "<group>"; };
+		B3FEB9FB1D9B6465003CDEF2 /* YWMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageTableViewCell.m; sourceTree = "<group>"; };
+		B3FEB9FC1D9B6465003CDEF2 /* YWMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageTableViewCell.xib; sourceTree = "<group>"; };
+		B3FEBA001D9B64C1003CDEF2 /* YWMessageNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageNotificationViewController.h; sourceTree = "<group>"; };
+		B3FEBA011D9B64C1003CDEF2 /* YWMessageNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageNotificationViewController.m; sourceTree = "<group>"; };
+		B3FEBA021D9B64C1003CDEF2 /* YWMessageNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageNotificationViewController.xib; sourceTree = "<group>"; };
+		B3FEBA051D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageAddressBookTableView.h; sourceTree = "<group>"; };
+		B3FEBA061D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageAddressBookTableView.m; sourceTree = "<group>"; };
+		B3FEBA091D9B71D4003CDEF2 /* YWPayNotificationTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayNotificationTableView.h; sourceTree = "<group>"; };
+		B3FEBA0A1D9B71D4003CDEF2 /* YWPayNotificationTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayNotificationTableView.m; sourceTree = "<group>"; };
+		B3FEBA161D9B9C46003CDEF2 /* YWMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageViewController.h; sourceTree = "<group>"; };
+		B3FEBA171D9B9C46003CDEF2 /* YWMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageViewController.m; sourceTree = "<group>"; };
+		B3FEBA181D9B9C46003CDEF2 /* YWMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageViewController.xib; sourceTree = "<group>"; };
+		B3FEBA1E1D9BA069003CDEF2 /* YWMessageAddressBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageAddressBookModel.h; sourceTree = "<group>"; };
+		B3FEBA1F1D9BA069003CDEF2 /* YWMessageAddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageAddressBookModel.m; sourceTree = "<group>"; };
+		B3FEBA211D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageAddressBookTableViewCell.h; sourceTree = "<group>"; };
+		B3FEBA221D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageAddressBookTableViewCell.m; sourceTree = "<group>"; };
+		B3FEBA231D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageAddressBookTableViewCell.xib; sourceTree = "<group>"; };
+		B3FEBA271D9BC2C2003CDEF2 /* YWMessageAddressBookHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageAddressBookHeader.h; sourceTree = "<group>"; };
+		B3FEBA281D9BC2C2003CDEF2 /* YWMessageAddressBookHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageAddressBookHeader.m; sourceTree = "<group>"; };
+		B3FEBA2A1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageAddressBookHeader.xib; sourceTree = "<group>"; };
+		B3FEBA2F1D9BE4EE003CDEF2 /* YWMessageNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageNotificationCell.h; sourceTree = "<group>"; };
+		B3FEBA301D9BE4EE003CDEF2 /* YWMessageNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageNotificationCell.m; sourceTree = "<group>"; };
+		B3FEBA311D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageNotificationCell.xib; sourceTree = "<group>"; };
 		B3FFF4661D93A3C700EDD2AB /* XHTagHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTagHeader.h; sourceTree = "<group>"; };
 		B3FFF4681D93A3C700EDD2AB /* XHBranchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHBranchLayer.h; sourceTree = "<group>"; };
 		B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHBranchLayer.m; sourceTree = "<group>"; };
@@ -1448,16 +1480,6 @@
 				B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */,
 			);
 			path = ImageEditor;
-			sourceTree = "<group>";
-		};
-		B3332F421D9A107600121B88 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				B3332F431D9A10E000121B88 /* YWMessageTableViewCell.h */,
-				B3332F441D9A10E000121B88 /* YWMessageTableViewCell.m */,
-				B3332F451D9A10E000121B88 /* YWMessageTableViewCell.xib */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		B33A1A6A1D9A45EF0092CB12 /* SDK */ = {
@@ -2140,9 +2162,10 @@
 		B38B2CB31D8FACD8004D5256 /* message */ = {
 			isa = PBXGroup;
 			children = (
+				B3FEB9F51D9B6465003CDEF2 /* Model */,
+				B3FEB9F81D9B6465003CDEF2 /* View */,
+				B3FEB9F41D9B63C6003CDEF2 /* SubView */,
 				B38B2CB41D8FACD8004D5256 /* Controller */,
-				B38B2CB71D8FACD8004D5256 /* Model */,
-				B38B2CB81D8FACD8004D5256 /* View */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -2150,30 +2173,11 @@
 		B38B2CB41D8FACD8004D5256 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B3332F481D9A115300121B88 /* YWMessageViewController.h */,
-				B3332F491D9A115300121B88 /* YWMessageViewController.m */,
-				B3332F4A1D9A115300121B88 /* YWMessageViewController.xib */,
+				B3FEBA161D9B9C46003CDEF2 /* YWMessageViewController.h */,
+				B3FEBA171D9B9C46003CDEF2 /* YWMessageViewController.m */,
+				B3FEBA181D9B9C46003CDEF2 /* YWMessageViewController.xib */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B38B2CB71D8FACD8004D5256 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B3332F3F1D9A0FF200121B88 /* YWMessageModel.h */,
-				B3332F401D9A0FF200121B88 /* YWMessageModel.m */,
-			);
-			name = Model;
-			path = ../storm/SubView/SearchView/Model;
-			sourceTree = "<group>";
-		};
-		B38B2CB81D8FACD8004D5256 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B3332F421D9A107600121B88 /* Cell */,
-			);
-			name = View;
-			path = ../storm/SubView/SearchView/View;
 			sourceTree = "<group>";
 		};
 		B38B2CBF1D8FACD8004D5256 /* storm */ = {
@@ -2627,6 +2631,8 @@
 		B38B2D981D8FACD8004D5256 /* MyTools */ = {
 			isa = PBXGroup;
 			children = (
+				B3FEB9F11D9B5BFB003CDEF2 /* NSDictionary+Attributes.h */,
+				B3FEB9F21D9B5BFB003CDEF2 /* NSDictionary+Attributes.m */,
 				B38B2E731D8FC68F004D5256 /* JWTools.h */,
 				B38B2E741D8FC68F004D5256 /* JWTools.m */,
 			);
@@ -3327,6 +3333,82 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B3FEB9F41D9B63C6003CDEF2 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEBA081D9B717C003CDEF2 /* PayNotificationTableView */,
+				B3FEBA001D9B64C1003CDEF2 /* YWMessageNotificationViewController.h */,
+				B3FEBA011D9B64C1003CDEF2 /* YWMessageNotificationViewController.m */,
+				B3FEBA021D9B64C1003CDEF2 /* YWMessageNotificationViewController.xib */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		B3FEB9F51D9B6465003CDEF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEBA1D1D9BA044003CDEF2 /* AddressBookModel */,
+				B3FEB9F61D9B6465003CDEF2 /* YWMessageModel.h */,
+				B3FEB9F71D9B6465003CDEF2 /* YWMessageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B3FEB9F81D9B6465003CDEF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEBA261D9BC28C003CDEF2 /* Header */,
+				B3FEB9F91D9B6465003CDEF2 /* Cell */,
+				B3FEBA051D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.h */,
+				B3FEBA061D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B3FEB9F91D9B6465003CDEF2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEB9FA1D9B6465003CDEF2 /* YWMessageTableViewCell.h */,
+				B3FEB9FB1D9B6465003CDEF2 /* YWMessageTableViewCell.m */,
+				B3FEB9FC1D9B6465003CDEF2 /* YWMessageTableViewCell.xib */,
+				B3FEBA211D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.h */,
+				B3FEBA221D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.m */,
+				B3FEBA231D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.xib */,
+				B3FEBA2F1D9BE4EE003CDEF2 /* YWMessageNotificationCell.h */,
+				B3FEBA301D9BE4EE003CDEF2 /* YWMessageNotificationCell.m */,
+				B3FEBA311D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B3FEBA081D9B717C003CDEF2 /* PayNotificationTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEBA091D9B71D4003CDEF2 /* YWPayNotificationTableView.h */,
+				B3FEBA0A1D9B71D4003CDEF2 /* YWPayNotificationTableView.m */,
+			);
+			path = PayNotificationTableView;
+			sourceTree = "<group>";
+		};
+		B3FEBA1D1D9BA044003CDEF2 /* AddressBookModel */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEBA1E1D9BA069003CDEF2 /* YWMessageAddressBookModel.h */,
+				B3FEBA1F1D9BA069003CDEF2 /* YWMessageAddressBookModel.m */,
+			);
+			path = AddressBookModel;
+			sourceTree = "<group>";
+		};
+		B3FEBA261D9BC28C003CDEF2 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEBA271D9BC2C2003CDEF2 /* YWMessageAddressBookHeader.h */,
+				B3FEBA281D9BC2C2003CDEF2 /* YWMessageAddressBookHeader.m */,
+				B3FEBA2A1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		B3FFF4631D93A3C700EDD2AB /* XHTagView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3714,7 +3796,6 @@
 				B38B2EF81D8FC82F004D5256 /* RBHomeCollectionViewCell.xib in Resources */,
 				B38B2F171D8FC82F004D5256 /* RBNodeShowViewController.xib in Resources */,
 				B35778A91D99229D0058A998 /* YWStormViewController.xib in Resources */,
-				B3332F4C1D9A115300121B88 /* YWMessageViewController.xib in Resources */,
 				C14F54151D94303F00A6C1E0 /* icon_collect_highlighted.png in Resources */,
 				B38B2E481D8FACD8004D5256 /* h3.jpg in Resources */,
 				B38B2E461D8FACD8004D5256 /* h1.jpg in Resources */,
@@ -3724,6 +3805,7 @@
 				B38B2E511D8FACD8004D5256 /* tb4.png in Resources */,
 				C14F54291D94303F00A6C1E0 /* icon_merchant_share_highlighted.png in Resources */,
 				B38B2E451D8FACD8004D5256 /* banner_selected6.png in Resources */,
+				B3FEBA1A1D9B9C46003CDEF2 /* YWMessageViewController.xib in Resources */,
 				C14F54121D94303F00A6C1E0 /* btn_backItem.png in Resources */,
 				B3192ACE1D92470F00FD6578 /* RBPublicToolView.xib in Resources */,
 				B38B2F791D8FC8CD004D5256 /* JWTagCollectionViewCell.xib in Resources */,
@@ -3737,6 +3819,7 @@
 				B38B2F5A1D8FC83A004D5256 /* country.plist in Resources */,
 				B3FFF4941D94037D00EDD2AB /* RBPublicEditorViewController.xib in Resources */,
 				B38B2E5C1D8FACD8004D5256 /* head@2x.png in Resources */,
+				B3FEBA2B1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib in Resources */,
 				B38B2F591D8FC83A004D5256 /* 首页数据.json in Resources */,
 				B38B2E5B1D8FACD8004D5256 /* backImage.png in Resources */,
 				B38B2E621D8FACD8004D5256 /* Info.plist in Resources */,
@@ -3766,6 +3849,7 @@
 				B3AE4DBE1D915C2C000A389F /* RBPublicNodeViewController.xib in Resources */,
 				B38B2F271D8FC82F004D5256 /* RBNewAlbumCollectionViewCell.xib in Resources */,
 				C14F54281D94303F00A6C1E0 /* icon_homepage_upArrow@2x.png in Resources */,
+				B3FEBA041D9B64C1003CDEF2 /* YWMessageNotificationViewController.xib in Resources */,
 				B38B2F5F1D8FC83A004D5256 /* xhsemoji1.plist in Resources */,
 				C14F54191D94303F00A6C1E0 /* icon_homepage_downArrow@2x.png in Resources */,
 				B38B2E441D8FACD8004D5256 /* banner_normal6.png in Resources */,
@@ -3775,13 +3859,13 @@
 				B38B2DED1D8FACD8004D5256 /* InfoPlist.strings in Resources */,
 				B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */,
 				B35778A21D98CD8E0058A998 /* JWLocationBasicViewController.xib in Resources */,
+				B3FEBA331D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib in Resources */,
 				B38B2F521D8FC83A004D5256 /* 国家 选择币种.json in Resources */,
 				B38B2F041D8FC82F004D5256 /* RBNodeDRecommendTableViewCell.xib in Resources */,
 				B38B2F251D8FC82F004D5256 /* RBAlbumCollectionViewCell.xib in Resources */,
 				B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */,
 				B3CD68B51D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib in Resources */,
 				C14F541C1D94303F00A6C1E0 /* icon_homepage_foottreatCategory.png in Resources */,
-				B3332F471D9A10E000121B88 /* YWMessageTableViewCell.xib in Resources */,
 				B38B2E601D8FACD8004D5256 /* Assets.xcassets in Resources */,
 				B3192AC81D9229E100FD6578 /* JWImgPickerAlbumChooseTableView.xib in Resources */,
 				C14F541E1D94303F00A6C1E0 /* icon_homepage_KTVCategory.png in Resources */,
@@ -3809,10 +3893,12 @@
 				B38B2E711D8FC3F3004D5256 /* YWLoginViewController.xib in Resources */,
 				B38B2DE71D8FACD8004D5256 /* GifBundle.bundle in Resources */,
 				B38B2F581D8FC83A004D5256 /* 红领巾 下载的.zip in Resources */,
+				B3FEB9FF1D9B6465003CDEF2 /* YWMessageTableViewCell.xib in Resources */,
 				B38B2F531D8FC83A004D5256 /* 地点城市.json in Resources */,
 				C14F53EB1D94300400A6C1E0 /* PersonCenterHeadView.xib in Resources */,
 				C14F541D1D94303F00A6C1E0 /* icon_homepage_hotelCategory.png in Resources */,
 				B3CD68A91D94CF4C00C26B1C /* RBPublicEditorScroll.xib in Resources */,
+				B3FEBA251D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.xib in Resources */,
 				B38B2F061D8FC82F004D5256 /* RBNodeDetailCommendFooter.xib in Resources */,
 				B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */,
 				B3CD68AF1D94F9F300C26B1C /* RBPublicLocationViewController.xib in Resources */,
@@ -3928,6 +4014,7 @@
 				B38B2E1D1D8FACD8004D5256 /* MJRefreshNormalHeader.m in Sources */,
 				B38B2DEC1D8FACD8004D5256 /* HttpManager.m in Sources */,
 				B38B2DFF1D8FACD8004D5256 /* UITableView+FDTemplateLayoutCell.m in Sources */,
+				B3FEBA201D9BA069003CDEF2 /* YWMessageAddressBookModel.m in Sources */,
 				B33A26711D9A68040092CB12 /* UIButton+EMWebCache.m in Sources */,
 				B33A267A1D9A68040092CB12 /* PSTCollectionViewCell.m in Sources */,
 				B33A266E1D9A68040092CB12 /* EMSDWebImagePrefetcher.m in Sources */,
@@ -3953,10 +4040,12 @@
 				B33A26961D9A68040092CB12 /* FixFopen.c in Sources */,
 				B38B2E1A1D8FACD8004D5256 /* MJRefreshBackNormalFooter.m in Sources */,
 				B38B2EFB1D8FC82F004D5256 /* RBHomeListImagesModel.m in Sources */,
+				B3FEBA0B1D9B71D4003CDEF2 /* YWPayNotificationTableView.m in Sources */,
 				B33A26911D9A68040092CB12 /* EaseMessageReadManager.m in Sources */,
 				B38B2E211D8FACD8004D5256 /* MJChiBaoZiHeader.m in Sources */,
 				B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */,
 				B33A26871D9A68040092CB12 /* EaseConversationModel.m in Sources */,
+				B3FEBA071D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.m in Sources */,
 				B38B2E0B1D8FACD8004D5256 /* View+MASAdditions.m in Sources */,
 				B38B2DFB1D8FACD8004D5256 /* AFURLResponseSerialization.m in Sources */,
 				B33A26921D9A68040092CB12 /* EaseEmoji.m in Sources */,
@@ -3977,6 +4066,7 @@
 				B38B2E3C1D8FACD8004D5256 /* UIColor+HexString.m in Sources */,
 				B38B2E381D8FACD8004D5256 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B33A26561D9A68040092CB12 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				B3FEBA031D9B64C1003CDEF2 /* YWMessageNotificationViewController.m in Sources */,
 				B38B2F331D8FC82F004D5256 /* UIBarButtonItem+SettingCustom.m in Sources */,
 				B38B2F261D8FC82F004D5256 /* RBNewAlbumCollectionViewCell.m in Sources */,
 				B38B2F161D8FC82F004D5256 /* RBNodeShowViewController.m in Sources */,
@@ -4026,7 +4116,6 @@
 				B38B2EFF1D8FC82F004D5256 /* RBNodeDCommentTableViewCell.m in Sources */,
 				B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */,
 				B33A268D1D9A68040092CB12 /* UIViewController+DismissKeyboard.m in Sources */,
-				B3332F411D9A0FF200121B88 /* YWMessageModel.m in Sources */,
 				B35778B81D996B0B0058A998 /* YWStormSearchViewController.m in Sources */,
 				B38B2E281D8FACD8004D5256 /* UIScrollView+MJExtension.m in Sources */,
 				C14F53E81D94300400A6C1E0 /* defineButton.m in Sources */,
@@ -4079,6 +4168,7 @@
 				B33A26621D9A68040092CB12 /* MWPhoto.m in Sources */,
 				B38B2E5A1D8FACD8004D5256 /* AdvertiseViewController.m in Sources */,
 				B38B2E6B1D8FC3B6004D5256 /* JWBasicViewController.m in Sources */,
+				B3FEB9FE1D9B6465003CDEF2 /* YWMessageTableViewCell.m in Sources */,
 				B38B2E5F1D8FACD8004D5256 /* AppDelegate.m in Sources */,
 				B33A268A1D9A68040092CB12 /* NSDate+Category.m in Sources */,
 				B33A26721D9A68040092CB12 /* UIImage+EMGIF.m in Sources */,
@@ -4101,6 +4191,7 @@
 				B3AE4D751D91302B000A389F /* TZPhotoPickerController.m in Sources */,
 				B38B2E631D8FACD8004D5256 /* main.m in Sources */,
 				B38B2E171D8FACD8004D5256 /* MJRefreshAutoNormalFooter.m in Sources */,
+				B3FEBA241D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.m in Sources */,
 				B33A26651D9A68040092CB12 /* MWTapDetectingView.m in Sources */,
 				B33A26B11D9A68040092CB12 /* EaseRecordView.m in Sources */,
 				B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */,
@@ -4138,8 +4229,10 @@
 				B35778AF1D9962180058A998 /* YWStormAnnotationModel.m in Sources */,
 				B3AE4D771D91302B000A389F /* TZPhotoPreviewController.m in Sources */,
 				B38B2E081D8FACD8004D5256 /* MASViewConstraint.m in Sources */,
+				B3FEB9FD1D9B6465003CDEF2 /* YWMessageModel.m in Sources */,
 				B33A269E1D9A68040092CB12 /* EaseBaseMessageCell.m in Sources */,
 				B33A26AB1D9A68040092CB12 /* EaseChatToolbarItem.m in Sources */,
+				B3FEBA191D9B9C46003CDEF2 /* YWMessageViewController.m in Sources */,
 				B38B2EF91D8FC82F004D5256 /* RBHomeListCommentsModel.m in Sources */,
 				B38B2F151D8FC82F004D5256 /* RBNodeUserModel.m in Sources */,
 				B38B2E2B1D8FACD8004D5256 /* MKAnnotationView+WebCache.m in Sources */,
@@ -4162,15 +4255,16 @@
 				B38B2F091D8FC82F004D5256 /* RBNodeDetailHeader.m in Sources */,
 				B33A26931D9A68040092CB12 /* EaseEmojiEmoticons.m in Sources */,
 				B33A26891D9A68040092CB12 /* EaseUserModel.m in Sources */,
+				B3FEB9F31D9B5BFB003CDEF2 /* NSDictionary+Attributes.m in Sources */,
 				B38B2F781D8FC8CD004D5256 /* JWTagCollectionViewCell.m in Sources */,
 				B38B2F131D8FC82F004D5256 /* RBNodeShowTagModel.m in Sources */,
 				B3CD68AE1D94F9F300C26B1C /* RBPublicLocationViewController.m in Sources */,
 				B38B2E001D8FACD8004D5256 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
-				B3332F4B1D9A115300121B88 /* YWMessageViewController.m in Sources */,
 				B33A267F1D9A68040092CB12 /* PSTCollectionViewLayout.m in Sources */,
 				B38B2DF11D8FACD8004D5256 /* VIPTabBar.m in Sources */,
 				B33A266F1D9A68040092CB12 /* MKAnnotationView+EMWebCache.m in Sources */,
 				B3FFF4931D94037D00EDD2AB /* RBPublicEditorViewController.m in Sources */,
+				B3FEBA291D9BC2C2003CDEF2 /* YWMessageAddressBookHeader.m in Sources */,
 				B38B2E4B1D8FACD8004D5256 /* SDCycleScrollView.m in Sources */,
 				B33A26631D9A68040092CB12 /* MWPhotoBrowser.m in Sources */,
 				B31582441D9108200096C194 /* MDHotelChooseTypeTableVC.m in Sources */,
@@ -4200,7 +4294,6 @@
 				C14F54391D94FE9A00A6C1E0 /* ShowShoppingTableViewCell.m in Sources */,
 				B38B2F011D8FC82F004D5256 /* RBNodeDetailTableViewCell.m in Sources */,
 				B33A26531D9A68040092CB12 /* EMAudioRecorderUtil.m in Sources */,
-				B3332F461D9A10E000121B88 /* YWMessageTableViewCell.m in Sources */,
 				B38B2E3B1D8FACD8004D5256 /* UIColor+Art.m in Sources */,
 				B33A26611D9A68040092CB12 /* MWGridViewController.m in Sources */,
 				B33A26771D9A68040092CB12 /* UIView+EMWebCacheOperation.m in Sources */,
@@ -4215,6 +4308,7 @@
 				B38B2DE61D8FACD8004D5256 /* UIImage+imageColor.m in Sources */,
 				B38B2E431D8FACD8004D5256 /* SAMTextView.m in Sources */,
 				B33A265E1D9A68040092CB12 /* MBProgressHUD+Add.m in Sources */,
+				B3FEBA321D9BE4EE003CDEF2 /* YWMessageNotificationCell.m in Sources */,
 				B33A265B1D9A68040092CB12 /* EMVoiceConverter.mm in Sources */,
 				B3AE4D741D91302B000A389F /* TZImagePickerController.m in Sources */,
 				C14F53CC1D942FE500A6C1E0 /* YWShoppingDetailViewController.m in Sources */,

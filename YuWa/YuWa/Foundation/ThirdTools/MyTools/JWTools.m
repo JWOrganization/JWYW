@@ -324,6 +324,33 @@
     return [dateFormatter stringFromDate:date];
 }
 
+/**
+ *  传一个日期字符串，判断是否是今天(无年)
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithOutYearDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    
+    //创建一个日历对象
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    if (!date) {
+        return nil;
+    }
+    //通过日历对象，判断date是否是今天的日期
+    if ([calendar isDateInToday:date]) {
+        dateFormatter.dateFormat = @"HH:mm";
+        return [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:date]];
+    }
+    
+    dateFormatter.dateFormat = @"MM-dd HH:mm";
+    return [dateFormatter stringFromDate:date];
+}
+
 #pragma mark - RegEx
 /**
  *  密码长度至少6
@@ -405,7 +432,21 @@
     NSDate * confromTimesp = [NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)[number intValue]];
     return [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:confromTimesp]];
 }
-
+/**
+ *  获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
+ *
+ *  @param str 传入汉字字符串
+ *
+ *  @return 获取首字母
+ */
++ (NSString *)stringWithFirstCharactor:(NSString *)str{
+    NSMutableString *strFir = [NSMutableString stringWithString:str];
+    CFStringTransform((CFMutableStringRef)strFir,NULL, kCFStringTransformMandarinLatin,NO);//先转换为带声调的拼音
+    CFStringTransform((CFMutableStringRef)strFir,NULL, kCFStringTransformStripDiacritics,NO);//再转换为不带声调的拼音
+    
+//    return [[strFir capitalizedString] substringToIndex:1];//转化为大写拼音&获取并返回首字母
+    return [strFir capitalizedString];
+}
 
 #pragma mark - QR Code 二维码
 /**

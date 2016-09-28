@@ -194,7 +194,14 @@
         [UserSession saveUserInfoWithDic:@{}];
         //要删2333333
         [self showHUDWithStr:@"登录成功" withSuccess:YES];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+    EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:password];//23333333环信密码另存,初始为初始密码
+    if (!errorLog){
+        [[EMClient sharedClient].options setIsAutoLogin:NO];
+        MyLog(@"环信登录成功");
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
 //    } failur:^(id responsObj, NSError *error) {
@@ -205,12 +212,16 @@
 //    }];
 }
 
-- (void)requestLoginWithMobile:(NSString *)account withSecuirtyCode:(NSString *)secuirty{//手机快捷登录
+- (void)requestLoginWithMobile:(NSString *)account withSecuirtyCode:(NSString *)secuirty{//手机快捷登录,后台需返回密码
     [UserSession saveUserLoginWithAccount:account withPassword:@"23333333"];
     //要删2333333
     [UserSession saveUserInfoWithDic:@{}];
     //要删2333333
     [self showHUDWithStr:@"登录成功" withSuccess:YES];
+//    EMError *error = [[EMClient sharedClient] loginWithUsername:account password:password];//23333333环信密码另存,初始为初始密码
+//    if (!error) {
+//        MyLog(@"环信登录成功");
+//    }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
     });

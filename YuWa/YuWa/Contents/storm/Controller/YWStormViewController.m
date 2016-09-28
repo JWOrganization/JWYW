@@ -56,12 +56,8 @@
     self.toMyLocationBtn.layer.masksToBounds = YES;
     
     //设置地图的默认显示区域
-    if ([YWLocation shareLocation].lat <= 0) {
-        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(24.880000, 118.670000), 5000, 5000) animated:YES];//泉州位置
-    }else{
-        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance([YWLocation shareLocation].coordinate, 5000, 5000) animated:YES];//下法同
-//    self.mapView.region = MKCoordinateRegionMake([YWLocation shareLocation].coordinate, MKCoordinateSpanMake(0.01, 0.01));
-    }
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance([YWLocation shareLocation].coordinate, 5000, 5000) animated:YES];//下法同
+    //    self.mapView.region = MKCoordinateRegionMake([YWLocation shareLocation].coordinate, MKCoordinateSpanMake(0.01, 0.01));
 }
 
 - (void)cityNameSetWithStr:(NSString *)locality{

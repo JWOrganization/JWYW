@@ -1,16 +1,15 @@
 //
-//  YWMessageTableViewCell.m
+//  YWMessageNotificationCell.m
 //  YuWa
 //
-//  Created by Tian Wei You on 16/9/27.
+//  Created by Tian Wei You on 16/9/28.
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
-#import "YWMessageTableViewCell.h"
+#import "YWMessageNotificationCell.h"
 
 #import "JWTools.h"
-@implementation YWMessageTableViewCell
-
+@implementation YWMessageNotificationCell
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -36,10 +35,10 @@
 }
 
 - (void)dataSet{
-//    self.timeLabel.text = [JWTools dateWithOutYearStr:];
-//    self.nameLabel.text = @"lalal2333333";
-//    self.conLabel.text = @"yoo23333";
-//    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+    //    self.timeLabel.text = [JWTools dateWithOutYearStr:];
+    //    self.nameLabel.text = @"lalal2333333";
+    //    self.conLabel.text = @"yoo23333";
+    //    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
 }
 
 @end

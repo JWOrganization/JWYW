@@ -20,9 +20,8 @@ static YWLocation * location = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         location = [super allocWithZone:zone];
-        location.lat = 0.f;
-        location.lon = 0.f;
-        location.coordinate = (CLLocationCoordinate2D){0.f,0.f};
+        location.lat = 24.88f;
+        location.lon = 118.67f;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [YWLocation getDataFromDefault];
         });
@@ -34,11 +33,13 @@ static YWLocation * location = nil;
     if (_lat == lat)return;
     _lat = lat;
     [KUSERDEFAULT setObject:[NSString stringWithFormat:@"%f",lat] forKey:LOCATION_LAT];
+    self.coordinate = (CLLocationCoordinate2D){lat,_lon};
 }
 - (void)setLon:(CGFloat)lon{
     if (_lon == lon)return;
     _lon = lon;
     [KUSERDEFAULT setObject:[NSString stringWithFormat:@"%f",lon] forKey:LOCATION_LON];
+    self.coordinate = (CLLocationCoordinate2D){_lat,lon};
 }
 
 + (void)getDataFromDefault{

@@ -143,6 +143,15 @@
  */
 + (NSString *)dateWithOutYearStr:(NSString *)dateStr;
 
+/**
+ *  传一个日期字符串，判断是否是今天(无年)
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithOutYearDate:(NSDate *)date;
+
 #pragma mark - RegEx
 /**
  *  密码长度至少6
@@ -196,7 +205,16 @@
  */
 + (NSString *)stringNumberTurnToDateWithNumber:(NSString *)number;
 
+/**
+ *  获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
+ *
+ *  @param str 传入汉字字符串
+ *
+ *  @return 获取首字母
+ */
++ (NSString *)stringWithFirstCharactor:(NSString *)str;
 
+#pragma mark - QR Code 二维码
 /**
  *  创建二维码
  *  @param QRStr 二维码链接

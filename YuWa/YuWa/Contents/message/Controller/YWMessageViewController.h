@@ -7,7 +7,10 @@
 //
 
 #import "JWBasicViewController.h"
+#import "EaseConversationListViewController.h"
 
-@interface YWMessageViewController : JWBasicViewController
+@interface YWMessageViewController : JWBasicViewController<EMChatManagerDelegate,EMGroupManagerDelegate>
+@property (weak, nonatomic) id<EaseConversationListViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<EaseConversationListViewControllerDataSource> dataSource;
 
 @end

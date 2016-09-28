@@ -118,6 +118,18 @@
     [UserSession saveUserInfoWithDic:@{}];
     //要删2333333
     [self showHUDWithStr:@"注册成功" withSuccess:YES];
+    EMError *error = [[EMClient sharedClient] registerWithUsername:account password:password];
+    if (error==nil) {
+        MyLog(@"环信注册成功");
+        BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+        if (!isAutoLogin) {
+            EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:password];//23333333环信密码另存,初始为初始密码
+            if (errorLog==nil){
+                [[EMClient sharedClient].options setIsAutoLogin:YES];
+                MyLog(@"环信登录成功");
+            }
+        }
+    }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController popToRootViewControllerAnimated:YES];
     });
