@@ -13,12 +13,17 @@
 #import "DetailStorePreferentialTableViewCell.h"
 #import "ShowShoppingTableViewCell.h"
 #import "CommentTableViewCell.h"
+#import "StoreDescriptionTableViewCell.h"
+#import "YWMainShoppingTableViewCell.h"
 
 
 #define CELL0   @"DetailStoreFirstTableViewCell"
 #define CELL1   @"DetailStorePreferentialTableViewCell"
 #define CELL2   @"ShowShoppingTableViewCell"
 #define CELL3   @"CommentTableViewCell"
+#define CELL4   @"StoreDescriptionTableViewCell"
+#define CELL5   @"YWMainShoppingTableViewCell"
+
 
 #define HeaderHeight 175.f
 #import "PaytheBillView.h"
@@ -38,13 +43,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.title=@"傣妹火锅";
     self.automaticallyAdjustsScrollViewInsets=NO;
     [self.view addSubview:self.tableView];
     [self makeHeaderView];
     [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
 //    [self.tableView registerClass:[DetailStorePreferentialTableViewCell class] forCellReuseIdentifier:CELL1];
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
-      [self.tableView registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
+        [self.tableView registerNib:[UINib nibWithNibName:CELL5 bundle:nil] forCellReuseIdentifier:CELL5];
+ 
     
 }
 
@@ -110,17 +118,20 @@
         
 }
     
-    if (offset_Y>0&&offset_Y<=HeaderHeight-64) {
+    if (offset_Y>=0&&offset_Y<=HeaderHeight-64) {
         CGFloat number=HeaderHeight-64;
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:offset_Y/number];
         
         
         
-    }else if (offset_Y>HeaderHeight-64){
+    }else if (offset_Y>=HeaderHeight-64){
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
 
     }
     
+    
+    
+    //
     if (offset_Y>=HeaderHeight-64+20) {
         //加上的 view 显示
         self.topView.hidden=NO;
@@ -137,15 +148,17 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 //    return 5;
-    return 5;
+    return 6;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==2) {
         return 3;
         
     }else if (section==3){
-        return 5;
+        return 3;
         
+    }else if (section==5){
+        return 3;
     }
     return 1;
 }
@@ -189,6 +202,24 @@
         cell.allDatas=@{@"title":@"舒服撒飞洒发书法家刘师傅几位司法解释雷锋节老司机覅发顺丰萨芬进来撒几时放假啊；就说法是否收费IE如期皮肤司法局；辣女你，你少发了",@"images":@[@"",@"",@"",@"",@"",@"",@""]};
         return cell;
         
+    }else if (indexPath.section==4){
+        StoreDescriptionTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL4];
+        NSArray*array=@[@"有wifi",@"营业时间：24小时",@"有停车位",@"有包房",@"有吸烟室"];
+        if (!cell) {
+            cell=[[StoreDescriptionTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CELL4 withDatas:array];
+        }
+        cell.selectionStyle=NO;
+        return cell;
+        
+        
+    }else if (indexPath.section==5){
+        cell=[tableView dequeueReusableCellWithIdentifier:CELL5];
+        cell.selectionStyle=NO;
+        return cell;
+        
+        
+
+        
     }
     
     
@@ -198,6 +229,16 @@
     return cell;
     
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==5) {
+        YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    
+}
+
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==2) {
@@ -233,7 +274,8 @@
         CGFloat toLeft=15;
         for (int i=0; i<5; i++) {
             UIImageView*imageView=[[UIImageView alloc]init];
-            imageView.backgroundColor=[UIColor blueColor];
+//            imageView.backgroundColor=[UIColor blueColor];
+            imageView.image=[UIImage imageNamed:@"home_lightStar"];
             imageView.tag=i+100;
             [headerView addSubview:imageView];
             
@@ -286,6 +328,26 @@
         return headerView;
         
         
+    }else if (section==5){
+            UIView*view=[[UIView alloc]init];
+            view.backgroundColor=[UIColor whiteColor];
+            
+            UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 15, 15)];
+//            imageView.backgroundColor=[UIColor greenColor];
+            imageView.image=[UIImage imageNamed:@"home_jian"];
+            [view addSubview:imageView];
+            
+            UILabel*titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(10+15+10, 15, kScreen_Width/2, 15)];
+            titleLabel.textColor=CNaviColor;
+            titleLabel.text=@"为你推荐";
+            titleLabel.font=FONT_CN_30;
+            [view addSubview:titleLabel];
+            
+            
+            return view;
+    
+
+        
     }
     
     
@@ -294,6 +356,30 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section==2) {
+        
+    }else if (section==3){
+        UIView*bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 40)];
+        bottomView.backgroundColor=[UIColor clearColor];
+        
+        UIView*backgroundView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
+        backgroundView.backgroundColor=[UIColor whiteColor];
+        [bottomView addSubview:backgroundView];
+        
+        UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width-15, 30)];
+        [button setTitle:@"查看全部评价" forState:UIControlStateNormal];
+        [button setTitleColor:CNaviColor forState:UIControlStateNormal];
+        button.titleLabel.font=FONT_CN_24;
+        button.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+        button.titleEdgeInsets=UIEdgeInsetsMake(0, 15, 0, 0);
+        [button addTarget:self action:@selector(commitShowMore) forControlEvents:UIControlEventTouchUpInside];
+        [backgroundView addSubview:button];
+        
+        UIImageView*rightArr=[[UIImageView alloc]initWithFrame:CGRectMake(kScreen_Width-30, 8, 14, 14)];
+        rightArr.image=[UIImage imageNamed:@"home_rightArr"];
+        [backgroundView addSubview:rightArr];
+        
+        
+        return bottomView;
         
     }
     
@@ -305,12 +391,16 @@
         return 40;
     }else if (section==3){
         return 40;
+    }else if (section==5){
+        return 40;
     }
     return 0.01;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section==2) {
         return 40;
+    }else if (section==3){
+        return 30+10;   //10是空余的
     }
     return 10;
 }
@@ -328,7 +418,18 @@
         
         return 95;
     }else if (indexPath.section==3){
-        return 200;
+         NSDictionary*dict=@{@"title":@"舒服撒飞洒发书法家刘师傅几位司法解释雷锋节老司机覅发顺丰萨芬进来撒几时放假啊；就说法是否收费IE如期皮肤司法局；辣女你，你少发了",@"images":@[@"",@"",@"",@"",@"",@"",@""]};
+        return [CommentTableViewCell getCellHeight:dict];
+        
+        
+    }else if (indexPath.section==4){
+          NSArray*array=@[@"有wifi",@"营业时间：24小时",@"有停车位",@"有包房",@"有吸烟室"];
+        return [StoreDescriptionTableViewCell getHeight:array];
+        
+        
+    }else if (indexPath.section==5){
+        
+          return 145;
     }
     
     return 44;
@@ -344,6 +445,10 @@
 #pragma mark  --  touch
 -(void)touchTopImageView{
     MyLog(@"11");
+    
+}
+-(void)commitShowMore{
+    MyLog(@"22");
     
 }
 

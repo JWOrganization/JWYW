@@ -44,7 +44,8 @@
         self.allDatas=array;
         
         UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 8, 15, 15)];
-        imageView.backgroundColor=[UIColor greenColor];
+//        imageView.backgroundColor=[UIColor greenColor];
+        imageView.image=[UIImage imageNamed:@"home_hui"];
         [self.contentView addSubview:imageView];
         
         UILabel*titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(38, 8, 150, 18)];

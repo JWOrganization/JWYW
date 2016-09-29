@@ -36,6 +36,7 @@
 
 -(void)viewDidLoad{
 
+//    self.title=@"";
     self.view.backgroundColor=[UIColor whiteColor];
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
           self.automaticallyAdjustsScrollViewInsets=NO;

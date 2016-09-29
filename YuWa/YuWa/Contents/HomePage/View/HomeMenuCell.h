@@ -10,8 +10,15 @@
 #import "JZMTBtnView.h"
 
 
+@protocol HomeMenuCellDelegate <NSObject>
+
+-(void)DelegateToChooseCategory:(NSInteger)number;
+
+@end
+
 @interface HomeMenuCell : UITableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier menuArray:(NSMutableArray *)menuArray;
 
+@property(nonatomic,assign)id<HomeMenuCellDelegate>delegate;
 @end

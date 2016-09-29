@@ -10,4 +10,5 @@
 
 @interface HomeSixChooseTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)void(^sixChooseBlock)(NSInteger number);
 @end
