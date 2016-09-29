@@ -78,11 +78,13 @@
         }
         
         //
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(kScreen_Width/2-20, 160, 0, 20)];
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((kScreen_Width-40)/2, 160, 20, 20)];
+        _pageControl.centerX=kScreen_Width/2-30;
+//        _pageControl.backgroundColor=[UIColor blueColor];
         _pageControl.currentPage = 0;
         _pageControl.numberOfPages = 2;
 //        self.backgroundColor = [UIColor redColor];
-        [self addSubview:_pageControl];
+        [self.contentView addSubview:_pageControl];
         [_pageControl setCurrentPageIndicatorTintColor:CNaviColor];
         [_pageControl setPageIndicatorTintColor:[UIColor grayColor]];
         
@@ -100,6 +102,14 @@
 
 -(void)OnTapBtnView:(UITapGestureRecognizer *)sender{
     NSLog(@"tag:%ld",sender.view.tag);
+    NSInteger number=sender.view.tag-10;
+    
+    if ([self.delegate respondsToSelector:@selector(DelegateToChooseCategory:)]) {
+        [self.delegate DelegateToChooseCategory:number];
+        
+    }
+    
+    
 }
 
 #pragma mark - UIScrollViewDelegate

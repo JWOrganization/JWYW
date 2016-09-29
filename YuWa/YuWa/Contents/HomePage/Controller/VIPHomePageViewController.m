@@ -16,6 +16,8 @@
 #import "HomeSixChooseTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
 
+
+#import "YWMainCategoryViewController.h"       //18个分类
 #import "YWShoppingDetailViewController.h"    //店铺详情
 
 
@@ -25,7 +27,7 @@
 #define CELL1   @"HomeSixChooseTableViewCell"
 #define CELL2   @"YWMainShoppingTableViewCell"
 
-@interface VIPHomePageViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface VIPHomePageViewController()<UITableViewDelegate,UITableViewDataSource,HomeMenuCellDelegate>
 @property(nonatomic,strong)UITableView*tableView;
 
 
@@ -160,12 +162,38 @@
             cell = [[HomeMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL0 menuArray:self.meunArrays];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate=self;
         return cell;
 
         
     }else if (indexPath.section==1){
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+        //6个 推荐位
+        HomeSixChooseTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
+        
+        NSArray*array1=@[@"沙县大酒店",@"兰州拉面",@"黄焖鸡米饭",@"KFC",@"麦当劳",@"炒菜店"];
+        NSArray*array2=@[@"蒸饺",@"拉面",@"鸡米饭",@"肯打鸡外带全家桶",@"麦乐鸡块",@"虎皮青椒"];
+        for (int i=0; i<6; i++) {
+            UILabel*mainLabel=[cell viewWithTag:100+i];
+            mainLabel.text=array1[i];
+            
+            UILabel*subLabel=[cell viewWithTag:1000+i];
+            subLabel.text=array2[i];
+            
+            UIImageView*imageView=[cell viewWithTag:10000+i];
+            imageView.backgroundColor=[UIColor greenColor];
+        }
+        
+        cell.sixChooseBlock=^(NSInteger number){
+            MyLog(@"aaa %lu",number);
+            YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+
+            
+            
+            
+        };
+        
         return cell;
         
     }else if (indexPath.section==2){
@@ -217,7 +245,8 @@
         view.backgroundColor=[UIColor whiteColor];
         
         UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 15, 15)];
-        imageView.backgroundColor=[UIColor greenColor];
+//        imageView.backgroundColor=[UIColor greenColor];
+        imageView.image=[UIImage imageNamed:@"home_heart"];
         [view addSubview:imageView];
         
         UILabel*titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(10+15+10, 15, kScreen_Width/2, 15)];
@@ -233,6 +262,29 @@
     }
     
     return nil;
+    
+}
+
+#pragma mark  --delegate
+-(void)DelegateToChooseCategory:(NSInteger)number{
+    NSLog(@"xxxx%lu",number);
+    if (number==1) {
+        //电影
+        
+        
+        
+    }else if (number==2){
+        //酒店
+        
+        
+    }else if (number!=1&&number!=2){
+        YWMainCategoryViewController*vc=[[YWMainCategoryViewController alloc]initWithNibName:@"YWMainCategoryViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+
+        
+        
+    }
+    
     
 }
 

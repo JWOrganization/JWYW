@@ -15,7 +15,7 @@
     if (self) {
         for (int i=0; i<6; i++) {
             UIView*backView=[[UIView alloc]initWithFrame:self.frame];
-            backView.tag=100+i;
+            backView.tag=300+i;
             backView.layer.borderWidth=0.25;
             backView.layer.borderColor=RGBCOLOR(200, 199, 204, 1).CGColor;
             [self.contentView addSubview:backView];
@@ -24,11 +24,13 @@
             [backView addGestureRecognizer:tap];
             
             UILabel*mainLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, kScreen_Width/2-10-50-20, 20)];
+            mainLabel.font=FONT_CN_30;
             mainLabel.tag=100+i;
             mainLabel.text=@"10元吃到爽";
             [backView addSubview:mainLabel];
             
             UILabel*subLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 10+20+5, kScreen_Width/2-10-50-20, 20)];
+            subLabel.font=FONT_CN_30;
             subLabel.tag=1000+i;
             subLabel.text=@"超值工作餐";
             [backView addSubview:subLabel];
@@ -63,7 +65,12 @@
 
 
 -(void)tapUp:(UITapGestureRecognizer*)tap{
-    NSLog(@"%ld",tap.view.tag);
+//    NSLog(@"%ld",tap.view.tag);
+    NSInteger number = tap.view.tag-300;
+    if (_sixChooseBlock) {
+        _sixChooseBlock(number);
+    }
+    
     
 }
 

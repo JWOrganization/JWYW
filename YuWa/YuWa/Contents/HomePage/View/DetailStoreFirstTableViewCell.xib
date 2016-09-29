@@ -4,7 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-<!--        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>-->
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -21,36 +21,31 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u9E-Es-8Xv">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_lightStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="u9E-Es-8Xv">
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="dg8-2f-IjV"/>
                             <constraint firstAttribute="height" constant="15" id="qss-R6-vJA"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JaJ-Mk-I7K">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_lightStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="JaJ-Mk-I7K">
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="heY-m7-MM9"/>
                             <constraint firstAttribute="height" constant="15" id="kCc-8a-rRp"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODP-h3-rnP">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_lightStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="ODP-h3-rnP">
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="4mD-VS-CGO"/>
                             <constraint firstAttribute="width" constant="15" id="Nrc-WM-QaP"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Bg-xI-eE9">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_halfStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="9Bg-xI-eE9">
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="iIH-yW-4A4"/>
                             <constraint firstAttribute="height" constant="15" id="n8O-ow-4Zt"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y9b-NJ-OQX">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_grayStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="y9b-NJ-OQX">
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="1lP-uP-Xol"/>
                             <constraint firstAttribute="width" constant="15" id="lOH-BT-0bb"/>
@@ -61,14 +56,9 @@
                         <color key="textColor" red="0.14509803921568629" green="0.69803921568627447" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人均：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMM-6A-J6d">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人均：￥66" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMM-6A-J6d">
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.52156862745098043" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥66" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8n-Ck-LdF">
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月消费人次：小于100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyq-Xr-zFK">
@@ -82,15 +72,13 @@
                             <constraint firstAttribute="height" constant="1" id="RPh-qx-3za"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-bV-pxL">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_locate.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-bV-pxL">
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="XaK-Dn-yW1"/>
                             <constraint firstAttribute="height" constant="20" id="r0s-T2-bJX"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CDC-cU-Mla">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="CDC-cU-Mla">
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="ObR-AB-jul"/>
                             <constraint firstAttribute="width" constant="25" id="eZf-eQ-sXJ"/>
@@ -111,7 +99,6 @@
                         <color key="backgroundColor" red="0.14117647058823529" green="0.69019607843137254" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="ME7-lF-DiP"/>
-                            <constraint firstAttribute="width" constant="100" id="yfv-d9-jKr"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="优惠买单"/>
@@ -125,7 +112,6 @@
                     <constraint firstAttribute="bottom" secondItem="bcX-Yk-hTP" secondAttribute="bottom" constant="10" id="4OR-uV-E1W"/>
                     <constraint firstItem="cTn-bm-2Eo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="7Tr-ZB-d3o"/>
                     <constraint firstItem="9Bg-xI-eE9" firstAttribute="leading" secondItem="ODP-h3-rnP" secondAttribute="trailing" constant="2" id="9Ju-ol-ydx"/>
-                    <constraint firstItem="g8n-Ck-LdF" firstAttribute="leading" secondItem="uMM-6A-J6d" secondAttribute="trailing" id="9LE-2S-7sg"/>
                     <constraint firstItem="eix-P9-zPq" firstAttribute="centerY" secondItem="y9b-NJ-OQX" secondAttribute="centerY" id="AZx-7a-hFr"/>
                     <constraint firstItem="Vkk-Xx-Pig" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="ENn-iU-XLn"/>
                     <constraint firstItem="9Bg-xI-eE9" firstAttribute="centerY" secondItem="ODP-h3-rnP" secondAttribute="centerY" id="Hb0-bS-iaP"/>
@@ -133,6 +119,7 @@
                     <constraint firstItem="Dyq-Xr-zFK" firstAttribute="top" secondItem="uMM-6A-J6d" secondAttribute="bottom" constant="10" id="NIs-zY-GXJ"/>
                     <constraint firstItem="ODP-h3-rnP" firstAttribute="leading" secondItem="JaJ-Mk-I7K" secondAttribute="trailing" constant="2" id="Pdy-cq-SQc"/>
                     <constraint firstItem="xIs-VN-MQn" firstAttribute="top" secondItem="Dyq-Xr-zFK" secondAttribute="bottom" constant="10" id="UoX-8E-oMQ"/>
+                    <constraint firstItem="Vkk-Xx-Pig" firstAttribute="leading" secondItem="uMM-6A-J6d" secondAttribute="trailing" constant="10" id="XX4-AX-GYW"/>
                     <constraint firstAttribute="trailing" secondItem="xIs-VN-MQn" secondAttribute="trailing" id="ZNu-oG-2MM"/>
                     <constraint firstItem="Dyq-Xr-zFK" firstAttribute="leading" secondItem="u9E-Es-8Xv" secondAttribute="leading" id="aTx-DV-PDO"/>
                     <constraint firstItem="y9b-NJ-OQX" firstAttribute="leading" secondItem="9Bg-xI-eE9" secondAttribute="trailing" constant="2" id="cE0-MH-tXW"/>
@@ -140,7 +127,6 @@
                     <constraint firstItem="y9b-NJ-OQX" firstAttribute="centerY" secondItem="9Bg-xI-eE9" secondAttribute="centerY" id="e9d-Zs-7vW"/>
                     <constraint firstAttribute="trailing" secondItem="Vkk-Xx-Pig" secondAttribute="trailing" constant="10" id="evj-k0-5hK"/>
                     <constraint firstItem="uMM-6A-J6d" firstAttribute="centerY" secondItem="eix-P9-zPq" secondAttribute="centerY" id="f5T-ry-Gyn"/>
-                    <constraint firstItem="g8n-Ck-LdF" firstAttribute="centerY" secondItem="uMM-6A-J6d" secondAttribute="centerY" id="f7R-fY-bA7"/>
                     <constraint firstItem="ODP-h3-rnP" firstAttribute="centerY" secondItem="JaJ-Mk-I7K" secondAttribute="centerY" id="fZ1-AZ-IPe"/>
                     <constraint firstItem="bcX-Yk-hTP" firstAttribute="leading" secondItem="fCw-Qw-vCX" secondAttribute="trailing" constant="8" id="fz9-kF-9bl"/>
                     <constraint firstItem="eix-P9-zPq" firstAttribute="leading" secondItem="y9b-NJ-OQX" secondAttribute="trailing" constant="5" id="hih-MQ-6GD"/>
@@ -156,7 +142,14 @@
                     <constraint firstItem="fCw-Qw-vCX" firstAttribute="centerY" secondItem="Wz9-bV-pxL" secondAttribute="centerY" id="zfJ-PS-N5y"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="24.5" y="52"/>
+            <point key="canvasLocation" x="46" y="43"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="home_grayStar.png" width="19" height="19"/>
+        <image name="home_halfStar.png" width="19" height="19"/>
+        <image name="home_lightStar.png" width="19" height="19"/>
+        <image name="home_locate.png" width="32" height="32"/>
+        <image name="home_phone.png" width="32" height="32"/>
+    </resources>
 </document>

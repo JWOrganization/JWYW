@@ -11,4 +11,6 @@
 @interface CommentTableViewCell : UITableViewCell
 
 @property(nonatomic,strong)NSDictionary*allDatas;
+
++(CGFloat)getCellHeight:(NSDictionary*)dict;
 @end
