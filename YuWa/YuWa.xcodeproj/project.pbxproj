@@ -148,6 +148,15 @@
 		B36C7F061D9D0C8900B022E0 /* YWMessageFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B36C7F041D9D0C8900B022E0 /* YWMessageFriendAddCell.xib */; };
 		B36C7F071D9D0C8900B022E0 /* YWMessageFriendAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7F051D9D0C8900B022E0 /* YWMessageFriendAddCell.m */; };
 		B36C7F141D9D1DE900B022E0 /* YWMessageFriendAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7F131D9D1DE900B022E0 /* YWMessageFriendAddModel.m */; };
+		B36C7F161D9D48EA00B022E0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F151D9D48EA00B022E0 /* CFNetwork.framework */; };
+		B36C7F181D9D48F600B022E0 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F171D9D48F600B022E0 /* CoreFoundation.framework */; };
+		B36C7F1A1D9D490000B022E0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F191D9D490000B022E0 /* CoreTelephony.framework */; };
+		B36C7F1C1D9D490700B022E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F1B1D9D490700B022E0 /* SystemConfiguration.framework */; };
+		B36C7F1E1D9D491200B022E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F1D1D9D491200B022E0 /* CoreGraphics.framework */; };
+		B36C7F201D9D491F00B022E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F1F1D9D491F00B022E0 /* Foundation.framework */; };
+		B36C7F221D9D492800B022E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F211D9D492800B022E0 /* UIKit.framework */; };
+		B36C7F241D9D492F00B022E0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F231D9D492F00B022E0 /* Security.framework */; };
+		B36C7F2A1D9D4BBB00B022E0 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C7F281D9D4BBB00B022E0 /* jpush-ios-2.1.9.a */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
 		B38B2DE61D8FACD8004D5256 /* UIImage+imageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CCA1D8FACD8004D5256 /* UIImage+imageColor.m */; };
@@ -812,6 +821,16 @@
 		B36C7F051D9D0C8900B022E0 /* YWMessageFriendAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageFriendAddCell.m; sourceTree = "<group>"; };
 		B36C7F121D9D1DE900B022E0 /* YWMessageFriendAddModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageFriendAddModel.h; sourceTree = "<group>"; };
 		B36C7F131D9D1DE900B022E0 /* YWMessageFriendAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageFriendAddModel.m; sourceTree = "<group>"; };
+		B36C7F151D9D48EA00B022E0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B36C7F171D9D48F600B022E0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		B36C7F191D9D490000B022E0 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B36C7F1B1D9D490700B022E0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B36C7F1D1D9D491200B022E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B36C7F1F1D9D491F00B022E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B36C7F211D9D492800B022E0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B36C7F231D9D492F00B022E0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B36C7F281D9D4BBB00B022E0 /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
+		B36C7F291D9D4BBB00B022E0 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -1383,13 +1402,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33A1BFB1D9A46E90092CB12 /* libz.tbd in Frameworks */,
+				B36C7F241D9D492F00B022E0 /* Security.framework in Frameworks */,
+				B36C7F221D9D492800B022E0 /* UIKit.framework in Frameworks */,
+				B36C7F201D9D491F00B022E0 /* Foundation.framework in Frameworks */,
+				B36C7F1E1D9D491200B022E0 /* CoreGraphics.framework in Frameworks */,
+				B36C7F1C1D9D490700B022E0 /* SystemConfiguration.framework in Frameworks */,
+				B36C7F1A1D9D490000B022E0 /* CoreTelephony.framework in Frameworks */,
+				B36C7F181D9D48F600B022E0 /* CoreFoundation.framework in Frameworks */,
+				B36C7F161D9D48EA00B022E0 /* CFNetwork.framework in Frameworks */,
 				B33A1C011D9A470F0092CB12 /* libiconv.tbd in Frameworks */,
 				B33A265D1D9A68040092CB12 /* libopencore-amrwb.a in Frameworks */,
 				B33A1BFF1D9A47020092CB12 /* libsqlite3.tbd in Frameworks */,
 				B33A1BFD1D9A46F70092CB12 /* libstdc++.6.0.9.tbd in Frameworks */,
-				B33A1BFB1D9A46E90092CB12 /* libz.tbd in Frameworks */,
 				B33A1BF91D9A46DC0092CB12 /* libc++.tbd in Frameworks */,
 				B33A1BF71D9A46CC0092CB12 /* ImageIO.framework in Frameworks */,
+				B36C7F2A1D9D4BBB00B022E0 /* jpush-ios-2.1.9.a in Frameworks */,
 				B33A1BF51D9A46C40092CB12 /* MobileCoreServices.framework in Frameworks */,
 				B33A1E471D9A4F7D0092CB12 /* libHyphenateFullSDK.a in Frameworks */,
 				B33A1BF31D9A46B90092CB12 /* AVFoundation.framework in Frameworks */,
@@ -1503,6 +1531,7 @@
 		B33A1A6A1D9A45EF0092CB12 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				B36C7F271D9D4BBB00B022E0 /* JPush */,
 				B33A255C1D9A68040092CB12 /* EaseUI */,
 				B33A1E1D1D9A4F7D0092CB12 /* HyphenateFullSDK */,
 			);
@@ -2090,6 +2119,15 @@
 				B36C7F131D9D1DE900B022E0 /* YWMessageFriendAddModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B36C7F271D9D4BBB00B022E0 /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				B36C7F281D9D4BBB00B022E0 /* jpush-ios-2.1.9.a */,
+				B36C7F291D9D4BBB00B022E0 /* JPUSHService.h */,
+			);
+			path = JPush;
 			sourceTree = "<group>";
 		};
 		B38B2C631D8FAC5A004D5256 = {
@@ -3718,6 +3756,14 @@
 		EDD1BC4F3FB283CECFE57A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B36C7F231D9D492F00B022E0 /* Security.framework */,
+				B36C7F211D9D492800B022E0 /* UIKit.framework */,
+				B36C7F1F1D9D491F00B022E0 /* Foundation.framework */,
+				B36C7F1D1D9D491200B022E0 /* CoreGraphics.framework */,
+				B36C7F1B1D9D490700B022E0 /* SystemConfiguration.framework */,
+				B36C7F191D9D490000B022E0 /* CoreTelephony.framework */,
+				B36C7F171D9D48F600B022E0 /* CoreFoundation.framework */,
+				B36C7F151D9D48EA00B022E0 /* CFNetwork.framework */,
 				B33A1C001D9A470F0092CB12 /* libiconv.tbd */,
 				B33A1BFE1D9A47020092CB12 /* libsqlite3.tbd */,
 				B33A1BFC1D9A46F70092CB12 /* libstdc++.6.0.9.tbd */,
@@ -4539,6 +4585,7 @@
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/HyphenateFullSDK/lib",
+					"$(PROJECT_DIR)/YuWa/Foundation/SDK/JPush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4563,6 +4610,7 @@
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/HyphenateFullSDK/lib",
+					"$(PROJECT_DIR)/YuWa/Foundation/SDK/JPush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
