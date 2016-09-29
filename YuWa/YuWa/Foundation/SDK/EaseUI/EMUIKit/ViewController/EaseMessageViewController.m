@@ -99,7 +99,7 @@
     //Initialization
     CGFloat chatbarHeight = [EaseChatToolbar defaultHeight];
     EMChatToolbarType barType = self.conversation.type == EMConversationTypeChat ? EMChatToolbarTypeChat : EMChatToolbarTypeGroup;
-    self.chatToolbar = [[EaseChatToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - chatbarHeight, self.view.frame.size.width, chatbarHeight) type:barType];
+    self.chatToolbar = [[EaseChatToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - chatbarHeight, kScreen_Width, chatbarHeight) type:barType];
     self.chatToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;    
     
     //Initializa the gesture recognizer
@@ -137,6 +137,10 @@
     [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];
     
     [[EaseChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0]];
+    
+    EaseEmotionManager *manager= [[EaseEmotionManager alloc] initWithType:EMEmotionDefault emotionRow:3 emotionCol:7 emotions:[EaseEmoji allEmoji]];
+    
+    [self.faceView setEmotionManagers:@[manager]];
     
     [self tableViewDidTriggerHeaderRefresh];
 }

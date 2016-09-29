@@ -20,4 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 
 
++ (NSString *)latestMessageTitleForConversationModel:(EaseConversationModel *)conversationModel;
+
 @end

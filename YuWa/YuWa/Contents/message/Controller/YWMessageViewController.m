@@ -9,6 +9,8 @@
 #import "YWMessageViewController.h"
 #import "YWLoginViewController.h"
 #import "YWMessageNotificationViewController.h"
+#import "YWMessageFriendsAddViewController.h"
+#import "YWMessageChatViewController.h"
 #import "YWMessageAddressBookTableView.h"
 #import "EaseUI.h"
 #import "NSDictionary+Attributes.h"
@@ -41,7 +43,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [UserSession clearUser];
     [self.navigationController.view setUserInteractionEnabled:YES];
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -63,10 +64,7 @@
 
 - (void)makeUI{
     self.tableView.alwaysBounceVertical = YES;
-    
-    self.addressBooktableView = [[YWMessageAddressBookTableView alloc]initWithFrame:CGRectMake(0.f, 64.f, kScreen_Width, kScreen_Height - 64.f - 49.f) style:UITableViewStylePlain];
-    [self.addressBooktableView dataSet];
-    [self.view addSubview:self.addressBooktableView];
+    [self addressBookMake];
 }
 - (void)makeNavi{
     self.segmentedControl = [self makeSegmentedControl];
@@ -96,6 +94,24 @@
     [segmentControl setTitleTextAttributes:[NSDictionary dicOfTextAttributeWithFont:[UIFont systemFontOfSize:15.f] withTextColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     [segmentControl addTarget:self action:@selector(segmentControlAction:) forControlEvents:UIControlEventValueChanged];
     return segmentControl;
+}
+
+- (void)addressBookMake{
+    self.addressBooktableView = [[YWMessageAddressBookTableView alloc]initWithFrame:CGRectMake(0.f, 64.f, kScreen_Width, kScreen_Height - 64.f - 49.f) style:UITableViewStylePlain];
+    [self.addressBooktableView dataSet];
+    WEAKSELF;
+    self.addressBooktableView.friendsAddBlock = ^(){
+        YWMessageFriendsAddViewController * vc = [[YWMessageFriendsAddViewController alloc]init];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            YWMessageAddressBookTableViewCell * firstCell = [weakSelf.addressBooktableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            firstCell.countLabel.hidden = YES;
+        });
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
+    self.addressBooktableView.friendsChatBlock = ^(NSString * hxID,NSString * nikeName){
+        [weakSelf chatWithUser:hxID withNikeName:nikeName];
+    };
+    [self.view addSubview:self.addressBooktableView];
 }
 
 #pragma mark - Control Action
@@ -135,6 +151,13 @@
     UILabel * redLabel = (UILabel *)[self.rightBarBtn.customView viewWithTag:1001];
     redLabel.hidden = !isNew;
 }
+- (void)chatWithUser:(NSString *)hxID withNikeName:(NSString *)nikeName{
+    YWMessageChatViewController *chatVC = [[YWMessageChatViewController alloc] initWithConversationChatter:hxID conversationType:EMConversationTypeChat];
+    chatVC.friendNikeName = nikeName;
+    chatVC.myNikeName = @"233333333";
+    chatVC.myHxID = [UserSession instance].account;
+    [self.navigationController pushViewController:chatVC animated:YES];
+}
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -159,6 +182,11 @@
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         }
     }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YWMessageTableViewCell * messageCell = [tableView cellForRowAtIndexPath:indexPath];
+    EaseConversationModel *model = self.dataArr[indexPath.row];
+    [self chatWithUser:([model.title length] > 0?model.title:model.conversation.conversationId) withNikeName:messageCell.nameLabel.text];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -214,11 +242,11 @@
     for (EMConversation *converstion in sorted) {
         EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:converstion];
         
-        if (model)[self.dataArr addObject:model];
+        if (model&&([YWMessageTableViewCell latestMessageTitleForConversationModel:model].length>0))[self.dataArr addObject:model];
     }
     
     [self.tableView reloadData];
-    
 }
+
 
 @end

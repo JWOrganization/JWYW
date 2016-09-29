@@ -10,11 +10,6 @@
 #import "UIScrollView+JWGifRefresh.h"
 #import "JWTools.h"
 
-#import "YWMessageAddressBookTableViewCell.h"
-#import "YWMessageAddressBookHeader.h"
-
-#define MESSAGEADDRESSHEADER @"YWMessageAddressBookHeader"
-#define MESSAGEADDRESSCELL @"YWMessageAddressBookTableViewCell"
 @implementation YWMessageAddressBookTableView
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     self = [super initWithFrame:frame style:style];
@@ -64,24 +59,41 @@
     if (indexPath.section == 0)return;
     if (editingStyle ==UITableViewCellEditingStyleDelete){
         if (indexPath.row<[self.dataArr[indexPath.section - 1] count]) {
-            NSMutableArray * dataArr = self.dataArr[indexPath.section - 1];
-            YWMessageAddressBookModel * model = dataArr[indexPath.row];
-            [dataArr removeObjectAtIndex:indexPath.row];
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-                EMError *error = [[EMClient sharedClient].contactManager deleteContact:model.hxID];
-                if (!error)MyLog(@"删除%@成功",model.hxID);
-            });
-            
-            if (dataArr.count > 0) {
-                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            }else{
-                [self.keyArr removeObjectAtIndex:(indexPath.section - 1)];
-                [self.dataArr removeObjectAtIndex:(indexPath.section - 1)];
-                [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
-            }
+            UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSMutableArray * dataArr = self.dataArr[indexPath.section - 1];
+                YWMessageAddressBookModel * model = dataArr[indexPath.row];
+                [dataArr removeObjectAtIndex:indexPath.row];
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+                    EMError *error = [[EMClient sharedClient].contactManager deleteContact:model.hxID];
+                    if (!error)MyLog(@"删除%@成功",model.hxID);
+                });
+                
+                if (dataArr.count > 0) {
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                }else{
+                    [self.keyArr removeObjectAtIndex:(indexPath.section - 1)];
+                    [self.dataArr removeObjectAtIndex:(indexPath.section - 1)];
+                    [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+                }
+            }];
+            UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认删除好友?" preferredStyle:UIAlertControllerStyleAlert];
+            [alertVC addAction:cancelAction];
+            [alertVC addAction:OKAction];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertVC animated:YES completion:nil];
         }
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0){
+        self.friendsAddBlock();
+        return;
+    }
+    
+    YWMessageAddressBookModel * model = self.dataArr[indexPath.section - 1][indexPath.row];
+    self.friendsChatBlock(model.hxID,model.nikeName);
 }
 
 #pragma mark - UITableViewDataSource
@@ -109,8 +121,19 @@
     if (indexPath.section == 0) {
         messageCell.iconImageView.image = [UIImage imageNamed:@"message_friends_add"];
         messageCell.nameLabel.text = @"好友申请与通知";
+        NSMutableArray * friendsRequest = [NSMutableArray arrayWithArray:[KUSERDEFAULT valueForKey:FRIENDSREQUEST]];
+        if (!friendsRequest)friendsRequest = [NSMutableArray arrayWithCapacity:0];
+        if (friendsRequest.count > 0) {
+            NSInteger unRedCount = 0;
+            for (NSDictionary * requestDic in friendsRequest) {
+                if ([requestDic[@"status"] isEqualToString:@"0"])unRedCount++;
+            }
+            messageCell.countLabel.hidden = unRedCount > 0?NO:YES;
+            messageCell.countLabel.text = [NSString stringWithFormat:@"%zi",friendsRequest.count];
+        }
     }else{
         messageCell.model = self.dataArr[indexPath.section - 1][indexPath.row];
+        messageCell.countLabel.hidden = YES;
     }
     
     return messageCell;
@@ -174,9 +197,14 @@
         
     }];//接口后,数组内模型的昵称进行排序
     self.keyArr = [NSMutableArray arrayWithArray:[[dic allKeys] sortedArrayUsingSelector:@selector(compare:)]];
+    NSInteger sortCount = 0;
     while (([self.keyArr[0] integerValue]>0&&[self.keyArr[0] integerValue]<=9)||([self.keyArr[0] isEqualToString:@"0"])) {
+        if (sortCount>=10) {
+            break;
+        }
         [self.keyArr addObject:self.keyArr[0]];
         [self.keyArr removeObjectAtIndex:0];
+        sortCount++;
     }
     [self.keyArr enumerateObjectsUsingBlock:^(NSString * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.dataArr addObject:dic[key]];

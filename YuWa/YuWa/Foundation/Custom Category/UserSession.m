@@ -32,12 +32,17 @@ static UserSession * user=nil;
     user = nil;
     user=[[UserSession alloc]init];
     user.token=@"";
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [[EMClient sharedClient].options setIsAutoLogin:NO];
         
         EMError *error = [[EMClient sharedClient] logout:YES];
         if (!error)MyLog(@"环信退出成功");
         [UserSession getDataFromUserDefault];
+        
+        NSMutableArray * friendsRequest = [NSMutableArray arrayWithArray:[KUSERDEFAULT valueForKey:FRIENDSREQUEST]];
+        friendsRequest = [NSMutableArray arrayWithCapacity:0];
+        [KUSERDEFAULT setObject:friendsRequest forKey:FRIENDSREQUEST];
     });
 }
 

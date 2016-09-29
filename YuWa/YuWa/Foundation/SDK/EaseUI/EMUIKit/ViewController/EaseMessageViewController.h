@@ -199,5 +199,7 @@ shouldSendHasReadAckForMessage:(EMMessage *)message
 
 -(BOOL)shouldSendHasReadAckForMessage:(EMMessage *)message
                                  read:(BOOL)read;
+- (void)avatarViewSelcted:(id<IMessageModel>)model;
+
 
 @end

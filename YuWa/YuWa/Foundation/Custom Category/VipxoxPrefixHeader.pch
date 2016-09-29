@@ -109,6 +109,7 @@
 #define LOCATION_LON    @"location_lon"            //lon
 #define LOCATION_LAT    @"location_lat"            //lat
 
+#define FRIENDSREQUEST    @"friends_request"            //friends request
 
 //4种颜色默认颜色 男生
 #define CNaviColor [UIColor colorWithRed:0/255.0 green:183/255.0 blue:231/255.0 alpha:1.0]   //主的naviBar 的颜色     天蓝色

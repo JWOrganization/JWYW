@@ -58,7 +58,7 @@
     
     self.timeLbael.text = [self latestMessageTimeForConversationModel:self.model];
     
-    self.conLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[self latestMessageTitleForConversationModel:self.model]textFont:self.conLabel.font];
+    self.conLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[YWMessageTableViewCell latestMessageTitleForConversationModel:self.model] textFont:self.conLabel.font];
 //    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
 }
 
@@ -76,7 +76,7 @@
     return latestMessageTime;
 }
 
-- (NSString *)latestMessageTitleForConversationModel:(EaseConversationModel *)conversationModel{
++ (NSString *)latestMessageTitleForConversationModel:(EaseConversationModel *)conversationModel{
     NSString *latestMessageTitle = @"";
     EMMessage *lastMessage = [conversationModel.conversation latestMessage];
     if (lastMessage) {

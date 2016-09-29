@@ -12,7 +12,7 @@
 
 +(UIWindow*)windowInitWithRootVC:(UIViewController *)rootViewController{
     UIWindow*window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    window.backgroundColor=[UIColor greenColor];
+    window.backgroundColor=[UIColor whiteColor];
     window.rootViewController=rootViewController;
     [window makeKeyAndVisible];
     

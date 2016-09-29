@@ -143,6 +143,11 @@
 		B35778B21D9962550058A998 /* YWStormPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778B11D9962550058A998 /* YWStormPinAnnotationView.m */; };
 		B35778B81D996B0B0058A998 /* YWStormSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */; };
 		B35778B91D996B0B0058A998 /* YWStormSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */; };
+		B36C7EFE1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7EFC1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m */; };
+		B36C7EFF1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B36C7EFD1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib */; };
+		B36C7F061D9D0C8900B022E0 /* YWMessageFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B36C7F041D9D0C8900B022E0 /* YWMessageFriendAddCell.xib */; };
+		B36C7F071D9D0C8900B022E0 /* YWMessageFriendAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7F051D9D0C8900B022E0 /* YWMessageFriendAddCell.m */; };
+		B36C7F141D9D1DE900B022E0 /* YWMessageFriendAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7F131D9D1DE900B022E0 /* YWMessageFriendAddModel.m */; };
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
 		B38B2DE61D8FACD8004D5256 /* UIImage+imageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CCA1D8FACD8004D5256 /* UIImage+imageColor.m */; };
@@ -407,6 +412,8 @@
 		B3FEBA2B1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA2A1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib */; };
 		B3FEBA321D9BE4EE003CDEF2 /* YWMessageNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA301D9BE4EE003CDEF2 /* YWMessageNotificationCell.m */; };
 		B3FEBA331D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA311D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib */; };
+		B3FEBA381D9C10DE003CDEF2 /* YWMessageChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEBA361D9C10DE003CDEF2 /* YWMessageChatViewController.m */; };
+		B3FEBA391D9C10DE003CDEF2 /* YWMessageChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FEBA371D9C10DE003CDEF2 /* YWMessageChatViewController.xib */; };
 		B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */; };
 		B3FFF47A1D93A3C700EDD2AB /* XHFocusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46B1D93A3C700EDD2AB /* XHFocusLayer.m */; };
 		B3FFF47B1D93A3C700EDD2AB /* XHBranchPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF46E1D93A3C700EDD2AB /* XHBranchPoint.m */; };
@@ -797,6 +804,14 @@
 		B35778B51D996B0B0058A998 /* YWStormSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSearchViewController.h; sourceTree = "<group>"; };
 		B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSearchViewController.m; sourceTree = "<group>"; };
 		B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWStormSearchViewController.xib; sourceTree = "<group>"; };
+		B36C7EFB1D9CE18100B022E0 /* YWMessageFriendsAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageFriendsAddViewController.h; sourceTree = "<group>"; };
+		B36C7EFC1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageFriendsAddViewController.m; sourceTree = "<group>"; };
+		B36C7EFD1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageFriendsAddViewController.xib; sourceTree = "<group>"; };
+		B36C7F031D9D0C8900B022E0 /* YWMessageFriendAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageFriendAddCell.h; sourceTree = "<group>"; };
+		B36C7F041D9D0C8900B022E0 /* YWMessageFriendAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageFriendAddCell.xib; sourceTree = "<group>"; };
+		B36C7F051D9D0C8900B022E0 /* YWMessageFriendAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageFriendAddCell.m; sourceTree = "<group>"; };
+		B36C7F121D9D1DE900B022E0 /* YWMessageFriendAddModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageFriendAddModel.h; sourceTree = "<group>"; };
+		B36C7F131D9D1DE900B022E0 /* YWMessageFriendAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageFriendAddModel.m; sourceTree = "<group>"; };
 		B38B2C6C1D8FAC5A004D5256 /* YuWa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuWa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C851D8FAC5A004D5256 /* YuWaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuWaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B2C891D8FAC5A004D5256 /* YuWaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuWaTests.m; sourceTree = "<group>"; };
@@ -1256,6 +1271,9 @@
 		B3FEBA2F1D9BE4EE003CDEF2 /* YWMessageNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageNotificationCell.h; sourceTree = "<group>"; };
 		B3FEBA301D9BE4EE003CDEF2 /* YWMessageNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageNotificationCell.m; sourceTree = "<group>"; };
 		B3FEBA311D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageNotificationCell.xib; sourceTree = "<group>"; };
+		B3FEBA351D9C10DE003CDEF2 /* YWMessageChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageChatViewController.h; sourceTree = "<group>"; };
+		B3FEBA361D9C10DE003CDEF2 /* YWMessageChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageChatViewController.m; sourceTree = "<group>"; };
+		B3FEBA371D9C10DE003CDEF2 /* YWMessageChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageChatViewController.xib; sourceTree = "<group>"; };
 		B3FFF4661D93A3C700EDD2AB /* XHTagHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTagHeader.h; sourceTree = "<group>"; };
 		B3FFF4681D93A3C700EDD2AB /* XHBranchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHBranchLayer.h; sourceTree = "<group>"; };
 		B3FFF4691D93A3C700EDD2AB /* XHBranchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHBranchLayer.m; sourceTree = "<group>"; };
@@ -2052,6 +2070,26 @@
 				B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */,
 			);
 			path = SearchView;
+			sourceTree = "<group>";
+		};
+		B36C7EFA1D9CE14F00B022E0 /* FriendsAddVC */ = {
+			isa = PBXGroup;
+			children = (
+				B36C7F111D9D1D8700B022E0 /* Model */,
+				B36C7EFB1D9CE18100B022E0 /* YWMessageFriendsAddViewController.h */,
+				B36C7EFC1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m */,
+				B36C7EFD1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib */,
+			);
+			path = FriendsAddVC;
+			sourceTree = "<group>";
+		};
+		B36C7F111D9D1D8700B022E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B36C7F121D9D1DE900B022E0 /* YWMessageFriendAddModel.h */,
+				B36C7F131D9D1DE900B022E0 /* YWMessageFriendAddModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B38B2C631D8FAC5A004D5256 = {
@@ -3336,6 +3374,8 @@
 		B3FEB9F41D9B63C6003CDEF2 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				B36C7EFA1D9CE14F00B022E0 /* FriendsAddVC */,
+				B3FEBA341D9C10B5003CDEF2 /* ChatVC */,
 				B3FEBA081D9B717C003CDEF2 /* PayNotificationTableView */,
 				B3FEBA001D9B64C1003CDEF2 /* YWMessageNotificationViewController.h */,
 				B3FEBA011D9B64C1003CDEF2 /* YWMessageNotificationViewController.m */,
@@ -3368,6 +3408,9 @@
 		B3FEB9F91D9B6465003CDEF2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				B36C7F031D9D0C8900B022E0 /* YWMessageFriendAddCell.h */,
+				B36C7F051D9D0C8900B022E0 /* YWMessageFriendAddCell.m */,
+				B36C7F041D9D0C8900B022E0 /* YWMessageFriendAddCell.xib */,
 				B3FEB9FA1D9B6465003CDEF2 /* YWMessageTableViewCell.h */,
 				B3FEB9FB1D9B6465003CDEF2 /* YWMessageTableViewCell.m */,
 				B3FEB9FC1D9B6465003CDEF2 /* YWMessageTableViewCell.xib */,
@@ -3407,6 +3450,16 @@
 				B3FEBA2A1D9BC2D9003CDEF2 /* YWMessageAddressBookHeader.xib */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		B3FEBA341D9C10B5003CDEF2 /* ChatVC */ = {
+			isa = PBXGroup;
+			children = (
+				B3FEBA351D9C10DE003CDEF2 /* YWMessageChatViewController.h */,
+				B3FEBA361D9C10DE003CDEF2 /* YWMessageChatViewController.m */,
+				B3FEBA371D9C10DE003CDEF2 /* YWMessageChatViewController.xib */,
+			);
+			path = ChatVC;
 			sourceTree = "<group>";
 		};
 		B3FFF4631D93A3C700EDD2AB /* XHTagView */ = {
@@ -3852,6 +3905,7 @@
 				B3FEBA041D9B64C1003CDEF2 /* YWMessageNotificationViewController.xib in Resources */,
 				B38B2F5F1D8FC83A004D5256 /* xhsemoji1.plist in Resources */,
 				C14F54191D94303F00A6C1E0 /* icon_homepage_downArrow@2x.png in Resources */,
+				B36C7F061D9D0C8900B022E0 /* YWMessageFriendAddCell.xib in Resources */,
 				B38B2E441D8FACD8004D5256 /* banner_normal6.png in Resources */,
 				B33A26851D9A68040092CB12 /* MWPhotoBrowser.bundle in Resources */,
 				B38B2E0E1D8FACD8004D5256 /* 37x-Checkmark.png in Resources */,
@@ -3869,6 +3923,7 @@
 				B38B2E601D8FACD8004D5256 /* Assets.xcassets in Resources */,
 				B3192AC81D9229E100FD6578 /* JWImgPickerAlbumChooseTableView.xib in Resources */,
 				C14F541E1D94303F00A6C1E0 /* icon_homepage_KTVCategory.png in Resources */,
+				B3FEBA391D9C10DE003CDEF2 /* YWMessageChatViewController.xib in Resources */,
 				C14F54171D94303F00A6C1E0 /* icon_homepage_beautyCategory.png in Resources */,
 				B38B2F511D8FC83A004D5256 /* 发送笔记.json in Resources */,
 				C14F53D21D942FE500A6C1E0 /* PaytheBillView.xib in Resources */,
@@ -3925,6 +3980,7 @@
 				C14F543F1D95191100A6C1E0 /* CommentTableViewCell.xib in Resources */,
 				C14F54261D94303F00A6C1E0 /* icon_homepage_shoppingCategory.png in Resources */,
 				B3192AC61D92224A00FD6578 /* JWImagePickerCell.xib in Resources */,
+				B36C7EFF1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib in Resources */,
 				B315823B1D90F86B0096C194 /* YWForgetPassWordViewController.xib in Resources */,
 				B38B2F4D1D8FC83A004D5256 /* 个人中心 总的请求（可无视）.json in Resources */,
 				C14F54211D94303F00A6C1E0 /* icon_homepage_map_old.png in Resources */,
@@ -4099,6 +4155,7 @@
 				B33A26731D9A68040092CB12 /* UIImage+EMMultiFormat.m in Sources */,
 				B38B2DF51D8FACD8004D5256 /* AFHTTPRequestOperationManager.m in Sources */,
 				B33A26691D9A68040092CB12 /* EMSDWebImageCompat.m in Sources */,
+				B3FEBA381D9C10DE003CDEF2 /* YWMessageChatViewController.m in Sources */,
 				B38B2DFE1D8FACD8004D5256 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				B38B2F111D8FC82F004D5256 /* RBNodeShowModel.m in Sources */,
 				B33A267B1D9A68040092CB12 /* PSTCollectionViewController.m in Sources */,
@@ -4116,6 +4173,7 @@
 				B38B2EFF1D8FC82F004D5256 /* RBNodeDCommentTableViewCell.m in Sources */,
 				B3FFF4791D93A3C700EDD2AB /* XHBranchLayer.m in Sources */,
 				B33A268D1D9A68040092CB12 /* UIViewController+DismissKeyboard.m in Sources */,
+				B36C7F141D9D1DE900B022E0 /* YWMessageFriendAddModel.m in Sources */,
 				B35778B81D996B0B0058A998 /* YWStormSearchViewController.m in Sources */,
 				B38B2E281D8FACD8004D5256 /* UIScrollView+MJExtension.m in Sources */,
 				C14F53E81D94300400A6C1E0 /* defineButton.m in Sources */,
@@ -4247,6 +4305,7 @@
 				B38B2DEF1D8FACD8004D5256 /* InternationalLanguage.m in Sources */,
 				B38B2E1C1D8FACD8004D5256 /* MJRefreshGifHeader.m in Sources */,
 				B38B2E0D1D8FACD8004D5256 /* README.md in Sources */,
+				B36C7F071D9D0C8900B022E0 /* YWMessageFriendAddCell.m in Sources */,
 				B3FFF48E1D93FF4700EDD2AB /* RBPublicSaveModel.m in Sources */,
 				B38B2F1E1D8FC82F004D5256 /* RBHomeSearchViewController.m in Sources */,
 				B33A268F1D9A68040092CB12 /* EaseChineseToPinyin.m in Sources */,
@@ -4277,6 +4336,7 @@
 				B38B2E301D8FACD8004D5256 /* SDWebImageDownloader.m in Sources */,
 				B33A267D1D9A68040092CB12 /* PSTCollectionViewFlowLayout.m in Sources */,
 				B38B2E561D8FACD8004D5256 /* ImageCache.m in Sources */,
+				B36C7EFE1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m in Sources */,
 				B38B2E551D8FACD8004D5256 /* UIView+Frame.m in Sources */,
 				B38B2E101D8FACD8004D5256 /* MBProgressHUD.m in Sources */,
 				B3AE4DBD1D915C2C000A389F /* RBPublicNodeViewController.m in Sources */,
@@ -4468,6 +4528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YuWa/Foundation/Custom Category/VipxoxPrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/YuWa/Supporting File/Info.plist";
@@ -4481,6 +4542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -4490,6 +4552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YuWa/Foundation/Custom Category/VipxoxPrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/YuWa/Supporting File/Info.plist";
@@ -4503,6 +4566,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -12,7 +12,7 @@
 
 #import "EMSDK.h"
 #import "EaseUI.h"
-@interface AppDelegate ()
+@interface AppDelegate ()<EMContactManagerDelegate,EMChatManagerDelegate,EMGroupManagerDelegate>
 
 @end
 
@@ -69,8 +69,17 @@
     EMOptions *options = [EMOptions optionsWithAppkey:appkey];
     options.apnsCertName = apnsCertName;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
     
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:appkey apnsCertName:apnsCertName otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+}
+
+- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername message:(NSString *)aMessage{
+    NSMutableArray * friendsRequest = [NSMutableArray arrayWithArray:[KUSERDEFAULT valueForKey:FRIENDSREQUEST]];
+    NSDictionary * requestDic = @{@"hxID":aUsername,@"message":aMessage,@"status":@"0"};//0未读1未处理2同意3拒绝
+    if (!friendsRequest)friendsRequest = [NSMutableArray arrayWithCapacity:0];
+    [friendsRequest insertObject:requestDic atIndex:0];
+    [KUSERDEFAULT setObject:friendsRequest forKey:FRIENDSREQUEST];
 }
 
 @end
