@@ -47,7 +47,9 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     CLLocation * currentLocation = [locations lastObject];
     self.location.lat = currentLocation.coordinate.latitude;
+    [YWLocation saveLat:currentLocation.coordinate.latitude];
     self.location.lon = currentLocation.coordinate.longitude;
+    [YWLocation saveLon:currentLocation.coordinate.longitude];
     MyLog(@"Location lat is %f,lon is %f",self.location.lat,self.location.lon);
 }
 

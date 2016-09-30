@@ -38,7 +38,7 @@
     if (!infavs)return;
     _infavs = infavs;
     if ([infavs isEqualToString:@"0"]) {
-        self.attentiionBtn.backgroundColor = [UIColor colorWithHexString:@"#E6393F"];
+        self.attentiionBtn.backgroundColor = CNaviColor;
         [self.attentiionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.attentiionBtn setTitle:@"+ 关注" forState:UIControlStateNormal];
     }else{

@@ -19,7 +19,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-@interface AppDelegate ()<EMContactManagerDelegate,EMChatManagerDelegate,EMGroupManagerDelegate>
+@interface AppDelegate ()<EMContactManagerDelegate,EMChatManagerDelegate,EMGroupManagerDelegate,EMClientDelegate>
 
 @end
 
@@ -30,6 +30,9 @@
     
     
     [UserSession instance];
+    [YWLocation shareLocation];
+    
+    
 #pragma mark  ----国际化语言
     [InternationalLanguage initUserLanguage];//初始化应用语言
 #pragma mark  -- 根视图
@@ -79,7 +82,8 @@
     EMOptions *options = [EMOptions optionsWithAppkey:appkey];
     options.apnsCertName = apnsCertName;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
-    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];//好友代理
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];//登录代理
     
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:appkey apnsCertName:apnsCertName otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
 }
@@ -90,6 +94,13 @@
     if (!friendsRequest)friendsRequest = [NSMutableArray arrayWithCapacity:0];
     [friendsRequest insertObject:requestDic atIndex:0];
     [KUSERDEFAULT setObject:friendsRequest forKey:FRIENDSREQUEST];
+}
+
+- (void)didLoginFromOtherDevice{//当前登录账号在其它设备登录时会接收到该回调
+    [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
+}
+- (void)didRemovedFromServer{//当前登录账号已经被从服务器端删除时会收到该回调
+    [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
 }
 
 #pragma mark - JPush

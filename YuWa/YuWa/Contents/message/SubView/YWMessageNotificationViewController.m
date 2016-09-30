@@ -126,7 +126,9 @@
     
     //23333333要删
     for (int i = 0; i<15; i++) {
-        [self.dataArr addObject:[[YWMessageModel alloc]init]];
+        YWMessageNotificationModel * model = [[YWMessageNotificationModel alloc]init];
+        model.status = @"0";
+        [self.dataArr addObject:model];
     }
     //23333333要删
     

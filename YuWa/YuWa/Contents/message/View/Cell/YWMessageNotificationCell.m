@@ -16,11 +16,6 @@
     
     self.iconImageView.layer.cornerRadius = 25.f;
     self.iconImageView.layer.masksToBounds = YES;
-    
-    self.countLabel.layer.cornerRadius = 8.f;
-    self.countLabel.layer.masksToBounds = YES;
-    self.countLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.countLabel.layer.borderWidth = 1.f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,7 +23,7 @@
     
 }
 
-- (void)setModel:(YWMessageModel *)model{
+- (void)setModel:(YWMessageNotificationModel *)model{
     if (!model)return;
     _model = model;
     [self dataSet];
@@ -38,7 +33,7 @@
     //    self.timeLabel.text = [JWTools dateWithOutYearStr:];
     //    self.nameLabel.text = @"lalal2333333";
     //    self.conLabel.text = @"yoo23333";
-    //    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:[self.model.status isEqualToString:@"0"]?@"message_Notification_Order":@"message_Notification_Pay"] completed:nil];
 }
 
 @end

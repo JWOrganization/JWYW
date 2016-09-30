@@ -14,6 +14,7 @@
 
 @property (nonatomic,copy)NSString * account;  //账户
 @property (nonatomic,copy)NSString * password;   //密码
+@property (nonatomic,copy)NSString * hxPassword;   //环信密码
 @property(nonatomic,strong)NSString*rand;
 @property(nonatomic,strong)NSString*qq;     //QQ
 @property(nonatomic,strong)NSString*areaid;   //区id

@@ -16,7 +16,7 @@
     [self.collectionBtn setTitle:isCollection == YES?@"已收藏":@"收藏" forState:UIControlStateNormal];
     [self.collectionBtn setImage:[UIImage imageNamed:isCollection == YES?@"":@"star"] forState:UIControlStateNormal];
     [self.collectionBtn setTitleColor:[UIColor colorWithHexString:isCollection == YES?@"#585858":@"#ffffff"] forState:UIControlStateNormal];
-    self.collectionBtn.backgroundColor = [UIColor colorWithHexString:isCollection == YES?@"#ffffff":@"#E6393F"];
+    self.collectionBtn.backgroundColor = [UIColor colorWithHexString:isCollection == YES?@"#ffffff":@"#3CCAED"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self requestCollection];
     });

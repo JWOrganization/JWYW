@@ -31,7 +31,6 @@
 @property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;
 @property (nonatomic, strong)JWCollectionViewFlowLayout *waterFlowLayout;
 @property (nonatomic,strong)JWSearchView * searchView;
-@property (nonatomic,assign)BOOL isPhoto;
 
 @end
 
@@ -45,22 +44,6 @@
     [self setupRefresh];
     [self requestDataWithPages:0];
     [self makeTagCollectionViewWithArr:@[@"推荐",@"关注",@"男人",@"护肤",@"旅行",@"生活",@"时尚",@"彩妆"]];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.isPhoto = NO;
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"#fe2641"]];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    if (!self.isPhoto) {
-        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-        [self.navigationController.navigationBar setBarTintColor:CNaviColor];
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    }
 }
 
 - (void)viewDidLayoutSubviews{
@@ -77,27 +60,6 @@
     self.navigationItem.titleView = self.searchView;
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:@"white_camera" withSelectImage:@"white_camera" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(publishNodeAction) forControlEvents:UIControlEventTouchUpInside withSize:CGSizeMake(30.f, 30.f)];
-}
-
-- (BOOL)isLogin{
-    if (![UserSession instance].isLogin) {
-        self.isPhoto = NO;
-        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    return [UserSession instance].isLogin;
-}
-
-- (void)publishNodeAction{
-    if (![self isLogin])return;
-    self.isPhoto = YES;
-    TZImagePickerController *imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
-    imagePickerVC.allowPickingVideo = NO;
-    [imagePickerVC setDidFinishPickingPhotosHandle:^(NSArray * photos , NSArray * assets,BOOL isSelectOriginalPhoto){
-        
-    }];
-    
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
 - (void)makeTagCollectionViewWithArr:(NSArray *)tagArr{

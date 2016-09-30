@@ -8,6 +8,7 @@
 
 #import "YWForgetPassWordViewController.h"
 
+#import "JPUSHService.h"
 @interface YWForgetPassWordViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *accountTextField;
@@ -113,8 +114,16 @@
     //要删2333333
     [UserSession saveUserInfoWithDic:@{}];
     //要删2333333
-    [self showHUDWithStr:@"注册成功" withSuccess:YES];
+    [self showHUDWithStr:@"重置成功" withSuccess:YES];
+    
+    EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:password];//23333333环信密码另存,初始为初始密码
+    if (!errorLog){
+        [[EMClient sharedClient].options setIsAutoLogin:NO];
+        MyLog(@"环信登录成功");
+    }
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
         [self.navigationController popToRootViewControllerAnimated:YES];
     });
     //    } failur:^(id responsObj, NSError *error) {

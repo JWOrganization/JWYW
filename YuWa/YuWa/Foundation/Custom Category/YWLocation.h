@@ -19,4 +19,7 @@
 + (instancetype)shareLocation;
 + (void)saveLocationInfoWithLat:(CGFloat)lat withLon:(CGFloat)lon;
 
++ (void)saveLat:(CGFloat)lat;
++ (void)saveLon:(CGFloat)lon;
+
 @end

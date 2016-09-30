@@ -10,4 +10,8 @@
 
 @interface YWMessageModel : NSObject
 
+
+
+
+
 @end

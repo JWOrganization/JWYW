@@ -20,36 +20,32 @@ static YWLocation * location = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         location = [super allocWithZone:zone];
-        location.lat = 24.88f;
-        location.lon = 118.67f;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [YWLocation getDataFromDefault];
-        });
+        [YWLocation getDataFromDefault];
     });
     return location;
 }
 
-- (void)setLat:(CGFloat)lat{
-    if (_lat == lat)return;
-    _lat = lat;
++ (void)saveLat:(CGFloat)lat{
     [KUSERDEFAULT setObject:[NSString stringWithFormat:@"%f",lat] forKey:LOCATION_LAT];
-    self.coordinate = (CLLocationCoordinate2D){lat,_lon};
+    location.coordinate = (CLLocationCoordinate2D){lat,location.lon};
 }
-- (void)setLon:(CGFloat)lon{
-    if (_lon == lon)return;
-    _lon = lon;
++ (void)saveLon:(CGFloat)lon{
     [KUSERDEFAULT setObject:[NSString stringWithFormat:@"%f",lon] forKey:LOCATION_LON];
-    self.coordinate = (CLLocationCoordinate2D){_lat,lon};
+    location.coordinate = (CLLocationCoordinate2D){location.lat,lon};
 }
 
 + (void)getDataFromDefault{
     NSString * location_lonDefault = [KUSERDEFAULT valueForKey:LOCATION_LON];
     NSString * location_latDefault = [KUSERDEFAULT valueForKey:LOCATION_LAT];
-    if (location_lonDefault&&location_latDefault) {
-        location.lat = [location_latDefault floatValue];
-        location.lon = [location_lonDefault floatValue];
+    if (!location_latDefault) {
+        location.lat = 24.88f;
+        location.lon = 118.67f;
         location.coordinate = (CLLocationCoordinate2D){location.lat,location.lon};
+        return;
     }
+    location.lat = [location_latDefault floatValue];
+    location.lon = [location_lonDefault floatValue];
+    location.coordinate = (CLLocationCoordinate2D){location.lat,location.lon};
 }
 
 + (void)saveLocationInfoWithLat:(CGFloat)lat withLon:(CGFloat)lon{

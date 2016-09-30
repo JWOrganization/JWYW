@@ -42,7 +42,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YWMessageNotificationCell * messageCell = [tableView dequeueReusableCellWithIdentifier:MESSAGENOTICELL];
-    messageCell.backgroundColor = [UIColor yellowColor];
+    messageCell.model = self.dataArr[indexPath.row];
     return messageCell;
 }
 #pragma mark - TableView Refresh
@@ -74,7 +74,9 @@
     
     //23333333要删
     for (int i = 0; i<15; i++) {
-        [self.dataArr addObject:@""];
+        YWMessageNotificationModel * model = [[YWMessageNotificationModel alloc]init];
+        model.status = @"1";
+        [self.dataArr addObject:model];
     }
     //23333333要删
     

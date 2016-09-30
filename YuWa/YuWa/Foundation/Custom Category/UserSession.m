@@ -7,6 +7,7 @@
 //
 
 #import "UserSession.h"
+#import "JPUSHService.h"
 
 @implementation UserSession
 static UserSession * user=nil;
@@ -40,6 +41,10 @@ static UserSession * user=nil;
         if (!error)MyLog(@"环信退出成功");
         [UserSession getDataFromUserDefault];
         
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
+        });
+        
         NSMutableArray * friendsRequest = [NSMutableArray arrayWithArray:[KUSERDEFAULT valueForKey:FRIENDSREQUEST]];
         friendsRequest = [NSMutableArray arrayWithCapacity:0];
         [KUSERDEFAULT setObject:friendsRequest forKey:FRIENDSREQUEST];
@@ -61,11 +66,17 @@ static UserSession * user=nil;
         user.account = accountDefault;
         user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
         [UserSession autoLoginRequestWithPragram:@{@"tel":user.account,@"pwd":user.password}];//根据接口改2333333
+        
         EMError *errorLog = [[EMClient sharedClient] loginWithUsername:user.account password:user.password];
         if (!errorLog){
             [[EMClient sharedClient].options setIsAutoLogin:NO];
+            [[EMClient sharedClient].chatManager getAllConversations];
             MyLog(@"环信登录成功");
         }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [JPUSHService setAlias:user.account callbackSelector:nil object:nil];
+        });
     }
 }
 
@@ -111,6 +122,5 @@ static UserSession * user=nil;
     
     user.isLogin = YES;
 }
-
 
 @end

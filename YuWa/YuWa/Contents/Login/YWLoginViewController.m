@@ -10,6 +10,7 @@
 #import "YWRegisterViewController.h"
 #import "YWForgetPassWordViewController.h"
 #import "YJSegmentedControl.h"
+#import "JPUSHService.h"
 
 @interface YWLoginViewController ()<UITextFieldDelegate,YJSegmentedControlDelegate>
 
@@ -202,7 +203,8 @@
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
+        [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
         });
 //    } failur:^(id responsObj, NSError *error) {
 //        MyLog(@"Pragram is %@",pragram);
@@ -222,7 +224,9 @@
 //    if (!error) {
 //        MyLog(@"环信登录成功");
 //    }
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
         [self.navigationController popViewControllerAnimated:YES];
     });
     

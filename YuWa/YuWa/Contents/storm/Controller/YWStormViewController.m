@@ -39,7 +39,7 @@
 }
 
 - (void)makeNavi{
-    self.title = @"商家";
+    self.navigationItem.title = @"商家";
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImageName:@"search_Nav_white" withSelectImage:@"search_Nav_white" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside withWidth:30.f];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:@"filtertBtn_normal_white" withSelectImage:@"filtertBtn_normal_white" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(sortAction) forControlEvents:UIControlEventTouchUpInside withWidth:30.f];
 }
@@ -56,7 +56,7 @@
     self.toMyLocationBtn.layer.masksToBounds = YES;
     
     //设置地图的默认显示区域
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance([YWLocation shareLocation].coordinate, 5000, 5000) animated:YES];//下法同
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.location.coordinate, 5000, 5000) animated:YES];//下法同
     //    self.mapView.region = MKCoordinateRegionMake([YWLocation shareLocation].coordinate, MKCoordinateSpanMake(0.01, 0.01));
 }
 
