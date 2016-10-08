@@ -93,7 +93,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YWMessageNotificationCell * messageCell = [tableView dequeueReusableCellWithIdentifier:MESSAGENOTICELL];
     messageCell.model = self.dataArr[indexPath.row];
-    
     return messageCell;
 }
 
