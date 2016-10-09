@@ -17,10 +17,9 @@
     [self.collectionBtn setImage:[UIImage imageNamed:isCollection == YES?@"":@"star"] forState:UIControlStateNormal];
     [self.collectionBtn setTitleColor:[UIColor colorWithHexString:isCollection == YES?@"#585858":@"#ffffff"] forState:UIControlStateNormal];
     self.collectionBtn.backgroundColor = [UIColor colorWithHexString:isCollection == YES?@"#ffffff":@"#3CCAED"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self requestCollection];
-    });
-    self.collectionBlock(isCollection);
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self requestCollection];
+//    });
 }
 
 - (void)setIsLike:(BOOL)isLike{
@@ -66,17 +65,15 @@
 }
 
 - (IBAction)collectionAction:(id)sender {
-    if (![UserSession instance].isLogin) {
-        self.collectionBlock(_isCollection);
-        return;
-    }
-    self.isCollection = !_isCollection;
+    if (![UserSession instance].isLogin)return;
+    self.collectionBlock(_isCollection);
+//    self.isCollection = !_isCollection;
 }
 
 #pragma mark - Http
-- (void)requestCollection{
-//    send by _isCollection
-}
+//- (void)requestCollection{
+////    send by _isCollection
+//}
 
 - (void)requestLike{
     //    send by _isLike

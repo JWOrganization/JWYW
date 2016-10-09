@@ -134,6 +134,11 @@
 		B33A26B11D9A68040092CB12 /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = B33A264C1D9A68040092CB12 /* EaseRecordView.m */; };
 		B33A26B21D9A68040092CB12 /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B33A264F1D9A68040092CB12 /* EaseConversationCell.m */; };
 		B33A26B31D9A68040092CB12 /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B33A26511D9A68040092CB12 /* EaseUIResource.bundle */; };
+		B34BCDFB1DAA2236001AB98D /* RBNodeCollectionToAldumView.m in Sources */ = {isa = PBXBuildFile; fileRef = B34BCDFA1DAA2236001AB98D /* RBNodeCollectionToAldumView.m */; };
+		B34BCDFD1DAA2249001AB98D /* RBNodeCollectionToAldumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34BCDFC1DAA2249001AB98D /* RBNodeCollectionToAldumView.xib */; };
+		B34BCE021DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34BCE001DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.m */; };
+		B34BCE031DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34BCE011DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.xib */; };
+		B34BCE071DAA3D61001AB98D /* RBNodeAddToAldumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B34BCE061DAA3D61001AB98D /* RBNodeAddToAldumModel.m */; };
 		B35778A11D98CD8E0058A998 /* JWLocationBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */; };
 		B35778A21D98CD8E0058A998 /* JWLocationBasicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */; };
 		B35778A41D99209E0058A998 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35778A31D99209E0058A998 /* MapKit.framework */; };
@@ -848,6 +853,14 @@
 		B33A264E1D9A68040092CB12 /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
 		B33A264F1D9A68040092CB12 /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
 		B33A26511D9A68040092CB12 /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
+		B34BCDF91DAA2236001AB98D /* RBNodeCollectionToAldumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNodeCollectionToAldumView.h; sourceTree = "<group>"; };
+		B34BCDFA1DAA2236001AB98D /* RBNodeCollectionToAldumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBNodeCollectionToAldumView.m; sourceTree = "<group>"; };
+		B34BCDFC1DAA2249001AB98D /* RBNodeCollectionToAldumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBNodeCollectionToAldumView.xib; sourceTree = "<group>"; };
+		B34BCDFF1DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNodeAddToAldumTableViewCell.h; sourceTree = "<group>"; };
+		B34BCE001DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBNodeAddToAldumTableViewCell.m; sourceTree = "<group>"; };
+		B34BCE011DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBNodeAddToAldumTableViewCell.xib; sourceTree = "<group>"; };
+		B34BCE051DAA3D61001AB98D /* RBNodeAddToAldumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNodeAddToAldumModel.h; sourceTree = "<group>"; };
+		B34BCE061DAA3D61001AB98D /* RBNodeAddToAldumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBNodeAddToAldumModel.m; sourceTree = "<group>"; };
 		B357789E1D98CD8E0058A998 /* JWLocationBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWLocationBasicViewController.h; sourceTree = "<group>"; };
 		B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWLocationBasicViewController.m; sourceTree = "<group>"; };
 		B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWLocationBasicViewController.xib; sourceTree = "<group>"; };
@@ -2198,6 +2211,26 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		B34BCDFE1DAA23F7001AB98D /* AddToAldumView */ = {
+			isa = PBXGroup;
+			children = (
+				B34BCE041DAA3D20001AB98D /* Model */,
+				B34BCDFF1DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.h */,
+				B34BCE001DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.m */,
+				B34BCE011DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.xib */,
+			);
+			path = AddToAldumView;
+			sourceTree = "<group>";
+		};
+		B34BCE041DAA3D20001AB98D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B34BCE051DAA3D61001AB98D /* RBNodeAddToAldumModel.h */,
+				B34BCE061DAA3D61001AB98D /* RBNodeAddToAldumModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B35778B31D996AB80058A998 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3161,9 +3194,13 @@
 		B38B2EC01D8FC82F004D5256 /* ToolsView */ = {
 			isa = PBXGroup;
 			children = (
+				B34BCDFE1DAA23F7001AB98D /* AddToAldumView */,
 				B38B2EC11D8FC82F004D5256 /* RBNodeDetailBottomView.h */,
 				B38B2EC21D8FC82F004D5256 /* RBNodeDetailBottomView.m */,
 				B38B2EC31D8FC82F004D5256 /* RBNodeDetailBottomView.xib */,
+				B34BCDF91DAA2236001AB98D /* RBNodeCollectionToAldumView.h */,
+				B34BCDFA1DAA2236001AB98D /* RBNodeCollectionToAldumView.m */,
+				B34BCDFC1DAA2249001AB98D /* RBNodeCollectionToAldumView.xib */,
 			);
 			path = ToolsView;
 			sourceTree = "<group>";
@@ -4208,6 +4245,7 @@
 				B38B2F521D8FC83A004D5256 /* 国家 选择币种.json in Resources */,
 				C1C09F521DA9DCF3005D9B89 /* YWFansTableViewCell.xib in Resources */,
 				B38B2F041D8FC82F004D5256 /* RBNodeDRecommendTableViewCell.xib in Resources */,
+				B34BCE031DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.xib in Resources */,
 				C182BBBA1D9D54DB00AD3710 /* home_rightArr@2x.png in Resources */,
 				B38B2F251D8FC82F004D5256 /* RBAlbumCollectionViewCell.xib in Resources */,
 				B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */,
@@ -4225,6 +4263,7 @@
 				C1C09F4E1DA9DCF3005D9B89 /* ChangeNibNameViewController.xib in Resources */,
 				C14F54171D94303F00A6C1E0 /* icon_homepage_beautyCategory.png in Resources */,
 				B38B2F511D8FC83A004D5256 /* 发送笔记.json in Resources */,
+				B34BCDFD1DAA2249001AB98D /* RBNodeCollectionToAldumView.xib in Resources */,
 				C182BBBD1D9D54DB00AD3710 /* icon_arrow_dropdown_normal.png in Resources */,
 				C1C09F471DA9DCF3005D9B89 /* InfoChooseTableViewCell.xib in Resources */,
 				C14F54111D94303F00A6C1E0 /* bg_customReview_image_default.png in Resources */,
@@ -4520,6 +4559,7 @@
 				B38B2E3A1D8FACD8004D5256 /* UIView+WebCacheOperation.m in Sources */,
 				B33A26951D9A68040092CB12 /* EaseEmotionManager.m in Sources */,
 				B33A26801D9A68040092CB12 /* PSTCollectionViewUpdateItem.m in Sources */,
+				B34BCE021DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.m in Sources */,
 				B38B2F2A1D8FC82F004D5256 /* RBCenterAlbumModel.m in Sources */,
 				C1C09F8D1DA9DCFC005D9B89 /* ChooseOneModel.m in Sources */,
 				B38B2F281D8FC82F004D5256 /* RBNewNodeCollectionViewCell.m in Sources */,
@@ -4539,6 +4579,7 @@
 				B33A269F1D9A68040092CB12 /* EaseCustomMessageCell.m in Sources */,
 				B38B2E521D8FACD8004D5256 /* UIView+SDExtension.m in Sources */,
 				B33A26621D9A68040092CB12 /* MWPhoto.m in Sources */,
+				B34BCDFB1DAA2236001AB98D /* RBNodeCollectionToAldumView.m in Sources */,
 				B38B2E5A1D8FACD8004D5256 /* AdvertiseViewController.m in Sources */,
 				B38B2E6B1D8FC3B6004D5256 /* JWBasicViewController.m in Sources */,
 				B3FEB9FE1D9B6465003CDEF2 /* YWMessageTableViewCell.m in Sources */,
@@ -4686,6 +4727,7 @@
 				B38B2E241D8FACD8004D5256 /* MJDIYHeader.m in Sources */,
 				B33A26A51D9A68040092CB12 /* EaseBubbleView+Location.m in Sources */,
 				C1C09F8C1DA9DCFC005D9B89 /* YWShoppingDetailViewController.m in Sources */,
+				B34BCE071DAA3D61001AB98D /* RBNodeAddToAldumModel.m in Sources */,
 				B38B2E4A1D8FACD8004D5256 /* SDCollectionViewCell.m in Sources */,
 				B38B2DF61D8FACD8004D5256 /* AFHTTPSessionManager.m in Sources */,
 				B38B2EFC1D8FC82F004D5256 /* RBHomeModel.m in Sources */,
