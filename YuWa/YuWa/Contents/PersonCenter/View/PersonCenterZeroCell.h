@@ -10,4 +10,8 @@
 
 @interface PersonCenterZeroCell : UITableViewCell
 
+@property(nonatomic,strong)NSString*titleString;
++(CGFloat)CalculateCellHeight:(NSString*)str;
+
+
 @end

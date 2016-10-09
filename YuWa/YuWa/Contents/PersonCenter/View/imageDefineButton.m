@@ -17,12 +17,8 @@
 
         
         _topImageView=[[UIImageView alloc]init];
-        _topImageView.backgroundColor=[UIColor blueColor];
+//        _topImageView.backgroundColor=[UIColor blueColor];
         
-//        [_topImageView setSize:CGSizeMake(40, 40)];
-//        _topImageView.width=_topImageView.height;
-//        [_topImageView setCenterX:35];
-//        [_topImageView setY:0];
         [self addSubview:self.topImageView ];
         [_topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.top);
@@ -35,13 +31,8 @@
  
         _bottomLabel=[[UILabel alloc]init];
         _bottomLabel.text=@"优惠券";
-//        _bottomLabel.backgroundColor=[UIColor blackColor];
-        
-        _bottomLabel.font=FONT_CN_30;
+        _bottomLabel.font=[UIFont systemFontOfSize:15];
         _bottomLabel.textAlignment=NSTextAlignmentCenter;
-//        [_bottomLabel setCenterX:35];
-//        [_bottomLabel setY:45+5];
-//        [_bottomLabel setSize:CGSizeMake(20, 18)];
         [self addSubview:self.bottomLabel];
         [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(_topImageView.mas_bottom).offset(5);

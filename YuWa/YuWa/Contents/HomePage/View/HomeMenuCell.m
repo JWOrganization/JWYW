@@ -78,8 +78,8 @@
         }
         
         //
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((kScreen_Width-40)/2, 160, 20, 20)];
-        _pageControl.centerX=kScreen_Width/2-30;
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((kScreen_Width-40)/2, 160, 40, 20)];
+//        _pageControl.centerX=kScreen_Width/2-30;
 //        _pageControl.backgroundColor=[UIColor blueColor];
         _pageControl.currentPage = 0;
         _pageControl.numberOfPages = 2;
