@@ -39,7 +39,6 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YWMainShoppingTableViewCell" bundle:nil] forCellReuseIdentifier:CELL0];
     
-    
 }
 
 -(UIView*)makeTopChooseView{

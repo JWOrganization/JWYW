@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YWStormSearchViewController">
             <connections>
                 <outlet property="shopTextField" destination="0gP-Xi-Ivq" id="nTX-m9-aon"/>
-                <outlet property="shopTextSearchView" destination="E4R-q4-P5h" id="FZF-m4-MpB"/>
+                <outlet property="shopTextSearchView" destination="RJu-HG-1ZH" id="gYN-6x-iad"/>
                 <outlet property="tableView" destination="7G3-6L-szv" id="rdh-ta-c0g"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

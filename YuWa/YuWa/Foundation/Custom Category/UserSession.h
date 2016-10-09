@@ -22,7 +22,7 @@
 @property(nonatomic,strong)NSString*currency; //货币
 @property(nonatomic,strong)NSString*personality;   //个人签名
 
-
+@property (nonatomic,copy)NSString * aldumCount;  //专辑个数
 
 
 

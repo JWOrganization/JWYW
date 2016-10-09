@@ -36,7 +36,7 @@
 
 - (void)makeTagView{
     self.tagVeiw = [[UIView alloc]initWithFrame:CGRectMake(self.choosedTag * TagWidth, self.height - 2.f, TagWidth, 2.f)];
-    self.tagVeiw.backgroundColor = [UIColor colorWithHexString:@"#ff2741"];
+    self.tagVeiw.backgroundColor = CNaviColor;
     [self addSubview:self.tagVeiw];
 }
 
@@ -49,9 +49,11 @@
     [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     
     JWTagCollectionViewCell * selectedCell = (JWTagCollectionViewCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    selectedCell.nameLabel.textColor = CNaviColor;
     [UIView animateWithDuration:0.4 animations:^{
         self.tagVeiw.x = selectedCell.x;
     } completion:nil];
+    [self reloadData];
 }
 
 

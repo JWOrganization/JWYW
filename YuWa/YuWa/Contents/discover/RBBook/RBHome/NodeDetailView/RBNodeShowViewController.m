@@ -7,6 +7,9 @@
 //
 
 #import "RBNodeShowViewController.h"
+#import "YWOtherSeePersonCenterViewController.h"
+#import "YWNodeAddAldumViewController.h"
+#import "RBNodeCollectionToAldumView.h"
 #import "RBNodeShowModel.h"
 
 #import "RBNodeShowCommentDetailVC.h"
@@ -36,6 +39,8 @@
 @property (nonatomic,strong)RBNodeDetailRecommendHeader * recommendHeader;
 @property (nonatomic,strong)RBNodeDetailCommendFooter * commentFooter;
 
+@property (nonatomic,strong)RBNodeCollectionToAldumView * addToAldumView;
+
 @property (nonatomic,copy)NSString * pagens;
 @property (nonatomic,assign)NSInteger pages;
 
@@ -59,8 +64,19 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
+    if (self.addToAldumView && [[UserSession instance].aldumCount integerValue]!=self.addToAldumView.dataArr.count) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+            [self.addToAldumView aldumReload];
+        });
+    }
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    if (self.addToAldumView){
+        [self.addToAldumView removeFromSuperview];
+        self.addToAldumView = nil;
+    }
+}
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     self.toolsBottomView.frame = CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f);
@@ -101,10 +117,12 @@
         [weakSelf commentActionWithNodeDic:@{@"233333":@"2333333"}];
     };
     self.toolsBottomView.collectionBlock = ^(BOOL isCollection){
-        if ([weakSelf isLogin]) {
-            weakSelf.dataModel.infavs = [NSString stringWithFormat:@"%zi",isCollection];
-            weakSelf.dataModel.fav_count = [NSString stringWithFormat:@"%zi",isCollection == YES?([weakSelf.dataModel.fav_count integerValue] + 1):([weakSelf.dataModel.fav_count integerValue] - 1)];
-            [weakSelf reSetBottomToolsView];
+        if ([weakSelf isLogin]){
+            if (isCollection) {
+                [weakSelf requestCancelToAldum];
+            }else{
+                [weakSelf addToAldumViewmake];
+            }
         }
     };
     [self.view addSubview:self.toolsBottomView];
@@ -119,6 +137,30 @@
     [self.toolsBottomView.likeBtn setTitle:self.dataModel.likes forState:UIControlStateNormal];
     [self.toolsBottomView.commentBtn setTitle:self.dataModel.comments forState:UIControlStateNormal];
 }
+
+- (void)addToAldumViewmake{
+    if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {//23333333实际为1,只有复数专辑时选择
+        [self requestAddToAldumWithIdx:@"0"];
+        return;
+    }
+    WEAKSELF;
+    if (!self.addToAldumView) {
+        self.addToAldumView = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeCollectionToAldumView" owner:nil options:nil]firstObject];
+        self.addToAldumView.cancelBlock = ^(){
+            [weakSelf.addToAldumView removeFromSuperview];
+        };
+        self.addToAldumView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Height);
+        self.addToAldumView.addToAlbumBlock = ^(NSInteger aldumIdx){
+            [weakSelf requestAddToAldumWithIdx:[NSString stringWithFormat:@"%zi",aldumIdx]];
+        };
+        self.addToAldumView.newAlbumBlock = ^(){
+            YWNodeAddAldumViewController * vc = [[YWNodeAddAldumViewController alloc]init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        };
+    }
+    [[UIApplication sharedApplication].keyWindow addSubview:self.addToAldumView];
+}
+
 - (RBNodeDetailHeader *)authorHeaderMake{
     if (!self.authorHeader) {
         self.authorHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailHeader" owner:nil options:nil] firstObject];
@@ -128,7 +170,11 @@
         };
         self.authorHeader.otherBlock = ^(){
             if ([weakSelf isLogin]&& !weakSelf.authorHeader.isUser) {
-                //23333333进入他人主页
+                if ([weakSelf isLogin]) {
+                    YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
+                    //                vc.idd = 2333;//23333333进入他人主页他人ID
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
             }
         };
     }
@@ -342,6 +388,26 @@
     }];
     [self.tableView reloadData];
     self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
+}
+
+- (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
+    MyLog(@"添加到专辑%@",aldumIdx);//23333333333
+    if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
+        [UserSession instance].aldumCount = @"1";//成功后若无专辑则创建
+    }
+    self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
+    self.dataModel.infavs = @"1";
+    self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] + 1)];
+    [self reSetBottomToolsView];
+    [self.addToAldumView removeFromSuperview];
+}
+
+- (void)requestCancelToAldum{
+    MyLog(@"取消收藏");
+    self.dataModel.infavs = @"0";
+    self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] - 1)];
+    self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
+    [self reSetBottomToolsView];
 }
 
 @end

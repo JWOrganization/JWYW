@@ -37,7 +37,7 @@
 - (void)setInfavs:(NSString *)infavs{
     if (!infavs)return;
     _infavs = infavs;
-    if ([infavs isEqualToString:@"0"]) {
+    if ([infavs isEqualToString:@"1"]) {
         self.attentiionBtn.backgroundColor = CNaviColor;
         [self.attentiionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.attentiionBtn setTitle:@"+ 关注" forState:UIControlStateNormal];
@@ -78,7 +78,6 @@
     }else{
         self.careBlock();
     }
-    
 }
 
 #pragma mark - Http
