@@ -9,6 +9,7 @@
 #import "YWStormViewController.h"
 #import "YWStormPinAnnotationView.h"
 #import "YWStormSearchViewController.h"
+#import "YWShoppingDetailViewController.h"
 
 #define STORM_PINANNOTATION @"YWStormPinAnnotationView"
 @interface YWStormViewController ()
@@ -30,6 +31,10 @@
     self.mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
     [self makeNavi];
     [self makeUI];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
 }
 - (CLGeocoder *)geocoder{
     if (!_geocoder) {
@@ -76,7 +81,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)sortAction{
-    
+    MyLog(@"筛选");
 }
 
 - (IBAction)toMyLocationBtnAction:(id)sender {
@@ -115,13 +120,15 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
     YWStormPinAnnotationView * annotationView = (YWStormPinAnnotationView *)view;
     MyLog(@"Select %@ AnnotationView",annotationView.model.type);
+    YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
+//    vc.idd = 23333333;//商店ID
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Http
 - (void)requestAnnotationData{
     self.isSearch = YES;
     [self.mapView removeAnnotations:self.mapView.annotations];
-    
     //要删233333333
     for (int i = 0; i<10; i++) {
         YWStormAnnotationModel * model = [[YWStormAnnotationModel alloc]init];

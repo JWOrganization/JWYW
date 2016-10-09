@@ -7,6 +7,7 @@
 //
 
 #import "RBNodeShowViewController.h"
+#import "YWOtherSeePersonCenterViewController.h"
 #import "RBNodeShowModel.h"
 
 #import "RBNodeShowCommentDetailVC.h"
@@ -59,6 +60,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -128,7 +130,11 @@
         };
         self.authorHeader.otherBlock = ^(){
             if ([weakSelf isLogin]&& !weakSelf.authorHeader.isUser) {
-                //23333333进入他人主页
+                if ([weakSelf isLogin]) {
+                    YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
+                    //                vc.idd = 2333;//23333333进入他人主页他人ID
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
             }
         };
     }

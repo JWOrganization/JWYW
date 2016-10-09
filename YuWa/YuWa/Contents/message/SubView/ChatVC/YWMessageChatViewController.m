@@ -7,6 +7,7 @@
 //
 
 #import "YWMessageChatViewController.h"
+#import "YWOtherSeePersonCenterViewController.h"
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
@@ -38,6 +39,10 @@
     [super viewDidLoad];
     self.title = self.friendNikeName?self.friendNikeName:@"聊天";
     
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,9 +134,11 @@
 }
 
 - (void)avatarViewSelcted:(id<IMessageModel>)model{
-    MyLog(@"用户点击头像回调");
     if ([model.nickname isEqualToString:self.myHxID])return;
-    //去他人主页面
+    MyLog(@"用户点击头像");
+    YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
+//    vc.idd = 23333333;//他人用户ID
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "YWStormSearchViewController.h"
+#import "YWShoppingDetailViewController.h"
 
 @interface YWStormSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -32,7 +33,10 @@
     [self dataSet];
     [self requestShopArrDataWithPages:0];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
+}
 - (void)dataSet{
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
     self.pagens = @"15";
@@ -45,6 +49,9 @@
 
 - (void)searchWithKey:(NSString *)searchKey{
     MyLog(@"%@",searchKey);
+    YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
+    //    vc.idd = 23333333;//商店ID
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

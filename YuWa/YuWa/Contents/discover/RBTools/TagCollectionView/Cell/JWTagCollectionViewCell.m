@@ -18,7 +18,7 @@
 - (void)setChoosed:(BOOL)choosed{
     _choosed = choosed;
     if (_choosed) {
-        self.nameLabel.textColor = [UIColor colorWithHexString:@"#ff2741"];
+        self.nameLabel.textColor = CNaviColor;
     }else{
         self.nameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
     }
