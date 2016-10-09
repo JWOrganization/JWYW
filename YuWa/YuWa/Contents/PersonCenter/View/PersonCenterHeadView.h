@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PersonCenterHeadView : UIView
-
+@property(nonatomic,strong)void(^touchImageBlock)();
 @end

@@ -9,9 +9,10 @@
 #import "VIPHomePageViewController.h"
 
 
-#import "MJRefreshGifHeader.h"
-#import "MJRefreshBackGifFooter.h"
+//#import "MJRefreshGifHeader.h"
+//#import "MJRefreshBackGifFooter.h"
 
+#import "SDCycleScrollView.h"
 #import "HomeMenuCell.h"   
 #import "HomeSixChooseTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
@@ -27,7 +28,7 @@
 #define CELL1   @"HomeSixChooseTableViewCell"
 #define CELL2   @"YWMainShoppingTableViewCell"
 
-@interface VIPHomePageViewController()<UITableViewDelegate,UITableViewDataSource,HomeMenuCellDelegate>
+@interface VIPHomePageViewController()<UITableViewDelegate,UITableViewDataSource,HomeMenuCellDelegate,SDCycleScrollViewDelegate>
 @property(nonatomic,strong)UITableView*tableView;
 
 
@@ -229,7 +230,10 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section==2) {
+    if (section==0) {
+        return 125;
+        
+    }else if (section==2){
         return 40;
     }
     return 0.01;
@@ -240,12 +244,19 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section==2) {
+    if (section==0) {
+        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 125) imagesGroup:@[@"backImage",@"",@"backImage"] andPlaceholder:@"backImage"];
+        sdView.autoScrollTimeInterval=5.0;
+        sdView.delegate=self;
+        return sdView;
+        
+        
+    }else if (section==2){
         UIView*view=[[UIView alloc]init];
         view.backgroundColor=[UIColor whiteColor];
         
         UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 15, 15)];
-//        imageView.backgroundColor=[UIColor greenColor];
+        //        imageView.backgroundColor=[UIColor greenColor];
         imageView.image=[UIImage imageNamed:@"home_heart"];
         [view addSubview:imageView];
         
@@ -257,7 +268,7 @@
         
         
         return view;
-        
+
         
     }
     
@@ -294,7 +305,7 @@
         _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height) style:UITableViewStyleGrouped];
         _tableView.delegate=self;
         _tableView.dataSource=self;
-      //  _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+        _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }

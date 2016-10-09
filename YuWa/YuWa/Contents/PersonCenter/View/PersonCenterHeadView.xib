@@ -20,19 +20,13 @@
                 </imageView>
                 <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cN-MF-La4" customClass="defineButton"/>
                 <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pU-Uu-cP6" customClass="defineButton"/>
-                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hY1-qV-DmV" customClass="defineButton">
-                    <state key="normal" title="b'b'b"/>
-                </button>
-                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twS-zz-Ely" customClass="defineButton">
-                    <state key="normal" title="aaa"/>
-                </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hY1-qV-DmV" customClass="defineButton"/>
                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yellowbee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWp-Y2-7N6">
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-no-za9">
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="center_whiteLocate.png" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-no-za9">
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="8be-17-KR8"/>
                         <constraint firstAttribute="width" constant="15" id="oBZ-qN-lUs"/>
@@ -43,7 +37,22 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzq-vE-cco">
+                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twS-zz-Ely" customClass="defineButton"/>
+                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBd-XM-eJy">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="kqA-ju-MUG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="加好友"/>
+                </button>
+                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jU-pQ-oxe">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="bLv-bv-T6J"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="取消关注"/>
+                </button>
+                <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzq-vE-cco">
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="koZ-dJ-o8U"/>
                         <constraint firstAttribute="height" constant="25" id="mf5-S4-Bqu"/>
@@ -61,10 +70,12 @@
                 <constraint firstItem="TDi-yf-M8K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="Dy3-nQ-T97"/>
                 <constraint firstItem="hY1-qV-DmV" firstAttribute="height" secondItem="8pU-Uu-cP6" secondAttribute="height" id="Ebi-n0-XF8"/>
                 <constraint firstItem="OWp-Y2-7N6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Eh7-9Z-Qqz"/>
+                <constraint firstItem="mBd-XM-eJy" firstAttribute="centerY" secondItem="td7-VC-TxW" secondAttribute="centerY" id="Ipf-yx-pOf"/>
                 <constraint firstItem="7cN-MF-La4" firstAttribute="leading" secondItem="8pU-Uu-cP6" secondAttribute="trailing" id="KI5-tu-Lc7"/>
                 <constraint firstItem="CAn-no-za9" firstAttribute="top" secondItem="OWp-Y2-7N6" secondAttribute="bottom" constant="12" id="Ma1-n6-Rfn"/>
                 <constraint firstItem="OWp-Y2-7N6" firstAttribute="top" secondItem="TDi-yf-M8K" secondAttribute="bottom" constant="20" id="Omq-L9-DS9"/>
-                <constraint firstItem="7cN-MF-La4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="65" id="RfC-ob-K4S"/>
+                <constraint firstAttribute="trailing" secondItem="mBd-XM-eJy" secondAttribute="trailing" constant="20" id="P34-AA-7vn"/>
+                <constraint firstItem="7cN-MF-La4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="RfC-ob-K4S"/>
                 <constraint firstItem="7cN-MF-La4" firstAttribute="centerY" secondItem="8pU-Uu-cP6" secondAttribute="centerY" id="S8L-Tw-sIe"/>
                 <constraint firstItem="CAn-no-za9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="UMt-v7-zLY"/>
                 <constraint firstItem="hY1-qV-DmV" firstAttribute="centerY" secondItem="twS-zz-Ely" secondAttribute="centerY" id="Uf1-SJ-PwY"/>
@@ -76,14 +87,19 @@
                 <constraint firstItem="twS-zz-Ely" firstAttribute="width" secondItem="hY1-qV-DmV" secondAttribute="width" id="gcE-4Q-hFh"/>
                 <constraint firstItem="8pU-Uu-cP6" firstAttribute="leading" secondItem="hY1-qV-DmV" secondAttribute="trailing" id="gwu-Ev-jbh"/>
                 <constraint firstItem="hY1-qV-DmV" firstAttribute="leading" secondItem="twS-zz-Ely" secondAttribute="trailing" id="hol-pa-V3M"/>
+                <constraint firstItem="0jU-pQ-oxe" firstAttribute="centerY" secondItem="td7-VC-TxW" secondAttribute="centerY" id="m3v-oG-Kxv"/>
                 <constraint firstItem="hY1-qV-DmV" firstAttribute="width" secondItem="8pU-Uu-cP6" secondAttribute="width" id="pjj-BU-YXG"/>
                 <constraint firstItem="td7-VC-TxW" firstAttribute="leading" secondItem="CAn-no-za9" secondAttribute="trailing" constant="3" id="rSt-fK-Mmn"/>
+                <constraint firstItem="mBd-XM-eJy" firstAttribute="leading" secondItem="0jU-pQ-oxe" secondAttribute="trailing" constant="20" id="sT5-UC-tp0"/>
                 <constraint firstItem="td7-VC-TxW" firstAttribute="centerY" secondItem="CAn-no-za9" secondAttribute="centerY" id="tJt-gP-rpR"/>
                 <constraint firstItem="twS-zz-Ely" firstAttribute="height" secondItem="hY1-qV-DmV" secondAttribute="height" id="w2G-ww-vjs"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="14" y="61"/>
+            <point key="canvasLocation" x="181.5" y="-8.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="center_whiteLocate.png" width="32" height="32"/>
+    </resources>
 </document>

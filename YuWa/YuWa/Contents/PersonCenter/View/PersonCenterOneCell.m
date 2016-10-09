@@ -29,24 +29,24 @@
         
         for (int i=0; i<8; i++) {
              imageDefineButton *button=[[imageDefineButton alloc]init];
-            button.tag=i;
-//            button.backgroundColor=[UIColor greenColor];
-           
-            CGFloat initial =375/kScreen_Width*65;
-            CGFloat add =375/kScreen_Width*85;
+            button.tag=i+200;
+
+            CGFloat buttonWith=kScreen_Width/4;
+            CGFloat buttonHeight=70;
+            
             
             
             if (i<4) {
-                [button setSize:CGSizeMake(65, 65)];
+                [button setSize:CGSizeMake(buttonWith, buttonHeight)];
                 [button setY:12];
-                [button setCenterX:initial+add*i];
+                [button setX:buttonWith*i];
 //
              
                 
             }else{
-                 [button setSize:CGSizeMake(65, 65)];
-                [button setY:12+65+12];
-                [button setCenterX:initial+add*(i-4)];
+                 [button setSize:CGSizeMake(buttonWith, buttonHeight)];
+                [button setY:12+buttonHeight];
+                [button setX:buttonWith*(i-4)];
                
 
                 
