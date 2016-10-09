@@ -8,6 +8,7 @@
 
 #import "RBNodeShowViewController.h"
 #import "YWOtherSeePersonCenterViewController.h"
+#import "YWNodeAddAldumViewController.h"
 #import "RBNodeCollectionToAldumView.h"
 #import "RBNodeShowModel.h"
 
@@ -64,7 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
-    if (self.addToAldumView) {
+    if (self.addToAldumView && [[UserSession instance].aldumCount integerValue]!=self.addToAldumView.dataArr.count) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
             [self.addToAldumView aldumReload];
         });
@@ -150,14 +151,11 @@
         };
         self.addToAldumView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Height);
         self.addToAldumView.addToAlbumBlock = ^(NSInteger aldumIdx){
-//            weakSelf.dataModel.infavs = [NSString stringWithFormat:@"%zi",isCollection];
-//            weakSelf.dataModel.fav_count = [NSString stringWithFormat:@"%zi",isCollection == YES?([weakSelf.dataModel.fav_count integerValue] + 1):([weakSelf.dataModel.fav_count integerValue] - 1)];
-//            [weakSelf reSetBottomToolsView];
             [weakSelf requestAddToAldumWithIdx:[NSString stringWithFormat:@"%zi",aldumIdx]];
         };
         self.addToAldumView.newAlbumBlock = ^(){
-            //23333333添加专辑
-            MyLog(@"添加专辑");
+            YWNodeAddAldumViewController * vc = [[YWNodeAddAldumViewController alloc]init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         };
     }
     [[UIApplication sharedApplication].keyWindow addSubview:self.addToAldumView];

@@ -74,7 +74,14 @@
 }
 #pragma mark - Http
 - (void)aldumReload{
-    [self.dataArr addObject:[[RBNodeAddToAldumModel alloc]init]];
+    [self.dataArr removeAllObjects];
+    
+    //233333333要删
+    NSInteger count = [[UserSession instance].aldumCount integerValue] > 0?[[UserSession instance].aldumCount integerValue]:1;
+    for (int i = 0; i<count; i++) {
+        [self.dataArr addObject:[[RBNodeAddToAldumModel alloc]init]];
+    }
+    //233333333要删
     
     [self.tableView reloadData];
 }
