@@ -13,6 +13,7 @@
 
 #import "defineButton.h"
 #import "imageDefineButton.h"
+#import "YJSegmentedControl.h"
 
 
 #import "YWOtherSeePersonCenterViewController.h"   //他人查看别人的个人中心
@@ -30,7 +31,7 @@
 #define HEADERVIEWHEIGHT   195     //头视图的高度
 
 
-@interface VIPPersonCenterViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface VIPPersonCenterViewController()<UITableViewDelegate,UITableViewDataSource,YJSegmentedControlDelegate>
 
 @property(nonatomic,strong)UIView*belowImageViewView;   //图片下面的视图
 @property(nonatomic,strong)UIView*headerView;   //头视图
@@ -102,7 +103,7 @@
 
 #pragma mark  --UI
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
@@ -111,6 +112,7 @@
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:SECTION0CELL];
     if (indexPath.section==0&&indexPath.row==0) {
       PersonCenterZeroCell*  cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+        cell.selectionStyle=NO;
         NSString*str=@"fjlsfjlskjalfjlkjlkajlkworuoiwerjfnvnvn,sfjfsaljfqowhgf\n sfjlajflkjflas;fkjslkfasf\n sfjlasfkj;as";
         cell.titleString=str;
       
@@ -124,6 +126,7 @@
         
         for (int i=0; i<8; i++) {
             imageDefineButton*button=[cell viewWithTag:i+200];
+            [button addTarget:self action:@selector(touchEightButton:) forControlEvents:UIControlEventTouchUpInside];
             button.topImageView.image=[UIImage imageNamed:imageArray[i]];
             button.bottomLabel.text=array[i];
             
@@ -143,6 +146,20 @@
 }
 
 
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section==2) {
+        //4个按钮
+        NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3",@"影评·6"];
+        YJSegmentedControl*view=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
+        return view;
+        
+        
+    }
+    return nil;
+
+    
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0&&indexPath.row==0) {
         NSString*str=@"fjlsfjlskjalfjlkjlkajlkworuoiwerjfnvnvn,sfjfsaljfqowhgf\n sfjlajflkjflas;fkjslkfasf\n sfjlasfkj;as";
@@ -151,12 +168,21 @@
         
     }else if (indexPath.section==1&&indexPath.row==0){
         return 157;
+    }else if (indexPath.section==2&&indexPath.row==0){
+        //分所选的区域的
+        return 200;
+        
+        
     }
     return 44;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==2) {
+        return 44;
+    }
     return 0.01;
+
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
@@ -274,6 +300,65 @@
 -(void)touchPersonInfo{
     YWPersonInfoViewController*vc=[[YWPersonInfoViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+//八个按钮
+-(void)touchEightButton:(imageDefineButton*)sender{
+    NSInteger number=sender.tag-200;
+    MyLog(@"%lu",number);
+    switch (number) {
+        case 0:
+            //钱包
+            
+            break;
+        case 1:
+            //优惠券
+            
+            break;
+
+        case 2:
+            //雨娃宝宝
+            
+            break;
+
+        case 3:
+            //商务会员
+            
+            break;
+
+        case 4:
+            //我的订单
+            
+            break;
+
+        case 5:
+            //收藏
+            
+            break;
+
+        case 6:
+            //消费记录
+            
+            break;
+
+        case 7:
+            //通知
+            
+            break;
+
+            
+        default:
+            break;
+    }
+    
+    
+}
+
+#pragma mark  --delegate
+//第几个选项卡
+-(void)segumentSelectionChange:(NSInteger)selection{
+    MyLog(@"%ld",(long)selection);
     
 }
 

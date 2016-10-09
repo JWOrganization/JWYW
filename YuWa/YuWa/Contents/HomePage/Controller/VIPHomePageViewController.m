@@ -14,7 +14,8 @@
 
 #import "SDCycleScrollView.h"
 #import "HomeMenuCell.h"   
-#import "HomeSixChooseTableViewCell.h"
+//#import "HomeSixChooseTableViewCell.h"
+#import "ShoppingTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
 
 
@@ -25,7 +26,8 @@
 
 
 #define CELL0   @"HomeMenuCell"
-#define CELL1   @"HomeSixChooseTableViewCell"
+//#define CELL1   @"HomeSixChooseTableViewCell"
+#define CELL1   @"ShoppingTableViewCell"
 #define CELL2   @"YWMainShoppingTableViewCell"
 
 @interface VIPHomePageViewController()<UITableViewDelegate,UITableViewDataSource,HomeMenuCellDelegate,SDCycleScrollViewDelegate>
@@ -43,7 +45,8 @@
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    [self.tableView registerClass:[HomeSixChooseTableViewCell class] forCellReuseIdentifier:CELL1];
+    [self.tableView registerClass:[ShoppingTableViewCell class] forCellReuseIdentifier:CELL1];
+//    [self.tableView registerClass:[HomeSixChooseTableViewCell class] forCellReuseIdentifier:CELL1];
    // [self.tableView registerClass:[YWMainShoppingTableViewCell class] forCellReuseIdentifier:CELL2];
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
     [self setUpMJRefresh];
@@ -169,31 +172,33 @@
         
     }else if (indexPath.section==1){
         //6个 推荐位
-        HomeSixChooseTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+//        HomeSixChooseTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+//        cell.selectionStyle=NO;
+//        
+//        NSArray*array1=@[@"沙县大酒店",@"兰州拉面",@"黄焖鸡米饭",@"KFC",@"麦当劳",@"炒菜店"];
+//        NSArray*array2=@[@"蒸饺",@"拉面",@"鸡米饭",@"肯打鸡外带全家桶",@"麦乐鸡块",@"虎皮青椒"];
+//        for (int i=0; i<6; i++) {
+//            UILabel*mainLabel=[cell viewWithTag:100+i];
+//            mainLabel.text=array1[i];
+//            
+//            UILabel*subLabel=[cell viewWithTag:1000+i];
+//            subLabel.text=array2[i];
+//            
+//            UIImageView*imageView=[cell viewWithTag:10000+i];
+//            imageView.backgroundColor=[UIColor greenColor];
+//        }
+//        
+//        cell.sixChooseBlock=^(NSInteger number){
+//            MyLog(@"aaa %lu",number);
+//            YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        };
+        
+        ShoppingTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
         
-        NSArray*array1=@[@"沙县大酒店",@"兰州拉面",@"黄焖鸡米饭",@"KFC",@"麦当劳",@"炒菜店"];
-        NSArray*array2=@[@"蒸饺",@"拉面",@"鸡米饭",@"肯打鸡外带全家桶",@"麦乐鸡块",@"虎皮青椒"];
-        for (int i=0; i<6; i++) {
-            UILabel*mainLabel=[cell viewWithTag:100+i];
-            mainLabel.text=array1[i];
             
-            UILabel*subLabel=[cell viewWithTag:1000+i];
-            subLabel.text=array2[i];
-            
-            UIImageView*imageView=[cell viewWithTag:10000+i];
-            imageView.backgroundColor=[UIColor greenColor];
-        }
-        
-        cell.sixChooseBlock=^(NSInteger number){
-            MyLog(@"aaa %lu",number);
-            YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
 
-            
-            
-            
-        };
         
         return cell;
         

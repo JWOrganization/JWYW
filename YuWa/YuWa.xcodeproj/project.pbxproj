@@ -542,6 +542,9 @@
 		C1C09FB11DA9DDB9005D9B89 /* home_xiaofeijilu.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C09FA71DA9DDB9005D9B89 /* home_xiaofeijilu.png */; };
 		C1C09FB21DA9DDB9005D9B89 /* home_youhuijuan.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C09FA81DA9DDB9005D9B89 /* home_youhuijuan.png */; };
 		C1C09FB31DA9DDB9005D9B89 /* home_yuwa.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C09FA91DA9DDB9005D9B89 /* home_yuwa.png */; };
+		C1C09FB91DAA3729005D9B89 /* ShoppingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C09FB81DAA3729005D9B89 /* ShoppingTableViewCell.m */; };
+		C1C09FBD1DAA3D92005D9B89 /* ShoppingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C09FBB1DAA3D92005D9B89 /* ShoppingCollectionViewCell.m */; };
+		C1C09FBE1DAA3D92005D9B89 /* ShoppingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C09FBC1DAA3D92005D9B89 /* ShoppingCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1510,6 +1513,11 @@
 		C1C09FA71DA9DDB9005D9B89 /* home_xiaofeijilu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_xiaofeijilu.png; sourceTree = "<group>"; };
 		C1C09FA81DA9DDB9005D9B89 /* home_youhuijuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_youhuijuan.png; sourceTree = "<group>"; };
 		C1C09FA91DA9DDB9005D9B89 /* home_yuwa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_yuwa.png; sourceTree = "<group>"; };
+		C1C09FB71DAA3729005D9B89 /* ShoppingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingTableViewCell.h; sourceTree = "<group>"; };
+		C1C09FB81DAA3729005D9B89 /* ShoppingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingTableViewCell.m; sourceTree = "<group>"; };
+		C1C09FBA1DAA3D92005D9B89 /* ShoppingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCollectionViewCell.h; sourceTree = "<group>"; };
+		C1C09FBB1DAA3D92005D9B89 /* ShoppingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCollectionViewCell.m; sourceTree = "<group>"; };
+		C1C09FBC1DAA3D92005D9B89 /* ShoppingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3939,6 +3947,11 @@
 				C1C09F741DA9DCFC005D9B89 /* HomeMenuCell.m */,
 				C1C09F751DA9DCFC005D9B89 /* HomeSixChooseTableViewCell.h */,
 				C1C09F761DA9DCFC005D9B89 /* HomeSixChooseTableViewCell.m */,
+				C1C09FB71DAA3729005D9B89 /* ShoppingTableViewCell.h */,
+				C1C09FB81DAA3729005D9B89 /* ShoppingTableViewCell.m */,
+				C1C09FBA1DAA3D92005D9B89 /* ShoppingCollectionViewCell.h */,
+				C1C09FBB1DAA3D92005D9B89 /* ShoppingCollectionViewCell.m */,
+				C1C09FBC1DAA3D92005D9B89 /* ShoppingCollectionViewCell.xib */,
 				C1C09F771DA9DCFC005D9B89 /* imageButtonView.xib */,
 				C1C09F781DA9DCFC005D9B89 /* JZMTBtnView.h */,
 				C1C09F791DA9DCFC005D9B89 /* JZMTBtnView.m */,
@@ -4179,6 +4192,7 @@
 				B38B2F5D1D8FC83A004D5256 /* EmotionTextKeys.plist in Resources */,
 				B38B2F4E1D8FC83A004D5256 /* 关注的人首页数据.json in Resources */,
 				C1C09FB31DA9DDB9005D9B89 /* home_yuwa.png in Resources */,
+				C1C09FBE1DAA3D92005D9B89 /* ShoppingCollectionViewCell.xib in Resources */,
 				C1C09F451DA9DCF3005D9B89 /* PersonCenterZeroCell.xib in Resources */,
 				B38B2E6C1D8FC3B6004D5256 /* JWBasicViewController.xib in Resources */,
 				B38B2EF61D8FC82F004D5256 /* RBBasicViewController.xib in Resources */,
@@ -4438,6 +4452,7 @@
 				B38B2E381D8FACD8004D5256 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B33A26561D9A68040092CB12 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B3FEBA031D9B64C1003CDEF2 /* YWMessageNotificationViewController.m in Sources */,
+				C1C09FBD1DAA3D92005D9B89 /* ShoppingCollectionViewCell.m in Sources */,
 				B38B2F331D8FC82F004D5256 /* UIBarButtonItem+SettingCustom.m in Sources */,
 				B38B2F261D8FC82F004D5256 /* RBNewAlbumCollectionViewCell.m in Sources */,
 				B38B2F161D8FC82F004D5256 /* RBNodeShowViewController.m in Sources */,
@@ -4521,6 +4536,7 @@
 				B33A26951D9A68040092CB12 /* EaseEmotionManager.m in Sources */,
 				B33A26801D9A68040092CB12 /* PSTCollectionViewUpdateItem.m in Sources */,
 				B38B2F2A1D8FC82F004D5256 /* RBCenterAlbumModel.m in Sources */,
+				C1C09FB91DAA3729005D9B89 /* ShoppingTableViewCell.m in Sources */,
 				C1C09F8D1DA9DCFC005D9B89 /* ChooseOneModel.m in Sources */,
 				B38B2F281D8FC82F004D5256 /* RBNewNodeCollectionViewCell.m in Sources */,
 				C1C09F3E1DA9DCF3005D9B89 /* VIPPersonCenterViewController.m in Sources */,
