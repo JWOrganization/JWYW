@@ -7,6 +7,7 @@
 //
 
 #import "RBNodeDetailImageHeader.h"
+#import "XHTagView.h"
 
 @implementation RBNodeDetailImageHeader
 
@@ -80,8 +81,22 @@
 - (void)clearTmpPics{
     [[SDImageCache sharedImageCache] clearDisk];
     [[SDImageCache sharedImageCache] clearMemory];//可有可无
-    
 }
 
+- (void)setTagArr:(NSArray *)tagArr{
+    if (!tagArr)return;
+    if (_tagArr&&[_tagArr isEqualToArray:tagArr])return;
+    _tagArr = tagArr;
+    //23333333标签模型数组
+    //显示在scrollerView的image上,imaged的tag为pages+1
+}
+
+- (void)tagViewmakeWithTextArr:(NSArray *)textArr withPoint:(CGPoint)point withStyle:(XHTagAnimationStyle)animationStyle{
+    XHTagView * tagView = [[XHTagView alloc]init];
+    tagView.branchTexts = [NSMutableArray arrayWithArray:textArr];
+    tagView.centerLocationPoint = point;
+    tagView.tagAnimationStyle = animationStyle;
+    [tagView showInPoint:point];
+}
 
 @end

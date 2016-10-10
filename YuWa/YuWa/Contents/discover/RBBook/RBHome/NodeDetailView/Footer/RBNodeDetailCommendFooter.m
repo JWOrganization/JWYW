@@ -26,7 +26,6 @@
     self.countLabel.text = [NSString stringWithFormat:@"查看全部%@条评论",commentCount];
 }
 
-
 - (void)tapAction{
     self.viewAllCommentBlock();
 }
