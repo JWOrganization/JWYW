@@ -2472,7 +2472,6 @@
 			children = (
 				B35778B31D996AB80058A998 /* SubView */,
 				B38B2CC01D8FACD8004D5256 /* Controller */,
-				B38B2CC31D8FACD8004D5256 /* Model */,
 				B38B2CC41D8FACD8004D5256 /* View */,
 			);
 			path = storm;
@@ -2483,6 +2482,7 @@
 			children = (
 				B35778A51D99229D0058A998 /* YWStormViewController.h */,
 				B35778A61D99229D0058A998 /* YWStormViewController.m */,
+				B38B2CC31D8FACD8004D5256 /* Model */,
 				B35778A71D99229D0058A998 /* YWStormViewController.xib */,
 			);
 			path = Controller;
@@ -2494,7 +2494,8 @@
 				B35778AD1D9962180058A998 /* YWStormAnnotationModel.h */,
 				B35778AE1D9962180058A998 /* YWStormAnnotationModel.m */,
 			);
-			path = Model;
+			name = Model;
+			path = ../Model;
 			sourceTree = "<group>";
 		};
 		B38B2CC41D8FACD8004D5256 /* View */ = {

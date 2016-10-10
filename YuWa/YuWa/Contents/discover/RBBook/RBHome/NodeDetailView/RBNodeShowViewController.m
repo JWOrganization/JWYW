@@ -100,7 +100,6 @@
         [weakSelf.navigationController pushViewController:vc animated:NO];
     };
 }
-
 #pragma mark - UI Make
 - (void)makeUI{
     self.toolsBottomView = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailBottomView" owner:nil options:nil] firstObject];
@@ -188,6 +187,7 @@
     }
     if (self.dataModel){
         if (!self.imageHeader.imageList)self.imageHeader.imageList = self.dataModel.images_list;
+//        self.imageHeader.tagArr = //2333333333标签数组
         [self.imageHeader refreshWithHeight:_scrollImageHeight];
     }
     return self.imageHeader;
@@ -377,7 +377,6 @@
     //瀑布流数据
     [self requestDataWithPages:0];
 }
-
 - (void)requestDataWithPages:(NSInteger)page{
     [self.tableView.mj_footer endRefreshing];
     NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
@@ -389,7 +388,6 @@
     [self.tableView reloadData];
     self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
 }
-
 - (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
     MyLog(@"添加到专辑%@",aldumIdx);//23333333333
     if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {

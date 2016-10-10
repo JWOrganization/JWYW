@@ -237,7 +237,7 @@
     NSMutableArray * dataArr = self.tagSaveArr[self.imagePage];
     tagView.branchTexts = [NSMutableArray arrayWithArray:tagArr];
     tagView.tag = 1009;
-    tagView.tagAnimationStyle = XHTagAnimationStyleAllRight;
+//    tagView.tagAnimationStyle = XHTagAnimationStyleAllRight;
     tagView.centerLocationPoint = point;
     tagView.tagAnimationStyle = animationStyle;
     [dataArr addObject:tagView];
