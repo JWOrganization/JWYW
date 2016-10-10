@@ -1,14 +1,14 @@
 //
-//  DetailStoreFirstTableViewCell.m
+//  TwoLabelShowTableViewCell.m
 //  YuWa
 //
-//  Created by 黄佳峰 on 16/9/23.
+//  Created by 黄佳峰 on 16/10/10.
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
-#import "DetailStoreFirstTableViewCell.h"
+#import "TwoLabelShowTableViewCell.h"
 
-@implementation DetailStoreFirstTableViewCell
+@implementation TwoLabelShowTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -19,12 +19,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-- (IBAction)touchPay:(UIButton *)sender {
-    if (self.touchPayBlock) {
-        self.touchPayBlock();
-    }
-    
 }
 
 @end

@@ -10,4 +10,5 @@
 
 @interface PaytheBillView : UIView
 
+@property(nonatomic,strong)void(^touchPayBlock)();
 @end

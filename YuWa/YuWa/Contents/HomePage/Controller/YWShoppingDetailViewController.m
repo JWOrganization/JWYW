@@ -16,6 +16,8 @@
 #import "StoreDescriptionTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
 
+#import "YWPayViewController.h"    //优惠买单
+
 
 #define CELL0   @"DetailStoreFirstTableViewCell"
 #define CELL1   @"DetailStorePreferentialTableViewCell"
@@ -58,7 +60,23 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
+    //需要判断 当前的naviBar 是否显示
+   CGFloat offset_Y= self.tableView.contentOffset.y;
+//    MyLog(@"xxx%f",aa);
+//    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
+    
+    
+    if (offset_Y>=0&&offset_Y<=HeaderHeight-64) {
+        CGFloat number=HeaderHeight-64;
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:offset_Y/number];
+        
+        
+        
+    }else if (offset_Y>=HeaderHeight-64){
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
+        
+    }
+
     
 }
 
@@ -169,7 +187,13 @@
     }
     
     if (indexPath.section==0) {
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+       DetailStoreFirstTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+        WEAKSELF;
+        cell.touchPayBlock=^(){
+            //点击支付
+              [weakSelf gotoPay];
+        };
+        
         cell.selectionStyle=NO;
         return cell;
         
@@ -452,6 +476,11 @@
     
 }
 
+-(void)gotoPay{
+    MyLog(@"pay");
+    YWPayViewController*vc=[[YWPayViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark  --  set
 -(UITableView *)tableView{
@@ -468,6 +497,11 @@
     if (!_topView) {
         _topView=[[NSBundle mainBundle]loadNibNamed:@"PaytheBillView" owner:nil options:nil].firstObject;
         _topView.frame=CGRectMake(0, 64, kScreen_Width, 65);
+        WEAKSELF;
+        _topView.touchPayBlock=^(){
+            [weakSelf gotoPay];
+            
+        };
         [self.view addSubview:_topView];
         
     }

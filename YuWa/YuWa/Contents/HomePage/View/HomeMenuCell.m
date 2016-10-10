@@ -81,7 +81,7 @@
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 160, kScreen_Width, 20)];
 //        _pageControl.centerX=kScreen_Width/2;
 //        [_pageControl setCenterX:kScreen_Width/2];
-        _pageControl.backgroundColor=[UIColor blueColor];
+//        _pageControl.backgroundColor=[UIColor blueColor];
         _pageControl.currentPage = 0;
         _pageControl.numberOfPages = 2;
 //        self.backgroundColor = [UIColor redColor];
@@ -93,7 +93,12 @@
     return self;
 }
 
-
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    _pageControl.frame=CGRectMake(kScreen_Width/2-20, 160, 40,20);
+    
+    
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -10,4 +10,5 @@
 
 @interface DetailStoreFirstTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)void(^touchPayBlock)();
 @end

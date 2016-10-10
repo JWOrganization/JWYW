@@ -23,7 +23,7 @@
         [_topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.top);
             make.centerX.mas_equalTo(self.centerX);
-            make.size.mas_equalTo(CGSizeMake(40, 40));
+            make.size.mas_equalTo(CGSizeMake(30, 30));
             
         }];
         
@@ -31,7 +31,7 @@
  
         _bottomLabel=[[UILabel alloc]init];
         _bottomLabel.text=@"优惠券";
-        _bottomLabel.font=[UIFont systemFontOfSize:15];
+        _bottomLabel.font=[UIFont systemFontOfSize:12];
         _bottomLabel.textAlignment=NSTextAlignmentCenter;
         [self addSubview:self.bottomLabel];
         [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
