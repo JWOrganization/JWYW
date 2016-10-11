@@ -54,7 +54,6 @@
         return UITableViewCellEditingStyleDelete;
     }
 }
-
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0)return;
     if (editingStyle ==UITableViewCellEditingStyleDelete){

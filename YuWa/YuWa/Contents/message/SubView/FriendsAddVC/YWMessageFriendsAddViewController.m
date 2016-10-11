@@ -61,12 +61,6 @@
     [friendsRequest enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull requestDic, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.dataArr addObject:[YWMessageFriendAddModel yy_modelWithDictionary:requestDic]];
     }];
-    
-    //要删2333333333
-    for (int i = 0; i<10; i++) {
-        [self.dataArr addObject:[[YWMessageFriendAddModel alloc]init]];
-    }
-    //要删2333333333
 }
 
 - (void)makeUI{
@@ -89,8 +83,15 @@
 - (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     return @"删除";
 }
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self isSearch])
+        return UITableViewCellEditingStyleNone;
+    else {
+        return UITableViewCellEditingStyleDelete;
+    }
+}
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (![self isSearch])return;
+    if ([self isSearch])return;
     if (editingStyle ==UITableViewCellEditingStyleDelete){
         YWMessageFriendAddModel * model = self.dataArr[indexPath.row];
         if ([model.status isEqualToString:@"1"]) {
