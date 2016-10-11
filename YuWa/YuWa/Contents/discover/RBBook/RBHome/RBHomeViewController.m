@@ -129,7 +129,6 @@
     return homeCell;
 }
 
-
 #pragma mark - Collection Refresh
 - (void)setupRefresh{
     
