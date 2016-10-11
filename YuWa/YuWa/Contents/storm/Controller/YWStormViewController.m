@@ -111,6 +111,8 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(nonnull id<MKAnnotation>)annotation{
+    if (![annotation isKindOfClass:[YWStormAnnotationModel class]]) return nil;//用户位置
+    
     YWStormPinAnnotationView * annotationView = (YWStormPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"STORM_PINANNOTATION"];
     if (!annotationView)annotationView = [[YWStormPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"STORM_PINANNOTATION"];
     
@@ -118,6 +120,7 @@
     return annotationView;
 }
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    if (![view isKindOfClass:[YWStormPinAnnotationView class]]) return;
     YWStormPinAnnotationView * annotationView = (YWStormPinAnnotationView *)view;
     MyLog(@"Select %@ AnnotationView",annotationView.model.type);
     YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
