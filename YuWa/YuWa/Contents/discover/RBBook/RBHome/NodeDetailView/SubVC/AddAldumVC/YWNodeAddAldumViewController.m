@@ -35,6 +35,7 @@
     self.navigationItem.rightBarButtonItem =[UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"确认" withTittleColor:[UIColor whiteColor] withTarget:self action:@selector(addAldumAction) forControlEvents:UIControlEventTouchUpInside withWidth:30.f];
 }
 - (void)dataSet{
+    self.isPublic = YES;
     [self.tableView registerNib:[UINib nibWithNibName:ALDUM_TITTLE_CELL bundle:nil] forCellReuseIdentifier:ALDUM_TITTLE_CELL];
     [self.tableView registerNib:[UINib nibWithNibName:ALDUM_SHOW_CELL bundle:nil] forCellReuseIdentifier:ALDUM_SHOW_CELL];
 }

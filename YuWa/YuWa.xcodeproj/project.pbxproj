@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1200AE09FCCFFA5EBD10470F /* libPods-YuWa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC1CC6C89770D83C605851F /* libPods-YuWa.a */; };
+		B301E7CA1DAC86BD0001336E /* YWMessageSearchFriendAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */; };
+		B301E7CB1DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */; };
+		B301E7CE1DAC8C010001336E /* YWMessageSearchFriendAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */; };
 		B31582341D90F8620096C194 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582321D90F8620096C194 /* YWRegisterViewController.m */; };
 		B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582331D90F8620096C194 /* YWRegisterViewController.xib */; };
 		B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */; };
@@ -594,6 +597,11 @@
 
 /* Begin PBXFileReference section */
 		6D91CFB893AA70B1C9A0D506 /* Pods-YuWa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.debug.xcconfig"; sourceTree = "<group>"; };
+		B301E7C71DAC86BD0001336E /* YWMessageSearchFriendAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageSearchFriendAddCell.h; sourceTree = "<group>"; };
+		B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageSearchFriendAddCell.m; sourceTree = "<group>"; };
+		B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageSearchFriendAddCell.xib; sourceTree = "<group>"; };
+		B301E7CC1DAC8C010001336E /* YWMessageSearchFriendAddModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageSearchFriendAddModel.h; sourceTree = "<group>"; };
+		B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageSearchFriendAddModel.m; sourceTree = "<group>"; };
 		B31582311D90F8620096C194 /* YWRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRegisterViewController.h; sourceTree = "<group>"; };
 		B31582321D90F8620096C194 /* YWRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRegisterViewController.m; sourceTree = "<group>"; };
 		B31582331D90F8620096C194 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
@@ -2351,6 +2359,8 @@
 			children = (
 				B36C7F121D9D1DE900B022E0 /* YWMessageFriendAddModel.h */,
 				B36C7F131D9D1DE900B022E0 /* YWMessageFriendAddModel.m */,
+				B301E7CC1DAC8C010001336E /* YWMessageSearchFriendAddModel.h */,
+				B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3685,6 +3695,9 @@
 				B36C7F031D9D0C8900B022E0 /* YWMessageFriendAddCell.h */,
 				B36C7F051D9D0C8900B022E0 /* YWMessageFriendAddCell.m */,
 				B36C7F041D9D0C8900B022E0 /* YWMessageFriendAddCell.xib */,
+				B301E7C71DAC86BD0001336E /* YWMessageSearchFriendAddCell.h */,
+				B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */,
+				B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */,
 				B3FEB9FA1D9B6465003CDEF2 /* YWMessageTableViewCell.h */,
 				B3FEB9FB1D9B6465003CDEF2 /* YWMessageTableViewCell.m */,
 				B3FEB9FC1D9B6465003CDEF2 /* YWMessageTableViewCell.xib */,
@@ -4433,6 +4446,7 @@
 				B34BCE131DAA811C001AB98D /* YWNodeAddAldumTitleTableViewCell.xib in Resources */,
 				C14F54251D94303F00A6C1E0 /* icon_homepage_search.png in Resources */,
 				B35778B91D996B0B0058A998 /* YWStormSearchViewController.xib in Resources */,
+				B301E7CB1DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib in Resources */,
 				C1C09F9D1DA9DCFC005D9B89 /* YWMainShoppingTableViewCell.xib in Resources */,
 				B3AE4D731D91302B000A389F /* TZImagePickerController.bundle in Resources */,
 				B38B2F1D1D8FC82F004D5256 /* RBHomeViewController.xib in Resources */,
@@ -4607,6 +4621,7 @@
 				B36C7F6D1D9E0DF100B022E0 /* YWMessageNotificationModel.m in Sources */,
 				B38B2EFB1D8FC82F004D5256 /* RBHomeListImagesModel.m in Sources */,
 				B3FEBA0B1D9B71D4003CDEF2 /* YWPayNotificationTableView.m in Sources */,
+				B301E7CE1DAC8C010001336E /* YWMessageSearchFriendAddModel.m in Sources */,
 				B33A26911D9A68040092CB12 /* EaseMessageReadManager.m in Sources */,
 				C14F87D01DAB380C00406AC8 /* YWPayViewController.m in Sources */,
 				B38B2E211D8FACD8004D5256 /* MJChiBaoZiHeader.m in Sources */,
@@ -4840,6 +4855,7 @@
 				B38B2F1E1D8FC82F004D5256 /* RBHomeSearchViewController.m in Sources */,
 				B33A268F1D9A68040092CB12 /* EaseChineseToPinyin.m in Sources */,
 				B38B2E261D8FACD8004D5256 /* MJRefreshConst.m in Sources */,
+				B301E7CA1DAC86BD0001336E /* YWMessageSearchFriendAddCell.m in Sources */,
 				B38B2F091D8FC82F004D5256 /* RBNodeDetailHeader.m in Sources */,
 				B33A26931D9A68040092CB12 /* EaseEmojiEmoticons.m in Sources */,
 				B33A26891D9A68040092CB12 /* EaseUserModel.m in Sources */,
