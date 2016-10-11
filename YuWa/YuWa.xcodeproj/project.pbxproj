@@ -2492,8 +2492,8 @@
 			children = (
 				B35778A51D99229D0058A998 /* YWStormViewController.h */,
 				B35778A61D99229D0058A998 /* YWStormViewController.m */,
-				B38B2CC31D8FACD8004D5256 /* Model */,
 				B35778A71D99229D0058A998 /* YWStormViewController.xib */,
+				B38B2CC31D8FACD8004D5256 /* Model */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

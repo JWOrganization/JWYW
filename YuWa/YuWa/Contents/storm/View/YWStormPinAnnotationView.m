@@ -25,7 +25,9 @@
 - (void)setModel:(YWStormAnnotationModel *)model{
     if (!model)return;
     _model = model;
-    
+    CGPoint centerTemp = self.center;
+    self.frame = CGRectMake(self.x, self.y, 50.f, 50.f);
+    self.center = centerTemp;
     [self.showImageView sd_setImageWithURL:[NSURL URLWithString:@"23333333"] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:nil];
 }
 
