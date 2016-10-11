@@ -48,11 +48,7 @@
     return @"删除";
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0)
-        return UITableViewCellEditingStyleNone;
-    else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    return indexPath.section == 0?UITableViewCellEditingStyleNone:UITableViewCellEditingStyleDelete;
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0)return;

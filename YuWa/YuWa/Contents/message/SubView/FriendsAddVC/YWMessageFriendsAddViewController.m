@@ -84,11 +84,7 @@
     return @"删除";
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self isSearch])
-        return UITableViewCellEditingStyleNone;
-    else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    return [self isSearch]?UITableViewCellEditingStyleNone:UITableViewCellEditingStyleDelete;
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self isSearch])return;
@@ -141,15 +137,6 @@
 }
 
 #pragma mark- UITextFieldDelegate
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-//    if ([textField.text isEqualToString:@""]){
-//        [textField resignFirstResponder];
-//        return NO;
-//    }
-////    [self selectLocationWithLocation:textField.text];
-//    return YES;
-//}
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tableView scrollsToTop];
