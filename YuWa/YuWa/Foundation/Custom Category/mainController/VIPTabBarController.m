@@ -36,19 +36,19 @@
 -(void)addChildViewControllers{
    
     VIPHomePageViewController*vc=[[VIPHomePageViewController alloc]init];
-    [self addChildVC:vc withTitle:@"首页" withImage:@"home-hotel--pre" withSelectedImage:@"home-find"];
+    [self addChildVC:vc withTitle:@"首页" withImage:@"home_0_nomal" withSelectedImage:@"home_0_selected"];
     
     RBHomeViewController*vcDiscover=[[RBHomeViewController alloc]init];
-    [self addChildVC:vcDiscover withTitle:@"发现" withImage:@"home-hotel--pre" withSelectedImage:@"home-find"];
+    [self addChildVC:vcDiscover withTitle:@"发现" withImage:@"home_1_nomal" withSelectedImage:@"home_1_selected"];
     
     YWStormViewController*vcStorm=[[YWStormViewController alloc]init];
-    [self addChildVC:vcStorm withTitle:@"旋风" withImage:@"home-hotel--pre" withSelectedImage:@"home-find"];
-
+    [self addChildVC:vcStorm withTitle:@"旋风" withImage:@"home_2_nomal" withSelectedImage:@"home_2_selected"];
+    
     YWMessageViewController*vcMessage=[[YWMessageViewController alloc]init];
-    [self addChildVC:vcMessage withTitle:@"消息" withImage:@"home-hotel--pre" withSelectedImage:@"home-find"];
-
+    [self addChildVC:vcMessage withTitle:@"消息" withImage:@"home_3_nomal" withSelectedImage:@"home_3_selected"];
+    
     VIPPersonCenterViewController*vcPerson=[[VIPPersonCenterViewController alloc]init];
-    [self addChildVC:vcPerson withTitle:@"个人中心" withImage:@"home-mine" withSelectedImage:@"home-mine-pre"];
+    [self addChildVC:vcPerson withTitle:@"个人中心" withImage:@"home_4_nomal" withSelectedImage:@"home_4_selected"];
     
     
     
