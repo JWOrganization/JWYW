@@ -72,6 +72,7 @@
     }
 }
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     if (self.addToAldumView){
         [self.addToAldumView removeFromSuperview];
         self.addToAldumView = nil;
