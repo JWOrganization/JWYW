@@ -32,6 +32,10 @@
 
 @interface VIPHomePageViewController()<UITableViewDelegate,UITableViewDataSource,HomeMenuCellDelegate,SDCycleScrollViewDelegate>
 @property(nonatomic,strong)UITableView*tableView;
+@property(nonatomic,strong)UIView*centerView;   //导航栏上的view
+@property(nonatomic,strong)UIBarButtonItem*leftItem;
+@property(nonatomic,strong)UIBarButtonItem*rightItem;
+@property(nonatomic,strong)UIBarButtonItem*rightItem2;
 
 
 @property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
@@ -42,6 +46,9 @@
 -(void)viewDidLoad{
     
     [self getDatas];
+    
+    [self makeNaviBar];
+    
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -67,6 +74,84 @@
     
     
 }
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    MyLog(@"%f",scrollView.contentOffset.y);
+//     self.centerView.transform=CGAffineTransformMakeScale(1.0, 1.0);
+    if (scrollView.contentOffset.y>0) {
+       
+        if (self.centerView.width !=kScreen_Width- 40.f) {
+            self.navigationItem.leftBarButtonItem = nil;
+            self.navigationItem.rightBarButtonItems=nil;
+            [UIView animateWithDuration:0.25 animations:^{
+                //            self.centerView.transform=CGAffineTransformMakeScale(1.2, 1.2);
+                self.centerView.width=kScreen_Width- 40.f;
+                
+            }];
+        }
+        
+    }else if (scrollView.contentOffset.y<0){
+        if (self.centerView.width!=kScreen_Width/2) {
+            self.navigationItem.leftBarButtonItem = self.leftItem;
+            self.navigationItem.rightBarButtonItems=@[self.rightItem2,self.rightItem];
+            
+            [UIView animateWithDuration:0.25 animations:^{
+                //         self.centerView.transform=CGAffineTransformMakeScale(1.0, 1.0);
+                self.centerView.width=kScreen_Width/2;
+                
+            }];
+
+        }
+        
+        
+        
+
+        
+    }
+
+    
+}
+
+-(void)makeNaviBar{
+    UIButton*buttonTitle=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 25)];
+    buttonTitle.titleLabel.font=[UIFont systemFontOfSize:14];
+    [buttonTitle setTitle:@"泉州市" forState:UIControlStateNormal];
+    [buttonTitle setImage:[UIImage imageNamed:@"page_downArr"] forState:UIControlStateNormal];
+    [buttonTitle addTarget:self action:@selector(touchNaviCity) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem*leftItem=[[UIBarButtonItem alloc]initWithCustomView:buttonTitle];
+    //变换两者的位置
+    [buttonTitle setTitleEdgeInsets:UIEdgeInsetsMake(0, -buttonTitle.imageView.bounds.size.width, 0, buttonTitle.imageView.bounds.size.width)];
+    [buttonTitle setImageEdgeInsets:UIEdgeInsetsMake(0, buttonTitle.titleLabel.bounds.size.width, 0, -buttonTitle.titleLabel.bounds.size.width)];
+    
+    
+    UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [button setBackgroundImage:[UIImage imageNamed:@"page_saomiao"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(touchSaomiao) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem*rightItem=[[UIBarButtonItem alloc]initWithCustomView:button];
+    
+    UIButton*button2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [button2 setBackgroundImage:[UIImage imageNamed:@"page_lingdang"] forState:UIControlStateNormal];
+    [button2 addTarget:self action:@selector(touchLingdang) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem*rightItem2=[[UIBarButtonItem alloc]initWithCustomView:button2];
+    
+    self.navigationItem.leftBarButtonItem=leftItem;
+    self.navigationItem.rightBarButtonItems=@[rightItem2,rightItem];
+    
+    UIView*centerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width/2, 20)];
+    centerView.backgroundColor=[UIColor whiteColor];
+    centerView.layer.cornerRadius=6;
+    self.centerView=centerView;
+    
+    self.navigationItem.titleView=centerView;
+    self.leftItem=leftItem;
+    self.rightItem=rightItem;
+    self.rightItem2=rightItem2;
+    
+    
+    
+    
+}
+
 
 
 
@@ -280,6 +365,22 @@
     return nil;
     
 }
+
+#pragma mark  -- touch
+-(void)touchNaviCity{
+    //城市
+    
+}
+-(void)touchSaomiao{
+    
+    
+}
+
+-(void)touchLingdang{
+    
+    
+}
+
 
 #pragma mark  --delegate
 -(void)DelegateToChooseCategory:(NSInteger)number{

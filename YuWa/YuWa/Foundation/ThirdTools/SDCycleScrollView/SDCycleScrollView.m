@@ -69,7 +69,7 @@ NSString * const ID = @"cycleCell";
     SDCycleScrollView *cycleScrollView = [[self alloc] initWithFrame:frame];
     cycleScrollView.imagesGroup = imagesGroup;
     cycleScrollView.placeholder=placeholder;
-    NSLog(@"%@",NSStringFromCGRect(frame));
+//    NSLog(@"%@",NSStringFromCGRect(frame));
     return cycleScrollView;
 }
 
@@ -80,7 +80,7 @@ NSString * const ID = @"cycleCell";
     [super setFrame:frame];
     
     _flowLayout.itemSize = self.frame.size;
-    NSLog(@"%@",NSStringFromCGSize(_flowLayout.itemSize));
+//    NSLog(@"%@",NSStringFromCGSize(_flowLayout.itemSize));
 }
 
 - (void)setAutoScrollTimeInterval:(CGFloat)autoScrollTimeInterval

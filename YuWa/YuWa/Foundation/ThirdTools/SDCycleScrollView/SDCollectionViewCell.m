@@ -60,7 +60,7 @@
     [super layoutSubviews];
     
     _imageView.frame = self.bounds;
-    NSLog(@"%@",NSStringFromCGRect(self.frame));
+//    NSLog(@"%@",NSStringFromCGRect(self.frame));
     _imageView.frame=CGRectMake(0, 0, _imageView.frame.size.width, _imageView.frame.size.height);
     
     CGFloat titleLabelW = self.sd_width;
