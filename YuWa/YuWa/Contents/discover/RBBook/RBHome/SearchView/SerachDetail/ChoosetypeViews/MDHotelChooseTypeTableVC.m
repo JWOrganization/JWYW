@@ -53,15 +53,15 @@
     typeCell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == self.selectIndex) {
         typeCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        typeCell.tintColor = CtitleColor;
-        typeCell.textLabel.textColor = CtitleColor;
+        typeCell.tintColor = CNaviColor;
+        typeCell.textLabel.textColor = CNaviColor;
     }else{
         typeCell.accessoryType = UITableViewCellAccessoryNone;
         typeCell.textLabel.textColor = CsubtitleColor;
     }
     typeCell.textLabel.text = self.dataArr[indexPath.row];
     typeCell.textLabel.font = [UIFont systemFontOfSize:15.f];
-    typeCell.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    typeCell.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
     if (![typeCell viewWithTag:10086]) {
         UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 29.f, kScreen_Width, 1.f)];
         lineView.backgroundColor = [UIColor colorWithHexString:@"#d6d6d6"];

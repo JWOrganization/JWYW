@@ -7,6 +7,7 @@
 //
 
 #import "YWStormViewController.h"
+#import "YWStormSortTableView.h"
 #import "YWStormPinAnnotationView.h"
 #import "YWStormSearchViewController.h"
 #import "YWShoppingDetailViewController.h"
@@ -17,10 +18,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *toMyLocationBtn;
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
+@property (nonatomic,strong)YWStormSortTableView * sortTableView;
 
 @property (nonatomic,strong)CLGeocoder * geocoder;
 
-@property (nonatomic,assign)BOOL isSearch;
+@property (nonatomic,assign)NSInteger type;
+@property (nonatomic,assign)BOOL isSearch;//调用地图请求,仅自动一次
 
 @end
 
@@ -35,6 +38,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.sortTableView removeFromSuperview];
+    [self.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:YES];
 }
 - (CLGeocoder *)geocoder{
     if (!_geocoder) {
@@ -54,15 +62,23 @@
     self.searchBtn.layer.masksToBounds = YES;
     self.locationBtn.layer.cornerRadius = 13.f;
     self.locationBtn.layer.masksToBounds = YES;
-//    self.locationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     self.toMyLocationBtn.layer.cornerRadius = 5.f;
     self.toMyLocationBtn.layer.borderColor = CNaviColor.CGColor;
     self.toMyLocationBtn.layer.borderWidth = 1.f;
     self.toMyLocationBtn.layer.masksToBounds = YES;
     
+    WEAKSELF;
+    
     //设置地图的默认显示区域
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.location.coordinate, 5000, 5000) animated:YES];//下法同
     //    self.mapView.region = MKCoordinateRegionMake([YWLocation shareLocation].coordinate, MKCoordinateSpanMake(0.01, 0.01));
+    
+    self.sortTableView = [[YWStormSortTableView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width, kScreen_Height - 64.f - 49.f) style:UITableViewStylePlain];
+    self.sortTableView.choosedTypeBlock = ^(NSInteger type){
+        weakSelf.type = type;
+        [weakSelf requestAnnotationData];
+        [weakSelf.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:YES];
+    };
 }
 
 - (void)cityNameSetWithStr:(NSString *)locality{
@@ -81,7 +97,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)sortAction{
-    MyLog(@"筛选");
+    [self.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:NO];
+    [self.view addSubview:self.sortTableView];
 }
 
 - (IBAction)toMyLocationBtnAction:(id)sender {
@@ -130,6 +147,8 @@
 
 #pragma mark - Http
 - (void)requestAnnotationData{
+//    self.type//2333333333筛选类型请求参数,要转str类型
+    
     self.isSearch = YES;
     [self.mapView removeAnnotations:self.mapView.annotations];
     //要删233333333
