@@ -15,12 +15,13 @@
 
 #import "ChangeNibNameViewController.h"     //修改昵称
 #import "DatePickerView.h"                //修改时间
+#import "SignatureViewController.h"        //修改个性签名
 
 #define CELL0   @"InfoPhotoTableViewCell"
 #define CELL1   @"InfoChooseTableViewCell"
 #define CELL2   @"InfoSignatureTableViewCell"
 
-@interface YWPersonInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ChangeNibNameViewControllerDelegate>
+@interface YWPersonInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ChangeNibNameViewControllerDelegate,SignatureViewControllerDelegate>
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)DatePickerView*datepicker;
 
@@ -172,6 +173,7 @@
         //昵称
         ChangeNibNameViewController *vc=[[ChangeNibNameViewController alloc]initWithNibName:@"ChangeNibNameViewController" bundle:nil];
         vc.delegate=self;
+        vc.type=TouchTypeNickName;
         [self.navigationController pushViewController:vc animated:YES];
         
         
@@ -181,9 +183,16 @@
         
     }else if (indexPath.row==3){
         //性别
-        
+      
     }else if (indexPath.row==4){
         //常住地
+        ChangeNibNameViewController *vc=[[ChangeNibNameViewController alloc]initWithNibName:@"ChangeNibNameViewController" bundle:nil];
+        vc.delegate=self;
+        vc.type=TouchTypeCity;
+        [self.navigationController pushViewController:vc animated:YES];
+
+        
+        
     }else if (indexPath.row==5){
         //生日
       __block  DatePickerView*datePicker=[[DatePickerView alloc]initWithCustomeHeight:215];
@@ -212,6 +221,11 @@
         
     }else if (indexPath.row==6){
         //个性签名
+        SignatureViewController*vc=[[SignatureViewController alloc]initWithNibName:@"SignatureViewController" bundle:nil];
+        vc.delegate=self;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
     }
     
     
@@ -250,13 +264,35 @@
 }
 
 //修改昵称
--(void)DelegateToChangeNibName:(NSString*)name{
+-(void)DelegateToChangeNibName:(NSString*)name andTouchType:(TouchType)type{
     MyLog(@"%@",name);
-    InfoChooseTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    UILabel*subLabel=[cell viewWithTag:2];
-    subLabel.text=name;
+    if (type==TouchTypeNickName) {
+        //昵称
+        InfoChooseTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        UILabel*subLabel=[cell viewWithTag:2];
+        subLabel.text=name;
 
+    }else{
+        //居住地
+        InfoChooseTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+        UILabel*subLabel=[cell viewWithTag:2];
+        subLabel.text=name;
+
+        
+        
+    }
+    
+    
 }
+
+//修改signature
+-(void)DelegateForGetSignature:(NSString *)string{
+    MyLog(@"%@",string);
+    InfoSignatureTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
+    UILabel*label=[cell viewWithTag:2];
+    label.text=string;
+}
+
 
 #pragma mark  --set
 -(UITableView *)tableView{
