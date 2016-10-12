@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人专辑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZF-RH-2WP">
-                        <rect key="frame" x="50" y="8" width="142" height="33"/>
+                        <rect key="frame" x="50" y="8" width="260" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="jZF-RH-2WP" secondAttribute="trailing" constant="120" id="4Us-EH-Y6D"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jZF-RH-2WP" secondAttribute="trailing" constant="2" id="4Us-EH-Y6D"/>
                     <constraint firstItem="LIl-We-io6" firstAttribute="leading" secondItem="fHo-3W-mb8" secondAttribute="trailing" constant="-8" id="MDG-Oe-A4c"/>
                     <constraint firstAttribute="bottomMargin" secondItem="jZF-RH-2WP" secondAttribute="bottom" id="NUc-z1-4yJ"/>
                     <constraint firstItem="LIl-We-io6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="PgK-Ed-b9O"/>
