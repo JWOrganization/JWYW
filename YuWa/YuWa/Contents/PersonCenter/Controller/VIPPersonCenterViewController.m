@@ -22,6 +22,13 @@
 #import "AccountSettingViewController.h"    //系统设置
 
 
+#import "PCPacketViewController.h"    //钱包
+#import "CouponViewController.h"     //优惠券
+#import "PCMyOrderViewController.h"    //我的订单
+#import "MyFavouriteViewController.h"   //我的收藏
+#import "PCPayRecordViewController.h"   //消费记录
+
+
 
 #define SECTION0CELL  @"cell"
 #define CELL0         @"PersonCenterZeroCell"
@@ -75,6 +82,11 @@
     
     
    }
+
+-(void)viewWillDisappear:(BOOL)animated{
+      [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
+    
+}
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -308,14 +320,20 @@
     NSInteger number=sender.tag-200;
     MyLog(@"%lu",number);
     switch (number) {
-        case 0:
+        case 0:{
             //钱包
+            PCPacketViewController*vc=[[PCPacketViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             
-            break;
-        case 1:
+            
+            break;}
+        case 1:{
             //优惠券
+            CouponViewController*vc=[[CouponViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             
-            break;
+            
+            break;}
 
         case 2:
             //雨娃宝宝
@@ -327,20 +345,26 @@
             
             break;
 
-        case 4:
+        case 4:{
             //我的订单
+            PCMyOrderViewController*vc=[[PCMyOrderViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             
-            break;
+            break;}
 
-        case 5:
+        case 5:{
             //收藏
+            MyFavouriteViewController*vc=[[MyFavouriteViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             
-            break;
+            break;}
 
-        case 6:
+        case 6:{
             //消费记录
+            PCPayRecordViewController*vc=[[PCPayRecordViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             
-            break;
+            break;}
 
         case 7:
             //通知

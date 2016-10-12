@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger,TouchType){
+    TouchTypeNickName=0,
+    TouchTypeCity
+    
+};
+
 @protocol ChangeNibNameViewControllerDelegate <NSObject>
 
--(void)DelegateToChangeNibName:(NSString*)name;
+-(void)DelegateToChangeNibName:(NSString*)name andTouchType:(TouchType)type;
 
 @end
 @interface ChangeNibNameViewController : UIViewController
+@property(nonatomic,assign)TouchType type;
+
 @property(nonatomic,assign)id<ChangeNibNameViewControllerDelegate>delegate;
 @end

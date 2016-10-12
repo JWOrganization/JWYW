@@ -19,13 +19,24 @@
     UIBarButtonItem*item=[[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(touchComplete)];
     self.navigationItem.rightBarButtonItem=item;
     
+    if (self.type==TouchTypeNickName) {
+        UILabel*label=[self.view viewWithTag:1];
+        label.text=@"使用中英文、数字和下划线，昵称一个月只能申请修改一次";
+        
+    }else{
+        UILabel*label=[self.view viewWithTag:1];
+        label.text=@"请输入您所在的城市";
+        
+    }
+    
+    
 }
 
 -(void)touchComplete{
-    if ([self.delegate respondsToSelector:@selector(DelegateToChangeNibName:)]) {
+    if ([self.delegate respondsToSelector:@selector(DelegateToChangeNibName:andTouchType:)]) {
         UITextField*textField=[self.view viewWithTag:2];
         NSString*name=textField.text;
-        [self.delegate DelegateToChangeNibName:name];
+        [self.delegate DelegateToChangeNibName:name andTouchType:self.type];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
