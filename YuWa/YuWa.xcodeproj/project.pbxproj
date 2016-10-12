@@ -29,6 +29,7 @@
 		B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */; };
 		B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */; };
 		B32975CF1DADCF1C002CA488 /* YWStormSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */; };
+		B32975D11DAE1DB1002CA488 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B32975D01DAE1DB1002CA488 /* Photos.framework */; };
 		B33A1BEF1D9A46A40092CB12 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */; };
 		B33A1BF11D9A46B10092CB12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */; };
 		B33A1BF31D9A46B90092CB12 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */; };
@@ -629,6 +630,7 @@
 		B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
 		B32975CD1DADCF1C002CA488 /* YWStormSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSortTableView.h; sourceTree = "<group>"; };
 		B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSortTableView.m; sourceTree = "<group>"; };
+		B32975D01DAE1DB1002CA488 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1603,6 +1605,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32975D11DAE1DB1002CA488 /* Photos.framework in Frameworks */,
 				B33A1BFB1D9A46E90092CB12 /* libz.tbd in Frameworks */,
 				B36C7F241D9D492F00B022E0 /* Security.framework in Frameworks */,
 				B36C7F221D9D492800B022E0 /* UIKit.framework in Frameworks */,
@@ -4187,6 +4190,7 @@
 		EDD1BC4F3FB283CECFE57A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B32975D01DAE1DB1002CA488 /* Photos.framework */,
 				B36C7F231D9D492F00B022E0 /* Security.framework */,
 				B36C7F211D9D492800B022E0 /* UIKit.framework */,
 				B36C7F1F1D9D491F00B022E0 /* Foundation.framework */,
