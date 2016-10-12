@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,8 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="110" height="140"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ICz-3l-Duc">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placehoder_loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="ICz-3l-Duc">
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ICz-3l-Duc" secondAttribute="height" multiplier="1:1" id="e3x-Ex-pTN"/>
                         </constraints>
@@ -40,4 +40,7 @@
             <point key="canvasLocation" x="-126" y="56"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="placehoder_loading.png" width="1024" height="1024"/>
+    </resources>
 </document>

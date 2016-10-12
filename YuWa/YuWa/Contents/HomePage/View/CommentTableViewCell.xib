@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,8 +15,7 @@
                 <frame key="frameInset" width="375" height="169"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eh9-wd-qvw">
-                        <color key="backgroundColor" red="0.19817057481814268" green="0.76078431372549016" blue="0.13029513826607156" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placehoder_loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eh9-wd-qvw">
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="jc3-Na-y8u"/>
                             <constraint firstAttribute="height" constant="40" id="luy-fR-r87"/>
@@ -88,10 +88,11 @@
                     <constraint firstItem="t25-RJ-wsG" firstAttribute="leading" secondItem="hbS-ZW-mfe" secondAttribute="trailing" constant="5" id="wOY-g1-7Yz"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="24.5" y="52"/>
+            <point key="canvasLocation" x="111" y="54"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="home_lightStar.png" width="19" height="19"/>
+        <image name="placehoder_loading.png" width="1024" height="1024"/>
     </resources>
 </document>

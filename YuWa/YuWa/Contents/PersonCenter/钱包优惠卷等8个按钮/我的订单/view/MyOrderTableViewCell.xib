@@ -16,8 +16,7 @@
                 <frame key="frameInset" width="375" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jg4-i4-7hx">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placehoder_loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jg4-i4-7hx">
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="n2p-1M-tDm"/>
                             <constraint firstAttribute="height" constant="38" id="s5Q-aY-kav"/>
@@ -75,7 +74,10 @@
                     <constraint firstAttribute="trailingMargin" secondItem="HyM-rf-AL2" secondAttribute="trailing" constant="10" id="uQO-FG-IB6"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="32.5" y="90"/>
+            <point key="canvasLocation" x="143" y="90"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="placehoder_loading.png" width="1024" height="1024"/>
+    </resources>
 </document>

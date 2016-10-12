@@ -589,6 +589,7 @@
 		C13FE6B81DAE64980085B45E /* 购物.png in Resources */ = {isa = PBXBuildFile; fileRef = C13FE67E1DAE64980085B45E /* 购物.png */; };
 		C13FE6B91DAE64980085B45E /* 运动健身.png in Resources */ = {isa = PBXBuildFile; fileRef = C13FE67F1DAE64980085B45E /* 运动健身.png */; };
 		C13FE6BA1DAE64980085B45E /* 酒店.png in Resources */ = {isa = PBXBuildFile; fileRef = C13FE6801DAE64980085B45E /* 酒店.png */; };
+		C13FE6BC1DAE6E140085B45E /* placehoder_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = C13FE6BB1DAE6E140085B45E /* placehoder_loading.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1633,6 +1634,7 @@
 		C13FE67E1DAE64980085B45E /* 购物.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物.png"; sourceTree = "<group>"; };
 		C13FE67F1DAE64980085B45E /* 运动健身.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "运动健身.png"; sourceTree = "<group>"; };
 		C13FE6801DAE64980085B45E /* 酒店.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "酒店.png"; sourceTree = "<group>"; };
+		C13FE6BB1DAE6E140085B45E /* placehoder_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placehoder_loading.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4297,6 +4299,7 @@
 		C13FE6551DAE64980085B45E /* 首页图 */ = {
 			isa = PBXGroup;
 			children = (
+				C13FE6BB1DAE6E140085B45E /* placehoder_loading.png */,
 				C13FE6561DAE64980085B45E /* back@2x.png */,
 				C13FE6571DAE64980085B45E /* home_grayStar@2x.png */,
 				C13FE6581DAE64980085B45E /* home_halfStar@2x.png */,
@@ -4588,6 +4591,7 @@
 				C13FE6A11DAE64980085B45E /* icon_homepage_downArrow@2x.png in Resources */,
 				B35778A21D98CD8E0058A998 /* JWLocationBasicViewController.xib in Resources */,
 				B3FEBA331D9BE4EE003CDEF2 /* YWMessageNotificationCell.xib in Resources */,
+				C13FE6BC1DAE6E140085B45E /* placehoder_loading.png in Resources */,
 				B38B2F521D8FC83A004D5256 /* 国家 选择币种.json in Resources */,
 				B38B2F041D8FC82F004D5256 /* RBNodeDRecommendTableViewCell.xib in Resources */,
 				C13FE6B51DAE64980085B45E /* 电影.png in Resources */,

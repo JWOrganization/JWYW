@@ -250,7 +250,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 125) imagesGroup:@[@"backImage",@"",@"backImage"] andPlaceholder:@"backImage"];
+        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 125) imagesGroup:@[@"backImage",@"",@"backImage"] andPlaceholder:@"placehoder_loading"];
         sdView.autoScrollTimeInterval=5.0;
         sdView.delegate=self;
         return sdView;

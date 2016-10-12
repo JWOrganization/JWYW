@@ -28,7 +28,9 @@
     
     for (int i=0; i<9; i++) {
         UIImageView*imageView=[[UIImageView alloc]init];
-        imageView.backgroundColor=[UIColor greenColor];
+//        imageView.backgroundColor=[UIColor greenColor];
+        imageView.contentMode=UIViewContentModeScaleAspectFit;
+        imageView.image=[UIImage imageNamed:@"placehoder_loading"];
         imageView.tag=100+i;
         [self.contentView addSubview:imageView];
         imageView.hidden=YES;

@@ -16,8 +16,7 @@
                 <frame key="frameInset" width="375" height="144"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8tA-sV-brn">
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placehoder_loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="8tA-sV-brn">
                         <constraints>
                             <constraint firstAttribute="width" secondItem="8tA-sV-brn" secondAttribute="height" multiplier="1:1" id="QM0-4C-hgI"/>
                             <constraint firstAttribute="width" constant="64" id="rNg-r6-0Bf"/>
@@ -145,12 +144,13 @@
                     <constraint firstItem="te6-Qj-mcP" firstAttribute="centerY" secondItem="DZO-Xt-DRg" secondAttribute="centerY" id="yyg-RW-C6F"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="33.5" y="-20.5"/>
+            <point key="canvasLocation" x="100" y="-12"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="home_lightStar.png" width="19" height="19"/>
         <image name="home_te.png" width="32" height="32"/>
         <image name="home_zhe.png" width="32" height="32"/>
+        <image name="placehoder_loading.png" width="1024" height="1024"/>
     </resources>
 </document>
