@@ -133,7 +133,7 @@
     YWStormPinAnnotationView * annotationView = (YWStormPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"STORM_PINANNOTATION"];
     if (!annotationView)annotationView = [[YWStormPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"STORM_PINANNOTATION"];
     
-    annotationView.model = (YWStormAnnotationModel *)annotation;
+    annotationView.model = (YWStormAnnotationModel *)annotation; 
     return annotationView;
 }
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
