@@ -21,6 +21,9 @@
 @interface YWMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *noLoginBGBtnView;
+@property (nonatomic,strong)UIImageView *noChatBGBtnView;
+
 @property (nonatomic,strong)NSMutableArray * dataArr;
 @property (nonatomic,copy)NSString * pagens;
 @property (nonatomic,assign)NSInteger pages;
@@ -43,12 +46,17 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.view setUserInteractionEnabled:YES];
+    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+    self.noLoginBGBtnView.hidden = YES;
+    if (self.status == 1&&![UserSession instance].isLogin){
+        self.segmentedControl.selectedSegmentIndex = 0;
+    }
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (![UserSession instance].isLogin){
         [self withOutLogion];
+        return;
     }else if(self.status == 0){
         [self headerRereshing];
     }else if (self.status == 1&&self.addressBooktableView) {
@@ -64,6 +72,11 @@
 
 - (void)makeUI{
     self.tableView.alwaysBounceVertical = YES;
+    self.noChatBGBtnView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Height - 64.f - 50.f)];
+    self.noChatBGBtnView.image = [UIImage imageNamed:@"MessageNoChat"];
+    self.noChatBGBtnView.hidden = YES;
+    [self.tableView addSubview:self.noChatBGBtnView];
+    
     [self addressBookMake];
 }
 - (void)makeNavi{
@@ -115,13 +128,21 @@
 }
 
 #pragma mark - Control Action
+- (IBAction)noLoginBGBtnAvtion:(id)sender {
+    if (![UserSession instance].isLogin){
+        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 - (void)withOutLogion{
+    self.noLoginBGBtnView.hidden = NO;
     UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         YWLoginViewController * vc = [[YWLoginViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self.navigationController.view setUserInteractionEnabled:NO];
+        [self.navigationController.navigationBar setUserInteractionEnabled:NO];
     }];
     UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:cancelAction];
@@ -190,6 +211,7 @@
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    self.noChatBGBtnView.hidden = self.dataArr.count == 0?YES:NO;
     return self.dataArr.count;
 }
 
