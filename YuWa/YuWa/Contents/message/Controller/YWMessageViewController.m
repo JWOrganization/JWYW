@@ -211,7 +211,7 @@
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    self.noChatBGBtnView.hidden = self.dataArr.count == 0?YES:NO;
+    self.noChatBGBtnView.hidden = self.dataArr.count != 0?YES:NO;
     return self.dataArr.count;
 }
 
