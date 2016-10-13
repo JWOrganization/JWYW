@@ -12,7 +12,11 @@
 @interface RBCommentToolsView : UIView
 
 @property (nonatomic,copy)void (^connectBlock)();//@关注的用户
+@property (nonatomic,copy)void (^showEmojisBlock)(BOOL);
+
+@property (nonatomic,assign)BOOL isShowEmojis;
 
 @property (weak, nonatomic) IBOutlet UITextField *sendTextField;
+@property (weak, nonatomic) IBOutlet UIButton *emojisBtn;
 
 @end

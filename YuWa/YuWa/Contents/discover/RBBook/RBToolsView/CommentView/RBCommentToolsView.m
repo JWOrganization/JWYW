@@ -11,10 +11,16 @@
 @implementation RBCommentToolsView
 
 - (void)awakeFromNib{
+    
 }
-
 - (IBAction)connectionAction:(id)sender {
     self.connectBlock();
+}
+
+- (IBAction)emojisBtnAction:(id)sender {
+    self.isShowEmojis = !self.isShowEmojis;
+    [self.emojisBtn setImage:[UIImage imageNamed:self.isShowEmojis == YES?@"RBChatBar_keyboard":@"RBChatBar_face"] forState:UIControlStateNormal];
+    self.showEmojisBlock(self.isShowEmojis);
 }
 
 @end

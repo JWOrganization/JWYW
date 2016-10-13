@@ -38,7 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self dataSet];
     [self makeNavi];
     [self setupRefresh];
@@ -152,7 +151,7 @@
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
     NSDictionary * dataDic = [JWTools jsonWithFileName:@"首页数据"];
-//    MyLog(@"%@",dataDic);
+    MyLog(@"%@",dataDic);
     if (page == 0) {
         [self.dataArr removeAllObjects];
         [self.collectionView.mj_header endRefreshing];

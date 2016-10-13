@@ -9,9 +9,12 @@
 #import "RBBasicViewController.h"
 #import "YWLoginViewController.h"
 #import "TZImagePickerController.h"
+#import "JWEmojisKeyBoards.h"
 
 @interface RBBasicViewController ()<UITextFieldDelegate,TZImagePickerControllerDelegate>
 @property (nonatomic,assign)BOOL isRePlayComment;//是否是回复用户评论
+@property (nonatomic,assign)BOOL isShowEmojis;//是否展示表情
+@property (nonatomic,strong)JWEmojisKeyBoards * emojisKeyBoards;
 
 @end
 
@@ -19,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self makeEmojisKeyBoards];
     [self makeCommentToolsView];
 }
 
@@ -37,8 +41,8 @@
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    if (self.commentToolsView.height != 30.f) {
-        self.commentToolsView.frame = CGRectMake(0.f, kScreen_Height - 30.f, kScreen_Width, 30.f);
+    if (self.commentToolsView.height != 44.f) {
+        self.commentToolsView.frame = CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f);
     }
 }
 
@@ -63,8 +67,31 @@
         };
         [weakSelf presentViewController:vc animated:YES completion:nil];
     };
+    self.commentToolsView.showEmojisBlock = ^(BOOL isShowEmojis){
+        weakSelf.isShowEmojis = isShowEmojis;
+        [weakSelf.commentToolsView.sendTextField resignFirstResponder];
+        if (isShowEmojis) {
+//            if (self.commentToolsView.sendTextField.text.length > 0) {
+//                NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.commentToolsView.sendTextField.text];
+//                [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
+//                weakSelf.commentToolsView.sendTextField.text = strTemp;
+//            }
+            
+            weakSelf.commentToolsView.sendTextField.inputView = weakSelf.emojisKeyBoards;
+        }else{
+            weakSelf.commentToolsView.sendTextField.inputView = nil;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.commentToolsView.sendTextField becomeFirstResponder];
+        });
+    };
     self.commentToolsView.sendTextField.delegate = self;
     [self.view addSubview:self.commentToolsView];
+}
+
+- (void)makeEmojisKeyBoards{
+    self.emojisKeyBoards = [[[NSBundle mainBundle]loadNibNamed:@"JWEmojisKeyBoards" owner:nil options:nil]firstObject];
+    
 }
 
 //发笔记
@@ -89,7 +116,7 @@
 - (void)commentActionWithNodeDic:(NSDictionary *)node{
     if (![self isLogin])return;
     self.commentToolsView.hidden = NO;
-    if (self.commentToolsView.y > kScreen_Height - 30.f)self.commentToolsView.y = kScreen_Height - 30.f;
+    if (self.commentToolsView.y > kScreen_Height - 44.f)self.commentToolsView.y = kScreen_Height - 44.f;
     self.commentToolsView.sendTextField.text = @"";
     self.commentToolsView.sendTextField.placeholder = @"添加评论";
     self.isRePlayComment = NO;
@@ -100,7 +127,7 @@
 - (void)commentActionWithUserDic:(NSDictionary *)user{
     if (![self isLogin])return;
     self.commentToolsView.hidden = NO;
-    if (self.commentToolsView.y > kScreen_Height - 30.f)self.commentToolsView.y = kScreen_Height - 30.f;
+    if (self.commentToolsView.y > kScreen_Height - 44.f)self.commentToolsView.y = kScreen_Height - 44.f;
     self.commentToolsView.sendTextField.text = @"";
     self.commentToolsView.sendTextField.placeholder = @"回复 2333333 :";
     self.isRePlayComment = YES;
@@ -143,7 +170,6 @@
     [textField resignFirstResponder];
     return YES;
 }
-
 #pragma mark - Http
 - (void)requestSendComment{
     if (self.isRePlayComment) {

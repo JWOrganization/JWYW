@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "JWTextView.h"
+#import "RBPublishSession.h"
 #import "RBPublicEditorCollectionViewCell.h"
 
 #define PUBLICEDITORCELL @"RBPublicEditorCollectionViewCell"
 @interface RBPublicEditorScrollView : UIScrollView<UITextFieldDelegate>
 
 @property (nonatomic,copy)void (^chooseLocationBlock)();
+@property (nonatomic,copy)void (^editConCancelBlock)();
+@property (nonatomic,strong)RBPublishSession * publishSession;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;

@@ -12,7 +12,7 @@
 #import "RBPublicEditorScrollView.h"
 #import "RBPublicLocationViewController.h"
 
-@interface RBPublicEditorViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface RBPublicEditorViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate>
 
 @property (nonatomic,strong)RBPublicEditorScrollView * scrollView;
 @property (nonatomic,strong)UILongPressGestureRecognizer * longPress;//collectionCell move
@@ -26,13 +26,22 @@
     [self makeNavi];
     [self makeUI];
 }
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [RBPublishSession sharePublishSession].name = self.scrollView.nameTextField.text;
+    [RBPublishSession sharePublishSession].con = self.scrollView.conTextView.text;
+    [RBPublishSession sharePublishSession].location = self.scrollView.locationnameLabel.text;
+}
+
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    self.scrollView.frame = CGRectMake(0.f, 44.f, kScreen_Width, kScreen_Height - 44.f);
+    if (self.scrollView.width != kScreen_Width) {
+        self.scrollView.frame = CGRectMake(0.f, 44.f, kScreen_Width, kScreen_Height - 44.f);
+    }
 }
 
 - (void)makeNavi{
@@ -60,6 +69,9 @@
         };
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
+    self.scrollView.editConCancelBlock = ^(){
+      //表情键盘取消
+    };
     [self.view addSubview:self.scrollView];
     
     UIButton * publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f)];
@@ -67,11 +79,15 @@
     publishBtn.backgroundColor = CNaviColor;
     [publishBtn addTarget:self action:@selector(publishBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:publishBtn];
+    
+    self.commentToolsView.sendTextField.hidden = YES;
 }
 
 - (void)publishBtnAction{
     //数据发布
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [RBPublishSession clearPublish];
+    }];
 }
 
 - (void)backAction{
@@ -191,5 +207,10 @@
     [self.scrollView.collectionView reloadData];
 }
 
+#pragma mark - UITextViewDelegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    //表情键盘出现
+    return YES;
+}
 
 @end
