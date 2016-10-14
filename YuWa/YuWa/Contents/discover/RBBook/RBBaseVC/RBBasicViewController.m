@@ -90,7 +90,17 @@
 }
 
 - (void)makeEmojisKeyBoards{
+    WEAKSELF;
     self.emojisKeyBoards = [[[NSBundle mainBundle]loadNibNamed:@"JWEmojisKeyBoards" owner:nil options:nil]firstObject];
+    self.emojisKeyBoards.sendBlock = ^(){
+        if ([weakSelf.commentToolsView.sendTextField.text isEqualToString:@""]) {
+            [weakSelf showHUDWithStr:@"评论不能为空哟" withSuccess:NO];
+        }else{
+            [weakSelf requestSendComment];
+            [weakSelf.commentToolsView.sendTextField resignFirstResponder];
+        }
+        
+    };
     
 }
 

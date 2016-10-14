@@ -7,20 +7,35 @@
 //
 
 #import "JWEmojisKeyBoards.h"
+#import "JWTools.h"
 
 @implementation JWEmojisKeyBoards
+
+- (instancetype)initWithCoder:(NSCoder *)coder{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self getEmotionArr];
+    }
+    return self;
+}
+
 - (void)awakeFromNib{
     self.frame = CGRectMake(0.f, 0.f, kScreen_Width, 216.f);
 }
 
-/*
- //    NSString * str = [[NSBundle mainBundle] pathForResource:@"EmojisList" ofType:@"plist"];
- //    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:str];
- //    NSLog(@"%@",data);
- NSString * str = [[NSBundle mainBundle] pathForResource:@"EmotionTextKeys" ofType:@"plist"];
- NSMutableArray *data = [[NSMutableArray alloc] initWithContentsOfFile:str];
- NSLog(@"%@",data);
- 
- */
+- (void)getEmotionArr{
+    self.dataArr = [NSMutableArray arrayWithCapacity:0];
+    
+    NSMutableDictionary * faceEmotionDic = [[NSMutableDictionary alloc] initWithContentsOfFile:[JWTools filePathWithFileName:@"EmojisList" ofType:@"plist"]];
+    
+    
+    NSMutableArray * textEmotionArr = [[NSMutableArray alloc] initWithContentsOfFile:[JWTools filePathWithFileName:@"EmotionTextKeys" ofType:@"plist"]];
+}
+
+
+- (IBAction)sendBtnAction:(id)sender {
+    self.sendBlock();
+}
+
 
 @end
