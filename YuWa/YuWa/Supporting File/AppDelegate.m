@@ -89,11 +89,15 @@
      */
     [ShareSDK registerApp:@"17e6aee320f88"
           activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformTypeQQ),
                             @(SSDKPlatformTypeWechat)]
                  onImport:^(SSDKPlatformType platformType){
                      switch (platformType){
                          case SSDKPlatformTypeWechat:
                              [ShareSDKConnector connectWeChat:[WXApi class]];
+                             break;
+                         case SSDKPlatformTypeQQ:
+                             [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
                              break;
                          case SSDKPlatformTypeSinaWeibo:
                              [ShareSDKConnector connectWeibo:[WeiboSDK class]];
@@ -106,7 +110,11 @@
               
               switch (platformType){
                   case SSDKPlatformTypeSinaWeibo:
-                      [appInfo SSDKSetupSinaWeiboByAppKey:@"723980423" appSecret:@"4e06a6b13a4397251de5fe10fc91a4bb" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];
+                      [appInfo SSDKSetupSinaWeiboByAppKey:@"2515778668" appSecret:@"918c341ba8373fc356e1f308c6ee9305" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];
+                      break;
+                      
+                  case SSDKPlatformTypeQQ:
+                      [appInfo SSDKSetupQQByAppId:@"100371282" appKey:@"aed9b0303e3ed1e27bae87c33761161d" authType:SSDKAuthTypeBoth];
                       break;
                   case SSDKPlatformTypeWechat:
                       [appInfo SSDKSetupWeChatByAppId:@"wx5c90f6574f7c66a8" appSecret:@"212f79464ce37def860499ae6f5b0268"];

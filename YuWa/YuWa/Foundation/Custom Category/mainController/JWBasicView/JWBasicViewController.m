@@ -8,6 +8,8 @@
 
 #import "JWBasicViewController.h"
 
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
 #import "WXApi.h"
 
 @interface JWBasicViewController ()
@@ -63,6 +65,8 @@
     if (shareType == SSDKPlatformTypeSinaWeibo) {
         //新浪微博
         [shareParams SSDKSetupSinaWeiboShareParamsByText:@"" title:@"雨娃" image:imageArray[0] url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] latitude:[YWLocation shareLocation].lat longitude:[YWLocation shareLocation].lon objectID:nil type:SSDKContentTypeAuto];
+    }else if (shareType == SSDKPlatformSubTypeQZone){
+        [shareParams SSDKSetupQQParamsByText:@"" title:@"雨娃" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] thumbImage:imageArray[0] image:imageArray[0] type:SSDKContentTypeAuto forPlatformSubType:shareType];//SSDKPlatformSubTypeQZone或者SSDKPlatformSubTypeQQFriend其中一个
     }else{
         //微信(微信好友SSDKPlatformSubTypeWechatSession，微信朋友圈SSDKPlatformSubTypeWechatTimeline)应用
         [shareParams SSDKSetupWeChatParamsByText:@"" title:@"分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] thumbImage:imageArray[0] image:imageArray[0] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:shareType];
