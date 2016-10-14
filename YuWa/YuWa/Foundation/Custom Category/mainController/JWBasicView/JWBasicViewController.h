@@ -12,10 +12,20 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "JWTools.h"
 
+#import "JWSharedView.h"
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKExtension/ShareSDK+Extension.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <ShareSDKUI/SSUIEditorViewStyle.h>
+
 @interface JWBasicViewController : UIViewController
+
+@property (nonatomic,strong)JWSharedView * shareView;
 
 - (void)showHUDWithStr:(NSString *)showHud withSuccess:(BOOL)isSuccess;
 
 - (void)backBarAction;
+- (void)makeShareView;
 
 @end

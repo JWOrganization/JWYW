@@ -9,6 +9,7 @@
 #import "RBNodeShowViewController.h"
 #import "YWOtherSeePersonCenterViewController.h"
 #import "YWNodeAddAldumViewController.h"
+#import "YWLoginViewController.h"
 #import "RBNodeCollectionToAldumView.h"
 #import "RBNodeShowModel.h"
 
@@ -57,6 +58,7 @@
     [super viewDidLoad];
     self.title = @"笔记详情";
     [self setupRefresh];
+    [self makeNavi];
     [self dataSet];
     [self makeUI];
     [self requestData];
@@ -81,6 +83,18 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     self.toolsBottomView.frame = CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f);
+}
+- (void)makeNavi{
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:@"activity-content-btn-share" withSelectImage:@"activity-content-btn-share" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(sharedAction) forControlEvents:UIControlEventTouchUpInside withWidth:32.f];
+}
+
+- (void)sharedAction{
+    if (![UserSession instance].isLogin) {
+        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    [self makeShareView];
 }
 
 - (void)dataSet{

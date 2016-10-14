@@ -33,6 +33,7 @@
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self registerShareSDK];//ShareSDK配置
     [self registerEMClientWithApplication:application withOptions:(NSDictionary *)launchOptions];//registerEMClient
     [self registerJPushWithOptions:launchOptions];
     
@@ -75,6 +76,45 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - ShareSDK
+- (void)registerShareSDK{//调用registerApp方法来初始化SDK并且初始化第三方平台
+    /**
+     *  设置ShareSDK的appKey
+     *  在将生成的AppKey传入到此方法中。
+     *  方法中的第二个第三个参数为需要连接社交平台SDK时触发，
+     *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
+     *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
+     */
+    [ShareSDK registerApp:@"17e6aee320f88"
+          activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformTypeWechat)]
+                 onImport:^(SSDKPlatformType platformType){
+                     switch (platformType){
+                         case SSDKPlatformTypeWechat:
+                             [ShareSDKConnector connectWeChat:[WXApi class]];
+                             break;
+                         case SSDKPlatformTypeSinaWeibo:
+                             [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                             break;
+                         default:
+                             break;
+                     }
+                 }
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo){
+              
+              switch (platformType){
+                  case SSDKPlatformTypeSinaWeibo:
+                      [appInfo SSDKSetupSinaWeiboByAppKey:@"723980423" appSecret:@"4e06a6b13a4397251de5fe10fc91a4bb" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];
+                      break;
+                  case SSDKPlatformTypeWechat:
+                      [appInfo SSDKSetupWeChatByAppId:@"wx5c90f6574f7c66a8" appSecret:@"212f79464ce37def860499ae6f5b0268"];
+                      break;
+                  default:
+                      break;
+              }
+          }];
 }
 
 #pragma mark - EMClient

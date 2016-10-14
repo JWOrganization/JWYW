@@ -162,5 +162,8 @@
 //保存进userdefault  里面的参数
 #define KUSERDEFAULT [NSUserDefaults standardUserDefaults]
 
+
+#define SHARE_HTTP @"https://appsto.re/cn/l0dBeb.i"
+
 #endif /* VipxoxPrefixHeader_pch */
 

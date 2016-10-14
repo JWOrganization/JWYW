@@ -7,6 +7,9 @@
 //
 
 #import "JWBasicViewController.h"
+
+#import "WXApi.h"
+
 @interface JWBasicViewController ()
 
 @end
@@ -37,6 +40,72 @@
 
 - (void)backBarAction{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Share
+- (void)makeShareView{
+    if (!self.shareView) {
+        self.shareView = [[JWSharedView alloc]init];
+        WEAKSELF;//SSDKPlatformType
+        self.shareView.shareClickBlock = ^(SSDKPlatformType shareType){
+            [weakSelf shareButtonClickHandlerWithType:shareType];
+        };
+    }
+    [[UIApplication sharedApplication].keyWindow addSubview:self.shareView];
+}
+
+- (void)shareButtonClickHandlerWithType:(SSDKPlatformType)shareType{
+    //1、创建分享参数
+    NSArray* imageArray = @[[UIImage imageNamed:@"shareLogo"]];
+    
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    [shareParams SSDKEnableUseClientShare];
+    if (shareType == SSDKPlatformTypeSinaWeibo) {
+        //新浪微博
+        [shareParams SSDKSetupSinaWeiboShareParamsByText:@"" title:@"雨娃" image:imageArray[0] url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] latitude:[YWLocation shareLocation].lat longitude:[YWLocation shareLocation].lon objectID:nil type:SSDKContentTypeAuto];
+    }else{
+        //微信(微信好友SSDKPlatformSubTypeWechatSession，微信朋友圈SSDKPlatformSubTypeWechatTimeline)应用
+        [shareParams SSDKSetupWeChatParamsByText:@"" title:@"分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] thumbImage:imageArray[0] image:imageArray[0] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:shareType];
+    }
+    
+    //    2.编辑页面
+    [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:CNaviColor];
+    [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
+    [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
+    [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
+    [SSUIEditorViewStyle setTitle:@"分享"];
+    [SSUIEditorViewStyle setCancelButtonLabel:@"  取消"];
+    [SSUIEditorViewStyle setShareButtonLabel:@"确认  "];
+    [SSUIEditorViewStyle setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    //3、分享
+    [ShareSDK showShareEditor:shareType otherPlatformTypes:nil shareParams:shareParams onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+        switch (state) {
+            case SSDKResponseStateSuccess:{//分享成功
+                break;
+            }
+            case SSDKResponseStateFail:{//分享失败
+                if ((shareType ==SSDKPlatformSubTypeWechatSession||shareType ==SSDKPlatformSubTypeWechatTimeline)&&![WXApi isWXAppInstalled]) {//没有安装微信
+                    MyLog(@"没有安装微信!");
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有安装微信" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+                    
+                    [alert show];
+                }else{
+                    [self showHUDWithStr:@"分享失败" withSuccess:NO];
+                }
+                
+                break;
+            }
+            case SSDKResponseStateCancel:{
+                [self showHUDWithStr:@"分享已取消" withSuccess:NO];
+            }
+            default:
+                break;
+        }
+        
+    }];
+    
 }
 
 

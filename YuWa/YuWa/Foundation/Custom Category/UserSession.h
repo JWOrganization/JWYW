@@ -23,7 +23,7 @@
 @property(nonatomic,strong)NSString*personality;   //个人签名
 
 @property (nonatomic,copy)NSString * aldumCount;  //专辑个数
-
+@property (nonatomic,copy)NSString * inviteID;  //邀请ID
 
 
 //已经登录
