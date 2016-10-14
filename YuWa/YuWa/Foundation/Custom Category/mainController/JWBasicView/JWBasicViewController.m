@@ -91,8 +91,12 @@
             case SSDKResponseStateFail:{//分享失败
                 if ((shareType ==SSDKPlatformSubTypeWechatSession||shareType ==SSDKPlatformSubTypeWechatTimeline)&&![WXApi isWXAppInstalled]) {//没有安装微信
                     MyLog(@"没有安装微信!");
-                    
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有安装微信" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+                    
+                    [alert show];
+                }else if (shareType ==SSDKPlatformSubTypeQZone&&![QQApiInterface isQQInstalled]){//没有安装微信
+                    MyLog(@"没有安装QQ!");
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有安装QQ" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
                     
                     [alert show];
                 }else{

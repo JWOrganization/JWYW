@@ -194,6 +194,14 @@
  */
 + (BOOL)checkTelNumber:(NSString*)telNumber;
 
+/**
+ *  判断是否含表情字符串
+ *
+ *  @param string 字符串
+ *
+ *  @return 是否含有
+ */
++ (BOOL)stringContainsEmoji:(NSString *)string;
 
 #pragma mark - NSString
 /**

@@ -133,6 +133,12 @@
     self.emojisKeyBoards.deleteStrBlock = ^{
         if (weakSelf.scrollView.conTextView.text.length > 0) {
             NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.scrollView.conTextView.text];
+            if (strTemp.length>=2) {
+                NSString * strTempTest = [strTemp substringFromIndex:strTemp.length-2];
+                if ([JWTools stringContainsEmoji:strTempTest]) {
+                    [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
+                }
+            }
             [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
             weakSelf.scrollView.conTextView.text = strTemp;
         }

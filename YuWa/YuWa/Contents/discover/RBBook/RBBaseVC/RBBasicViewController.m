@@ -93,10 +93,17 @@
             [weakSelf.commentToolsView.sendTextField resignFirstResponder];
         }
     };
-    self.emojisKeyBoards.deleteStrBlock = ^{
+    self.emojisKeyBoards.deleteStrBlock = ^(){
         if (self.commentToolsView.sendTextField.text.length > 0) {
             NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.commentToolsView.sendTextField.text];
+            if (strTemp.length>=2) {
+                NSString * strTempTest = [strTemp substringFromIndex:strTemp.length-2];
+                if ([JWTools stringContainsEmoji:strTempTest]) {
+                    [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
+                }
+            }
             [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
+            
             weakSelf.commentToolsView.sendTextField.text = strTemp;
         }
     };

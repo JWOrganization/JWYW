@@ -84,16 +84,48 @@
     
     __block NSMutableArray * emojionArr = [NSMutableArray arrayWithCapacity:0];
     [arr enumerateObjectsUsingBlock:^(NSString * _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (idx != 0&&(idx/onePageMaxNumber == 0))[emojionArr addObject:DeleteEmojionStr];
+        if (idx != 0&&(idx%onePageMaxNumber == 0))[emojionArr addObject:DeleteEmojionStr];
         [emojionArr addObject:str];
+        if (idx == arr.count)[emojionArr addObject:DeleteEmojionStr];
     }];
     
-//    CGFloat 
+    CGFloat btnWidth = width;
+    CGFloat btnEndge = (kScreen_Width - btnWidth * oneLineMaxNumber)/2;
+    CGFloat btnHeight = 44.f;
+    __block CGFloat btnY = 0.f;
+    __block CGFloat btnX = btnEndge;
+    
+    __block NSInteger page = 0;
+    [emojionArr enumerateObjectsUsingBlock:^(NSString * _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton * keyboardBtn = [[UIButton alloc]initWithFrame:CGRectMake(btnX, btnY, btnWidth, btnHeight)];
+        [keyboardBtn setTitleColor:[UIColor colorWithHexString:@"#acacac"] forState:UIControlStateNormal];
+        if ([str isEqualToString:DeleteEmojionStr]) {//删除键,且是最后一个
+            [keyboardBtn setImage:[UIImage imageNamed:@"YWfaceDelete"] forState:UIControlStateNormal];
+            [keyboardBtn setImage:[UIImage imageNamed:@"YWfaceDelete"] forState:UIControlStateSelected];
+            [keyboardBtn addTarget:self action:@selector(deleteStrAction) forControlEvents:UIControlEventTouchUpInside];
+            page++;
+            btnX = page*kScreen_Width + btnEndge;
+            btnY = 0.f;
+        }else{
+            [keyboardBtn setTitle:str forState:UIControlStateNormal];
+            [keyboardBtn setTitle:str forState:UIControlStateSelected];
+            [keyboardBtn addTarget:self action:@selector(addStrAction:) forControlEvents:UIControlEventTouchUpInside];
+            
+            NSInteger lineIdx = (idx+1)%oneLineMaxNumber;
+            if (lineIdx == 0) {
+                btnX = page*kScreen_Width + btnEndge;
+                btnY += 44.f;
+            }else{
+                btnX += btnWidth;
+            }
+        }
+        [keyboardsScrollView addSubview:keyboardBtn];
+    }];
     
     [self addSubview:keyboardsScrollView];
     [self.keyboardArr addObject:keyboardsScrollView];
     
-    return arr;
+    return emojionArr;
 }
 
 #pragma mark - UI
