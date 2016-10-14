@@ -94,8 +94,14 @@
         RBConnectionViewController * vc = [[RBConnectionViewController alloc]init];
         vc.connectNameBlock = ^(NSString * name){//@的人
             weakSelf.scrollView.conTextView.hidden = NO;
+            if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
+                weakSelf.scrollView.conTextView.isDrawPlaceholder = NO;
+                [weakSelf.scrollView.conTextView setNeedsDisplay];
+            }
             weakSelf.scrollView.conTextView.text = [NSString stringWithFormat:@"%@@%@ ",weakSelf.scrollView.conTextView.text,name];
-            [weakSelf.scrollView.conTextView becomeFirstResponder];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.scrollView.conTextView becomeFirstResponder];
+            });
         };
         [weakSelf presentViewController:vc animated:YES completion:nil];
     };

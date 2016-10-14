@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JWEmojisKeyBoards : UIView
+@interface JWEmojisKeyBoards : UIView<UIScrollViewDelegate>
 
 @property (nonatomic,copy)void (^sendBlock)();
 @property (nonatomic,copy)void (^deleteStrBlock)();

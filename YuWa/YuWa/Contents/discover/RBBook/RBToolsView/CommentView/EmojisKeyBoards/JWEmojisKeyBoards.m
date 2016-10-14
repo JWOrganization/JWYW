@@ -10,7 +10,6 @@
 #import "JWTools.h"
 
 #define DeleteEmojionStr @"🏑1🏌2🏐3🏉1🎯2🎻6🎹1🎼"//YWfaceDelete
-
 @interface JWEmojisKeyBoards()
 @property (nonatomic,assign)NSInteger keyboardsStates;
 
@@ -41,7 +40,9 @@
     
     [self dataArrSet];
     [self pageStateArrSet];
-    [self keyboardArr];
+    [self keyboardArrSet];
+    
+    self.pageControl.numberOfPages = [self.pageNumberArr[0] integerValue];
 }
 #pragma mark - Arr Set
 - (void)dataArrSet{
@@ -62,11 +63,35 @@
     NSMutableArray * dataArrTemp = [self.dataArr mutableCopy];
     __block NSArray * widthArr = @[@(44),@(80)];
     [dataArrTemp enumerateObjectsUsingBlock:^(NSMutableArray  * _Nonnull keyboardDataArr, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.dataArr replaceObjectAtIndex:idx withObject:[self keyboardArrSetWithWidth:[widthArr[idx] floatValue] withArr:keyboardDataArr]];
+        [self.dataArr replaceObjectAtIndex:idx withObject:[self keyboardArrSetWithWidth:[widthArr[idx] floatValue] withArr:keyboardDataArr withIdx:idx]];
     }];
 }
-- (NSMutableArray *)keyboardArrSetWithWidth:(CGFloat)width withArr:(NSMutableArray *)arr{
+- (NSMutableArray *)keyboardArrSetWithWidth:(CGFloat)width withArr:(NSMutableArray *)arr withIdx:(NSInteger)idx{
+    NSInteger oneLineMaxNumber = kScreen_Width/width;
+    NSInteger onePageMaxNumber = oneLineMaxNumber * 3 - 1;
+    NSInteger pageNumber = arr.count / onePageMaxNumber + 1;
+    [self.pageNumberArr addObject:@(pageNumber)];
     
+    UIScrollView * keyboardsScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 28.f, kScreen_Width, 132.f)];
+    keyboardsScrollView.bounces = NO;
+    keyboardsScrollView.showsVerticalScrollIndicator = NO;
+    keyboardsScrollView.showsHorizontalScrollIndicator = NO;
+    keyboardsScrollView.delegate = self;
+    keyboardsScrollView.pagingEnabled = YES;
+    keyboardsScrollView.contentSize = CGSizeMake(kScreen_Width * pageNumber, 1.f);
+    
+    keyboardsScrollView.hidden = idx==0?NO:YES;
+    
+    __block NSMutableArray * emojionArr = [NSMutableArray arrayWithCapacity:0];
+    [arr enumerateObjectsUsingBlock:^(NSString * _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx != 0&&(idx/onePageMaxNumber == 0))[emojionArr addObject:DeleteEmojionStr];
+        [emojionArr addObject:str];
+    }];
+    
+//    CGFloat 
+    
+    [self addSubview:keyboardsScrollView];
+    [self.keyboardArr addObject:keyboardsScrollView];
     
     return arr;
 }
@@ -98,9 +123,12 @@
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.keyboardsStates = sender.tag;
     self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = [self.pageNumberArr[sender.tag-1] integerValue];
-    self.pageControl.currentPage = [self.pageStateArr[sender.tag-1] integerValue];
+    self.pageControl.numberOfPages = [self.pageNumberArr[self.keyboardsStates-1] integerValue];
+    self.pageControl.currentPage = [self.pageStateArr[self.keyboardsStates-1] integerValue];
     
+    [self.keyboardArr enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull keyboardScrollView, NSUInteger idx, BOOL * _Nonnull stop) {
+        keyboardScrollView.hidden = idx == (sender.tag-1)?NO:YES;
+    }];
 }
 
 - (IBAction)sendBtnAction:(id)sender {
@@ -112,6 +140,12 @@
 }
 - (void)addStrAction:(UIButton *)sender{
     self.addStrBlock(sender.titleLabel.text);
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSInteger pageNumber = scrollView.contentOffset.x/kScreen_Width;
+    if (pageNumber != self.pageControl.currentPage)self.pageControl.currentPage = pageNumber;
 }
 
 @end

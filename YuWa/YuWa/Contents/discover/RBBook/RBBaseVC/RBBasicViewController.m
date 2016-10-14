@@ -60,7 +60,9 @@
         vc.connectNameBlock = ^(NSString * name){//@的人
             weakSelf.commentToolsView.sendTextField.hidden = NO;
             weakSelf.commentToolsView.sendTextField.text = [NSString stringWithFormat:@"%@@%@ ",weakSelf.commentToolsView.sendTextField.text,name];
-            [weakSelf.commentToolsView.sendTextField becomeFirstResponder];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.commentToolsView.sendTextField becomeFirstResponder];
+            });
         };
         [weakSelf presentViewController:vc animated:YES completion:nil];
     };
