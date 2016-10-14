@@ -52,12 +52,14 @@
 }
 
 - (void)makeUI{
+    WEAKSELF;
+    
     self.scrollView = [[[NSBundle mainBundle]loadNibNamed:@"RBPublicEditorScroll" owner:nil options:nil]firstObject];
     self.scrollView.delegate = self;
     self.scrollView.collectionView.delegate = self;
     self.scrollView.collectionView.dataSource = self;
+    self.scrollView.conTextView.delegate = self;
     [self cellAddLongPressGestureRecognizer];
-    WEAKSELF;
     self.scrollView.chooseLocationBlock = ^(){//选地点
         RBPublicLocationViewController * vc = [[RBPublicLocationViewController alloc]init];
         vc.locationChooseBlock = ^(NSString * locationName){
@@ -70,6 +72,9 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     self.scrollView.editConCancelBlock = ^(){
+        if (weakSelf.commentToolsView.hidden != YES) {
+            weakSelf.commentToolsView.hidden = YES;
+        }
       //表情键盘取消
     };
     [self.view addSubview:self.scrollView];
@@ -80,7 +85,56 @@
     [publishBtn addTarget:self action:@selector(publishBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:publishBtn];
     
+    self.commentToolsView.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
+    [self.commentToolsView removeFromSuperview];
+    [self.view addSubview:self.commentToolsView];
     self.commentToolsView.sendTextField.hidden = YES;
+    self.commentToolsView.lineView.hidden = YES;
+    self.commentToolsView.connectBlock = ^(){
+        RBConnectionViewController * vc = [[RBConnectionViewController alloc]init];
+        vc.connectNameBlock = ^(NSString * name){//@的人
+            weakSelf.scrollView.conTextView.hidden = NO;
+            weakSelf.scrollView.conTextView.text = [NSString stringWithFormat:@"%@@%@ ",weakSelf.scrollView.conTextView.text,name];
+            [weakSelf.scrollView.conTextView becomeFirstResponder];
+        };
+        [weakSelf presentViewController:vc animated:YES completion:nil];
+    };
+    self.commentToolsView.showEmojisBlock = ^(BOOL isShowEmojis){
+        weakSelf.isShowEmojis = isShowEmojis;
+        [weakSelf.scrollView.conTextView resignFirstResponder];
+        if (isShowEmojis) {
+            weakSelf.scrollView.conTextView.inputView = weakSelf.emojisKeyBoards;
+        }else{
+            weakSelf.scrollView.conTextView.inputView = nil;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.scrollView.conTextView becomeFirstResponder];
+        });
+    };
+}
+
+- (void)makeEmojisKeyBoards{
+    WEAKSELF;
+    self.emojisKeyBoards = [[[NSBundle mainBundle]loadNibNamed:@"JWEmojisKeyBoards" owner:nil options:nil]firstObject];
+    self.emojisKeyBoards.sendBlock = ^(){
+        if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
+            [weakSelf showHUDWithStr:@"评论不能为空哟" withSuccess:NO];
+        }else{
+            [weakSelf requestSendComment];
+            [weakSelf.scrollView.conTextView resignFirstResponder];
+        }
+    };
+    self.emojisKeyBoards.deleteStrBlock = ^{
+        if (weakSelf.scrollView.conTextView.text.length > 0) {
+            NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.scrollView.conTextView.text];
+            [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
+            weakSelf.scrollView.conTextView.text = strTemp;
+        }
+    };
+    self.emojisKeyBoards.addStrBlock = ^(NSString * addStr){
+        weakSelf.scrollView.conTextView.text = [NSString stringWithFormat:@"%@%@",weakSelf.scrollView.conTextView.text,addStr];
+    };
+    
 }
 
 - (void)publishBtnAction{
@@ -210,6 +264,9 @@
 #pragma mark - UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     //表情键盘出现
+    if (self.commentToolsView.hidden != NO) {
+        self.commentToolsView.hidden = NO;
+    }
     return YES;
 }
 

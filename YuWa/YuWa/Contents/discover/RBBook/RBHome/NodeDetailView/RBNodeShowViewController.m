@@ -89,6 +89,7 @@
 }
 
 - (void)sharedAction{
+    [self.commentToolsView.sendTextField resignFirstResponder];
     if (![UserSession instance].isLogin) {
         YWLoginViewController * vc = [[YWLoginViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];

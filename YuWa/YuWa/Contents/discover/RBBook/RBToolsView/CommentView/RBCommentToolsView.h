@@ -16,6 +16,7 @@
 
 @property (nonatomic,assign)BOOL isShowEmojis;
 
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UITextField *sendTextField;
 @property (weak, nonatomic) IBOutlet UIButton *emojisBtn;
 

@@ -9,12 +9,9 @@
 #import "RBBasicViewController.h"
 #import "YWLoginViewController.h"
 #import "TZImagePickerController.h"
-#import "JWEmojisKeyBoards.h"
 
 @interface RBBasicViewController ()<UITextFieldDelegate,TZImagePickerControllerDelegate>
 @property (nonatomic,assign)BOOL isRePlayComment;//是否是回复用户评论
-@property (nonatomic,assign)BOOL isShowEmojis;//是否展示表情
-@property (nonatomic,strong)JWEmojisKeyBoards * emojisKeyBoards;
 
 @end
 
@@ -71,17 +68,11 @@
         weakSelf.isShowEmojis = isShowEmojis;
         [weakSelf.commentToolsView.sendTextField resignFirstResponder];
         if (isShowEmojis) {
-//            if (self.commentToolsView.sendTextField.text.length > 0) {
-//                NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.commentToolsView.sendTextField.text];
-//                [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
-//                weakSelf.commentToolsView.sendTextField.text = strTemp;
-//            }
-            
             weakSelf.commentToolsView.sendTextField.inputView = weakSelf.emojisKeyBoards;
         }else{
             weakSelf.commentToolsView.sendTextField.inputView = nil;
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.commentToolsView.sendTextField becomeFirstResponder];
         });
     };
@@ -99,7 +90,16 @@
             [weakSelf requestSendComment];
             [weakSelf.commentToolsView.sendTextField resignFirstResponder];
         }
-        
+    };
+    self.emojisKeyBoards.deleteStrBlock = ^{
+        if (self.commentToolsView.sendTextField.text.length > 0) {
+            NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.commentToolsView.sendTextField.text];
+            [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
+            weakSelf.commentToolsView.sendTextField.text = strTemp;
+        }
+    };
+    self.emojisKeyBoards.addStrBlock = ^(NSString * addStr){
+        weakSelf.commentToolsView.sendTextField.text = [NSString stringWithFormat:@"%@%@",weakSelf.commentToolsView.sendTextField.text,addStr];
     };
     
 }

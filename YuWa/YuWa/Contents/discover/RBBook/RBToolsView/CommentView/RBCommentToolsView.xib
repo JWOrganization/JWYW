@@ -76,6 +76,7 @@
             </variation>
             <connections>
                 <outlet property="emojisBtn" destination="vT9-oz-fFV" id="xAG-s0-x5f"/>
+                <outlet property="lineView" destination="FfN-pT-R2X" id="Rz9-7m-fHY"/>
                 <outlet property="sendTextField" destination="3nK-Jp-1HP" id="0Vr-yb-cUq"/>
             </connections>
             <point key="canvasLocation" x="265.5" y="143"/>

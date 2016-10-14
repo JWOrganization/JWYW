@@ -11,7 +11,14 @@
 @interface JWEmojisKeyBoards : UIView
 
 @property (nonatomic,copy)void (^sendBlock)();
+@property (nonatomic,copy)void (^deleteStrBlock)();
+@property (nonatomic,copy)void (^addStrBlock)(NSString *);
 @property (nonatomic,strong)NSMutableArray * dataArr;
+@property (nonatomic,strong)NSMutableArray * pageStateArr;
+@property (nonatomic,strong)NSMutableArray * pageNumberArr;
+@property (nonatomic,strong)NSMutableArray * keyboardTypeArr;
+@property (nonatomic,strong)NSMutableArray * keyboardArr;
+
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *keyboardsTypeScrollView;
