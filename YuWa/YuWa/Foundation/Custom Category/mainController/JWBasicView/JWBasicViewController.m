@@ -7,6 +7,7 @@
 //
 
 #import "JWBasicViewController.h"
+//#import "YWSharedEditorViewController.h"//自定义编辑分享
 
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
@@ -69,21 +70,11 @@
         [shareParams SSDKSetupQQParamsByText:@"" title:@"雨娃" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] thumbImage:imageArray[0] image:imageArray[0] type:SSDKContentTypeAuto forPlatformSubType:shareType];//SSDKPlatformSubTypeQZone或者SSDKPlatformSubTypeQQFriend其中一个
     }else{
         //微信(微信好友SSDKPlatformSubTypeWechatSession，微信朋友圈SSDKPlatformSubTypeWechatTimeline)应用
-        [shareParams SSDKSetupWeChatParamsByText:@"" title:@"分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] thumbImage:imageArray[0] image:imageArray[0] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:shareType];
+        [shareParams SSDKSetupWeChatParamsByText:@"" title:@"雨娃" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].inviteID]] thumbImage:imageArray[0] image:imageArray[0] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:shareType];
     }
     
-    //    2.编辑页面
-    [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:CNaviColor];
-    [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
-    [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
-    [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
-    [SSUIEditorViewStyle setTitle:@"分享"];
-    [SSUIEditorViewStyle setCancelButtonLabel:@"  取消"];
-    [SSUIEditorViewStyle setShareButtonLabel:@"确认  "];
-    [SSUIEditorViewStyle setStatusBarStyle:UIStatusBarStyleDefault];
-    
-    //3、分享
-    [ShareSDK showShareEditor:shareType otherPlatformTypes:nil shareParams:shareParams onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+    //3、直接分享
+    [ShareSDK share:shareType parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
         switch (state) {
             case SSDKResponseStateSuccess:{//分享成功
                 break;
@@ -104,15 +95,55 @@
                 }
                 
                 break;
-            }
-            case SSDKResponseStateCancel:{
+            }case SSDKResponseStateCancel:{
                 [self showHUDWithStr:@"分享已取消" withSuccess:NO];
             }
             default:
                 break;
         }
-        
     }];
+    
+    //    2.编辑页面
+    //    [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:CNaviColor];
+    //    [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
+    //    [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
+    //    [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
+    //    [SSUIEditorViewStyle setTitle:@"分享"];
+    //    [SSUIEditorViewStyle setCancelButtonLabel:@"  取消"];
+    //    [SSUIEditorViewStyle setShareButtonLabel:@"确认  "];
+    //    [SSUIEditorViewStyle setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    //3、分享
+//    [ShareSDK showShareEditor:shareType otherPlatformTypes:nil shareParams:shareParams onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+//        switch (state) {
+//            case SSDKResponseStateSuccess:{//分享成功
+//                break;
+//            }
+//            case SSDKResponseStateFail:{//分享失败
+//                if ((shareType ==SSDKPlatformSubTypeWechatSession||shareType ==SSDKPlatformSubTypeWechatTimeline)&&![WXApi isWXAppInstalled]) {//没有安装微信
+//                    MyLog(@"没有安装微信!");
+//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有安装微信" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+//                    
+//                    [alert show];
+//                }else if (shareType ==SSDKPlatformSubTypeQZone&&![QQApiInterface isQQInstalled]){//没有安装微信
+//                    MyLog(@"没有安装QQ!");
+//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有安装QQ" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+//                    
+//                    [alert show];
+//                }else{
+//                    [self showHUDWithStr:@"分享失败" withSuccess:NO];
+//                }
+//                
+//                break;
+//            }
+//            case SSDKResponseStateCancel:{
+//                [self showHUDWithStr:@"分享已取消" withSuccess:NO];
+//            }
+//            default:
+//                break;
+//        }
+//        
+//    }];
     
 }
 

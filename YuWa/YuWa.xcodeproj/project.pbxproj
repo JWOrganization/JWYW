@@ -439,6 +439,8 @@
 		B3D219191DB0991800D661F5 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D219181DB0991800D661F5 /* libstdc++.tbd */; };
 		B3D2191B1DB0991F00D661F5 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D2191A1DB0991F00D661F5 /* JavaScriptCore.framework */; };
 		B3D219221DB0A99C00D661F5 /* JWSharedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D219211DB0A99C00D661F5 /* JWSharedView.m */; };
+		B3D219271DB1241800D661F5 /* YWSharedEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D219251DB1241800D661F5 /* YWSharedEditorViewController.m */; };
+		B3D219281DB1241800D661F5 /* YWSharedEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D219261DB1241800D661F5 /* YWSharedEditorViewController.xib */; };
 		B3FEB9F31D9B5BFB003CDEF2 /* NSDictionary+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEB9F21D9B5BFB003CDEF2 /* NSDictionary+Attributes.m */; };
 		B3FEB9FD1D9B6465003CDEF2 /* YWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEB9F71D9B6465003CDEF2 /* YWMessageModel.m */; };
 		B3FEB9FE1D9B6465003CDEF2 /* YWMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FEB9FB1D9B6465003CDEF2 /* YWMessageTableViewCell.m */; };
@@ -1448,6 +1450,9 @@
 		B3D2191A1DB0991F00D661F5 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		B3D219201DB0A99C00D661F5 /* JWSharedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSharedView.h; sourceTree = "<group>"; };
 		B3D219211DB0A99C00D661F5 /* JWSharedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSharedView.m; sourceTree = "<group>"; };
+		B3D219241DB1241800D661F5 /* YWSharedEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWSharedEditorViewController.h; sourceTree = "<group>"; };
+		B3D219251DB1241800D661F5 /* YWSharedEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWSharedEditorViewController.m; sourceTree = "<group>"; };
+		B3D219261DB1241800D661F5 /* YWSharedEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWSharedEditorViewController.xib; sourceTree = "<group>"; };
 		B3FEB9F11D9B5BFB003CDEF2 /* NSDictionary+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Attributes.h"; sourceTree = "<group>"; };
 		B3FEB9F21D9B5BFB003CDEF2 /* NSDictionary+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Attributes.m"; sourceTree = "<group>"; };
 		B3FEB9F61D9B6465003CDEF2 /* YWMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageModel.h; sourceTree = "<group>"; };
@@ -3512,6 +3517,7 @@
 		B38B2EE91D8FC82F004D5256 /* RBToolsView */ = {
 			isa = PBXGroup;
 			children = (
+				B3D219231DB123A900D661F5 /* ShareEditor */,
 				B38B2EEA1D8FC82F004D5256 /* CommentView */,
 				B38B2EF21D8FC82F004D5256 /* UIBarButtonItem */,
 			);
@@ -3869,6 +3875,16 @@
 				B3D219211DB0A99C00D661F5 /* JWSharedView.m */,
 			);
 			path = ShareView;
+			sourceTree = "<group>";
+		};
+		B3D219231DB123A900D661F5 /* ShareEditor */ = {
+			isa = PBXGroup;
+			children = (
+				B3D219241DB1241800D661F5 /* YWSharedEditorViewController.h */,
+				B3D219251DB1241800D661F5 /* YWSharedEditorViewController.m */,
+				B3D219261DB1241800D661F5 /* YWSharedEditorViewController.xib */,
+			);
+			path = ShareEditor;
 			sourceTree = "<group>";
 		};
 		B3FEB9F41D9B63C6003CDEF2 /* SubView */ = {
@@ -4721,6 +4737,7 @@
 				B3FEBA1A1D9B9C46003CDEF2 /* YWMessageViewController.xib in Resources */,
 				B3192ACE1D92470F00FD6578 /* RBPublicToolView.xib in Resources */,
 				C13FE68C1DAE64980085B45E /* home_shoucangjia.png in Resources */,
+				B3D219281DB1241800D661F5 /* YWSharedEditorViewController.xib in Resources */,
 				B38B2F791D8FC8CD004D5256 /* JWTagCollectionViewCell.xib in Resources */,
 				B38B2F5C1D8FC83A004D5256 /* EmojisList.plist in Resources */,
 				C13FE6961DAE64980085B45E /* home_hui@2x.png in Resources */,
@@ -5173,6 +5190,7 @@
 				B38B2E6B1D8FC3B6004D5256 /* JWBasicViewController.m in Sources */,
 				C13FE5511DAE5E950085B45E /* HomeMenuCell.m in Sources */,
 				B3FEB9FE1D9B6465003CDEF2 /* YWMessageTableViewCell.m in Sources */,
+				B3D219271DB1241800D661F5 /* YWSharedEditorViewController.m in Sources */,
 				B38B2E5F1D8FACD8004D5256 /* AppDelegate.m in Sources */,
 				B33A268A1D9A68040092CB12 /* NSDate+Category.m in Sources */,
 				B33A26721D9A68040092CB12 /* UIImage+EMGIF.m in Sources */,
