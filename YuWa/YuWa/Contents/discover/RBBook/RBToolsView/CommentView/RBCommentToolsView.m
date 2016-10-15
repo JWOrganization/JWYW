@@ -10,9 +10,6 @@
 
 @implementation RBCommentToolsView
 
-- (void)awakeFromNib{
-    
-}
 - (IBAction)connectionAction:(id)sender {
     self.connectBlock();
 }
