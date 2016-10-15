@@ -7,7 +7,6 @@
 //
 
 #import "VIPHomePageViewController.h"
-
 //#import "MJRefreshGifHeader.h"
 //#import "MJRefreshBackGifFooter.h"
 

@@ -398,7 +398,6 @@
 		B38B2F7B1D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F711D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m */; };
 		B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F741D8FC8CD004D5256 /* JWSearchView.m */; };
 		B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */; };
-		B3A1C32A1DB1D7A20091BD9D /* YWtetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A1C3291DB1D7A20091BD9D /* YWtetsViewController.m */; };
 		B3AE4D701D91302B000A389F /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D5E1D91302B000A389F /* TZAssetCell.m */; };
 		B3AE4D711D91302B000A389F /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D601D91302B000A389F /* TZAssetModel.m */; };
 		B3AE4D721D91302B000A389F /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D621D91302B000A389F /* TZImageManager.m */; };
@@ -1399,8 +1398,6 @@
 		B38B2F731D8FC8CD004D5256 /* JWSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSearchView.h; sourceTree = "<group>"; };
 		B38B2F741D8FC8CD004D5256 /* JWSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSearchView.m; sourceTree = "<group>"; };
 		B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWSearchView.xib; sourceTree = "<group>"; };
-		B3A1C3281DB1D7A20091BD9D /* YWtetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWtetsViewController.h; sourceTree = "<group>"; };
-		B3A1C3291DB1D7A20091BD9D /* YWtetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWtetsViewController.m; sourceTree = "<group>"; };
 		B3AE4D5D1D91302B000A389F /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
 		B3AE4D5E1D91302B000A389F /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
 		B3AE4D5F1D91302B000A389F /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
@@ -3277,8 +3274,6 @@
 				B38B2DDD1D8FACD8004D5256 /* LaunchScreen.storyboard */,
 				B38B2DDF1D8FACD8004D5256 /* Info.plist */,
 				B38B2DE01D8FACD8004D5256 /* main.m */,
-				B3A1C3281DB1D7A20091BD9D /* YWtetsViewController.h */,
-				B3A1C3291DB1D7A20091BD9D /* YWtetsViewController.m */,
 			);
 			path = "Supporting File";
 			sourceTree = "<group>";
@@ -5252,7 +5247,6 @@
 				B33A26B21D9A68040092CB12 /* EaseConversationCell.m in Sources */,
 				B33A26901D9A68040092CB12 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				B38B2E091D8FACD8004D5256 /* NSArray+MASAdditions.m in Sources */,
-				B3A1C32A1DB1D7A20091BD9D /* YWtetsViewController.m in Sources */,
 				C1F7BDB31DB1C94500CCAF96 /* HomeSearchViewController.m in Sources */,
 				B33A269D1D9A68040092CB12 /* EaseUserCell.m in Sources */,
 				B38B2F141D8FC82F004D5256 /* RBNodeUserLevelModel.m in Sources */,
