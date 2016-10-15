@@ -12,7 +12,7 @@
 @interface RBCommentToolsView : UIView
 
 @property (nonatomic,copy)void (^connectBlock)();//@关注的用户
-@property (nonatomic,copy)void (^showEmojisBlock)(BOOL);
+@property (nonatomic,copy)void (^showEmojisBlock)(BOOL);//显示表情
 
 @property (nonatomic,assign)BOOL isShowEmojis;
 
