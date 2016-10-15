@@ -223,6 +223,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     self.noChatBGBtnView.hidden = self.dataArr.count != 0?YES:NO;
+    if (![UserSession instance].isLogin)self.noChatBGBtnView.hidden = YES;
     self.noChatlabel.hidden = self.noChatBGBtnView.hidden;
     return self.dataArr.count;
 }
