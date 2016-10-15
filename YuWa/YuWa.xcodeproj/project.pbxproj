@@ -475,6 +475,9 @@
 		B3FFF4931D94037D00EDD2AB /* RBPublicEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4911D94037D00EDD2AB /* RBPublicEditorViewController.m */; };
 		B3FFF4941D94037D00EDD2AB /* RBPublicEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4921D94037D00EDD2AB /* RBPublicEditorViewController.xib */; };
 		B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */; };
+		C130195D1DB1DA7500E24C88 /* UIWindow+SettingWithVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C130195C1DB1DA7500E24C88 /* UIWindow+SettingWithVC.m */; };
+		C13019611DB1DAE300E24C88 /* YWtestwTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C130195F1DB1DAE300E24C88 /* YWtestwTableViewController.m */; };
+		C13019621DB1DAE300E24C88 /* YWtestwTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13019601DB1DAE300E24C88 /* YWtestwTableViewController.xib */; };
 		C1F7BD921DB1C94500CCAF96 /* YWChooseOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */; };
 		C1F7BD931DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */; };
 		C1F7BD941DB1C94500CCAF96 /* YWChooseOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD431DB1C94500CCAF96 /* YWChooseOneView.m */; };
@@ -1534,6 +1537,11 @@
 		B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicTagSaveModel.m; sourceTree = "<group>"; };
 		BBC1CC6C89770D83C605851F /* libPods-YuWa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuWa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
+		C130195B1DB1DA7500E24C88 /* UIWindow+SettingWithVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+SettingWithVC.h"; sourceTree = "<group>"; };
+		C130195C1DB1DA7500E24C88 /* UIWindow+SettingWithVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+SettingWithVC.m"; sourceTree = "<group>"; };
+		C130195E1DB1DAE300E24C88 /* YWtestwTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWtestwTableViewController.h; sourceTree = "<group>"; };
+		C130195F1DB1DAE300E24C88 /* YWtestwTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWtestwTableViewController.m; sourceTree = "<group>"; };
+		C13019601DB1DAE300E24C88 /* YWtestwTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWtestwTableViewController.xib; sourceTree = "<group>"; };
 		C1F7BD3F1DB1C94500CCAF96 /* YWChooseOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseOneTableViewCell.h; sourceTree = "<group>"; };
 		C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWChooseOneTableViewCell.m; sourceTree = "<group>"; };
 		C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWChooseOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -3266,6 +3274,7 @@
 		B38B2DD71D8FACD8004D5256 /* Supporting File */ = {
 			isa = PBXGroup;
 			children = (
+				C130195A1DB1DA7500E24C88 /* iii */,
 				B38B2DD81D8FACD8004D5256 /* AppDelegate+window.h */,
 				B38B2DD91D8FACD8004D5256 /* AppDelegate+window.m */,
 				B38B2DDA1D8FACD8004D5256 /* AppDelegate.h */,
@@ -4153,6 +4162,18 @@
 				B34B569A1DAFD46700040D25 /* RBPublishSession.m */,
 			);
 			path = RBPublicEditorVC;
+			sourceTree = "<group>";
+		};
+		C130195A1DB1DA7500E24C88 /* iii */ = {
+			isa = PBXGroup;
+			children = (
+				C130195B1DB1DA7500E24C88 /* UIWindow+SettingWithVC.h */,
+				C130195C1DB1DA7500E24C88 /* UIWindow+SettingWithVC.m */,
+				C130195E1DB1DAE300E24C88 /* YWtestwTableViewController.h */,
+				C130195F1DB1DAE300E24C88 /* YWtestwTableViewController.m */,
+				C13019601DB1DAE300E24C88 /* YWtestwTableViewController.xib */,
+			);
+			path = iii;
 			sourceTree = "<group>";
 		};
 		C1F7BD3B1DB1C94500CCAF96 /* HomePage */ = {
@@ -5086,6 +5107,7 @@
 				C1F7BF6D1DB1CA0700CCAF96 /* 电影.png in Resources */,
 				B38B2F0A1D8FC82F004D5256 /* RBNodeDetailHeader.xib in Resources */,
 				C1F7BE641DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib in Resources */,
+				C13019621DB1DAE300E24C88 /* YWtestwTableViewController.xib in Resources */,
 				B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */,
 				C1F7BDA51DB1C94500CCAF96 /* PaytheBillView.xib in Resources */,
 				B38B2F231D8FC82F004D5256 /* RBHomeSearchToolsView.xib in Resources */,
@@ -5229,6 +5251,7 @@
 				B38B2E1A1D8FACD8004D5256 /* MJRefreshBackNormalFooter.m in Sources */,
 				B36C7F6D1D9E0DF100B022E0 /* YWMessageNotificationModel.m in Sources */,
 				B38B2EFB1D8FC82F004D5256 /* RBHomeListImagesModel.m in Sources */,
+				C13019611DB1DAE300E24C88 /* YWtestwTableViewController.m in Sources */,
 				B3FEBA0B1D9B71D4003CDEF2 /* YWPayNotificationTableView.m in Sources */,
 				B301E7CE1DAC8C010001336E /* YWMessageSearchFriendAddModel.m in Sources */,
 				B33A26911D9A68040092CB12 /* EaseMessageReadManager.m in Sources */,
@@ -5530,6 +5553,7 @@
 				B3FFF4851D93B45500EDD2AB /* RBPublicTagEditorViewController.m in Sources */,
 				B38B2EF71D8FC82F004D5256 /* RBHomeCollectionViewCell.m in Sources */,
 				B33A26661D9A68040092CB12 /* MWZoomingScrollView.m in Sources */,
+				C130195D1DB1DA7500E24C88 /* UIWindow+SettingWithVC.m in Sources */,
 				B38B2E3D1D8FACD8004D5256 /* JRSegmentControl.m in Sources */,
 				B38B2E341D8FACD8004D5256 /* UIButton+WebCache.m in Sources */,
 				B34B569B1DAFD46700040D25 /* RBPublishSession.m in Sources */,
