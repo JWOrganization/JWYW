@@ -405,6 +405,11 @@
     
 }
 -(void)touchSaomiao{
+    
+}
+
+-(void)touchLingdang{
+    
     _isShow=!_isShow;
     if (_isShow) {
         //显示
@@ -416,12 +421,7 @@
         [self.MenuShowView dismissView];
         
     }
-    
-}
 
--(void)touchLingdang{
-    
-    
 }
 //点击输入框
 -(void)touchinPut{
@@ -482,7 +482,7 @@
 
 -(SQMenuShowView *)MenuShowView{
     if (!_MenuShowView) {
-        _MenuShowView=[[SQMenuShowView alloc]initWithFrame:CGRectMake(kScreen_Width-100-10, 64+5, 100, 0) items:@[@"扫一扫",@"付款码"] showPoint:CGPointMake(kScreen_Width-60, 10)];
+        _MenuShowView=[[SQMenuShowView alloc]initWithFrame:CGRectMake(kScreen_Width-100-10, 64+5, 100, 0) items:@[@"扫一扫",@"付款码"] showPoint:CGPointMake(kScreen_Width-30, 10)];
         _MenuShowView.sq_backGroundColor=[UIColor grayColor];
         [self.view addSubview:_MenuShowView];
         
