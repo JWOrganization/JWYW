@@ -2643,8 +2643,8 @@
 		B38B2CA21D8FACD8004D5256 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
-				C1F7BDBE1DB1C95400CCAF96 /* PersonCenter */,
 				C1F7BD3B1DB1C94500CCAF96 /* HomePage */,
+				C1F7BDBE1DB1C95400CCAF96 /* PersonCenter */,
 				B38B2E651D8FC160004D5256 /* Login */,
 				B38B2CA31D8FACD8004D5256 /* discover */,
 				B38B2CB31D8FACD8004D5256 /* message */,
