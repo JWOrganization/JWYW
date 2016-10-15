@@ -10,10 +10,21 @@
 #import "PersonCenterZeroCell.h"
 #import "PersonCenterOneCell.h"
 #import "PersonCenterHeadView.h"
+#import "PCBottomTableViewCell.h"   //底部4种可能的cell
+
 
 #import "defineButton.h"
 #import "imageDefineButton.h"
 #import "YJSegmentedControl.h"
+#import "JWTools.h"
+#import "RBHomeModel.h"                   //笔记
+#import "RBHomeCollectionViewCell.h"
+#import "RBCenterAlbumModel.h"           //专辑
+#import "CommentTableViewCell.h"//评论的cell
+#import "CommitViewModel.h"   //评论的model
+#import "FilmViewModel.h"      //电影的model
+
+
 
 
 #import "YWOtherSeePersonCenterViewController.h"   //他人查看别人的个人中心
@@ -42,8 +53,10 @@
 
 @property(nonatomic,strong)UIView*belowImageViewView;   //图片下面的视图
 @property(nonatomic,strong)UIView*headerView;   //头视图
+@property(nonatomic,strong)YJSegmentedControl*segmentedControl;
 
 @property(nonatomic,strong)UITableView*tableView;
+@property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;
 
 
 @end
@@ -52,13 +65,16 @@
 
 -(void)viewDidLoad{
 
-
+    self.showWhichView=showViewCategoryNotes;
+    
+    self.automaticallyAdjustsScrollViewInsets=NO;
     self.view.backgroundColor=[UIColor whiteColor];
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
           self.automaticallyAdjustsScrollViewInsets=NO;
     }
   
-
+    self.heighCell = [[[NSBundle mainBundle]loadNibNamed:@"RBHomeCollectionViewCell" owner:nil options:nil]firstObject];
+    
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:SECTION0CELL];
     [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
@@ -148,6 +164,16 @@
         
         
         return cell;
+    }else if (indexPath.section==2&&indexPath.row==0){
+        //笔记的内容
+        NSMutableArray*array=[self getBottomDatas];;
+      
+        
+        PCBottomTableViewCell*cell=[[PCBottomTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil andDatas:array andWhichCategory:self.showWhichView];
+        cell.selectionStyle=NO;
+        return cell;
+        
+        
     }
     
     
@@ -161,9 +187,16 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==2) {
         //4个按钮
-        NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3",@"影评·6"];
-        YJSegmentedControl*view=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
-        return view;
+        
+     
+        if (!self.segmentedControl) {
+            NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3",@"影评·6"];
+            self.segmentedControl=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
+
+           
+        }
+        
+        return self.segmentedControl;  
         
         
     }
@@ -182,7 +215,64 @@
         return 157;
     }else if (indexPath.section==2&&indexPath.row==0){
         //分所选的区域的
-        return 200;
+//        return 1000;
+        if (self.showWhichView==showViewCategoryNotes) {
+            NSMutableArray*alldatas=[self getBottomDatas];
+            __block CGFloat rightRowHeight = 0.f;
+            __block CGFloat leftRowHeight = ACTUAL_HEIGHT(170);
+            [alldatas enumerateObjectsUsingBlock:^(RBHomeModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (model.cellHeight < 10.f){
+                    self.heighCell.model = model;
+                    model.cellHeight = self.heighCell.cellHeight;
+                }
+                if (idx%2 == 1) {
+                    rightRowHeight += model.cellHeight - 6.f;
+                }else{
+                    leftRowHeight += model.cellHeight - 6.f;
+                }
+            }];
+            
+            return rightRowHeight>leftRowHeight?rightRowHeight:leftRowHeight;
+            
+        }else if (self.showWhichView==showViewCategoryAlbum){
+            NSMutableArray*alldatas=[self getBottomDatas];
+             CGFloat height = 180.f - 55.25f + (kScreen_Width - 20.f - 75.f)/4;
+            return (height+10)*(alldatas.count+1);
+            
+            
+        }else if (self.showWhichView==showViewCategoryCommit){
+            //评论
+            CGFloat cellHeight=0.f;
+            NSMutableArray*alldatas=[self getBottomDatas];
+
+            for (int i=0; i<alldatas.count; i++) {
+                CommitViewModel*model=alldatas[i];
+                  NSDictionary*dict=@{@"title":model.content,@"images":model.images};
+               cellHeight=cellHeight+10+ [CommentTableViewCell getCellHeight:dict];
+            }
+            
+            return cellHeight;
+            
+            
+        }else if (self.showWhichView==showViewCategoryFilm) {
+            //影评
+            CGFloat cellHeight=25;
+            
+             NSMutableArray*alldatas=[self getBottomDatas];
+            for (int i=0; i<alldatas.count; i++) {
+                 FilmViewModel*model=alldatas[i];
+                NSString*str=model.content;
+                CGFloat strHeight=[str boundingRectWithSize:CGSizeMake(kScreen_Width-16, 105) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+                
+                cellHeight=cellHeight+160+10+strHeight-3;
+
+            }
+            
+            
+            return cellHeight;
+            }
+        
+        
         
         
     }
@@ -384,10 +474,81 @@
 -(void)segumentSelectionChange:(NSInteger)selection{
     MyLog(@"%ld",(long)selection);
     
+       self.showWhichView=selection;
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+    
 }
 
 
 #pragma mark  --  getDatas
+//得到底部的数据
+- (NSMutableArray*)getBottomDatas{
+    
+    if (self.showWhichView==showViewCategoryNotes) {
+        NSMutableArray*allDatas=[NSMutableArray array];
+        NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的笔记个人"];
+
+        NSArray * dataArr = dataDic[@"data"][@"notes"];
+        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+            [allDatas addObject:[RBHomeModel yy_modelWithDictionary:dic]];
+        }];
+        
+        return allDatas;
+
+        
+        
+    }else if (self.showWhichView==showViewCategoryAlbum){
+         NSMutableArray*allDatas=[NSMutableArray array];
+          NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的专辑 个人中心展示小图"];
+        NSArray * dataArr = dataDic[@"data"];
+        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+            [allDatas addObject:[RBCenterAlbumModel yy_modelWithDictionary:dic]];
+        }];
+    
+        return allDatas;
+
+        
+        
+        
+        
+    }else if (self.showWhichView==showViewCategoryCommit){
+        //评论
+        NSMutableArray*allDatas=[NSMutableArray array];
+        NSDictionary*dict=@{@"photoImage":@"xxx",@"userName":@"小雨娃",@"pointNumber":@"5",@"date":@"9月22日"
+                            ,@"content":@"是放假了司法局是浪费就撒了；副科级；按理说放假是咖啡机按理说放假萨拉放假啊；爱上了房间爱乱收费就拉上房间发家里是咖啡机拉法基；蓝思科技"
+                            ,@"images":@[@"",@"",@"",@""]};
+        NSArray*dataArr=@[dict,dict,dict,dict,dict];
+        [dataArr enumerateObjectsUsingBlock:^(NSDictionary*  _Nonnull dicc, NSUInteger idx, BOOL * _Nonnull stop) {
+              [allDatas addObject:[CommitViewModel yy_modelWithDictionary:dicc]];
+        }];
+        return allDatas;
+        
+        
+        
+        
+    }else if (self.showWhichView==showViewCategoryFilm){
+        
+        NSMutableArray*allDatas=[NSMutableArray array];
+        NSDictionary*dict=@{@"pointNumber":@"5",@"point":@"5星",@"content":@"是否家里是咖啡机爱上了；废旧塑料；付款加上了副科级爱上了；付款就撒了；付款就撒了；方会计师费拉斯克奖福利社；咖啡机按理说放假困死了房间卡萨类附近凯撒蓝废旧塑料；"
+                            ,@"image":@"xxxx",@"name":@"叶问2",@"category":@"动作，历史，传记",@"introduce":@"中国香港，中国大陆/105分钟"};
+        NSArray*dataArr=@[dict,dict,dict,dict,dict];
+        [dataArr enumerateObjectsUsingBlock:^(NSDictionary* _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+            [allDatas addObject:[FilmViewModel yy_modelWithDictionary:dic]];
+            
+            
+        }];
+        return allDatas;
+
+        
+        
+    }
+    
+    
+    return nil;
+}
+
+
+
 -(void)getFitstDatas{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -403,7 +564,7 @@
 #pragma mark  --set get
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height) style:UITableViewStyleGrouped];
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height-49) style:UITableViewStyleGrouped];
         _tableView.delegate=self;
         _tableView.dataSource=self;
         _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

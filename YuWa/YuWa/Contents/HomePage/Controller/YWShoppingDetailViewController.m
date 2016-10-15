@@ -17,6 +17,9 @@
 #import "YWMainShoppingTableViewCell.h"
 
 #import "YWPayViewController.h"    //优惠买单
+#import "StorePhotoViewController.h"   //商家相册
+#import "SeeMoreShoppingViewController.h"    //店铺商品详情
+#import "ShowMoreCommitViewController.h"    //评论详情
 
 
 #define CELL0   @"DetailStoreFirstTableViewCell"
@@ -80,6 +83,13 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[[self.navigationController.navigationBar subviews]objectAtIndex:0] setAlpha:1];
+    
+    
+}
+
 -(void)makeHeaderView{
     
     CGFloat topHeight =175.f;
@@ -108,6 +118,7 @@
 
     UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchTopImageView)];
     [imageButtonView addGestureRecognizer:tap];
+    [headerView addGestureRecognizer:tap];
     
 }
 
@@ -194,6 +205,16 @@
               [weakSelf gotoPay];
         };
         
+        cell.touchLocateBlock=^(){
+            //跳地图
+            
+        };
+        cell.touchPhoneBlock=^(){
+          //跳电话
+            [self alertShowPhone];
+        };
+        
+        
         cell.selectionStyle=NO;
         return cell;
         
@@ -259,7 +280,17 @@
         YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
         
+    }else if (indexPath.section==2){
+        //更多店铺
+        [self touchSeeMore];
+        
+    }else if (indexPath.section==3){
+        //更多评论
+        [self commitShowMore];
+        
     }
+    
+    
     
 }
 
@@ -279,16 +310,33 @@
             
         }];
         
+        UIImageView*imageView=[[UIImageView alloc]init];
+        imageView.image=[UIImage imageNamed:@"home_rightArr"];
+        [headView addSubview:imageView];
+
         UIButton*button=[[UIButton alloc]init];
         [button setTitle:@"查看更多" forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(touchSeeMore) forControlEvents:UIControlEventTouchUpInside];
+
+        
 //        button.backgroundColor=CNaviColor;
         [button setTitleColor:CNaviColor forState:UIControlStateNormal];
         button.titleLabel.font=FONT_CN_30;
         [headView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(headView.right).offset(-20);
+            make.size.mas_equalTo(CGSizeMake(20, 20));
             make.centerY.mas_equalTo(headView.mas_centerY);
         }];
+        
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(headView.right).offset(-40);
+            make.centerY.mas_equalTo(headView.mas_centerY);
+        
+        }];
+        
+        button.frame=CGRectMake(kScreen_Width-80-20, 10, 80, 20);
         
         return headView;
     }else if (section==3){
@@ -459,6 +507,34 @@
     return 44;
 }
 
+//打电话
+-(void)alertShowPhone{
+    UIAlertController*alertVC=[UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction*alertAC=[UIAlertAction actionWithTitle:@"13661475900" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //打电话
+        NSString *num = [[NSString alloc] initWithFormat:@"telprompt://13661475900"]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中 网上说这个方法可能不合法 无法通过审核
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]]; //拨号
+        
+    }];
+    UIAlertAction*alertAC2=[UIAlertAction actionWithTitle:@"59837057" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *num = [[NSString alloc] initWithFormat:@"telprompt://13661475900"]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中 网上说这个方法可能不合法 无法通过审核
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]]; //拨号
+
+        
+    }];
+    UIAlertAction*cancel=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alertVC addAction:alertAC];
+    [alertVC addAction:alertAC2];
+    [alertVC addAction:cancel];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -467,12 +543,26 @@
 
 
 #pragma mark  --  touch
--(void)touchTopImageView{
-    MyLog(@"11");
+
+-(void)touchSeeMore{
+    SeeMoreShoppingViewController*vc=[[SeeMoreShoppingViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+-(void)touchTopImageView{
+    MyLog(@"11");
+    StorePhotoViewController*vc=[[StorePhotoViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+}
+
+//查看更多评论
 -(void)commitShowMore{
     MyLog(@"22");
+    ShowMoreCommitViewController*vc=[[ShowMoreCommitViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

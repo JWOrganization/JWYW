@@ -75,6 +75,10 @@
     NSInteger number=indexPath.row;
     MyLog(@"%lu",number);
     
+    if (self.touchCollectionViewBlock) {
+        self.touchCollectionViewBlock(number);
+    }
+    
 }
 
 @end

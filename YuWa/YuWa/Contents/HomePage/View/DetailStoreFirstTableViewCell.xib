@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="375" height="139.5"/>
+                <frame key="frameInset" width="375" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寻蛙记炭烧牛蛙餐厅(大融城店)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTn-bm-2Eo">
@@ -70,13 +71,14 @@
                             <constraint firstAttribute="height" constant="1" id="RPh-qx-3za"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_locate.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-bV-pxL">
+                    <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_locate.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-bV-pxL">
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="XaK-Dn-yW1"/>
                             <constraint firstAttribute="height" constant="20" id="r0s-T2-bJX"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="CDC-cU-Mla">
+                    <imageView userInteractionEnabled="NO" tag="23" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="CDC-cU-Mla">
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="ObR-AB-jul"/>
                             <constraint firstAttribute="width" constant="25" id="eZf-eQ-sXJ"/>
@@ -88,7 +90,8 @@
                             <constraint firstAttribute="width" constant="1" id="i9t-Nu-kDg"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="嘉定区宝安公路3388号大融城商业广场4楼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCw-Qw-vCX">
+                    <label opaque="NO" userInteractionEnabled="NO" tag="22" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="嘉定区宝安公路3388号大融城商业广场4楼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCw-Qw-vCX">
+                        <gestureRecognizers/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -104,6 +107,7 @@
                             <action selector="touchPay:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4Xh-62-ySv"/>
                         </connections>
                     </button>
+                    <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHZ-Nj-RzN"/>
                 </subviews>
                 <constraints>
                     <constraint firstItem="JaJ-Mk-I7K" firstAttribute="centerY" secondItem="u9E-Es-8Xv" secondAttribute="centerY" id="2gp-To-JGa"/>
@@ -130,12 +134,16 @@
                     <constraint firstItem="uMM-6A-J6d" firstAttribute="centerY" secondItem="eix-P9-zPq" secondAttribute="centerY" id="f5T-ry-Gyn"/>
                     <constraint firstItem="ODP-h3-rnP" firstAttribute="centerY" secondItem="JaJ-Mk-I7K" secondAttribute="centerY" id="fZ1-AZ-IPe"/>
                     <constraint firstItem="bcX-Yk-hTP" firstAttribute="leading" secondItem="fCw-Qw-vCX" secondAttribute="trailing" constant="8" id="fz9-kF-9bl"/>
+                    <constraint firstItem="NHZ-Nj-RzN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="h7w-06-gT0"/>
                     <constraint firstItem="eix-P9-zPq" firstAttribute="leading" secondItem="y9b-NJ-OQX" secondAttribute="trailing" constant="5" id="hih-MQ-6GD"/>
                     <constraint firstItem="fCw-Qw-vCX" firstAttribute="leading" secondItem="Wz9-bV-pxL" secondAttribute="trailing" constant="8" id="hjC-rl-aQY"/>
                     <constraint firstItem="uMM-6A-J6d" firstAttribute="leading" secondItem="eix-P9-zPq" secondAttribute="trailing" constant="8" id="kpA-In-xRy"/>
                     <constraint firstItem="u9E-Es-8Xv" firstAttribute="top" secondItem="cTn-bm-2Eo" secondAttribute="bottom" constant="8" id="lmx-YY-PaT"/>
+                    <constraint firstItem="NHZ-Nj-RzN" firstAttribute="top" secondItem="xIs-VN-MQn" secondAttribute="bottom" id="mDT-x8-gQX"/>
+                    <constraint firstItem="bcX-Yk-hTP" firstAttribute="leading" secondItem="NHZ-Nj-RzN" secondAttribute="trailing" id="nJE-TZ-P6s"/>
                     <constraint firstItem="cTn-bm-2Eo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="nde-Pc-MMF"/>
                     <constraint firstItem="CDC-cU-Mla" firstAttribute="centerY" secondItem="Wz9-bV-pxL" secondAttribute="centerY" id="oCE-zI-hGL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NHZ-Nj-RzN" secondAttribute="bottom" id="qQo-OU-b87"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bcX-Yk-hTP" secondAttribute="trailing" constant="60" id="rnZ-ne-6wr"/>
                     <constraint firstItem="JaJ-Mk-I7K" firstAttribute="leading" secondItem="u9E-Es-8Xv" secondAttribute="trailing" constant="2" id="u13-kE-Trc"/>
                     <constraint firstAttribute="trailing" secondItem="CDC-cU-Mla" secondAttribute="trailing" constant="20" id="udX-wF-Kvf"/>
@@ -143,7 +151,7 @@
                     <constraint firstItem="fCw-Qw-vCX" firstAttribute="centerY" secondItem="Wz9-bV-pxL" secondAttribute="centerY" id="zfJ-PS-N5y"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="46" y="43"/>
+            <point key="canvasLocation" x="64.5" y="36"/>
         </tableViewCell>
     </objects>
     <resources>

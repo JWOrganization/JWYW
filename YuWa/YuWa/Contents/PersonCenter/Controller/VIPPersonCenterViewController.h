@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger,showViewCategory){
+    showViewCategoryNotes=0,
+    showViewCategoryAlbum=1,
+    showViewCategoryCommit=2,
+    showViewCategoryFilm
+    
+    
+};
+
 @interface VIPPersonCenterViewController : UIViewController
+
+@property(nonatomic,assign)showViewCategory showWhichView;
 
 @end
