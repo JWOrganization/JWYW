@@ -10,4 +10,6 @@
 
 @interface ShoppingTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)void(^touchCollectionViewBlock)(NSInteger number);
+
 @end

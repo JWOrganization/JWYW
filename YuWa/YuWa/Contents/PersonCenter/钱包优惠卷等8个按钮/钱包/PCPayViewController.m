@@ -68,9 +68,31 @@
     }
     cell.selectionStyle=NO;
     if (indexPath.row==0) {
+        
+      
         cell.textLabel.text=@"微信充值";
+        
+        //2、调整大小
+        UIImage *image = [UIImage imageNamed:@"wechatPay"];
+        CGSize imageSize = CGSizeMake(30, 30);
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+        CGRect imageRect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
+        [image drawInRect:imageRect];
+        cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsGetImageFromCurrentImageContext();
     }else if (indexPath.row==1){
+
         cell.textLabel.text=@"支付宝充值";
+        
+        //2、调整大小
+        UIImage *image = [UIImage imageNamed:@"zhifubaoPay"];
+        CGSize imageSize = CGSizeMake(30, 30);
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+        CGRect imageRect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
+        [image drawInRect:imageRect];
+        cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsGetImageFromCurrentImageContext();
+        
     }
     
     

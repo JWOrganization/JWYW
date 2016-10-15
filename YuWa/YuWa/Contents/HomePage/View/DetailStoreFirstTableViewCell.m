@@ -12,7 +12,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UIButton*button=[self viewWithTag:24];
+    [button addTarget:self action:@selector(touchLocate) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView*imageView=[self viewWithTag:23];
+    imageView.userInteractionEnabled=YES;
+    UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchPhone)];
+    [imageView addGestureRecognizer:tap];
+    
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,6 +34,22 @@
         self.touchPayBlock();
     }
     
+}
+- (void)touchLocate{
+    MyLog(@"locate");
+    if (self.touchLocateBlock) {
+        self.touchLocateBlock();
+    }
+   
+    
+}
+
+- (void)touchPhone{
+    MyLog(@"phone");
+    if (self.touchPhoneBlock) {
+        self.touchPhoneBlock();
+    }
+
 }
 
 @end

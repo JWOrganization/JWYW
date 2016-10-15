@@ -8,11 +8,12 @@
 
 #import "VIPHomePageViewController.h"
 
-
 //#import "MJRefreshGifHeader.h"
 //#import "MJRefreshBackGifFooter.h"
 
 #import "SDCycleScrollView.h"
+#import "SQMenuShowView.h"    //
+
 #import "HomeMenuCell.h"   
 //#import "HomeSixChooseTableViewCell.h"
 #import "ShoppingTableViewCell.h"
@@ -21,6 +22,7 @@
 
 #import "YWMainCategoryViewController.h"       //18个分类
 #import "YWShoppingDetailViewController.h"    //店铺详情
+#import "HomeSearchViewController.h"        //搜索界面
 
 
 
@@ -37,6 +39,8 @@
 @property(nonatomic,strong)UIBarButtonItem*rightItem;
 @property(nonatomic,strong)UIBarButtonItem*rightItem2;
 
+@property(nonatomic,assign)BOOL isShow;   //显示
+@property(nonatomic,strong)SQMenuShowView*MenuShowView;
 
 @property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
 @end
@@ -57,9 +61,22 @@
    // [self.tableView registerClass:[YWMainShoppingTableViewCell class] forCellReuseIdentifier:CELL2];
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
     [self setUpMJRefresh];
+    //
 
-    
-    
+    WEAKSELF;
+    [self.MenuShowView selectBlock:^(SQMenuShowView *view, NSInteger index) {
+         weakSelf.isShow = NO;
+        MyLog(@"%lu",index);
+      
+        if (index==0) {
+            //扫一扫
+        }else{
+            
+            
+        }
+        
+        
+    }];
  
   
 
@@ -77,14 +94,16 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     MyLog(@"%f",scrollView.contentOffset.y);
-//     self.centerView.transform=CGAffineTransformMakeScale(1.0, 1.0);
+
+    [self.MenuShowView dismissView];
+    self.isShow=NO;
+    
     if (scrollView.contentOffset.y>0) {
        
         if (self.centerView.width !=kScreen_Width- 40.f) {
             self.navigationItem.leftBarButtonItem = nil;
             self.navigationItem.rightBarButtonItems=nil;
             [UIView animateWithDuration:0.25 animations:^{
-                //            self.centerView.transform=CGAffineTransformMakeScale(1.2, 1.2);
                 self.centerView.width=kScreen_Width- 40.f;
                 
             }];
@@ -96,8 +115,7 @@
             self.navigationItem.rightBarButtonItems=@[self.rightItem2,self.rightItem];
             
             [UIView animateWithDuration:0.25 animations:^{
-                //         self.centerView.transform=CGAffineTransformMakeScale(1.0, 1.0);
-                self.centerView.width=kScreen_Width/2;
+            self.centerView.width=kScreen_Width/2;
                 
             }];
 
@@ -137,10 +155,25 @@
     self.navigationItem.leftBarButtonItem=leftItem;
     self.navigationItem.rightBarButtonItems=@[rightItem2,rightItem];
     
-    UIView*centerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width/2, 20)];
+    UIView*centerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width/2, 30)];
     centerView.backgroundColor=[UIColor whiteColor];
     centerView.layer.cornerRadius=6;
     self.centerView=centerView;
+    //centview 上的元素
+    UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 20, 20)];
+    imageView.image=[UIImage imageNamed:@"page_navi_sousuo"];
+    [self.centerView addSubview:imageView];
+    
+    UILabel*showLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, 5, self.centerView.width-60, 20)];
+    showLabel.font=[UIFont systemFontOfSize:14];
+    showLabel.textColor=CtitleColor;
+    showLabel.text=@"公园";
+    [self.centerView addSubview:showLabel];
+    
+    UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchinPut)];
+    [self.centerView addGestureRecognizer:tap];
+    
+    
     
     self.navigationItem.titleView=centerView;
     self.leftItem=leftItem;
@@ -281,7 +314,12 @@
         
         ShoppingTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
-        
+        WEAKSELF;
+        cell.touchCollectionViewBlock=^(NSInteger number){
+            YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        };
             
 
         
@@ -372,7 +410,17 @@
     
 }
 -(void)touchSaomiao{
-    
+    _isShow=!_isShow;
+    if (_isShow) {
+        //显示
+        [self.MenuShowView showView];
+        
+        
+    }else{
+        
+        [self.MenuShowView dismissView];
+        
+    }
     
 }
 
@@ -380,9 +428,26 @@
     
     
 }
+//点击输入框
+-(void)touchinPut{
+    MyLog(@"aa");
+    HomeSearchViewController*vc=[[HomeSearchViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 
 #pragma mark  --delegate
+//轮播图
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    MyLog(@"%ld",(long)index);
+    YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+}
+
+
 -(void)DelegateToChooseCategory:(NSInteger)number{
     NSLog(@"xxxx%lu",number);
     if (number==1) {
@@ -405,6 +470,10 @@
     
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.MenuShowView dismissView];
+}
+
 #pragma mark  --set
 -(UITableView *)tableView{
     if (!_tableView) {
@@ -416,7 +485,16 @@
     return _tableView;
 }
 
-
+-(SQMenuShowView *)MenuShowView{
+    if (!_MenuShowView) {
+        _MenuShowView=[[SQMenuShowView alloc]initWithFrame:CGRectMake(kScreen_Width-100-10, 64+5, 100, 0) items:@[@"扫一扫",@"付款码"] showPoint:CGPointMake(kScreen_Width-60, 10)];
+        _MenuShowView.sq_backGroundColor=[UIColor grayColor];
+        [self.view addSubview:_MenuShowView];
+        
+    }
+    
+    return _MenuShowView;
+}
 
 
 @end

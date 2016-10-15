@@ -13,6 +13,9 @@
 #import "TwoLabelShowTableViewCell.h"
 #import "AccountMoneyTableViewCell.h"      //账户余额
 
+
+#import "PCPayViewController.h"    //充值界面
+
 #define CELL0  @"inputNumberCell"
 #define CELL1  @"ZheTableViewCell"
 #define CELL2  @"TwoLabelShowTableViewCell"
@@ -59,7 +62,7 @@
         return 2;
         
     }else{
-        return 2;
+        return 1;
     }
     
     
@@ -117,28 +120,29 @@
         cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
         UIImageView*imageView=[cell viewWithTag:1];
-        imageView.image=[UIImage imageNamed:@"wechatPay"];
+        imageView.image=[UIImage imageNamed:@"home_money"];
         
         UILabel*label=[cell viewWithTag:2];
-        label.text=@"微信支付";
+        label.text=@"账户充值";
         
         UIImageView*imageView2=[cell viewWithTag:3];
         imageView2.image=[UIImage imageNamed:@"home_rightArr"];
-        
-    }else if (indexPath.section==2&&indexPath.row==1){
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
-        cell.selectionStyle=NO;
-        UIImageView*imageView=[cell viewWithTag:1];
-        imageView.image=[UIImage imageNamed:@"zhifubaoPay"];
-        
-        UILabel*label=[cell viewWithTag:2];
-        label.text=@"支付宝支付";
-        
-        UIImageView*imageView2=[cell viewWithTag:3];
-        imageView2.image=[UIImage imageNamed:@"home_rightArr"];
-
         
     }
+//    else if (indexPath.section==2&&indexPath.row==1){
+//        cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+//        cell.selectionStyle=NO;
+//        UIImageView*imageView=[cell viewWithTag:1];
+//        imageView.image=[UIImage imageNamed:@"zhifubaoPay"];
+//        
+//        UILabel*label=[cell viewWithTag:2];
+//        label.text=@"支付宝支付";
+//        
+//        UIImageView*imageView2=[cell viewWithTag:3];
+//        imageView2.image=[UIImage imageNamed:@"home_rightArr"];
+//
+//        
+//    }
     
     
     return cell;
@@ -149,13 +153,12 @@
         //使用优惠券
         
     }else if (indexPath.section==2&&indexPath.row==0){
-        //微信支付
+        //充值界面
+        PCPayViewController*vc=[[PCPayViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
         
-    }else if (indexPath.section==2&&indexPath.row==1){
-        //支付宝支付
         
     }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
