@@ -5964,7 +5964,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YuWa/Foundation/Custom Category/VipxoxPrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/YuWa/Supporting File/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6001,7 +6001,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YuWa/Foundation/Custom Category/VipxoxPrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/YuWa/Supporting File/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
