@@ -61,6 +61,7 @@
    // [self.tableView registerClass:[YWMainShoppingTableViewCell class] forCellReuseIdentifier:CELL2];
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
     [self setUpMJRefresh];
+    //
 
     WEAKSELF;
     [self.MenuShowView selectBlock:^(SQMenuShowView *view, NSInteger index) {
