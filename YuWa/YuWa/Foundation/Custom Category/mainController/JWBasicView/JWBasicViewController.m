@@ -36,6 +36,7 @@
     if (isSuccess) {
         hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     }
+    
     hud.mode = MBProgressHUDModeCustomView;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:0.8];
