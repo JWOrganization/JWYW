@@ -313,7 +313,6 @@
     [self saveImageToCustomAblum:self.imagesArr[idx]];
     return;
 #endif
-    
     if (!self.library) {//创建相册
         self.library = [[ALAssetsLibrary alloc] init];
         [self.library addAssetsGroupAlbumWithName:@"雨娃" resultBlock:^(ALAssetsGroup *group) {
