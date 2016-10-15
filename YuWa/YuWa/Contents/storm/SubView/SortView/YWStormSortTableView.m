@@ -29,10 +29,8 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectIndex = indexPath.row;
-    self.choosedTypeBlock(self.selectIndex);
-    [self removeFromSuperview];
-    [self reloadData];
+    if (self.selectIndex == indexPath.row)return;
+    [self requestSubTypeWithIdx:indexPath.row];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 44.f;
@@ -50,16 +48,16 @@
     }
     typeStormCell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == self.selectIndex) {
-        typeStormCell.accessoryType = UITableViewCellAccessoryCheckmark;
         typeStormCell.tintColor = CNaviColor;
         typeStormCell.textLabel.textColor = CNaviColor;
+        typeStormCell.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
     }else{
-        typeStormCell.accessoryType = UITableViewCellAccessoryNone;
         typeStormCell.textLabel.textColor = CsubtitleColor;
+        typeStormCell.backgroundColor = [UIColor whiteColor];
     }
     typeStormCell.textLabel.text = self.dataArr[indexPath.row];
     typeStormCell.textLabel.font = [UIFont systemFontOfSize:15.f];
-    typeStormCell.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
+    
     if (![typeStormCell viewWithTag:10086]) {
         UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 43.f, kScreen_Width, 1.f)];
         lineView.backgroundColor = [UIColor colorWithHexString:@"#d6d6d6"];
@@ -70,5 +68,13 @@
     return typeStormCell;
 }
 
+#pragma mark - Http
+- (void)requestSubTypeWithIdx:(NSInteger)index{
+//    index//请求参数
+    
+    self.selectIndex = index;
+    [self reloadData];
+    self.choosedTypeBlock(self.selectIndex,@[@"23333333",@"23333333",@"23333333",@"23333333",@"23333333",@"23333333"]);//子类标签为请求数据
+}
 
 @end

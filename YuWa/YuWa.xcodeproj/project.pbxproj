@@ -163,6 +163,7 @@
 		B35778B21D9962550058A998 /* YWStormPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778B11D9962550058A998 /* YWStormPinAnnotationView.m */; };
 		B35778B81D996B0B0058A998 /* YWStormSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */; };
 		B35778B91D996B0B0058A998 /* YWStormSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */; };
+		B36AB95B1DB2345400FEAAAB /* YWStormSubSortCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AB95A1DB2345400FEAAAB /* YWStormSubSortCollectionView.m */; };
 		B36C7EFE1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7EFC1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m */; };
 		B36C7EFF1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B36C7EFD1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib */; };
 		B36C7F061D9D0C8900B022E0 /* YWMessageFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B36C7F041D9D0C8900B022E0 /* YWMessageFriendAddCell.xib */; };
@@ -1022,6 +1023,8 @@
 		B35778B51D996B0B0058A998 /* YWStormSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSearchViewController.h; sourceTree = "<group>"; };
 		B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSearchViewController.m; sourceTree = "<group>"; };
 		B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWStormSearchViewController.xib; sourceTree = "<group>"; };
+		B36AB9591DB2345400FEAAAB /* YWStormSubSortCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSubSortCollectionView.h; sourceTree = "<group>"; };
+		B36AB95A1DB2345400FEAAAB /* YWStormSubSortCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSubSortCollectionView.m; sourceTree = "<group>"; };
 		B36C7EFB1D9CE18100B022E0 /* YWMessageFriendsAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageFriendsAddViewController.h; sourceTree = "<group>"; };
 		B36C7EFC1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageFriendsAddViewController.m; sourceTree = "<group>"; };
 		B36C7EFD1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageFriendsAddViewController.xib; sourceTree = "<group>"; };
@@ -2007,6 +2010,8 @@
 			children = (
 				B32975CD1DADCF1C002CA488 /* YWStormSortTableView.h */,
 				B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */,
+				B36AB9591DB2345400FEAAAB /* YWStormSubSortCollectionView.h */,
+				B36AB95A1DB2345400FEAAAB /* YWStormSubSortCollectionView.m */,
 			);
 			path = SortView;
 			sourceTree = "<group>";
@@ -5511,6 +5516,7 @@
 				B38B2F261D8FC82F004D5256 /* RBNewAlbumCollectionViewCell.m in Sources */,
 				B38B2F161D8FC82F004D5256 /* RBNodeShowViewController.m in Sources */,
 				B38B2E531D8FACD8004D5256 /* STCountDownButton.m in Sources */,
+				B36AB95B1DB2345400FEAAAB /* YWStormSubSortCollectionView.m in Sources */,
 				B3192ACC1D9246FB00FD6578 /* RBPublicToolView.m in Sources */,
 				B38B2E0F1D8FACD8004D5256 /* MBHUD.m in Sources */,
 				B38B2E151D8FACD8004D5256 /* MJRefreshHeader.m in Sources */,
