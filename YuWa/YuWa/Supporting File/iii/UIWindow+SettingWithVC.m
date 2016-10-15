@@ -13,7 +13,6 @@
 #pragma mark - UIWindow
 /**
  *  初始化UIWindow并赋予根视图
- *
  *  @param rootViewController UIWindow的根视图
  *
  *  @return 自定义的UIWindow
