@@ -19,7 +19,6 @@
 #import "ShoppingTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
 
-
 #import "YWMainCategoryViewController.h"       //18个分类
 #import "YWShoppingDetailViewController.h"    //店铺详情
 #import "HomeSearchViewController.h"        //搜索界面
@@ -46,7 +45,6 @@
 @implementation VIPHomePageViewController
 
 -(void)viewDidLoad{
-    
     [self getDatas];
     
     [self makeNaviBar];
