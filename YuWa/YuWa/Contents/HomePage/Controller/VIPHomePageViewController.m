@@ -21,6 +21,8 @@
 #import "YWMainCategoryViewController.h"       //18个分类
 #import "YWShoppingDetailViewController.h"    //店铺详情
 #import "HomeSearchViewController.h"        //搜索界面
+#import "WLBarcodeViewController.h"     //新的扫2维码
+#import "H5LinkViewController.h"    //webView
 
 
 #define CELL0   @"HomeMenuCell"
@@ -37,6 +39,7 @@
 
 @property(nonatomic,assign)BOOL isShow;   //显示
 @property(nonatomic,strong)SQMenuShowView*MenuShowView;
+@property(nonatomic,strong)NSString *saveQRCode;   //保存二维码
 
 @property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
 @end
@@ -404,9 +407,53 @@
     //城市
     
 }
+
+#pragma mark  --  二维码
 -(void)touchSaomiao{
+    WLBarcodeViewController *vc=[[WLBarcodeViewController alloc] initWithBlock:^(NSString *str, BOOL isScceed) {
+        
+        if (isScceed) {
+          //扫描结果 成功
+            self.saveQRCode=str;
+            NSString*strr=[NSString stringWithFormat:@"可能存在风险，是否打开此链接?\n %@",str];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:strr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"打开链接", nil];
+            [alert show];
+
+            
+            
+            
+            
+            
+            
+            
+            
+        }else{
+           //扫描结果不成功
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫码结果" message:@"无法识别" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
+    
+    
+    
+    
+    [self presentViewController:vc animated:YES completion:nil];
     
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //没有0 的 只有1
+    if (buttonIndex==1) {
+        H5LinkViewController *h5LinkVC = [[H5LinkViewController alloc]init];
+        h5LinkVC.h5LinkString = self.saveQRCode;
+        [self.navigationController pushViewController:h5LinkVC animated:YES];
+        
+    }
+    
+    
+}
+
 
 -(void)touchLingdang{
     
