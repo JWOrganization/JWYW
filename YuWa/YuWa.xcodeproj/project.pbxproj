@@ -398,6 +398,7 @@
 		B38B2F7B1D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F711D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m */; };
 		B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F741D8FC8CD004D5256 /* JWSearchView.m */; };
 		B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */; };
+		B3A1C32E1DB21ED00091BD9D /* JWTagScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A1C32D1DB21ED00091BD9D /* JWTagScrollView.m */; };
 		B3AE4D701D91302B000A389F /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D5E1D91302B000A389F /* TZAssetCell.m */; };
 		B3AE4D711D91302B000A389F /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D601D91302B000A389F /* TZAssetModel.m */; };
 		B3AE4D721D91302B000A389F /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D621D91302B000A389F /* TZImageManager.m */; };
@@ -1429,6 +1430,8 @@
 		B38B2F731D8FC8CD004D5256 /* JWSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSearchView.h; sourceTree = "<group>"; };
 		B38B2F741D8FC8CD004D5256 /* JWSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSearchView.m; sourceTree = "<group>"; };
 		B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWSearchView.xib; sourceTree = "<group>"; };
+		B3A1C32C1DB21ED00091BD9D /* JWTagScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWTagScrollView.h; sourceTree = "<group>"; };
+		B3A1C32D1DB21ED00091BD9D /* JWTagScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWTagScrollView.m; sourceTree = "<group>"; };
 		B3AE4D5D1D91302B000A389F /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
 		B3AE4D5E1D91302B000A389F /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
 		B3AE4D5F1D91302B000A389F /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
@@ -3750,6 +3753,7 @@
 		B38B2F611D8FC8A5004D5256 /* RBTools */ = {
 			isa = PBXGroup;
 			children = (
+				B3A1C32B1DB21E900091BD9D /* TagScrolView */,
 				B3D2191F1DB0A99C00D661F5 /* ShareView */,
 				B3FFF4631D93A3C700EDD2AB /* XHTagView */,
 				B38B2F621D8FC8CD004D5256 /* Category */,
@@ -3819,6 +3823,15 @@
 				B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */,
 			);
 			path = SearchView;
+			sourceTree = "<group>";
+		};
+		B3A1C32B1DB21E900091BD9D /* TagScrolView */ = {
+			isa = PBXGroup;
+			children = (
+				B3A1C32C1DB21ED00091BD9D /* JWTagScrollView.h */,
+				B3A1C32D1DB21ED00091BD9D /* JWTagScrollView.m */,
+			);
+			path = TagScrolView;
 			sourceTree = "<group>";
 		};
 		B3AE4D5C1D91302B000A389F /* TZImagePickerController */ = {
@@ -5581,6 +5594,7 @@
 				B38B2E121D8FACD8004D5256 /* MJRefreshBackFooter.m in Sources */,
 				B33A26AF1D9A68040092CB12 /* EaseFacialView.m in Sources */,
 				B38B2DF01D8FACD8004D5256 /* VIPNavigationController.m in Sources */,
+				B3A1C32E1DB21ED00091BD9D /* JWTagScrollView.m in Sources */,
 				B38B2EFA1D8FC82F004D5256 /* RBHomeListGoodsModel.m in Sources */,
 				B38B2E371D8FACD8004D5256 /* UIImage+WebP.m in Sources */,
 				B38B2E111D8FACD8004D5256 /* MJRefreshAutoFooter.m in Sources */,

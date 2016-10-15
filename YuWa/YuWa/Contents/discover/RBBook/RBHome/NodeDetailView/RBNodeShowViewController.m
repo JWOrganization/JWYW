@@ -299,8 +299,8 @@
         }
         return kScreen_Height/2;
     }
-    self.scrollToolsHeight += section == 2?44.f : 40.f;
-    return section == 2?44.f : 40.f;
+    self.scrollToolsHeight += section == 2?44.f : 50.f;
+    return section == 2?44.f : 50.f;//50.f为相关笔记的高度？110.f
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
