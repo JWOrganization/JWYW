@@ -25,10 +25,11 @@
                         <outlet property="delegate" destination="-1" id="YVl-6v-pfn"/>
                     </connections>
                 </tableView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNC-jo-nPZ">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNC-jo-nPZ">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
-                    <state key="normal" backgroundImage="MessageNoLogin">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="尚未登录?前往登录" image="YW_Message_shop_fan">
+                        <color key="titleColor" red="0.69411764705882351" green="0.70588235294117641" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="noLoginBGBtnAvtion:" destination="-1" eventType="touchUpInside" id="vWd-Ix-EWZ"/>
@@ -49,6 +50,6 @@
         </view>
     </objects>
     <resources>
-        <image name="MessageNoLogin" width="202" height="262"/>
+        <image name="YW_Message_shop_fan" width="50" height="50"/>
     </resources>
 </document>

@@ -86,7 +86,7 @@
     [arr enumerateObjectsUsingBlock:^(NSString * _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx != 0&&(idx%onePageMaxNumber == 0))[emojionArr addObject:DeleteEmojionStr];
         [emojionArr addObject:str];
-        if (idx == arr.count)[emojionArr addObject:DeleteEmojionStr];
+        if (idx == (arr.count - 1))[emojionArr addObject:DeleteEmojionStr];
     }];
     
     CGFloat btnWidth = width;

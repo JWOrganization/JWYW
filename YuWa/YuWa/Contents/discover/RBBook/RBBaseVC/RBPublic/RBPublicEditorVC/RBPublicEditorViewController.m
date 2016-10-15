@@ -135,16 +135,24 @@
             NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.scrollView.conTextView.text];
             if (strTemp.length>=2) {
                 NSString * strTempTest = [strTemp substringFromIndex:strTemp.length-2];
-                if ([JWTools stringContainsEmoji:strTempTest]) {
+                if ([JWTools stringContainsEmoji:strTempTest]&&(![[strTemp substringFromIndex:strTemp.length-1] isEqualToString:@"☺"])) {
                     [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
                 }
             }
             [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
             weakSelf.scrollView.conTextView.text = strTemp;
+            if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
+                weakSelf.scrollView.conTextView.isDrawPlaceholder = YES;
+                [weakSelf.scrollView.conTextView setNeedsDisplay];
+            }
         }
     };
     self.emojisKeyBoards.addStrBlock = ^(NSString * addStr){
         weakSelf.scrollView.conTextView.text = [NSString stringWithFormat:@"%@%@",weakSelf.scrollView.conTextView.text,addStr];
+        if (![weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
+            weakSelf.scrollView.conTextView.isDrawPlaceholder = NO;
+            [weakSelf.scrollView.conTextView setNeedsDisplay];
+        }
     };
     
 }

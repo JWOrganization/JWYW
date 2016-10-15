@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *noLoginBGBtnView;
 @property (nonatomic,strong)UIImageView *noChatBGBtnView;
+@property (nonatomic,strong)UILabel * noChatlabel;
 
 @property (nonatomic,strong)NSMutableArray * dataArr;
 @property (nonatomic,copy)NSString * pagens;
@@ -48,6 +49,8 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setUserInteractionEnabled:YES];
     self.noLoginBGBtnView.hidden = YES;
+    self.noChatBGBtnView.hidden = YES;
+    self.noChatlabel.hidden = self.noChatBGBtnView.hidden;
     if (self.status == 1&&![UserSession instance].isLogin){
         self.segmentedControl.selectedSegmentIndex = 0;
     }
@@ -72,10 +75,18 @@
 
 - (void)makeUI{
     self.tableView.alwaysBounceVertical = YES;
-    self.noChatBGBtnView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Height - 64.f - 50.f)];
+    self.noChatBGBtnView = [[UIImageView alloc]initWithFrame:CGRectMake(kScreen_Width/2-40.f, kScreen_Height/2 - 80.f, 80.f, 80.f)];
     self.noChatBGBtnView.image = [UIImage imageNamed:@"MessageNoChat"];
     self.noChatBGBtnView.hidden = YES;
-    [self.tableView addSubview:self.noChatBGBtnView];
+    [self.view addSubview:self.noChatBGBtnView];
+    
+    self.noChatlabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f, CGRectGetMaxY(self.noChatBGBtnView.frame), kScreen_Width, 21.f)];
+    self.noChatlabel.textAlignment = NSTextAlignmentCenter;
+    self.noChatlabel.text = @"暂时没有新消息";
+    self.noChatlabel.textColor = [UIColor colorWithHexString:@"#b1b4bb"];
+    self.noChatlabel.font = [UIFont systemFontOfSize:17.f];
+    self.noChatlabel.hidden = YES;
+    [self.view addSubview:self.noChatlabel];
     
     [self addressBookMake];
 }
@@ -212,6 +223,8 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     self.noChatBGBtnView.hidden = self.dataArr.count != 0?YES:NO;
+    if (![UserSession instance].isLogin)self.noChatBGBtnView.hidden = YES;
+    self.noChatlabel.hidden = self.noChatBGBtnView.hidden;
     return self.dataArr.count;
 }
 
