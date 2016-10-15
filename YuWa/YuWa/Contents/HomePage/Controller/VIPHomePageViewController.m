@@ -25,8 +25,6 @@
 #import "HomeSearchViewController.h"        //搜索界面
 
 
-
-
 #define CELL0   @"HomeMenuCell"
 //#define CELL1   @"HomeSixChooseTableViewCell"
 #define CELL1   @"ShoppingTableViewCell"
