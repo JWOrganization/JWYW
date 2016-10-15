@@ -7,7 +7,6 @@
 //
 
 #import "RBCommentToolsView.h"
-
 @implementation RBCommentToolsView
 
 - (IBAction)connectionAction:(id)sender {
