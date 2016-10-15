@@ -98,7 +98,7 @@
             NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.commentToolsView.sendTextField.text];
             if (strTemp.length>=2) {
                 NSString * strTempTest = [strTemp substringFromIndex:strTemp.length-2];
-                if ([JWTools stringContainsEmoji:strTempTest]) {
+                if ([JWTools stringContainsEmoji:strTempTest]&&(![[strTemp substringFromIndex:strTemp.length-1] isEqualToString:@"☺"])) {
                     [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
                 }
             }
