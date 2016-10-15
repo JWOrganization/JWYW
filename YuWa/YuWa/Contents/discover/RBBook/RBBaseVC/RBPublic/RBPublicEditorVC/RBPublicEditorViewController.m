@@ -141,10 +141,18 @@
             }
             [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
             weakSelf.scrollView.conTextView.text = strTemp;
+            if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
+                weakSelf.scrollView.conTextView.isDrawPlaceholder = YES;
+                [weakSelf.scrollView.conTextView setNeedsDisplay];
+            }
         }
     };
     self.emojisKeyBoards.addStrBlock = ^(NSString * addStr){
         weakSelf.scrollView.conTextView.text = [NSString stringWithFormat:@"%@%@",weakSelf.scrollView.conTextView.text,addStr];
+        if (![weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
+            weakSelf.scrollView.conTextView.isDrawPlaceholder = NO;
+            [weakSelf.scrollView.conTextView setNeedsDisplay];
+        }
     };
     
 }
