@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VIPPersonCenterViewController.h"
+
 
 @interface YWOtherSeePersonCenterViewController : UIViewController
-
+@property(nonatomic,assign)showViewCategory showWhichView;
 @end

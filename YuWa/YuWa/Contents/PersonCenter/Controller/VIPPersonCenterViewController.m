@@ -196,7 +196,7 @@
            
         }
         
-        return self.segmentedControl;  
+        return self.segmentedControl;
         
         
     }
