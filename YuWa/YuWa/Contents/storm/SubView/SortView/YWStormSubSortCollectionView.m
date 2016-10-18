@@ -23,14 +23,15 @@
         self.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
         self.dataArr = @[];
         
-        CGFloat allWidth = kScreen_Width*2/3 - 20.f;
-        for (int i = 1; i<10; i++) {
-            CGFloat widthTemp = allWidth/i;
-            if (widthTemp<60.f) {
-                self.cellWidth = widthTemp;
-                break;
-            }
-        }
+//        CGFloat allWidth = kScreen_Width*2/3 - 20.f;
+//        for (int i = 1; i<10; i++) {
+//            CGFloat widthTemp = allWidth/i;
+//            if (widthTemp<60.f) {
+//                self.cellWidth = widthTemp;
+//                break;
+//            }
+//        }
+        self.cellWidth = kScreen_Width*2/3 - 10.f;
     }
     return self;
 }
@@ -73,18 +74,20 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(self.cellWidth-10.f, 30.f);
+    return CGSizeMake(self.cellWidth-20.f, 44.f);
+//    return CGSizeMake(self.cellWidth-10.f, 30.f);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 10.f;
+    return 0.f;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return 10.f;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f);
+//    return UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f);
+    return UIEdgeInsetsMake(0.f, 0.f, 5.f, 5.f);
 }
 
 @end

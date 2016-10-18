@@ -12,8 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.nameLabel.layer.cornerRadius = 5.f;
-    self.nameLabel.layer.masksToBounds = YES;
+//    self.nameLabel.layer.cornerRadius = 5.f;
+//    self.nameLabel.layer.masksToBounds = YES;
 }
 
 
