@@ -21,6 +21,7 @@
     self = [super initWithCoder:coder];
     if (self) {
         [self getEmotionArr];
+        self.oneLengthStrArr = @[@"☺",@"✨",@"✊",@"✌",@"✋",@"☝",@"❤"];
         self.keyboardsStates = 1;
     }
     return self;
@@ -172,6 +173,17 @@
 }
 - (void)addStrAction:(UIButton *)sender{
     self.addStrBlock(sender.titleLabel.text);
+}
+
+- (BOOL)isOneLengthEmojionithStr:(NSString *)str{
+    __block BOOL isOneLengthEmojion = NO;
+    for (int i = 0; i<self.oneLengthStrArr.count; i++) {
+        if ([str isEqualToString:self.oneLengthStrArr[i]]) {
+            isOneLengthEmojion = YES;
+            break;
+        }
+    }
+    return !isOneLengthEmojion;
 }
 
 #pragma mark - UIScrollViewDelegate

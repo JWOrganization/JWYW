@@ -11,6 +11,7 @@
 #import "YWStormPinAnnotationView.h"
 #import "YWStormSearchViewController.h"
 #import "YWShoppingDetailViewController.h"
+#import "YWStormSubSortCollectionView.h"
 
 #define STORM_PINANNOTATION @"YWStormPinAnnotationView"
 @interface YWStormViewController ()
@@ -19,10 +20,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
 @property (nonatomic,strong)YWStormSortTableView * sortTableView;
+@property (nonatomic,strong)YWStormSubSortCollectionView * sortSubCollectionView;
 
 @property (nonatomic,strong)CLGeocoder * geocoder;
 
 @property (nonatomic,assign)NSInteger type;
+@property (nonatomic,assign)NSInteger subType;
 @property (nonatomic,assign)BOOL isSearch;//调用地图请求,仅自动一次
 
 @end
@@ -42,6 +45,7 @@
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.sortTableView removeFromSuperview];
+    [self.sortSubCollectionView removeFromSuperview];
     [self.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:YES];
 }
 - (CLGeocoder *)geocoder{
@@ -72,13 +76,23 @@
     //设置地图的默认显示区域
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(self.location.coordinate, 5000, 5000) animated:YES];//下法同
     //    self.mapView.region = MKCoordinateRegionMake([YWLocation shareLocation].coordinate, MKCoordinateSpanMake(0.01, 0.01));
-    
-    self.sortTableView = [[YWStormSortTableView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width, kScreen_Height - 64.f - 49.f) style:UITableViewStylePlain];
-    self.sortTableView.choosedTypeBlock = ^(NSInteger type){
-        weakSelf.type = type;
+    UICollectionViewFlowLayout * collectionFlow = [[UICollectionViewFlowLayout alloc]init];
+    collectionFlow.scrollDirection = UICollectionViewScrollDirectionVertical;
+    self.sortSubCollectionView = [[YWStormSubSortCollectionView alloc]initWithFrame:CGRectMake(kScreen_Width/3, NavigationHeight, kScreen_Width - self.sortTableView.width, kScreen_Height - 64.f - 49.f) collectionViewLayout:collectionFlow];
+    self.sortSubCollectionView.choosedTypeBlock = ^(NSInteger type){
+        weakSelf.subType = type;
         [weakSelf requestAnnotationData];
         [weakSelf.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:YES];
+        [weakSelf.sortTableView removeFromSuperview];
+        [weakSelf.sortSubCollectionView removeFromSuperview];
     };
+    
+    self.sortTableView = [[YWStormSortTableView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width/3, self.sortSubCollectionView.height) style:UITableViewStylePlain];
+    self.sortTableView.choosedTypeBlock = ^(NSInteger type,NSArray * subArr){
+        weakSelf.type = type;
+        weakSelf.sortSubCollectionView.dataArr = subArr;
+    };
+    
 }
 
 - (void)cityNameSetWithStr:(NSString *)locality{
@@ -99,6 +113,7 @@
 - (void)sortAction{
     [self.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:NO];
     [self.view addSubview:self.sortTableView];
+    [self.view addSubview:self.sortSubCollectionView];
 }
 
 - (IBAction)toMyLocationBtnAction:(id)sender {
@@ -148,6 +163,7 @@
 #pragma mark - Http
 - (void)requestAnnotationData{
 //    self.type//2333333333筛选类型请求参数,要转str类型
+//    self.subType//2333333333筛选类型子类型,要转str类型
     
     self.isSearch = YES;
     [self.mapView removeAnnotations:self.mapView.annotations];

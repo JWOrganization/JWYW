@@ -19,9 +19,11 @@
 @property (nonatomic,strong)NSMutableArray * keyboardTypeArr;
 @property (nonatomic,strong)NSMutableArray * keyboardArr;
 
+@property (nonatomic,strong)NSArray * oneLengthStrArr;
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *keyboardsTypeScrollView;
 
+- (BOOL)isOneLengthEmojionithStr:(NSString *)str;
 
 @end
