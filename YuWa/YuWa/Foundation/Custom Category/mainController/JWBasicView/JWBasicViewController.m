@@ -78,6 +78,7 @@
     [ShareSDK share:shareType parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
         switch (state) {
             case SSDKResponseStateSuccess:{//分享成功
+                [self showHUDWithStr:@"分享成功" withSuccess:YES];
                 break;
             }
             case SSDKResponseStateFail:{//分享失败
