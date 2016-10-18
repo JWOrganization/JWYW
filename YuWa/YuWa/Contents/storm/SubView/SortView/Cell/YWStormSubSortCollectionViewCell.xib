@@ -14,7 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yoo" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jL4-6z-Oh9">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="0.0" y="10" width="50" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="6S4-MK-JQu"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -25,10 +29,17 @@
             <constraints>
                 <constraint firstItem="jL4-6z-Oh9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6af-vq-h3k"/>
                 <constraint firstAttribute="trailing" secondItem="jL4-6z-Oh9" secondAttribute="trailing" id="SaD-Qg-4kA"/>
+                <constraint firstItem="jL4-6z-Oh9" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="XZ9-ZS-9Jm"/>
                 <constraint firstAttribute="bottom" secondItem="jL4-6z-Oh9" secondAttribute="bottom" id="hDb-YA-IeY"/>
                 <constraint firstItem="jL4-6z-Oh9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zj7-03-aYn"/>
             </constraints>
             <size key="customSize" width="50" height="49"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="6af-vq-h3k"/>
+                    <exclude reference="hDb-YA-IeY"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="nameLabel" destination="jL4-6z-Oh9" id="T2V-Of-HRA"/>
             </connections>
