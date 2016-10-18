@@ -190,7 +190,7 @@
         
      
         if (!self.segmentedControl) {
-            NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3",@"影评·6"];
+            NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3"];
             self.segmentedControl=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
 
            
@@ -242,35 +242,37 @@
             
         }else if (self.showWhichView==showViewCategoryCommit){
             //评论
-            CGFloat cellHeight=0.f;
+            CGFloat cellHeight=0.f+30;
             NSMutableArray*alldatas=[self getBottomDatas];
 
             for (int i=0; i<alldatas.count; i++) {
                 CommitViewModel*model=alldatas[i];
                   NSDictionary*dict=@{@"title":model.content,@"images":model.images};
-               cellHeight=cellHeight+10+ [CommentTableViewCell getCellHeight:dict];
+               cellHeight=cellHeight+10+60+ [CommentTableViewCell getCellHeight:dict];
             }
             
             return cellHeight;
             
             
-        }else if (self.showWhichView==showViewCategoryFilm) {
-            //影评
-            CGFloat cellHeight=25;
-            
-             NSMutableArray*alldatas=[self getBottomDatas];
-            for (int i=0; i<alldatas.count; i++) {
-                 FilmViewModel*model=alldatas[i];
-                NSString*str=model.content;
-                CGFloat strHeight=[str boundingRectWithSize:CGSizeMake(kScreen_Width-16, 105) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
-                
-                cellHeight=cellHeight+160+10+strHeight-3;
-
-            }
-            
-            
-            return cellHeight;
-            }
+        }
+        
+//        else if (self.showWhichView==showViewCategoryFilm) {
+//            //影评
+//            CGFloat cellHeight=25;
+//            
+//             NSMutableArray*alldatas=[self getBottomDatas];
+//            for (int i=0; i<alldatas.count; i++) {
+//                 FilmViewModel*model=alldatas[i];
+//                NSString*str=model.content;
+//                CGFloat strHeight=[str boundingRectWithSize:CGSizeMake(kScreen_Width-16, 105) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+//                
+//                cellHeight=cellHeight+160+10+strHeight-3;
+//
+//            }
+//            
+//            
+//            return cellHeight;
+//            }
         
         
         
@@ -526,22 +528,24 @@
         
         
         
-    }else if (self.showWhichView==showViewCategoryFilm){
-        
-        NSMutableArray*allDatas=[NSMutableArray array];
-        NSDictionary*dict=@{@"pointNumber":@"5",@"point":@"5星",@"content":@"是否家里是咖啡机爱上了；废旧塑料；付款加上了副科级爱上了；付款就撒了；付款就撒了；方会计师费拉斯克奖福利社；咖啡机按理说放假困死了房间卡萨类附近凯撒蓝废旧塑料；"
-                            ,@"image":@"xxxx",@"name":@"叶问2",@"category":@"动作，历史，传记",@"introduce":@"中国香港，中国大陆/105分钟"};
-        NSArray*dataArr=@[dict,dict,dict,dict,dict];
-        [dataArr enumerateObjectsUsingBlock:^(NSDictionary* _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-            [allDatas addObject:[FilmViewModel yy_modelWithDictionary:dic]];
-            
-            
-        }];
-        return allDatas;
-
-        
-        
     }
+    
+//    else if (self.showWhichView==showViewCategoryFilm){
+//        
+//        NSMutableArray*allDatas=[NSMutableArray array];
+//        NSDictionary*dict=@{@"pointNumber":@"5",@"point":@"5星",@"content":@"是否家里是咖啡机爱上了；废旧塑料；付款加上了副科级爱上了；付款就撒了；付款就撒了；方会计师费拉斯克奖福利社；咖啡机按理说放假困死了房间卡萨类附近凯撒蓝废旧塑料；"
+//                            ,@"image":@"xxxx",@"name":@"叶问2",@"category":@"动作，历史，传记",@"introduce":@"中国香港，中国大陆/105分钟"};
+//        NSArray*dataArr=@[dict,dict,dict,dict,dict];
+//        [dataArr enumerateObjectsUsingBlock:^(NSDictionary* _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+//            [allDatas addObject:[FilmViewModel yy_modelWithDictionary:dic]];
+//            
+//            
+//        }];
+//        return allDatas;
+//
+//        
+//        
+//    }
     
     
     return nil;

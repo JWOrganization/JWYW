@@ -8,12 +8,14 @@
 
 #import "CommitView.h"
 #import "CommentTableViewCell.h"
+#import "CommitShopView.h"
 #import "CommitViewModel.h"
+#import "YJSegmentedControl.h"
 
 #define CELL0  @"CommentTableViewCell"
 
 
-@interface CommitView()<UITableViewDataSource,UITableViewDelegate>
+@interface CommitView()<UITableViewDataSource,UITableViewDelegate,YJSegmentedControlDelegate>
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)NSMutableArray*allDatas;
 @end
@@ -32,6 +34,7 @@
         [self addSubview:self.tableView];
         [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
 
+        [self addTableHeaderView];
         
     }
     
@@ -39,7 +42,21 @@
 }
 
 
+
+
 #pragma mark  --tableView
+
+-(void)addTableHeaderView{
+    UIView*topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
+    topView.backgroundColor=[UIColor whiteColor];
+    NSArray*titleArray=@[@"全部",@"评论",@"电影",@"酒店"];
+    YJSegmentedControl*chooseView=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 30) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
+    [topView addSubview:chooseView];
+    
+    self.tableView.tableHeaderView=topView;
+    
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.allDatas.count;
 }
@@ -60,6 +77,22 @@
     
 }
 
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    CommitShopView*footView=[[NSBundle mainBundle]loadNibNamed:@"CommitShopView" owner:nil options:nil].firstObject;
+    footView.frame=CGRectMake(0, 0, kScreen_Width, 60);
+    footView.touchBlock=^(){
+        MyLog(@"section=%lu",section);
+        
+    };
+    
+    return footView;
+    
+    
+    
+}
+
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommitViewModel *model=self.allDatas[indexPath.section];
     NSDictionary*dict=@{@"title":model.content,@"images":model.images};
@@ -72,10 +105,14 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
+    return 60;
 }
 
 
+#pragma mark  --delegate
+-(void)segumentSelectionChange:(NSInteger)selection{
+    MyLog(@"xxx");
+}
 
 /*
  #pragma mark - Navigation
@@ -93,6 +130,7 @@
         _tableView.scrollEnabled=NO;
         _tableView.delegate=self;
         _tableView.dataSource=self;
+        _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
