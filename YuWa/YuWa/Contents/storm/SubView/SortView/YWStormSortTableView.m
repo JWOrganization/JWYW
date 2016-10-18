@@ -24,6 +24,9 @@
         for (int i = 0; i<self.dataArr.count; i++) {
             [self.dataStateArr addObject:@(0)];
         }
+        
+        self.showsVerticalScrollIndicator = NO;
+        self.showsHorizontalScrollIndicator = NO;
         self.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
         self.dataSource = self;
         self.delegate = self;

@@ -21,6 +21,8 @@
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         self.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
+        self.showsVerticalScrollIndicator = NO;
+        self.showsHorizontalScrollIndicator = NO;
         self.dataArr = @[];
         
 //        CGFloat allWidth = kScreen_Width*2/3 - 20.f;
