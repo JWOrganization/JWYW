@@ -112,10 +112,10 @@
                   case SSDKPlatformTypeSinaWeibo:
                       [appInfo SSDKSetupSinaWeiboByAppKey:@"2515778668" appSecret:@"918c341ba8373fc356e1f308c6ee9305" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];
                       break;
-                      
                   case SSDKPlatformTypeQQ:
-                      [appInfo SSDKSetupQQByAppId:@"100371282" appKey:@"aed9b0303e3ed1e27bae87c33761161d" authType:SSDKAuthTypeBoth];
+                      [appInfo SSDKSetupQQByAppId:@"101358926" appKey:@"4156927df9c4853af6f383f0e78bd9e8" authType:SSDKAuthTypeBoth];
                       break;
+                      
                   case SSDKPlatformTypeWechat:
                       [appInfo SSDKSetupWeChatByAppId:@"wx5c90f6574f7c66a8" appSecret:@"212f79464ce37def860499ae6f5b0268"];
                       break;

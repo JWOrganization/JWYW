@@ -20,9 +20,19 @@
     self = [super initWithFrame:frame style:style];
     if (self) {
         self.dataArr = @[@"美食",@"电影",@"酒店",@"周边游",@"休闲娱乐",@"生活服务",@"旅游",@"宴会",@"时尚购",@"丽人",@"运动健身",@"母婴亲子",@"宠物",@"汽车服务",@"摄影写真",@"结婚",@"购物",@"家装",@"学习培训",@"医疗"];
+        self.dataStateArr = [NSMutableArray arrayWithCapacity:0];
+        for (int i = 0; i<self.dataArr.count; i++) {
+            [self.dataStateArr addObject:@(0)];
+        }
+        
+        self.showsVerticalScrollIndicator = NO;
+        self.showsHorizontalScrollIndicator = NO;
         self.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
         self.dataSource = self;
         self.delegate = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self requestSubTypeWithIdx:0];
+        });
     }
     return self;
 }
@@ -74,7 +84,7 @@
     
     self.selectIndex = index;
     [self reloadData];
-    self.choosedTypeBlock(self.selectIndex,@[@"23333333",@"23333333",@"23333333",@"23333333",@"23333333",@"23333333"]);//子类标签为请求数据
+    self.choosedTypeBlock(self.selectIndex,[self.dataStateArr[self.selectIndex] integerValue],@[@"23333333",@"bilili",@"yoooooo",@"∑q|ﾟДﾟ|p",@"Under",@"Taker"]);//2333333子类标签为请求数据
 }
 
 @end
