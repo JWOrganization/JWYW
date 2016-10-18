@@ -8,20 +8,84 @@
 
 #import "YWStormSubSortCollectionView.h"
 
+#import "YWStormSubSortCollectionViewCell.h"
+
+#define STORMSORTCOLLECTIONCELL @"YWStormSubSortCollectionViewCell"
+@interface YWStormSubSortCollectionView()
+@property (nonatomic,assign)CGFloat cellWidth;
+
+@end
 @implementation YWStormSubSortCollectionView
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(nonnull UICollectionViewLayout *)layout{
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         self.backgroundColor = [UIColor colorWithHexString:@"#F5F8FA"];
+        self.dataArr = @[];
+        
+        CGFloat allWidth = kScreen_Width*2/3 - 20.f;
+        for (int i = 1; i<10; i++) {
+            CGFloat widthTemp = allWidth/i;
+            if (widthTemp<60.f) {
+                self.cellWidth = widthTemp;
+                break;
+            }
+        }
     }
     return self;
 }
 
 - (void)setDataArr:(NSArray *)dataArr{
     if (!dataArr)return;
+    if (!_dataArr) {
+        _dataArr = dataArr;
+        return;
+    }
     _dataArr = dataArr;
     [self reloadData];
+
+}
+- (void)dataSet{
+    self.dataSource = self;
+    self.delegate = self;
+    [self registerNib:[UINib nibWithNibName:STORMSORTCOLLECTIONCELL bundle:nil] forCellWithReuseIdentifier:STORMSORTCOLLECTIONCELL];
+}
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.dataArr.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    YWStormSubSortCollectionViewCell * subSortCell = [collectionView dequeueReusableCellWithReuseIdentifier:STORMSORTCOLLECTIONCELL forIndexPath:indexPath];
+    subSortCell.nameLabel.text = self.dataArr[indexPath.row];//23333333接入接口后可能会改
+    if (indexPath.row == self.choosedTypeIdx) {
+        subSortCell.nameLabel.textColor = CNaviColor;
+    }else{
+        subSortCell.nameLabel.textColor = CsubtitleColor;
+    }
+    subSortCell.backgroundColor = [UIColor redColor];
+    return subSortCell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.choosedTypeIdx = indexPath.row;
+    self.choosedTypeBlock(self.allTypeIdx,self.choosedTypeIdx);
+    [self reloadData];
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(self.cellWidth-10.f, 30.f);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 5.f;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 5.f;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f);
 }
 
 @end

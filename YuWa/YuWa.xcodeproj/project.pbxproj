@@ -31,6 +31,8 @@
 		B32975CF1DADCF1C002CA488 /* YWStormSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */; };
 		B32975D11DAE1DB1002CA488 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B32975D01DAE1DB1002CA488 /* Photos.framework */; };
 		B32975D41DAE7C07002CA488 /* JWThirdTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B32975D31DAE7C07002CA488 /* JWThirdTools.m */; };
+		B32E4AE41DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B32E4AE21DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m */; };
+		B32E4AE51DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B32E4AE31DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib */; };
 		B33A1BEF1D9A46A40092CB12 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */; };
 		B33A1BF11D9A46B10092CB12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */; };
 		B33A1BF31D9A46B90092CB12 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */; };
@@ -726,6 +728,9 @@
 		B32975D01DAE1DB1002CA488 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		B32975D21DAE7C07002CA488 /* JWThirdTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWThirdTools.h; sourceTree = "<group>"; };
 		B32975D31DAE7C07002CA488 /* JWThirdTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWThirdTools.m; sourceTree = "<group>"; };
+		B32E4AE11DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSubSortCollectionViewCell.h; sourceTree = "<group>"; };
+		B32E4AE21DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSubSortCollectionViewCell.m; sourceTree = "<group>"; };
+		B32E4AE31DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWStormSubSortCollectionViewCell.xib; sourceTree = "<group>"; };
 		B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -2008,12 +2013,23 @@
 		B32975CC1DADCED5002CA488 /* SortView */ = {
 			isa = PBXGroup;
 			children = (
+				B32E4AE01DB5B39600358076 /* Cell */,
 				B32975CD1DADCF1C002CA488 /* YWStormSortTableView.h */,
 				B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */,
 				B36AB9591DB2345400FEAAAB /* YWStormSubSortCollectionView.h */,
 				B36AB95A1DB2345400FEAAAB /* YWStormSubSortCollectionView.m */,
 			);
 			path = SortView;
+			sourceTree = "<group>";
+		};
+		B32E4AE01DB5B39600358076 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B32E4AE11DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.h */,
+				B32E4AE21DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m */,
+				B32E4AE31DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B33A1A6A1D9A45EF0092CB12 /* SDK */ = {
@@ -5156,6 +5172,7 @@
 				C1F7BF3A1DB1CA0700CCAF96 /* wechatPay.png in Resources */,
 				C13019B01DB1FD2F00E24C88 /* qrcode_scan_btn_photo_nor@2x.png in Resources */,
 				C130199E1DB1FD2F00E24C88 /* qr_bottom_right@2x.png in Resources */,
+				B32E4AE51DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib in Resources */,
 				B38B2F571D8FC83A004D5256 /* 点进个人中心的一个专辑.json in Resources */,
 				C1F7BDBB1DB1C94500CCAF96 /* ZheTableViewCell.xib in Resources */,
 				C1F7BF391DB1CA0700CCAF96 /* home_pic@2x.png in Resources */,
@@ -5757,6 +5774,7 @@
 				C1F7BE421DB1C95400CCAF96 /* DatePickerView.m in Sources */,
 				B38B2E4B1D8FACD8004D5256 /* SDCycleScrollView.m in Sources */,
 				B33A26631D9A68040092CB12 /* MWPhotoBrowser.m in Sources */,
+				B32E4AE41DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m in Sources */,
 				C1F7BD981DB1C94500CCAF96 /* VIPHomePageViewController.m in Sources */,
 				C1F7BE601DB1C95400CCAF96 /* PCPayViewController.m in Sources */,
 				B31582441D9108200096C194 /* MDHotelChooseTypeTableVC.m in Sources */,

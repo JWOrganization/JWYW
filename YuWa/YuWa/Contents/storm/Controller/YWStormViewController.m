@@ -44,8 +44,8 @@
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.sortTableView removeFromSuperview];
-    [self.sortSubCollectionView removeFromSuperview];
+    self.sortTableView.hidden = YES;
+    self.sortSubCollectionView.hidden = self.sortTableView.hidden;
     [self.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:YES];
 }
 - (CLGeocoder *)geocoder{
@@ -78,21 +78,28 @@
     //    self.mapView.region = MKCoordinateRegionMake([YWLocation shareLocation].coordinate, MKCoordinateSpanMake(0.01, 0.01));
     UICollectionViewFlowLayout * collectionFlow = [[UICollectionViewFlowLayout alloc]init];
     collectionFlow.scrollDirection = UICollectionViewScrollDirectionVertical;
-    self.sortSubCollectionView = [[YWStormSubSortCollectionView alloc]initWithFrame:CGRectMake(kScreen_Width/3, NavigationHeight, kScreen_Width - self.sortTableView.width, kScreen_Height - 64.f - 49.f) collectionViewLayout:collectionFlow];
-    self.sortSubCollectionView.choosedTypeBlock = ^(NSInteger type){
-        weakSelf.subType = type;
+    self.sortSubCollectionView = [[YWStormSubSortCollectionView alloc]initWithFrame:CGRectMake(kScreen_Width/3, NavigationHeight, kScreen_Width * 2/3, kScreen_Height - 64.f - 49.f) collectionViewLayout:collectionFlow];
+    self.sortSubCollectionView.choosedTypeBlock = ^(NSInteger type,NSInteger subType){
+        [weakSelf.sortTableView.dataStateArr replaceObjectAtIndex:type withObject:@(subType)];
+        weakSelf.subType = subType;
         [weakSelf requestAnnotationData];
-        [weakSelf.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:YES];
-        [weakSelf.sortTableView removeFromSuperview];
-        [weakSelf.sortSubCollectionView removeFromSuperview];
+        
+        weakSelf.sortTableView.hidden = YES;
+        weakSelf.sortSubCollectionView.hidden = weakSelf.sortTableView.hidden;
     };
+    [self.sortSubCollectionView dataSet];
     
     self.sortTableView = [[YWStormSortTableView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width/3, self.sortSubCollectionView.height) style:UITableViewStylePlain];
-    self.sortTableView.choosedTypeBlock = ^(NSInteger type,NSArray * subArr){
+    self.sortTableView.choosedTypeBlock = ^(NSInteger type,NSInteger subType,NSArray * subArr){
         weakSelf.type = type;
+        weakSelf.sortSubCollectionView.allTypeIdx = type;
+        weakSelf.sortSubCollectionView.choosedTypeIdx = subType;
         weakSelf.sortSubCollectionView.dataArr = subArr;
     };
-    
+    self.sortTableView.hidden = YES;
+    self.sortSubCollectionView.hidden = self.sortTableView.hidden;
+    [self.view addSubview:self.sortTableView];
+    [self.view addSubview:self.sortSubCollectionView];
 }
 
 - (void)cityNameSetWithStr:(NSString *)locality{
@@ -111,9 +118,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)sortAction{
-    [self.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:NO];
-    [self.view addSubview:self.sortTableView];
-    [self.view addSubview:self.sortSubCollectionView];
+    self.sortTableView.hidden = !self.sortTableView.hidden;
+    self.sortSubCollectionView.hidden = self.sortTableView.hidden;
 }
 
 - (IBAction)toMyLocationBtnAction:(id)sender {

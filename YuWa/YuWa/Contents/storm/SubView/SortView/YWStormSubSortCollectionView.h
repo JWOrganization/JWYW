@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YWStormSubSortCollectionView : UICollectionView
+@interface YWStormSubSortCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic,copy)void(^choosedTypeBlock)(NSInteger
+@property (nonatomic,copy)void(^choosedTypeBlock)(NSInteger,NSInteger
 );
 @property (nonatomic,strong)NSArray * dataArr;
+@property (nonatomic,assign)NSInteger allTypeIdx;
+@property (nonatomic,assign)NSInteger choosedTypeIdx;
+
+- (void)dataSet;
 
 @end
