@@ -63,7 +63,6 @@
     }else{
         subSortCell.nameLabel.textColor = CsubtitleColor;
     }
-    subSortCell.backgroundColor = [UIColor redColor];
     return subSortCell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
