@@ -479,6 +479,10 @@
 		B3FFF4931D94037D00EDD2AB /* RBPublicEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4911D94037D00EDD2AB /* RBPublicEditorViewController.m */; };
 		B3FFF4941D94037D00EDD2AB /* RBPublicEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4921D94037D00EDD2AB /* RBPublicEditorViewController.xib */; };
 		B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */; };
+		C122FBE61DB5F5C1009A518A /* CommitShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C122FBE51DB5F5C1009A518A /* CommitShopView.xib */; };
+		C122FBE91DB5F72D009A518A /* CommitShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C122FBE81DB5F72D009A518A /* CommitShopView.m */; };
+		C122FBF61DB60CF6009A518A /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C122FBF41DB60CF6009A518A /* ScheduleViewController.m */; };
+		C122FBF71DB60CF6009A518A /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C122FBF51DB60CF6009A518A /* ScheduleViewController.xib */; };
 		C130199B1DB1FD2E00E24C88 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C13019641DB1FD2E00E24C88 /* libzbar.a */; };
 		C130199C1DB1FD2F00E24C88 /* qr_bottom_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019661DB1FD2E00E24C88 /* qr_bottom_left@2x.png */; };
 		C130199D1DB1FD2F00E24C88 /* qr_bottom_left@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019671DB1FD2E00E24C88 /* qr_bottom_left@3x.png */; };
@@ -1576,6 +1580,12 @@
 		B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicTagSaveModel.m; sourceTree = "<group>"; };
 		BBC1CC6C89770D83C605851F /* libPods-YuWa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuWa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
+		C122FBE51DB5F5C1009A518A /* CommitShopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitShopView.xib; sourceTree = "<group>"; };
+		C122FBE71DB5F72D009A518A /* CommitShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitShopView.h; sourceTree = "<group>"; };
+		C122FBE81DB5F72D009A518A /* CommitShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitShopView.m; sourceTree = "<group>"; };
+		C122FBF31DB60CF6009A518A /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		C122FBF41DB60CF6009A518A /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		C122FBF51DB60CF6009A518A /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
 		C13019641DB1FD2E00E24C88 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
 		C13019661DB1FD2E00E24C88 /* qr_bottom_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr_bottom_left@2x.png"; sourceTree = "<group>"; };
 		C13019671DB1FD2E00E24C88 /* qr_bottom_left@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr_bottom_left@3x.png"; sourceTree = "<group>"; };
@@ -4278,6 +4288,16 @@
 			path = RBPublicEditorVC;
 			sourceTree = "<group>";
 		};
+		C122FBEA1DB6007E009A518A /* 预定 */ = {
+			isa = PBXGroup;
+			children = (
+				C122FBF31DB60CF6009A518A /* ScheduleViewController.h */,
+				C122FBF41DB60CF6009A518A /* ScheduleViewController.m */,
+				C122FBF51DB60CF6009A518A /* ScheduleViewController.xib */,
+			);
+			path = "预定";
+			sourceTree = "<group>";
+		};
 		C13019631DB1FD2E00E24C88 /* ZBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -4421,6 +4441,7 @@
 		C1F7BD3B1DB1C94500CCAF96 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				C122FBEA1DB6007E009A518A /* 预定 */,
 				C1F7BD3C1DB1C94500CCAF96 /* Controller */,
 				C1F7BD4D1DB1C94500CCAF96 /* Model */,
 				C1F7BD501DB1C94500CCAF96 /* View */,
@@ -4695,7 +4716,7 @@
 				C1F7BDE91DB1C95400CCAF96 /* PCBottomTableViewCell.h */,
 				C1F7BDEA1DB1C95400CCAF96 /* PCBottomTableViewCell.m */,
 				C1F7BDEB1DB1C95400CCAF96 /* 专辑 */,
-				C1F7BDEE1DB1C95400CCAF96 /* 影评 */,
+				C1F7BDEE1DB1C95400CCAF96 /* 影评（废弃） */,
 				C1F7BDF61DB1C95400CCAF96 /* 笔记 */,
 				C1F7BDF91DB1C95400CCAF96 /* 评论 */,
 			);
@@ -4711,7 +4732,7 @@
 			path = "专辑";
 			sourceTree = "<group>";
 		};
-		C1F7BDEE1DB1C95400CCAF96 /* 影评 */ = {
+		C1F7BDEE1DB1C95400CCAF96 /* 影评（废弃） */ = {
 			isa = PBXGroup;
 			children = (
 				C1F7BDEF1DB1C95400CCAF96 /* FilmView.h */,
@@ -4722,6 +4743,7 @@
 				C1F7BDF41DB1C95400CCAF96 /* FilmViewTableViewCell.m */,
 				C1F7BDF51DB1C95400CCAF96 /* FilmViewTableViewCell.xib */,
 			);
+			name = "影评（废弃）";
 			path = "影评";
 			sourceTree = "<group>";
 		};
@@ -4741,6 +4763,9 @@
 				C1F7BDFB1DB1C95400CCAF96 /* CommitView.m */,
 				C1F7BDFC1DB1C95400CCAF96 /* CommitViewModel.h */,
 				C1F7BDFD1DB1C95400CCAF96 /* CommitViewModel.m */,
+				C122FBE71DB5F72D009A518A /* CommitShopView.h */,
+				C122FBE81DB5F72D009A518A /* CommitShopView.m */,
+				C122FBE51DB5F5C1009A518A /* CommitShopView.xib */,
 			);
 			path = "评论";
 			sourceTree = "<group>";
@@ -5277,6 +5302,7 @@
 				B38B2F041D8FC82F004D5256 /* RBNodeDRecommendTableViewCell.xib in Resources */,
 				C13019A31DB1FD2F00E24C88 /* qr_top_left@3x.png in Resources */,
 				C13019DD1DB20B2400E24C88 /* 旅游.png in Resources */,
+				C122FBF71DB60CF6009A518A /* ScheduleViewController.xib in Resources */,
 				C1F7BE4B1DB1C95400CCAF96 /* FilmViewTableViewCell.xib in Resources */,
 				C13019D91DB20B2400E24C88 /* 宠物.png in Resources */,
 				B34BCE031DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.xib in Resources */,
@@ -5349,6 +5375,7 @@
 				C1F7BF4D1DB1CA0700CCAF96 /* home_locate@2x.png in Resources */,
 				B38B2E611D8FACD8004D5256 /* LaunchScreen.storyboard in Resources */,
 				C1F7BF381DB1CA0700CCAF96 /* home_money.png in Resources */,
+				C122FBE61DB5F5C1009A518A /* CommitShopView.xib in Resources */,
 				B31582471D9108200096C194 /* MDHotelRightBtn.xib in Resources */,
 				B38B2F0A1D8FC82F004D5256 /* RBNodeDetailHeader.xib in Resources */,
 				C1F7BE641DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib in Resources */,
@@ -5736,6 +5763,7 @@
 				B38B2E201D8FACD8004D5256 /* MJChiBaoZiFooter2.m in Sources */,
 				B38B2F221D8FC82F004D5256 /* RBHomeSearchToolsView.m in Sources */,
 				B3AE4D791D91302B000A389F /* UIView+Layout.m in Sources */,
+				C122FBE91DB5F72D009A518A /* CommitShopView.m in Sources */,
 				B3192AC51D92224A00FD6578 /* JWImagePickerTableViewCell.m in Sources */,
 				B3AE4D701D91302B000A389F /* TZAssetCell.m in Sources */,
 				B38B2E071D8FACD8004D5256 /* MASViewAttribute.m in Sources */,
@@ -5763,6 +5791,7 @@
 				B38B2F131D8FC82F004D5256 /* RBNodeShowTagModel.m in Sources */,
 				B3CD68AE1D94F9F300C26B1C /* RBPublicLocationViewController.m in Sources */,
 				B38B2E001D8FACD8004D5256 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				C122FBF61DB60CF6009A518A /* ScheduleViewController.m in Sources */,
 				C1F7BE4A1DB1C95400CCAF96 /* FilmViewTableViewCell.m in Sources */,
 				B33A267F1D9A68040092CB12 /* PSTCollectionViewLayout.m in Sources */,
 				C1F7BE311DB1C95400CCAF96 /* VIPPersonCenterViewController.m in Sources */,

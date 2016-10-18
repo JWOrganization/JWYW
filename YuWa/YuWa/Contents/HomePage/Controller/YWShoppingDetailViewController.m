@@ -20,6 +20,7 @@
 #import "StorePhotoViewController.h"   //商家相册
 #import "SeeMoreShoppingViewController.h"    //店铺商品详情
 #import "ShowMoreCommitViewController.h"    //评论详情
+#import "ScheduleViewController.h"    //预定
 
 
 #define CELL0   @"DetailStoreFirstTableViewCell"
@@ -522,12 +523,20 @@
 
         
     }];
+#pragma 咨询
+    UIAlertAction*consult=[UIAlertAction actionWithTitle:@"咨询" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        ScheduleViewController*vc=[[ScheduleViewController alloc]initWithNibName:@"ScheduleViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:NO];
+    }];
+    
+    
     UIAlertAction*cancel=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     
     [alertVC addAction:alertAC];
     [alertVC addAction:alertAC2];
+    [alertVC addAction:consult];
     [alertVC addAction:cancel];
     
     [self presentViewController:alertVC animated:YES completion:nil];
