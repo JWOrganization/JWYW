@@ -79,7 +79,6 @@
     return CGSizeMake(self.cellWidth-20.f, 44.f);
 //    return CGSizeMake(self.cellWidth-10.f, 30.f);
 }
-
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 0.f;
 }
