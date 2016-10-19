@@ -137,7 +137,6 @@
     //        self.time = 0;
     //        [self securityCodeBtnTextSet];
 }
-
 - (void)requestReSetPasswordCode{
     NSDictionary * pragram = @{@"tel":self.accountTextField.text};
     //    [[HttpObject manager]getDataWithType:(kMaldivesType)MaldivesType_ComfireCode withPragram:pragram success:^(id responsObj) {
