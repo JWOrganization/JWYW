@@ -63,7 +63,10 @@
         case YuWaType_Message_Code://验证码
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_MESSAGE_CODE];
             break;
-            
+#pragma mark - Login
+        case YuWaType_Logion://登入
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_LOGIN];
+            break;
             //URLStr建立
         default:
             break;

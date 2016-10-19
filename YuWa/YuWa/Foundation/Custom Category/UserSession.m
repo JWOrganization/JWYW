@@ -72,7 +72,7 @@ static UserSession * user=nil;
 
 //auto login
 + (void)autoLoginRequestWithPragram:(NSDictionary *)pragram{
-    [[HttpObject manager]getDataWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]getNoHudWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserInfoWithDic:responsObj[@"data"]];
