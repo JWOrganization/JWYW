@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets=NO;
    self.title=@"咨询";
     
     SAMTextView*textView=[self.view viewWithTag:1];
