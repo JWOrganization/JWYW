@@ -8,6 +8,7 @@
 
 #import "UserSession.h"
 #import "JPUSHService.h"
+#import "HttpObject.h"
 
 @implementation UserSession
 static UserSession * user=nil;
@@ -65,10 +66,19 @@ static UserSession * user=nil;
         if ([accountDefault isEqualToString:@""])return;
         user.account = accountDefault;
         user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
-        [UserSession autoLoginRequestWithPragram:@{@"tel":user.account,@"pwd":user.password}];//根据接口改2333333
+        [UserSession autoLoginRequestWithPragram:@{@"phone":user.account,@"password":user.password}];
+    }
+}
+
+//auto login
++ (void)autoLoginRequestWithPragram:(NSDictionary *)pragram{
+    [[HttpObject manager]getDataWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data is %@",responsObj);
+        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            EMError *errorLog = [[EMClient sharedClient] loginWithUsername:user.account password:user.password];
+            EMError *errorLog = [[EMClient sharedClient] loginWithUsername:user.account password:user.hxPassword];
             if (!errorLog){
                 [[EMClient sharedClient].options setIsAutoLogin:NO];
                 [[EMClient sharedClient].chatManager getAllConversations];
@@ -77,21 +87,11 @@ static UserSession * user=nil;
             
             [JPUSHService setAlias:user.account callbackSelector:nil object:nil];
         });
-    }
-}
-
-//auto login
-+ (void)autoLoginRequestWithPragram:(NSDictionary *)pragram{
-//    [[HttpObject manager]getDataWithType:(kMaldivesType)MaldivesType_Login withPragram:pragram success:^(id responsObj) {
-//        MyLog(@"Pragram is %@",pragram);
-//        MyLog(@"Data is %@",responsObj);
-    [UserSession saveUserInfoWithDic:@{}];
-//        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
-//    } failur:^(id responsObj, NSError *error) {
-//        MyLog(@"Pragram is %@",pragram);
-//        MyLog(@"Data Error error is %@",responsObj);
-//        MyLog(@"Error is %@",error);
-//    }];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data Error error is %@",responsObj);
+        MyLog(@"Error is %@",error);
+    }];
 }
 
 + (void)saveUserInfoWithDic:(NSDictionary *)dataDic{

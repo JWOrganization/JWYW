@@ -41,7 +41,7 @@
                         <action selector="attentiionBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="CF6-1x-wsG"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="level" translatesAutoresizingMaskIntoConstraints="NO" id="604-1a-if3">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="level" translatesAutoresizingMaskIntoConstraints="NO" id="604-1a-if3">
                     <rect key="frame" x="156" y="12" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="Add-8b-59N"/>
