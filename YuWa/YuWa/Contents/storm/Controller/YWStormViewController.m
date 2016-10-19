@@ -165,7 +165,6 @@
 //    vc.idd = 23333333;//商店ID
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 #pragma mark - Http
 - (void)requestAnnotationData{
 //    self.type//2333333333筛选类型请求参数,要转str类型
