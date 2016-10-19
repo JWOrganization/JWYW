@@ -7,6 +7,9 @@
 //
 
 #import "AccountSettingViewController.h"
+#import "VIPTabBarController.h"
+
+#import "JWThirdTools.h"
 
 @interface AccountSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView*tableView;
@@ -37,11 +40,15 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
     if (indexPath.row==0) {
         cell.textLabel.text=@"清除缓存";
+      NSArray*path=  NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+      CGFloat aaa=  [JWThirdTools folderSizeAtPath:path[0]];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%.2fMB",aaa];
+        
     }else if (indexPath.row==1){
         cell.textLabel.text=@"退出登录";
         
@@ -52,11 +59,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
+        //清除缓存
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask,YES);
+        [JWThirdTools clearCache:paths[0]];
+        [JRToast showWithText:@"缓存清除成功"];
+        [self.navigationController popViewControllerAnimated:YES];
         
         
     }else if (indexPath.row==1){
         //
-        
+        [UserSession clearUser];
+          VIPTabBarController *tabBar=[[VIPTabBarController alloc]init];
+        [UIApplication sharedApplication].keyWindow.rootViewController=tabBar;
         
         
     }
