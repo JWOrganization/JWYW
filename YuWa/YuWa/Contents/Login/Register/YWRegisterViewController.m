@@ -111,7 +111,7 @@
 - (void)requestRegisterWithAccount:(NSString *)account withPassword:(NSString *)password withCode:(NSString *)code{
     NSDictionary * pragram = @{@"tel":account,@"pwd":password};
     //    [[HttpObject manager]getDataWithType:MaldivesType_Login withPragram:pragram success:^(id responsObj) {
-    //        MyLog(@"Pragram is %@",pragram);
+            MyLog(@"Pragram is %@",pragram);
     //        MyLog(@"Data is %@",responsObj);
     [UserSession saveUserLoginWithAccount:account withPassword:password];
     //        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
