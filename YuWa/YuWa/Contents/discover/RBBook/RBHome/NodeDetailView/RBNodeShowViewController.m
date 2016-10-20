@@ -203,7 +203,7 @@
     }
     if (self.dataModel){
         if (!self.imageHeader.imageList)self.imageHeader.imageList = self.dataModel.images_list;
-//        self.imageHeader.tagArr = //2333333333标签数组
+        self.imageHeader.tagArr = self.dataModel.tags_info_2.tagArr;//2333333333标签数组
         [self.imageHeader refreshWithHeight:_scrollImageHeight];
     }
     return self.imageHeader;

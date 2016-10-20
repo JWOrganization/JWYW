@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1200AE09FCCFFA5EBD10470F /* libPods-YuWa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC1CC6C89770D83C605851F /* libPods-YuWa.a */; };
+		B30136BE1DB86C1C00691F60 /* RBNodeTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B30136BD1DB86C1C00691F60 /* RBNodeTagModel.m */; };
 		B301E7CA1DAC86BD0001336E /* YWMessageSearchFriendAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */; };
 		B301E7CB1DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */; };
 		B301E7CE1DAC8C010001336E /* YWMessageSearchFriendAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */; };
@@ -699,6 +700,8 @@
 
 /* Begin PBXFileReference section */
 		6D91CFB893AA70B1C9A0D506 /* Pods-YuWa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.debug.xcconfig"; sourceTree = "<group>"; };
+		B30136BC1DB86C1C00691F60 /* RBNodeTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNodeTagModel.h; sourceTree = "<group>"; };
+		B30136BD1DB86C1C00691F60 /* RBNodeTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBNodeTagModel.m; sourceTree = "<group>"; };
 		B301E7C71DAC86BD0001336E /* YWMessageSearchFriendAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageSearchFriendAddCell.h; sourceTree = "<group>"; };
 		B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageSearchFriendAddCell.m; sourceTree = "<group>"; };
 		B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageSearchFriendAddCell.xib; sourceTree = "<group>"; };
@@ -3575,6 +3578,8 @@
 				B38B2EB51D8FC82F004D5256 /* RBNodeUserLevelModel.m */,
 				B38B2EB61D8FC82F004D5256 /* RBNodeUserModel.h */,
 				B38B2EB71D8FC82F004D5256 /* RBNodeUserModel.m */,
+				B30136BC1DB86C1C00691F60 /* RBNodeTagModel.h */,
+				B30136BD1DB86C1C00691F60 /* RBNodeTagModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5539,6 +5544,7 @@
 				B38B2E0B1D8FACD8004D5256 /* View+MASAdditions.m in Sources */,
 				B38B2DFB1D8FACD8004D5256 /* AFURLResponseSerialization.m in Sources */,
 				B33A26921D9A68040092CB12 /* EaseEmoji.m in Sources */,
+				B30136BE1DB86C1C00691F60 /* RBNodeTagModel.m in Sources */,
 				B38B2DF91D8FACD8004D5256 /* AFURLConnectionOperation.m in Sources */,
 				B3AE4DC61D918170000A389F /* JWImgPickerAlbumChooseTableView.m in Sources */,
 				C1F7BE361DB1C95400CCAF96 /* PersonCenterOneCell.m in Sources */,

@@ -87,16 +87,25 @@
     if (!tagArr)return;
     if (_tagArr&&[_tagArr isEqualToArray:tagArr])return;
     _tagArr = tagArr;
-    //23333333标签模型数组
-    //显示在scrollerView的image上,imaged的tag为pages+1
+    [self showTag];
 }
 
-- (void)tagViewmakeWithTextArr:(NSArray *)textArr withPoint:(CGPoint)point withStyle:(XHTagAnimationStyle)animationStyle{
+- (void)showTag{
+    for (int i = 0; i<self.tagArr.count; i++) {
+        RBPublicTagSaveModel * model = self.tagArr[i];
+        [self tagViewmakeWithTextArr:model.tagTextArr withPoint:model.centerLocationPoint withStyle:model.tagAnimationStyle withView:[self.scrollImageView viewWithTag:i+1]];
+    }
+}
+
+- (void)tagViewmakeWithTextArr:(NSArray *)textArr withPoint:(CGPoint)point withStyle:(XHTagAnimationStyle)animationStyle withView:(UIView *)showView{
     XHTagView * tagView = [[XHTagView alloc]init];
     tagView.branchTexts = [NSMutableArray arrayWithArray:textArr];
     tagView.centerLocationPoint = point;
     tagView.tagAnimationStyle = animationStyle;
+    [showView addSubview:tagView];
     [tagView showInPoint:point];
 }
+
+
 
 @end

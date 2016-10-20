@@ -13,6 +13,7 @@
 #import "RBNodeShowCommentModel.h"
 #import "RBHomeListImagesModel.h"
 #import "RBNodeUserModel.h"
+#import "RBNodeTagModel.h"
 
 @interface RBNodeShowModel : NSObject
 
@@ -42,6 +43,6 @@
 @property (nonatomic,strong)NSArray * comments_list;
 @property (nonatomic,strong)NSArray * images_list;
 
-@property (nonatomic,copy)NSString * tags_info_2;
+@property (nonatomic,strong)RBNodeTagModel * tags_info_2;
 
 @end

@@ -351,6 +351,23 @@
     return [dateFormatter stringFromDate:date];
 }
 
+#pragma mark - Json
+/**
+ *  单个数组组成Json文件
+ *
+ *  @param key 接口关键字
+ *  @param arr 接口数组
+ *
+ *  @return json字符串
+ */
++ (NSString *)jsonStrWithKey:(NSString *)key withArr:(NSArray *)arr{
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    [dictionary setValue:arr forKey:key];
+    NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    return jsonStr;
+}
+
 #pragma mark - RegEx
 /**
  *  密码长度至少6

@@ -157,11 +157,8 @@
     
 }
 
-- (void)publishBtnAction{
-    //数据发布
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [RBPublishSession clearPublish];
-    }];
+- (void)publishBtnAction{//数据发布
+    [self requestPublishNode];
 }
 
 - (void)backAction{
@@ -288,6 +285,31 @@
         self.commentToolsView.hidden = NO;
     }
     return YES;
+}
+
+#pragma mark - Http
+- (void)requestPublishNode{
+    NSString * tagStr = [self tagArrJsonCreate];
+    MyLog(@"%@",tagStr);
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [RBPublishSession clearPublish];
+    }];
+
+}
+
+- (NSString *)tagArrJsonCreate{//将tag数组转成json字符串
+    __block NSMutableArray * tagArr = [NSMutableArray arrayWithCapacity:0];
+    [self.imageChangeSaveArr enumerateObjectsUsingBlock:^(RBPublicSaveModel * _Nonnull model, NSUInteger tagIdx, BOOL * _Nonnull stop) {
+        
+        NSMutableArray * tagModelArr = [NSMutableArray arrayWithCapacity:0];
+        for (RBPublicTagSaveModel * tagModel in model.tagArr) {
+            NSDictionary * tagDic = [tagModel yy_modelToJSONObject];
+            [tagModelArr addObject:tagDic];
+        }
+        [tagArr addObject:tagModelArr];
+    }];
+    return [JWTools jsonStrWithKey:@"233333" withArr:tagArr];//tag的json参数,key值需要变化
 }
 
 @end
