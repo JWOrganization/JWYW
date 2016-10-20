@@ -295,6 +295,17 @@
     NSString * tagStr = [self tagArrJsonCreate];
     MyLog(@"%@",tagStr);
     
+    if ([self.scrollView.nameTextField.text isEqualToString:@""]) {
+        [self showHUDWithStr:@"请输入标题" withSuccess:YES];
+        return;
+    }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
+        [self showHUDWithStr:@"内容" withSuccess:YES];
+        return;
+    }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
+        [self showHUDWithStr:@"内容" withSuccess:YES];
+        return;
+    }
+    
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         [RBPublishSession clearPublish];
     }];
@@ -312,7 +323,7 @@
         }
         [tagArr addObject:tagModelArr];
     }];
-    return [JWTools jsonStrWithKey:@"233333" withArr:tagArr];//tag的json参数,key值需要变化
+    return [JWTools jsonStrWithKey:@"tags_info_2" withArr:tagArr];//2333333 tags_info_2:tag的json参数,key值需要变化
 }
 
 @end
