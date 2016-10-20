@@ -536,6 +536,7 @@
 		C13019E51DB20B2400E24C88 /* 购物.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019D11DB20B2400E24C88 /* 购物.png */; };
 		C13019E61DB20B2400E24C88 /* 运动健身.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019D21DB20B2400E24C88 /* 运动健身.png */; };
 		C13019E71DB20B2400E24C88 /* 酒店.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019D31DB20B2400E24C88 /* 酒店.png */; };
+		C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */; };
 		C1F7BD921DB1C94500CCAF96 /* YWChooseOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */; };
 		C1F7BD931DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */; };
 		C1F7BD941DB1C94500CCAF96 /* YWChooseOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD431DB1C94500CCAF96 /* YWChooseOneView.m */; };
@@ -1665,6 +1666,8 @@
 		C13019D11DB20B2400E24C88 /* 购物.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物.png"; sourceTree = "<group>"; };
 		C13019D21DB20B2400E24C88 /* 运动健身.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "运动健身.png"; sourceTree = "<group>"; };
 		C13019D31DB20B2400E24C88 /* 酒店.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "酒店.png"; sourceTree = "<group>"; };
+		C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlbumViewController.h; sourceTree = "<group>"; };
+		C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlbumViewController.m; sourceTree = "<group>"; };
 		C1F7BD3F1DB1C94500CCAF96 /* YWChooseOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseOneTableViewCell.h; sourceTree = "<group>"; };
 		C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWChooseOneTableViewCell.m; sourceTree = "<group>"; };
 		C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWChooseOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -4448,6 +4451,15 @@
 			path = "20个图标新";
 			sourceTree = "<group>";
 		};
+		C18E7D5B1DB878BA003D0012 /* 我的专辑列表 */ = {
+			isa = PBXGroup;
+			children = (
+				C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */,
+				C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */,
+			);
+			path = "我的专辑列表";
+			sourceTree = "<group>";
+		};
 		C1F7BD3B1DB1C94500CCAF96 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
@@ -4629,11 +4641,11 @@
 		C1F7BDBE1DB1C95400CCAF96 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				C18E7D5B1DB878BA003D0012 /* 我的专辑列表 */,
 				C1F7BDBF1DB1C95400CCAF96 /* Controller */,
 				C1F7BDC21DB1C95400CCAF96 /* Model */,
 				C1F7BDC31DB1C95400CCAF96 /* View */,
 				C1F7BDD01DB1C95400CCAF96 /* 个人资料 */,
-				C1F7BDE51DB1C95400CCAF96 /* 他人查看个人中心 */,
 				C1F7BDE81DB1C95400CCAF96 /* 笔记专辑影评评论 */,
 				C1F7BDFE1DB1C95400CCAF96 /* 粉丝 */,
 				C1F7BE041DB1C95400CCAF96 /* 账户设置 */,
@@ -4717,7 +4729,8 @@
 				C1F7BDE61DB1C95400CCAF96 /* YWOtherSeePersonCenterViewController.h */,
 				C1F7BDE71DB1C95400CCAF96 /* YWOtherSeePersonCenterViewController.m */,
 			);
-			path = "他人查看个人中心";
+			name = "他人查看个人中心";
+			path = "../../他人查看个人中心";
 			sourceTree = "<group>";
 		};
 		C1F7BDE81DB1C95400CCAF96 /* 笔记专辑影评评论 */ = {
@@ -4745,6 +4758,7 @@
 		C1F7BDEE1DB1C95400CCAF96 /* 影评（废弃） */ = {
 			isa = PBXGroup;
 			children = (
+				C1F7BDE51DB1C95400CCAF96 /* 他人查看个人中心 */,
 				C1F7BDEF1DB1C95400CCAF96 /* FilmView.h */,
 				C1F7BDF01DB1C95400CCAF96 /* FilmView.m */,
 				C1F7BDF11DB1C95400CCAF96 /* FilmViewModel.h */,
@@ -5599,6 +5613,7 @@
 				B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */,
 				B33A26731D9A68040092CB12 /* UIImage+EMMultiFormat.m in Sources */,
 				B38B2DF51D8FACD8004D5256 /* AFHTTPRequestOperationManager.m in Sources */,
+				C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */,
 				B33A26691D9A68040092CB12 /* EMSDWebImageCompat.m in Sources */,
 				C1F7BE561DB1C95400CCAF96 /* MyFavouriteViewController.m in Sources */,
 				B3FEBA381D9C10DE003CDEF2 /* YWMessageChatViewController.m in Sources */,

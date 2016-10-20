@@ -10,8 +10,7 @@
 
 @interface UserSession : NSObject
 
-@property(nonatomic,strong)NSString*token;
-
+@property(nonatomic,strong)NSString*token;   //用户登录后标识
 @property (nonatomic,copy)NSString * account;  //账户
 @property (nonatomic,copy)NSString * password;   //密码
 @property (nonatomic,copy)NSString * hxPassword;   //环信密码
@@ -23,8 +22,7 @@
 @property(nonatomic,copy)NSString * birthDay;//生日
 @property(nonatomic,copy)NSString * local;   //常驻地
 @property(nonatomic,copy)NSString * personality;   //个人签名
-//@property(nonatomic,copy)NSString * statu;     //状态
-//@property(nonatomic,copy)NSString * currency; //货币
+
 
 @property(nonatomic,copy)NSString * attentionCount;//关注数
 @property(nonatomic,copy)NSString * fans;//粉丝
@@ -34,6 +32,9 @@
 
 @property (nonatomic,assign)BOOL isVIP;//是否是会员
 
+
+//@property(nonatomic,copy)NSString * statu;     //状态
+//@property(nonatomic,copy)NSString * currency; //货币
 //已经登录
 @property(nonatomic,assign)BOOL isLogin;   //是否登录
 
