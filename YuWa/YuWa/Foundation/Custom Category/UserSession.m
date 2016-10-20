@@ -94,6 +94,7 @@ static UserSession * user=nil;
     }];
 }
 
+//解析登录返回数据
 + (void)saveUserInfoWithDic:(NSDictionary *)dataDic{
 //    user.collection = dataDic[@"collection"];
 //    user.newinfo = [NSString stringWithFormat:@"%@",dataDic[@"new_info"]];
