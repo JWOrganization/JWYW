@@ -13,6 +13,8 @@
 #import "CommitView.h"
 
 
+
+
 @implementation PCBottomTableViewCell
 
 
@@ -31,6 +33,14 @@
                     
                 }];
                 
+                //代理回控制器 来控制跳转
+                view.touchCellBlock=^(NSInteger number){
+                    if ([self.delegate respondsToSelector:@selector(DelegateForNote:)]) {
+                        [self.delegate DelegateForNote:number];
+                    }
+            
+                };
+                
                 break;}
             case showViewCategoryAlbum:{
             
@@ -39,6 +49,13 @@
                 [view mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(self);
                 }];
+                view.touchCellBlock=^(NSInteger number,NSInteger maxNumber){
+                    if ([self.delegate respondsToSelector:@selector(DelegateForAlbum:andMax:)]) {
+                        [self.delegate DelegateForAlbum:number andMax:maxNumber];
+                    }
+                    
+                    
+                };
                 
                 
                 break;}
@@ -51,20 +68,20 @@
                 }];
                 
                 break;}
-            case showViewCategoryFilm:{
-//                self.backgroundColor=[UIColor greenColor];
-                FilmView*view=[[FilmView alloc]initWithFrame:self.frame andArray:allDatas];
-                [self addSubview:view];
-                [view mas_makeConstraints:^(MASConstraintMaker *make) {
-//                    make.edges.mas_equalTo(self);
-                    make.top.mas_equalTo(self.mas_top);
-                    make.left.mas_equalTo(self.mas_left);
-                    make.right.mas_equalTo(self.mas_right);
-                    make.bottom.mas_equalTo(self.mas_bottom);
-                }];
-
-                
-                break;}
+//            case showViewCategoryFilm:{
+////                self.backgroundColor=[UIColor greenColor];
+//                FilmView*view=[[FilmView alloc]initWithFrame:self.frame andArray:allDatas];
+//                [self addSubview:view];
+//                [view mas_makeConstraints:^(MASConstraintMaker *make) {
+////                    make.edges.mas_equalTo(self);
+//                    make.top.mas_equalTo(self.mas_top);
+//                    make.left.mas_equalTo(self.mas_left);
+//                    make.right.mas_equalTo(self.mas_right);
+//                    make.bottom.mas_equalTo(self.mas_bottom);
+//                }];
+//
+//                
+//                break;}
 
             default:
                 break;

@@ -90,6 +90,12 @@
 #pragma mark - UICollectionViewDataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     MyLog(@"%@",indexPath);
+    NSInteger number=indexPath.row-1;
+    
+    if (self.touchCellBlock) {
+        self.touchCellBlock(number);
+    }
+    
     
   }
 

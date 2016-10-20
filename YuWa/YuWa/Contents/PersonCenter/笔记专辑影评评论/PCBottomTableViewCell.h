@@ -9,7 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "VIPPersonCenterViewController.h"
 
+@protocol PCBottomTableViewCellDelegate <NSObject>
+
+-(void)DelegateForNote:(NSInteger)number;    //-1 为发布
+
+-(void)DelegateForAlbum:(NSInteger)number andMax:(NSInteger)maxNumber;  //专辑
+
+
+@end
+
 @interface PCBottomTableViewCell : UITableViewCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andDatas:(NSMutableArray*)allDatas andWhichCategory:(showViewCategory)number;
+
+@property(nonatomic,assign)id<PCBottomTableViewCellDelegate>delegate;
 @end

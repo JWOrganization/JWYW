@@ -11,4 +11,6 @@
 @interface PCNoteView : UIView
 
 -(instancetype)initWithFrame:(CGRect)frame andArray:(NSMutableArray*)allDatas;
+
+@property(nonatomic,strong)void(^touchCellBlock)(NSInteger number);
 @end
