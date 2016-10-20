@@ -72,5 +72,14 @@
     
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+   //最大的话  就是 发布专辑
+    if (self.touchCellBlock) {
+        self.touchCellBlock(indexPath.row,self.allDatas.count);
+    }
+    
+}
+
+
 
 @end

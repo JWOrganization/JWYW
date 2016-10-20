@@ -31,6 +31,10 @@
 #import "YWFansViewController.h"      //粉丝 关注
 #import "YWPersonInfoViewController.h"    //修改个人资料
 #import "AccountSettingViewController.h"    //系统设置
+#import "TZImagePickerController.h"  //照相机
+#import "RBNodeShowViewController.h"  //小红书展示视图
+#import "YWNodeAddAldumViewController.h"   //新建专辑 界面
+
 
 
 #import "PCPacketViewController.h"    //钱包
@@ -49,7 +53,7 @@
 #define HEADERVIEWHEIGHT   195     //头视图的高度
 
 
-@interface VIPPersonCenterViewController()<UITableViewDelegate,UITableViewDataSource,YJSegmentedControlDelegate>
+@interface VIPPersonCenterViewController()<UITableViewDelegate,UITableViewDataSource,YJSegmentedControlDelegate,PCBottomTableViewCellDelegate,TZImagePickerControllerDelegate>
 
 @property(nonatomic,strong)UIView*belowImageViewView;   //图片下面的视图
 @property(nonatomic,strong)UIView*headerView;   //头视图
@@ -170,6 +174,7 @@
       
         
         PCBottomTableViewCell*cell=[[PCBottomTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil andDatas:array andWhichCategory:self.showWhichView];
+        cell.delegate=self;
         cell.selectionStyle=NO;
         return cell;
         
@@ -481,6 +486,47 @@
     
 }
 
+//笔记界面的点击方法   -1 为发布笔记
+-(void)DelegateForNote:(NSInteger)number{
+    if (number==-1) {
+        //发布笔记
+        TZImagePickerController *imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+        imagePickerVC.allowPickingVideo = NO;
+        [imagePickerVC setDidFinishPickingPhotosHandle:^(NSArray * photos , NSArray * assets,BOOL isSelectOriginalPhoto){
+            
+        }];
+        
+        [self presentViewController:imagePickerVC animated:YES completion:nil];
+
+        
+    }else{
+        
+        RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
+//        vc.model = self.dataArr[indexPath.row];
+        [self.navigationController pushViewController:vc animated:NO];
+
+        
+        
+        
+    }
+    
+}
+
+
+-(void)DelegateForAlbum:(NSInteger)number andMax:(NSInteger)maxNumber{
+    if (number==maxNumber) {
+        //专辑
+        MyLog(@"创建专辑");
+        YWNodeAddAldumViewController*vc=[[YWNodeAddAldumViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        MyLog(@"点击某个专辑%lu",number);
+        
+    }
+    
+    
+}
 
 #pragma mark  --  getDatas
 //得到底部的数据
