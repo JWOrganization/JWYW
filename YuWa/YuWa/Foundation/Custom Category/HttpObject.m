@@ -47,8 +47,8 @@
             break;
     }
     HttpManager*manager= [[HttpManager alloc]init];
-    [manager postDatasWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] isEqualToString:@"0"]||[data[@"errorCode"] isEqualToString:@"1"]||[data[@"errorMessage"] isEqualToString:@"successful"]) {
+    [manager getDatasWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
+        if ([data[@"ret"] integerValue] == 200) {
             success(data);
         }else{
             fail(data,error);
@@ -72,8 +72,8 @@
             break;
     }
     HttpManager*manager= [[HttpManager alloc]init];
-    [manager postDatasNoHudWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] isEqualToString:@"0"]||[data[@"errorCode"] isEqualToString:@"1"]||[data[@"errorMessage"] isEqualToString:@"successful"]) {
+    [manager getDatasNoHudWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
+        if ([data[@"ret"] integerValue] == 200) {
             success(data);
         }else{
             fail(data,error);
@@ -90,7 +90,7 @@
     }
     HttpManager*manager= [[HttpManager alloc]init];
     [manager postUpdatePohotoWithUrl:urlStr withParams:pragram withPhoto:photo compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] isEqualToString:@"0"]||[data[@"errorMessage"] isEqualToString:@"successful"]) {
+        if ([data[@"ret"] integerValue] == 200) {
             success(data);
             
         }else{
