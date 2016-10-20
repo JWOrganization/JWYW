@@ -42,12 +42,35 @@
     [super viewWillAppear:animated];
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
 }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self pleaseSetMap];
+}
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     self.sortTableView.hidden = YES;
     self.sortSubCollectionView.hidden = self.sortTableView.hidden;
     [self.navigationItem.rightBarButtonItem.customView setUserInteractionEnabled:YES];
 }
+
+- (void)pleaseSetMap{
+    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedAlways &&[CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse && [CLLocationManager authorizationStatus] !=kCLAuthorizationStatusNotDetermined) {
+        UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            
+            if([[UIApplication sharedApplication] canOpenURL:url]) {
+                NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }];
+        UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"暂不" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"定位服务未开启" message:@"请在系统设置中开启定位服务" preferredStyle:UIAlertControllerStyleAlert];
+        [alertVC addAction:cancelAction];
+        [alertVC addAction:OKAction];
+        [self presentViewController:alertVC animated:YES completion:nil];
+    }
+}
+
 - (CLGeocoder *)geocoder{
     if (!_geocoder) {
         _geocoder = [[CLGeocoder alloc]init];
