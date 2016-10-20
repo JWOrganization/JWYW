@@ -31,6 +31,10 @@
     [RBPublishSession sharePublishSession].name = self.scrollView.nameTextField.text;
     [RBPublishSession sharePublishSession].con = self.scrollView.conTextView.text;
     [RBPublishSession sharePublishSession].location = self.scrollView.locationnameLabel.text;
+    if ([self.scrollView.conTextView.text isEqualToString:@""]) {
+        self.scrollView.conTextView.isDrawPlaceholder = YES;
+        [self.scrollView.conTextView setNeedsDisplay];
+    }
 }
 
 - (BOOL)prefersStatusBarHidden{

@@ -20,4 +20,11 @@
     return self;
 }
 
+- (void)setCenterLocationPoint:(CGPoint)centerLocationPoint{
+    _centerLocationPoint = centerLocationPoint;
+    self.x = centerLocationPoint.x;
+    self.y = centerLocationPoint.y;
+}
+
+
 @end
