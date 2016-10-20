@@ -109,57 +109,53 @@
 
 #pragma mark - Http
 - (void)requestRegisterWithAccount:(NSString *)account withPassword:(NSString *)password withCode:(NSString *)code{
-    NSDictionary * pragram = @{@"tel":account,@"pwd":password};
-    //    [[HttpObject manager]getDataWithType:MaldivesType_Login withPragram:pragram success:^(id responsObj) {
-    //        MyLog(@"Pragram is %@",pragram);
-    //        MyLog(@"Data is %@",responsObj);
-    [UserSession saveUserLoginWithAccount:account withPassword:password];
-    //        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
-    //要删2333333
-    [UserSession saveUserInfoWithDic:@{}];
-    //要删2333333
-    [self showHUDWithStr:@"注册成功" withSuccess:YES];
-    EMError *error = [[EMClient sharedClient] registerWithUsername:account password:password];
-    if (error==nil) {
-        MyLog(@"环信注册成功");
-        BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
-        if (!isAutoLogin) {
-            EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:password];//23333333环信密码另存,初始为初始密码
-            if (errorLog==nil){
-                [[EMClient sharedClient].options setIsAutoLogin:YES];
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"tock_sms":code,@"encrypt":@"no",@"client":@"web"};
+    
+    [[HttpObject manager]getDataWithType:YuWaType_Register withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data is %@",responsObj);
+        [UserSession saveUserLoginWithAccount:account withPassword:password];
+        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
+        [self showHUDWithStr:@"注册成功" withSuccess:YES];
+        EMError *error = [[EMClient sharedClient] registerWithUsername:account password:password];
+        if (error==nil) {
+            MyLog(@"环信注册成功");
+            BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+            if (!isAutoLogin) {
+                EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:password];
+                if (errorLog==nil){
+                    [[EMClient sharedClient].options setIsAutoLogin:YES];
                 MyLog(@"环信登录成功");
+                }
             }
         }
-    }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    });
-    //    } failur:^(id responsObj, NSError *error) {
-    //        MyLog(@"Pragram is %@",pragram);
-    //        MyLog(@"Data Error error is %@",responsObj);
-    //        MyLog(@"Error is %@",error);
-    //        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
-    //    }];
-    
-    //失败后重置验证码
-    //        self.time = 0;
-    //        [self securityCodeBtnTextSet];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        });
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data Error error is %@",responsObj);
+        MyLog(@"Error is %@",error);
+        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
+        self.time = 0;//    失败后重置验证码
+        [self securityCodeBtnTextSet];
+    }];
 }
 
 - (void)requestRegisterCode{
-    NSDictionary * pragram = @{@"tel":self.accountTextField.text};
-    //    [[HttpObject manager]getDataWithType:(kMaldivesType)MaldivesType_ComfireCode withPragram:pragram success:^(id responsObj) {
-    //        MyLog(@"Regieter Code pragram is %@",pragram);
-    //        MyLog(@"Regieter Code is %@",responsObj);
-    [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
-    //        self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
-    [self securityCodeBtnTextSet];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
-    //    } failur:^(id responsObj, NSError *error) {
-    //        MyLog(@"Regieter Code pragram is %@",pragram);
-    //        MyLog(@"Regieter Code error is %@",responsObj);
-    //    }];
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"type":@"zz",@"encrypt":@"no",@"client":@"web"};
+    [[HttpObject manager]getNoHudWithType:YuWaType_Message_Code withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
+        self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
+        [self securityCodeBtnTextSet];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
 }
 
 @end

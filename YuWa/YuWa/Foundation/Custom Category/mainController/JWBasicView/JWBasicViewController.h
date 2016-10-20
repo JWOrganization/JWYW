@@ -11,6 +11,7 @@
 #import "UIScrollView+JWGifRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "JWTools.h"
+#import "HttpObject.h"
 
 #import "JWSharedView.h"
 

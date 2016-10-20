@@ -117,7 +117,6 @@
     return YES;
 }
 
-//QuickLogin Btn Action
 - (IBAction)secuirtyCodeBtnAction:(id)sender {
     if (![JWTools checkTelNumber:self.mobileTextField.text]) {
         [self showHUDWithStr:@"请输入11位手机号" withSuccess:NO];
@@ -185,69 +184,76 @@
 
 #pragma mark - Http
 - (void)requestLoginWithAccount:(NSString *)account withPassword:(NSString *)password{
-    NSDictionary * pragram = @{@"tel":account,@"pwd":password};
-//    [[HttpObject manager]getDataWithType:MaldivesType_Login withPragram:pragram success:^(id responsObj) {
-//        MyLog(@"Pragram is %@",pragram);
-//        MyLog(@"Data is %@",responsObj);
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"encrypt":@"no",@"client":@"web"};
+    [[HttpObject manager]getDataWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
-//        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
-        //要删2333333
-        [UserSession saveUserInfoWithDic:@{}];
-        //要删2333333
+        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
         [self showHUDWithStr:@"登录成功" withSuccess:YES];
-    
-    EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:password];//23333333环信密码另存,初始为初始密码
-    if (!errorLog){
-        [[EMClient sharedClient].options setIsAutoLogin:NO];
-        MyLog(@"环信登录成功");
-    }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
+        EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:[UserSession instance].hxPassword];
+        if (!errorLog){
+            [[EMClient sharedClient].options setIsAutoLogin:NO];
+            MyLog(@"环信登录成功");
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         });
-//    } failur:^(id responsObj, NSError *error) {
-//        MyLog(@"Pragram is %@",pragram);
-//        MyLog(@"Data Error error is %@",responsObj);
-//        MyLog(@"Error is %@",error);
-//        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
-//    }];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data Error error is %@",responsObj);
+        MyLog(@"Error is %@",error);
+        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
+    }];
 }
 
-- (void)requestLoginWithMobile:(NSString *)account withSecuirtyCode:(NSString *)secuirty{//手机快捷登录,后台需返回密码
-    [UserSession saveUserLoginWithAccount:account withPassword:@"23333333"];
-    //要删2333333
-    [UserSession saveUserInfoWithDic:@{}];
-    //要删2333333
-    [self showHUDWithStr:@"登录成功" withSuccess:YES];
-//    EMError *error = [[EMClient sharedClient] loginWithUsername:account password:password];//23333333环信密码另存,初始为初始密码
-//    if (!error) {
-//        MyLog(@"环信登录成功");
-//    }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
-    });
-    
-    //失败后重置验证码
-    //        self.time = 0;
-    //        [self securityCodeBtnTextSet];
+- (void)requestLoginWithMobile:(NSString *)account withSecuirtyCode:(NSString *)secuirty{
+    NSDictionary * pragram = @{@"phone":account,@"sms_code":secuirty,@"encrypt":@"no",@"client":@"web"};
+    [[HttpObject manager]getDataWithType:YuWaType_Logion_Quick withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data is %@",responsObj);
+        
+        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
+        [self showHUDWithStr:@"登录成功" withSuccess:YES];
+        
+        [UserSession saveUserLoginWithAccount:account withPassword:[UserSession instance].hxPassword];
+        EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:[UserSession instance].hxPassword];
+        if (!errorLog){
+            [[EMClient sharedClient].options setIsAutoLogin:NO];
+            MyLog(@"环信登录成功");
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Pragram is %@",pragram);
+        MyLog(@"Data Error error is %@",responsObj);
+        MyLog(@"Error is %@",error);
+        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
+        
+        self.time = 0;//失败后重置验证码
+        [self securityCodeBtnTextSet];
+    }];
 }
 
 - (void)requestQuickLoginCode{
-    NSDictionary * pragram = @{@"tel":self.mobileTextField.text};
-//    [[HttpObject manager]getDataWithType:(kMaldivesType)MaldivesType_ComfireCode withPragram:pragram success:^(id responsObj) {
-//        MyLog(@"Regieter Code pragram is %@",pragram);
-//        MyLog(@"Regieter Code is %@",responsObj);
+    NSDictionary * pragram = @{@"phone":self.mobileTextField.text,@"type":@"dl",@"encrypt":@"no",@"client":@"web"};
+    
+    [[HttpObject manager]getNoHudWithType:YuWaType_Message_Code withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
-//        self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
+        self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
-//    } failur:^(id responsObj, NSError *error) {
-//        MyLog(@"Regieter Code pragram is %@",pragram);
-//        MyLog(@"Regieter Code error is %@",responsObj);
-//    }];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
 }
 
 @end

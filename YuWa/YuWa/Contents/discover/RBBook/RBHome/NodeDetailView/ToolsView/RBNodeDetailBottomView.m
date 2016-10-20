@@ -65,7 +65,6 @@
 }
 
 - (IBAction)collectionAction:(id)sender {
-    if (![UserSession instance].isLogin)return;
     self.collectionBlock(_isCollection);
 //    self.isCollection = !_isCollection;
 }

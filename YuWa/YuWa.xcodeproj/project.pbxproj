@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1200AE09FCCFFA5EBD10470F /* libPods-YuWa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC1CC6C89770D83C605851F /* libPods-YuWa.a */; };
+		B30136BE1DB86C1C00691F60 /* RBNodeTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B30136BD1DB86C1C00691F60 /* RBNodeTagModel.m */; };
 		B301E7CA1DAC86BD0001336E /* YWMessageSearchFriendAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */; };
 		B301E7CB1DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */; };
 		B301E7CE1DAC8C010001336E /* YWMessageSearchFriendAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */; };
+		B30D93251DB7971A002390D0 /* HttpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B30D93241DB7971A002390D0 /* HttpObject.m */; };
 		B31582341D90F8620096C194 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582321D90F8620096C194 /* YWRegisterViewController.m */; };
 		B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582331D90F8620096C194 /* YWRegisterViewController.xib */; };
 		B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */; };
@@ -698,11 +700,15 @@
 
 /* Begin PBXFileReference section */
 		6D91CFB893AA70B1C9A0D506 /* Pods-YuWa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.debug.xcconfig"; sourceTree = "<group>"; };
+		B30136BC1DB86C1C00691F60 /* RBNodeTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNodeTagModel.h; sourceTree = "<group>"; };
+		B30136BD1DB86C1C00691F60 /* RBNodeTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBNodeTagModel.m; sourceTree = "<group>"; };
 		B301E7C71DAC86BD0001336E /* YWMessageSearchFriendAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageSearchFriendAddCell.h; sourceTree = "<group>"; };
 		B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageSearchFriendAddCell.m; sourceTree = "<group>"; };
 		B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageSearchFriendAddCell.xib; sourceTree = "<group>"; };
 		B301E7CC1DAC8C010001336E /* YWMessageSearchFriendAddModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageSearchFriendAddModel.h; sourceTree = "<group>"; };
 		B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageSearchFriendAddModel.m; sourceTree = "<group>"; };
+		B30D93231DB7971A002390D0 /* HttpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpObject.h; sourceTree = "<group>"; };
+		B30D93241DB7971A002390D0 /* HttpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpObject.m; sourceTree = "<group>"; };
 		B31582311D90F8620096C194 /* YWRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRegisterViewController.h; sourceTree = "<group>"; };
 		B31582321D90F8620096C194 /* YWRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRegisterViewController.m; sourceTree = "<group>"; };
 		B31582331D90F8620096C194 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
@@ -2866,6 +2872,8 @@
 				B38B2CD31D8FACD8004D5256 /* GlobalInfo.h */,
 				B38B2CD41D8FACD8004D5256 /* HttpManager.h */,
 				B38B2CD51D8FACD8004D5256 /* HttpManager.m */,
+				B30D93231DB7971A002390D0 /* HttpObject.h */,
+				B30D93241DB7971A002390D0 /* HttpObject.m */,
 				B38B2CD61D8FACD8004D5256 /* InternationalLanguage */,
 				B38B2CDF1D8FACD8004D5256 /* mainController */,
 				B38B2CE61D8FACD8004D5256 /* UserSession.h */,
@@ -3570,6 +3578,8 @@
 				B38B2EB51D8FC82F004D5256 /* RBNodeUserLevelModel.m */,
 				B38B2EB61D8FC82F004D5256 /* RBNodeUserModel.h */,
 				B38B2EB71D8FC82F004D5256 /* RBNodeUserModel.m */,
+				B30136BC1DB86C1C00691F60 /* RBNodeTagModel.h */,
+				B30136BD1DB86C1C00691F60 /* RBNodeTagModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5534,6 +5544,7 @@
 				B38B2E0B1D8FACD8004D5256 /* View+MASAdditions.m in Sources */,
 				B38B2DFB1D8FACD8004D5256 /* AFURLResponseSerialization.m in Sources */,
 				B33A26921D9A68040092CB12 /* EaseEmoji.m in Sources */,
+				B30136BE1DB86C1C00691F60 /* RBNodeTagModel.m in Sources */,
 				B38B2DF91D8FACD8004D5256 /* AFURLConnectionOperation.m in Sources */,
 				B3AE4DC61D918170000A389F /* JWImgPickerAlbumChooseTableView.m in Sources */,
 				C1F7BE361DB1C95400CCAF96 /* PersonCenterOneCell.m in Sources */,
@@ -5617,6 +5628,7 @@
 				B36C7F141D9D1DE900B022E0 /* YWMessageFriendAddModel.m in Sources */,
 				B35778B81D996B0B0058A998 /* YWStormSearchViewController.m in Sources */,
 				B38B2E281D8FACD8004D5256 /* UIScrollView+MJExtension.m in Sources */,
+				B30D93251DB7971A002390D0 /* HttpObject.m in Sources */,
 				B33A26A61D9A68040092CB12 /* EaseBubbleView+Text.m in Sources */,
 				C1F7BE431DB1C95400CCAF96 /* SignatureViewController.m in Sources */,
 				B33A26821D9A68040092CB12 /* PSTGridLayoutItem.m in Sources */,
