@@ -67,6 +67,7 @@
         case YuWaType_Logion://登入
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_LOGIN];
             break;
+            
             //URLStr建立
         default:
             break;
