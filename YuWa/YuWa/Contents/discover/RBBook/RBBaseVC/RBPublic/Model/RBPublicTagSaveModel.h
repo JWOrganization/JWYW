@@ -14,6 +14,8 @@
 @property (nonatomic, assign)XHTagAnimationStyle tagAnimationStyle;
 @property (nonatomic, strong)NSArray * tagTextArr;
 @property (nonatomic,assign)CGPoint centerLocationPoint;//起始位置
+@property (nonatomic,assign)CGFloat x;
+@property (nonatomic,assign)CGFloat y;
 
 - (instancetype)initWithTagView:(XHTagView *)tagView;
 

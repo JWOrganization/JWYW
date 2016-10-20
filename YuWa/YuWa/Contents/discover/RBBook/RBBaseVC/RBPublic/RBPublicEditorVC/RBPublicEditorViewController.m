@@ -26,6 +26,11 @@
     [self makeNavi];
     [self makeUI];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.scrollView.conTextView.isDrawPlaceholder = [self.scrollView.conTextView.text isEqualToString:@""]?YES:NO;
+    [self.scrollView.conTextView setNeedsDisplay];
+}
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [RBPublishSession sharePublishSession].name = self.scrollView.nameTextField.text;
@@ -93,11 +98,8 @@
     self.commentToolsView.connectBlock = ^(){
         RBConnectionViewController * vc = [[RBConnectionViewController alloc]init];
         vc.connectNameBlock = ^(NSString * name){//@的人
-            weakSelf.scrollView.conTextView.hidden = NO;
-            if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
-                weakSelf.scrollView.conTextView.isDrawPlaceholder = NO;
-                [weakSelf.scrollView.conTextView setNeedsDisplay];
-            }
+            weakSelf.scrollView.conTextView.isDrawPlaceholder = [weakSelf.scrollView.conTextView.text isEqualToString:@""]?YES:NO;
+            [weakSelf.scrollView.conTextView setNeedsDisplay];
             weakSelf.scrollView.conTextView.text = [NSString stringWithFormat:@"%@@%@ ",weakSelf.scrollView.conTextView.text,name];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf.scrollView.conTextView becomeFirstResponder];
@@ -141,18 +143,14 @@
             }
             [strTemp deleteCharactersInRange:NSMakeRange(strTemp.length - 1, 1)];
             weakSelf.scrollView.conTextView.text = strTemp;
-            if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
-                weakSelf.scrollView.conTextView.isDrawPlaceholder = YES;
-                [weakSelf.scrollView.conTextView setNeedsDisplay];
-            }
+            weakSelf.scrollView.conTextView.isDrawPlaceholder = [weakSelf.scrollView.conTextView.text isEqualToString:@""]?YES:NO;
+            [weakSelf.scrollView.conTextView setNeedsDisplay];
         }
     };
     self.emojisKeyBoards.addStrBlock = ^(NSString * addStr){
         weakSelf.scrollView.conTextView.text = [NSString stringWithFormat:@"%@%@",weakSelf.scrollView.conTextView.text,addStr];
-        if (![weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
-            weakSelf.scrollView.conTextView.isDrawPlaceholder = NO;
-            [weakSelf.scrollView.conTextView setNeedsDisplay];
-        }
+        weakSelf.scrollView.conTextView.isDrawPlaceholder = [weakSelf.scrollView.conTextView.text isEqualToString:@""]?YES:NO;
+        [weakSelf.scrollView.conTextView setNeedsDisplay];
     };
     
 }
@@ -163,6 +161,11 @@
 
 - (void)backAction{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+    if (!self.commentToolsView.hidden) self.commentToolsView.hidden = YES;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -292,6 +295,17 @@
     NSString * tagStr = [self tagArrJsonCreate];
     MyLog(@"%@",tagStr);
     
+    if ([self.scrollView.nameTextField.text isEqualToString:@""]) {
+        [self showHUDWithStr:@"请输入标题" withSuccess:YES];
+        return;
+    }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
+        [self showHUDWithStr:@"内容" withSuccess:YES];
+        return;
+    }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
+        [self showHUDWithStr:@"内容" withSuccess:YES];
+        return;
+    }
+    
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         [RBPublishSession clearPublish];
     }];
@@ -309,7 +323,7 @@
         }
         [tagArr addObject:tagModelArr];
     }];
-    return [JWTools jsonStrWithKey:@"233333" withArr:tagArr];//tag的json参数,key值需要变化
+    return [JWTools jsonStrWithKey:@"tags_info_2" withArr:tagArr];//2333333 tags_info_2:tag的json参数,key值需要变化
 }
 
 @end

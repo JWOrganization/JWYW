@@ -93,7 +93,7 @@
 - (void)showTag{
     for (int i = 0; i<self.tagArr.count; i++) {
         RBPublicTagSaveModel * model = self.tagArr[i];
-        [self tagViewmakeWithTextArr:model.tagTextArr withPoint:model.centerLocationPoint withStyle:model.tagAnimationStyle withView:[self.scrollImageView viewWithTag:i+1]];
+        [self tagViewmakeWithTextArr:model.tagTextArr withPoint:CGPointMake(model.x, model.y) withStyle:model.tagAnimationStyle withView:[self.scrollImageView viewWithTag:i+1]];
     }
 }
 

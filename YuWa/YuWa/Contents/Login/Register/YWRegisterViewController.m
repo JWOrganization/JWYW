@@ -142,7 +142,6 @@
         [self securityCodeBtnTextSet];
     }];
 }
-
 - (void)requestRegisterCode{
     NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"type":@"zz",@"encrypt":@"no",@"client":@"web"};
     [[HttpObject manager]getNoHudWithType:YuWaType_Message_Code withPragram:pragram success:^(id responsObj) {
