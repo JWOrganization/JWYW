@@ -6,9 +6,8 @@
 //  Copyright © 2016年 黄蜂大魔王. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JWLocationBasicViewController.h"
 
-
-@interface VIPHomePageViewController : UIViewController
+@interface VIPHomePageViewController : JWLocationBasicViewController
 
 @end

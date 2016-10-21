@@ -42,11 +42,15 @@
 @property(nonatomic,strong)NSString *saveQRCode;   //保存二维码
 
 @property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
+
+@property (nonatomic,strong)CLGeocoder * geocoder;
+
 @end
 
 @implementation VIPHomePageViewController
 
 -(void)viewDidLoad{
+    [super viewDidLoad];
     [self getDatas];
     
     [self makeNaviBar];
@@ -76,7 +80,7 @@
         
     }];
  
-  
+    [self getLocalSubName];
 
  
     
@@ -87,6 +91,36 @@
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0 ]setAlpha:1];
     
     
+    
+}
+
+#pragma mark  -- 得到地理位置
+- (CLGeocoder *)geocoder{
+    if (!_geocoder) {
+        _geocoder = [[CLGeocoder alloc]init];
+    }
+    return _geocoder;
+}
+
+- (void)getLocalSubName{
+    CLLocation * location = [[CLLocation alloc]initWithLatitude:self.location.coordinate.latitude longitude:self.location.coordinate.longitude];
+    [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        [placemarks enumerateObjectsUsingBlock:^(CLPlacemark * _Nonnull placemark, NSUInteger idx, BOOL * _Nonnull stop) {//地址反编译
+           
+            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways ||[CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+                MyLog(@"current location is %@",placemark.subLocality);//红灯区
+                //已经定位了
+                
+            }else{
+                //泉州市    就是没有定位
+                MyLog(@"11");
+                
+                
+            }
+        }];
+    }];
+    
+//     self.location.lat,self.location.lon
     
 }
 
@@ -132,7 +166,7 @@
     UIButton*buttonTitle=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 25)];
     buttonTitle.titleLabel.font=[UIFont systemFontOfSize:14];
     [buttonTitle setTitle:@"泉州市" forState:UIControlStateNormal];
-    [buttonTitle setImage:[UIImage imageNamed:@"page_downArr"] forState:UIControlStateNormal];
+//    [buttonTitle setImage:[UIImage imageNamed:@"page_downArr"] forState:UIControlStateNormal];
     [buttonTitle addTarget:self action:@selector(touchNaviCity) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem*leftItem=[[UIBarButtonItem alloc]initWithCustomView:buttonTitle];
     //变换两者的位置

@@ -124,4 +124,9 @@
 
 
 
+
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+//    return CGSizeMake(kScreen_Width, 200);
+//}
+
 @end

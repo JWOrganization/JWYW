@@ -34,6 +34,7 @@
 #import "TZImagePickerController.h"  //照相机
 #import "RBNodeShowViewController.h"  //小红书展示视图
 #import "YWNodeAddAldumViewController.h"   //新建专辑 界面
+#import "MyAlbumViewController.h"          //退出我的专辑页面
 
 
 
@@ -522,6 +523,9 @@
         
     }else{
         MyLog(@"点击某个专辑%lu",number);
+        MyAlbumViewController*vc=[[MyAlbumViewController alloc]init];
+        vc.albumDetail=[NSString stringWithFormat:@"%lu",number];
+        [self.navigationController pushViewController:vc animated:YES];
         
     }
     
