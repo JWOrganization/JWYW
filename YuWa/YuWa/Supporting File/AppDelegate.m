@@ -248,7 +248,11 @@ fetchCompletionHandler:
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+    [UNUserNotificationCenterDelegate willPresentNotification:notification withCompletionHandler:completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert)];
+#else
     [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
+#endif
 }
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max

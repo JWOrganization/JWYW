@@ -35,6 +35,9 @@
 		B32975D41DAE7C07002CA488 /* JWThirdTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B32975D31DAE7C07002CA488 /* JWThirdTools.m */; };
 		B32E4AE41DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B32E4AE21DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m */; };
 		B32E4AE51DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B32E4AE31DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib */; };
+		B32EFFA51DB9B60100A4FCFB /* AppDelegate+JWLocalNotifiction.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EFFA41DB9B60100A4FCFB /* AppDelegate+JWLocalNotifiction.m */; };
+		B32EFFA91DB9C4E500A4FCFB /* JWLocalNotificationShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EFFA81DB9C4E500A4FCFB /* JWLocalNotificationShowView.m */; };
+		B32EFFAB1DB9C4F600A4FCFB /* JWLocalNotificationShowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B32EFFAA1DB9C4F600A4FCFB /* JWLocalNotificationShowView.xib */; };
 		B33A1BEF1D9A46A40092CB12 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */; };
 		B33A1BF11D9A46B10092CB12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */; };
 		B33A1BF31D9A46B90092CB12 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */; };
@@ -741,6 +744,11 @@
 		B32E4AE11DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSubSortCollectionViewCell.h; sourceTree = "<group>"; };
 		B32E4AE21DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSubSortCollectionViewCell.m; sourceTree = "<group>"; };
 		B32E4AE31DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWStormSubSortCollectionViewCell.xib; sourceTree = "<group>"; };
+		B32EFFA31DB9B60100A4FCFB /* AppDelegate+JWLocalNotifiction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+JWLocalNotifiction.h"; sourceTree = "<group>"; };
+		B32EFFA41DB9B60100A4FCFB /* AppDelegate+JWLocalNotifiction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+JWLocalNotifiction.m"; sourceTree = "<group>"; };
+		B32EFFA71DB9C4E500A4FCFB /* JWLocalNotificationShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWLocalNotificationShowView.h; sourceTree = "<group>"; };
+		B32EFFA81DB9C4E500A4FCFB /* JWLocalNotificationShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWLocalNotificationShowView.m; sourceTree = "<group>"; };
+		B32EFFAA1DB9C4F600A4FCFB /* JWLocalNotificationShowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWLocalNotificationShowView.xib; sourceTree = "<group>"; };
 		B33A1BEE1D9A46A40092CB12 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B33A1BF01D9A46B10092CB12 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B33A1BF21D9A46B90092CB12 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -2048,6 +2056,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B32EFFA61DB9C4B400A4FCFB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B32EFFA71DB9C4E500A4FCFB /* JWLocalNotificationShowView.h */,
+				B32EFFA81DB9C4E500A4FCFB /* JWLocalNotificationShowView.m */,
+				B32EFFAA1DB9C4F600A4FCFB /* JWLocalNotificationShowView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B33A1A6A1D9A45EF0092CB12 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3273,6 +3291,8 @@
 				B3FEB9F21D9B5BFB003CDEF2 /* NSDictionary+Attributes.m */,
 				B38B2E731D8FC68F004D5256 /* JWTools.h */,
 				B38B2E741D8FC68F004D5256 /* JWTools.m */,
+				B32EFFA31DB9B60100A4FCFB /* AppDelegate+JWLocalNotifiction.h */,
+				B32EFFA41DB9B60100A4FCFB /* AppDelegate+JWLocalNotifiction.m */,
 			);
 			path = MyTools;
 			sourceTree = "<group>";
@@ -3424,6 +3444,7 @@
 		B38B2E671D8FC386004D5256 /* JWBasicView */ = {
 			isa = PBXGroup;
 			children = (
+				B32EFFA61DB9C4B400A4FCFB /* View */,
 				B38B2E681D8FC3B6004D5256 /* JWBasicViewController.h */,
 				B38B2E691D8FC3B6004D5256 /* JWBasicViewController.m */,
 				B38B2E6A1D8FC3B6004D5256 /* JWBasicViewController.xib */,
@@ -5398,6 +5419,7 @@
 				B38B2DEB1D8FACD8004D5256 /* HUDLoadingShowView.xib in Resources */,
 				B31582451D9108200096C194 /* MDHotelChooseTypeTableVC.xib in Resources */,
 				B3FFF4801D93A3C700EDD2AB /* tag-center@3x.png in Resources */,
+				B32EFFAB1DB9C4F600A4FCFB /* JWLocalNotificationShowView.xib in Resources */,
 				C1F7BF3F1DB1CA0700CCAF96 /* home_shoucangjia.png in Resources */,
 				C1F7BE591DB1C95400CCAF96 /* MyOrderTableViewCell.xib in Resources */,
 				B38B2F5E1D8FC83A004D5256 /* xhsemoji.plist in Resources */,
@@ -5683,6 +5705,7 @@
 				B38B2E5E1D8FACD8004D5256 /* AppDelegate+window.m in Sources */,
 				B38B2F241D8FC82F004D5256 /* RBAlbumCollectionViewCell.m in Sources */,
 				C1F7BE471DB1C95400CCAF96 /* AlbumView.m in Sources */,
+				B32EFFA51DB9B60100A4FCFB /* AppDelegate+JWLocalNotifiction.m in Sources */,
 				B38B2EF51D8FC82F004D5256 /* RBBasicViewController.m in Sources */,
 				B33A269F1D9A68040092CB12 /* EaseCustomMessageCell.m in Sources */,
 				B38B2E521D8FACD8004D5256 /* UIView+SDExtension.m in Sources */,
@@ -5720,6 +5743,7 @@
 				B38B2E171D8FACD8004D5256 /* MJRefreshAutoNormalFooter.m in Sources */,
 				C1F7BDAC1DB1C94500CCAF96 /* YWMainShoppingTableViewCell.m in Sources */,
 				B3FEBA241D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.m in Sources */,
+				B32EFFA91DB9C4E500A4FCFB /* JWLocalNotificationShowView.m in Sources */,
 				B33A26651D9A68040092CB12 /* MWTapDetectingView.m in Sources */,
 				B33A26B11D9A68040092CB12 /* EaseRecordView.m in Sources */,
 				B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */,

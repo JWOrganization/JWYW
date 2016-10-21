@@ -7,7 +7,9 @@
 //
 
 #import "JWBasicViewController.h"
+#import "AppDelegate.h"
 //#import "YWSharedEditorViewController.h"//自定义编辑分享
+#import "JWLocalNotificationShowView.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
@@ -27,6 +29,20 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
+}
+
+#pragma mark - Notice
+- (void)makeNoticeWithTime:(NSTimeInterval)secs withAlertBody:(NSString *)con{
+    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate addLocalPushNotificationWithTime:secs withAlertBody:con];
+    JWLocalNotificationShowView * showView = [[[NSBundle mainBundle]loadNibNamed:@"JWLocalNotificationShowView" owner:self options:nil]firstObject];
+    showView.conLabel.text = con;
+    [[UIApplication sharedApplication].keyWindow addSubview:showView];
+    [UIView animateWithDuration:2.f animations:^{
+        showView.alpha = 0.3f;
+    } completion:^(BOOL finished) {
+        [showView removeFromSuperview];
+    }];
 }
 
 #pragma mark - MBProgressHUD

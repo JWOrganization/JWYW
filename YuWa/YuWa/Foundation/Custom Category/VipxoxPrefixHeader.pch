@@ -29,6 +29,7 @@
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+#import "AppDelegate+JWLocalNotifiction.h"
 //分类
 #import "UIImage+imageColor.h"
 
