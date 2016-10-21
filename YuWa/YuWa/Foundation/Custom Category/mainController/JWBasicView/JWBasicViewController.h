@@ -28,5 +28,6 @@
 
 - (void)backBarAction;
 - (void)makeShareView;
+- (void)makeNoticeWithTime:(NSTimeInterval)secs withAlertBody:(NSString *)con;
 
 @end
