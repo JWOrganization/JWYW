@@ -56,7 +56,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
-        return 3;
+        return 4;
         
     }else if (section==1){
         return 2;
@@ -83,16 +83,32 @@
         return cell;
         
     }else if (indexPath.section==0&&indexPath.row==1){
+        cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+        cell.selectionStyle=NO;
+        UITextField*textField=[cell viewWithTag:2];
+        textField.keyboardType=UIKeyboardTypeNamePhonePad;
+        
+        UILabel*titleLabel=[cell viewWithTag:1];
+        titleLabel.text=@"非打折金额";
+        
+        UITextField*textField2=[cell viewWithTag:2];
+        textField2.placeholder=@"￥20";
+
+        
+    }else if (indexPath.section==0&&indexPath.row==2){
         cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
         return cell;
-        
-    }else if (indexPath.section==0&&indexPath.row==2){
+
+    }else if (indexPath.section==0&&indexPath.row==3){
         cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
         cell.selectionStyle=NO;
         return cell;
+
         
     }
+    
+    
     //section 1
     else if (indexPath.section==1&&indexPath.row==0){
         cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
