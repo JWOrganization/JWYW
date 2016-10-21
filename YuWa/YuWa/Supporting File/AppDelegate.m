@@ -27,7 +27,7 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 
-@interface AppDelegate ()<EMContactManagerDelegate,EMChatManagerDelegate,EMGroupManagerDelegate,EMClientDelegate>
+@interface AppDelegate ()<EMContactManagerDelegate,EMChatManagerDelegate,EMGroupManagerDelegate,EMClientDelegate,JPUSHRegisterDelegate,UNUserNotificationCenterDelegate>
 
 @end
 
@@ -249,7 +249,7 @@ fetchCompletionHandler:
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
-    [UNUserNotificationCenterDelegate willPresentNotification:notification withCompletionHandler:completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert)];
+    
 #else
     [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
 #endif
@@ -326,6 +326,68 @@ fetchCompletionHandler:
     return str;
 }
 
+
+///本地添加
+- (void)addLocalPushNotificationWithTime:(NSTimeInterval)secs withAlertBody:(NSString *)con{
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    center.delegate = self;
+    content.title = @"雨娃";// 标题
+    content.subtitle = @"";// 子标题
+    content.body = con;// 内容
+    content.badge = @0;// 标记个数
+    content.sound = [UNNotificationSound defaultSound];// 推送提示音
+    // content.sound = [UNNotificationSound soundNamed:@"音频文件名"];// 指定音频文件
+    //    content.launchImageName = @"Default";// 启动图片(好像不起作用)
+    content.userInfo = @{@"name":@"YWLocalNotifiction"};// 附加信息
+    //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"puff.jpg" ofType:nil];// 添加附件
+    //    UNNotificationAttachment *attachment = [UNNotificationAttachment attachmentWithIdentifier:@"mazy" URL:[NSURL fileURLWithPath:filePath] options:0 error:nil];
+    //    content.attachments = @[attachment];
+    
+    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:secs+0.1 repeats:NO];// 通过时间差，多少秒后推送本地推送
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"YWLocalNotifiction" content:content trigger:trigger];
+    
+    //添加推送成功后的处理！
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (!error) {
+            MyLog(@"推送添加成功");
+        }
+    }];
+    
+    
+#else
+    UILocalNotification *notification = [[UILocalNotification alloc] init];// 创建一个本地推送
+    NSDate * nowDate = [NSDate dateWithTimeIntervalSinceNow:secs];// secs 秒 后 推送一条消息
+    
+    if (notification != nil) {
+        notification.fireDate = nowDate;// 设置推送时间
+        notification.timeZone = [NSTimeZone defaultTimeZone];// 设置时区
+        notification.repeatInterval = 0;// 设置重复间隔
+        notification.soundName =UILocalNotificationDefaultSoundName;// 推送声音
+        notification.alertBody = con;// 推送内容
+        //        notification.applicationIconBadgeNumber = 1;//显示在icon上的红色圈中的数子
+        NSDictionary *info = [NSDictionary dictionaryWithObject:@"name" forKey:@"YWLocalNotifiction"];
+        notification.userInfo = info;//设置userinfo 方便在之后需要撤销的时候使用
+        UIApplication *app = [UIApplication sharedApplication];//添加推送到UIApplication
+        [app scheduleLocalNotification:notification];
+    }
+#endif
+}
+
+//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"雨娃" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//
+//    [alert show];
+////    application.applicationIconBadgeNumber -= 1;// 图标上的数字减1
+//    MyLog(@"didReceiveLocalNotification");
+//
+//}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if(buttonIndex == 1){
+//        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://fir.im/XXXX"]];
+//    }
+//}
 
 
 

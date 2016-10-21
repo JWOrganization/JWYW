@@ -1674,6 +1674,7 @@
 		C13019D11DB20B2400E24C88 /* 购物.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物.png"; sourceTree = "<group>"; };
 		C13019D21DB20B2400E24C88 /* 运动健身.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "运动健身.png"; sourceTree = "<group>"; };
 		C13019D31DB20B2400E24C88 /* 酒店.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "酒店.png"; sourceTree = "<group>"; };
+		C1392DB01DB9D28F002418EF /* YuWa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YuWa.entitlements; sourceTree = "<group>"; };
 		C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlbumViewController.h; sourceTree = "<group>"; };
 		C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlbumViewController.m; sourceTree = "<group>"; };
 		C1F7BD3F1DB1C94500CCAF96 /* YWChooseOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseOneTableViewCell.h; sourceTree = "<group>"; };
@@ -2764,6 +2765,7 @@
 		B38B2C6E1D8FAC5A004D5256 /* YuWa */ = {
 			isa = PBXGroup;
 			children = (
+				C1392DB01DB9D28F002418EF /* YuWa.entitlements */,
 				C1F7BEEC1DB1CA0700CCAF96 /* resource */,
 				B38B2CC51D8FACD8004D5256 /* Foundation */,
 				B38B2CA21D8FACD8004D5256 /* Contents */,
@@ -5172,6 +5174,11 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = CL7JKSS9Z7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					B38B2C841D8FAC5A004D5256 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -6069,6 +6076,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CL7JKSS9Z7;
@@ -6106,6 +6114,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CL7JKSS9Z7;

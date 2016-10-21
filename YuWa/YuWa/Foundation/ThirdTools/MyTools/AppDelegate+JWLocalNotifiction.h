@@ -9,8 +9,7 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate (JWLocalNotifiction)<UIAlertViewDelegate>
-///本地添加
-- (void)addLocalPushNotificationWithTime:(NSTimeInterval)secs withAlertBody:(NSString *)con;
+
 /*其他页面调用范例
  //AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
  //[appDelegate addLocalPushNotificationWithTime:secs withAlertBody:con];
