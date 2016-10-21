@@ -21,6 +21,7 @@
     [super viewDidLoad];
     [self makeEmojisKeyBoards];
     [self makeCommentToolsView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
