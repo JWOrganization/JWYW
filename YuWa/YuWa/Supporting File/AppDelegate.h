@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+///本地添加
+- (void)addLocalPushNotificationWithTime:(NSTimeInterval)secs withAlertBody:(NSString *)con;
 
 @end
 
