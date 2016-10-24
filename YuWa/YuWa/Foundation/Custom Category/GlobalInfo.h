@@ -22,7 +22,7 @@
 
 #define HTTP_LOGIN          @"/yapi/mem/login?" //登入
 #define HTTP_LOGIN_Quick      @"?service=User.PhoneLogin" //快捷登录
-#define HTTP_LOGIN_FORGET_TEL @"/yapi/mem/rest?" //找回密码
+#define HTTP_LOGIN_FORGET_TEL @"/yapi/mem/reset?" //找回密码
 
 
 

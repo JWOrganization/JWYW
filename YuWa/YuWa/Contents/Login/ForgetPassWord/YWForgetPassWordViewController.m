@@ -147,7 +147,7 @@
         self.comfiredCode = responsObj[@"data"];
         self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
-        self.comfiredCode = responsObj[@"data"];
+        self.comfiredCode = [NSString stringWithFormat:@"%@",responsObj[@"data"]];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
