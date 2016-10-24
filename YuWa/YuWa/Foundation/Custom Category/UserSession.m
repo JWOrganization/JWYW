@@ -96,10 +96,11 @@ static UserSession * user=nil;
         if ([user.tokenTemp isEqualToString:@""]) {
             NSString * accountDefault = [KUSERDEFAULT valueForKey:AUTOLOGIN];
             if (accountDefault) {
-                if ([accountDefault isEqualToString:@""])return;
-                user.account = accountDefault;
-                user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
-                [UserSession autoLoginRequestWithPragram:@{@"phone":user.account,@"password":user.password,@"token":responsObj[@"data"]}];
+                if (![accountDefault isEqualToString:@""]){
+                    user.account = accountDefault;
+                    user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
+                    [UserSession autoLoginRequestWithPragram:@{@"phone":user.account,@"password":user.password,@"remember":@"0",@"token":responsObj[@"data"]}];
+                }
             }
         }
         user.tokenTemp = responsObj[@"data"];
@@ -128,7 +129,7 @@ static UserSession * user=nil;
 //    }
 //    user.logo = dataDic[@"logo"];
 //    user.point = dataDic[@"point"];
-//    user.token = dataDic[@"token"];
+    user.token = dataDic[@"token"];
 //    user.name = dataDic[@"user"];
 //    if (![dataDic[@"name"] isKindOfClass:[NSNull class]]) {
 //        user.realName = dataDic[@"name"];

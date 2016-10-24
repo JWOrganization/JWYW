@@ -14,12 +14,15 @@
 #define HTTP_GETTOKEN      @"/yapi/token/gettoken"   //请求 token
 #define HTTP_CANCELTOKEN      @"/yapi/mem/logout"   //注销 token
 
-#define HTTP_REGISTER       @"?service=User.RegisterAccount" //注册账号
-#define HTTP_MESSAGE_CODE   @"/yapi/verify/sendverify?" //验证码
+#define HTTP_REGISTER       @"/yapi/mem/register?" //注册账号
+#define HTTP_REGISTER_CODE   @"/yapi/mem/registercode?" //注册验证码
+#define HTTP_LOGION_CODE   @"/yapi/mem/logincode?" //快捷登录验证码
+#define HTTP_RESET_CODE   @"/yapi/mem/resetcode?" //重置密码验证码
 
-#define HTTP_LOGIN          @"?service=User.AccountLogin" //登入
+
+#define HTTP_LOGIN          @"/yapi/mem/login?" //登入
 #define HTTP_LOGIN_Quick      @"?service=User.PhoneLogin" //快捷登录
-#define HTTP_LOGIN_FORGET_TEL @"?service=User.UpdatePassword" //找回密码
+#define HTTP_LOGIN_FORGET_TEL @"/yapi/mem/rest?" //找回密码
 
 
 

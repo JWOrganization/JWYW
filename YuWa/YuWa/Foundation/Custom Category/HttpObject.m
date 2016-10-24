@@ -48,7 +48,7 @@
     }
     HttpManager*manager= [[HttpManager alloc]init];
     [manager getDatasWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] integerValue] == 0) {
+        if (data&&[data[@"errorCode"] integerValue] == 0) {
             success(data);
         }else{
             fail(data,error);
@@ -67,8 +67,14 @@
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_CANCELTOKEN];
             break;
 #pragma mark - MessageComfiredCode
-        case YuWaType_Message_Code://验证码
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_MESSAGE_CODE];
+        case YuWaType_Register_Code://注册验证码
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_REGISTER_CODE];
+            break;
+        case YuWaType_Logion_Code://快捷登录验证码
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_LOGION_CODE];
+            break;
+        case YuWaType_Reset_Code://重置密码验证码
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RESET_CODE];
             break;
 #pragma mark - Login
         case YuWaType_Logion://登入
@@ -81,7 +87,7 @@
     }
     HttpManager*manager= [[HttpManager alloc]init];
     [manager getDatasNoHudWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] integerValue] == 0) {
+        if (data&&[data[@"errorCode"] integerValue] == 0) {
             success(data);
         }else{
             fail(data,error);
@@ -99,7 +105,7 @@
     }
     HttpManager*manager= [[HttpManager alloc]init];
     [manager postDatasWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] integerValue] == 0) {
+        if (data&&[data[@"errorCode"] integerValue] == 0) {
             success(data);
         }else{
             fail(data,error);
@@ -117,7 +123,7 @@
     }
     HttpManager*manager= [[HttpManager alloc]init];
     [manager postDatasNoHudWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] integerValue] == 0) {
+        if (data&&[data[@"errorCode"] integerValue] == 0) {
             success(data);
         }else{
             fail(data,error);
@@ -134,7 +140,7 @@
     }
     HttpManager*manager= [[HttpManager alloc]init];
     [manager postUpdatePohotoWithUrl:urlStr withParams:pragram withPhoto:photo compliation:^(id data, NSError *error) {
-        if ([data[@"errorCode"] integerValue] == 0) {
+        if (data&&[data[@"errorCode"] integerValue] == 0) {
             success(data);
             
         }else{
