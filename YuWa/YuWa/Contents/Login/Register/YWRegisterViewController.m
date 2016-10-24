@@ -121,7 +121,8 @@
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
-        [UserSession autoLoginRequestWithPragram:@{@"phone":account,@"password":password,@"remember":@"0",@"token":[UserSession instance].tokenTemp}];
+        [UserSession saveUserInfoWithDic:responsObj[@"data"]];
+//        [UserSession autoLoginRequestWithPragram:@{@"phone":account,@"password":password,@"remember":@"0",@"token":[UserSession instance].tokenTemp}];
         [self showHUDWithStr:@"注册成功" withSuccess:YES];
         EMError *error = [[EMClient sharedClient] registerWithUsername:account password:password];
         if (error==nil) {
