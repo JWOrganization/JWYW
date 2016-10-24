@@ -74,7 +74,7 @@
         [self showHUDWithStr:@"请输入11位手机号" withSuccess:NO];
         return ;
     }
-    [self requestRegisterCode];
+    [self requestRegisterCodeWithCount:0];
 }
 
 - (IBAction)registerBtnAction:(id)sender {
@@ -142,9 +142,14 @@
         [self securityCodeBtnTextSet];
     }];
 }
-- (void)requestRegisterCode{
-    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"type":@"zz",@"encrypt":@"no",@"client":@"web"};
-    [[HttpObject manager]getNoHudWithType:YuWaType_Message_Code withPragram:pragram success:^(id responsObj) {
+- (void)requestRegisterCodeWithCount:(NSInteger)count{
+    if ([[UserSession instance].tokenTemp isEqualToString:@""]&&count<3) {
+        [UserSession getToken];
+        [self requestRegisterCodeWithCount:count++];
+        return;
+    }
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"token":[UserSession instance].tokenTemp};
+    [[HttpObject manager] getNoHudWithType:YuWaType_Message_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];

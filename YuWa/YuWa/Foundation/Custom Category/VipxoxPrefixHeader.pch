@@ -106,6 +106,7 @@
 #define AUTOLOGINCODE   @"autoLoginCode"     //自动登录密码
 #define ISTHIRDLOGIN    @"isthirdLogin"           //是不是第三方登录
 #define ISTHIRDPARAMS   @"isthirdPARAMS"       //第三方登录的 参数
+#define USER_TOKEN   @"UserToken"       //请求token
 
 #define LOCATION_LON    @"location_lon"            //lon
 #define LOCATION_LAT    @"location_lat"            //lat
