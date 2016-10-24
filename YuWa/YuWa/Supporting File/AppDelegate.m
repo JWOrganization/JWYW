@@ -27,7 +27,7 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 
-@interface AppDelegate ()<EMContactManagerDelegate,EMChatManagerDelegate,EMGroupManagerDelegate,EMClientDelegate,JPUSHRegisterDelegate,UNUserNotificationCenterDelegate>
+@interface AppDelegate ()<EMContactManagerDelegate,EMChatManagerDelegate,EMGroupManagerDelegate,EMClientDelegate,JPUSHRegisterDelegate>
 
 @end
 
@@ -332,7 +332,7 @@ fetchCompletionHandler:
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-    center.delegate = self;
+//    center.delegate = self;
     content.title = @"雨娃";// 标题
     content.subtitle = @"";// 子标题
     content.body = con;// 内容
