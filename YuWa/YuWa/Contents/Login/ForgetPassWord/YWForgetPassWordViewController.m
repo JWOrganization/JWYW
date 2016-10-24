@@ -111,7 +111,7 @@
         return;
     }
     
-    NSDictionary * pragram = @{@"phone":account,@"newpassword":password,@"tock_sms":code,@"encrypt":@"no",@"client":@"web"};
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"verify":code,@"token":[UserSession instance].tokenTemp};
     [[HttpObject manager]getDataWithType:YuWaType_Logion_Forget_Tel withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
