@@ -491,18 +491,23 @@
 
 -(void)touchLingdang{
     
-    _isShow=!_isShow;
-    if (_isShow) {
-        //显示
-        [self.MenuShowView showView];
-        
-        
-    }else{
-        
-        [self.MenuShowView dismissView];
-        
-    }
+//    //小跳窗
+//    _isShow=!_isShow;
+//    if (_isShow) {
+//        //显示
+//        [self.MenuShowView showView];
+//        
+//        
+//    }else{
+//        
+//        [self.MenuShowView dismissView];
+//        
+//    }
 
+    //通知界面
+    
+    
+    
 }
 //点击输入框
 -(void)touchinPut{
