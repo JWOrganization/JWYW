@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface UserSession : NSObject
+@property(nonatomic,strong)NSString*tokenTemp;   //用户登录
 
 @property(nonatomic,strong)NSString*token;   //用户登录后标识
 @property (nonatomic,copy)NSString * account;  //账户
@@ -44,6 +45,8 @@
 + (void)saveUserLoginWithAccount:(NSString *)account withPassword:(NSString *)password;  //save login data
 
 + (void)saveUserInfoWithDic:(NSDictionary *)dataDic;//save user data
++ (void)autoLoginRequestWithPragram:(NSDictionary *)pragram;
 
++ (void)getToken;
 
 @end

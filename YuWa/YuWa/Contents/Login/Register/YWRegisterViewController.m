@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *secuirtyCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (nonatomic,copy)NSString * comfiredCode;
 @property (nonatomic,strong)NSTimer * timer;
 @property (nonatomic,assign)NSInteger time;
 
@@ -74,7 +75,7 @@
         [self showHUDWithStr:@"请输入11位手机号" withSuccess:NO];
         return ;
     }
-    [self requestRegisterCode];
+    [self requestRegisterCodeWithCount:0];
 }
 
 - (IBAction)registerBtnAction:(id)sender {
@@ -109,13 +110,19 @@
 
 #pragma mark - Http
 - (void)requestRegisterWithAccount:(NSString *)account withPassword:(NSString *)password withCode:(NSString *)code{
-    NSDictionary * pragram = @{@"phone":account,@"password":password,@"tock_sms":code,@"encrypt":@"no",@"client":@"web"};
+    if (![self.comfiredCode isEqualToString:code]) {
+        [self showHUDWithStr:@"验证码错误" withSuccess:NO];
+        return;
+    }
+    
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"verify":code,@"jq":self.inviteTextField.text,@"token":[UserSession instance].tokenTemp};
     
     [[HttpObject manager]getDataWithType:YuWaType_Register withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
         [UserSession saveUserInfoWithDic:responsObj[@"data"]];
+//        [UserSession autoLoginRequestWithPragram:@{@"phone":account,@"password":password,@"remember":@"0",@"token":[UserSession instance].tokenTemp}];
         [self showHUDWithStr:@"注册成功" withSuccess:YES];
         EMError *error = [[EMClient sharedClient] registerWithUsername:account password:password];
         if (error==nil) {
@@ -142,12 +149,13 @@
         [self securityCodeBtnTextSet];
     }];
 }
-- (void)requestRegisterCode{
-    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"type":@"zz",@"encrypt":@"no",@"client":@"web"};
-    [[HttpObject manager]getNoHudWithType:YuWaType_Message_Code withPragram:pragram success:^(id responsObj) {
+- (void)requestRegisterCodeWithCount:(NSInteger)count{
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"token":[UserSession instance].tokenTemp};
+    [[HttpObject manager] getNoHudWithType:YuWaType_Register_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
+        self.comfiredCode = [NSString stringWithFormat:@"%@",responsObj[@"data"]];
         self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
