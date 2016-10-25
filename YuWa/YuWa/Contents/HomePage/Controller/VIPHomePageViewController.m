@@ -18,7 +18,8 @@
 #import "ShoppingTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
 
-#import "YWMainCategoryViewController.h"       //18个分类
+//#import "YWMainCategoryViewController.h"       //18个分类
+#import "NewMainCategoryViewController.h"
 #import "YWShoppingDetailViewController.h"    //店铺详情
 #import "HomeSearchViewController.h"        //搜索界面
 #import "WLBarcodeViewController.h"     //新的扫2维码
@@ -541,9 +542,11 @@
         
         
     }else if (number!=1&&number!=2){
-        YWMainCategoryViewController*vc=[[YWMainCategoryViewController alloc]initWithNibName:@"YWMainCategoryViewController" bundle:nil];
-        [self.navigationController pushViewController:vc animated:YES];
+//        YWMainCategoryViewController*vc=[[YWMainCategoryViewController alloc]initWithNibName:@"YWMainCategoryViewController" bundle:nil];
+//        [self.navigationController pushViewController:vc animated:YES];
 
+        NewMainCategoryViewController*vc=[[NewMainCategoryViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
         
         
     }
