@@ -539,6 +539,9 @@
 		C13019E51DB20B2400E24C88 /* 购物.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019D11DB20B2400E24C88 /* 购物.png */; };
 		C13019E61DB20B2400E24C88 /* 运动健身.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019D21DB20B2400E24C88 /* 运动健身.png */; };
 		C13019E71DB20B2400E24C88 /* 酒店.png in Resources */ = {isa = PBXBuildFile; fileRef = C13019D31DB20B2400E24C88 /* 酒店.png */; };
+		C1392DB41DBDB660002418EF /* NewMainCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */; };
+		C1392DB91DBDBC6D002418EF /* ico_make.png in Resources */ = {isa = PBXBuildFile; fileRef = C1392DB61DBDBC6D002418EF /* ico_make.png */; };
+		C1392DBA1DBDBC6D002418EF /* JSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DB81DBDBC6D002418EF /* JSDropDownMenu.m */; };
 		C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */; };
 		C1F7BD921DB1C94500CCAF96 /* YWChooseOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */; };
 		C1F7BD931DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */; };
@@ -1675,6 +1678,11 @@
 		C13019D21DB20B2400E24C88 /* 运动健身.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "运动健身.png"; sourceTree = "<group>"; };
 		C13019D31DB20B2400E24C88 /* 酒店.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "酒店.png"; sourceTree = "<group>"; };
 		C1392DB01DB9D28F002418EF /* YuWa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YuWa.entitlements; sourceTree = "<group>"; };
+		C1392DB21DBDB65F002418EF /* NewMainCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMainCategoryViewController.h; sourceTree = "<group>"; };
+		C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMainCategoryViewController.m; sourceTree = "<group>"; };
+		C1392DB61DBDBC6D002418EF /* ico_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_make.png; sourceTree = "<group>"; };
+		C1392DB71DBDBC6D002418EF /* JSDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDropDownMenu.h; sourceTree = "<group>"; };
+		C1392DB81DBDBC6D002418EF /* JSDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDropDownMenu.m; sourceTree = "<group>"; };
 		C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlbumViewController.h; sourceTree = "<group>"; };
 		C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlbumViewController.m; sourceTree = "<group>"; };
 		C1F7BD3F1DB1C94500CCAF96 /* YWChooseOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseOneTableViewCell.h; sourceTree = "<group>"; };
@@ -3247,6 +3255,7 @@
 		B38B2D8C1D8FACD8004D5256 /* ThirdTools */ = {
 			isa = PBXGroup;
 			children = (
+				C1392DB51DBDBC6D002418EF /* JSDropDownMenu */,
 				C1F7BF731DB1CB6500CCAF96 /* POPView */,
 				B38B2D8D1D8FACD8004D5256 /* color */,
 				B38B2D931D8FACD8004D5256 /* JRSegmentControl */,
@@ -4474,6 +4483,25 @@
 			path = "20个图标新";
 			sourceTree = "<group>";
 		};
+		C1392DB11DBDB644002418EF /* 新的18分类 */ = {
+			isa = PBXGroup;
+			children = (
+				C1392DB21DBDB65F002418EF /* NewMainCategoryViewController.h */,
+				C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */,
+			);
+			path = "新的18分类";
+			sourceTree = "<group>";
+		};
+		C1392DB51DBDBC6D002418EF /* JSDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C1392DB61DBDBC6D002418EF /* ico_make.png */,
+				C1392DB71DBDBC6D002418EF /* JSDropDownMenu.h */,
+				C1392DB81DBDBC6D002418EF /* JSDropDownMenu.m */,
+			);
+			path = JSDropDownMenu;
+			sourceTree = "<group>";
+		};
 		C18E7D5B1DB878BA003D0012 /* 我的专辑列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4502,6 +4530,7 @@
 		C1F7BD3C1DB1C94500CCAF96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C1392DB11DBDB644002418EF /* 新的18分类 */,
 				C1F7BD3D1DB1C94500CCAF96 /* 18Category */,
 				C1F7BD491DB1C94500CCAF96 /* VIPHomePageViewController.h */,
 				C1F7BD4A1DB1C94500CCAF96 /* VIPHomePageViewController.m */,
@@ -5233,6 +5262,7 @@
 				C13019B31DB1FD2F00E24C88 /* zbar-helpicons.png in Resources */,
 				B38B2E511D8FACD8004D5256 /* tb4.png in Resources */,
 				B38B2E451D8FACD8004D5256 /* banner_selected6.png in Resources */,
+				C1392DB91DBDBC6D002418EF /* ico_make.png in Resources */,
 				B3FEBA1A1D9B9C46003CDEF2 /* YWMessageViewController.xib in Resources */,
 				C1F7BDAD1DB1C94500CCAF96 /* YWMainShoppingTableViewCell.xib in Resources */,
 				C1F7BF501DB1CA0700CCAF96 /* home_te@2x.png in Resources */,
@@ -5676,6 +5706,7 @@
 				B33A26A61D9A68040092CB12 /* EaseBubbleView+Text.m in Sources */,
 				C1F7BE431DB1C95400CCAF96 /* SignatureViewController.m in Sources */,
 				B33A26821D9A68040092CB12 /* PSTGridLayoutItem.m in Sources */,
+				C1392DBA1DBDBC6D002418EF /* JSDropDownMenu.m in Sources */,
 				B33A26A01D9A68040092CB12 /* EaseMessageCell.m in Sources */,
 				C1F7BE611DB1C95400CCAF96 /* GetMoneyTableViewCell.m in Sources */,
 				B38B2E3E1D8FACD8004D5256 /* JRSegmentViewController.m in Sources */,
@@ -5843,6 +5874,7 @@
 				C1F7BDBD1DB1C94500CCAF96 /* ShowMoreCommitViewController.m in Sources */,
 				C1F7BDA91DB1C94500CCAF96 /* ShowShoppingTableViewCell.m in Sources */,
 				C1F7BE491DB1C95400CCAF96 /* FilmViewModel.m in Sources */,
+				C1392DB41DBDB660002418EF /* NewMainCategoryViewController.m in Sources */,
 				B3FEB9F31D9B5BFB003CDEF2 /* NSDictionary+Attributes.m in Sources */,
 				B38B2F781D8FC8CD004D5256 /* JWTagCollectionViewCell.m in Sources */,
 				C1F7BDB61DB1C94500CCAF96 /* inputNumberCell.m in Sources */,

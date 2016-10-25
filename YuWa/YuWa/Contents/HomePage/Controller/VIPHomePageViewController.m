@@ -18,7 +18,8 @@
 #import "ShoppingTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
 
-#import "YWMainCategoryViewController.h"       //18个分类
+//#import "YWMainCategoryViewController.h"       //18个分类
+#import "NewMainCategoryViewController.h"
 #import "YWShoppingDetailViewController.h"    //店铺详情
 #import "HomeSearchViewController.h"        //搜索界面
 #import "WLBarcodeViewController.h"     //新的扫2维码
@@ -491,18 +492,23 @@
 
 -(void)touchLingdang{
     
-    _isShow=!_isShow;
-    if (_isShow) {
-        //显示
-        [self.MenuShowView showView];
-        
-        
-    }else{
-        
-        [self.MenuShowView dismissView];
-        
-    }
+//    //小跳窗
+//    _isShow=!_isShow;
+//    if (_isShow) {
+//        //显示
+//        [self.MenuShowView showView];
+//        
+//        
+//    }else{
+//        
+//        [self.MenuShowView dismissView];
+//        
+//    }
 
+    //通知界面
+    
+    
+    
 }
 //点击输入框
 -(void)touchinPut{
@@ -536,9 +542,11 @@
         
         
     }else if (number!=1&&number!=2){
-        YWMainCategoryViewController*vc=[[YWMainCategoryViewController alloc]initWithNibName:@"YWMainCategoryViewController" bundle:nil];
-        [self.navigationController pushViewController:vc animated:YES];
+//        YWMainCategoryViewController*vc=[[YWMainCategoryViewController alloc]initWithNibName:@"YWMainCategoryViewController" bundle:nil];
+//        [self.navigationController pushViewController:vc animated:YES];
 
+        NewMainCategoryViewController*vc=[[NewMainCategoryViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
         
         
     }

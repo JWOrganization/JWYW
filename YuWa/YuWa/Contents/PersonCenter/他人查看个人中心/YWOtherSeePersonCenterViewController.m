@@ -222,7 +222,7 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==1) {
         //4个按钮
-        NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3",@"影评·6"];
+        NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3"];
         YJSegmentedControl*view=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
         return view;
         
