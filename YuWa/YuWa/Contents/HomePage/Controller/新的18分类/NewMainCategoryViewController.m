@@ -8,7 +8,12 @@
 
 #import "NewMainCategoryViewController.h"
 
+#import "YWMainShoppingTableViewCell.h"
+
 #import "JSDropDownMenu.h"
+
+
+#define CELL0    @"YWMainShoppingTableViewCell"
 
 @interface NewMainCategoryViewController ()<UITableViewDataSource,UITableViewDelegate,JSDropDownMenuDataSource,JSDropDownMenuDelegate>{
     NSMutableArray *_data1;
@@ -40,6 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets=NO;
     [self initData];
     [self setUpTableView];
     [self initDropMenu];
@@ -49,13 +55,13 @@
 #pragma mark --  UI
 -(void)initDropMenu{
     //决定了 初始选择的位置
-    _currentData1Index=2;
-    _currentData2Index=2;
+    _currentData1Index=0;
+    _currentData2Index=0;
     _currentData3Index=0;
    
     
-    _currentData1SelectedIndex=2;
-    _currentData2SelectedIndex=2;
+    _currentData1SelectedIndex=0;
+    _currentData2SelectedIndex=0;
     
     
      menu = [[JSDropDownMenu alloc] initWithOrigin:CGPointMake(0, 64) andHeight:40];
@@ -73,6 +79,7 @@
 
 -(void)setUpTableView{
     [self.view addSubview:self.tableView];
+    [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
     
 }
 
@@ -80,22 +87,36 @@
 
 
 #pragma mark  -- tableView
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 10;
 }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
     if (!cell) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         
     }
     
     cell.selectionStyle=NO;
-    cell.textLabel.text=@"666";
-    return cell;
+     return cell;
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 145;
+}
 
 #pragma mark --   menu
 //下拉Menu
@@ -182,106 +203,134 @@
 - (NSString *)menu:(JSDropDownMenu *)menu titleForColumn:(NSInteger)column{
     
     switch (column) {
-        case 0:
-            self.Pcategory=[[_data1[_currentData1Index] objectForKey:@"data"] objectAtIndex:_currentData1SelectedIndex];
-            return [[_data1[_currentData1Index] objectForKey:@"data"] objectAtIndex:_currentData1SelectedIndex];
-            break;
-        case 1:
-            self.Pplace=[[_data2[_currentData2Index] objectForKey:@"data"] objectAtIndex:_currentData2SelectedIndex];
-            return [[_data2[_currentData2Index] objectForKey:@"data"] objectAtIndex:_currentData2SelectedIndex];
-            break;
-        case 2:
+        case 0:{
+            if (_currentData1SelectedIndex==0) {
+                NSDictionary *menuDic = [_data1 objectAtIndex:_currentData1Index];
+                self.Pcategory=[menuDic objectForKey:@"title"];
+                return self.Pcategory;
+            }else{
+                self.Pcategory=[[_data1[_currentData1Index] objectForKey:@"data"] objectAtIndex:_currentData1SelectedIndex];
+                return self.Pcategory;
+            }
+            
+            
+             break;}
+        case 1:{
+            if (_currentData2SelectedIndex==0) {
+                NSDictionary *menuDic = [_data2 objectAtIndex:_currentData2Index];
+                self.Pplace=[menuDic objectForKey:@"title"];
+                return self.Pplace;
+
+            }else{
+                self.Pplace=[[_data2[_currentData2Index] objectForKey:@"data"] objectAtIndex:_currentData2SelectedIndex];
+                return self.Pplace;
+
+            }
+            
+                      break;}
+        case 2:{
             self.Psort=_data3[_currentData3Index];
             return _data3[_currentData3Index];
-            break;
+            break;}
         default:
             return nil;
             break;
     }
 }
 
-//变标题
+////变标题
+//- (NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath {
+//    NSInteger whichCategory;    //哪一类
+//    NSString*resultStr;       //返回的字符串
+//     whichCategory=indexPath.column;
+//    
+//    
+//    if (indexPath.column==0) {
+//       
+//        
+//        if (indexPath.leftOrRight==0) {
+//            NSDictionary *menuDic = [_data1 objectAtIndex:indexPath.row];
+//            resultStr= [menuDic objectForKey:@"title"];
+//        } else{
+//            NSInteger leftRow = indexPath.leftRow;
+//            NSDictionary *menuDic = [_data1 objectAtIndex:leftRow];
+//            
+//            if (indexPath.row==0) {
+//                resultStr= [menuDic objectForKey:@"title"];
+//            }else{
+//            resultStr= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
+//            }
+//            
+//            self.Pcategory=resultStr;
+//            
+//        }
+//    } else if (indexPath.column==1) {
+//        
+//        if (indexPath.leftOrRight==0) {
+//            NSDictionary *menuDic = [_data2 objectAtIndex:indexPath.row];
+//            resultStr= [menuDic objectForKey:@"title"];
+//        } else{
+//            NSInteger leftRow = indexPath.leftRow;
+//            NSDictionary *menuDic = [_data2 objectAtIndex:leftRow];
+//            
+//            if (indexPath.row==0) {
+//                resultStr= [menuDic objectForKey:@"title"];
+//            }else{
+//
+//            resultStr= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
+//            }
+//            
+//            
+//            self.Pplace=resultStr;
+//        }
+//
+//        
+//    } else {
+//        
+//        resultStr= _data3[indexPath.row];
+//        self.Psort=resultStr;
+//    }
+//    
+//    
+//    return resultStr;
+//}
+
+
 - (NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath {
-    NSInteger whichCategory;    //哪一类
-    NSString*resultStr;       //返回的字符串
-     whichCategory=indexPath.column;
-    
     
     if (indexPath.column==0) {
-       
-        
         if (indexPath.leftOrRight==0) {
             NSDictionary *menuDic = [_data1 objectAtIndex:indexPath.row];
-            resultStr= [menuDic objectForKey:@"title"];
+            return [menuDic objectForKey:@"title"];
         } else{
             NSInteger leftRow = indexPath.leftRow;
             NSDictionary *menuDic = [_data1 objectAtIndex:leftRow];
-            
-            if (indexPath.row==0) {
-                resultStr= [menuDic objectForKey:@"title"];
-            }else{
-            resultStr= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
-            }
+            return [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
         }
     } else if (indexPath.column==1) {
         
         if (indexPath.leftOrRight==0) {
             NSDictionary *menuDic = [_data2 objectAtIndex:indexPath.row];
-            resultStr= [menuDic objectForKey:@"title"];
+            return [menuDic objectForKey:@"title"];
         } else{
             NSInteger leftRow = indexPath.leftRow;
             NSDictionary *menuDic = [_data2 objectAtIndex:leftRow];
-            
-            if (indexPath.row==0) {
-                resultStr= [menuDic objectForKey:@"title"];
-            }else{
-
-            resultStr= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
-            }
+            return [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
         }
 
         
     } else {
         
-        resultStr= _data3[indexPath.row];
+        return _data3[indexPath.row];
     }
-    
-    
-    return resultStr;
 }
 
 
+
 - (void)menu:(JSDropDownMenu *)menu didSelectRowAtIndexPath:(JSIndexPath *)indexPath {
-    NSString*nameString;
+   
     
-    //这里写接口   这里
-    switch (indexPath.column) {
-        case 0:{
-            //第一个选项
-            NSDictionary *menuDic = [_data1 objectAtIndex:indexPath.leftRow];
-           nameString= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
-            
-            
-            break;}
-        case 1:{
-            //第二个选项
-            NSDictionary *menuDic = [_data2 objectAtIndex:indexPath.leftRow];
-            nameString= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
 
-            break;}
-        case 2:{
-            //第三个选项
-            nameString = [_data3 objectAtIndex:indexPath.row];
-            
-
-            break;}
-            
-        default:
-            break;
-    }
-
-    
-    MyLog(@"11xx  %@",nameString);
     
     
     
@@ -295,8 +344,8 @@
             return;
         }else{
             //这里吊接口的
-            NSDictionary *menuDic = [_data1 objectAtIndex:indexPath.leftRow];
-            self.Pcategory= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
+//            NSDictionary *menuDic = [_data1 objectAtIndex:indexPath.leftRow];
+//            self.Pcategory= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
 
             [self getTableViewDatasWithSection0:self.Pcategory andSection1:self.Pplace andSort:self.Psort];
             
@@ -308,8 +357,8 @@
 
         }else{
             //这里吊接口的
-            NSDictionary *menuDic = [_data2 objectAtIndex:indexPath.leftRow];
-            self.Pplace= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
+//            NSDictionary *menuDic = [_data2 objectAtIndex:indexPath.leftRow];
+//            self.Pplace= [[menuDic objectForKey:@"data"] objectAtIndex:indexPath.row];
             [self getTableViewDatasWithSection0:self.Pcategory andSection1:self.Pplace andSort:self.Psort];
         }
         
@@ -318,7 +367,7 @@
         _currentData3Index = indexPath.leftRow;
         //这里吊接口的
         //第三个选项
-        self.Pplace = [_data3 objectAtIndex:indexPath.row];
+//        self.Pplace = [_data3 objectAtIndex:indexPath.row];
      [self getTableViewDatasWithSection0:self.Pcategory andSection1:self.Pplace andSort:self.Psort];
         
     }
