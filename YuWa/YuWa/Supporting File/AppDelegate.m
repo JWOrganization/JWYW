@@ -265,7 +265,7 @@ fetchCompletionHandler:
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
     
 #else
-    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
+//    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
 #endif
 }
 
