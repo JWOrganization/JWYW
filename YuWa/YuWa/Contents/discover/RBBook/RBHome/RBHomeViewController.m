@@ -22,7 +22,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic,strong)JWTagCollectionView * tagCollectionView;
-
 @property (nonatomic,strong)NSMutableArray * dataArr;
 @property (nonatomic,copy)NSString * pagens;
 @property (nonatomic,assign)NSInteger pages;
