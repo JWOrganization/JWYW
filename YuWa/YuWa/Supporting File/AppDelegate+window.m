@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate+window.h"
-
 @implementation AppDelegate (window)
 
 +(UIWindow*)windowInitWithRootVC:(UIViewController *)rootViewController{
@@ -16,8 +15,12 @@
     window.rootViewController=rootViewController;
     [window makeKeyAndVisible];
     
+  
+    
     return window;
     
     
 }
+
+
 @end
