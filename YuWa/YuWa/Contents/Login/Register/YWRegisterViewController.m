@@ -115,9 +115,9 @@
         return;
     }
     
-    NSDictionary * pragram = @{@"phone":account,@"password":password,@"verify":code,@"jq":self.inviteTextField.text,@"token":[UserSession instance].tokenTemp};
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"code":code,@"invite_phone":self.inviteTextField.text};
     
-    [[HttpObject manager]getDataWithType:YuWaType_Register withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postDataWithType:YuWaType_Register withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
@@ -150,8 +150,8 @@
     }];
 }
 - (void)requestRegisterCodeWithCount:(NSInteger)count{
-    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"token":[UserSession instance].tokenTemp};
-    [[HttpObject manager] getNoHudWithType:YuWaType_Register_Code withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text};
+    [[HttpObject manager] postNoHudWithType:YuWaType_Register_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];

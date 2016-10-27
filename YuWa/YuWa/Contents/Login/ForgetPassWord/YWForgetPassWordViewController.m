@@ -111,8 +111,8 @@
         return;
     }
     
-    NSDictionary * pragram = @{@"phone":account,@"password":password,@"verify":code,@"token":[UserSession instance].tokenTemp};
-    [[HttpObject manager]getDataWithType:YuWaType_Logion_Forget_Tel withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"Code":code};
+    [[HttpObject manager]postDataWithType:YuWaType_Logion_Forget_Tel withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
@@ -139,8 +139,8 @@
 }
 
 - (void)requestReSetPasswordCode{
-    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"token":[UserSession instance].tokenTemp};
-    [[HttpObject manager]getNoHudWithType:YuWaType_Reset_Code withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text};
+    [[HttpObject manager]postNoHudWithType:YuWaType_Reset_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];

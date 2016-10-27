@@ -185,8 +185,8 @@
 
 #pragma mark - Http
 - (void)requestLoginWithAccount:(NSString *)account withPassword:(NSString *)password{
-    NSDictionary * pragram = @{@"phone":account,@"password":password,@"remember":@"0",@"token":[UserSession instance].tokenTemp};
-    [[HttpObject manager]getDataWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":account,@"password":password};
+    [[HttpObject manager]postDataWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
@@ -216,8 +216,8 @@
         return;
     }
     
-    NSDictionary * pragram = @{@"phone":account,@"sms_code":secuirty,@"encrypt":@"no",@"client":@"web"};
-    [[HttpObject manager]getDataWithType:YuWaType_Logion_Quick withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":account,@"Code":secuirty};
+    [[HttpObject manager]postDataWithType:YuWaType_Logion_Quick withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         
@@ -247,9 +247,9 @@
 }
 
 - (void)requestQuickLoginCode{
-    NSDictionary * pragram = @{@"phone":self.mobileTextField.text,@"token":[UserSession instance].tokenTemp};
+    NSDictionary * pragram = @{@"phone":self.mobileTextField.text};
     
-    [[HttpObject manager]getNoHudWithType:YuWaType_Logion_Code withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postNoHudWithType:YuWaType_Logion_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];

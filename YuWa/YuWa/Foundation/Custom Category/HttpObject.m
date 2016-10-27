@@ -23,7 +23,7 @@
     return manager;
 }
 
-- (void)getDataWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail{
+- (void)postDataWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail{
     NSString * urlStr = HTTP_ADDRESS;
     switch (type) {
 #pragma mark - Register
@@ -47,7 +47,7 @@
             break;
     }
     HttpManager*manager= [[HttpManager alloc]init];
-    [manager getDatasWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
+    [manager postDatasWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
         if (data&&[data[@"errorCode"] integerValue] == 0) {
             success(data);
         }else{
@@ -56,16 +56,9 @@
     }];
 }
 
-- (void)getNoHudWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail{
+- (void)postNoHudWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail{
     NSString * urlStr = HTTP_ADDRESS;
     switch (type) {
-#pragma mark - Token
-        case YuWaType_GetToken:
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETTOKEN];
-            break;
-        case YuWaType_CancelToken:
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_CANCELTOKEN];
-            break;
 #pragma mark - MessageComfiredCode
         case YuWaType_Register_Code://注册验证码
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_REGISTER_CODE];
@@ -86,42 +79,6 @@
             break;
     }
     HttpManager*manager= [[HttpManager alloc]init];
-    [manager getDatasNoHudWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if (data&&[data[@"errorCode"] integerValue] == 0) {
-            success(data);
-        }else{
-            fail(data,error);
-        }
-    }];
-}
-
-- (void)postDataWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail{
-    NSString * urlStr = HTTP_ADDRESS;
-    switch (type) {
-
-            //URLStr建立
-        default:
-            break;
-    }
-    HttpManager*manager= [[HttpManager alloc]init];
-    [manager postDatasWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
-        if (data&&[data[@"errorCode"] integerValue] == 0) {
-            success(data);
-        }else{
-            fail(data,error);
-        }
-    }];
-}
-
-- (void)postNoHudWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail{
-    NSString * urlStr = HTTP_ADDRESS;
-    switch (type) {
-
-            //URLStr建立
-        default:
-            break;
-    }
-    HttpManager*manager= [[HttpManager alloc]init];
     [manager postDatasNoHudWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
         if (data&&[data[@"errorCode"] integerValue] == 0) {
             success(data);
@@ -130,6 +87,7 @@
         }
     }];
 }
+
 
 - (void)postPhotoWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail withPhoto:(NSData *)photo{
     NSString * urlStr = HTTP_ADDRESS;

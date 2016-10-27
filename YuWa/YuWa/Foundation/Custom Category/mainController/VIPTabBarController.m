@@ -8,6 +8,7 @@
 
 #import "VIPTabBarController.h"
 #import "VIPTabBar.h"
+#import "JWTabBar.h"
 #import "VIPNavigationController.h"
 
 #import "VIPHomePageViewController.h"
@@ -26,9 +27,10 @@
     [self addChildViewControllers];
     
     
-     VIPTabBar*vipTB= [[VIPTabBar alloc] init];
-     vipTB.numberCount=5;
-     [self setValue:vipTB forKey:@"tabBar"];
+//     VIPTabBar*vipTB= [[VIPTabBar alloc] init];
+//     vipTB.numberCount=5;
+    [self setValue:[[JWTabBar alloc] init] forKey:@"tabBar"];
+//     [self setValue:vipTB forKey:@"tabBar"];
 //     self.tabBar.translucent=NO;
     
 }
@@ -41,8 +43,8 @@
     RBHomeViewController*vcDiscover=[[RBHomeViewController alloc]init];
     [self addChildVC:vcDiscover withTitle:@"发现" withImage:@"home_1_nomal" withSelectedImage:@"home_1_selected"];
     
-    YWStormViewController*vcStorm=[[YWStormViewController alloc]init];
-    [self addChildVC:vcStorm withTitle:@"旋风" withImage:@"home_2_nomal" withSelectedImage:@"home_2_selected"];
+//    YWStormViewController*vcStorm=[[YWStormViewController alloc]init];
+//    [self addChildVC:vcStorm withTitle:@"旋风" withImage:@"home_2_nomal" withSelectedImage:@"home_2_selected"];
     
     YWMessageViewController*vcMessage=[[YWMessageViewController alloc]init];
     [self addChildVC:vcMessage withTitle:@"消息" withImage:@"home_3_nomal" withSelectedImage:@"home_3_selected"];

@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 typedef enum YuWaType{
-    YuWaType_GetToken,//获取token
-    YuWaType_CancelToken,//注销token
-    
     YuWaType_Register,//注册账号
     YuWaType_Register_Code,//注册验证码
     
@@ -35,12 +32,6 @@ typedef enum YuWaType{
 @interface HttpObject : NSObject
 #pragma mark - Singleton
 + (id)manager;
-
-//Get请求
-- (void)getDataWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail;
-
-//Get无Hud请求
-- (void)getNoHudWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail;
 
 //Post请求
 - (void)postDataWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail;
