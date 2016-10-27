@@ -7,6 +7,7 @@
 //
 
 #import "JWTabBar.h"
+#import "VIPNavigationController.h"
 
 @implementation JWTabBar
 
@@ -29,11 +30,12 @@
 
 - (void)centerButtonAction{
     //get root window
-    UIWindow * window = [UIApplication sharedApplication].keyWindow;
-    
-    YWStormViewController * publishVC = [[YWStormViewController alloc]init];
-    
-    [window.rootViewController presentViewController:publishVC animated:NO completion:nil];
+//    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+//    
+//    YWStormViewController * publishVC = [[YWStormViewController alloc]init];
+//    VIPNavigationController* navi = [[VIPNavigationController alloc]initWithRootViewController:publishVC];
+//    
+//    [window.rootViewController presentViewController:navi animated:YES completion:nil];
 }
 
 - (void)layoutSubviews{
@@ -41,7 +43,7 @@
     
     UIImage * buttonImage = [UIImage imageNamed:@"tabBar_publish_icon"];
     self.centerButton.size = CGSizeMake(buttonImage.size.width, buttonImage.size.height);
-    self.centerButton.center =  CGPointMake(self.width/2, self.height/2-20.f);
+    self.centerButton.center =  CGPointMake(self.width/2, self.height/2);
     
     CGFloat tabBarWidth = self.width/5;
     CGFloat tabBarY = self.height/2;

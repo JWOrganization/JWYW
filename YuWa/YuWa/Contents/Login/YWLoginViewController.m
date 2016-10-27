@@ -27,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *secuirtyCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *secuirtyCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *quickLoginBtn;
-@property (nonatomic,copy)NSString * comfiredCode;
 @property (nonatomic,strong)NSTimer * timer;
 @property (nonatomic,assign)NSInteger time;
 @property (nonatomic,assign)NSInteger state;
@@ -211,10 +210,6 @@
 }
 
 - (void)requestLoginWithMobile:(NSString *)account withSecuirtyCode:(NSString *)secuirty{
-    if (![self.comfiredCode isEqualToString:secuirty]) {
-        [self showHUDWithStr:@"验证码错误" withSuccess:NO];
-        return;
-    }
     
     NSDictionary * pragram = @{@"phone":account,@"Code":secuirty};
     [[HttpObject manager]postDataWithType:YuWaType_Logion_Quick withPragram:pragram success:^(id responsObj) {
@@ -255,7 +250,6 @@
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
         self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
-        self.comfiredCode = [NSString stringWithFormat:@"%@",responsObj[@"data"]];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);

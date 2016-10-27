@@ -18,7 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *secuirtyCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-@property (nonatomic,copy)NSString * comfiredCode;
 @property (nonatomic,strong)NSTimer * timer;
 @property (nonatomic,assign)NSInteger time;
 
@@ -110,10 +109,6 @@
 
 #pragma mark - Http
 - (void)requestRegisterWithAccount:(NSString *)account withPassword:(NSString *)password withCode:(NSString *)code{
-    if (![self.comfiredCode isEqualToString:code]) {
-        [self showHUDWithStr:@"验证码错误" withSuccess:NO];
-        return;
-    }
     
     NSDictionary * pragram = @{@"phone":account,@"password":password,@"code":code,@"invite_phone":self.inviteTextField.text};
     
@@ -155,7 +150,6 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
-        self.comfiredCode = [NSString stringWithFormat:@"%@",responsObj[@"data"]];
         self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];

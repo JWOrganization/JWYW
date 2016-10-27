@@ -22,6 +22,7 @@
 @implementation VIPTabBarController
 
 -(void)viewDidLoad{
+    [super viewDidLoad];
     // tabBar 必定是灰色的  下面方法 可以改变选中时候的颜色
     [UITabBar appearance].tintColor=CNaviColor;
     [self addChildViewControllers];
@@ -29,7 +30,7 @@
     
 //     VIPTabBar*vipTB= [[VIPTabBar alloc] init];
 //     vipTB.numberCount=5;
-    [self setValue:[[JWTabBar alloc] init] forKey:@"tabBar"];
+    
 //     [self setValue:vipTB forKey:@"tabBar"];
 //     self.tabBar.translucent=NO;
     
@@ -43,8 +44,8 @@
     RBHomeViewController*vcDiscover=[[RBHomeViewController alloc]init];
     [self addChildVC:vcDiscover withTitle:@"发现" withImage:@"home_1_nomal" withSelectedImage:@"home_1_selected"];
     
-//    YWStormViewController*vcStorm=[[YWStormViewController alloc]init];
-//    [self addChildVC:vcStorm withTitle:@"旋风" withImage:@"home_2_nomal" withSelectedImage:@"home_2_selected"];
+    YWStormViewController*vcStorm=[[YWStormViewController alloc]init];
+    [self addChildVC:vcStorm withTitle:@"旋风" withImage:@"home_2_nomal" withSelectedImage:@"home_2_selected"];
     
     YWMessageViewController*vcMessage=[[YWMessageViewController alloc]init];
     [self addChildVC:vcMessage withTitle:@"消息" withImage:@"home_3_nomal" withSelectedImage:@"home_3_selected"];
@@ -62,6 +63,11 @@
     vc.title=title;
     vc.tabBarItem.image=[UIImage imageNamed:imageName];
     vc.tabBarItem.selectedImage=[UIImage imageNamed:selectedImageName];
+    if ([vc isKindOfClass:[YWStormViewController class]]) {
+        [vc.tabBarItem setImageInsets:UIEdgeInsetsMake(-20, 0, 20, 0)];//top = - bottom
+        vc.tabBarItem.title=@"";
+    }
+    
     
     VIPNavigationController*navi=[[VIPNavigationController alloc]initWithRootViewController:vc];
     [self addChildViewController:navi];
