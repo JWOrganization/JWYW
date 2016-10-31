@@ -72,7 +72,7 @@
         [self requestCancelLike];
         return;
     }
-    NSDictionary * pragram = @{@"note_id":self.nodeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
+    NSDictionary * pragram = @{@"note_id":self.nodeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_LIKE withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
@@ -83,7 +83,7 @@
 }
 
 - (void)requestCancelLike{
-    NSDictionary * pragram = @{@"note_id":self.nodeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
+    NSDictionary * pragram = @{@"note_id":self.nodeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_LIKE_CANCEL withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

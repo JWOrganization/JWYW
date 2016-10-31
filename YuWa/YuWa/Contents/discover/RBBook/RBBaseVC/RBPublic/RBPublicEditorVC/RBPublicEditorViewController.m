@@ -297,7 +297,7 @@
 #pragma mark - Http
 - (void)requestPublishNode{
     NSString * tagStr = [self tagArrJsonCreate];
-//    MyLog(@"%@",tagStr);
+    MyLog(@"%@",tagStr);
     
     if ([self.scrollView.nameTextField.text isEqualToString:@""]) {
         [self showHUDWithStr:@"请输入标题" withSuccess:YES];
@@ -307,7 +307,7 @@
         return;
     }
     
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":self.scrollView.locationnameLabel.text,@"content":self.scrollView.conTextView.text,@"img_list":self.picUrlArr};//cid可能变
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":self.scrollView.locationnameLabel.text,@"content":self.scrollView.conTextView.text,@"img_list":self.picUrlArr};//cid可能变
     
     [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

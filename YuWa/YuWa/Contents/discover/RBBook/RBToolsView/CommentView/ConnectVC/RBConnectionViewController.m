@@ -128,7 +128,7 @@
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
 //    [self.tableView.mj_footer endRefreshing];
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_ATTENTION withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

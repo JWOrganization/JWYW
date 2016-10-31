@@ -100,7 +100,7 @@
         [self showHUDWithStr:@"请输入标题" withSuccess:NO];
         return;
     }
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"title":self.aldumTitle,@"info":self.aldumIntro,@"is_hidden":@(self.isPublic)};
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"title":self.aldumTitle,@"info":self.aldumIntro,@"is_hidden":@(self.isPublic)};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_CREATE_ALDUM withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

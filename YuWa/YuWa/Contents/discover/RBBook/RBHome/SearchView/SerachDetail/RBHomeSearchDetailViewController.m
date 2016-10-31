@@ -137,7 +137,7 @@
 
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
-    NSDictionary * pragram = @{@"keyword":self.searchKey,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"sort":@(self.states),@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
+    NSDictionary * pragram = @{@"keyword":self.searchKey,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"sort":@(self.states),@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
     [[HttpObject manager]postDataWithType:YuWaType_RB_SEARCH_RESULT withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

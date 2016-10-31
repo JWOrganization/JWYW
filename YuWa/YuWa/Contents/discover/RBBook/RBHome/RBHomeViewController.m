@@ -150,7 +150,7 @@
 
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
-    NSDictionary * pragram = @{@"type":self.states,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"user_id":[UserSession instance].token};
+    NSDictionary * pragram = @{@"type":self.states,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_HOME withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

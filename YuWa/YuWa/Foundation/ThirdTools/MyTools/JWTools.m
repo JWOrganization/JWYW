@@ -560,7 +560,7 @@
  */
 + (NSString *)imageToStr:(UIImage *)image{
     NSData *data = UIImageJPEGRepresentation(image, 1.0f);
-    return [data base64EncodedStringWithOptions:0];
+    return (NSString *)[data base64EncodedStringWithOptions:0];
 }
 
 #pragma mark - 图片大小

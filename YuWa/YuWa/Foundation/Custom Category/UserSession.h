@@ -10,24 +10,25 @@
 
 @interface UserSession : NSObject
 
-@property(nonatomic,strong)NSString*token;   //用户登录后标识
+@property (nonatomic,assign)NSInteger uid;//uid
+@property (nonatomic,copy)NSString * token;   //用户登录后标识
 @property (nonatomic,copy)NSString * account;  //账户
 @property (nonatomic,copy)NSString * password;   //密码
 @property (nonatomic,copy)NSString * hxPassword;   //环信密码
 @property (nonatomic,copy)NSString * inviteID;  //邀请ID
 
-@property(nonatomic,copy)NSString * logo;//头像
-@property(nonatomic,copy)NSString * nickName;//昵称
-@property(nonatomic,copy)NSString * sex;//性别
-@property(nonatomic,copy)NSString * birthDay;//生日
-@property(nonatomic,copy)NSString * local;   //常驻地
-@property(nonatomic,copy)NSString * personality;   //个人签名
+@property (nonatomic,copy)NSString * logo;//头像
+@property (nonatomic,copy)NSString * nickName;//昵称
+@property (nonatomic,copy)NSString * sex;//性别
+@property (nonatomic,copy)NSString * birthDay;//生日
+@property (nonatomic,copy)NSString * local;   //常驻地
+@property (nonatomic,copy)NSString * personality;   //个人签名
 
 
-@property(nonatomic,copy)NSString * attentionCount;//关注数
-@property(nonatomic,copy)NSString * fans;//粉丝
-@property(nonatomic,copy)NSString * praised;//被赞数
-@property(nonatomic,copy)NSString * collected;//被收藏
+@property (nonatomic,copy)NSString * attentionCount;//关注数
+@property (nonatomic,copy)NSString * fans;//粉丝
+@property (nonatomic,copy)NSString * praised;//被赞数
+@property (nonatomic,copy)NSString * collected;//被收藏
 @property (nonatomic,copy)NSString * aldumCount;  //专辑个数
 
 @property (nonatomic,assign)BOOL isVIP;//是否是会员
