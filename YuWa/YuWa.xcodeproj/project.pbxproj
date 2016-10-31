@@ -554,6 +554,11 @@
 		C1392DD71DC06108002418EF /* APAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DD41DC06108002418EF /* APAuthV2Info.m */; };
 		C1392DD81DC06108002418EF /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DD61DC06108002418EF /* Order.m */; };
 		C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */; };
+		C1A7D4FB1DC7724F004F3518 /* HPBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7D4FA1DC7724F004F3518 /* HPBannerModel.m */; };
+		C1A7D4FE1DC772B9004F3518 /* HPCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7D4FD1DC772B9004F3518 /* HPCategoryModel.m */; };
+		C1A7D5011DC7736A004F3518 /* HPTopShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7D5001DC7736A004F3518 /* HPTopShopModel.m */; };
+		C1A7D5041DC773D0004F3518 /* HPRecommendShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7D5031DC773D0004F3518 /* HPRecommendShopModel.m */; };
+		C1A7D5071DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7D5061DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m */; };
 		C1F7BD921DB1C94500CCAF96 /* YWChooseOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */; };
 		C1F7BD931DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */; };
 		C1F7BD941DB1C94500CCAF96 /* YWChooseOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD431DB1C94500CCAF96 /* YWChooseOneView.m */; };
@@ -1728,6 +1733,16 @@
 		C1392DD61DC06108002418EF /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlbumViewController.h; sourceTree = "<group>"; };
 		C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlbumViewController.m; sourceTree = "<group>"; };
+		C1A7D4F91DC7724F004F3518 /* HPBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPBannerModel.h; sourceTree = "<group>"; };
+		C1A7D4FA1DC7724F004F3518 /* HPBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPBannerModel.m; sourceTree = "<group>"; };
+		C1A7D4FC1DC772B9004F3518 /* HPCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCategoryModel.h; sourceTree = "<group>"; };
+		C1A7D4FD1DC772B9004F3518 /* HPCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCategoryModel.m; sourceTree = "<group>"; };
+		C1A7D4FF1DC7736A004F3518 /* HPTopShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTopShopModel.h; sourceTree = "<group>"; };
+		C1A7D5001DC7736A004F3518 /* HPTopShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTopShopModel.m; sourceTree = "<group>"; };
+		C1A7D5021DC773D0004F3518 /* HPRecommendShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPRecommendShopModel.h; sourceTree = "<group>"; };
+		C1A7D5031DC773D0004F3518 /* HPRecommendShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPRecommendShopModel.m; sourceTree = "<group>"; };
+		C1A7D5051DC77DDB004F3518 /* UIScrollView+MJRefreshGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefreshGif.h"; sourceTree = "<group>"; };
+		C1A7D5061DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefreshGif.m"; sourceTree = "<group>"; };
 		C1F7BD3F1DB1C94500CCAF96 /* YWChooseOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseOneTableViewCell.h; sourceTree = "<group>"; };
 		C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWChooseOneTableViewCell.m; sourceTree = "<group>"; };
 		C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWChooseOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -2990,6 +3005,8 @@
 			isa = PBXGroup;
 			children = (
 				B38B2CC81D8FACD8004D5256 /* image+categroy */,
+				C1A7D5051DC77DDB004F3518 /* UIScrollView+MJRefreshGif.h */,
+				C1A7D5061DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -4620,6 +4637,21 @@
 			path = "我的专辑列表";
 			sourceTree = "<group>";
 		};
+		C1A7D4F51DC771C4004F3518 /* 首页model */ = {
+			isa = PBXGroup;
+			children = (
+				C1A7D4F91DC7724F004F3518 /* HPBannerModel.h */,
+				C1A7D4FA1DC7724F004F3518 /* HPBannerModel.m */,
+				C1A7D4FC1DC772B9004F3518 /* HPCategoryModel.h */,
+				C1A7D4FD1DC772B9004F3518 /* HPCategoryModel.m */,
+				C1A7D4FF1DC7736A004F3518 /* HPTopShopModel.h */,
+				C1A7D5001DC7736A004F3518 /* HPTopShopModel.m */,
+				C1A7D5021DC773D0004F3518 /* HPRecommendShopModel.h */,
+				C1A7D5031DC773D0004F3518 /* HPRecommendShopModel.m */,
+			);
+			path = "首页model";
+			sourceTree = "<group>";
+		};
 		C1F7BD3B1DB1C94500CCAF96 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
@@ -4677,6 +4709,7 @@
 		C1F7BD4D1DB1C94500CCAF96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C1A7D4F51DC771C4004F3518 /* 首页model */,
 				C1F7BD4E1DB1C94500CCAF96 /* ChooseOneModel.h */,
 				C1F7BD4F1DB1C94500CCAF96 /* ChooseOneModel.m */,
 			);
@@ -5717,11 +5750,13 @@
 				B38B2EFD1D8FC82F004D5256 /* RBHomeRecommendModel.m in Sources */,
 				B38B2E271D8FACD8004D5256 /* NSBundle+MJRefresh.m in Sources */,
 				B38B2E1D1D8FACD8004D5256 /* MJRefreshNormalHeader.m in Sources */,
+				C1A7D5071DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m in Sources */,
 				B38B2DEC1D8FACD8004D5256 /* HttpManager.m in Sources */,
 				B38B2DFF1D8FACD8004D5256 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				C1F7BE4D1DB1C95400CCAF96 /* CommitView.m in Sources */,
 				B3FEBA201D9BA069003CDEF2 /* YWMessageAddressBookModel.m in Sources */,
 				B33A26711D9A68040092CB12 /* UIButton+EMWebCache.m in Sources */,
+				C1A7D5041DC773D0004F3518 /* HPRecommendShopModel.m in Sources */,
 				B33A267A1D9A68040092CB12 /* PSTCollectionViewCell.m in Sources */,
 				B33A266E1D9A68040092CB12 /* EMSDWebImagePrefetcher.m in Sources */,
 				C1F7BD921DB1C94500CCAF96 /* YWChooseOneTableViewCell.m in Sources */,
@@ -5807,6 +5842,7 @@
 				B38B2E031D8FACD8004D5256 /* MASCompositeConstraint.m in Sources */,
 				C13019BE1DB2039200E24C88 /* H5LinkViewController.m in Sources */,
 				B33A26831D9A68040092CB12 /* PSTGridLayoutRow.m in Sources */,
+				C1A7D5011DC7736A004F3518 /* HPTopShopModel.m in Sources */,
 				B33A266A1D9A68040092CB12 /* EMSDWebImageDecoder.m in Sources */,
 				B38B2E591D8FACD8004D5256 /* AdvertiseView.m in Sources */,
 				B38B2E141D8FACD8004D5256 /* MJRefreshFooter.m in Sources */,
@@ -5818,6 +5854,7 @@
 				B38B2E2C1D8FACD8004D5256 /* NSData+ImageContentType.m in Sources */,
 				B38B2E751D8FC68F004D5256 /* JWTools.m in Sources */,
 				B33A265A1D9A68040092CB12 /* wav.mm in Sources */,
+				C1A7D4FE1DC772B9004F3518 /* HPCategoryModel.m in Sources */,
 				C1F7BD9B1DB1C94500CCAF96 /* CommentTableViewCell.m in Sources */,
 				B3AE4D721D91302B000A389F /* TZImageManager.m in Sources */,
 				B38B2E541D8FACD8004D5256 /* STCountDownConst.m in Sources */,
@@ -5897,6 +5934,7 @@
 				B33A26951D9A68040092CB12 /* EaseEmotionManager.m in Sources */,
 				B34BCE121DAA811C001AB98D /* YWNodeAddAldumTitleTableViewCell.m in Sources */,
 				B33A26801D9A68040092CB12 /* PSTCollectionViewUpdateItem.m in Sources */,
+				C1A7D4FB1DC7724F004F3518 /* HPBannerModel.m in Sources */,
 				B34BCE021DAA2439001AB98D /* RBNodeAddToAldumTableViewCell.m in Sources */,
 				B38B2F2A1D8FC82F004D5256 /* RBCenterAlbumModel.m in Sources */,
 				B38B2F281D8FC82F004D5256 /* RBNewNodeCollectionViewCell.m in Sources */,

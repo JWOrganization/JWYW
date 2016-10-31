@@ -143,7 +143,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear: animated];
-//    self.searchController.active = true;
+    self.searchController.active = true;
 
 }
 

@@ -32,6 +32,7 @@
 #import "AppDelegate+JWLocalNotifiction.h"
 //分类
 #import "UIImage+imageColor.h"
+#import "UIScrollView+MJRefreshGif.h"   //gif MJRefresh
 
 
 //自定义的视图

@@ -50,7 +50,7 @@
     [YWLocation saveLat:currentLocation.coordinate.latitude];
     self.location.lon = currentLocation.coordinate.longitude;
     [YWLocation saveLon:currentLocation.coordinate.longitude];
-    MyLog(@"Location lat is %f,lon is %f",self.location.lat,self.location.lon);
+//    MyLog(@"Location lat is %f,lon is %f",self.location.lat,self.location.lon);
 }
 
 @end
