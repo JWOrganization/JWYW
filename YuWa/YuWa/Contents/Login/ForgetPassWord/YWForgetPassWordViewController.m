@@ -134,7 +134,7 @@
 }
 
 - (void)requestReSetPasswordCode{
-    NSDictionary * pragram = @{@"phone":self.accountTextField.text};
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"tpl_id":@22070};
     [[HttpObject manager]postNoHudWithType:YuWaType_Reset_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);

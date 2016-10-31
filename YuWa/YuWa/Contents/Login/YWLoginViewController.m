@@ -242,7 +242,7 @@
 }
 
 - (void)requestQuickLoginCode{
-    NSDictionary * pragram = @{@"phone":self.mobileTextField.text};
+    NSDictionary * pragram = @{@"phone":self.mobileTextField.text,@"tpl_id":@22073};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_Logion_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

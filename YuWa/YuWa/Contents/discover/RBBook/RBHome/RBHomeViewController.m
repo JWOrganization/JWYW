@@ -42,7 +42,7 @@
     [self makeNavi];
     [self setupRefresh];
     [self requestDataWithPages:0];
-    [self makeTagCollectionViewWithArr:@[@"推荐",@"关注",@"男人",@"护肤",@"旅行",@"生活",@"时尚",@"彩妆"]];
+    [self makeTagCollectionViewWithArr:@[@"推荐",@"男人",@"护肤",@"旅行",@"生活",@"时尚",@"彩妆"]];
 }
 
 - (void)viewDidLayoutSubviews{

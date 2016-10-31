@@ -112,6 +112,8 @@
 #define LOCATION_LAT    @"location_lat"            //lat
 
 #define FRIENDSREQUEST    @"friends_request"            //friends request
+#define KEY_USERNAME_PASSWORD @"YWUUDID"   //UUDID
+
 #define JPush_Notification_DicArr @"JpushNotification_Arr" //JPush push info
 
 

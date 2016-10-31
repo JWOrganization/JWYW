@@ -145,7 +145,7 @@
     }];
 }
 - (void)requestRegisterCodeWithCount:(NSInteger)count{
-    NSDictionary * pragram = @{@"phone":self.accountTextField.text};
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"tpl_id":@22490};
     [[HttpObject manager] postNoHudWithType:YuWaType_Register_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);

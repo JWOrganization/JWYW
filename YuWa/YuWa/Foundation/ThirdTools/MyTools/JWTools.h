@@ -291,4 +291,7 @@
  */
 + (NSArray *)imageFilterArr;
 
+#pragma mark - UUID
++ (NSString *)getUUID;
+
 @end
