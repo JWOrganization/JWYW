@@ -75,10 +75,6 @@
         case YuWaType_RB_DETAIL://笔记详情
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_DETAIL];
             break;
-#pragma mark - IMG
-        case YuWaType_IMG_UP://上传图片
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_IMG_UP];
-            break;
             
            //URLStr建立
         default:

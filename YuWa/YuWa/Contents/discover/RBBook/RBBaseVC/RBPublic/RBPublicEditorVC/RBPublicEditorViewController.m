@@ -332,20 +332,15 @@
 }
 - (void)requestPublishNodePhotoWithIdx:(NSInteger)idx{
     RBPublicSaveModel * model = self.imageChangeSaveArr[idx];
-    NSDictionary * pragram = @{@"img":[JWTools imageToStr:model.origionalImage]};
+    NSDictionary * pragram = @{@"img":@"img"};
     
-    [[HttpObject manager]postDataWithType:YuWaType_IMG_UP withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postPhotoWithType:YuWaType_IMG_UP withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        [self.picUrlArr replaceObjectAtIndex:idx withObject:responsObj[@"data"]];
-        self.picUpCount++;
-        if (self.picUrlArr.count >= self.imageChangeSaveArr.count) {
-            [self requestPublishNode];
-        }
-    } failur:^(id responsObj, NSError *error) {
+    } failur:^(id errorData, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
-        MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+        MyLog(@"Regieter Code error is %@",error);
+    } withPhoto:UIImagePNGRepresentation(model.origionalImage)];
     
 }
 

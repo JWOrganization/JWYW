@@ -49,11 +49,6 @@
             self.connectNameBlock(@"23333");
         }];
     }
-    //要删23333333
-    [self dismissViewControllerAnimated:YES completion:^{
-        self.connectNameBlock(@"23333");
-    }];
-    //要删23333333
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -138,7 +133,7 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h2333333333
+    }];//h333333333
     
 }
 

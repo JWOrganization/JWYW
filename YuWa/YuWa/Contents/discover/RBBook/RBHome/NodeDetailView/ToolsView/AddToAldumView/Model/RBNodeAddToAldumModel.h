@@ -10,4 +10,9 @@
 
 @interface RBNodeAddToAldumModel : NSObject
 
+@property (nonatomic,copy)NSString * aldumID;
+@property (nonatomic,copy)NSString * title;
+@property (nonatomic,strong)NSArray * images_list;
+
+
 @end

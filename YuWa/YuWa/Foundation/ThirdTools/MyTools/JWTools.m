@@ -560,7 +560,7 @@
  */
 + (NSString *)imageToStr:(UIImage *)image{
     NSData * data = [UIImagePNGRepresentation(image) base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    return [NSString stringWithUTF8String:[data bytes]];
+    return [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
 //    NSData *data = UIImageJPEGRepresentation(image, 1.0f);
 //    return (NSString *)[data base64EncodedStringWithOptions:0];
 }

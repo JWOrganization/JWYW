@@ -10,4 +10,8 @@
 
 @implementation RBNodeAddToAldumModel
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"aldumID" : @"id"};
+}
+
 @end
