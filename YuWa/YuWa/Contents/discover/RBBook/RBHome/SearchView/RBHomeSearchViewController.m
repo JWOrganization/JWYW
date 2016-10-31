@@ -284,8 +284,10 @@
         MyLog(@"Regieter Code is %@",responsObj);
         NSArray * dataArr = responsObj[@"data"];
         [self.searchResaultArr removeAllObjects];
-        for (int i = 0; i<3; i++) {
-            [self.searchResaultArr addObject:@{@"key":dataArr[i],@"type":@"0"}];//最多三个,type以后可能换（如笔记0用户1）
+        if (dataArr.count>0) {
+            for (int i = 0; i<3; i++) {
+                [self.searchResaultArr addObject:@{@"key":dataArr[i],@"type":@"0"}];//最多三个,type以后可能换（如笔记0用户1）
+            }
         }
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {

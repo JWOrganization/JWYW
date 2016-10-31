@@ -24,17 +24,20 @@
 @property (nonatomic,copy)NSString * local;   //常驻地
 @property (nonatomic,copy)NSString * personality;   //个人签名
 
-
 @property (nonatomic,copy)NSString * attentionCount;//关注数
 @property (nonatomic,copy)NSString * fans;//粉丝
 @property (nonatomic,copy)NSString * praised;//被赞数
 @property (nonatomic,copy)NSString * collected;//被收藏
 @property (nonatomic,copy)NSString * aldumCount;  //专辑个数
+@property (nonatomic,copy)NSString * money; //钱
+@property (nonatomic,copy)NSString * last_login_time;
+@property (nonatomic,copy)NSString * reg_time;
+@property (nonatomic,copy)NSString * status;
+@property (nonatomic,copy)NSString * email;
+@property (nonatomic,copy)NSString * sale_id;
 
-@property (nonatomic,assign)BOOL isVIP;//是否是会员
+@property (nonatomic,assign)NSInteger isVIP;//是否是会员 1普通用户2销售3商家
 
-
-//@property(nonatomic,copy)NSString * statu;     //状态
 //@property(nonatomic,copy)NSString * currency; //货币
 //已经登录
 @property(nonatomic,assign)BOOL isLogin;   //是否登录

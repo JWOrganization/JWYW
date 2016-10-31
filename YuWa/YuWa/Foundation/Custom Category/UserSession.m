@@ -63,10 +63,10 @@ static UserSession * user=nil;
 + (void)getDataFromUserDefault{
     NSString * accountDefault = [KUSERDEFAULT valueForKey:AUTOLOGIN];
     if (accountDefault) {
-        if (![accountDefault isEqualToString:@""])return;
+        if ([accountDefault isEqualToString:@""])return;
         user.account = accountDefault;
         user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
-        [UserSession autoLoginRequestWithPragram:@{@"phone":user.account,@"password":user.password}];
+        [UserSession autoLoginRequestWithPragram:@{@"phone":user.account,@"password":user.password,@"is_md5":@1}];
     }
 }
 
@@ -96,30 +96,30 @@ static UserSession * user=nil;
 
 //解析登录返回数据
 + (void)saveUserInfoWithDic:(NSDictionary *)dataDic{
-//    user.collection = dataDic[@"collection"];
-//    user.newinfo = [NSString stringWithFormat:@"%@",dataDic[@"new_info"]];
-//    if (![dataDic[@"sex"] isKindOfClass:[NSNull class]]) {
-//        user.sex = dataDic[@"sex"];
-//    }
-//    user.logo = dataDic[@"logo"];
-//    user.point = dataDic[@"point"];
     user.token = dataDic[@"token"];
-    user.uid = [dataDic[@"uid"] integerValue];
-    user.nickName = dataDic[@"username"];
-//    if (![dataDic[@"name"] isKindOfClass:[NSNull class]]) {
-//        user.realName = dataDic[@"name"];
-//    }
-//    if (![dataDic[@"email"] isKindOfClass:[NSNull class]]) {
-//        user.email = dataDic[@"email"];
-//    }
-//    if (![dataDic[@"birthday"] isKindOfClass:[NSNull class]]) {
-//        user.birthday = dataDic[@"birthday"];
-//    }
-//    if (![dataDic[@"city"] isKindOfClass:[NSNull class]]) {
-//        user.city = dataDic[@"city"];
-//    }
-//    user.mobile = dataDic[@"mobile"];
-    
+    user.uid = [dataDic[@"id"] integerValue];
+    user.nickName = dataDic[@"nickname"];
+    user.birthDay = dataDic[@"birthday"];
+    user.password = dataDic[@"password"];
+    [KUSERDEFAULT setValue:user.password forKey:AUTOLOGINCODE];
+    user.hxPassword = dataDic[@"mobile"];
+    user.local = dataDic[@"address"];
+    user.sex = dataDic[@"sex"];
+    user.money = dataDic[@"money"];
+    user.inviteID = dataDic[@"invite_uid"];
+    user.logo = dataDic[@"header_img"];
+    user.personality = dataDic[@"mark"];
+    user.aldumCount = dataDic[@"aldumcount"];
+    user.collected = dataDic[@"collected"];
+    user.praised = dataDic[@"praised"];
+    user.attentionCount = dataDic[@"attentioncount"];
+    user.fans = dataDic[@"fans"];
+    user.isVIP = [dataDic[@"user_type"] integerValue];
+    user.last_login_time = dataDic[@"last_login_time"];
+    user.status = dataDic[@"status"];
+    user.reg_time = dataDic[@"reg_time"];
+    user.sale_id = dataDic[@"sale_id"];
+    user.email = dataDic[@"email"];
     
     user.isLogin = YES;
 }
