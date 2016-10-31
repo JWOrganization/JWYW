@@ -27,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *secuirtyCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *secuirtyCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *quickLoginBtn;
-@property (nonatomic,copy)NSString * comfiredCode;
 @property (nonatomic,strong)NSTimer * timer;
 @property (nonatomic,assign)NSInteger time;
 @property (nonatomic,assign)NSInteger state;
@@ -185,8 +184,8 @@
 
 #pragma mark - Http
 - (void)requestLoginWithAccount:(NSString *)account withPassword:(NSString *)password{
-    NSDictionary * pragram = @{@"phone":account,@"password":password,@"remember":@"0",@"token":[UserSession instance].tokenTemp};
-    [[HttpObject manager]getDataWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":account,@"password":password};
+    [[HttpObject manager]postDataWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
@@ -211,13 +210,9 @@
 }
 
 - (void)requestLoginWithMobile:(NSString *)account withSecuirtyCode:(NSString *)secuirty{
-    if (![self.comfiredCode isEqualToString:secuirty]) {
-        [self showHUDWithStr:@"验证码错误" withSuccess:NO];
-        return;
-    }
     
-    NSDictionary * pragram = @{@"phone":account,@"sms_code":secuirty,@"encrypt":@"no",@"client":@"web"};
-    [[HttpObject manager]getDataWithType:YuWaType_Logion_Quick withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":account,@"Code":secuirty};
+    [[HttpObject manager]postDataWithType:YuWaType_Logion_Quick withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         
@@ -247,15 +242,14 @@
 }
 
 - (void)requestQuickLoginCode{
-    NSDictionary * pragram = @{@"phone":self.mobileTextField.text,@"token":[UserSession instance].tokenTemp};
+    NSDictionary * pragram = @{@"phone":self.mobileTextField.text,@"tpl_id":@22073};
     
-    [[HttpObject manager]getNoHudWithType:YuWaType_Logion_Code withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postNoHudWithType:YuWaType_Logion_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
         self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
-        self.comfiredCode = [NSString stringWithFormat:@"%@",responsObj[@"data"]];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);

@@ -30,7 +30,6 @@ static UserSession * user=nil;
 
 
 + (void)clearUser{
-    [UserSession cancelToken];
     [UserSession saveUserLoginWithAccount:@"" withPassword:@""];
     user = nil;
     user=[[UserSession alloc]init];
@@ -62,12 +61,18 @@ static UserSession * user=nil;
 
 //get local saved data
 + (void)getDataFromUserDefault{
-    [UserSession getToken];
+    NSString * accountDefault = [KUSERDEFAULT valueForKey:AUTOLOGIN];
+    if (accountDefault) {
+        if (![accountDefault isEqualToString:@""])return;
+        user.account = accountDefault;
+        user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
+        [UserSession autoLoginRequestWithPragram:@{@"phone":user.account,@"password":user.password}];
+    }
 }
 
 //auto login
 + (void)autoLoginRequestWithPragram:(NSDictionary *)pragram{
-    [[HttpObject manager]getNoHudWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postNoHudWithType:YuWaType_Logion withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserInfoWithDic:responsObj[@"data"]];
@@ -87,37 +92,6 @@ static UserSession * user=nil;
         MyLog(@"Data Error error is %@",responsObj);
         MyLog(@"Error is %@",error);
     }];
-}
-
-+ (void)getToken{
-    user.tokenTemp = [user.token mutableCopy];
-    [[HttpObject manager] getNoHudWithType:YuWaType_GetToken withPragram:nil success:^(id responsObj) {
-        MyLog(@"Regieter Code is %@",responsObj);
-        if ([user.tokenTemp isEqualToString:@""]) {
-            NSString * accountDefault = [KUSERDEFAULT valueForKey:AUTOLOGIN];
-            if (accountDefault) {
-                if (![accountDefault isEqualToString:@""]){
-                    user.account = accountDefault;
-                    user.password = [KUSERDEFAULT valueForKey:AUTOLOGINCODE];
-                    [UserSession autoLoginRequestWithPragram:@{@"phone":user.account,@"password":user.password,@"remember":@"0",@"token":responsObj[@"data"]}];
-                }
-            }
-        }
-        user.tokenTemp = responsObj[@"data"];
-//        [KUSERDEFAULT setValue:responsObj[@"data"] forKey:USER_TOKEN];
-    } failur:^(id responsObj, NSError *error) {
-        MyLog(@"Regieter Code error is %@",responsObj);
-    }];
-}
-
-+ (void)cancelToken{
-    [[HttpObject manager] getNoHudWithType:YuWaType_CancelToken withPragram:@{@"token":user.tokenTemp} success:^(id responsObj) {
-        MyLog(@"Regieter Code is %@",responsObj);
-//        [KUSERDEFAULT setValue:responsObj[@"data"] forKey:USER_TOKEN];
-    } failur:^(id responsObj, NSError *error) {
-        MyLog(@"Regieter Code error is %@",responsObj);
-    }];
-    user.tokenTemp = @"";
 }
 
 //解析登录返回数据

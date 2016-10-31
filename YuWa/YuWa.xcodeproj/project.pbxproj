@@ -13,6 +13,7 @@
 		B301E7CB1DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */; };
 		B301E7CE1DAC8C010001336E /* YWMessageSearchFriendAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */; };
 		B30D93251DB7971A002390D0 /* HttpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B30D93241DB7971A002390D0 /* HttpObject.m */; };
+		B30F43FD1DC243AA00D7F13C /* JWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F43FC1DC243AA00D7F13C /* JWTabBar.m */; };
 		B31582341D90F8620096C194 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582321D90F8620096C194 /* YWRegisterViewController.m */; };
 		B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31582331D90F8620096C194 /* YWRegisterViewController.xib */; };
 		B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582381D90F86B0096C194 /* YWForgetPassWordViewController.m */; };
@@ -726,6 +727,8 @@
 		B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageSearchFriendAddModel.m; sourceTree = "<group>"; };
 		B30D93231DB7971A002390D0 /* HttpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpObject.h; sourceTree = "<group>"; };
 		B30D93241DB7971A002390D0 /* HttpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpObject.m; sourceTree = "<group>"; };
+		B30F43FB1DC243AA00D7F13C /* JWTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWTabBar.h; sourceTree = "<group>"; };
+		B30F43FC1DC243AA00D7F13C /* JWTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWTabBar.m; sourceTree = "<group>"; };
 		B31582311D90F8620096C194 /* YWRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRegisterViewController.h; sourceTree = "<group>"; };
 		B31582321D90F8620096C194 /* YWRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRegisterViewController.m; sourceTree = "<group>"; };
 		B31582331D90F8620096C194 /* YWRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWRegisterViewController.xib; sourceTree = "<group>"; };
@@ -3491,6 +3494,8 @@
 		B38B2E671D8FC386004D5256 /* JWBasicView */ = {
 			isa = PBXGroup;
 			children = (
+				B30F43FB1DC243AA00D7F13C /* JWTabBar.h */,
+				B30F43FC1DC243AA00D7F13C /* JWTabBar.m */,
 				B32EFFA61DB9C4B400A4FCFB /* View */,
 				B38B2E681D8FC3B6004D5256 /* JWBasicViewController.h */,
 				B38B2E691D8FC3B6004D5256 /* JWBasicViewController.m */,
@@ -5276,6 +5281,9 @@
 						DevelopmentTeam = CL7JKSS9Z7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 0;
 							};
@@ -5958,6 +5966,7 @@
 				B3CD68AE1D94F9F300C26B1C /* RBPublicLocationViewController.m in Sources */,
 				B38B2E001D8FACD8004D5256 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				C122FBF61DB60CF6009A518A /* ScheduleViewController.m in Sources */,
+				B30F43FD1DC243AA00D7F13C /* JWTabBar.m in Sources */,
 				C1F7BE4A1DB1C95400CCAF96 /* FilmViewTableViewCell.m in Sources */,
 				B33A267F1D9A68040092CB12 /* PSTCollectionViewLayout.m in Sources */,
 				C1F7BE311DB1C95400CCAF96 /* VIPPersonCenterViewController.m in Sources */,
@@ -6186,6 +6195,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CL7JKSS9Z7;
@@ -6232,6 +6242,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CL7JKSS9Z7;

@@ -18,7 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *secuirtyCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-@property (nonatomic,copy)NSString * comfiredCode;
 @property (nonatomic,strong)NSTimer * timer;
 @property (nonatomic,assign)NSInteger time;
 
@@ -110,14 +109,10 @@
 
 #pragma mark - Http
 - (void)requestRegisterWithAccount:(NSString *)account withPassword:(NSString *)password withCode:(NSString *)code{
-    if (![self.comfiredCode isEqualToString:code]) {
-        [self showHUDWithStr:@"验证码错误" withSuccess:NO];
-        return;
-    }
     
-    NSDictionary * pragram = @{@"phone":account,@"password":password,@"verify":code,@"jq":self.inviteTextField.text,@"token":[UserSession instance].tokenTemp};
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"code":code,@"invite_phone":self.inviteTextField.text};
     
-    [[HttpObject manager]getDataWithType:YuWaType_Register withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postDataWithType:YuWaType_Register withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);
         [UserSession saveUserLoginWithAccount:account withPassword:password];
@@ -150,12 +145,11 @@
     }];
 }
 - (void)requestRegisterCodeWithCount:(NSInteger)count{
-    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"token":[UserSession instance].tokenTemp};
-    [[HttpObject manager] getNoHudWithType:YuWaType_Register_Code withPragram:pragram success:^(id responsObj) {
+    NSDictionary * pragram = @{@"phone":self.accountTextField.text,@"tpl_id":@22490};
+    [[HttpObject manager] postNoHudWithType:YuWaType_Register_Code withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
-        self.comfiredCode = [NSString stringWithFormat:@"%@",responsObj[@"data"]];
         self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self securityCodeBtnTextSet];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];

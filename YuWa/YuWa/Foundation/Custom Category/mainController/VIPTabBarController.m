@@ -8,6 +8,7 @@
 
 #import "VIPTabBarController.h"
 #import "VIPTabBar.h"
+#import "JWTabBar.h"
 #import "VIPNavigationController.h"
 
 #import "VIPHomePageViewController.h"
@@ -21,14 +22,16 @@
 @implementation VIPTabBarController
 
 -(void)viewDidLoad{
+    [super viewDidLoad];
     // tabBar 必定是灰色的  下面方法 可以改变选中时候的颜色
     [UITabBar appearance].tintColor=CNaviColor;
     [self addChildViewControllers];
     
     
-     VIPTabBar*vipTB= [[VIPTabBar alloc] init];
-     vipTB.numberCount=5;
-     [self setValue:vipTB forKey:@"tabBar"];
+//     VIPTabBar*vipTB= [[VIPTabBar alloc] init];
+//     vipTB.numberCount=5;
+    
+//     [self setValue:vipTB forKey:@"tabBar"];
 //     self.tabBar.translucent=NO;
     
 }
@@ -60,6 +63,11 @@
     vc.title=title;
     vc.tabBarItem.image=[UIImage imageNamed:imageName];
     vc.tabBarItem.selectedImage=[UIImage imageNamed:selectedImageName];
+    if ([vc isKindOfClass:[YWStormViewController class]]) {
+        [vc.tabBarItem setImageInsets:UIEdgeInsetsMake(-20, 0, 20, 0)];//top = - bottom
+        vc.tabBarItem.title=@"";
+    }
+    
     
     VIPNavigationController*navi=[[VIPNavigationController alloc]initWithRootViewController:vc];
     [self addChildViewController:navi];
