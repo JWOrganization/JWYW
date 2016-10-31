@@ -205,13 +205,13 @@
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data Error error is %@",responsObj);
         MyLog(@"Error is %@",error);
-        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
+//        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
     }];
 }
 
 - (void)requestLoginWithMobile:(NSString *)account withSecuirtyCode:(NSString *)secuirty{
     
-    NSDictionary * pragram = @{@"phone":account,@"Code":secuirty};
+    NSDictionary * pragram = @{@"phone":account,@"code":secuirty};
     [[HttpObject manager]postDataWithType:YuWaType_Logion_Quick withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data is %@",responsObj);

@@ -141,7 +141,7 @@
 }
 - (void)headerRereshing{
     self.pages = 0;
-    [self requestDataWithPages:0];
+    [self requestDataWithPages:self.pages];
 }
 - (void)footerRereshing{
     self.pages++;
@@ -150,6 +150,18 @@
 
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
+    NSDictionary * pragram = @{@"type":self.states,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_HOME withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
+    
+    //要删233333
     NSDictionary * dataDic = [JWTools jsonWithFileName:@"首页数据"];
     MyLog(@"%@",dataDic);
     if (page == 0) {
@@ -164,7 +176,7 @@
         [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
     }];
     [self.collectionView reloadData];
-    
+    //要删233333
 }
 
 

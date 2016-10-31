@@ -12,6 +12,7 @@
 
 @interface RBBasicViewController ()<UITextFieldDelegate,TZImagePickerControllerDelegate>
 @property (nonatomic,assign)BOOL isRePlayComment;//是否是回复用户评论
+@property (nonatomic,strong)NSDictionary * commentDic;
 
 @end
 
@@ -149,7 +150,7 @@
     self.commentToolsView.hidden = NO;
     if (self.commentToolsView.y > kScreen_Height - 44.f)self.commentToolsView.y = kScreen_Height - 44.f;
     self.commentToolsView.sendTextField.text = @"";
-    self.commentToolsView.sendTextField.placeholder = @"回复 2333333 :";
+    self.commentToolsView.sendTextField.placeholder = [NSString stringWithFormat:@"回复 %@ :",user[@"userName"]];
     self.isRePlayComment = YES;
     self.commentSendDic = [NSMutableDictionary dictionaryWithDictionary:user];
     [self.commentToolsView.sendTextField becomeFirstResponder];
@@ -192,11 +193,20 @@
 }
 #pragma mark - Http
 - (void)requestSendComment{
-    if (self.isRePlayComment) {
+    if (self.commentDic[@"userID"]) {
         [self requestSendRePlayComment];
         return;
     }
-    //发送评论
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"note_id":@([self.commentDic[@"nodeID"] integerValue]),@"customer_content":self.commentToolsView.sendTextField.text};
+    
+    [[HttpObject manager]postDataWithType:YuWaType_RB_COMMENT withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
 }
 
 - (void)requestSendRePlayComment{

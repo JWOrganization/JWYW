@@ -62,17 +62,22 @@
         case YuWaType_Logion_Forget_Tel://找回密码
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_LOGIN_FORGET_TEL];
             break;
-#pragma mark - COMMENT
+#pragma mark - RB_NODE
         case YuWaType_RB_COMMENT://评论发布
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COMMENT];
             break;
-#pragma mark - SEARCH
         case YuWaType_RB_SEARCH_RESULT://搜索结果
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_RESULT];
             break;
-#pragma mark - NODE_PUBLISH
         case YuWaType_RB_NODE_PUBLISH://发布笔记
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_NODE_PUBLISH];
+            break;
+        case YuWaType_RB_DETAIL://笔记详情
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_DETAIL];
+            break;
+#pragma mark - IMG
+        case YuWaType_IMG_UP://上传图片
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_IMG_UP];
             break;
             
            //URLStr建立
@@ -110,9 +115,6 @@
         case YuWaType_RB_HOME://发现首页
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_HOME];
             break;
-        case YuWaType_RB_DETAIL://笔记详情
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_DETAIL];
-            break;
         case YuWaType_RB_RELATED://相关笔记
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_RELATED];
             break;
@@ -140,8 +142,9 @@
         case YuWaType_RB_ATTENTION_CANCEL://删除关注
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION_CANCEL];
             break;
-            
-            
+        case YuWaType_RB_ATTENTION://显示关注
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION];
+            break;
 #pragma mark - SEARCH
         case YuWaType_RB_SEARCH_KEY://搜索相关
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_KEY];

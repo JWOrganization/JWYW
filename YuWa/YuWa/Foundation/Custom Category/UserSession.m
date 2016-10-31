@@ -104,7 +104,8 @@ static UserSession * user=nil;
 //    user.logo = dataDic[@"logo"];
 //    user.point = dataDic[@"point"];
     user.token = dataDic[@"token"];
-//    user.name = dataDic[@"user"];
+    user.uid = [dataDic[@"uid"] integerValue];
+    user.nickName = dataDic[@"username"];
 //    if (![dataDic[@"name"] isKindOfClass:[NSNull class]]) {
 //        user.realName = dataDic[@"name"];
 //    }
@@ -118,7 +119,6 @@ static UserSession * user=nil;
 //        user.city = dataDic[@"city"];
 //    }
 //    user.mobile = dataDic[@"mobile"];
-//    user.userid = dataDic[@"userid"];
     
     
     user.isLogin = YES;

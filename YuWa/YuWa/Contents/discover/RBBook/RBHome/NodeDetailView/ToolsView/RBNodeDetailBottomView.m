@@ -7,7 +7,8 @@
 //
 
 #import "RBNodeDetailBottomView.h"
-
+#import "HttpObject.h"
+#import "JWTools.h"
 @implementation RBNodeDetailBottomView
 
 - (void)setIsCollection:(BOOL)isCollection{
@@ -17,9 +18,6 @@
     [self.collectionBtn setImage:[UIImage imageNamed:isCollection == YES?@"":@"star"] forState:UIControlStateNormal];
     [self.collectionBtn setTitleColor:[UIColor colorWithHexString:isCollection == YES?@"#585858":@"#ffffff"] forState:UIControlStateNormal];
     self.collectionBtn.backgroundColor = [UIColor colorWithHexString:isCollection == YES?@"#ffffff":@"#3CCAED"];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self requestCollection];
-//    });
 }
 
 - (void)setIsLike:(BOOL)isLike{
@@ -66,16 +64,35 @@
 
 - (IBAction)collectionAction:(id)sender {
     self.collectionBlock(_isCollection);
-//    self.isCollection = !_isCollection;
 }
 
 #pragma mark - Http
-//- (void)requestCollection{
-////    send by _isCollection
-//}
-
 - (void)requestLike{
-    //    send by _isLike
+    if (!self.isLike) {
+        [self requestCancelLike];
+        return;
+    }
+    NSDictionary * pragram = @{@"note_id":self.nodeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_LIKE withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
 }
+
+- (void)requestCancelLike{
+    NSDictionary * pragram = @{@"note_id":self.nodeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_LIKE_CANCEL withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
+}
+
 
 @end

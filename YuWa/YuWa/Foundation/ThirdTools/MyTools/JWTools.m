@@ -550,6 +550,18 @@
     CGImageRelease(bitmapImage);
     return [UIImage imageWithCGImage:scaledImage];
 }
+#pragma mark - 图片转Str
+/**
+ *  图片转Str
+ *
+ *  @param image 图片
+ *
+ *  @return 图片转Str
+ */
++ (NSString *)imageToStr:(UIImage *)image{
+    NSData *data = UIImageJPEGRepresentation(image, 1.0f);
+    return (NSString *)[data base64EncodedStringWithOptions:0];
+}
 
 #pragma mark - 图片大小
 /**
@@ -676,9 +688,15 @@
 }
 
 #pragma mark - UUID
+/**
+ *  获取UUDID
+ *
+ *  @return 获取UUDID
+ */
 +(NSString *)getUUID{
-    NSString * strUUID = (NSString *)[JWTools load:@"com.company.app.usernamepassword"];
-    
+    NSString * strUUID = [KUSERDEFAULT valueForKey:KEY_USERNAME_PASSWORD];
+    if (strUUID)return strUUID;
+    strUUID = (NSString *)[JWTools load:@"com.company.app.usernamepassword"];
     
     if ([strUUID isEqualToString:@""] || !strUUID){//首次执行该方法时，uuid为空
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);

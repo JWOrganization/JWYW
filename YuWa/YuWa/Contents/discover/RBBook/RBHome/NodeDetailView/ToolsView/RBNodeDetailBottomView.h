@@ -16,6 +16,7 @@
 
 @property (nonatomic,assign)BOOL isLike;
 @property (nonatomic,assign)BOOL isCollection;
+@property (nonatomic,copy)NSString * nodeID;
 
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;//赞

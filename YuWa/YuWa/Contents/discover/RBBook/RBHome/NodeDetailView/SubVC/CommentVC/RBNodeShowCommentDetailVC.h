@@ -10,4 +10,6 @@
 
 @interface RBNodeShowCommentDetailVC : RBBasicViewController
 
+@property (nonatomic,copy)NSString * idd;
+
 @end

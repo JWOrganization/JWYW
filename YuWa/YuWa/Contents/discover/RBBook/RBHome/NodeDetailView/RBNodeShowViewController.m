@@ -120,6 +120,7 @@
 - (void)makeUI{
     self.toolsBottomView = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailBottomView" owner:nil options:nil] firstObject];
     WEAKSELF;
+    self.toolsBottomView.nodeID = self.model.homeID;
     self.toolsBottomView.likeBlock = ^(BOOL isLike){
         if ([weakSelf isLogin]) {
             weakSelf.dataModel.inlikes = [NSString stringWithFormat:@"%zi",isLike];
@@ -129,7 +130,7 @@
     };
     
     self.toolsBottomView.commentBlock = ^(){
-        [weakSelf commentActionWithNodeDic:@{@"233333":@"2333333"}];
+        [weakSelf commentActionWithNodeDic:@{@"nodeID":weakSelf.model.homeID}];
     };
     self.toolsBottomView.collectionBlock = ^(BOOL isCollection){
         if ([weakSelf isLogin]){
@@ -213,7 +214,7 @@
         self.commentHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailCommentHeader" owner:nil options:nil] firstObject];
         WEAKSELF;
         self.commentHeader.commentBlock = ^(){
-            [weakSelf commentActionWithNodeDic:@{@"2333333":@"2333333"}];
+            [weakSelf commentActionWithNodeDic:@{@"nodeID":weakSelf.model.homeID}];
         };
     }
     if (self.dataModel&&!self.commentHeader.iconURL){
@@ -334,6 +335,7 @@
             WEAKSELF;
             self.commentFooter.viewAllCommentBlock  = ^(){
                 RBNodeShowCommentDetailVC * vc = [[RBNodeShowCommentDetailVC alloc]init];
+                vc.idd = self.model.homeID;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             };
         }
@@ -345,7 +347,8 @@
 #pragma mark - UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {//回复用户评论
-        [self commentActionWithUserDic:@{@"UserInfo2333333":@"233333333"}];
+        RBNodeShowCommentModel * model = self.dataModel.comments_list[indexPath.row];
+        [self commentActionWithUserDic:@{@"nodeID":self.model.homeID,@"userID":model.user.userid,@"userName":model.user.nickname}];
         return;
     }
 }
@@ -385,6 +388,21 @@
 
 #pragma mark - Http
 - (void)requestData{
+    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    
+    [[HttpObject manager]postDataWithType:YuWaType_RB_DETAIL withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        self.scrollToolsHeight = 0.f;
+        [self reSetBottomToolsView];
+        [self requestDataWithPages:0];//瀑布流数据
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
+    
+    //要删2333333
     NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记"];
 //    MyLog(@"%@",dataDic);
     self.dataModel = [RBNodeShowModel yy_modelWithDictionary:dataDic[@"data"]];
@@ -392,9 +410,25 @@
     [self reSetBottomToolsView];
     //瀑布流数据
     [self requestDataWithPages:0];
+    //要删2333333
 }
 - (void)requestDataWithPages:(NSInteger)page{
-    [self.tableView.mj_footer endRefreshing];
+    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_DETAIL withPragram:pragram success:^(id responsObj) {
+        [self.tableView.mj_footer endRefreshing];
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.tableView reloadData];
+        self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
+    } failur:^(id responsObj, NSError *error) {
+        [self.tableView.mj_footer endRefreshing];
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
+    
+    //要删2333333
     NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
 //    MyLog(@"%@",dataDic);
     NSArray * dataArr = dataDic[@"data"];
@@ -403,25 +437,60 @@
     }];
     [self.tableView reloadData];
     self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
+    //要删2333333
 }
 - (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
-    MyLog(@"添加到专辑%@",aldumIdx);//23333333333
-    if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
-        [UserSession instance].aldumCount = @"1";//成功后若无专辑则创建
-    }
+//    MyLog(@"添加到专辑%@",aldumIdx);//23333333333
+//    if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
+//        [UserSession instance].aldumCount = @"1";//成功后若无专辑则创建
+//    }
+    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"album_id":aldumIdx,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};//album_id没有将创建默认
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_COLLECTION_TO_ALDUM withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
+        self.dataModel.infavs = @"1";
+        self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] + 1)];
+        [self reSetBottomToolsView];
+        [self.addToAldumView removeFromSuperview];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
+    
+    //要删2333333
     self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
     self.dataModel.infavs = @"1";
     self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] + 1)];
     [self reSetBottomToolsView];
     [self.addToAldumView removeFromSuperview];
+    //要删2333333
 }
 
 - (void)requestCancelToAldum{
-    MyLog(@"取消收藏");
+    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_COLLECTION_CANCEL withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        self.dataModel.infavs = @"0";
+        self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] - 1)];
+        self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
+        [self reSetBottomToolsView];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
+    
+    //要删2333333
     self.dataModel.infavs = @"0";
     self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] - 1)];
     self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
     [self reSetBottomToolsView];
+    //要删2333333
 }
 
 @end

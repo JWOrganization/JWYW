@@ -100,12 +100,18 @@
         [self showHUDWithStr:@"请输入标题" withSuccess:NO];
         return;
     }
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"title":self.aldumTitle,@"info":self.aldumIntro,@"is_hidden":@(self.isPublic)};
     
-    [UserSession instance].aldumCount = [NSString stringWithFormat:@"%zi",[UserSession instance].aldumCount?([[UserSession instance].aldumCount integerValue]+1):1];
-    [self.navigationController popViewControllerAnimated:YES];
-//    self.aldumTitle
-//    self.aldumIntro
-//    self.isPublic
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_CREATE_ALDUM withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [UserSession instance].aldumCount = [NSString stringWithFormat:@"%zi",[UserSession instance].aldumCount?([[UserSession instance].aldumCount integerValue]+1):1];
+        [self.navigationController popViewControllerAnimated:YES];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333    
 }
 
 @end

@@ -67,11 +67,6 @@
     self.tagArr = [NSMutableArray arrayWithCapacity:0];
     self.searchResaultArr = [NSMutableArray arrayWithCapacity:0];
     
-    //要删2333333
-    for (int i = 0; i<3; i++) {
-        [self.tagArr addObject:@""];
-    }
-    //要删23333333
 }
 
 - (void)removeHistoryBtnAction{
@@ -145,7 +140,7 @@
     return 55.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString * key = @"233333";
+    NSString * key = @"";
     NSInteger type = self.type;
     if (![self.searchView.textField.text isEqualToString:@""] && indexPath.section == 0) {//有输入文字
         if (self.searchResaultArr.count > 0) {
@@ -160,7 +155,9 @@
         key = searchHistoryDic[@"key"];
         type = [searchHistoryDic[@"type"] integerValue];
     }else{//无历史记录
-        //self.tagArr[indexPath.row];内数据
+        NSDictionary * hotSearchDic = self.tagArr[indexPath.row];
+        key = hotSearchDic[@"key"];
+        type = [hotSearchDic[@"type"] integerValue];
     }
     [self rememberSearchDataWithKey:key withType:[NSString stringWithFormat:@"%zi",type]];
 }
@@ -258,25 +255,43 @@
     searchTagCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     searchTagCell.textLabel.textColor = [UIColor colorWithHexString:@"#7e7e7e"];
     searchTagCell.textLabel.font = [UIFont systemFontOfSize:14.f];
-    [searchTagCell.imageView sd_setImageWithURL:[NSURL URLWithString:@"233333333"] placeholderImage:[UIImage imageNamed:@"quick"] completed:nil];
-    searchTagCell.textLabel.text = @"23333333";
+//    [searchTagCell.imageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"quick"] completed:nil];
+    searchTagCell.imageView.image = [UIImage imageNamed:@"quick"];
+    searchTagCell.textLabel.text = self.tagArr[indexPath.row];
     return searchTagCell;
 }
 
 #pragma mark - Http
 - (void)requestdata{
-    [self.tableView reloadData];
+    NSDictionary * pragram = @{};
+    
+    [[HttpObject manager]getNoHudWithType:YuWaType_RB_SEARCH_QUICK withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.tagArr addObjectsFromArray:responsObj[@"data"]];
+        [self.tableView reloadData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
 }
 
 - (void)requestSearchResaultData{
-//    self.searchView.textField.text
+    NSDictionary * pragram = @{@"keyword":self.searchView.textField.text};
     
-    [self.searchResaultArr removeAllObjects];
-    for (int i = 0; i<3; i++) {
-        [self.searchResaultArr addObject:@{@"key":self.searchView.textField.text,@"type":@"233333"}];//最多三个
-        //233333333333 searchView.textField.text要换成正确数据
-    }
-    [self.tableView reloadData];
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_SEARCH_KEY withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        NSArray * dataArr = responsObj[@"data"];
+        [self.searchResaultArr removeAllObjects];
+        for (int i = 0; i<3; i++) {
+            [self.searchResaultArr addObject:@{@"key":dataArr[i],@"type":@"0"}];//最多三个,type以后可能换（如笔记0用户1）
+        }
+        [self.tableView reloadData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
 }
 
 
