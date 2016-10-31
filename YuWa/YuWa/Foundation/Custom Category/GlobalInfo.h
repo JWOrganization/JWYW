@@ -44,4 +44,25 @@
 #define HTTP_IMG_UP @"/api.php/Index/uploadImg/" //上传图片
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark  -- 首页
+#define HTTP_HOME_PAGE    @"/api.php/Index/index/"    //首页获取数据的接口
+#define HTTP_HOME_UPDATECOORDINATE    @"/api.php/Index/updateCoordinate/"   //更新经纬度
+#define HTTP_HOME_HOTSEARCH          @"/api.php/Index/hotSearch/"    //热门搜索
+#define HTTP_HOME_SEARCH            @"/api.php/Index/searchResult/"     //搜索
+
+
+
 #endif /* GlobalInfo_h */

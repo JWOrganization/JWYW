@@ -21,7 +21,9 @@
 //#import "YWMainCategoryViewController.h"       //18个分类
 #import "NewMainCategoryViewController.h"
 #import "YWShoppingDetailViewController.h"    //店铺详情
-#import "HomeSearchViewController.h"        //搜索界面
+//#import "HomeSearchViewController.h"
+#import "NewSearchViewController.h"        //搜索界面
+
 #import "WLBarcodeViewController.h"     //新的扫2维码
 #import "H5LinkViewController.h"    //webView
 
@@ -44,7 +46,10 @@
 
 @property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
 
+
 @property (nonatomic,strong)CLGeocoder * geocoder;
+@property(nonatomic,strong)NSString*coordinatex;   //经度
+@property(nonatomic,strong)NSString*coordinatey;   //维度
 
 @end
 
@@ -52,7 +57,11 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    //得到坐标
+    [self getLocalSubName];
+
     [self getDatas];
+    [self updateCoordinate];   //把取得的经纬度给后台
     
     [self makeNaviBar];
     
@@ -81,8 +90,7 @@
         
     }];
  
-    [self getLocalSubName];
-
+  
  
     
 }
@@ -91,7 +99,7 @@
     [super viewWillAppear:animated];
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0 ]setAlpha:1];
     
-    [self makeNoticeWithTime:0 withAlertBody:@"您已购买了xxxx"];
+//    [self makeNoticeWithTime:0 withAlertBody:@"您已购买了xxxx"];
     
 }
 
@@ -111,6 +119,10 @@
             if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways ||[CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
                 MyLog(@"current location is %@",placemark.subLocality);//红灯区
                 //已经定位了
+                self.coordinatex=[NSString stringWithFormat:@"%f",self.location.coordinate.longitude];  //维度
+                
+                self.coordinatey=[NSString stringWithFormat:@"%f",self.location.coordinate.latitude];   //经度
+                
                 
             }else{
                 //泉州市    就是没有定位
@@ -283,7 +295,44 @@
     });
 
     
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_PAGE];
+
+    NSMutableDictionary*params=[NSMutableDictionary dictionary];
+    [params setObject:[UserSession instance].token forKey:@"device_id"];
+    if (self.coordinatex) {
+        [params setObject:self.coordinatex forKey:@"coordinatex"];
+    }else if (self.coordinatey){
+        [params setObject:self.coordinatey forKey:@"coordinatey"];
+    }
+    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        
+    }];
+    
 }
+
+//把取得的经纬度给后台
+-(void)updateCoordinate{
+    if (!self.coordinatex||!self.coordinatey) {
+        return;
+    }
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_UPDATECOORDINATE];
+    NSDictionary*params=@{@"device_id":[UserSession instance].token,@"coordinatex":self.coordinatex,@"coordinatey":self.coordinatey};
+   HttpManager*manager= [[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        
+        
+    }];
+    
+    
+    
+}
+
+
 -(void)getFitstDatas{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -450,12 +499,17 @@
         if (isScceed) {
           //扫描结果 成功
             self.saveQRCode=str;
+            
+            
+            
+            
+            //不是我们的二维码
             NSString*strr=[NSString stringWithFormat:@"可能存在风险，是否打开此链接?\n %@",str];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:strr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"打开链接", nil];
             [alert show];
 
             
-            
+            //
             
             
             
@@ -512,8 +566,7 @@
 }
 //点击输入框
 -(void)touchinPut{
-    MyLog(@"aa");
-    HomeSearchViewController*vc=[[HomeSearchViewController alloc]init];
+    NewSearchViewController*vc=[[NewSearchViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
