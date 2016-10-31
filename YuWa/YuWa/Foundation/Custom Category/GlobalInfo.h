@@ -41,7 +41,8 @@
 #define HTTP_RB_NODE_PUBLISH @"/api.php/Index/addNote/" //发布笔记
 //#define HTTP_RB_ @"/api.php/Login/resetPassword/" //添加地点
 //#define HTTP_RB_ @"/api.php/Login/resetPassword/" //搜索地点
-#define HTTP_IMG_UP @"/api.php/Index/uploadImg/" //上传图片
+#define HTTP_RB_ATTENTION @"/api.php/User/myAttention/" //我的关注
 
+#define HTTP_IMG_UP @"/api.php/Index/uploadImg/" //上传图片
 
 #endif /* GlobalInfo_h */

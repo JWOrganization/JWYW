@@ -141,7 +141,10 @@
             break;
         case YuWaType_RB_ATTENTION_CANCEL://删除关注
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION_CANCEL];
-            break;            
+            break;
+        case YuWaType_RB_ATTENTION://显示关注
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION];
+            break;
 #pragma mark - SEARCH
         case YuWaType_RB_SEARCH_KEY://搜索相关
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_KEY];

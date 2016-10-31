@@ -37,6 +37,7 @@ typedef enum YuWaType{
     YuWaType_RB_NODE_PUBLISH, //发布笔记
     //    YuWaType_RB_, //添加地点
     //    YuWaType_RB_, //搜索地点
+    YuWaType_RB_ATTENTION, //我的关注
     
     YuWaType_IMG_UP, //上传图片
     

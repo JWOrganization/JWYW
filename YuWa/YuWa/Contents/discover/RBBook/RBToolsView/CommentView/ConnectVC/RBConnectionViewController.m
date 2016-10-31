@@ -8,6 +8,8 @@
 
 #import "RBConnectionViewController.h"
 #import "UIScrollView+JWGifRefresh.h"
+#import "HttpObject.h"
+#import "JWTools.h"
 
 #import "RBNodeUserModel.h"
 
@@ -27,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self dataSet];
-    [self setupRefresh];
+//    [self setupRefresh];
     [self requestDataWithPages:0];
 }
 
@@ -113,21 +115,31 @@
 }
 
 #pragma mark - TableView Refresh
-- (void)setupRefresh{
-    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"footer" withImageCount:8 withRefreshBlock:^{
-        [self footerRereshing];
-    }];
-}
-- (void)footerRereshing{
-    self.pages++;
-    [self requestDataWithPages:self.pages];
-}
+//- (void)setupRefresh{
+//    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"footer" withImageCount:8 withRefreshBlock:^{
+//        [self footerRereshing];
+//    }];
+//}
+//- (void)footerRereshing{
+//    self.pages++;
+//    [self requestDataWithPages:self.pages];
+//}
 
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
-    [self.tableView.mj_footer endRefreshing];
+//    [self.tableView.mj_footer endRefreshing];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
     
-    [self.tableView reloadData];
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_ATTENTION withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        
+        [self.tableView reloadData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h2333333333
+    
 }
 
 
