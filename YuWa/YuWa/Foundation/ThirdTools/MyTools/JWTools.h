@@ -240,6 +240,16 @@
  */
 + (UIImage *)makeQRCodeWithStr:(NSString *)QRStr;
 
+#pragma mark - 图片转Str
+/**
+ *  图片转Str
+ *
+ *  @param image 图片
+ *
+ *  @return 图片转Str
+ */
++ (NSString *)imageToStr:(UIImage *)image;
+
 #pragma mark - 图片大小
 /**
  *  图片适应屏幕大小
@@ -292,6 +302,11 @@
 + (NSArray *)imageFilterArr;
 
 #pragma mark - UUID
+/**
+ *  获取UUDID
+ *
+ *  @return 获取UUDID
+ */
 + (NSString *)getUUID;
 
 @end

@@ -137,6 +137,30 @@
 
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
+    NSDictionary * pragram = @{@"keyword":self.searchKey,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"sort":@(self.states),@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
+    
+    [[HttpObject manager]postDataWithType:YuWaType_RB_SEARCH_RESULT withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        if (page == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
+        //        NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
+        //        //    MyLog(@"%@",dataDic);
+        //        NSArray * dataArr = dataDic[@"data"];
+        //        [dataArr enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+        //            [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
+        //        }];
+        [self.tableView reloadData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.tableView.mj_header endRefreshing];
+    }];//h333333333
+    
+    //要删23333333
     if (page == 0) {
         [self.tableView.mj_header endRefreshing];
     }else{
@@ -149,6 +173,7 @@
         [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
     }];
     [self.tableView reloadData];
+    //要删23333333
 }
 
 @end

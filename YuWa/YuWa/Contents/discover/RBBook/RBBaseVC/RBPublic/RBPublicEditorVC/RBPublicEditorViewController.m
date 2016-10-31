@@ -16,6 +16,8 @@
 
 @property (nonatomic,strong)RBPublicEditorScrollView * scrollView;
 @property (nonatomic,strong)UILongPressGestureRecognizer * longPress;//collectionCell move
+@property (nonatomic,strong)NSMutableArray * picUrlArr;
+@property (nonatomic,assign)NSInteger picUpCount;
 
 @end
 
@@ -119,6 +121,8 @@
             [weakSelf.scrollView.conTextView becomeFirstResponder];
         });
     };
+    
+    self.picUrlArr = [NSMutableArray arrayWithCapacity:0];
 }
 
 - (void)makeEmojisKeyBoards{
@@ -126,9 +130,9 @@
     self.emojisKeyBoards = [[[NSBundle mainBundle]loadNibNamed:@"JWEmojisKeyBoards" owner:nil options:nil]firstObject];
     self.emojisKeyBoards.sendBlock = ^(){
         if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
-            [weakSelf showHUDWithStr:@"评论不能为空哟" withSuccess:NO];
+            [weakSelf showHUDWithStr:@"内容不能为空哟" withSuccess:NO];
         }else{
-            [weakSelf requestSendComment];
+            [self requestPublishNodeWithPhoto];
             [weakSelf.scrollView.conTextView resignFirstResponder];
         }
     };
@@ -156,7 +160,7 @@
 }
 
 - (void)publishBtnAction{//数据发布
-    [self requestPublishNode];
+    [self requestPublishNodeWithPhoto];
 }
 
 - (void)backAction{
@@ -293,7 +297,7 @@
 #pragma mark - Http
 - (void)requestPublishNode{
     NSString * tagStr = [self tagArrJsonCreate];
-    MyLog(@"%@",tagStr);
+//    MyLog(@"%@",tagStr);
     
     if ([self.scrollView.nameTextField.text isEqualToString:@""]) {
         [self showHUDWithStr:@"请输入标题" withSuccess:YES];
@@ -301,15 +305,48 @@
     }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
         [self showHUDWithStr:@"内容" withSuccess:YES];
         return;
-    }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
-        [self showHUDWithStr:@"内容" withSuccess:YES];
-        return;
     }
     
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [RBPublishSession clearPublish];
-    }];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":self.scrollView.locationnameLabel.text,@"content":self.scrollView.conTextView.text,@"img_list":self.picUrlArr};//cid可能变
+    
+    [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            [RBPublishSession clearPublish];
+        }];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
+}
 
+- (void)requestPublishNodeWithPhoto{
+    self.picUpCount = 0;
+    self.picUrlArr = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < self.imageChangeSaveArr.count; i++) {
+        [self.picUrlArr addObject:@""];
+        [self requestPublishNodePhotoWithIdx:i];
+    }
+}
+- (void)requestPublishNodePhotoWithIdx:(NSInteger)idx{
+    RBPublicSaveModel * model = self.imageChangeSaveArr[idx];
+    NSDictionary * pragram = @{@"img":[JWTools imageToStr:model.origionalImage]};
+    
+    [[HttpObject manager]postDataWithType:YuWaType_IMG_UP withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.picUrlArr replaceObjectAtIndex:idx withObject:responsObj[@"data"]];
+        self.picUpCount++;
+        if (self.picUrlArr.count >= self.imageChangeSaveArr.count) {
+            [self requestPublishNode];
+        }
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
+    
 }
 
 - (NSString *)tagArrJsonCreate{//将tag数组转成json字符串

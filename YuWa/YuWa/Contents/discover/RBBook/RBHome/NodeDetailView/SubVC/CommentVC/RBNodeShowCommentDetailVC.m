@@ -47,7 +47,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self commentActionWithUserDic:@{@"UserInfo2333333":@"233333333"}];
+    RBNodeShowCommentModel * model = self.dataArr[indexPath.row];
+    [self commentActionWithUserDic:@{@"nodeID":self.idd,@"userID":model.user.userid,@"userName":model.user.nickname}];
     return;
 }
 

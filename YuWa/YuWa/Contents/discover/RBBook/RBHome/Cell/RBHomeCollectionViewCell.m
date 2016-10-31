@@ -125,9 +125,30 @@
 
 #pragma mark - Http
 - (void)requestLike{
-    //请求喜欢/不喜欢
-    
+    if (!self.isLike) {
+        [self requestCancelLike];
+        return;
+    }
+    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_LIKE withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
 }
 
+- (void)requestCancelLike{
+    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_LIKE_CANCEL withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
+}
 
 @end

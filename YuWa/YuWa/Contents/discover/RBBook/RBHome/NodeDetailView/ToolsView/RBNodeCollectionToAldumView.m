@@ -7,6 +7,8 @@
 //
 
 #import "RBNodeCollectionToAldumView.h"
+#import "HttpObject.h"
+#import "JWTools.h"
 #import "RBNodeAddToAldumTableViewCell.h"
 
 #define ADDTOALDUMCELL @"RBNodeAddToAldumTableViewCell"
@@ -75,15 +77,28 @@
 #pragma mark - Http
 - (void)aldumReload{
     [self.dataArr removeAllObjects];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token};
     
-    //233333333要删
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_ALDUM withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.tableView reloadData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
+    
+    
+//    233333333要删
     NSInteger count = [[UserSession instance].aldumCount integerValue] > 0?[[UserSession instance].aldumCount integerValue]:1;
     for (int i = 0; i<count; i++) {
         [self.dataArr addObject:[[RBNodeAddToAldumModel alloc]init]];
     }
-    //233333333要删
-    
     [self.tableView reloadData];
+//    233333333要删
+    
+    
 }
 
 @end

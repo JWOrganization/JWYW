@@ -7,6 +7,8 @@
 //
 
 #import "RBNodeDetailHeader.h"
+#import "HttpObject.h"
+#import "JWTools.h"
 
 @implementation RBNodeDetailHeader
 
@@ -73,7 +75,11 @@
         self.infavs = [self.infavs isEqualToString:@"0"]?@"1":@"0";
         //    dispatch_get_main_queue()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self requestAttention];
+            if ([self.infavs isEqualToString:@"1"]) {
+                [self requestAttention];
+            }else{
+                [self requestAttentionCancel];
+            }
         });
     }else{
         self.careBlock();
@@ -81,10 +87,29 @@
 }
 
 #pragma mark - Http
-- (void)requestAttention{
-    //关注此人
+- (void)requestAttention{//关注此人
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"attention_id":self.model.userid};
     
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_ATTENTION_ADD withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
 }
-
+- (void)requestAttentionCancel{
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"attention_id":self.model.userid};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_ATTENTION_CANCEL withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    //h333333333
+}
 
 @end

@@ -126,12 +126,7 @@
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
     [self.tableView.mj_footer endRefreshing];
-    //    NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
-    //    //    MyLog(@"%@",dataDic);
-    //    NSArray * dataArr = dataDic[@"data"];
-    //    [dataArr enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-    //        [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-    //    }];
+    
     [self.tableView reloadData];
 }
 
