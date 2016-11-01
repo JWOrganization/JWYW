@@ -31,8 +31,8 @@
 }
 
 - (void)dataSet{
-    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:@"23333333"] placeholderImage:[UIImage imageNamed:@"node"] completed:nil];
-//    self.nameLabel.text = ;
+    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:self.model.images_list.count>0?self.model.images_list[0]:@""] placeholderImage:[UIImage imageNamed:@"node"] completed:nil];
+    self.nameLabel.text = self.model.title;
 }
 
 @end

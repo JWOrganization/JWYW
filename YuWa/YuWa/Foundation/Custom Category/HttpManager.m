@@ -77,9 +77,13 @@
     [self.HUD show:YES];
     AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes=[manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
     
     [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:Photodata name:@"File" fileName:@"headImage.png" mimeType:@"png"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *fileName = [NSString stringWithFormat:@"%@.png", [formatter stringFromDate:[NSDate date]]];
+        [formData appendPartWithFileData:Photodata name:@"img" fileName:fileName mimeType:@"image/png"];
         
     } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         newBlock(responseObject,nil);

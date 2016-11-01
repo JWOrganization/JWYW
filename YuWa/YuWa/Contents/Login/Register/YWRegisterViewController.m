@@ -118,7 +118,7 @@
         [UserSession saveUserLoginWithAccount:account withPassword:password];
         [UserSession saveUserInfoWithDic:responsObj[@"data"]];
         [self showHUDWithStr:@"注册成功" withSuccess:YES];
-        EMError *error = [[EMClient sharedClient] registerWithUsername:account password:password];
+        EMError *error = [[EMClient sharedClient] registerWithUsername:account password:account];
         if (error==nil) {
             MyLog(@"环信注册成功");
             BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;

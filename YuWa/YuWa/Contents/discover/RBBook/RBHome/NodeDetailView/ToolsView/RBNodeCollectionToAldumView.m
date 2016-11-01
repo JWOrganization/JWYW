@@ -82,23 +82,18 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_ALDUM withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        NSArray * dataArr = responsObj[@"data"];
+        [UserSession instance].aldumCount = [NSString stringWithFormat:@"%zi",dataArr.count];
+        if (dataArr.count>0) {
+            for (int i = 0; i<dataArr.count; i++) {
+                [self.dataArr addObject:[RBNodeAddToAldumModel yy_modelWithDictionary:dataArr[i]]];
+            }
+        }
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
-    
-    
-//    233333333要删
-    NSInteger count = [[UserSession instance].aldumCount integerValue] > 0?[[UserSession instance].aldumCount integerValue]:1;
-    for (int i = 0; i<count; i++) {
-        [self.dataArr addObject:[[RBNodeAddToAldumModel alloc]init]];
-    }
-    [self.tableView reloadData];
-//    233333333要删
-    
-    
 }
 
 @end

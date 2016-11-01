@@ -559,8 +559,10 @@
  *  @return 图片转Str
  */
 + (NSString *)imageToStr:(UIImage *)image{
-    NSData *data = UIImageJPEGRepresentation(image, 1.0f);
-    return (NSString *)[data base64EncodedStringWithOptions:0];
+    NSData * data = [UIImagePNGRepresentation(image) base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+//    NSData *data = UIImageJPEGRepresentation(image, 1.0f);
+//    return (NSString *)[data base64EncodedStringWithOptions:0];
 }
 
 #pragma mark - 图片大小

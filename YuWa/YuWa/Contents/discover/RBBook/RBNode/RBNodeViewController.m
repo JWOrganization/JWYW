@@ -130,7 +130,6 @@
             [self publishAlbumAction];
             return;
         }
-//        23333333
     }
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
