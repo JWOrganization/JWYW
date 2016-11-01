@@ -10,7 +10,7 @@
 
 @interface HPTopShopModel : NSObject
 
-@property(nonatomic,strong)NSString*topShopImage;
-@property(nonatomic,strong)NSString*topShopTitle;
-@property(nonatomic,strong)NSString*idd;
+@property(nonatomic,strong)NSString*company_img;
+@property(nonatomic,strong)NSString*company_name;
+@property(nonatomic,strong)NSString*id;
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "HomeMenuCell.h"
+#import "HPCategoryModel.h"
+
 
 @interface HomeMenuCell ()<UIScrollViewDelegate>
 {
@@ -15,6 +17,7 @@
     UIPageControl *_pageControl;
 }
 
+@property(nonatomic,strong)NSArray*menuArray;
 @end
 
 @implementation HomeMenuCell
@@ -22,6 +25,8 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier menuArray:(NSMutableArray *)menuArray{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.menuArray=[menuArray copy];
+        
         //
         _backView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 160)];
         _backView2 = [[UIView alloc] initWithFrame:CGRectMake(kScreen_Width, 0, kScreen_Width, 160)];
@@ -35,12 +40,21 @@
         [scrollView addSubview:_backView2];
         [self addSubview:scrollView];
         
-        //创建8个
+        //创建20个
+        if (menuArray.count<20) {
+            return self;
+        }
+        
+        
         for (int i = 0; i < 20; i++) {
             if (i < 5) {
+                HPCategoryModel*model=menuArray[i];
+                NSString*title=model.class_name;
+                NSString*imageStr=model.img;
+                
                 CGRect frame = CGRectMake(i*kScreen_Width/5, 0, kScreen_Width/5, 80);
-                NSString *title = [menuArray[i] objectForKey:@"title"];
-                NSString *imageStr = [menuArray[i] objectForKey:@"image"];
+//                NSString *title = [menuArray[i] objectForKey:@"title"];
+//                NSString *imageStr = [menuArray[i] objectForKey:@"image"];
                 JZMTBtnView *btnView = [[JZMTBtnView alloc] initWithFrame:frame title:title imageStr:imageStr];
                 btnView.tag = 10+i;
                 [_backView1 addSubview:btnView];
@@ -49,8 +63,9 @@
                 
             }else if(i<10){
                 CGRect frame = CGRectMake((i-5)*kScreen_Width/5, 80, kScreen_Width/5, 80);
-                NSString *title = [menuArray[i] objectForKey:@"title"];
-                NSString *imageStr = [menuArray[i] objectForKey:@"image"];
+                HPCategoryModel*model=menuArray[i];
+                NSString*title=model.class_name;
+                NSString*imageStr=model.img;
                 JZMTBtnView *btnView = [[JZMTBtnView alloc] initWithFrame:frame title:title imageStr:imageStr];
                 btnView.tag = 10+i;
                 [_backView1 addSubview:btnView];
@@ -58,8 +73,9 @@
                 [btnView addGestureRecognizer:tap];
             }else if(i < 15){
                 CGRect frame = CGRectMake((i-10)*kScreen_Width/5, 0, kScreen_Width/5, 80);
-                NSString *title = [menuArray[i] objectForKey:@"title"];
-                NSString *imageStr = [menuArray[i] objectForKey:@"image"];
+                HPCategoryModel*model=menuArray[i];
+                NSString*title=model.class_name;
+                NSString*imageStr=model.img;
                 JZMTBtnView *btnView = [[JZMTBtnView alloc] initWithFrame:frame title:title imageStr:imageStr];
                 btnView.tag = 10+i;
                 [_backView2 addSubview:btnView];
@@ -67,8 +83,9 @@
                 [btnView addGestureRecognizer:tap];
             }else{
                 CGRect frame = CGRectMake((i-15)*kScreen_Width/5, 80, kScreen_Width/5, 80);
-                NSString *title = [menuArray[i] objectForKey:@"title"];
-                NSString *imageStr = [menuArray[i] objectForKey:@"image"];
+                HPCategoryModel*model=menuArray[i];
+                NSString*title=model.class_name;
+                NSString*imageStr=model.img;
                 JZMTBtnView *btnView = [[JZMTBtnView alloc] initWithFrame:frame title:title imageStr:imageStr];
                 btnView.tag = 10+i;
                 [_backView2 addSubview:btnView];
@@ -110,8 +127,10 @@
     NSLog(@"tag:%ld",sender.view.tag);
     NSInteger number=sender.view.tag-10;
     
-    if ([self.delegate respondsToSelector:@selector(DelegateToChooseCategory:)]) {
-        [self.delegate DelegateToChooseCategory:number];
+    HPCategoryModel*model=self.menuArray[number];
+    
+    if ([self.delegate respondsToSelector:@selector(DelegateToChooseCategory:andCategoryID:)]) {
+        [self.delegate DelegateToChooseCategory:number andCategoryID:model.id];
         
     }
     

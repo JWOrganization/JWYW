@@ -15,6 +15,8 @@
 #import "ResultsModel.h"
 #import "YYCoreData.h"      //存储数据
 
+#import "HPRecommendShopModel.h"
+
 #define SEARCHFILE   @"searchFile.plist"
 #define HOTFILE      @"HOTFILE.plist"
 
@@ -129,8 +131,27 @@
     HttpManager*manager=[[HttpManager alloc]init];
     [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
         MyLog(@"%@",data);
-        showResultsViewController*vc=[[showResultsViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        NSNumber*aa=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",aa];
+        if ([errorCode isEqualToString:@"0"]) {
+            //不是错误
+            NSMutableArray*modelArray=[NSMutableArray array];
+            NSArray*array=data[@"data"];
+            for (NSDictionary*dict in array) {
+                HPRecommendShopModel*model=[HPRecommendShopModel yy_modelWithDictionary:dict];
+                [modelArray addObject:model];
+            }
+            
+            showResultsViewController*vc=[[showResultsViewController alloc]init];
+            vc.ModelArray=modelArray;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
         
     }];
     

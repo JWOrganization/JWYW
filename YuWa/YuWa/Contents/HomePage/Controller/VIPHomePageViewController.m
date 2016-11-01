@@ -46,6 +46,9 @@
 @property (nonatomic,strong)CLGeocoder * geocoder;
 @property(nonatomic,strong)NSString*coordinatex;   //经度
 @property(nonatomic,strong)NSString*coordinatey;   //维度
+@property(nonatomic,assign)int pages;
+@property(nonatomic,assign)int pagen;
+
 //都是model
 @property(nonatomic,strong)NSMutableArray*mtModelArrBanner;
 @property(nonatomic,strong)NSMutableArray*mtModelArrCategory;
@@ -72,10 +75,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
     [self setUpMJRefresh];
     
-
-  
-  
- 
     
 }
 
@@ -208,6 +207,8 @@
 
 
 -(void)setUpMJRefresh{
+    self.pagen=10;
+    self.pages=-1;
 
 
    MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
@@ -225,7 +226,10 @@
     
     
     MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
-        [self.tableView.mj_footer endRefreshing];
+//        [self.tableView.mj_footer endRefreshing];
+        
+        [self loadingMoreShowInfo];
+        
         
     }];
     self.tableView.mj_footer=gifFooter;
@@ -239,18 +243,8 @@
 #pragma mark -- Datas
 
 -(void)getDatas{
-//    NSString*path=[[NSBundle mainBundle]pathForResource:@"menuData" ofType:@"plist"];
-//    _meunArrays=[[NSMutableArray alloc]initWithContentsOfFile:path];
-//
-//    
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        [self.tableView.mj_header endRefreshing];
-//        [self.tableView.mj_footer endRefreshing];    
-////         [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//    });
-
+    self.pagen=10;
+    self.pages=-1;
     
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_PAGE];
 
@@ -267,6 +261,11 @@
         MyLog(@"%@",data);
         NSString*errorCode=[NSString stringWithFormat:@"%@",data[@"errorCode"]];
         if ([errorCode isEqualToString:@"0"]) {
+            self.mtModelArrBanner=nil;
+            self.mtModelArrCategory=nil;
+            self.mtModelArrTopShop=nil;
+            self.mtModelArrRecommend=nil;
+            
             
             NSArray*banner=data[@"data"][@"flash"];
             for (int i=0; i<banner.count; i++) {
@@ -294,6 +293,8 @@
                 [self.mtModelArrRecommend addObject:model];
             }
             
+            
+            
             [self.tableView reloadData];
             
         }else{
@@ -308,6 +309,42 @@
     }];
     
 }
+
+-(void)loadingMoreShowInfo{
+    self.pages++;
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_MORELOADING];
+    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
+    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"pagen":pagen,@"pages":pages};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            NSArray*array=data[@"data"];
+            for (NSDictionary*dict in array) {
+                HPRecommendShopModel*model=[HPRecommendShopModel yy_modelWithDictionary:dict];
+                [self.mtModelArrRecommend addObject:model];
+                
+                
+            }
+            [self.tableView reloadData];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+            
+        }
+        
+        
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
+    
+    
+}
+
 
 //把取得的经纬度给后台
 -(void)updateCoordinate{
@@ -329,73 +366,40 @@
 }
 
 
-//-(void)getFitstDatas{
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        [self.tableView.mj_header endRefreshing];
-//        [self.tableView.mj_footer endRefreshing];
-//        
-//        [self.tableView.mj_footer resetNoMoreData];
-//    });
-//                   
-//}
-
-
 #pragma mark -- UI
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==2) {
-        return 10;
+        return self.mtModelArrRecommend.count;
     }
     return 1;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.textLabel.text=@"6666";
+
     
     if (indexPath.section==0) {
-//        cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
-        HomeMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL0];
-        if (cell == nil) {
-            cell = [[HomeMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL0 menuArray:self.meunArrays];
-        }
+        HomeMenuCell*cell = [[HomeMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL0 menuArray:self.mtModelArrCategory];
+       
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate=self;
         return cell;
 
         
     }else if (indexPath.section==1){
-        //6个 推荐位
-//        HomeSixChooseTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
-//        cell.selectionStyle=NO;
-//        
-//        NSArray*array1=@[@"沙县大酒店",@"兰州拉面",@"黄焖鸡米饭",@"KFC",@"麦当劳",@"炒菜店"];
-//        NSArray*array2=@[@"蒸饺",@"拉面",@"鸡米饭",@"肯打鸡外带全家桶",@"麦乐鸡块",@"虎皮青椒"];
-//        for (int i=0; i<6; i++) {
-//            UILabel*mainLabel=[cell viewWithTag:100+i];
-//            mainLabel.text=array1[i];
-//            
-//            UILabel*subLabel=[cell viewWithTag:1000+i];
-//            subLabel.text=array2[i];
-//            
-//            UIImageView*imageView=[cell viewWithTag:10000+i];
-//            imageView.backgroundColor=[UIColor greenColor];
-//        }
-//        
-//        cell.sixChooseBlock=^(NSInteger number){
-//            MyLog(@"aaa %lu",number);
-//            YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        };
         
         ShoppingTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
+        cell.allDatas=self.mtModelArrTopShop;
         WEAKSELF;
         cell.touchCollectionViewBlock=^(NSInteger number){
+            HPTopShopModel*model=self.mtModelArrTopShop[number];
+            MyLog(@"id=%@",model.id);
+
             YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
             
         };
             
@@ -406,6 +410,115 @@
     }else if (indexPath.section==2){
         cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
         cell.selectionStyle=NO;
+        
+        NSInteger number=indexPath.row;
+        HPRecommendShopModel*model=self.mtModelArrRecommend[number];
+        
+        //图片
+        UIImageView*photo=[cell viewWithTag:1];
+        [photo sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
+        //标题
+        UILabel*titleLabel=[cell viewWithTag:2];
+        titleLabel.text=model.company_name;
+        
+//星星数量 -------------------------------------------------------
+        CGFloat realZhengshu;
+        CGFloat realXiaoshu;
+        NSString*starNmuber=model.star;
+        NSString*zhengshu=[starNmuber substringToIndex:1];
+        realZhengshu=[zhengshu floatValue];
+        NSString*xiaoshu=[starNmuber substringFromIndex:1];
+        CGFloat CGxiaoshu=[xiaoshu floatValue];
+        
+        if (CGxiaoshu>0.5) {
+            realXiaoshu=0;
+           realZhengshu= realZhengshu+1;
+        }else if (CGxiaoshu>0&&CGxiaoshu<=0.5){
+             realXiaoshu=0.5;
+        }else{
+              realXiaoshu=0;
+
+        }
+        
+        for (int i=30; i<35; i++) {
+            UIImageView*imageView=[cell viewWithTag:i];
+            if (imageView.tag-30<realZhengshu) {
+                //亮
+                imageView.image=[UIImage imageNamed:@"home_lightStar"];
+            }else if (imageView.tag-30==realZhengshu&&realXiaoshu!=0){
+                //半亮
+                imageView.image=[UIImage imageNamed:@"home_halfStar"];
+                
+            }else{
+                //不亮
+                imageView.image=[UIImage imageNamed:@"home_grayStar"];
+            }
+            
+            
+        }
+//---------------------------------------------------------------------------
+        
+        
+        //人均
+        UILabel*per_capitaLabel=[cell viewWithTag:3];
+        per_capitaLabel.text=[NSString stringWithFormat:@"%@/人",model.per_capita];
+        
+        //分类
+        UILabel*categoryLabel=[cell viewWithTag:4];
+        categoryLabel.text=model.catname;   //model.catname
+        
+        //距离自己的位置多远
+        UILabel*nearLabel=[cell viewWithTag:5];
+        nearLabel.text=model.company_near;
+        
+        //折图片
+//        UIImageView*imageZhe=[cell viewWithTag:6];
+        //这下面的文字
+        UILabel*zheLabel=[cell viewWithTag:7];
+        zheLabel.text=[NSString stringWithFormat:@"%@折，闪付立享",model.discount];
+        
+        //特图片
+        UIImageView*imageTe=[cell viewWithTag:8];
+        imageTe.hidden=YES;
+        //特旁边的文字
+        UILabel*teLabel=[cell viewWithTag:9];
+        teLabel.hidden=YES;
+        
+        //显示的特别活动
+        NSArray*specail=model.holiday;
+        CGFloat top=118.0;
+        CGFloat left=82;
+        
+        for (int i=0; i<specail.count; i++) {
+            UIImageView*speImage=[cell viewWithTag:200+i];
+            if (!speImage) {
+                speImage=[[UIImageView alloc]initWithFrame:CGRectMake(left, top, 15, 15)];
+                speImage.tag=200+i;
+                speImage.image=[UIImage imageNamed:@"home_te.png"];
+                [cell.contentView addSubview:speImage];
+            }
+            
+            
+            UILabel*specailLabel=[cell viewWithTag:300+i];
+            if (!specailLabel) {
+                specailLabel=[[UILabel alloc]initWithFrame:CGRectMake(102, top, kScreen_Width-110, 18)];
+                specailLabel.centerY=speImage.centerY;
+                specailLabel.font=[UIFont systemFontOfSize:15];
+                specailLabel.tag=300+i;
+                [cell.contentView addSubview:specailLabel];
+            }
+            
+            NSDictionary*dict=specail[i];
+            specailLabel.text=[NSString stringWithFormat:@"%@折，%@",dict[@"rebate"],dict[@"title"]];
+            
+            
+            top=top+18+10;
+        }
+        
+        
+        
         return cell;
         
     }
@@ -430,7 +543,16 @@
     }
     
     else{
-          return 145;
+        //最后一排 来判断得到的高度
+//          return 145;
+         HPRecommendShopModel*model=self.mtModelArrRecommend[indexPath.row];
+        NSArray*specail=model.holiday;
+         CGFloat top=118.0;
+        for (int i=0; i<specail.count; i++) {
+             top=top+18+10;
+        }
+        
+        return top;
     }
   
 }
@@ -451,7 +573,14 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 125) imagesGroup:@[@"backImage",@"",@"backImage"] andPlaceholder:@"placehoder_loading"];
+        NSMutableArray*mtArray=[NSMutableArray array];
+        for (HPBannerModel*model in self.mtModelArrBanner) {
+            [mtArray addObject:model.img];
+        }
+        
+        
+        
+        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 125) imagesGroup:mtArray andPlaceholder:@"placehoder_loading"];
         sdView.autoScrollTimeInterval=5.0;
         sdView.delegate=self;
         return sdView;
@@ -558,7 +687,11 @@
 #pragma mark  --delegate
 //轮播图
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    MyLog(@"%ld",(long)index);
+//    MyLog(@"%ld",(long)index);    //缺少id
+    HPBannerModel*model=self.mtModelArrBanner[index];
+    //这个就是id
+    model.url;
+    
     YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -566,8 +699,8 @@
 }
 
 
--(void)DelegateToChooseCategory:(NSInteger)number{
-    NSLog(@"xxxx%lu",number);
+-(void)DelegateToChooseCategory:(NSInteger)number andCategoryID:(NSString *)idd{
+    MyLog(@"aaa%lu,bbb%@",number,idd);
     if (number==1) {
         //电影
         

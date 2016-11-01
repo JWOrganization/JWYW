@@ -10,6 +10,8 @@
 
 @interface ShoppingTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)NSMutableArray*allDatas;
+
 @property(nonatomic,strong)void(^touchCollectionViewBlock)(NSInteger number);
 
 @end

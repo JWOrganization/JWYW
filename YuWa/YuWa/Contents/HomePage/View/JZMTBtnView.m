@@ -23,7 +23,10 @@
     if (self) {
         //
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width/2-22, 15, 44, 44)];
-        imageView.image = [UIImage imageNamed:imageStr];
+//        imageView.image = [UIImage imageNamed:imageStr];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
         [self addSubview:imageView];
         
         //

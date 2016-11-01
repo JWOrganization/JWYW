@@ -12,7 +12,7 @@
 
 @protocol HomeMenuCellDelegate <NSObject>
 
--(void)DelegateToChooseCategory:(NSInteger)number;
+-(void)DelegateToChooseCategory:(NSInteger)number andCategoryID:(NSString*)idd;
 
 @end
 

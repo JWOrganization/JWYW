@@ -14,6 +14,8 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
+        self.backgroundColor=[UIColor whiteColor];
+        
         UIButton*retryButton=[self viewWithTag:3];
         retryButton.layer.cornerRadius=6;
         retryButton.layer.masksToBounds=YES;

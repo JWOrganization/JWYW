@@ -10,13 +10,20 @@
 
 @interface HPRecommendShopModel : NSObject
 
-@property(nonatomic,strong)NSString*recommendShopImage;
-@property(nonatomic,strong)NSString*title;
-@property(nonatomic,strong)NSString*starNumber;
-@property(nonatomic,strong)NSString*capitaMoney;   //人均
-@property(nonatomic,strong)NSString*category;  //属于哪一类
-@property(nonatomic,strong)NSString*howFar;  //距离我多远
-@property(nonatomic,strong)NSArray*specialActivity;   //几个特别的活动
-@property(nonatomic,strong)NSString*idd;   
+@property(nonatomic,strong)NSString*company_img;
+@property(nonatomic,strong)NSString*company_name;
+@property(nonatomic,strong)NSString*star;
+@property(nonatomic,strong)NSString*per_capita;   //人均
+//@property(nonatomic,strong)NSString*category;
+@property(nonatomic,strong)NSString*catname;    //属于哪一类
+@property(nonatomic,strong)NSString*discount;   //打多少折
+@property(nonatomic,strong)NSArray*holiday;     //特别活动
+
+@property(nonatomic,strong)NSString*company_near;  //距离我多远
+@property(nonatomic,strong)NSString*id;
+@property(nonatomic,strong)NSString*cid;
+@property(nonatomic,strong)NSString*coordinatex;
+@property(nonatomic,strong)NSString*coordinatey;
+
 
 @end
