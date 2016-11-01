@@ -33,7 +33,6 @@
     self.nameLabel.text = self.model.title;
     self.conLabel.text = self.model.desc;
     self.timeLabel.text = [JWTools dateWithStr:self.model.time];
-//    self.timeLabel.text = [JWTools dateWithStr:@"2016-09-13 10:47"];
     self.collectionLabel.text = [NSString stringWithFormat:@"%@次收藏",self.model.fav_count];
     self.likeLabel.text = [NSString stringWithFormat:@"%@次赞",self.model.likes];
 }

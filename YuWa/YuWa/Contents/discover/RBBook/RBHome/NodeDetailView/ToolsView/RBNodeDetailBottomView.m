@@ -23,12 +23,6 @@
 - (void)setIsLike:(BOOL)isLike{
     if (_isLike == isLike)return;
     _isLike = isLike;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self requestLike];
-    });
-    [self.likeBtn setImage:[UIImage imageNamed:isLike == YES?@"icon-like":@"icon-dislike"] forState:UIControlStateNormal];
-    [self likeBtnImageAnimation];
-    self.likeBlock(isLike);
 }
 
 - (void)likeBtnImageAnimation{
@@ -57,6 +51,12 @@
         return;
     }
     self.isLike = !_isLike;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self requestLike];
+    });
+    [self.likeBtn setImage:[UIImage imageNamed:_isLike == YES?@"icon-like":@"icon-dislike"] forState:UIControlStateNormal];
+    [self likeBtnImageAnimation];
+    self.likeBlock(_isLike);
 }
 - (IBAction)commentBtnAction:(id)sender {
     self.commentBlock();

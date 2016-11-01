@@ -12,7 +12,6 @@
 
 @interface RBBasicViewController ()<UITextFieldDelegate,TZImagePickerControllerDelegate>
 @property (nonatomic,assign)BOOL isRePlayComment;//是否是回复用户评论
-@property (nonatomic,strong)NSDictionary * commentDic;
 
 @end
 
@@ -193,11 +192,11 @@
 }
 #pragma mark - Http
 - (void)requestSendComment{
-    if (self.commentDic[@"userID"]) {
-        [self requestSendRePlayComment];
-        return;
-    }
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"note_id":@([self.commentDic[@"nodeID"] integerValue]),@"customer_content":self.commentToolsView.sendTextField.text};
+//    if (self.commentDic[@"userID"]) {
+//        [self requestSendRePlayComment];
+//        return;
+//    }
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"note_id":@([self.commentSendDic[@"nodeID"] integerValue]),@"customer_content":self.commentToolsView.sendTextField.text};
     
     [[HttpObject manager]postDataWithType:YuWaType_RB_COMMENT withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
@@ -206,7 +205,6 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
 }
 
 - (void)requestSendRePlayComment{

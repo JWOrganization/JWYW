@@ -38,12 +38,12 @@
 
 - (void)dataSet{
     RBHomeListImagesModel * imageModel = self.imageList[0];
-    self.scrollImageView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Width * [imageModel.height floatValue] / [imageModel.width floatValue]);
+    self.scrollImageView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Width * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320.f) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320.f));
     self.height = self.scrollImageView.height;
     self.scrollImageView.contentSize = CGSizeMake(kScreen_Width * self.imageList.count, 0.f);
     WEAKSELF;
     [self.imageList enumerateObjectsUsingBlock:^(RBHomeListImagesModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(idx * kScreen_Width, 0.f, kScreen_Width, kScreen_Width * [imageModel.height floatValue] / [imageModel.width floatValue])];
+        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(idx * kScreen_Width, 0.f, kScreen_Width, kScreen_Width * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320.f) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320.f))];
         if (idx == 0) {
             imageView.frame = CGRectMake(0.f, 0.f, 0.f, 0.f);
         }
@@ -51,7 +51,7 @@
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (idx == 0) {
                 [UIView animateWithDuration:0.4 animations:^{
-                    weakImageView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Width * [imageModel.height floatValue] / [imageModel.width floatValue]);
+                    weakImageView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Width * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320.f) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320.f));
                 } completion:^(BOOL finished) {
                     weakSelf.backgroundColor = [UIColor clearColor];
                     weakSelf.alpha = 1.f;
@@ -85,15 +85,33 @@
 
 - (void)setTagArr:(NSArray *)tagArr{
     if (!tagArr)return;
-    if (_tagArr&&[_tagArr isEqualToArray:tagArr])return;
-    _tagArr = tagArr;
+    NSMutableArray * tagArrTemp = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i<tagArr.count; i++) {
+        NSArray * arrTemp = tagArr[i];
+        NSMutableArray * tagTemp = [NSMutableArray arrayWithCapacity:0];
+        if (arrTemp.count>0) {
+            for (int j = 0; j<arrTemp.count; j++) {
+                [tagTemp addObject:[RBPublicTagSaveModel yy_modelWithJSON:arrTemp[j]]];
+            }
+        }
+        [tagArrTemp addObject:tagTemp];
+    }
+    if (tagArr.count>0) {
+        _tagArr = tagArrTemp;
+    }else{
+        _tagArr = tagArr;
+    }
     [self showTag];
 }
 
 - (void)showTag{
     for (int i = 0; i<self.tagArr.count; i++) {
-        RBPublicTagSaveModel * model = self.tagArr[i];
-        [self tagViewmakeWithTextArr:model.tagTextArr withPoint:CGPointMake(model.x, model.y) withStyle:model.tagAnimationStyle withView:[self.scrollImageView viewWithTag:i+1]];
+        NSArray * dataArr = self.tagArr[i];
+        if (dataArr.count>0) {
+            for (RBPublicTagSaveModel * model in dataArr) {
+                [self tagViewmakeWithTextArr:model.tagTextArr withPoint:CGPointMake(model.x, model.y) withStyle:model.tagAnimationStyle withView:[self.scrollImageView viewWithTag:i+1]];
+            }
+        }
     }
 }
 

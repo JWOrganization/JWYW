@@ -33,6 +33,7 @@
     self.waterFlowLayout = [[JWCollectionViewFlowLayout alloc]init];
     self.waterFlowLayout.delegate = self;
     self.collectionView.collectionViewLayout = self.waterFlowLayout;
+    self.collectionView.dataSource = self;
     [self.collectionView registerNib:[UINib nibWithNibName:HOMECELL bundle:nil] forCellWithReuseIdentifier:HOMECELL];
     self.heighCell = [[[NSBundle mainBundle] loadNibNamed:HOMECELL owner:nil options:nil] firstObject];
 }

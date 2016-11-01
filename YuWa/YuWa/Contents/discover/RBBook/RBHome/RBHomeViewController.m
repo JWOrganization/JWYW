@@ -155,28 +155,25 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_HOME withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        if (page == 0) {
+            [self.dataArr removeAllObjects];
+            [self.collectionView.mj_header endRefreshing];
+        }else{
+            [self.collectionView.mj_footer endRefreshing];
+        }
+        NSArray * dataArr = responsObj[@"data"];
+        if (dataArr.count>0) {
+            for (int i = 0; i < dataArr.count; i++) {
+                NSDictionary * dic = dataArr[i];
+                NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dic];
+                [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
+            }
+        }
+        [self.collectionView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
-    
-    //要删233333
-    NSDictionary * dataDic = [JWTools jsonWithFileName:@"首页数据"];
-    MyLog(@"%@",dataDic);
-    if (page == 0) {
-        [self.dataArr removeAllObjects];
-        [self.collectionView.mj_header endRefreshing];
-    }else{
-        [self.collectionView.mj_footer endRefreshing];
-    }
-    
-    NSArray * dataArr = dataDic[@"data"];
-    [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-    }];
-    [self.collectionView reloadData];
-    //要删233333
 }
 
 

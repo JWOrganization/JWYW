@@ -44,6 +44,7 @@
 
 @property (nonatomic,copy)NSString * pagens;
 @property (nonatomic,assign)NSInteger pages;
+@property (nonatomic,assign)NSInteger failedCount;
 
 @property (nonatomic,strong)RBNodeDRecommendTableViewCell * recommendCell;
 @property (nonatomic,assign)CGFloat scrollImageHeight;
@@ -157,7 +158,7 @@
 
 - (void)addToAldumViewmake{
     if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
-        [self requestAddToAldumWithIdx:@"0"];
+        if (self.addToAldumView)[self requestAddToAldumWithIdx:@"0"];
         return;
     }
     WEAKSELF;
@@ -197,7 +198,11 @@
             }
         };
     }
-    if (self.dataModel&&!self.authorHeader.model)self.authorHeader.model = self.dataModel.user;
+    if (self.dataModel&&!self.authorHeader.model){
+        self.authorHeader.isUser = [self.dataModel.user.userid integerValue]==([UserSession instance].uid?[UserSession instance].uid:0)?YES:NO;
+        self.authorHeader.infavs = self.dataModel.is_fans;
+        self.authorHeader.model = self.dataModel.user;
+    }
     return self.authorHeader;
 }
 - (RBNodeDetailImageHeader *)imageHeaderMake{
@@ -207,7 +212,7 @@
     }
     if (self.dataModel){
         if (!self.imageHeader.imageList)self.imageHeader.imageList = self.dataModel.images_list;
-        self.imageHeader.tagArr = self.dataModel.tags_info_2.tagArr;//2333333333标签数组
+        self.imageHeader.tagArr = self.dataModel.tags_info_2;//2333333333标签数组
         [self.imageHeader refreshWithHeight:_scrollImageHeight];
     }
     return self.imageHeader;
@@ -261,9 +266,9 @@
     if (index + 1 >= self.dataModel.images_list.count)return _scrollImageHeight;
     CGFloat scrale = (contentX - index * kScreen_Width)/kScreen_Width;
     RBHomeListImagesModel * orginalModel = self.dataModel.images_list[index];
-    CGFloat orginalHeigh = kScreen_Width * [orginalModel.height floatValue] / [orginalModel.width floatValue];
+    CGFloat orginalHeigh = kScreen_Width * ([orginalModel.height floatValue]>0?[orginalModel.height floatValue]:320.f) / ([orginalModel.width floatValue]>0?[orginalModel.width floatValue]:320.f);
     RBHomeListImagesModel * scrollModel = self.dataModel.images_list[index + 1];
-    CGFloat scrollHeight = kScreen_Width * [scrollModel.height floatValue] / [scrollModel.width floatValue];
+    CGFloat scrollHeight = kScreen_Width * ([scrollModel.height floatValue]>0?[scrollModel.height floatValue]:320.f) / ([scrollModel.width floatValue]>0?[scrollModel.width floatValue]:320.f);
     
     return orginalHeigh + (scrollHeight - orginalHeigh)*scrale;
 }
@@ -285,7 +290,7 @@
     }
     
     self.recommendCell.dataArr = self.dataArr;
-    return self.recommendCell.cellHeight;
+    return self.recommendCell.cellHeight + 20.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section ==0) {
@@ -296,7 +301,7 @@
             RBHomeListImagesModel * orginalModel = self.dataModel.images_list[0];
             self.scrollToolsHeight = self.scrollToolsHeight - _scrollImageHeight;
             if (_scrollImageHeight == 0) {
-                _scrollImageHeight = kScreen_Width * [orginalModel.height floatValue] / [orginalModel.width floatValue];
+                _scrollImageHeight = kScreen_Width * ([orginalModel.height floatValue]>0?[orginalModel.height floatValue]:320.f) / ([orginalModel.width floatValue]>0?[orginalModel.width floatValue]:320.f);
             }
             self.scrollToolsHeight += _scrollImageHeight;
             return _scrollImageHeight;
@@ -338,7 +343,7 @@
             WEAKSELF;
             self.commentFooter.viewAllCommentBlock  = ^(){
                 RBNodeShowCommentDetailVC * vc = [[RBNodeShowCommentDetailVC alloc]init];
-                vc.idd = self.model.homeID;
+                vc.idd = weakSelf.model.homeID;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             };
         }
@@ -386,16 +391,20 @@
 }
 - (void)footerRereshing{
     self.pages++;
+    self.failedCount = 0;
     [self requestDataWithPages:self.pages];
 }
 
 #pragma mark - Http
 - (void)requestData{
-    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    NSDictionary * pragram = @{@"token":[UserSession instance].token,@"note_id":self.model.homeID,@"device_id":[JWTools getUUID],@"user_id":@([UserSession instance].uid)};
     
     [[HttpObject manager]postDataWithType:YuWaType_RB_DETAIL withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        NSMutableDictionary * dataDic = [RBNodeShowModel dataDicSetWithDic:responsObj[@"data"]];
+        [dataDic setObject:self.model.homeID forKey:@"id"];
+        self.dataModel = [RBNodeShowModel yy_modelWithDictionary:dataDic];
         self.scrollToolsHeight = 0.f;
         [self reSetBottomToolsView];
         [self requestDataWithPages:0];//瀑布流数据
@@ -403,44 +412,39 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
-    
-    //要删2333333
-    NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记"];
-//    MyLog(@"%@",dataDic);
-    self.dataModel = [RBNodeShowModel yy_modelWithDictionary:dataDic[@"data"]];
-    self.scrollToolsHeight = 0.f;
-    [self reSetBottomToolsView];
-    //瀑布流数据
-    [self requestDataWithPages:0];
-    //要删2333333
 }
 - (void)requestDataWithPages:(NSInteger)page{
     NSDictionary * pragram = @{@"note_id":self.model.homeID,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
-    [[HttpObject manager]postNoHudWithType:YuWaType_RB_DETAIL withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_RELATED withPragram:pragram success:^(id responsObj) {
         [self.tableView.mj_footer endRefreshing];
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        if (page == 0) {
+            [self.dataArr removeAllObjects];
+        }
+        [self.tableView.mj_footer endRefreshing];
+        NSArray * dataArr = responsObj[@"data"];
+        if (dataArr.count>0) {
+            for (int i = 0; i < dataArr.count; i++) {
+                NSDictionary * dic = dataArr[i];
+                NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dic];
+                [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
+            }
+        }
         [self.tableView reloadData];
         self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
     } failur:^(id responsObj, NSError *error) {
         [self.tableView.mj_footer endRefreshing];
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
+        if (self.failedCount > 3) {
+            [self.tableView reloadData];
+        }else{
+            self.failedCount++;
+            [self requestDataWithPages:page];
+        }
     }];
-    //h333333333
-    
-    //要删2333333
-    NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
-//    MyLog(@"%@",dataDic);
-    NSArray * dataArr = dataDic[@"data"];
-    [dataArr enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-    }];
-    [self.tableView reloadData];
-    self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
-    //要删2333333
 }
 - (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
     MyLog(@"添加到专辑%@",aldumIdx);
@@ -461,15 +465,6 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
-    
-    //要删2333333
-    self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
-    self.dataModel.infavs = @"1";
-    self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] + 1)];
-    [self reSetBottomToolsView];
-    [self.addToAldumView removeFromSuperview];
-    //要删2333333
 }
 
 - (void)requestCancelToAldum{
@@ -486,14 +481,6 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
-    
-    //要删2333333
-    self.dataModel.infavs = @"0";
-    self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] - 1)];
-    self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
-    [self reSetBottomToolsView];
-    //要删2333333
 }
 
 @end
