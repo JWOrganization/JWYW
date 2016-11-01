@@ -79,7 +79,7 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+    }];
 }
 
 - (void)requestCancelLike{
@@ -91,7 +91,7 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+    }];
 }
 
 

@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.showImageView.layer.cornerRadius = self.imageView.height/2;
     self.showImageView.layer.masksToBounds = YES;
 }
@@ -31,7 +31,7 @@
 }
 
 - (void)dataSet{
-    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:self.model.images_list.count>0?self.model.images_list[0]:@""] placeholderImage:[UIImage imageNamed:@"node"] completed:nil];
+    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:self.model.images_list.count>0?self.model.images_list[0][@"url"]:@""] placeholderImage:[UIImage imageNamed:@"node"] completed:nil];
     self.nameLabel.text = self.model.title;
 }
 

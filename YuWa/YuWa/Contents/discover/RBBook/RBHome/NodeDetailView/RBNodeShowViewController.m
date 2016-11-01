@@ -159,7 +159,6 @@
 - (void)addToAldumViewmake{
     if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
         if (self.addToAldumView)[self requestAddToAldumWithIdx:@"0"];
-        return;
     }
     WEAKSELF;
     if (!self.addToAldumView) {
@@ -448,9 +447,6 @@
 }
 - (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
     MyLog(@"添加到专辑%@",aldumIdx);
-    if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
-        [UserSession instance].aldumCount = @"1";//成功后若无专辑则创建
-    }
     NSDictionary * pragram = @{@"note_id":self.model.homeID,@"album_id":aldumIdx,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};//album_id没有将创建默认
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_COLLECTION_TO_ALDUM withPragram:pragram success:^(id responsObj) {
@@ -459,6 +455,9 @@
         self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
         self.dataModel.infavs = @"1";
         self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] + 1)];
+        if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
+            [UserSession instance].aldumCount = @"1";//成功后若无专辑则创建
+        }
         [self reSetBottomToolsView];
         [self.addToAldumView removeFromSuperview];
     } failur:^(id responsObj, NSError *error) {
