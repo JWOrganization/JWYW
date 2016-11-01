@@ -25,22 +25,17 @@
 - (void)awakeFromNib{
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [self.alphaBGView addGestureRecognizer:tap];
-    self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     self.tableBGView.layer.cornerRadius = 5.f;
     self.tableBGView.layer.masksToBounds = YES;
     [self.tableView registerNib:[UINib nibWithNibName:ADDTOALDUMCELL bundle:nil] forCellReuseIdentifier:ADDTOALDUMCELL];
-    [self aldumReload];
 }
 - (void)tapAction{
     self.cancelBlock();
 }
-- (void)setDataArr:(NSMutableArray *)dataArr{
-    if (!dataArr)return;
-    _dataArr = dataArr;
-    [self.tableView reloadData];
-}
+
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50.f;
@@ -66,8 +61,7 @@
     return self.dataArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    RBNodeAddToAldumTableViewCell * addCell = [tableView dequeueReusableCellWithIdentifier:ADDTOALDUMCELL];
-    addCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    RBNodeAddToAldumTableViewCell * addCell = [tableView dequeueReusableCellWithIdentifier:ADDTOALDUMCELL forIndexPath:indexPath];
     addCell.model = self.dataArr[indexPath.row];
     return addCell;
 }

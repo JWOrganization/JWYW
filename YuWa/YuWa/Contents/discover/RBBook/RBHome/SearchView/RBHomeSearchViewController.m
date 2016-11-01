@@ -268,7 +268,13 @@
     [[HttpObject manager]getNoHudWithType:YuWaType_RB_SEARCH_QUICK withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        [self.tagArr addObjectsFromArray:responsObj[@"data"]];
+        NSArray * dataArr = responsObj[@"data"];
+        if (dataArr.count>0) {
+            NSInteger count = dataArr.count>=3?3:dataArr.count;
+            for (int i = 0; i<count; i++) {
+                [self.tagArr addObject:dataArr[i][@"title"]];//最多三个,type以后可能换（如笔记0用户1）
+            }
+        }
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
@@ -285,15 +291,16 @@
         NSArray * dataArr = responsObj[@"data"];
         [self.searchResaultArr removeAllObjects];
         if (dataArr.count>0) {
-            for (int i = 0; i<3; i++) {
-                [self.searchResaultArr addObject:@{@"key":dataArr[i],@"type":@"0"}];//最多三个,type以后可能换（如笔记0用户1）
+            NSInteger count = dataArr.count>=3?3:dataArr.count;
+            for (int i = 0; i<count; i++) {
+                [self.searchResaultArr addObject:@{@"key":dataArr[i][@"title"],@"type":@"0"}];//最多三个,type以后可能换（如笔记0用户1）
             }
         }
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+    }];
 }
 
 

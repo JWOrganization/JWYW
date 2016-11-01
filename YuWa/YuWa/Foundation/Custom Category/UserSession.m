@@ -9,6 +9,7 @@
 #import "UserSession.h"
 #import "JPUSHService.h"
 #import "HttpObject.h"
+#import "JWTools.h"
 
 @implementation UserSession
 static UserSession * user=nil;
@@ -85,7 +86,7 @@ static UserSession * user=nil;
                 MyLog(@"环信登录成功");
             }
             
-            [JPUSHService setAlias:user.account callbackSelector:nil object:nil];
+            [JPUSHService setAlias:[JWTools getUUID] callbackSelector:nil object:nil];
         });
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Pragram is %@",pragram);

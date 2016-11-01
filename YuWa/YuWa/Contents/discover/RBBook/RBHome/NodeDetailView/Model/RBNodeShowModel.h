@@ -20,6 +20,7 @@
 @property (nonatomic,copy)NSString * location;
 @property (nonatomic,copy)NSString * time;
 @property (nonatomic,copy)NSString * likes;
+@property (nonatomic,copy)NSString * is_fans;
 @property (nonatomic,copy)NSString * title;
 @property (nonatomic,copy)NSString * share_link;
 @property (nonatomic,copy)NSString * inlikes;
@@ -43,6 +44,8 @@
 @property (nonatomic,strong)NSArray * comments_list;
 @property (nonatomic,strong)NSArray * images_list;
 
-@property (nonatomic,strong)RBNodeTagModel * tags_info_2;
+@property (nonatomic,strong)NSArray * tags_info_2;
+
++ (NSMutableDictionary *)dataDicSetWithDic:(NSDictionary *)dic;
 
 @end

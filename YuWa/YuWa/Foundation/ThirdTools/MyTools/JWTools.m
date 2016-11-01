@@ -225,6 +225,10 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
     if (!date) {
+        date = [NSDate dateWithTimeIntervalSince1970:[dateStr doubleValue]];
+    }
+    
+    if (!date) {
         return nil;
     }
     //通过日历对象，判断date是否是昨天的日期
@@ -257,6 +261,10 @@
     
     //创建一个日历对象
     NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    if (!date) {
+        date = [NSDate dateWithTimeIntervalSince1970:[dateStr doubleValue]];
+    }
     
     if (!date) {
         return nil;
@@ -312,6 +320,10 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
     if (!date) {
+        date = [NSDate dateWithTimeIntervalSince1970:[dateStr doubleValue]];
+    }
+    
+    if (!date) {
         return nil;
     }
     //通过日历对象，判断date是否是今天的日期
@@ -365,7 +377,8 @@
     [dictionary setValue:arr forKey:key];
     NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    return jsonStr;
+    NSString *strUrl = [jsonStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return strUrl;
 }
 
 #pragma mark - RegEx

@@ -44,5 +44,6 @@
 
 @property (nonatomic,assign)CGFloat cellHeight;
 
++ (NSMutableDictionary *)dataDicSetWithDic:(NSDictionary *)dic;
 
 @end

@@ -47,18 +47,16 @@
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.user.images] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
     
-    self.isLike = [self.model.inlikes integerValue];
+    self.isLike = self.model.inlikes?0:[self.model.inlikes integerValue];
     self.likeCount = [self.model.likes integerValue];
     [self.likeBtn setTitle:self.likeCount == 0?@"赞":self.model.likes forState:UIControlStateNormal];
     
-    
     self.nickNameLabel.text = self.model.user.nickname;
-    
 }
 
 - (void)layoutSet{
     RBHomeListImagesModel * imageModel = self.model.images_list[0];
-    self.showImageViewHeigh.constant = CellWidth * [imageModel.height floatValue] / [imageModel.width floatValue];
+    self.showImageViewHeigh.constant = CellWidth * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320);
     self.nameLabelHeigh.constant = [self.nameLabel.text isEqualToString:@""]?0.f:[JWTools labelHeightWithLabel:self.nameLabel];
     
     CGFloat conHeight = [self.conLabel.text isEqualToString:@""]?0.f:[JWTools labelHeightWithLabel:self.conLabel];
@@ -136,7 +134,7 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+    }];
 }
 
 - (void)requestCancelLike{
@@ -148,7 +146,7 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+    }];
 }
 
 @end

@@ -13,7 +13,6 @@
 
 @property (nonatomic,strong)RBHomeModel * model;
 
-
 @property (weak, nonatomic) IBOutlet UIImageView *showImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *conLabel;

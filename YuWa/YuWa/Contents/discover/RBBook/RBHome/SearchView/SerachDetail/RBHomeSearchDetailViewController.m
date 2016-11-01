@@ -85,8 +85,9 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.dataArr.count<=0)return 1.f;
     self.recommendCell.dataArr = self.dataArr;
-    return self.recommendCell.cellHeight;
+    return self.recommendCell.cellHeight + 20.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 30.f;
@@ -114,6 +115,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.recommendCell.dataArr = self.dataArr;
     return self.recommendCell;
 }
 
@@ -143,37 +145,26 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         if (page == 0) {
+            [self.dataArr removeAllObjects];
             [self.tableView.mj_header endRefreshing];
         }else{
             [self.tableView.mj_footer endRefreshing];
         }
-        //        NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
-        //        //    MyLog(@"%@",dataDic);
-        //        NSArray * dataArr = dataDic[@"data"];
-        //        [dataArr enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-        //            [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-        //        }];
+        NSArray * dataArr = responsObj[@"data"];
+        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dic];
+            [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
+        }];
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-        [self.tableView.mj_header endRefreshing];
-    }];//h333333333
-    
-    //要删23333333
-    if (page == 0) {
-        [self.tableView.mj_header endRefreshing];
-    }else{
-        [self.tableView.mj_footer endRefreshing];
-    }
-    NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
-    //    MyLog(@"%@",dataDic);
-    NSArray * dataArr = dataDic[@"data"];
-    [dataArr enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
+        if (page == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
     }];
-    [self.tableView reloadData];
-    //要删23333333
 }
 
 @end

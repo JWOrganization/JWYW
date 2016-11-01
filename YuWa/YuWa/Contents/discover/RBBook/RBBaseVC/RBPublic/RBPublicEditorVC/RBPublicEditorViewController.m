@@ -297,8 +297,24 @@
 #pragma mark - Http
 - (void)requestPublishNode{
     NSString * tagStr = [self tagArrJsonCreate];
-    MyLog(@"%@",tagStr);
-    
+//    MyLog(@"%@",tagStr);
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":[self.scrollView.locationnameLabel.text isEqualToString:@"添加地点"]?@"":self.scrollView.locationnameLabel.text,@"content":self.scrollView.conTextView.text,@"img_list":self.picUrlArr,@"tag":tagStr};//cid可能变
+    [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self showHUDWithStr:responsObj[@"msg"] withSuccess:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                [RBPublishSession clearPublish];
+            }];
+        });
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+}
+
+- (void)requestPublishNodeWithPhoto{
     if ([self.scrollView.nameTextField.text isEqualToString:@""]) {
         [self showHUDWithStr:@"请输入标题" withSuccess:YES];
         return;
@@ -307,24 +323,12 @@
         return;
     }
     
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":self.scrollView.locationnameLabel.text,@"content":self.scrollView.conTextView.text,@"img_list":self.picUrlArr,@"tag":tagStr};//cid可能变
-    
-    [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
-        MyLog(@"Regieter Code pragram is %@",pragram);
-        MyLog(@"Regieter Code is %@",responsObj);
-        
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            [RBPublishSession clearPublish];
-        }];
-    } failur:^(id responsObj, NSError *error) {
-        MyLog(@"Regieter Code pragram is %@",pragram);
-        MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
-}
-
-- (void)requestPublishNodeWithPhoto{
     self.picUpCount = 0;
     self.picUrlArr = [NSMutableArray arrayWithCapacity:0];
+    if (self.imageChangeSaveArr.count == 0){
+        [self requestPublishNode];
+        return;
+    }
     for (int i = 0; i < self.imageChangeSaveArr.count; i++) {
         [self.picUrlArr addObject:@""];
         [self requestPublishNodePhotoWithIdx:i];
@@ -337,6 +341,11 @@
     [[HttpObject manager]postPhotoWithType:YuWaType_IMG_UP withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        [self.picUrlArr replaceObjectAtIndex:idx withObject:responsObj[@"data"]];
+        self.picUpCount++;
+        if (self.picUpCount>= self.imageChangeSaveArr.count) {
+            [self requestPublishNode];
+        }
     } failur:^(id errorData, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",error);
@@ -355,7 +364,9 @@
         }
         [tagArr addObject:tagModelArr];
     }];
-    return [JWTools jsonStrWithKey:@"tags_info_2" withArr:tagArr];//2333333 tags_info_2:tag的json参数,key值需要变化
+    NSString * str = [JWTools jsonStrWithKey:@"tags_info_2" withArr:tagArr];
+    
+    return str;
 }
 
 @end

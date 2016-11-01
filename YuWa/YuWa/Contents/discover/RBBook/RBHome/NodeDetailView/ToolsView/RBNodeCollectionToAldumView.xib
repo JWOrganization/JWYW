@@ -11,21 +11,26 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.29999999999999999" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdV-RO-aMd">
+                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdV-RO-aMd">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11v-ww-rF5">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11v-ww-rF5">
+                    <rect key="frame" x="36" y="110" width="528" height="380"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xEX-2y-iDF">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xEX-2y-iDF">
+                            <rect key="frame" x="0.0" y="0.0" width="528" height="331"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </tableView>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M6J-uC-JpD">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6J-uC-JpD">
+                            <rect key="frame" x="0.0" y="331" width="528" height="1"/>
                             <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="65K-8X-cuk"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJG-XZ-Hrh">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJG-XZ-Hrh">
+                            <rect key="frame" x="0.0" y="332" width="528" height="48"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <state key="normal" title="            新建专辑... ">
                                 <color key="titleColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -34,7 +39,8 @@
                                 <action selector="addAldumBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="JW9-YO-35L"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="RB_Add_Aldum" translatesAutoresizingMaskIntoConstraints="NO" id="y2n-IP-Loz">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RB_Add_Aldum" translatesAutoresizingMaskIntoConstraints="NO" id="y2n-IP-Loz">
+                            <rect key="frame" x="10" y="342" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="Z7o-15-dOb"/>
                                 <constraint firstAttribute="height" constant="30" id="Zga-5T-rVX"/>
@@ -49,7 +55,7 @@
                         <constraint firstItem="xEX-2y-iDF" firstAttribute="leading" secondItem="11v-ww-rF5" secondAttribute="leading" id="M2M-tu-4Qx"/>
                         <constraint firstAttribute="trailing" secondItem="M6J-uC-JpD" secondAttribute="trailing" id="R20-tg-dTB"/>
                         <constraint firstItem="M6J-uC-JpD" firstAttribute="leading" secondItem="11v-ww-rF5" secondAttribute="leading" id="Spr-G9-SHb"/>
-                        <constraint firstAttribute="bottom" secondItem="xEX-2y-iDF" secondAttribute="bottom" constant="51" id="VXg-sb-AbT"/>
+                        <constraint firstAttribute="bottom" secondItem="xEX-2y-iDF" secondAttribute="bottom" constant="49" id="VXg-sb-AbT"/>
                         <constraint firstItem="hJG-XZ-Hrh" firstAttribute="leading" secondItem="11v-ww-rF5" secondAttribute="leading" id="bgO-rm-0zy"/>
                         <constraint firstAttribute="trailing" secondItem="hJG-XZ-Hrh" secondAttribute="trailing" id="eb1-1F-Olr"/>
                         <constraint firstItem="y2n-IP-Loz" firstAttribute="leading" secondItem="11v-ww-rF5" secondAttribute="leading" constant="10" id="k8u-Sh-Wxl"/>

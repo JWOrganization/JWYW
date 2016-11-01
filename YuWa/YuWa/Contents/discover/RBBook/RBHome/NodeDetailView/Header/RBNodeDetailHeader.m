@@ -39,7 +39,7 @@
 - (void)setInfavs:(NSString *)infavs{
     if (!infavs)return;
     _infavs = infavs;
-    if ([infavs isEqualToString:@"1"]) {
+    if ([self.infavs isEqualToString:@"0"]) {
         self.attentiionBtn.backgroundColor = CNaviColor;
         [self.attentiionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.attentiionBtn setTitle:@"+ 关注" forState:UIControlStateNormal];
@@ -97,7 +97,6 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
 }
 - (void)requestAttentionCancel{
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"attention_id":self.model.userid};
@@ -109,7 +108,6 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    //h333333333
 }
 
 @end
