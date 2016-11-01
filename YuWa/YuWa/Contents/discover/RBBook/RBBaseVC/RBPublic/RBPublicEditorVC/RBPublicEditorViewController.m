@@ -298,8 +298,7 @@
 - (void)requestPublishNode{
     NSString * tagStr = [self tagArrJsonCreate];
 //    MyLog(@"%@",tagStr);
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@1,@"title":self.scrollView.nameTextField.text,@"location":[self.scrollView.locationnameLabel.text isEqualToString:@"添加地点"]?@"":self.scrollView.locationnameLabel.text,@"content":self.scrollView.conTextView.text,@"img_list":self.picUrlArr,@"tag":tagStr};//cid可能变
-    //23333333333333333cid
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":[self.scrollView.locationnameLabel.text isEqualToString:@"添加地点"]?@"":self.scrollView.locationnameLabel.text,@"content":self.scrollView.conTextView.text,@"img_list":self.picUrlArr,@"tag":tagStr};//cid可能变
     [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
@@ -367,7 +366,7 @@
     }];
     NSString * str = [JWTools jsonStrWithKey:@"tags_info_2" withArr:tagArr];
     
-    return str;//2333333 tags_info_2:tag的json参数,key值需要变化
+    return str;
 }
 
 @end
