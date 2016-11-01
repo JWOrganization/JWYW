@@ -7,27 +7,28 @@
 //
 
 #import "VIPHomePageViewController.h"
-//#import "MJRefreshGifHeader.h"
-//#import "MJRefreshBackGifFooter.h"
-
 #import "SDCycleScrollView.h"
-#import "SQMenuShowView.h"    //
-
-#import "HomeMenuCell.h"   
-//#import "HomeSixChooseTableViewCell.h"
+#import "HomeMenuCell.h"
 #import "ShoppingTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
 
-//#import "YWMainCategoryViewController.h"       //18个分类
-#import "NewMainCategoryViewController.h"
+#import "HPBannerModel.h"
+#import "HPCategoryModel.h"
+#import "HPTopShopModel.h"
+#import "HPRecommendShopModel.h"
+
+
+#import "NewMainCategoryViewController.h"   //18个分类
 #import "YWShoppingDetailViewController.h"    //店铺详情
-#import "HomeSearchViewController.h"        //搜索界面
+#import "NewSearchViewController.h"        //搜索界面
 #import "WLBarcodeViewController.h"     //新的扫2维码
 #import "H5LinkViewController.h"    //webView
 
+
+
+
 //
 #define CELL0   @"HomeMenuCell"
-//#define CELL1   @"HomeSixChooseTableViewCell"
 #define CELL1   @"ShoppingTableViewCell"
 #define CELL2   @"YWMainShoppingTableViewCell"
 
@@ -37,14 +38,19 @@
 @property(nonatomic,strong)UIBarButtonItem*leftItem;
 @property(nonatomic,strong)UIBarButtonItem*rightItem;
 @property(nonatomic,strong)UIBarButtonItem*rightItem2;
-
-@property(nonatomic,assign)BOOL isShow;   //显示
-@property(nonatomic,strong)SQMenuShowView*MenuShowView;
 @property(nonatomic,strong)NSString *saveQRCode;   //保存二维码
 
-@property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
 
+
+@property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
 @property (nonatomic,strong)CLGeocoder * geocoder;
+@property(nonatomic,strong)NSString*coordinatex;   //经度
+@property(nonatomic,strong)NSString*coordinatey;   //维度
+//都是model
+@property(nonatomic,strong)NSMutableArray*mtModelArrBanner;
+@property(nonatomic,strong)NSMutableArray*mtModelArrCategory;
+@property(nonatomic,strong)NSMutableArray*mtModelArrTopShop;
+@property(nonatomic,strong)NSMutableArray*mtModelArrRecommend;
 
 @end
 
@@ -52,7 +58,10 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self getDatas];
+    //得到坐标
+    [self getLocalSubName];
+     //把取得的经纬度给后台
+    [self updateCoordinate];
     
     [self makeNaviBar];
     
@@ -60,29 +69,12 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.tableView registerClass:[ShoppingTableViewCell class] forCellReuseIdentifier:CELL1];
-//    [self.tableView registerClass:[HomeSixChooseTableViewCell class] forCellReuseIdentifier:CELL1];
-   // [self.tableView registerClass:[YWMainShoppingTableViewCell class] forCellReuseIdentifier:CELL2];
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
     [self setUpMJRefresh];
-    //
+    
 
-    WEAKSELF;
-    [self.MenuShowView selectBlock:^(SQMenuShowView *view, NSInteger index) {
-         weakSelf.isShow = NO;
-        MyLog(@"%lu",index);
-      
-        if (index==0) {
-            //扫一扫
-        }else{
-            
-            
-        }
-        
-        
-    }];
- 
-    [self getLocalSubName];
-
+  
+  
  
     
 }
@@ -91,7 +83,7 @@
     [super viewWillAppear:animated];
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0 ]setAlpha:1];
     
-    [self makeNoticeWithTime:0 withAlertBody:@"您已购买了xxxx"];
+//    [self makeNoticeWithTime:0 withAlertBody:@"您已购买了xxxx"];
     
 }
 
@@ -111,6 +103,10 @@
             if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways ||[CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
                 MyLog(@"current location is %@",placemark.subLocality);//红灯区
                 //已经定位了
+                self.coordinatex=[NSString stringWithFormat:@"%f",self.location.coordinate.longitude];  //维度
+                
+                self.coordinatey=[NSString stringWithFormat:@"%f",self.location.coordinate.latitude];   //经度
+                
                 
             }else{
                 //泉州市    就是没有定位
@@ -126,11 +122,7 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    MyLog(@"%f",scrollView.contentOffset.y);
 
-    [self.MenuShowView dismissView];
-    self.isShow=NO;
-    
     if (scrollView.contentOffset.y>0) {
        
         if (self.centerView.width !=kScreen_Width- 40.f) {
@@ -154,13 +146,7 @@
 
         }
         
-        
-        
-
-        
     }
-
-    
 }
 
 -(void)makeNaviBar{
@@ -222,47 +208,30 @@
 
 
 -(void)setUpMJRefresh{
-    MJRefreshGifHeader*gifHeader=[MJRefreshGifHeader headerWithRefreshingBlock:^{
-        [self getFitstDatas];
-    }];
-    self.tableView.mj_header=gifHeader;
-    // 设置普通状态的动画图片
-    NSMutableArray *idleImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=60; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
-        [idleImages addObject:image];
-    }
-    [gifHeader setImages:idleImages forState:MJRefreshStateIdle];
-    
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-    NSMutableArray *refreshingImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=3; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
-        [refreshingImages addObject:image];
-    }
-    [gifHeader setImages:refreshingImages forState:MJRefreshStatePulling];
-    
-    // 设置正在刷新状态的动画图片
-    [gifHeader setImages:refreshingImages forState:MJRefreshStateRefreshing];
-    //自动刷新
-//    [gifHeader beginRefreshing];
-    
-    
-    
-#pragma  上拉刷新
-    
-    MJRefreshBackGifFooter*footer=[MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+
+
+   MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
+//       [self.tableView.mj_header endRefreshing];
         [self getDatas];
         
     }];
-    [footer setImages:idleImages forState:MJRefreshStateIdle];
-    [footer setImages:refreshingImages forState:MJRefreshStatePulling];
-    [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
-    //       footer.triggerAutomaticallyRefreshPercent = 0.5;
-    //    self.tableView.mj_footer.automaticallyChangeAlpha=YES;
+    self.tableView.mj_header=gifHeader;
+     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
+    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
+     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
     
-    self.tableView.mj_footer=footer;
-
+    [self.tableView.mj_header beginRefreshing];
+    
+    
+    
+    MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
+        [self.tableView.mj_footer endRefreshing];
+        
+    }];
+    self.tableView.mj_footer=gifFooter;
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
     
 }
 
@@ -270,30 +239,106 @@
 #pragma mark -- Datas
 
 -(void)getDatas{
-    NSString*path=[[NSBundle mainBundle]pathForResource:@"menuData" ofType:@"plist"];
-    _meunArrays=[[NSMutableArray alloc]initWithContentsOfFile:path];
+//    NSString*path=[[NSBundle mainBundle]pathForResource:@"menuData" ofType:@"plist"];
+//    _meunArrays=[[NSMutableArray alloc]initWithContentsOfFile:path];
+//
+//    
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        [self.tableView.mj_header endRefreshing];
+//        [self.tableView.mj_footer endRefreshing];    
+////         [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//    });
 
     
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_PAGE];
+
+    NSMutableDictionary*params=[NSMutableDictionary dictionary];
+    [params setObject:[JWTools getUUID] forKey:@"device_id"];
+    if (self.coordinatex) {
+        [params setObject:self.coordinatex forKey:@"coordinatex"];
+    }else if (self.coordinatey){
+        [params setObject:self.coordinatey forKey:@"coordinatey"];
+    }
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSString*errorCode=[NSString stringWithFormat:@"%@",data[@"errorCode"]];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            NSArray*banner=data[@"data"][@"flash"];
+            for (int i=0; i<banner.count; i++) {
+             HPBannerModel*model= [HPBannerModel yy_modelWithDictionary:banner[i]];
+                [self.mtModelArrBanner addObject:model];
+                
+            }
+            
+            NSArray*category=data[@"data"][@"category"];
+            for (NSDictionary*dict in category) {
+              HPCategoryModel*model=[HPCategoryModel yy_modelWithDictionary:dict];
+                [self.mtModelArrCategory addObject:model];
+                
+            }
+            
+            NSArray*topShop=data[@"data"][@"top_shop"];
+            for (NSDictionary*dict in topShop) {
+                HPTopShopModel*model=[HPTopShopModel yy_modelWithDictionary:dict];
+                [self.mtModelArrTopShop addObject:model];
+            }
+            
+            NSArray*recommendShop=data[@"data"][@"recommend_shop"];
+            for (NSDictionary*dict in recommendShop) {
+                HPRecommendShopModel*model=[HPRecommendShopModel yy_modelWithDictionary:dict];
+                [self.mtModelArrRecommend addObject:model];
+            }
+            
+            [self.tableView reloadData];
+            
+        }else{
+            [JRToast showWithText:@"errorMessage"];
+        }
         
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];    
-//         [self.tableView.mj_footer endRefreshingWithNoMoreData];
-    });
-
-    
-}
--(void)getFitstDatas{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         
-        [self.tableView.mj_footer resetNoMoreData];
-    });
-                   
+        
+    }];
+    
 }
+
+//把取得的经纬度给后台
+-(void)updateCoordinate{
+    if (!self.coordinatex||!self.coordinatey) {
+        return;
+    }
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_UPDATECOORDINATE];
+    NSDictionary*params=@{@"device_id":[UserSession instance].token,@"coordinatex":self.coordinatex,@"coordinatey":self.coordinatey};
+   HttpManager*manager= [[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        
+        
+    }];
+    
+    
+    
+}
+
+
+//-(void)getFitstDatas{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        [self.tableView.mj_header endRefreshing];
+//        [self.tableView.mj_footer endRefreshing];
+//        
+//        [self.tableView.mj_footer resetNoMoreData];
+//    });
+//                   
+//}
 
 
 #pragma mark -- UI
@@ -450,12 +495,17 @@
         if (isScceed) {
           //扫描结果 成功
             self.saveQRCode=str;
+            
+            
+            
+            
+            //不是我们的二维码
             NSString*strr=[NSString stringWithFormat:@"可能存在风险，是否打开此链接?\n %@",str];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:strr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"打开链接", nil];
             [alert show];
 
             
-            
+            //
             
             
             
@@ -492,28 +542,14 @@
 
 -(void)touchLingdang{
     
-//    //小跳窗
-//    _isShow=!_isShow;
-//    if (_isShow) {
-//        //显示
-//        [self.MenuShowView showView];
-//        
-//        
-//    }else{
-//        
-//        [self.MenuShowView dismissView];
-//        
-//    }
 
-    //通知界面
     
     
     
 }
 //点击输入框
 -(void)touchinPut{
-    MyLog(@"aa");
-    HomeSearchViewController*vc=[[HomeSearchViewController alloc]init];
+    NewSearchViewController*vc=[[NewSearchViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -554,9 +590,7 @@
     
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.MenuShowView dismissView];
-}
+
 
 #pragma mark  --set
 -(UITableView *)tableView{
@@ -569,16 +603,35 @@
     return _tableView;
 }
 
--(SQMenuShowView *)MenuShowView{
-    if (!_MenuShowView) {
-        _MenuShowView=[[SQMenuShowView alloc]initWithFrame:CGRectMake(kScreen_Width-100-10, 64+5, 100, 0) items:@[@"扫一扫",@"付款码"] showPoint:CGPointMake(kScreen_Width-30, 10)];
-        _MenuShowView.sq_backGroundColor=[UIColor grayColor];
-        [self.view addSubview:_MenuShowView];
-        
+
+
+
+-(NSMutableArray *)mtModelArrBanner{
+    if (!_mtModelArrBanner) {
+        _mtModelArrBanner=[NSMutableArray array];
     }
-    
-    return _MenuShowView;
+    return _mtModelArrBanner;
 }
 
+-(NSMutableArray *)mtModelArrCategory{
+    if (!_mtModelArrCategory) {
+        _mtModelArrCategory=[NSMutableArray array];
+    }
+    return _mtModelArrCategory;
+}
+
+-(NSMutableArray *)mtModelArrTopShop{
+    if (!_mtModelArrTopShop) {
+        _mtModelArrTopShop=[NSMutableArray array];
+    }
+    return _mtModelArrTopShop;
+}
+
+-(NSMutableArray *)mtModelArrRecommend{
+    if (!_mtModelArrRecommend) {
+        _mtModelArrRecommend=[NSMutableArray array];
+    }
+    return _mtModelArrRecommend;
+}
 
 @end
