@@ -375,10 +375,10 @@
 + (NSString *)jsonStrWithKey:(NSString *)key withArr:(NSArray *)arr{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     [dictionary setValue:arr forKey:key];
-    NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:kNilOptions error:nil];
     NSString *jsonStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *strUrl = [jsonStr stringByReplacingOccurrencesOfString:@" " withString:@""];
-    return strUrl;
+    
+    return jsonStr;
 }
 
 #pragma mark - RegEx
