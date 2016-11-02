@@ -11,6 +11,7 @@
 #import "TZPhotoPickerController.h"
 #import "RBPublicEditorScrollView.h"
 #import "RBPublicLocationViewController.h"
+#import "RBPublicLocationEditorViewController.h"
 
 @interface RBPublicEditorViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate>
 
@@ -68,7 +69,16 @@
     self.scrollView.conTextView.delegate = self;
     [self cellAddLongPressGestureRecognizer];
     self.scrollView.chooseLocationBlock = ^(){//选地点
-        RBPublicLocationViewController * vc = [[RBPublicLocationViewController alloc]init];
+//        RBPublicLocationViewController * vc = [[RBPublicLocationViewController alloc]init];
+//        vc.locationChooseBlock = ^(NSString * locationName){
+//            if (![locationName isEqualToString:@""]){
+//                weakSelf.scrollView.locationnameLabel.text = locationName;
+//            }else{
+//                weakSelf.scrollView.locationnameLabel.text = @"添加地点";
+//            }
+//        };
+//        [weakSelf.navigationController pushViewController:vc animated:YES];
+        RBPublicLocationEditorViewController * vc = [[RBPublicLocationEditorViewController alloc]init];
         vc.locationChooseBlock = ^(NSString * locationName){
             if (![locationName isEqualToString:@""]){
                 weakSelf.scrollView.locationnameLabel.text = locationName;

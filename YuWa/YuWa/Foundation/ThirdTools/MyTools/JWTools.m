@@ -530,8 +530,8 @@
     CFStringTransform((CFMutableStringRef)strFir,NULL, kCFStringTransformMandarinLatin,NO);//先转换为带声调的拼音
     CFStringTransform((CFMutableStringRef)strFir,NULL, kCFStringTransformStripDiacritics,NO);//再转换为不带声调的拼音
     
-//    return [[strFir capitalizedString] substringToIndex:1];//转化为大写拼音&获取并返回首字母
-    return [strFir capitalizedString];
+    return [[strFir capitalizedString] substringToIndex:1];//转化为大写拼音&获取并返回首字母
+//    return [strFir capitalizedString];
 }
 
 #pragma mark - QR Code 二维码

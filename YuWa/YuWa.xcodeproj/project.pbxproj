@@ -408,6 +408,8 @@
 		B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2F741D8FC8CD004D5256 /* JWSearchView.m */; };
 		B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */; };
 		B3A1C32E1DB21ED00091BD9D /* JWTagScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A1C32D1DB21ED00091BD9D /* JWTagScrollView.m */; };
+		B3A28A521DCA1059008A0A15 /* RBPublicLocationEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A28A501DCA1059008A0A15 /* RBPublicLocationEditorViewController.m */; };
+		B3A28A531DCA1059008A0A15 /* RBPublicLocationEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A28A511DCA1059008A0A15 /* RBPublicLocationEditorViewController.xib */; };
 		B3AE4D701D91302B000A389F /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D5E1D91302B000A389F /* TZAssetCell.m */; };
 		B3AE4D711D91302B000A389F /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D601D91302B000A389F /* TZAssetModel.m */; };
 		B3AE4D721D91302B000A389F /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4D621D91302B000A389F /* TZImageManager.m */; };
@@ -1497,6 +1499,9 @@
 		B38B2F751D8FC8CD004D5256 /* JWSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWSearchView.xib; sourceTree = "<group>"; };
 		B3A1C32C1DB21ED00091BD9D /* JWTagScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWTagScrollView.h; sourceTree = "<group>"; };
 		B3A1C32D1DB21ED00091BD9D /* JWTagScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWTagScrollView.m; sourceTree = "<group>"; };
+		B3A28A4F1DCA1059008A0A15 /* RBPublicLocationEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBPublicLocationEditorViewController.h; sourceTree = "<group>"; };
+		B3A28A501DCA1059008A0A15 /* RBPublicLocationEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBPublicLocationEditorViewController.m; sourceTree = "<group>"; };
+		B3A28A511DCA1059008A0A15 /* RBPublicLocationEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBPublicLocationEditorViewController.xib; sourceTree = "<group>"; };
 		B3AE4D5D1D91302B000A389F /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
 		B3AE4D5E1D91302B000A389F /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
 		B3AE4D5F1D91302B000A389F /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
@@ -4097,6 +4102,9 @@
 				B3CD68AB1D94F9F300C26B1C /* RBPublicLocationViewController.h */,
 				B3CD68AC1D94F9F300C26B1C /* RBPublicLocationViewController.m */,
 				B3CD68AD1D94F9F300C26B1C /* RBPublicLocationViewController.xib */,
+				B3A28A4F1DCA1059008A0A15 /* RBPublicLocationEditorViewController.h */,
+				B3A28A501DCA1059008A0A15 /* RBPublicLocationEditorViewController.m */,
+				B3A28A511DCA1059008A0A15 /* RBPublicLocationEditorViewController.xib */,
 			);
 			path = RBPublicLocationVC;
 			sourceTree = "<group>";
@@ -5618,6 +5626,7 @@
 				B34BCE131DAA811C001AB98D /* YWNodeAddAldumTitleTableViewCell.xib in Resources */,
 				B35778B91D996B0B0058A998 /* YWStormSearchViewController.xib in Resources */,
 				B301E7CB1DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib in Resources */,
+				B3A28A531DCA1059008A0A15 /* RBPublicLocationEditorViewController.xib in Resources */,
 				B3AE4D731D91302B000A389F /* TZImagePickerController.bundle in Resources */,
 				B38B2F1D1D8FC82F004D5256 /* RBHomeViewController.xib in Resources */,
 				B38B2F601D8FC83A004D5256 /* xhsemoji2.plist in Resources */,
@@ -5943,6 +5952,7 @@
 				B38B2F071D8FC82F004D5256 /* RBNodeDetailCommentHeader.m in Sources */,
 				B33A266B1D9A68040092CB12 /* EMSDWebImageDownloader.m in Sources */,
 				B38B2DF31D8FACD8004D5256 /* UserSession.m in Sources */,
+				B3A28A521DCA1059008A0A15 /* RBPublicLocationEditorViewController.m in Sources */,
 				B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */,
 				B38B2E121D8FACD8004D5256 /* MJRefreshBackFooter.m in Sources */,
 				B33A26AF1D9A68040092CB12 /* EaseFacialView.m in Sources */,

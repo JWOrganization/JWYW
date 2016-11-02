@@ -75,7 +75,9 @@
     [dataDic setObject:userDic forKey:@"user"];
     [dataDic setObject:imgArr forKey:@"images_list"];
     [dataDic setObject:commentArr forKey:@"comments_list"];
-    [dataDic setObject:tagDic[@"tags_info_2"] forKey:@"tags_info_2"];
+    if (tagDic[@"tags_info_2"]) {
+        [dataDic setObject:tagDic[@"tags_info_2"] forKey:@"tags_info_2"];
+    }
     return dataDic;
 }
 
