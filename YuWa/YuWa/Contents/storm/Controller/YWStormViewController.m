@@ -201,7 +201,7 @@
         MyLog(@"Regieter Code error is %@",responsObj);
     }];//h2333333333
     
-//    self.type//2333333333筛选类型请求参数,要转str类型
+//    self.type//233333333筛选类型请求参数,要转str类型
 //    self.subType//2333333333筛选类型子类型,要转str类型
     
     self.isSearch = YES;
