@@ -116,6 +116,18 @@
 
 #pragma mark - Http
 - (void)requestShopArrDataWithPages:(NSInteger)page{
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_NOTCCAFICATIONJ_ORDER withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+    
+    //h2333333333
+    
     if (page>0){
         [self.tableView.mj_footer endRefreshing];
     }else{

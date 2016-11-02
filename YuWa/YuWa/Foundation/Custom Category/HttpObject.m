@@ -158,6 +158,14 @@
         case YuWaType_STORM_SEARCH://搜索店铺
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_SEARCH];
             break;
+#pragma mark - Noticafication
+        case YuWaType_NOTCCAFICATIONJ_ORDER://预约通知
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_NOTCCAFICATIONJ_ORDER];
+            break;
+        case YuWaType_NOTCCAFICATIONJ_PAY://付款通知
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_NOTCCAFICATIONJ_PAY];
+            break;
+            
             
             //URLStr建立
         default:

@@ -52,8 +52,9 @@
 #define HTTP_STORM_SEARCH_HOT @"/api.php/Index/hotSearch/" //热门搜索
 #define HTTP_STORM_SEARCH @"/api.php/Shop/searchResult/" //搜索店铺
 
-
-
+#pragma mark - Noticafication
+#define HTTP_NOTCCAFICATIONJ_ORDER @"/api.php/User/reservePushNotice/" //预约通知
+#define HTTP_NOTCCAFICATIONJ_PAY @"/api.php/User/payPushNotice/" //付款通知
 
 
 

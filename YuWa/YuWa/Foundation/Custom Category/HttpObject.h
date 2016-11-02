@@ -46,6 +46,9 @@ typedef enum YuWaType{
     YuWaType_STORM_SEARCH_HOT, //热门搜索
     YuWaType_STORM_SEARCH, //搜索店铺
     
+    YuWaType_NOTCCAFICATIONJ_ORDER, //预约通知
+    YuWaType_NOTCCAFICATIONJ_PAY, //付款通知
+    
     YuWaType_
     
 }kYuWaType;
