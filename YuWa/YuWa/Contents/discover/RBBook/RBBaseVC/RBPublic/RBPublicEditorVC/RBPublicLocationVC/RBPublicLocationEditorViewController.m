@@ -77,6 +77,7 @@
 
 - (void)getLocalSubName{
     self.locationStr = @"泉州";
+    [self.tableView reloadData];
     WEAKSELF;
     CLLocation * location = [[CLLocation alloc]initWithLatitude:self.location.coordinate.latitude longitude:self.location.coordinate.longitude];
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
