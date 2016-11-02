@@ -79,7 +79,7 @@
 
 #pragma mark - Http
 - (void)requestSubTypeWithIdx:(NSInteger)index{
-    NSDictionary * pragram = @{@"cid":[NSString stringWithFormat:@"%zi",(index>1?(index+3):(index+1))]};
+    NSDictionary * pragram = @{@"cid":[NSString stringWithFormat:@"%zi",(index>=1?(index+3):(index+1))]};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_STORM_TAG withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
