@@ -143,7 +143,7 @@
     [self requestShopArrData];
 }
 
-#pragma maek - Http
+#pragma mark - Http
 - (void)requestShopArrData{
     [self.dataArr removeAllObjects];
     [self.keyArr removeAllObjects];

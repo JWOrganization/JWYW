@@ -41,6 +41,11 @@ typedef enum YuWaType{
     
     YuWaType_IMG_UP, //上传图片
     
+    YuWaType_STORM_NEARSHOP, //商家
+    YuWaType_STORM_TAG, //子标签
+    YuWaType_STORM_SEARCH_HOT, //热门搜索
+    YuWaType_STORM_SEARCH, //搜索店铺
+    
     YuWaType_
     
 }kYuWaType;

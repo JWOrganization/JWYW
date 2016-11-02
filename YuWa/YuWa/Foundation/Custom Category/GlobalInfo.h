@@ -11,18 +11,17 @@
 
 #define HTTP_ADDRESS        @"http://114.215.252.104"    //地址
 
+#pragma mark - Logion & Register
 #define HTTP_REGISTER       @"/api.php/Login/reg/" //注册账号
 #define HTTP_REGISTER_CODE   @"/api.php/Login/getRegisterCode/" //注册验证码
 #define HTTP_LOGION_CODE   @"/api.php/Login/getRegisterCode/" //快捷登录验证码
 #define HTTP_RESET_CODE   @"/api.php/Login/getRegisterCode/" //重置密码验证码
-
-
 #define HTTP_LOGIN          @"/api.php/Login/login/" //登入
 #define HTTP_LOGIN_Quick      @"/api.php/Login/phoneLogin/" //快捷登录
 #define HTTP_LOGIN_FORGET_TEL @"/api.php/Login/resetPassword/" //找回密码
 
 
-
+#pragma mark - Red Book
 #define HTTP_RB_HOME @"/api.php/Note/index/" //发现首页
 #define HTTP_RB_DETAIL @"/api.php/Note/detail/" //笔记详情
 #define HTTP_RB_RELATED @"/api.php/Note/getRelationNote/" //相关笔记
@@ -43,11 +42,15 @@
 //#define HTTP_RB_ @"/api.php/Login/resetPassword/" //搜索地点
 #define HTTP_RB_ATTENTION @"/api.php/User/myAttention/" //我的关注
 
+#pragma mark - IMG
 #define HTTP_IMG_UP @"/api.php/Index/uploadImg/" //上传图片
 
 
-
-
+#pragma mark - Storm
+#define HTTP_STORM_NEARSHOP @"/api.php/Shop/getMyNearShop/" //商家
+#define HTTP_STORM_TAG @"/api.php/Shop/getTagNameByCid/" //子标签
+#define HTTP_STORM_SEARCH_HOT @"/api.php/Index/hotSearch/" //热门搜索
+#define HTTP_STORM_SEARCH @"/api.php/Shop/searchResult/" //搜索店铺
 
 
 

@@ -176,7 +176,7 @@
     [self requestSearchLocationArrDataWithPages:self.locPages];
 }
 
-#pragma maek - Http
+#pragma mark - Http
 - (void)requestLocationArrDataWithPages:(NSInteger)page{
     //2333333 根据定位获取数据
     if (page>0){

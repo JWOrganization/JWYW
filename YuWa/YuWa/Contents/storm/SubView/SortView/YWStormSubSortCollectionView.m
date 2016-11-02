@@ -70,7 +70,7 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.choosedTypeIdx = indexPath.row;
-    self.choosedTypeBlock(self.allTypeIdx,self.choosedTypeIdx);
+    self.choosedTypeBlock(self.allTypeIdx,[self.dataTagArr[self.choosedTypeIdx]integerValue]);
     [self reloadData];
 }
 

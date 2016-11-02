@@ -63,7 +63,7 @@
     [self requestShopArrDataWithPages:0];
 }
 
-#pragma maek - Http
+#pragma mark - Http
 - (void)requestShopArrDataWithPages:(NSInteger)page{
     if (page>0){
         [self.mj_footer endRefreshing];
