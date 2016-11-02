@@ -26,7 +26,7 @@
     if (!model)return;
     _model = model;
     self.size = CGSizeMake(50.f, 50.f);
-    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:@"23333333"] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:nil];
+    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:nil];
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 }

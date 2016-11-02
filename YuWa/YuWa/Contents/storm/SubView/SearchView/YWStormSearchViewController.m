@@ -51,8 +51,24 @@
 
 - (void)searchWithKey:(NSString *)searchKey{
     MyLog(@"%@",searchKey);
+    NSString * searchID = self.hotDataArr[0]?self.hotDataArr[0][@"shopID"]:@"";
+    for (int i = 0; i<self.dataArr.count; i++) {
+        NSDictionary * dataDic = self.dataArr[i];
+        if ([dataDic[@"name"] isEqualToString:searchKey]) {
+            searchID = dataDic[@"shopID"];
+            break;
+        }
+    }
+    if ([searchID isEqualToString:@""])return;
+    
     YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-    //    vc.idd = 23333333;//商店ID
+    //    vc.idd = searchID;//商店ID23333333
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)searchWithID:(NSString *)searchID{
+    MyLog(@"%@",searchID);
+    YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
+    //    vc.idd = searchID;//商店ID233333333
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - UITableViewDelegate
@@ -79,9 +95,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.shopTextField.text isEqualToString:@""]) {
-        [self searchWithKey:self.hotDataArr[indexPath.row]];
+        [self searchWithID:self.hotDataArr[indexPath.row][@"shopID"]];
     }else{
-        [self searchWithKey:self.dataArr[indexPath.row]];
+        [self searchWithID:self.dataArr[indexPath.row][@"shopID"]];
     }
 }
 
@@ -104,7 +120,11 @@
         lineView.tag = 10086;
         [shopCell addSubview:lineView];
     }
-    shopCell.textLabel.text = self.dataArr[indexPath.row];//2333333要换
+    if ([self.shopTextField.text isEqualToString:@""]) {
+        shopCell.textLabel.text = self.hotDataArr[indexPath.row][@"name"];
+    }else{
+        shopCell.textLabel.text = self.dataArr[indexPath.row][@"name"];
+    }
     return shopCell;
 }
 
@@ -142,22 +162,20 @@
     [[HttpObject manager]getNoHudWithType:YuWaType_STORM_SEARCH_HOT withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        [self.tableView.mj_footer endRefreshing];
+        NSArray * dataArr = responsObj[@"data"];
+        for (int i = 0; i < dataArr.count; i++) {
+            NSDictionary * dataDic = dataArr[i];
+            if (dataDic[@"title"]&&dataDic[@"url"]) {
+                [self.hotDataArr addObject:@{@"name":dataDic[@"title"],@"shopID":dataDic[@"url"]}];
+            }
+        }
         
+        [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
         [self.tableView.mj_footer endRefreshing];
-    }];//h2333333333
-    
-    
-    //23333333要删
-    for (int i = 0; i<15; i++) {
-        [self.dataArr addObject:[NSString stringWithFormat:@"%zi饭店%@",i,self.shopTextField.text]];
-    }
-    //23333333要删
-    
-    [self.tableView reloadData];
+    }];
 }
 - (void)requestShopArrDataWithPages:(NSInteger)page{
     NSDictionary * pragram = @{@"keyword":self.shopTextField.text,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
@@ -169,19 +187,22 @@
             [self.tableView.mj_footer endRefreshing];
         }else{
             [self.dataArr removeAllObjects];
+            [self.tableView.mj_footer endRefreshing];
         }
-        
-        //23333333要删
-        for (int i = 0; i<15; i++) {
-            [self.dataArr addObject:[NSString stringWithFormat:@"%zi饭店%@",i,self.shopTextField.text]];
+        NSArray * dataArr = responsObj[@"data"];
+        for (int i = 0; i < dataArr.count; i++) {
+            NSDictionary * dataDic = dataArr[i];
+            if (dataDic[@"id"]&&dataDic[@"company_name"]) {
+                [self.hotDataArr addObject:@{@"name":dataDic[@"company_name"],@"shopID":dataDic[@"id"]}];
+            }
         }
-        //23333333要删
-        
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h2333333333
+        [self.tableView.mj_footer endRefreshing];
+        self.pages--;
+    }];
 }
 
 @end

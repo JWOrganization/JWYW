@@ -10,4 +10,8 @@
 
 @implementation YWStormAnnotationModel
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"annotationID" : @"id",@"type" : @"cid"};
+}
+
 @end

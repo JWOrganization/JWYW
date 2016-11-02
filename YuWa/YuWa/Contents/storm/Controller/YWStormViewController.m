@@ -35,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
+    self.subType = 1;
     [self makeNavi];
     [self makeUI];
 }
@@ -196,24 +197,18 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_STORM_NEARSHOP withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        self.isSearch = YES;
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        NSArray * dataArr = responsObj[@"data"];
+        for (int i = 0; i<dataArr.count; i++) {
+            YWStormAnnotationModel * model = [YWStormAnnotationModel yy_modelWithJSON:dataArr[i]];
+            model.coordinate = (CLLocationCoordinate2D){[model.coordinatey floatValue],[model.coordinatex floatValue]};
+            [self.mapView addAnnotation:model];
+        }
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h2333333333
-    
-//    self.type//233333333筛选类型请求参数,要转str类型
-//    self.subType//2333333333筛选类型子类型,要转str类型
-    
-    self.isSearch = YES;
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    //要删233333333
-    for (int i = 0; i<10; i++) {
-        YWStormAnnotationModel * model = [[YWStormAnnotationModel alloc]init];
-        model.coordinate = (CLLocationCoordinate2D){[YWLocation shareLocation].lat + i,[YWLocation shareLocation].lon + i};
-        model.type = [NSString stringWithFormat:@"%zi",i];
-        [self.mapView addAnnotation:model];
-    }
-    //要删233333333
+    }];
 }
 
 

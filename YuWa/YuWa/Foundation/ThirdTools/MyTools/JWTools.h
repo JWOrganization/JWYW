@@ -162,6 +162,15 @@
  *  @return json字符串
  */
 + (NSString *)jsonStrWithKey:(NSString *)key withArr:(NSArray *)arr;
+/**
+ *  单个数组组成Json文件
+ *
+ *  @param key 接口关键字
+ *  @param arr 接口数组
+ *
+ *  @return json字符串
+ */
++ (NSString *)jsonStrWithArr:(NSArray *)arr;
 
 #pragma mark - RegEx
 /**
