@@ -9,6 +9,8 @@
 #import "ShoppingTableViewCell.h"
 #import "ShoppingCollectionViewCell.h"
 
+#import "HPTopShopModel.h"
+
 #define CCELL0   @"ShoppingCollectionViewCell"
 
 @interface ShoppingTableViewCell()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -37,15 +39,20 @@
 
         
         self.collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 200) collectionViewLayout:flowLayout];
-        [self.collectionView registerNib:[UINib nibWithNibName:@"ShoppingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CCELL0];
+        [self.collectionView registerNib:[UINib nibWithNibName:CCELL0 bundle:nil] forCellWithReuseIdentifier:CCELL0];
+        
         [self addSubview:self.collectionView];
         self.collectionView.backgroundColor=[UIColor whiteColor];
         self.collectionView.showsHorizontalScrollIndicator=NO;
         self.collectionView.delegate=self;
         self.collectionView.dataSource=self;
+        self.collectionView.alwaysBounceHorizontal=YES;
         
         //注册headerView  此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致  均为reusableView
         [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
+        [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        
+        
         [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left);
             make.top.mas_equalTo(self.mas_top).offset(44);
@@ -62,22 +69,57 @@
 
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 6;
+    return self.allDatas.count;
+ 
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:CCELL0 forIndexPath:indexPath];
+    ShoppingCollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:CCELL0 forIndexPath:indexPath];
+    
+    NSInteger number=indexPath.row;
+    HPTopShopModel*model=self.allDatas[number];
+    
+ 
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+    
+ 
+
+    cell.titleLabel.text=model.company_name;
+
+    
     
     return cell;
     
 }
 
+
+
+
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger number=indexPath.row;
-    MyLog(@"%lu",number);
+    
     
     if (self.touchCollectionViewBlock) {
         self.touchCollectionViewBlock(number);
     }
+    
+}
+
+
+
+
+#pragma mark  --set
+
+
+
+-(void)setAllDatas:(NSMutableArray *)allDatas{
+    
+    _allDatas=allDatas;
+    
+    [self.collectionView reloadData];
+
     
 }
 

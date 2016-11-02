@@ -10,6 +10,7 @@
 
 @interface HPBannerModel : NSObject
 
-@property(nonatomic,strong)NSString*bannerImage;   //轮播图
-@property(nonatomic,strong)NSString*idd;           //id
+@property(nonatomic,strong)NSString*title;
+@property(nonatomic,strong)NSString*img;   //轮播图
+@property(nonatomic,strong)NSString*url;           //这个url 就是轮播图的id
 @end

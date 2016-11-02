@@ -11,4 +11,7 @@
 @interface HUDFailureShowView : UIView
 
 @property(nonatomic,copy)void(^reloadBlock)();
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *showLabel;
+@property (weak, nonatomic) IBOutlet UIButton *touchButton;
 @end

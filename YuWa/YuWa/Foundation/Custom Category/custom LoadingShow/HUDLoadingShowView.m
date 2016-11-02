@@ -23,6 +23,7 @@
         imageView.animationRepeatCount=0;
         [imageView startAnimating];
 
+        self.backgroundColor=[UIColor clearColor];
     }
     return self;
 }

@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface HPCategoryModel : NSObject
-@property(nonatomic,strong)NSString*CategoryImage;
-@property(nonatomic,strong)NSString*CategoryTitle;
-@property(nonatomic,strong)NSString*idd;
+@property(nonatomic,strong)NSString*img;           //图片
+@property(nonatomic,strong)NSString*class_name;    //名字
+@property(nonatomic,strong)NSString*id;           //跳转的id
 
 @end

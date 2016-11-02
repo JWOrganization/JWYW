@@ -10,4 +10,5 @@
 
 @interface showResultsViewController : UIViewController
 
+@property(nonatomic,strong)NSMutableArray*ModelArray;
 @end
