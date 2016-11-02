@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic,strong)NSMutableArray * dataArr;
+@property (nonatomic,strong)NSMutableArray * hotDataArr;
 @property (nonatomic,copy)NSString * pagens;
 @property (nonatomic,assign)NSInteger pages;
 
@@ -31,7 +32,7 @@
     [self makeUI];
     [self setupRefresh];
     [self dataSet];
-    [self requestShopArrDataWithPages:0];
+    [self requestHotShopArrData];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -39,6 +40,7 @@
 }
 - (void)dataSet{
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
+    self.hotDataArr = [NSMutableArray arrayWithCapacity:0];
     self.pagens = @"15";
 }
 
@@ -76,12 +78,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self searchWithKey:self.dataArr[indexPath.row]];
+    if ([self.shopTextField.text isEqualToString:@""]) {
+        [self searchWithKey:self.hotDataArr[indexPath.row]];
+    }else{
+        [self searchWithKey:self.dataArr[indexPath.row]];
+    }
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArr.count <=0?1:self.dataArr.count;
+    return [self.shopTextField.text isEqualToString:@""]?self.hotDataArr.count:self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,13 +135,21 @@
     [self requestShopArrDataWithPages:self.pages];
 }
 
-#pragma maek - Http
-- (void)requestShopArrDataWithPages:(NSInteger)page{
-    if (page>0){
+#pragma mark - Http
+- (void)requestHotShopArrData{
+    NSDictionary * pragram = @{};
+    
+    [[HttpObject manager]getNoHudWithType:YuWaType_STORM_SEARCH_HOT withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
         [self.tableView.mj_footer endRefreshing];
-    }else{
-        [self.dataArr removeAllObjects];
-    }
+        
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.tableView.mj_footer endRefreshing];
+    }];//h2333333333
+    
     
     //23333333要删
     for (int i = 0; i<15; i++) {
@@ -144,6 +158,30 @@
     //23333333要删
     
     [self.tableView reloadData];
+}
+- (void)requestShopArrDataWithPages:(NSInteger)page{
+    NSDictionary * pragram = @{@"keyword":self.shopTextField.text,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_STORM_SEARCH withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        if (page>0){
+            [self.tableView.mj_footer endRefreshing];
+        }else{
+            [self.dataArr removeAllObjects];
+        }
+        
+        //23333333要删
+        for (int i = 0; i<15; i++) {
+            [self.dataArr addObject:[NSString stringWithFormat:@"%zi饭店%@",i,self.shopTextField.text]];
+        }
+        //23333333要删
+        
+        [self.tableView reloadData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h2333333333
 }
 
 @end

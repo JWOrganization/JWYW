@@ -113,11 +113,12 @@
     [self.sortSubCollectionView dataSet];
     
     self.sortTableView = [[YWStormSortTableView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width/3, self.sortSubCollectionView.height) style:UITableViewStylePlain];
-    self.sortTableView.choosedTypeBlock = ^(NSInteger type,NSInteger subType,NSArray * subArr){
+    self.sortTableView.choosedTypeBlock = ^(NSInteger type,NSInteger subType,NSArray * subArr,NSArray * subTagArr){
         weakSelf.type = type;
         weakSelf.sortSubCollectionView.allTypeIdx = type;
         weakSelf.sortSubCollectionView.choosedTypeIdx = subType;
         weakSelf.sortSubCollectionView.dataArr = subArr;
+        weakSelf.sortSubCollectionView.dataTagArr = subTagArr;
     };
     self.sortTableView.hidden = YES;
     self.sortSubCollectionView.hidden = self.sortTableView.hidden;
@@ -190,7 +191,17 @@
 }
 #pragma mark - Http
 - (void)requestAnnotationData{
-//    self.type//2333333333筛选类型请求参数,要转str类型
+    NSDictionary * pragram = @{@"tag_id":[NSString stringWithFormat:@"%zi",self.subType],@"coordinatex":[NSString stringWithFormat:@"%f",[YWLocation shareLocation].lon],@"coordinatey":[NSString stringWithFormat:@"%f",[YWLocation shareLocation].lat]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_STORM_NEARSHOP withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h2333333333
+    
+//    self.type//233333333筛选类型请求参数,要转str类型
 //    self.subType//2333333333筛选类型子类型,要转str类型
     
     self.isSearch = YES;

@@ -26,10 +26,14 @@
 - (void)getNoHudWithType:(kYuWaType)type withPragram:(NSDictionary *)pragram success:(void(^)(id responsObj))success failur:(void(^)(id errorData,NSError *error))fail{
     NSString * urlStr = HTTP_ADDRESS;
     switch (type) {
+#pragma mark - RB_Node
         case  YuWaType_RB_SEARCH_QUICK://笔记热门搜索
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_QUICK];
             break;
-            
+#pragma mark - Storm
+        case YuWaType_STORM_SEARCH_HOT://热门搜索
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_SEARCH_HOT];
+            break;
             //URLStr建立
         default:
             break;
@@ -141,10 +145,20 @@
         case YuWaType_RB_ATTENTION://显示关注
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION];
             break;
-#pragma mark - SEARCH
         case YuWaType_RB_SEARCH_KEY://搜索相关
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_KEY];
             break;
+#pragma mark - Storm
+        case YuWaType_STORM_NEARSHOP://商家
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_NEARSHOP];
+            break;
+        case YuWaType_STORM_TAG://子标签
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_TAG];
+            break;
+        case YuWaType_STORM_SEARCH://搜索店铺
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_SEARCH];
+            break;
+            
             //URLStr建立
         default:
             break;

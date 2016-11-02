@@ -10,7 +10,7 @@
 
 @interface YWStormSortTableView : UITableView
 
-@property (nonatomic,copy)void(^choosedTypeBlock)(NSInteger,NSInteger,NSArray *);
+@property (nonatomic,copy)void(^choosedTypeBlock)(NSInteger,NSInteger,NSArray *,NSArray *);
 
 @property (nonatomic,strong)NSMutableArray * dataStateArr;
 
