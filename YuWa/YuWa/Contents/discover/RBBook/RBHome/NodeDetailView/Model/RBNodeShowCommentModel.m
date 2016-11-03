@@ -7,6 +7,7 @@
 //
 
 #import "RBNodeShowCommentModel.h"
+#import "JWTools.h"
 
 @implementation RBNodeShowCommentModel
 
@@ -18,7 +19,7 @@
     NSMutableDictionary * commentDic = [NSMutableDictionary dictionaryWithCapacity:0];
     [commentDic setObject:dic[@"status"]?dic[@"status"]:@"" forKey:@"status"];
     NSString * content = dic[@"customer_content"]?dic[@"customer_content"]:@"";
-    [commentDic setObject:content forKey:@"content"];
+    [commentDic setObject:[JWTools stringWithUTF8JW:content] forKey:@"content"];
     [commentDic setObject:dic[@"ctime"]?dic[@"ctime"]:@"" forKey:@"time"];
     
     NSMutableDictionary * userDicTemp = [NSMutableDictionary dictionaryWithCapacity:0];

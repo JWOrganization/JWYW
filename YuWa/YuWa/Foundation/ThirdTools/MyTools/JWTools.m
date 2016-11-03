@@ -394,6 +394,27 @@
     
     return jsonStr;
 }
+/**
+ *  字符串组成UTF8文件
+ *
+ *  @param key 接口关键字
+ *  @param arr 接口数组
+ *
+ *  @return json字符串
+ */
++ (NSString *)UTF8WithStringJW:(NSString *)str{
+    return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+/**
+ *  字符串解析UTF8
+ *
+ *  @param UTF8String UTF8
+ *
+ *  @return 字符串
+ */
++ (NSString *)stringWithUTF8JW:(NSString *)UTF8String{
+    return [UTF8String stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
 
 #pragma mark - RegEx
 /**
