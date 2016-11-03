@@ -50,6 +50,8 @@ typedef enum YuWaType{
     YuWaType_NOTCCAFICATIONJ_ORDER, //预约通知
     YuWaType_NOTCCAFICATIONJ_PAY, //付款通知
     
+    YuWaType_FRIENDS_INFO, //好友信息
+    
     YuWaType_
     
 }kYuWaType;

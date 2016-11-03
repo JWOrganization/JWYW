@@ -79,6 +79,10 @@
         case YuWaType_RB_DETAIL://笔记详情
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_DETAIL];
             break;
+#pragma mark - Friends
+        case YuWaType_FRIENDS_INFO://好友信息
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_FRIENDS_INFO];
+            break;
             
            //URLStr建立
         default:

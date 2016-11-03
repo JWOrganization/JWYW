@@ -308,7 +308,7 @@
 - (void)requestPublishNode{
     NSString * tagStr = [self tagArrJsonCreate];
 //    MyLog(@"%@",tagStr);
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":[self.scrollView.locationnameLabel.text isEqualToString:@"添加地点"]?@"":self.scrollView.locationnameLabel.text,@"content":[JWTools UTF8WithStringJW:self.scrollView.conTextView.text],@"img_list":[JWTools jsonStrWithArr:self.picUrlArr],@"tag":tagStr};//cid可能变
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@0,@"title":self.scrollView.nameTextField.text,@"location":[self.scrollView.locationnameLabel.text isEqualToString:@"添加地点"]?@"":self.scrollView.locationnameLabel.text,@"content":[JWTools UTF8WithStringJW:self.scrollView.conTextView.text],@"img_list":[JWTools jsonStrWithArr:self.picUrlArr],@"tag":tagStr};//cid可能变yooooooooooooooooo
     [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
@@ -335,10 +335,6 @@
     
     self.picUpCount = 0;
     self.picUrlArr = [NSMutableArray arrayWithCapacity:0];
-    if (self.imageChangeSaveArr.count == 0){
-        [self requestPublishNode];
-        return;
-    }
     for (int i = 0; i < self.imageChangeSaveArr.count; i++) {
         [self.picUrlArr addObject:@""];
         [self requestPublishNodePhotoWithIdx:i];
@@ -351,7 +347,7 @@
     [[HttpObject manager]postPhotoWithType:YuWaType_IMG_UP withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        [self.picUrlArr replaceObjectAtIndex:idx withObject:responsObj[@"data"]];
+        [self.picUrlArr replaceObjectAtIndex:idx withObject:@{@"url":responsObj[@"data"],@"title":@"yoo"}];
         self.picUpCount++;
         if (self.picUpCount>= self.imageChangeSaveArr.count) {
             [self requestPublishNode];

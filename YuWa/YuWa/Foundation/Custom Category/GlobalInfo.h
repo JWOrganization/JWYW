@@ -57,7 +57,8 @@
 #define HTTP_NOTCCAFICATIONJ_ORDER @"/api.php/User/reservePushNotice/" //预约通知
 #define HTTP_NOTCCAFICATIONJ_PAY @"/api.php/User/payPushNotice/" //付款通知
 
-
+#pragma mark - Friends
+#define HTTP_FRIENDS_INFO @"/api.php/User/getUserInfoByUserName/" //好友信息
 
 
 

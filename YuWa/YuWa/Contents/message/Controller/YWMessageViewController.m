@@ -186,7 +186,7 @@
 - (void)chatWithUser:(NSString *)hxID withNikeName:(NSString *)nikeName{
     YWMessageChatViewController *chatVC = [[YWMessageChatViewController alloc] initWithConversationChatter:hxID conversationType:EMConversationTypeChat];
     chatVC.friendNikeName = nikeName;
-    chatVC.myNikeName = @"233333333";
+    chatVC.myNikeName = [UserSession instance].nickName?([[UserSession instance].nickName isEqualToString:@""]?[UserSession instance].account:[UserSession instance].nickName):[UserSession instance].account;
     chatVC.myHxID = [UserSession instance].account;
     [self.navigationController pushViewController:chatVC animated:YES];
 }
