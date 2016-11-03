@@ -196,7 +196,7 @@
 //        [self requestSendRePlayComment];
 //        return;
 //    }
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"note_id":@([self.commentSendDic[@"nodeID"] integerValue]),@"customer_content":self.commentToolsView.sendTextField.text};
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"note_id":@([self.commentSendDic[@"nodeID"] integerValue]),@"customer_content":self.commentToolsView.sendTextField.text};//[NSString stringWithCString:[self.commentToolsView.sendTextField.text UTF8String] encoding:NSUnicodeStringEncoding]
     
     [[HttpObject manager]postDataWithType:YuWaType_RB_COMMENT withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

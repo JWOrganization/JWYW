@@ -28,12 +28,13 @@
     self.commentToolsView.hidden = NO;
     [self dataSet];
     [self setupRefresh];
-    [self.tableView.mj_header beginRefreshing];
+    [self requestDataWithPages:0];
 }
 
 - (void)dataSet{
     self.pagens = @"15";
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
+    [self.tableView registerNib:[UINib nibWithNibName:COMMENTCELL bundle:nil] forCellReuseIdentifier:COMMENTCELL];
 }
 
 #pragma mark - UITableViewDelegate
@@ -111,6 +112,19 @@
         }else{
             [self.tableView.mj_footer endRefreshing];
         }
+    }];
+}
+
+- (void)requestSendComment{
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"note_id":@([self.commentSendDic[@"nodeID"] integerValue]),@"customer_content":self.commentToolsView.sendTextField.text};//[NSString stringWithCString:[self.commentToolsView.sendTextField.text UTF8String] encoding:NSUnicodeStringEncoding]
+    
+    [[HttpObject manager]postDataWithType:YuWaType_RB_COMMENT withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.tableView.mj_header beginRefreshing];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
     }];
 }
 

@@ -353,10 +353,10 @@
 
 #pragma mark - UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    RBNodeShowCommentDetailVC * vc = [[RBNodeShowCommentDetailVC alloc]init];
-//    vc.idd = self.model.homeID;
-//    [self.navigationController pushViewController:vc animated:YES];
-//    return;//h33333333测试
+    RBNodeShowCommentDetailVC * vc = [[RBNodeShowCommentDetailVC alloc]init];
+    vc.idd = self.model.homeID;
+    [self.navigationController pushViewController:vc animated:YES];
+    return;//h33333333测试
     if (indexPath.section == 2) {//回复用户评论
         RBNodeShowCommentModel * model = self.dataModel.comments_list[indexPath.row];
         [self commentActionWithUserDic:@{@"nodeID":self.model.homeID,@"userID":model.user.userid,@"userName":model.user.nickname}];

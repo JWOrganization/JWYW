@@ -60,7 +60,8 @@
         NSDictionary * commentDicTemp = commentArrTemp[i];
         NSMutableDictionary * commentDic = [NSMutableDictionary dictionaryWithCapacity:0];
         [commentDic setObject:commentDicTemp[@"status"]?commentDicTemp[@"status"]:@"" forKey:@"status"];
-        [commentDic setObject:commentDicTemp[@"customer_content"]?commentDicTemp[@"customer_content"]:@"" forKey:@"content"];
+        NSString * content = commentDicTemp[@"customer_content"]?commentDicTemp[@"customer_content"]:@"";
+        [commentDic setObject:content forKey:@"content"];
         [commentDic setObject:commentDicTemp[@"ctime"]?commentDicTemp[@"ctime"]:@"" forKey:@"time"];
         
         NSMutableDictionary * userDicTemp = [NSMutableDictionary dictionaryWithCapacity:0];
