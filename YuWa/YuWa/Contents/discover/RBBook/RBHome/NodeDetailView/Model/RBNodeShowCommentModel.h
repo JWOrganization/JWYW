@@ -20,4 +20,6 @@
 @property (nonatomic,strong)RBNodeShowCommentTargetModel * target_comment;
 @property (nonatomic,strong)RBHomeUserModel * user;
 
++ (NSMutableDictionary *)dataDicSetWithDic:(NSDictionary *)dic;
+
 @end

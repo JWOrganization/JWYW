@@ -72,31 +72,32 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_NOTCCAFICATIONJ_PAY withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        if (page>0){
+            [self.mj_footer endRefreshing];
+        }else{
+            [self.dataArr removeAllObjects];
+            [self.mj_header endRefreshing];
+        }
+        NSArray * dataArr = responsObj[@"data"];
+        if (dataArr.count>0) {
+            //23333333要删
+            for (int i = 0; i<15; i++) {
+                YWMessageNotificationModel * model = [[YWMessageNotificationModel alloc]init];
+                model.status = @"1";
+                [self.dataArr addObject:model];
+            }
+            //23333333要删
+            [self reloadData];
+        }
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];
-    
-    //h2333333333
-    
-    
-    if (page>0){
-        [self.mj_footer endRefreshing];
-    }else{
-        [self.dataArr removeAllObjects];
-        [self.mj_header endRefreshing];
-    }
-    
-    //23333333要删
-    for (int i = 0; i<15; i++) {
-        YWMessageNotificationModel * model = [[YWMessageNotificationModel alloc]init];
-        model.status = @"1";
-        [self.dataArr addObject:model];
-    }
-    //23333333要删
-    
-    [self reloadData];
-    
+        if (page>0){
+            [self.mj_footer endRefreshing];
+        }else{
+            [self.mj_header endRefreshing];
+        }
+    }];//h3333333
 }
 
 

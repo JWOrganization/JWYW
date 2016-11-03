@@ -118,6 +118,9 @@
         case YuWaType_RB_RELATED://相关笔记
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_RELATED];
             break;
+        case YuWaType_RB_COMMENT_LIST://评论列表
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COMMENT_LIST];
+            break;
         case YuWaType_RB_LIKE://添加点赞（喜欢）
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_LIKE];
             break;

@@ -353,6 +353,10 @@
 
 #pragma mark - UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    RBNodeShowCommentDetailVC * vc = [[RBNodeShowCommentDetailVC alloc]init];
+//    vc.idd = self.model.homeID;
+//    [self.navigationController pushViewController:vc animated:YES];
+//    return;//h33333333测试
     if (indexPath.section == 2) {//回复用户评论
         RBNodeShowCommentModel * model = self.dataModel.comments_list[indexPath.row];
         [self commentActionWithUserDic:@{@"nodeID":self.model.homeID,@"userID":model.user.userid,@"userName":model.user.nickname}];
@@ -430,9 +434,9 @@
                 NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dic];
                 [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
             }
+            [self.tableView reloadData];
+            self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
         }
-        [self.tableView reloadData];
-        self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
     } failur:^(id responsObj, NSError *error) {
         [self.tableView.mj_footer endRefreshing];
         MyLog(@"Regieter Code pragram is %@",pragram);

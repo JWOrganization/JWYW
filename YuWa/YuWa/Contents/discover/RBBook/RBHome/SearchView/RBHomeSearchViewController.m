@@ -155,9 +155,8 @@
         key = searchHistoryDic[@"key"];
         type = [searchHistoryDic[@"type"] integerValue];
     }else{//无历史记录
-        NSDictionary * hotSearchDic = self.tagArr[indexPath.row];
-        key = hotSearchDic[@"key"];
-        type = [hotSearchDic[@"type"] integerValue];
+        key = self.tagArr[indexPath.row];
+        type = 0;
     }
     [self rememberSearchDataWithKey:key withType:[NSString stringWithFormat:@"%zi",type]];
 }
@@ -270,16 +269,17 @@
         MyLog(@"Regieter Code is %@",responsObj);
         NSArray * dataArr = responsObj[@"data"];
         if (dataArr.count>0) {
-            NSInteger count = dataArr.count>=3?3:dataArr.count;
+            NSInteger count = dataArr.count>=5?5:dataArr.count;
             for (int i = 0; i<count; i++) {
-                [self.tagArr addObject:dataArr[i][@"title"]];//最多三个,type以后可能换（如笔记0用户1）
+                NSDictionary * dataDic = dataArr[i];
+                [self.tagArr addObject:dataDic[@"title"]];//最多三个,type以后可能换（如笔记0用户1）
             }
         }
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+    }];
 }
 
 - (void)requestSearchResaultData{

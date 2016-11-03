@@ -39,14 +39,15 @@
 
 - (void)dataSet{
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
-    
     [self.tableView registerNib:[UINib nibWithNibName:MESSAGENOTICELL bundle:nil] forCellReuseIdentifier:MESSAGENOTICELL];
 }
 
 - (void)makeUI{
+    self.pagens = @"15";
     self.tableView.alwaysBounceVertical = YES;
     
     self.payTableView = [[YWPayNotificationTableView alloc]initWithFrame:CGRectMake(0.f, 64.f, kScreen_Width, kScreen_Height - 64.f) style:UITableViewStylePlain];
+    self.payTableView.pagens = self.pagens;
     [self.payTableView dataSet];
     [self.view addSubview:self.payTableView];
 }
@@ -121,30 +122,32 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_NOTCCAFICATIONJ_ORDER withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        if (page>0){
+            [self.tableView.mj_footer endRefreshing];
+        }else{
+            [self.dataArr removeAllObjects];
+            [self.tableView.mj_header endRefreshing];
+        }
+        NSArray * dataArr = responsObj[@"data"];
+        if (dataArr.count>0) {
+            //23333333要删
+            for (int i = 0; i<15; i++) {
+                YWMessageNotificationModel * model = [[YWMessageNotificationModel alloc]init];
+                model.status = @"1";
+                [self.dataArr addObject:model];
+            }
+            //23333333要删
+            [self.tableView reloadData];
+        }
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];
-    
-    //h2333333333
-    
-    if (page>0){
-        [self.tableView.mj_footer endRefreshing];
-    }else{
-        [self.dataArr removeAllObjects];
-        [self.tableView.mj_header endRefreshing];
-    }
-    
-    //23333333要删
-    for (int i = 0; i<15; i++) {
-        YWMessageNotificationModel * model = [[YWMessageNotificationModel alloc]init];
-        model.status = @"0";
-        [self.dataArr addObject:model];
-    }
-    //23333333要删
-    
-    [self.tableView reloadData];
-    
+        if (page>0){
+            [self.tableView.mj_footer endRefreshing];
+        }else{
+            [self.tableView.mj_header endRefreshing];
+        }
+    }];//h3333333
 }
 
 

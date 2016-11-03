@@ -28,10 +28,11 @@
     self.commentToolsView.hidden = NO;
     [self dataSet];
     [self setupRefresh];
-    [self requestDataWithPages:0];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)dataSet{
+    self.pagens = @"15";
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
 }
 
@@ -66,9 +67,16 @@
 
 #pragma mark - TableView Refresh
 - (void)setupRefresh{
+    self.tableView.mj_header = [UIScrollView scrollRefreshGifHeaderWithImgName:@"header" withImageCount:8 withRefreshBlock:^{
+        [self headerRereshing];
+    }];
     self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"footer" withImageCount:8 withRefreshBlock:^{
         [self footerRereshing];
     }];
+}
+- (void)headerRereshing{
+    self.pages = 0;
+    [self requestDataWithPages:0];
 }
 - (void)footerRereshing{
     self.pages++;
@@ -77,14 +85,33 @@
 
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
-    [self.tableView.mj_footer endRefreshing];
-//    NSDictionary * dataDic = [JWTools jsonWithFileName:@"单条笔记下面的 相关笔记"];
-//    //    MyLog(@"%@",dataDic);
-//    NSArray * dataArr = dataDic[@"data"];
-//    [dataArr enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-//        [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-//    }];
-    [self.tableView reloadData];
+    NSDictionary * pragram = @{@"note_id":self.idd,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RB_COMMENT_LIST withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        if (page == 0) {
+            [self.dataArr removeAllObjects];
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
+        NSArray * dataArr = responsObj[@"data"];
+        if (dataArr.count>0) {
+            for (int i = 0; i<dataArr.count; i++) {
+                [self.dataArr addObject:[RBNodeShowCommentModel yy_modelWithDictionary:[RBNodeShowCommentModel dataDicSetWithDic:dataArr[i]]]];
+            }
+            [self.tableView reloadData];
+        }
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        if (page == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }];
 }
 
 @end
