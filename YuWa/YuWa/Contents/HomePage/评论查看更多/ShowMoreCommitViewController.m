@@ -37,8 +37,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
     cell.selectionStyle=NO;
-    cell.allDatas=@{@"title":@"舒服撒飞洒发书法家刘师傅几位司法解释雷锋节老司机覅发顺丰萨芬进来撒几时放假啊；就说法是否收费IE如期皮肤司法局；辣女你，你少发了",@"images":@[@"",@"",@"",@"",@"",@"",@""]};
-    return cell;
+      return cell;
     
     return cell;
     

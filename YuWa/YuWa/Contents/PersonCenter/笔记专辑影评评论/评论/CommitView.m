@@ -70,7 +70,7 @@
     CommitViewModel *model=self.allDatas[indexPath.section];
     
     
-    cell.allDatas=@{@"title":model.content,@"images":model.images};
+//    cell.allDatas=@{@"title":model.content,@"images":model.images};
     return cell;
     
 

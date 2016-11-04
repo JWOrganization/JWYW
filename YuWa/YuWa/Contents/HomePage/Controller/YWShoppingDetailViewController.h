@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YWShoppingDetailViewController : UIViewController
+@property(nonatomic,strong)NSString*shop_id;   //店铺id
 
 @end

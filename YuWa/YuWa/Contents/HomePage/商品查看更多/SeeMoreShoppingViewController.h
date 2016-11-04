@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SeeMoreShoppingViewController : UIViewController
+@property(nonatomic,strong)NSString*shop_id;
 
 @end

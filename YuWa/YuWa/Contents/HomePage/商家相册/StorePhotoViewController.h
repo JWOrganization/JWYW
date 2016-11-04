@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface StorePhotoViewController : UIViewController
-
+@property(nonatomic,strong)NSString*shop_id;    //店铺的id
 @end

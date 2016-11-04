@@ -10,8 +10,12 @@
 
 @interface DetailStorePreferentialTableViewCell : UITableViewCell
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andDatas:(NSMutableArray*)array;
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
+//得到的高
 +(CGFloat)getCellHeightWitharray:(NSMutableArray*)array;
+
+@property(nonatomic,strong)NSArray*allDatas;   //所有的数据
+@property(nonatomic,strong)NSString*defultZhe;  //默认打几折
 
 @end

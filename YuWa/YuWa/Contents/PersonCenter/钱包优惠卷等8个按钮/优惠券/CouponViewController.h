@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CouponModel;
+@protocol CouponViewControllerDelegate <NSObject>
+
+-(void)DelegateGetCouponInfo:(CouponModel*)model;
+
+@end
 
 @interface CouponViewController : UIViewController
 
+@property(nonatomic,strong)NSString*shopID;  //店铺的id 判断店铺id一样才能用
+@property(nonatomic,assign)id<CouponViewControllerDelegate>delegate;
 @end

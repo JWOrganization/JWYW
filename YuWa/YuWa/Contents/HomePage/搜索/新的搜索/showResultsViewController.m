@@ -51,7 +51,7 @@
 
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+    YWMainShoppingTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
     cell.selectionStyle=NO;
     
     HPRecommendShopModel*model=self.ModelArray[indexPath.section];
@@ -130,37 +130,8 @@
     teLabel.hidden=YES;
     
     //显示的特别活动
-    NSArray*specail=model.holiday;
-    CGFloat top=118.0;
-    CGFloat left=82;
-    
-    for (int i=0; i<specail.count; i++) {
-        UIImageView*speImage=[cell viewWithTag:200+i];
-        if (!speImage) {
-            speImage=[[UIImageView alloc]initWithFrame:CGRectMake(left, top, 15, 15)];
-            speImage.tag=200+i;
-            speImage.image=[UIImage imageNamed:@"home_te.png"];
-            [cell.contentView addSubview:speImage];
-        }
-        
-        
-        UILabel*specailLabel=[cell viewWithTag:300+i];
-        if (!specailLabel) {
-            specailLabel=[[UILabel alloc]initWithFrame:CGRectMake(102, top, kScreen_Width-110, 18)];
-            specailLabel.centerY=speImage.centerY;
-            specailLabel.font=[UIFont systemFontOfSize:15];
-            specailLabel.tag=300+i;
-            [cell.contentView addSubview:specailLabel];
-        }
-        
-        NSDictionary*dict=specail[i];
-        specailLabel.text=[NSString stringWithFormat:@"%@折，%@",dict[@"rebate"],dict[@"title"]];
-        
-        
-        top=top+18+10;
-    }
-    
-    
+      cell.holidayArray=model.holiday;
+  
     
     return cell;
     

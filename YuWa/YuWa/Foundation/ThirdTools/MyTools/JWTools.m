@@ -798,4 +798,21 @@
     SecItemDelete((CFDictionaryRef)keychainQuery);
 }
 
+
++(NSString*)getTime:(NSString *)number{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //    @"yyyy-MM-dd HH:mm"
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSDate *date = [dateFormatter dateFromString:number];
+    
+    
+    if (!date) {
+        date = [NSDate dateWithTimeIntervalSince1970:[number doubleValue]];
+    }
+
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    return [dateFormatter stringFromDate:date];
+    
+}
+
 @end

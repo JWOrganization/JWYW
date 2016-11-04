@@ -10,6 +10,10 @@
 
 @interface StorePhoneView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame andDatas:(NSArray*)array;
+- (instancetype)initWithFrame:(CGRect)frame;   //创建view
+
+
+
+-(void)getData:(NSArray*)allDatas;
 
 @end

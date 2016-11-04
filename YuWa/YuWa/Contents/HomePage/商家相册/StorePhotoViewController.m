@@ -18,6 +18,11 @@
 @property(nonatomic,strong)UIScrollView*scrollview;
 @property(nonatomic,strong)YJSegmentedControl*topView;
 
+@property(nonatomic,strong)NSMutableArray*saveFourView;  //保存4个view
+@property(nonatomic,strong)NSArray*envir;  //环境
+@property(nonatomic,strong)NSArray*goods;
+@property(nonatomic,strong)NSArray*other;
+@property(nonatomic,strong)NSArray*shop;
 
 @end
 
@@ -31,6 +36,8 @@
     [self addTopView];
     [self.view addSubview:self.scrollview];
     
+    [self getDatas];
+    
     [self addCollectionView];
     
 }
@@ -38,19 +45,6 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSInteger number=scrollView.contentOffset.x/kScreen_Width;
-//    if (number==0) {
-//        [self.topView selectTheSegument:0];
-//        
-//    }else if (number==1){
-//          [self.topView selectTheSegument:1];
-//        
-//    }else if (number==2){
-//          [self.topView selectTheSegument:2];
-//        
-//    }else if (number==3){
-//          [self.topView selectTheSegument:3];
-//        
-//    }
     
     [self.topView selectTheSegument:number];
     
@@ -58,14 +52,25 @@
 
 
 -(void)addCollectionView{
-    NSArray*array=@[];
-    NSArray*bigArray=@[array,array,array,array];
-    for (int i=0; i<4; i++) {
-        StorePhoneView*collView=[[StorePhoneView alloc]initWithFrame:CGRectMake(kScreen_Width*i,0, kScreen_Width, kScreen_Height-64-44) andDatas:bigArray[i]];
+     for (int i=0; i<4; i++) {
+        StorePhoneView*collView=[[StorePhoneView alloc]initWithFrame:CGRectMake(kScreen_Width*i,0, kScreen_Width, kScreen_Height-64-44)];
         collView.tag=230+i;
         [self.scrollview addSubview:collView];
- 
+         [self.saveFourView addObject:collView];
         
+        
+    }
+    
+}
+
+//给collectionView 赋值
+-(void)giveCollectionViewValue{
+    NSArray*allDatas=@[self.shop,self.goods,self.envir,self.other];
+    
+    for (int i=0; i<self.saveFourView.count; i++) {
+        StorePhoneView*collView=self.saveFourView[i];
+
+        [collView getData:allDatas[i]];
         
     }
     
@@ -100,6 +105,33 @@
     
 }
 
+
+#pragma mark  --getDatas
+-(void)getDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_SHOPPHOTO];
+    NSDictionary*params=@{@"shop_id":self.shop_id};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            self.envir=data[@"data"][@"envir"];
+            self.goods=data[@"data"][@"goods"];
+            self.other=data[@"data"][@"other"];
+            self.shop=data[@"data"][@"shop"];
+            //给所有的 赋值
+            [self giveCollectionViewValue];
+            
+        }
+        
+        
+        
+    }];
+    
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -125,6 +157,15 @@
         _scrollview.showsVerticalScrollIndicator=NO;
     }
     return _scrollview;
+}
+
+
+-(NSMutableArray *)saveFourView{
+    if (!_saveFourView) {
+        _saveFourView=[NSMutableArray array];
+        
+    }
+    return _saveFourView;
 }
 
 @end
