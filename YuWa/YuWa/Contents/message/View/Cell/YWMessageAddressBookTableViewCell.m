@@ -36,7 +36,7 @@
 
 - (void)dataSet{
     self.nameLabel.text = self.model.nikeName;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"image2333333"] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.header_img] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
 }
 
 @end

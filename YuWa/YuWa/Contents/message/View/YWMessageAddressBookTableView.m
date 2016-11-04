@@ -89,7 +89,7 @@
     }
     
     YWMessageAddressBookModel * model = self.dataArr[indexPath.section - 1][indexPath.row];
-    self.friendsChatBlock(model.hxID,model.nikeName);
+    self.friendsChatBlock(model);
 }
 
 #pragma mark - UITableViewDataSource
@@ -163,15 +163,15 @@
                                   
     for (int i = 0; i < userlist.count; i++) {
         NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"other_username":userlist[i]};
-        [[HttpObject manager]postDataWithType:YuWaType_FRIENDS_INFO withPragram:pragram success:^(id responsObj) {
+        [[HttpObject manager]postNoHudWithType:YuWaType_FRIENDS_INFO withPragram:pragram success:^(id responsObj) {
             MyLog(@"Regieter Code pragram is %@",pragram);
             MyLog(@"Regieter Code is %@",responsObj);
             YWMessageAddressBookModel * model = [YWMessageAddressBookModel yy_modelWithDictionary:responsObj[@"data"]];
             model.hxID = userlist[i];//无昵称时设为环信ID
-            [sortArr addObject:model.hxID];
+            [sortArr addObject:model];
             if (sortArr.count >= userlist.count) {
                 if (userlist.count == 1) {
-                    [self.dataArr addObject:model];
+                    [self.dataArr addObject:@[model]];
                     [self.keyArr addObject:[JWTools stringWithFirstCharactor:[model.nikeName substringToIndex:1]]];
                     [self reloadData];
                 }else{
@@ -182,7 +182,14 @@
             MyLog(@"Regieter Code pragram is %@",pragram);
             MyLog(@"Regieter Code error is %@",responsObj);
             if (sortArr.count>0) {
-                [self sortedArry:sortArr];
+                if (sortArr.count == 1) {
+                    YWMessageAddressBookModel * model = sortArr[0];
+                    [self.dataArr addObject:@[model]];
+                    [self.keyArr addObject:[JWTools stringWithFirstCharactor:[model.nikeName substringToIndex:1]]];
+                    [self reloadData];
+                }else{
+                    [self sortedArry:sortArr];
+                }
             }
         }];
     }
@@ -219,6 +226,9 @@
     }
     [self.keyArr enumerateObjectsUsingBlock:^(NSString * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.dataArr addObject:dic[key]];
+        if (idx+1 >= self.keyArr.count) {
+            [self reloadData];
+        }
     }];
 }
 

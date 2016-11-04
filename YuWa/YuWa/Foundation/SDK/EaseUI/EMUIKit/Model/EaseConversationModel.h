@@ -13,6 +13,7 @@
 #import <Foundation/Foundation.h>
 
 #import "IConversationModel.h"
+#import "YWMessageAddressBookModel.h"
 
 @interface EaseConversationModel : NSObject<IConversationModel>
 
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *avatarURLPath;
 @property (strong, nonatomic) UIImage *avatarImage;
+@property (strong, nonatomic) YWMessageAddressBookModel *jModel;
 
 - (instancetype)initWithConversation:(EMConversation *)conversation;
 

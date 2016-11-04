@@ -10,4 +10,8 @@
 
 @implementation YWMessageSearchFriendAddModel
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"nickName" : @"nickname"};
+}
+
 @end

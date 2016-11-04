@@ -172,7 +172,10 @@
         case YuWaType_NOTCCAFICATIONJ_PAY://付款通知
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_NOTCCAFICATIONJ_PAY];
             break;
-            
+#pragma mark - Friends
+        case YuWaType_FRIENDS_INFO://好友信息
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_FRIENDS_INFO];
+            break;
             
             //URLStr建立
         default:

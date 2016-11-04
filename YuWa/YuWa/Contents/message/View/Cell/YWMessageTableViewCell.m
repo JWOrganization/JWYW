@@ -43,11 +43,7 @@
 }
 
 - (void)dataSet{
-    if ([self.model.title length] > 0) {
-        self.nameLabel.text = self.model.title;
-    }else{
-        self.nameLabel.text = self.model.conversation.conversationId;
-    }//有接口后要换接口设置昵称,此处为环信账号
+    self.nameLabel.text = self.model.jModel.nikeName;
     
     if (self.model.conversation.unreadMessagesCount == 0) {
         self.countLabel.hidden = YES;
@@ -59,7 +55,7 @@
     self.timeLbael.text = [self latestMessageTimeForConversationModel:self.model];
     
     self.conLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[YWMessageTableViewCell latestMessageTitleForConversationModel:self.model] textFont:self.conLabel.font];
-//    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.jModel.header_img] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
 }
 
 #pragma mark - EaseUI Action

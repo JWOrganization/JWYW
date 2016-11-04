@@ -62,6 +62,7 @@
         return timeCell;
     }else{
         id<IMessageModel> model = object;
+        
         if (self.delegate && [self.delegate respondsToSelector:@selector(messageViewController:cellForMessageModel:)]) {
             UITableViewCell *cell = [self.delegate messageViewController:tableView cellForMessageModel:model];
             if (cell) {
@@ -70,10 +71,12 @@
                     if (emcell.delegate == nil) {
                         emcell.delegate = self;
                     }
-                    if ([model.nickname isEqualToString:self.myHxID]) {
-                        emcell.nameLabel.text = self.myNikeName;
+                    if ([model.nickname isEqualToString:[UserSession instance].account]) {
+                        emcell.nameLabel.text = [UserSession instance].nickName;
+                        [emcell.avatarView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
                     }else{
                         emcell.nameLabel.text = self.friendNikeName;
+                        [emcell.avatarView sd_setImageWithURL:[NSURL URLWithString:self.friendIcon] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
                     }
                 }
                 
@@ -103,10 +106,12 @@
                 }
                 sendCell.model = model;
                 sendCell.delegate = self;
-                if ([model.nickname isEqualToString:self.myHxID]) {
-                    sendCell.nameLabel.text = self.myNikeName;
+                if ([model.nickname isEqualToString:[UserSession instance].account]) {
+                    sendCell.nameLabel.text = [UserSession instance].nickName;
+                    [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
                 }else{
                     sendCell.nameLabel.text = self.friendNikeName;
+                    [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:self.friendIcon] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
                 }
                 return sendCell;
             }
@@ -124,20 +129,22 @@
         }
         
         sendCell.model = model;
-        if ([model.nickname isEqualToString:self.myHxID]) {
-            sendCell.nameLabel.text = self.myNikeName;
+        if ([model.nickname isEqualToString:[UserSession instance].account]) {
+            sendCell.nameLabel.text = [UserSession instance].nickName;
+            [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
         }else{
             sendCell.nameLabel.text = self.friendNikeName;
+            [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:self.friendIcon] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
         }
         return sendCell;
     }
 }
 
 - (void)avatarViewSelcted:(id<IMessageModel>)model{
-    if ([model.nickname isEqualToString:self.myHxID])return;
+    if ([model.nickname isEqualToString:[UserSession instance].account])return;
     MyLog(@"用户点击头像");
     YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
-//    vc.idd = 23333333;//他人用户ID
+//    vc.idd = self.friendID;//2333333333他人用户ID
     [self.navigationController pushViewController:vc animated:YES];
 }
 
