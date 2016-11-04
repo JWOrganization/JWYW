@@ -127,7 +127,7 @@
         NSArray * dataArr = responsObj[@"data"];
         for (int i = 0; i<dataArr.count; i++) {
             NSDictionary * dataDic = dataArr[i];
-            NSDictionary * dicTemp = @{@"images":dataDic[@"header_img"]?dataDic[@"header_img"]:@"",@"nickname":dataDic[@"nickname"]?dataDic[@"nickname"]:@"",@"fans_total":dataDic[@"fans"]?dataDic[@"fans"]:@"0",@"userid":dataDic[@"uid"]?dataDic[@"uid"]:@"0"};//h33333333333header_img可能变
+            NSDictionary * dicTemp = @{@"images":dataDic[@"header_img"]?dataDic[@"header_img"]:@"",@"nickname":dataDic[@"nickname"]?dataDic[@"nickname"]:@"",@"fans_total":dataDic[@"fans"]?dataDic[@"fans"]:@"0",@"userid":dataDic[@"uid"]?dataDic[@"uid"]:@"0"};//h3333333333header_img可能变
             [self.dataArr addObject:[RBNodeUserModel yy_modelWithDictionary:dicTemp]];
         }
         [self.tableView reloadData];
