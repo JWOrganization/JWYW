@@ -10,4 +10,7 @@
 
 @interface YWMainShoppingTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)NSArray*holidayArray;
+
++(CGFloat)getCellHeight:(NSArray*)array;
 @end

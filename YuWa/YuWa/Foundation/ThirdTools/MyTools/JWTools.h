@@ -309,4 +309,11 @@
  */
 + (NSString *)getUUID;
 
+
+/**
+ 时间戳
+ 
+ */
++(NSString*)getTime:(NSString*)number;
+
 @end

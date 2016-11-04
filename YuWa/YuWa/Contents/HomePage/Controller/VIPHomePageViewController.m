@@ -63,8 +63,7 @@
     [super viewDidLoad];
     //得到坐标
     [self getLocalSubName];
-     //把取得的经纬度给后台
-    [self updateCoordinate];
+
     
     [self makeNaviBar];
     
@@ -105,7 +104,8 @@
                 self.coordinatex=[NSString stringWithFormat:@"%f",self.location.coordinate.longitude];  //维度
                 
                 self.coordinatey=[NSString stringWithFormat:@"%f",self.location.coordinate.latitude];   //经度
-                
+                //把取得的经纬度给后台
+                [self updateCoordinate];
                 
             }else{
                 //泉州市    就是没有定位
@@ -212,7 +212,7 @@
 
 
    MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
-//       [self.tableView.mj_header endRefreshing];
+
         [self getDatas];
         
     }];
@@ -220,15 +220,13 @@
      [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
      [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
-    
+    //立即刷新
     [self.tableView.mj_header beginRefreshing];
     
     
-    
+    //上拉刷新
     MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
-//        [self.tableView.mj_footer endRefreshing];
-        
-        [self loadingMoreShowInfo];
+      [self loadingMoreShowInfo];
         
         
     }];
@@ -255,7 +253,8 @@
     }else if (self.coordinatey){
         [params setObject:self.coordinatey forKey:@"coordinatey"];
     }
-    
+    [self.mtModelArrRecommend removeAllObjects];
+                self.mtModelArrRecommend=nil;
     HttpManager*manager=[[HttpManager alloc]init];
     [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
         MyLog(@"%@",data);
@@ -264,6 +263,7 @@
             self.mtModelArrBanner=nil;
             self.mtModelArrCategory=nil;
             self.mtModelArrTopShop=nil;
+            [self.mtModelArrRecommend removeAllObjects];
             self.mtModelArrRecommend=nil;
             
             
@@ -353,9 +353,10 @@
     }
     
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_UPDATECOORDINATE];
-    NSDictionary*params=@{@"device_id":[UserSession instance].token,@"coordinatex":self.coordinatex,@"coordinatey":self.coordinatey};
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"coordinatex":self.coordinatex,@"coordinatey":self.coordinatey};
    HttpManager*manager= [[HttpManager alloc]init];
     [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        //更新成功
         MyLog(@"%@",data);
         
         
@@ -399,6 +400,7 @@
             MyLog(@"id=%@",model.id);
 
             YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+            vc.shop_id=model.id;
             [weakSelf.navigationController pushViewController:vc animated:YES];
             
         };
@@ -408,9 +410,9 @@
         return cell;
         
     }else if (indexPath.section==2){
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
+       YWMainShoppingTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
         cell.selectionStyle=NO;
-        
+ 
         NSInteger number=indexPath.row;
         HPRecommendShopModel*model=self.mtModelArrRecommend[number];
         
@@ -486,38 +488,10 @@
         UILabel*teLabel=[cell viewWithTag:9];
         teLabel.hidden=YES;
         
-        //显示的特别活动
-        NSArray*specail=model.holiday;
-        CGFloat top=118.0;
-        CGFloat left=82;
+        //显示的特别活动   nsarray 里面string越多 显示越多的内容
         
-        for (int i=0; i<specail.count; i++) {
-            UIImageView*speImage=[cell viewWithTag:200+i];
-            if (!speImage) {
-                speImage=[[UIImageView alloc]initWithFrame:CGRectMake(left, top, 15, 15)];
-                speImage.tag=200+i;
-                speImage.image=[UIImage imageNamed:@"home_te.png"];
-                [cell.contentView addSubview:speImage];
-            }
-            
-            
-            UILabel*specailLabel=[cell viewWithTag:300+i];
-            if (!specailLabel) {
-                specailLabel=[[UILabel alloc]initWithFrame:CGRectMake(102, top, kScreen_Width-110, 18)];
-                specailLabel.centerY=speImage.centerY;
-                specailLabel.font=[UIFont systemFontOfSize:15];
-                specailLabel.tag=300+i;
-                [cell.contentView addSubview:specailLabel];
-            }
-            
-            NSDictionary*dict=specail[i];
-            specailLabel.text=[NSString stringWithFormat:@"%@折，%@",dict[@"rebate"],dict[@"title"]];
-            
-            
-            top=top+18+10;
-        }
-        
-        
+        cell.holidayArray=model.holiday;
+
         
         return cell;
         
@@ -528,7 +502,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==2) {
+        NSInteger number=indexPath.row;
+        HPRecommendShopModel*model=self.mtModelArrRecommend[number];
+
+        
         YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+        vc.shop_id=model.id;
         [self.navigationController pushViewController:vc animated:YES];
         
     }
@@ -545,16 +524,10 @@
     else{
         //最后一排 来判断得到的高度
 //          return 145;
-         HPRecommendShopModel*model=self.mtModelArrRecommend[indexPath.row];
-        NSArray*specail=model.holiday;
-         CGFloat top=118.0;
-        for (int i=0; i<specail.count; i++) {
-             top=top+18+10;
-        }
-        
-        return top;
+        HPRecommendShopModel*model=self.mtModelArrRecommend[indexPath.row];
+        return [YWMainShoppingTableViewCell getCellHeight:model.holiday];
+    
     }
-  
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -693,6 +666,7 @@
     model.url;
     
     YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+    vc.shop_id=model.url;
     [self.navigationController pushViewController:vc animated:YES];
     
     

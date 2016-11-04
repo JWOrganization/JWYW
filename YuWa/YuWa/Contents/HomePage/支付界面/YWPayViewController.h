@@ -11,6 +11,5 @@
 @interface YWPayViewController : UIViewController
 
 @property(nonatomic,strong)NSString*shopID;  //店铺的id
-
 @property(nonatomic,assign)CGFloat shopZhekou;  //店铺的折扣
 @end

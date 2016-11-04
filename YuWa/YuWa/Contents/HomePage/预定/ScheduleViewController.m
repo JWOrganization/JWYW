@@ -18,10 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets=NO;
-   self.title=@"咨询";
+   self.title=@"预约";
     
     SAMTextView*textView=[self.view viewWithTag:1];
-    textView.placeholder=@"请输入咨询内容";
+    textView.placeholder=@"请留言";
     
 }
 

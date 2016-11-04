@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface StoreDescriptionTableViewCell : UITableViewCell
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withDatas:(NSArray*)allDatas;
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 +(CGFloat)getHeight:(NSArray*)array;
 
+@property(nonatomic,strong)NSArray*allDatas;
 @end

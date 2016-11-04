@@ -20,7 +20,7 @@
 @property(nonatomic,strong)NSArray*holiday;     //特别活动
 
 @property(nonatomic,strong)NSString*company_near;  //距离我多远
-@property(nonatomic,strong)NSString*id;
+@property(nonatomic,strong)NSString*id;     //本店的id
 @property(nonatomic,strong)NSString*cid;
 @property(nonatomic,strong)NSString*coordinatex;
 @property(nonatomic,strong)NSString*coordinatey;

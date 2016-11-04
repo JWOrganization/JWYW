@@ -68,6 +68,15 @@
 #define HTTP_HOME_HOTSEARCH          @"/api.php/Index/hotSearch/"    //热门搜索
 #define HTTP_HOME_SEARCH            @"/api.php/Index/searchResult/"     //搜索
 
+#define HTTP_HOME_SHOPDETAIL        @"/api.php/Shop/index/"      //店铺详情
+#define HTTP_HOME_SHOPPHOTO         @"/api.php/Shop/getShopPhoto/"  //店铺相册
+#define HTTP_HOME_MOREGOODS       @"/api.php/Shop/moreGoods/"  //更多商品
+#define HTTP_HOME_MORECOMMIT      @"/api.php/Shop/moreComment/"  //更多评论
+
+#define HTTP_PERSON_COUPON         @"/api.php/User/getMyCoupon/"   //得到优惠券
+
+
+
 
 
 #endif /* GlobalInfo_h */

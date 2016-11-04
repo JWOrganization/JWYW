@@ -21,6 +21,13 @@
 #import "SeeMoreShoppingViewController.h"    //店铺商品详情
 #import "ShowMoreCommitViewController.h"    //评论详情
 #import "ScheduleViewController.h"    //预定
+#import "YWLoginViewController.h"
+
+
+#import "ShopdetailModel.h"     //店铺详情
+#import "ShowShoppingModel.h"   //推荐商品
+#import "CommentModel.h"   //推荐评论
+#import "HPRecommendShopModel.h" //推荐商品
 
 
 #define CELL0   @"DetailStoreFirstTableViewCell"
@@ -39,7 +46,15 @@
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)PaytheBillView*topView;
 @property(nonatomic,strong)UIView*bottomView;
+//tableHeaderView上的两个控件 需要赋值
 @property(nonatomic,strong)UIImageView*backgroundImageView;
+@property(nonatomic,strong)UILabel*tableHeaderShowNumberLabel;
+
+@property(nonatomic,strong)ShopdetailModel*mainModel;   //大model
+@property(nonatomic,strong)NSMutableArray*maMDatasGoods;  //所有商品的model
+@property(nonatomic,strong)NSMutableArray*maMCommit;  //所有评论的model
+@property(nonatomic,strong)NSMutableArray*maMRecommend; //推荐的model
+
 
 
 @end
@@ -49,26 +64,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.title=@"傣妹火锅";
+    [self getDatas];
     self.automaticallyAdjustsScrollViewInsets=NO;
     [self.view addSubview:self.tableView];
     [self makeHeaderView];
     [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
-//    [self.tableView registerClass:[DetailStorePreferentialTableViewCell class] forCellReuseIdentifier:CELL1];
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
     [self.tableView registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
         [self.tableView registerNib:[UINib nibWithNibName:CELL5 bundle:nil] forCellReuseIdentifier:CELL5];
  
     
 }
+//登录
+- (BOOL)isLogin{
+    if (![UserSession instance].isLogin) {
+        YWLoginViewController * vc = [[YWLoginViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    return [UserSession instance].isLogin;
+}
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //需要判断 当前的naviBar 是否显示
    CGFloat offset_Y= self.tableView.contentOffset.y;
-//    MyLog(@"xxx%f",aa);
-//    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
-    
     
     if (offset_Y>=0&&offset_Y<=HeaderHeight-64) {
         CGFloat number=HeaderHeight-64;
@@ -98,7 +118,10 @@
     self.bottomView.layer.masksToBounds=YES;
     
     self.backgroundImageView=[[UIImageView alloc]initWithFrame:self.bottomView.frame];
-    self.backgroundImageView.image=[UIImage imageNamed:@"backImage"];
+//    self.backgroundImageView.image=[UIImage imageNamed:@"backImage"];
+    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:_mainModel.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
     self.backgroundImageView.contentMode=UIViewContentModeScaleAspectFill;
     [self.bottomView addSubview:self.backgroundImageView];
     
@@ -116,20 +139,35 @@
 //    imageButtonView.alpha=1;
     imageButtonView.frame=CGRectMake(kScreen_Width-10-50, topHeight-10-50, 50, 50);
     [headerView addSubview:imageButtonView];
+    
+    UILabel*numberLabel=[imageButtonView viewWithTag:2];
+    numberLabel.text=[NSString stringWithFormat:@"%@张",self.mainModel.total_photo];
+    self.tableHeaderShowNumberLabel=numberLabel;
 
     UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchTopImageView)];
     [imageButtonView addGestureRecognizer:tap];
     [headerView addGestureRecognizer:tap];
     
+
+
 }
+
+//headerTableView 赋值
+-(void)giveValueForTableHeaderView{
+    self.tableHeaderShowNumberLabel.text=[NSString stringWithFormat:@"%@张",self.mainModel.total_photo];
+    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:_mainModel.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+
+    
+    
+}
+
 
 #pragma mark   --- 滚动视图
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offset_Y = scrollView.contentOffset.y;
-    //    CGFloat alpha = (offset_Y + 40)/300.0f;
-    //    NSLog(@"偏移：%f   ",offset_Y);
-    //    self.backView.backgroundColor = [self.backColor colorWithAlphaComponent:alpha];
     
     NSLog(@"%f",offset_Y);
     if (offset_Y < 0) {
@@ -176,30 +214,98 @@
     
 }
 
+
+#pragma mark  --tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 //    return 5;
     return 6;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==2) {
-        return 3;
+        return self.maMDatasGoods.count;
         
     }else if (section==3){
-        return 3;
+        return self.maMCommit.count;
         
     }else if (section==5){
-        return 3;
+        return self.maMRecommend.count;
     }
     return 1;
 }
+
+
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
+    
+    
     if (indexPath.section==0) {
+#pragma 优惠买单
        DetailStoreFirstTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+        //标题
+        UILabel*titleLabel=[cell viewWithTag:1];
+        titleLabel.text=self.mainModel.company_name;
+        
+        //分数
+        UILabel*pointLabel=[cell viewWithTag:2];
+        pointLabel.text=[NSString stringWithFormat:@"%@",self.mainModel.star];
+        //人均
+        UILabel*per_capita=[cell viewWithTag:3];
+        per_capita.text=[NSString stringWithFormat:@"人均：￥%@",self.mainModel.per_capita];
+        //优惠买单
+        UIButton*disBuy=[cell viewWithTag:4];
+        
+        
+        //月消费人次
+        UILabel*monthPay=[cell viewWithTag:5];
+        monthPay.text=[NSString stringWithFormat:@""];
+        
+        //地址
+        UILabel*addresslabel=[cell viewWithTag:22];
+        addresslabel.text=self.mainModel.company_address;
+       
+        //分数
+        //星星数量 -------------------------------------------------------
+        CGFloat realZhengshu;
+        CGFloat realXiaoshu;
+        NSString*starNmuber=self.mainModel.star;
+        NSString*zhengshu=[starNmuber substringToIndex:1];
+        realZhengshu=[zhengshu floatValue];
+        NSString*xiaoshu=[starNmuber substringFromIndex:1];
+        CGFloat CGxiaoshu=[xiaoshu floatValue];
+        
+        if (CGxiaoshu>0.5) {
+            realXiaoshu=0;
+            realZhengshu= realZhengshu+1;
+        }else if (CGxiaoshu>0&&CGxiaoshu<=0.5){
+            realXiaoshu=0.5;
+        }else{
+            realXiaoshu=0;
+            
+        }
+        
+        for (int i=40; i<45; i++) {
+            UIImageView*imageView=[cell viewWithTag:i];
+            if (imageView.tag-40<realZhengshu) {
+                //亮
+                imageView.image=[UIImage imageNamed:@"home_lightStar"];
+            }else if (imageView.tag-40==realZhengshu&&realXiaoshu!=0){
+                //半亮
+                imageView.image=[UIImage imageNamed:@"home_halfStar"];
+                
+            }else{
+                //不亮
+                imageView.image=[UIImage imageNamed:@"home_grayStar"];
+            }
+            
+            
+        }
+        //------------------------------------------
+        
         WEAKSELF;
         cell.touchPayBlock=^(){
             //点击支付
@@ -220,21 +326,48 @@
         return cell;
         
     }else if (indexPath.section==1){
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
-        NSArray*array=@[@"1000",@"全场8.9折",@"8.5折（周一至周五10：00~22：00）",@"中秋节特别活动全场7折"];
-        NSMutableArray*mtArray=[NSMutableArray arrayWithArray:array];
+#pragma holiday
+        
+        DetailStorePreferentialTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+        
+        NSMutableArray*mtArray=[self.mainModel.holiday mutableCopy];
         
         if (!cell) {
-            cell=[[DetailStorePreferentialTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CELL1 andDatas:mtArray];
+            cell=[[DetailStorePreferentialTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CELL1];
         }
+        cell.defultZhe=self.mainModel.discount;//这里不变model 到了cell里面变model
+        cell.allDatas=[mtArray copy];
         
       
         cell.selectionStyle=NO;
         return cell;
         
     }else if (indexPath.section==2){
+        
+#pragma 商品
+       
         cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
         cell.selectionStyle=NO;
+       ShowShoppingModel*model= self.maMDatasGoods[indexPath.row];
+        
+        
+        UIImageView*leftImage=[cell viewWithTag:1];
+        [leftImage sd_setImageWithURL:[NSURL URLWithString:model.goods_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
+        
+        
+        UILabel*titleLabel=[cell viewWithTag:2];
+        titleLabel.text=model.goods_name;
+        
+        
+        
+        UILabel*detailLabel=[cell viewWithTag:3];
+        detailLabel.text=model.goods_info;
+        
+        UILabel*moneyLabel=[cell viewWithTag:4];
+        moneyLabel.text=[NSString stringWithFormat:@"￥%@",model.goods_price];
+        
         
         
         return cell;
@@ -243,24 +376,115 @@
         
         
     }else if (indexPath.section==3){
+#pragma 评论
+        CommentModel*model=self.maMCommit[indexPath.row];
+      
+        
         CommentTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL3];
         cell.selectionStyle=NO;
-        cell.allDatas=@{@"title":@"舒服撒飞洒发书法家刘师傅几位司法解释雷锋节老司机覅发顺丰萨芬进来撒几时放假啊；就说法是否收费IE如期皮肤司法局；辣女你，你少发了",@"images":@[@"",@"",@"",@"",@"",@"",@""]};
-        return cell;
+        [cell giveValueWithModel:model];
+        
+              return cell;
         
     }else if (indexPath.section==4){
+#pragma 商家详情
+     
+        
+        
         StoreDescriptionTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL4];
-        NSArray*array=@[@"有wifi",@"营业时间：24小时",@"有停车位",@"有包房",@"有吸烟室"];
         if (!cell) {
-            cell=[[StoreDescriptionTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CELL4 withDatas:array];
+            cell=[[StoreDescriptionTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CELL4 ];
         }
         cell.selectionStyle=NO;
+        cell.allDatas=self.mainModel.infrastructure;
         return cell;
         
         
     }else if (indexPath.section==5){
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL5];
+        
+#pragma 为你推荐
+        
+       YWMainShoppingTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:CELL5];
         cell.selectionStyle=NO;
+        
+         HPRecommendShopModel*model=self.maMRecommend[indexPath.row];
+        
+        //图片
+        UIImageView*photo=[cell viewWithTag:1];
+        [photo sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
+        //标题
+        UILabel*titleLabel=[cell viewWithTag:2];
+        titleLabel.text=model.company_name;
+        
+        //星星数量 -------------------------------------------------------
+        CGFloat realZhengshu;
+        CGFloat realXiaoshu;
+        NSString*starNmuber=model.star;
+        NSString*zhengshu=[starNmuber substringToIndex:1];
+        realZhengshu=[zhengshu floatValue];
+        NSString*xiaoshu=[starNmuber substringFromIndex:1];
+        CGFloat CGxiaoshu=[xiaoshu floatValue];
+        
+        if (CGxiaoshu>0.5) {
+            realXiaoshu=0;
+            realZhengshu= realZhengshu+1;
+        }else if (CGxiaoshu>0&&CGxiaoshu<=0.5){
+            realXiaoshu=0.5;
+        }else{
+            realXiaoshu=0;
+            
+        }
+        
+        for (int i=30; i<35; i++) {
+            UIImageView*imageView=[cell viewWithTag:i];
+            if (imageView.tag-30<realZhengshu) {
+                //亮
+                imageView.image=[UIImage imageNamed:@"home_lightStar"];
+            }else if (imageView.tag-30==realZhengshu&&realXiaoshu!=0){
+                //半亮
+                imageView.image=[UIImage imageNamed:@"home_halfStar"];
+                
+            }else{
+                //不亮
+                imageView.image=[UIImage imageNamed:@"home_grayStar"];
+            }
+            
+            
+        }
+        //---------------------------------------------------------------------------
+        
+        
+        //人均
+        UILabel*per_capitaLabel=[cell viewWithTag:3];
+        per_capitaLabel.text=[NSString stringWithFormat:@"%@/人",model.per_capita];
+        
+        //分类
+        UILabel*categoryLabel=[cell viewWithTag:4];
+        categoryLabel.text=model.catname;   //model.catname
+        
+        //距离自己的位置多远
+        UILabel*nearLabel=[cell viewWithTag:5];
+        nearLabel.text=model.company_near;
+        
+        //折图片
+        //        UIImageView*imageZhe=[cell viewWithTag:6];
+        //这下面的文字
+        UILabel*zheLabel=[cell viewWithTag:7];
+        zheLabel.text=[NSString stringWithFormat:@"%@折，闪付立享",model.discount];
+        
+        //特图片
+        UIImageView*imageTe=[cell viewWithTag:8];
+        imageTe.hidden=YES;
+        //特旁边的文字
+        UILabel*teLabel=[cell viewWithTag:9];
+        teLabel.hidden=YES;
+        
+        //显示的特别活动   nsarray 里面string越多 显示越多的内容
+        
+        cell.holidayArray=model.holiday;
+
         return cell;
         
         
@@ -341,6 +565,8 @@
         
         return headView;
     }else if (section==3){
+        
+#pragma 评论
         UIView*headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 40, kScreen_Width, 40)];
         headerView.backgroundColor=[UIColor whiteColor];
         
@@ -364,9 +590,48 @@
             
         }
         
+        //星星数量 -------------------------------------------------------
+        CGFloat realZhengshu;
+        CGFloat realXiaoshu;
+        NSString*starNmuber=self.mainModel.star;
+        NSString*zhengshu=[starNmuber substringToIndex:1];
+        realZhengshu=[zhengshu floatValue];
+        NSString*xiaoshu=[starNmuber substringFromIndex:1];
+        CGFloat CGxiaoshu=[xiaoshu floatValue];
+        
+        if (CGxiaoshu>0.5) {
+            realXiaoshu=0;
+            realZhengshu= realZhengshu+1;
+        }else if (CGxiaoshu>0&&CGxiaoshu<=0.5){
+            realXiaoshu=0.5;
+        }else{
+            realXiaoshu=0;
+            
+        }
+        
+        for (int i=0; i<5; i++) {
+            UIImageView*imageView=[headerView viewWithTag:i+100];
+            if (imageView.tag-100<realZhengshu) {
+                //亮
+                imageView.image=[UIImage imageNamed:@"home_lightStar"];
+            }else if (imageView.tag-100==realZhengshu&&realXiaoshu!=0){
+                //半亮
+                imageView.image=[UIImage imageNamed:@"home_halfStar"];
+                
+            }else{
+                //不亮
+                imageView.image=[UIImage imageNamed:@"home_grayStar"];
+            }
+            
+            
+        }
+        //--------------------------------------------------------------------------
+        
+        
+        
         UIImageView*rightImageView=[headerView viewWithTag:100+4];
         UILabel*pointLabel=[[UILabel alloc]init];
-        pointLabel.text=@"5.5分";
+        pointLabel.text=[NSString stringWithFormat:@"%@分",self.mainModel.star];
         pointLabel.font=FONT_CN_24;
         [headerView addSubview:pointLabel];
         [pointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -376,8 +641,10 @@
         }];
         
         
+        
+        
         UILabel*label1=[[UILabel alloc]init];
-        label1.text=@"高于70%的同行";
+        label1.text=self.mainModel.top_than_other;
         label1.font=FONT_CN_24;
         [headerView addSubview:label1];
         [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -387,7 +654,7 @@
         }];
 
         UILabel*numberLabel=[[UILabel alloc]init];
-        numberLabel.text=@"1915条评论";
+        numberLabel.text=[NSString stringWithFormat:@"%@条评论",self.mainModel.total_comment];
         numberLabel.font=FONT_CN_24;
         [headerView addSubview:numberLabel];
         [numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -483,26 +750,28 @@
         return 140;
         
     }else if (indexPath.section==1){
-        NSArray*array=@[@"1000",@"全场8.9折",@"8.5折（周一至周五10：00~22：00）",@"中秋节特别活动全场7折"];
-        NSMutableArray*mtArray=[NSMutableArray arrayWithArray:array];
-
+        NSMutableArray*mtArray=[self.mainModel.holiday mutableCopy];
         return [DetailStorePreferentialTableViewCell getCellHeightWitharray:mtArray];
     }else if (indexPath.section==2){
         
         return 95;
     }else if (indexPath.section==3){
-         NSDictionary*dict=@{@"title":@"舒服撒飞洒发书法家刘师傅几位司法解释雷锋节老司机覅发顺丰萨芬进来撒几时放假啊；就说法是否收费IE如期皮肤司法局；辣女你，你少发了",@"images":@[@"",@"",@"",@"",@"",@"",@""]};
-        return [CommentTableViewCell getCellHeight:dict];
+
+        CommentModel*model=self.maMCommit[indexPath.row];
+        return [CommentTableViewCell getCellHeight:model];
         
         
     }else if (indexPath.section==4){
-          NSArray*array=@[@"有wifi",@"营业时间：24小时",@"有停车位",@"有包房",@"有吸烟室"];
+
+        NSArray*array=self.mainModel.infrastructure;
         return [StoreDescriptionTableViewCell getHeight:array];
         
         
     }else if (indexPath.section==5){
         
-          return 145;
+        HPRecommendShopModel*model=self.maMRecommend[indexPath.row];
+        return [YWMainShoppingTableViewCell getCellHeight:model.holiday];
+
     }
     
     return 44;
@@ -511,20 +780,28 @@
 //打电话
 -(void)alertShowPhone{
     UIAlertController*alertVC=[UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction*alertAC=[UIAlertAction actionWithTitle:@"13661475900" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //打电话
-        NSString *num = [[NSString alloc] initWithFormat:@"telprompt://13661475900"]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中 网上说这个方法可能不合法 无法通过审核
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]]; //拨号
+    UIAlertAction*alertAC=[UIAlertAction actionWithTitle:self.mainModel.company_first_tel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+        
+        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.mainModel.company_first_tel];
+        UIWebView *callWebview = [[UIWebView alloc] init];
+        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+        [self.view addSubview:callWebview];
+        
+       
         
     }];
-    UIAlertAction*alertAC2=[UIAlertAction actionWithTitle:@"59837057" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSString *num = [[NSString alloc] initWithFormat:@"telprompt://13661475900"]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中 网上说这个方法可能不合法 无法通过审核
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]]; //拨号
+    UIAlertAction*alertAC2=[UIAlertAction actionWithTitle:self.mainModel.company_second_tel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
+        NSString*str=[NSString stringWithFormat:@"tel:%@",self.mainModel.company_second_tel];
+        UIWebView*callWebView=[[UIWebView alloc]init];
+        [callWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+        [self.view addSubview:callWebView];
+        
         
     }];
 #pragma 咨询
-    UIAlertAction*consult=[UIAlertAction actionWithTitle:@"咨询" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction*consult=[UIAlertAction actionWithTitle:@"预约" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         ScheduleViewController*vc=[[ScheduleViewController alloc]initWithNibName:@"ScheduleViewController" bundle:nil];
         [self.navigationController pushViewController:vc animated:NO];
     }];
@@ -551,17 +828,66 @@
 }
 
 
+#pragma mark  -- 店铺详情
+-(void)getDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_SHOPDETAIL];
+    NSDictionary*params=@{@"shop_id":self.shop_id,@"device_id":[JWTools getUUID]};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode =[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            self.mainModel=[ShopdetailModel yy_modelWithDictionary:data[@"data"]];
+            
+            self.maMDatasGoods=[NSMutableArray array];
+            self.maMCommit=[NSMutableArray array];
+            self.maMRecommend=[NSMutableArray array];
+            
+            //所有商品的model
+            for (NSDictionary*dict in self.mainModel.goods) {
+                ShowShoppingModel*model= [ShowShoppingModel yy_modelWithDictionary:dict];
+                [self.maMDatasGoods addObject:model];
+            }
+            
+            for (NSDictionary*dict in self.mainModel.comment) {
+                CommentModel*model=[CommentModel yy_modelWithDictionary:dict];
+                [self.maMCommit addObject:model];
+            }
+            
+            for (NSDictionary*dict in self.mainModel.recommend_shop) {
+                HPRecommendShopModel*model=[HPRecommendShopModel yy_modelWithDictionary:dict];
+                [self.maMRecommend addObject:model];
+            }
+            
+            [self giveValueForTableHeaderView];
+            [self.tableView reloadData];
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+
+        
+        
+    }];
+    
+    
+}
+
 #pragma mark  --  touch
 
 -(void)touchSeeMore{
     SeeMoreShoppingViewController*vc=[[SeeMoreShoppingViewController alloc]init];
+    vc.shop_id=self.shop_id;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 -(void)touchTopImageView{
-    MyLog(@"11");
+   
     StorePhotoViewController*vc=[[StorePhotoViewController alloc]init];
+    vc.shop_id=self.shop_id;
     [self.navigationController pushViewController:vc animated:YES];
     
     
@@ -577,9 +903,13 @@
 
 -(void)gotoPay{
     MyLog(@"pay");
-    YWPayViewController*vc=[[YWPayViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+    if ([self isLogin]) {
+        YWPayViewController*vc=[[YWPayViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }
+    
+  }
 
 #pragma mark  --  set
 -(UITableView *)tableView{
@@ -607,6 +937,14 @@
     
     return _topView;
     
+}
+
+-(NSMutableArray *)maMDatasGoods{
+    if (!_maMDatasGoods) {
+        _maMDatasGoods=[NSMutableArray array];
+    }
+    
+    return _maMDatasGoods;
 }
 
 

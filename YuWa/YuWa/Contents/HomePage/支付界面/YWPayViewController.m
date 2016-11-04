@@ -22,13 +22,16 @@
 #define CELL2  @"TwoLabelShowTableViewCell"
 #define CELL3  @"AccountMoneyTableViewCell"
 
-@interface YWPayViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface YWPayViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,CouponViewControllerDelegate>
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)UILabel*shouldPayMoneyLabel;
 
 @property(nonatomic,assign)CGFloat payAllMoney;    //需要支付的总额
 @property(nonatomic,assign)CGFloat NOZheMoney;     //不打折的金额
 @property(nonatomic,assign)CGFloat shouldPayMoney;   //应该支付的钱
+
+@property(nonatomic,assign)CGFloat yueMoney;       //账户上的余额
+@property(nonatomic,assign)CGFloat CouponMoney;    //优惠券。
 
 @end
 
@@ -169,10 +172,11 @@
         label1.text=@"使用雨娃余额";
         
         UILabel*labelMoney=[cell viewWithTag:2];
-        labelMoney.text=@"￥1000";
+        labelMoney.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
         
         UISwitch*sButton=[cell viewWithTag:3];
         [sButton setOn:NO];
+        [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
         
         return cell;
     }
@@ -201,6 +205,8 @@
     if (indexPath.section==1&&indexPath.row==0) {
         //使用优惠券
         CouponViewController*vc=[[CouponViewController alloc]init];
+        vc.delegate=self;
+        vc.shopID=self.shopID;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else if (indexPath.section==2&&indexPath.row==0){
@@ -249,7 +255,17 @@
     
 }
 
+-(void)switchAction:(UISwitch*)sender{
+    MyLog(@"%d",sender.isOn);
+    
+}
+
 #pragma mark  --delegate
+
+-(void)DelegateGetCouponInfo:(CouponModel *)model{
+    MyLog(@"aa");
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField endEditing:YES];
     return NO;
