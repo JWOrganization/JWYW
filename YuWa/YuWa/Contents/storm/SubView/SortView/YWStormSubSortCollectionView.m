@@ -60,7 +60,7 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YWStormSubSortCollectionViewCell * subSortCell = [collectionView dequeueReusableCellWithReuseIdentifier:STORMSORTCOLLECTIONCELL forIndexPath:indexPath];
-    subSortCell.nameLabel.text = self.dataArr[indexPath.row];//23333333接入接口后可能会改
+    subSortCell.nameLabel.text = self.dataArr[indexPath.row];
     if (indexPath.row == self.choosedTypeIdx) {
         subSortCell.nameLabel.textColor = CNaviColor;
     }else{

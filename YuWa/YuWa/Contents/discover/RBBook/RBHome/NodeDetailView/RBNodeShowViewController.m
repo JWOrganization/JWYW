@@ -430,9 +430,9 @@
                 NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dic];
                 [self.dataArr addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
             }
+            [self.tableView reloadData];
+            self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
         }
-        [self.tableView reloadData];
-        self.bottomToolsHeight = self.bottomToolsHeight == 0.f? self.scrollToolsHeight/2 : self.bottomToolsHeight;
     } failur:^(id responsObj, NSError *error) {
         [self.tableView.mj_footer endRefreshing];
         MyLog(@"Regieter Code pragram is %@",pragram);

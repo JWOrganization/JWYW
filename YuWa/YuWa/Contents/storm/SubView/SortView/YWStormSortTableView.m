@@ -79,20 +79,27 @@
 
 #pragma mark - Http
 - (void)requestSubTypeWithIdx:(NSInteger)index{
-    NSDictionary * pragram = @{@"cid":self.dataArr[index]};
+    NSDictionary * pragram = @{@"cid":[NSString stringWithFormat:@"%zi",(index>=1?(index+3):(index+1))]};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_STORM_TAG withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         self.selectIndex = index;
         [self reloadData];
-        self.choosedTypeBlock(self.selectIndex,[self.dataStateArr[self.selectIndex] integerValue],@[@"23333333",@"bilili",@"yoooooo",@"∑q|ﾟДﾟ|p",@"Under",@"Taker"],@[@1]);//2333333子类标签为请求数据
+        NSMutableArray * tagArr = [NSMutableArray arrayWithCapacity:0];
+        NSMutableArray * tagNameArr = [NSMutableArray arrayWithCapacity:0];
+        NSArray * dataArr = responsObj[@"data"];
+        for (int i = 0; i<dataArr.count; i++) {
+            NSDictionary * dataDic = dataArr[i];
+            [tagArr addObject:dataDic[@"id"]];
+            [tagNameArr addObject:dataDic[@"tag_name"]];
+        }
+        
+        self.choosedTypeBlock(self.selectIndex,[self.dataStateArr[self.selectIndex] integerValue],tagNameArr,tagArr);
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
-    
-    //h2333333333
 }
 
 @end

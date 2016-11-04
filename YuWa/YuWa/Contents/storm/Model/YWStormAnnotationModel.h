@@ -13,6 +13,13 @@
 @property (nonatomic,assign) CLLocationCoordinate2D coordinate;
 //是大头针模型 所以必须实现协议MKAnnotation协议 和CLLocationCoordinate2D中的属性coordinate
 
-@property (nonatomic,copy) NSString * type;
+@property (nonatomic,copy) NSString * type;//cid
+@property (nonatomic,copy) NSString * annotationID;
+@property (nonatomic,copy) NSString * coordinatex;//经度
+@property (nonatomic,copy) NSString * coordinatey;//纬度
+@property (nonatomic,copy) NSString * company_img;
+@property (nonatomic,copy) NSString * catname;
+@property (nonatomic,strong) NSArray * tag_name;
+
 
 @end

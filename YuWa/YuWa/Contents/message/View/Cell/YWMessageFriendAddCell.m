@@ -7,6 +7,8 @@
 //
 
 #import "YWMessageFriendAddCell.h"
+#import "YWMessageAddressBookModel.h"
+#import "HttpObject.h"
 
 #import "JWTools.h"
 @implementation YWMessageFriendAddCell
@@ -77,10 +79,18 @@
 
 #pragma mark - Http
 - (void)requestFriendData{
- //根据环信ID获取头像和昵称
-    //    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
-    //    self.nameLabel.text = @"lalal2333333";
-    
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"other_username":self.model.hxID};
+    [[HttpObject manager]postNoHudWithType:YuWaType_FRIENDS_INFO withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        YWMessageAddressBookModel * model = [YWMessageAddressBookModel yy_modelWithDictionary:responsObj[@"data"]];
+        model.hxID = self.model.hxID;//无昵称时设为环信ID
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.header_img] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+        self.nameLabel.text = model.nikeName;
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
 }
 
 @end

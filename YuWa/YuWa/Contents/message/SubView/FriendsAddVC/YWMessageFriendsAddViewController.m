@@ -113,7 +113,7 @@
     if ([self isSearch]) {
         YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
         YWMessageSearchFriendAddModel * model = self.searchDataArr[indexPath.row];
-//        vc.idd = model.idd;//2333333333进入他人主页
+//        vc.idd = model.user_id;//2333333333进入他人主页
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
@@ -137,22 +137,42 @@
 }
 
 #pragma mark- UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (self.searchDataArr.count > 0) {
+        YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
+        YWMessageSearchFriendAddModel * model = self.searchDataArr[0];
+        //vc.idd = model.user_id;//2333333333进入他人主页
+        [self.navigationController pushViewController:vc animated:YES];
+        return YES;
+    }
+    [self showHUDWithStr:@"不存在该用户" withSuccess:NO];
+    return NO;
+}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView scrollsToTop];
-        [self requestSearchFriend];
+        if (textField.text.length>10) {
+            [self.tableView scrollsToTop];
+            [self requestSearchFriend];
+        }
     });
     return YES;
 }
 
 #pragma mark - Http
 - (void)requestSearchFriend{
-    //要删23333333
-    YWMessageSearchFriendAddModel * model = [[YWMessageSearchFriendAddModel alloc]init];
-    model.nickName = self.searchTextField.text;
-    [self.searchDataArr addObject:model];
-    //要删23333333
-    [self.tableView reloadData];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"other_username":self.searchTextField.text};
+    [[HttpObject manager]postNoHudWithType:YuWaType_FRIENDS_INFO withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        if (responsObj[@"data"][@"user_id"]) {
+            YWMessageSearchFriendAddModel * model = [YWMessageSearchFriendAddModel yy_modelWithDictionary:responsObj[@"data"]];
+            [self.searchDataArr addObject:model];
+            [self.tableView reloadData];
+        }
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
 }
 
 @end

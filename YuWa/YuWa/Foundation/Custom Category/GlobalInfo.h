@@ -34,6 +34,7 @@
 #define HTTP_RB_ATTENTION_ADD @"/api.php/User/addAttention/" //关注发布者
 #define HTTP_RB_ATTENTION_CANCEL @"/api.php/User/delAttention/" //删除关注
 #define HTTP_RB_COMMENT @"/api.php/Note/addNoteComment/" //评论发布
+#define HTTP_RB_COMMENT_LIST @"/api.php/Note/getCommentListByNoteId/" //评论列表
 #define HTTP_RB_SEARCH_QUICK @"/api.php/Note/hotSearch/" //笔记热门搜索
 #define HTTP_RB_SEARCH_KEY @"/api.php/Note/getRelationKeywords/" //搜索相关
 #define HTTP_RB_SEARCH_RESULT @"/api.php/Note/searchResult/" //搜索结果
@@ -52,10 +53,12 @@
 #define HTTP_STORM_SEARCH_HOT @"/api.php/Index/hotSearch/" //热门搜索
 #define HTTP_STORM_SEARCH @"/api.php/Shop/searchResult/" //搜索店铺
 
+#pragma mark - Noticafication
+#define HTTP_NOTCCAFICATIONJ_ORDER @"/api.php/User/reservePushNotice/" //预约通知
+#define HTTP_NOTCCAFICATIONJ_PAY @"/api.php/User/payPushNotice/" //付款通知
 
-
-
-
+#pragma mark - Friends
+#define HTTP_FRIENDS_INFO @"/api.php/User/getUserInfoByUserName/" //好友信息
 
 
 

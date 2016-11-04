@@ -15,7 +15,7 @@
 @interface YWMessageAddressBookTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,copy)void (^friendsAddBlock)();
-@property (nonatomic,copy)void (^friendsChatBlock)(NSString *,NSString *);
+@property (nonatomic,copy)void (^friendsChatBlock)(YWMessageAddressBookModel *);
 
 @property (nonatomic,strong)NSMutableArray * dataArr;
 @property (nonatomic,strong)NSMutableArray * keyArr;

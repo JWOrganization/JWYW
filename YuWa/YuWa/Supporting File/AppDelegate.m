@@ -131,7 +131,7 @@
                       break;
                       
                   case SSDKPlatformTypeWechat:
-                      [appInfo SSDKSetupWeChatByAppId:@"wx5c90f6574f7c66a8" appSecret:@"212f79464ce37def860499ae6f5b0268"];
+                      [appInfo SSDKSetupWeChatByAppId:@"wxe1688beb5d248457" appSecret:@"0a8cc210c9d05f4841ddcf9815f1d491"];
                       break;
                   default:
                       break;

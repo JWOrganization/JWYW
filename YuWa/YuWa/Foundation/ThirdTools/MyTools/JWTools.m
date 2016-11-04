@@ -380,6 +380,41 @@
     
     return jsonStr;
 }
+/**
+ *  单个数组组成Json文件
+ *
+ *  @param key 接口关键字
+ *  @param arr 接口数组
+ *
+ *  @return json字符串
+ */
++ (NSString *)jsonStrWithArr:(NSArray *)arr{
+    NSData *data=[NSJSONSerialization dataWithJSONObject:arr options:kNilOptions error:nil];
+    NSString *jsonStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    
+    return jsonStr;
+}
+/**
+ *  字符串组成UTF8文件
+ *
+ *  @param key 接口关键字
+ *  @param arr 接口数组
+ *
+ *  @return json字符串
+ */
++ (NSString *)UTF8WithStringJW:(NSString *)str{
+    return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+/**
+ *  字符串解析UTF8
+ *
+ *  @param UTF8String UTF8
+ *
+ *  @return 字符串
+ */
++ (NSString *)stringWithUTF8JW:(NSString *)UTF8String{
+    return [UTF8String stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
 
 #pragma mark - RegEx
 /**
@@ -516,8 +551,8 @@
     CFStringTransform((CFMutableStringRef)strFir,NULL, kCFStringTransformMandarinLatin,NO);//先转换为带声调的拼音
     CFStringTransform((CFMutableStringRef)strFir,NULL, kCFStringTransformStripDiacritics,NO);//再转换为不带声调的拼音
     
-//    return [[strFir capitalizedString] substringToIndex:1];//转化为大写拼音&获取并返回首字母
-    return [strFir capitalizedString];
+    return [[strFir capitalizedString] substringToIndex:1];//转化为大写拼音&获取并返回首字母
+//    return [strFir capitalizedString];
 }
 
 #pragma mark - QR Code 二维码

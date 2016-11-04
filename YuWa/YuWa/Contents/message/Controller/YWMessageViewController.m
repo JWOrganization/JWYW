@@ -132,8 +132,8 @@
         });
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
-    self.addressBooktableView.friendsChatBlock = ^(NSString * hxID,NSString * nikeName){
-        [weakSelf chatWithUser:hxID withNikeName:nikeName];
+    self.addressBooktableView.friendsChatBlock = ^(YWMessageAddressBookModel * model){
+        [weakSelf chatWithUser:model];
     };
     [self.view addSubview:self.addressBooktableView];
 }
@@ -183,11 +183,11 @@
     UILabel * redLabel = (UILabel *)[self.rightBarBtn.customView viewWithTag:1001];
     redLabel.hidden = !isNew;
 }
-- (void)chatWithUser:(NSString *)hxID withNikeName:(NSString *)nikeName{
-    YWMessageChatViewController *chatVC = [[YWMessageChatViewController alloc] initWithConversationChatter:hxID conversationType:EMConversationTypeChat];
-    chatVC.friendNikeName = nikeName;
-    chatVC.myNikeName = @"233333333";
-    chatVC.myHxID = [UserSession instance].account;
+- (void)chatWithUser:(YWMessageAddressBookModel *)model{
+    YWMessageChatViewController *chatVC = [[YWMessageChatViewController alloc] initWithConversationChatter:model.hxID conversationType:EMConversationTypeChat];
+    chatVC.friendNikeName = model.nikeName;
+    chatVC.friendID = model.user_id;
+    chatVC.friendIcon = model.header_img;
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
@@ -217,8 +217,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YWMessageTableViewCell * messageCell = [tableView cellForRowAtIndexPath:indexPath];
-    EaseConversationModel *model = self.dataArr[indexPath.row];
-    [self chatWithUser:([model.title length] > 0?model.title:model.conversation.conversationId) withNikeName:messageCell.nameLabel.text];
+//    EaseConversationModel *model = self.dataArr[indexPath.row];
+    [self chatWithUser:messageCell.model.jModel];
+//    [self chatWithUser:([model.title length] > 0?model.title:model.conversation.conversationId) withNikeName:messageCell.nameLabel.text];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -274,13 +275,36 @@
         }
     }];
     
-    for (EMConversation *converstion in sorted) {
-        EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:converstion];
+    __block NSInteger count = 0;
+    for (int i = 0; i<sorted.count; i++) {
+        EMConversation * converstion = sorted[i];
+        EaseConversationModel * model = [[EaseConversationModel alloc] initWithConversation:converstion];
         
-        if (model&&([YWMessageTableViewCell latestMessageTitleForConversationModel:model].length>0))[self.dataArr addObject:model];
+        if (model&&([YWMessageTableViewCell latestMessageTitleForConversationModel:model].length>0)){
+            [self.dataArr addObject:model];
+            NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"other_username":([model.title length] > 0?model.title:model.conversation.conversationId)};
+            [[HttpObject manager]postNoHudWithType:YuWaType_FRIENDS_INFO withPragram:pragram success:^(id responsObj) {
+                MyLog(@"Regieter Code pragram is %@",pragram);
+                MyLog(@"Regieter Code is %@",responsObj);
+                YWMessageAddressBookModel * modelTemp = [YWMessageAddressBookModel yy_modelWithDictionary:responsObj[@"data"]];
+                modelTemp.hxID = [model.title length] > 0?model.title:model.conversation.conversationId;
+                model.title = modelTemp.nikeName;
+                model.avatarURLPath = modelTemp.header_img;
+                model.jModel = modelTemp;
+                [self.dataArr replaceObjectAtIndex:i withObject:model];
+                count++;
+                if (count >= sorted.count) {
+                    [self.tableView reloadData];
+                }
+            } failur:^(id responsObj, NSError *error) {
+                MyLog(@"Regieter Code pragram is %@",pragram);
+                MyLog(@"Regieter Code error is %@",responsObj);
+                if (count>0) {
+                    [self.tableView reloadData];
+                }
+            }];
+        }
     }
-    
-    [self.tableView reloadData];
 }
 
 

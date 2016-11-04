@@ -45,8 +45,9 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row < self.dataArr.count) {
+        RBNodeUserModel * model = self.dataArr[indexPath.row];
         [self dismissViewControllerAnimated:YES completion:^{
-            self.connectNameBlock(@"23333");
+            self.connectNameBlock(model.nickname);
         }];
     }
 }
@@ -73,9 +74,10 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger cellCountDefault = (self.tableView.height - 21.f) /44.f + 1;
-    
-    return cellCountDefault>self.dataArr.count?cellCountDefault:self.dataArr.count;
+//    NSInteger cellCountDefault = (self.tableView.height - 21.f) /44.f + 1;
+
+    return self.dataArr.count;
+//    return cellCountDefault>self.dataArr.count?cellCountDefault:self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -100,12 +102,6 @@
         userCell.detailTextLabel.text = [NSString stringWithFormat:@"%@个粉丝",model.fans_total];
     }
     
-    //要删23333333
-    userCell.imageView.image = [UIImage imageNamed:@"Head-portrait"];
-    userCell.textLabel.text = @"name";
-    userCell.detailTextLabel.text = @"2个粉丝";
-    //要删23333333
-    
     return userCell;
 }
 
@@ -128,12 +124,17 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_ATTENTION withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        
+        NSArray * dataArr = responsObj[@"data"];
+        for (int i = 0; i<dataArr.count; i++) {
+            NSDictionary * dataDic = dataArr[i];
+            NSDictionary * dicTemp = @{@"images":dataDic[@"header_img"]?dataDic[@"header_img"]:@"",@"nickname":dataDic[@"nickname"]?dataDic[@"nickname"]:@"",@"fans_total":dataDic[@"fans"]?dataDic[@"fans"]:@"0",@"userid":dataDic[@"uid"]?dataDic[@"uid"]:@"0"};//h33333333333header_img可能变
+            [self.dataArr addObject:[RBNodeUserModel yy_modelWithDictionary:dicTemp]];
+        }
         [self.tableView reloadData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-    }];//h333333333
+    }];
     
 }
 

@@ -31,6 +31,7 @@ typedef enum YuWaType{
     YuWaType_RB_ATTENTION_ADD, //关注发布者
     YuWaType_RB_ATTENTION_CANCEL, //删除关注
     YuWaType_RB_COMMENT, //评论发布
+    YuWaType_RB_COMMENT_LIST, //评论列表
     YuWaType_RB_SEARCH_QUICK, //笔记热门搜索
     YuWaType_RB_SEARCH_KEY, //搜索相关
     YuWaType_RB_SEARCH_RESULT, //搜索结果
@@ -45,6 +46,11 @@ typedef enum YuWaType{
     YuWaType_STORM_TAG, //子标签
     YuWaType_STORM_SEARCH_HOT, //热门搜索
     YuWaType_STORM_SEARCH, //搜索店铺
+    
+    YuWaType_NOTCCAFICATIONJ_ORDER, //预约通知
+    YuWaType_NOTCCAFICATIONJ_PAY, //付款通知
+    
+    YuWaType_FRIENDS_INFO, //好友信息
     
     YuWaType_
     

@@ -79,6 +79,10 @@
         case YuWaType_RB_DETAIL://笔记详情
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_DETAIL];
             break;
+#pragma mark - Friends
+        case YuWaType_FRIENDS_INFO://好友信息
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_FRIENDS_INFO];
+            break;
             
            //URLStr建立
         default:
@@ -117,6 +121,9 @@
             break;
         case YuWaType_RB_RELATED://相关笔记
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_RELATED];
+            break;
+        case YuWaType_RB_COMMENT_LIST://评论列表
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COMMENT_LIST];
             break;
         case YuWaType_RB_LIKE://添加点赞（喜欢）
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_LIKE];
@@ -157,6 +164,17 @@
             break;
         case YuWaType_STORM_SEARCH://搜索店铺
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_SEARCH];
+            break;
+#pragma mark - Noticafication
+        case YuWaType_NOTCCAFICATIONJ_ORDER://预约通知
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_NOTCCAFICATIONJ_ORDER];
+            break;
+        case YuWaType_NOTCCAFICATIONJ_PAY://付款通知
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_NOTCCAFICATIONJ_PAY];
+            break;
+#pragma mark - Friends
+        case YuWaType_FRIENDS_INFO://好友信息
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_FRIENDS_INFO];
             break;
             
             //URLStr建立

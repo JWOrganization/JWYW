@@ -162,6 +162,33 @@
  *  @return json字符串
  */
 + (NSString *)jsonStrWithKey:(NSString *)key withArr:(NSArray *)arr;
+/**
+ *  单个数组组成Json文件
+ *
+ *  @param key 接口关键字
+ *  @param arr 接口数组
+ *
+ *  @return json字符串
+ */
++ (NSString *)jsonStrWithArr:(NSArray *)arr;
+
+/**
+ *  字符串组成UTF8文件
+ *
+ *  @param key 接口关键字
+ *  @param arr 接口数组
+ *
+ *  @return json字符串
+ */
++ (NSString *)UTF8WithStringJW:(NSString *)str;
+/**
+ *  字符串解析UTF8
+ *
+ *  @param UTF8String UTF8
+ *
+ *  @return 字符串
+ */
++ (NSString *)stringWithUTF8JW:(NSString *)UTF8String;
 
 #pragma mark - RegEx
 /**

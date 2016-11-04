@@ -7,6 +7,7 @@
 //
 
 #import "RBHomeModel.h"
+#import "JWTools.h"
 
 @implementation RBHomeModel
 
@@ -24,7 +25,7 @@
     NSMutableArray * imgArr = [NSMutableArray arrayWithCapacity:0];
     NSMutableDictionary * imgDic = [NSMutableDictionary dictionaryWithCapacity:0];
     [dataDic setObject:dic[@"note_id"]?dic[@"note_id"]:@"" forKey:@"note_id"];
-    [dataDic setObject:dic[@"info"]?dic[@"info"]:@"" forKey:@"desc"];
+    [dataDic setObject:[JWTools stringWithUTF8JW:dic[@"info"]?dic[@"info"]:@""] forKey:@"desc"];
     [dataDic setObject:dic[@"inlikes"]?dic[@"inlikes"]:@"0" forKey:@"inlikes"];
     [dataDic setObject:dic[@"likes"]?dic[@"likes"]:@"" forKey:@"likes"];
     [dataDic setObject:dic[@"title"]?dic[@"title"]:@"" forKey:@"title"];

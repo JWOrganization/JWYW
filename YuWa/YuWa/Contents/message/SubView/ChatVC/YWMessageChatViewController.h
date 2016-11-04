@@ -11,7 +11,8 @@
 @interface YWMessageChatViewController : EaseMessageViewController
 
 @property (nonatomic,copy)NSString * friendNikeName;
-@property (nonatomic,copy)NSString * myNikeName;
-@property (nonatomic,copy)NSString * myHxID;
+@property (nonatomic,copy)NSString * friendIcon;
+@property (nonatomic,copy)NSString * friendID;
+@property (nonatomic,copy)NSString * friendHXID;
 
 @end

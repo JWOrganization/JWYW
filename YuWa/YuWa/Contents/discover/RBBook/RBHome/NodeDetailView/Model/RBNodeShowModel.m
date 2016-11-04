@@ -7,6 +7,7 @@
 //
 
 #import "RBNodeShowModel.h"
+#import "JWTools.h"
 
 @implementation RBNodeShowModel
 
@@ -37,7 +38,7 @@
     [dataDic setObject:dic[@"infavs"]?dic[@"infavs"]:@"0" forKey:@"infavs"];
     [dataDic setObject:dic[@"favs"]?dic[@"favs"]:@"0" forKey:@"fav_count"];
     [dataDic setObject:dic[@"comments"]?dic[@"comments"]:@"" forKey:@"comments"];
-    [dataDic setObject:dic[@"content"]?dic[@"content"]:@"0" forKey:@"desc"];
+    [dataDic setObject:[JWTools stringWithUTF8JW:dic[@"content"]?dic[@"content"]:@""] forKey:@"desc"];
     [dataDic setObject:dic[@"is_fans"]?dic[@"is_fans"]:@"0" forKey:@"is_fans"];
         
     [userDic setObject:dic[@"header_img"]?dic[@"header_img"]:@"" forKey:@"images"];
@@ -60,7 +61,8 @@
         NSDictionary * commentDicTemp = commentArrTemp[i];
         NSMutableDictionary * commentDic = [NSMutableDictionary dictionaryWithCapacity:0];
         [commentDic setObject:commentDicTemp[@"status"]?commentDicTemp[@"status"]:@"" forKey:@"status"];
-        [commentDic setObject:commentDicTemp[@"customer_content"]?commentDicTemp[@"customer_content"]:@"" forKey:@"content"];
+        NSString * content = commentDicTemp[@"customer_content"]?commentDicTemp[@"customer_content"]:@"";
+        [commentDic setObject:[JWTools stringWithUTF8JW:content] forKey:@"content"];
         [commentDic setObject:commentDicTemp[@"ctime"]?commentDicTemp[@"ctime"]:@"" forKey:@"time"];
         
         NSMutableDictionary * userDicTemp = [NSMutableDictionary dictionaryWithCapacity:0];
@@ -75,7 +77,9 @@
     [dataDic setObject:userDic forKey:@"user"];
     [dataDic setObject:imgArr forKey:@"images_list"];
     [dataDic setObject:commentArr forKey:@"comments_list"];
-    [dataDic setObject:tagDic[@"tags_info_2"] forKey:@"tags_info_2"];
+    if (tagDic[@"tags_info_2"]) {
+        [dataDic setObject:tagDic[@"tags_info_2"] forKey:@"tags_info_2"];
+    }
     return dataDic;
 }
 
