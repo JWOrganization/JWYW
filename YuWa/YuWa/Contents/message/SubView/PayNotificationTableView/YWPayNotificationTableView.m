@@ -67,7 +67,7 @@
 
 #pragma mark - Http
 - (void)requestShopArrDataWithPages:(NSInteger)page{
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_NOTCCAFICATIONJ_PAY withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
