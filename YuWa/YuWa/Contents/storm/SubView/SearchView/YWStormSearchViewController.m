@@ -193,7 +193,7 @@
         for (int i = 0; i < dataArr.count; i++) {
             NSDictionary * dataDic = dataArr[i];
             if (dataDic[@"id"]&&dataDic[@"company_name"]) {
-                [self.hotDataArr addObject:@{@"name":dataDic[@"company_name"],@"shopID":dataDic[@"id"]}];
+                [self.dataArr addObject:@{@"name":dataDic[@"company_name"],@"shopID":dataDic[@"id"]}];
             }
         }
         [self.tableView reloadData];

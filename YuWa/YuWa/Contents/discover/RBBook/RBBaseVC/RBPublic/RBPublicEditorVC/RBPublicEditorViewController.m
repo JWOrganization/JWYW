@@ -308,7 +308,7 @@
 - (void)requestPublishNode{
     NSString * tagStr = [self tagArrJsonCreate];
 //    MyLog(@"%@",tagStr);
-    NSInteger annotionCount = (arc4random() % 6) + 0;//cid111111111
+    NSInteger annotionCount = (arc4random() % 5) + 1;//cid111111111
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@(annotionCount),@"title":self.scrollView.nameTextField.text,@"location":[self.scrollView.locationnameLabel.text isEqualToString:@"添加地点"]?@"":self.scrollView.locationnameLabel.text,@"content":[JWTools UTF8WithStringJW:self.scrollView.conTextView.text],@"img_list":[JWTools jsonStrWithArr:self.picUrlArr],@"tag":tagStr};
     [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
