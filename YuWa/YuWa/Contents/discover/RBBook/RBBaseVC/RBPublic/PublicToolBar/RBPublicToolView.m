@@ -69,7 +69,7 @@
 
 #pragma mark - YJSegmentedControlDelegate
 -(void)segumentSelectionChange:(NSInteger)selection{
-    self.status = selection;//加贴纸功能后有用23333
+    self.status = selection;//加贴纸功能后有用1111111
     self.tagAddBtn.hidden = selection == 1?NO:YES;
     if (!self.tagAddBtn.titleLabel.text){
         [self.tagAddBtn setTitle:@"        点击照片\n选择添加相关信息" forState:UIControlStateNormal];

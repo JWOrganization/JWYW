@@ -191,7 +191,7 @@
             if ([weakSelf isLogin]&& !weakSelf.authorHeader.isUser) {
                 if ([weakSelf isLogin]) {
                     YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
-                    //                vc.idd = 2333;//23333333进入他人主页他人ID
+//                    vc.idd = self.dataModel.user.userid;//23333333进入他人主页他人ID
                     [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
             }

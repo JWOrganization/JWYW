@@ -30,10 +30,10 @@
 }
 
 - (void)dataSet{
-    //    self.timeLabel.text = [JWTools dateWithOutYearStr:];
-    //    self.nameLabel.text = @"lalal2333333";
-    //    self.conLabel.text = @"yoo23333";
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@"2333333"] placeholderImage:[UIImage imageNamed:[self.model.status isEqualToString:@"0"]?@"message_Notification_Order":@"message_Notification_Pay"] completed:nil];
+    self.timeLbael.text = [JWTools dateWithOutYearStr:self.model.ctime];
+    self.nameLabel.text = self.model.title;
+    self.conLabel.text = self.model.content;
+    self.iconImageView.image = [UIImage imageNamed:[self.model.status isEqualToString:@"0"]?@"message_Notification_Order":@"message_Notification_Pay"];
 }
 
 @end

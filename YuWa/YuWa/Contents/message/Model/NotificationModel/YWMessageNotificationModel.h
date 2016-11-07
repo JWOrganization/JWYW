@@ -11,5 +11,9 @@
 @interface YWMessageNotificationModel : NSObject
 
 @property (nonatomic,copy)NSString * status;//0预定通知1付款通知
+@property (nonatomic,copy)NSString * title;
+@property (nonatomic,copy)NSString * content;
+@property (nonatomic,copy)NSString * ctime;
+
 
 @end
