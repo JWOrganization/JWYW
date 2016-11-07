@@ -187,7 +187,7 @@
     YWStormPinAnnotationView * annotationView = (YWStormPinAnnotationView *)view;
     MyLog(@"Select %@ AnnotationView",annotationView.model.type);
     YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-//    vc.idd = 23333333;//商店ID
+    vc.shop_id = annotationView.model.annotationID;//商店ID1111111
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - Http
