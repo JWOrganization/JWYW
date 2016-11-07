@@ -96,12 +96,15 @@
         }
         [tagArrTemp addObject:tagTemp];
     }
+    BOOL isShowed = _tagArr?NO:YES;
     if (tagArr.count>0) {
         _tagArr = tagArrTemp;
     }else{
         _tagArr = tagArr;
     }
-    [self showTag];
+    if (isShowed) {
+        [self showTag];
+    }
 }
 
 - (void)showTag{

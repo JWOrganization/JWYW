@@ -26,14 +26,21 @@
     // tabBar 必定是灰色的  下面方法 可以改变选中时候的颜色
     [UITabBar appearance].tintColor=CNaviColor;
     [self addChildViewControllers];
+    [self delTopLine];
+}
+
+- (void)delTopLine{
+    CGRect rect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
-    
-//     VIPTabBar*vipTB= [[VIPTabBar alloc] init];
-//     vipTB.numberCount=5;
-    
-//     [self setValue:vipTB forKey:@"tabBar"];
-//     self.tabBar.translucent=NO;
-    
+    [self.tabBar setBackgroundImage:img];
+    [self.tabBar setShadowImage:img];
+    [self.tabBar setBackgroundColor:[UIColor whiteColor]];
 }
 
 -(void)addChildViewControllers{
@@ -52,9 +59,6 @@
     
     VIPPersonCenterViewController*vcPerson=[[VIPPersonCenterViewController alloc]init];
     [self addChildVC:vcPerson withTitle:@"个人中心" withImage:@"home_4_nomal" withSelectedImage:@"home_4_selected"];
-    
-    
-    
 }
 
 
