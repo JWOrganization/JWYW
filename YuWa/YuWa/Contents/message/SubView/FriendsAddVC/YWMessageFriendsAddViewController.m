@@ -153,6 +153,8 @@
         if (textField.text.length>10) {
             [self.tableView scrollsToTop];
             [self requestSearchFriend];
+        }else if (self.searchDataArr.count > 0){
+            [self.searchDataArr removeAllObjects];
         }
     });
     return YES;
@@ -160,11 +162,13 @@
 
 #pragma mark - Http
 - (void)requestSearchFriend{
+    if ([self.searchTextField.text isEqualToString:[UserSession instance].account])return;
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"other_username":self.searchTextField.text};
     [[HttpObject manager]postNoHudWithType:YuWaType_FRIENDS_INFO withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         if (responsObj[@"data"][@"user_id"]) {
+            [self.searchDataArr removeAllObjects];
             YWMessageSearchFriendAddModel * model = [YWMessageSearchFriendAddModel yy_modelWithDictionary:responsObj[@"data"]];
             [self.searchDataArr addObject:model];
             [self.tableView reloadData];
