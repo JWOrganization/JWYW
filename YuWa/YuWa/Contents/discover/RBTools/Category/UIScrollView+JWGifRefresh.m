@@ -22,12 +22,21 @@
     gifHeader.refreshingBlock = refreshBlock;
     gifHeader.lastUpdatedTimeLabel.hidden= YES;
     gifHeader.stateLabel.hidden = YES;
-    NSMutableArray * headerImages = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray * headerImagesIdle = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray * headerImagesPulling = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray * headerImagesRefreshing = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < imageCount; i++) {
-        [headerImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        if (i<18) {
+            [headerImagesIdle addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        }else if (i<38){
+            [headerImagesPulling addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        }else{
+            [headerImagesRefreshing addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        }
     }
-    [gifHeader setImages:@[headerImages[0]] forState:MJRefreshStateIdle];
-    [gifHeader setImages:headerImages forState:MJRefreshStateRefreshing];
+    [gifHeader setImages:headerImagesIdle forState:MJRefreshStateIdle];
+    [gifHeader setImages:headerImagesPulling forState:MJRefreshStatePulling];
+    [gifHeader setImages:headerImagesRefreshing forState:MJRefreshStateRefreshing];
     return gifHeader;
 }
 
@@ -44,12 +53,21 @@
     gifFooter.refreshingBlock = refreshBlock;
     gifFooter.stateLabel.hidden = YES;
     gifFooter.refreshingTitleHidden = YES;
-    NSMutableArray * footerImages = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray * footerImagesIdle = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray * footerImagesPulling = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray * footerImagesRefreshing = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < imageCount; i++) {
-        [footerImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        if (i<18) {
+            [footerImagesIdle addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        }else if (i<38){
+            [footerImagesPulling addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        }else{
+            [footerImagesRefreshing addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@%zi",imageName,i]]];
+        }
     }
-    [gifFooter setImages:@[footerImages[0]] forState:MJRefreshStateIdle];
-    [gifFooter setImages:footerImages forState:MJRefreshStateRefreshing];
+    [gifFooter setImages:footerImagesIdle forState:MJRefreshStateIdle];
+    [gifFooter setImages:footerImagesPulling forState:MJRefreshStatePulling];
+    [gifFooter setImages:footerImagesRefreshing forState:MJRefreshStateRefreshing];
     return gifFooter;
 }
 
