@@ -5276,11 +5276,12 @@
 		C1F7BF021DB1CA0700CCAF96 /* 首页图 */ = {
 			isa = PBXGroup;
 			children = (
+				C1F7BF1B1DB1CA0700CCAF96 /* 临时图 */,
+				C13019BF1DB20B2400E24C88 /* 20个图标新 */,
 				C1A75DFD1DCC7B48000E76C2 /* messageImage.png */,
 				C1FB7F761DC73B910048EBC8 /* 火@2x.png */,
 				C1FB7F771DC73B910048EBC8 /* 垃圾桶@2x.png */,
 				C1FB7F781DC73B910048EBC8 /* 时间@2x.png */,
-				C13019BF1DB20B2400E24C88 /* 20个图标新 */,
 				C1F7BF031DB1CA0700CCAF96 /* back@2x.png */,
 				C1F7BF041DB1CA0700CCAF96 /* home_grayStar@2x.png */,
 				C1F7BF051DB1CA0700CCAF96 /* home_halfStar@2x.png */,
@@ -5305,7 +5306,6 @@
 				C1F7BF181DB1CA0700CCAF96 /* page_navi_sousuo.png */,
 				C1F7BF191DB1CA0700CCAF96 /* page_saomiao.png */,
 				C1F7BF1A1DB1CA0700CCAF96 /* placehoder_loading.png */,
-				C1F7BF1B1DB1CA0700CCAF96 /* 临时图 */,
 			);
 			path = "首页图";
 			sourceTree = "<group>";
