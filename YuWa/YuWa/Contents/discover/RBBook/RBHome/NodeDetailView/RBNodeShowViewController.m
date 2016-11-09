@@ -118,6 +118,7 @@
         [weakSelf.navigationController pushViewController:vc animated:NO];
     };
 }
+
 #pragma mark - UI Make
 - (void)makeUI{
     self.toolsBottomView = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailBottomView" owner:nil options:nil] firstObject];
