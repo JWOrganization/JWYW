@@ -493,6 +493,7 @@
 		C10E93AA1DD19AEB00728B3D /* PHBusinessCircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E93A91DD19AEB00728B3D /* PHBusinessCircleModel.m */; };
 		C10E94A21DD1C57A00728B3D /* PHSubCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A11DD1C57A00728B3D /* PHSubCategoryModel.m */; };
 		C10E94A51DD1CCC400728B3D /* PHOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A41DD1CCC400728B3D /* PHOrderModel.m */; };
+		C10E94A81DD34A2600728B3D /* YWPayMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A71DD34A2600728B3D /* YWPayMoneyViewController.m */; };
 		C11F14EF1DC83B92005C58CF /* banner_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */; };
 		C11F14F01DC83B92005C58CF /* banner_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */; };
 		C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */; };
@@ -1661,6 +1662,8 @@
 		C10E94A11DD1C57A00728B3D /* PHSubCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSubCategoryModel.m; sourceTree = "<group>"; };
 		C10E94A31DD1CCC400728B3D /* PHOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHOrderModel.h; sourceTree = "<group>"; };
 		C10E94A41DD1CCC400728B3D /* PHOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHOrderModel.m; sourceTree = "<group>"; };
+		C10E94A61DD34A2600728B3D /* YWPayMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayMoneyViewController.h; sourceTree = "<group>"; };
+		C10E94A71DD34A2600728B3D /* YWPayMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayMoneyViewController.m; sourceTree = "<group>"; };
 		C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@2x.png"; sourceTree = "<group>"; };
 		C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@3x.png"; sourceTree = "<group>"; };
 		C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_selected@2x.png"; sourceTree = "<group>"; };
@@ -4471,6 +4474,13 @@
 			path = RBPublicEditorVC;
 			sourceTree = "<group>";
 		};
+		C10E94AA1DD353AF00728B3D /* 确认付款view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "确认付款view";
+			sourceTree = "<group>";
+		};
 		C11F14EA1DC83B92005C58CF /* banner图片 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4887,6 +4897,9 @@
 				C1F7BD801DB1C94500CCAF96 /* view */,
 				C1F7BD8D1DB1C94500CCAF96 /* YWPayViewController.h */,
 				C1F7BD8E1DB1C94500CCAF96 /* YWPayViewController.m */,
+				C10E94A61DD34A2600728B3D /* YWPayMoneyViewController.h */,
+				C10E94A71DD34A2600728B3D /* YWPayMoneyViewController.m */,
+				C10E94AA1DD353AF00728B3D /* 确认付款view */,
 			);
 			path = "支付界面";
 			sourceTree = "<group>";
@@ -6142,6 +6155,7 @@
 				C1F7BE331DB1C95400CCAF96 /* imageDefineButton.m in Sources */,
 				B3AE4D771D91302B000A389F /* TZPhotoPreviewController.m in Sources */,
 				B38B2E081D8FACD8004D5256 /* MASViewConstraint.m in Sources */,
+				C10E94A81DD34A2600728B3D /* YWPayMoneyViewController.m in Sources */,
 				B3FEB9FD1D9B6465003CDEF2 /* YWMessageModel.m in Sources */,
 				B33A269E1D9A68040092CB12 /* EaseBaseMessageCell.m in Sources */,
 				B33A26AB1D9A68040092CB12 /* EaseChatToolbarItem.m in Sources */,
