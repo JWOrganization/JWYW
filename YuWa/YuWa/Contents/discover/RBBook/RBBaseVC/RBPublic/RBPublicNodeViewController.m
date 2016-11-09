@@ -265,7 +265,7 @@
     [self imageAddTagWithPoint:point withView:tap.view];
 }
 
-- (void)tagViewAddGestureRecognizer:(UIView *)actionView{//标签按钮添加手势
+- (void)tagViewAddGestureRecognizer:(UIView *)actionView{//标签按钮添加手势 
     UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panAction:)];
     [actionView addGestureRecognizer:pan];
     UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
