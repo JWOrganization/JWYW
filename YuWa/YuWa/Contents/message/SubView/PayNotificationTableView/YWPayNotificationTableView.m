@@ -64,19 +64,25 @@
     self.pages = 0;
     [self requestShopArrDataWithPages:0];
 }
-
+- (void)cancelRefreshWithIsHeader:(BOOL)isHeader{
+    if (isHeader) {
+        [self.mj_header endRefreshing];
+    }else{
+        [self.mj_footer endRefreshing];
+    }
+}
 #pragma mark - Http
 - (void)requestShopArrDataWithPages:(NSInteger)page{
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RefreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self cancelRefreshWithIsHeader:(page==0?YES:NO)];
+    });
     
     [[HttpObject manager]postNoHudWithType:YuWaType_NOTCCAFICATIONJ_PAY withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        if (page>0){
-            [self.mj_footer endRefreshing];
-        }else{
+        if (page==0){
             [self.dataArr removeAllObjects];
-            [self.mj_header endRefreshing];
         }
         NSArray * dataArr = responsObj[@"data"];
         if (dataArr.count>0) {
@@ -90,11 +96,6 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-        if (page>0){
-            [self.mj_footer endRefreshing];
-        }else{
-            [self.mj_header endRefreshing];
-        }
     }];
 }
 

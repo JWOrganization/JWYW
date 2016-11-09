@@ -395,6 +395,13 @@
     self.failedCount = 0;
     [self requestDataWithPages:self.pages];
 }
+- (void)cancelRefreshWithIsHeader:(BOOL)isHeader{
+    if (isHeader) {
+        [self.tableView.mj_header endRefreshing];
+    }else{
+        [self.tableView.mj_footer endRefreshing];
+    }
+}
 
 #pragma mark - Http
 - (void)requestData{
@@ -417,6 +424,9 @@
 - (void)requestDataWithPages:(NSInteger)page{
     NSDictionary * pragram = @{@"note_id":self.model.homeID,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RefreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self cancelRefreshWithIsHeader:NO];
+    });
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_RELATED withPragram:pragram success:^(id responsObj) {
         [self.tableView.mj_footer endRefreshing];
         MyLog(@"Regieter Code pragram is %@",pragram);
@@ -424,7 +434,6 @@
         if (page == 0) {
             [self.dataArr removeAllObjects];
         }
-        [self.tableView.mj_footer endRefreshing];
         NSArray * dataArr = responsObj[@"data"];
         if (dataArr.count>0) {
             for (int i = 0; i < dataArr.count; i++) {
@@ -440,7 +449,6 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
         if (self.failedCount > 3) {
-            [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
         }else{
             self.failedCount++;

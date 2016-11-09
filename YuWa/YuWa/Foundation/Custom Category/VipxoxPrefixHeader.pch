@@ -90,8 +90,8 @@
 #define NavigationHeight NavigationBarHeight+StatusBarHeight
 //获取tabBar的高度
 #define TabbarDeHeight 49.f
-
-
+//刷新时间
+#define RefreshTime 2.f
 
 
 

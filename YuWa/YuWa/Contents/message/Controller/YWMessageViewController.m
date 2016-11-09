@@ -253,15 +253,22 @@
     self.pages = 0;
     [self requestShopArrDataWithPages:0];
 }
-
+- (void)cancelRefreshWithIsHeader:(BOOL)isHeader{
+    if (isHeader) {
+        [self.tableView.mj_header endRefreshing];
+    }else{
+        [self.tableView.mj_footer endRefreshing];
+    }
+}
 #pragma mark - Http
 - (void)requestShopArrDataWithPages:(NSInteger)page{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RefreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self cancelRefreshWithIsHeader:(page==0?YES:NO)];
+    });
     if (page>0){
-        [self.tableView.mj_footer endRefreshing];
         return;
     }else{
         [self.dataArr removeAllObjects];
-        [self.tableView.mj_header endRefreshing];
     }
     
     NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
