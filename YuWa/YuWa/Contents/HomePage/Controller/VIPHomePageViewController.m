@@ -149,15 +149,15 @@
 }
 
 -(void)makeNaviBar{
-    UIButton*buttonTitle=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 25)];
+    UIButton*buttonTitle=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 25)];
     buttonTitle.titleLabel.font=[UIFont systemFontOfSize:14];
     [buttonTitle setTitle:@"泉州市" forState:UIControlStateNormal];
 //    [buttonTitle setImage:[UIImage imageNamed:@"page_downArr"] forState:UIControlStateNormal];
     [buttonTitle addTarget:self action:@selector(touchNaviCity) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem*leftItem=[[UIBarButtonItem alloc]initWithCustomView:buttonTitle];
-    //变换两者的位置
-    [buttonTitle setTitleEdgeInsets:UIEdgeInsetsMake(0, -buttonTitle.imageView.bounds.size.width, 0, buttonTitle.imageView.bounds.size.width)];
-    [buttonTitle setImageEdgeInsets:UIEdgeInsetsMake(0, buttonTitle.titleLabel.bounds.size.width, 0, -buttonTitle.titleLabel.bounds.size.width)];
+//    //变换两者的位置
+//    [buttonTitle setTitleEdgeInsets:UIEdgeInsetsMake(0, -buttonTitle.imageView.bounds.size.width, 0, buttonTitle.imageView.bounds.size.width)];
+//    [buttonTitle setImageEdgeInsets:UIEdgeInsetsMake(0, buttonTitle.titleLabel.bounds.size.width, 0, -buttonTitle.titleLabel.bounds.size.width)];
     
     
     UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -217,13 +217,13 @@
         
     }];
     self.tableView.mj_header=gifHeader;
-     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
-    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
-     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
+//     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_0000" withImageCount:18 withPullWay:MJRefreshStateIdle];
+//    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStatePulling];
+//     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
     //立即刷新
     [self.tableView.mj_header beginRefreshing];
-    
-    
+//
+//    
     //上拉刷新
     MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
       [self loadingMoreShowInfo];
@@ -231,9 +231,12 @@
         
     }];
     self.tableView.mj_footer=gifFooter;
-    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
-    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
-    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
+//    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_0000" withImageCount:18 withPullWay:MJRefreshStateIdle];
+//    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStatePulling];
+//    [UIScrollView setFooterGIF:gifFooter WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
+    
+    
+ 
     
 }
 
@@ -689,6 +692,7 @@
 //        [self.navigationController pushViewController:vc animated:YES];
 
         NewMainCategoryViewController*vc=[[NewMainCategoryViewController alloc]init];
+        vc.categoryTouch=number;
         [self.navigationController pushViewController:vc animated:YES];
         
         

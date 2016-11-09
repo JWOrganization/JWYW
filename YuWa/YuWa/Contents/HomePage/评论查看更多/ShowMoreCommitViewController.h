@@ -10,4 +10,5 @@
 
 @interface ShowMoreCommitViewController : UIViewController
 
+@property(nonatomic,strong)NSString*shop_id;
 @end

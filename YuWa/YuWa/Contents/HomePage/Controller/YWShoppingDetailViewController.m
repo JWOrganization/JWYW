@@ -407,6 +407,7 @@
        YWMainShoppingTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:CELL5];
         cell.selectionStyle=NO;
         
+        
          HPRecommendShopModel*model=self.maMRecommend[indexPath.row];
         
         //图片
@@ -502,7 +503,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==5) {
+         HPRecommendShopModel*model=self.maMRecommend[indexPath.row];
         YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+        vc.shop_id=model.id;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else if (indexPath.section==2){
@@ -897,6 +900,7 @@
 -(void)commitShowMore{
     MyLog(@"22");
     ShowMoreCommitViewController*vc=[[ShowMoreCommitViewController alloc]init];
+    vc.shop_id=self.shop_id;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

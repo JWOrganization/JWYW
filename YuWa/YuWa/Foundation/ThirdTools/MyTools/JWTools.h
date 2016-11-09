@@ -343,4 +343,21 @@
  */
 +(NSString*)getTime:(NSString*)number;
 
+
+/*
+ * 加上loading图
+ 
+ */
++(UIView*)addLoadingViewWithframe:(CGRect)frame;
+
+/*
+ *移除loading图
+ */
++(void)removeLoadingView:(UIView*)view;
+
+/*
+ *显示
+ */
++(UIView*)addFailViewWithFrame:(CGRect)frame withTouchBlock:(void(^)())touchBlock;
+
 @end
