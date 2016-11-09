@@ -80,6 +80,7 @@
         [self.addToAldumView removeFromSuperview];
         self.addToAldumView = nil;
     }
+    if ([[[UIApplication sharedApplication].delegate.window.subviews lastObject] isKindOfClass:[MBProgressHUD class]])[[[UIApplication sharedApplication].delegate.window.subviews lastObject] removeFromSuperview];
 }
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -438,6 +439,7 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
         if (self.failedCount > 3) {
+            [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
         }else{
             self.failedCount++;
