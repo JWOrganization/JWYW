@@ -13,7 +13,7 @@
 @interface RBPublicToolView : UIView
 
 @property (nonatomic,copy)void (^effectChooseBlock)(NSString *,NSInteger);//滤镜效果
-//@property (nonatomic,copy)void (^tagBlock)();//标签效果
+@property (nonatomic,copy)void (^tagBlock)();//标签效果
 @property (nonatomic,assign)NSInteger selectType;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;

@@ -53,7 +53,7 @@
 }
 
 - (IBAction)tagBtnAction:(id)sender {
-//    self.tagBlock();
+    self.tagBlock();
 }
 
 - (void)setSelectType:(NSInteger)selectType{
