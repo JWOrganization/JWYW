@@ -132,7 +132,7 @@
         if (dataArr.count>0) {
             for (int i = 0; i<dataArr.count; i++) {
                 YWMessageNotificationModel * model = [YWMessageNotificationModel yy_modelWithDictionary:dataArr[i]];
-                model.status = @"1";
+                model.status = @"0";
                 [self.dataArr addObject:model];
             }
             [self.tableView reloadData];
