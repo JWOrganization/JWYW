@@ -131,11 +131,11 @@
 #pragma mark - Collection Refresh
 - (void)setupRefresh{
     
-    self.collectionView.mj_header = [UIScrollView scrollRefreshGifHeaderWithImgName:@"header" withImageCount:8 withRefreshBlock:^{
+    self.collectionView.mj_header = [UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
         [self headerRereshing];
     }];
     
-    self.collectionView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"footer" withImageCount:8 withRefreshBlock:^{
+    self.collectionView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
         [self footerRereshing];
     }];
 }
@@ -173,6 +173,12 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
+        if (page == 0) {
+            [self.dataArr removeAllObjects];
+            [self.collectionView.mj_header endRefreshing];
+        }else{
+            [self.collectionView.mj_footer endRefreshing];
+        }
     }];
 }
 

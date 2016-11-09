@@ -71,6 +71,7 @@
         vc.shop_id = searchID;//商店ID1111111111
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return [self.shopTextField.text isEqualToString:@""]?40.f:0.001f;
@@ -146,7 +147,7 @@
 
 #pragma mark - TableView Refresh
 - (void)setupRefresh{
-    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"footer" withImageCount:8 withRefreshBlock:^{
+    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
         [self footerRereshing];
     }];
 }
