@@ -41,12 +41,12 @@
         [self addSubview:scrollView];
         
         //创建20个
-        if (menuArray.count<20) {
-            return self;
-        }
+//        if (menuArray.count<20) {
+//            return self;
+//        }
         
         
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < menuArray.count; i++) {
             if (i < 5) {
                 HPCategoryModel*model=menuArray[i];
                 NSString*title=model.class_name;

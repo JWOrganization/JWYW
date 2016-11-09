@@ -9,6 +9,8 @@
 #import "JWTools.h"
 #import <CoreImage/CoreImage.h>
 
+#import "HUDFailureShowView.h"
+
 @implementation JWTools
 
 /**
@@ -813,6 +815,27 @@
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     return [dateFormatter stringFromDate:date];
     
+}
+
+
++(UIView*)addLoadingViewWithframe:(CGRect)frame{
+    UIView*loadingView=[[NSBundle mainBundle]loadNibNamed:@"HUDLoadingShowView" owner:nil options:nil].firstObject;
+    loadingView.frame=frame;
+     return loadingView;
+}
+
++(void)removeLoadingView:(UIView*)view{
+    [view removeFromSuperview];
+    
+}
+
++(UIView*)addFailViewWithFrame:(CGRect)frame withTouchBlock:(void (^)())touchBlock{
+    HUDFailureShowView*failView=[[NSBundle mainBundle]loadNibNamed:@"HUDFailureShowView" owner:nil options:nil].firstObject;
+    failView.frame=CGRectMake(0, 64, kScreen_Width, kScreen_Height-64);
+    failView.reloadBlock=touchBlock;
+  
+    
+    return failView;
 }
 
 @end

@@ -10,4 +10,5 @@
 
 @interface NewMainCategoryViewController : UIViewController
 
+@property(nonatomic,assign)NSInteger categoryTouch;
 @end

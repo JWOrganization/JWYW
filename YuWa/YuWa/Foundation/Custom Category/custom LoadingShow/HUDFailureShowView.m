@@ -55,7 +55,9 @@
 
 
 -(void)touchRetry:(UIButton*)sender{
-    MyLog(@"bee");
+//    MyLog(@"bee");
+    self.reloadBlock();
+    
     
 }
 

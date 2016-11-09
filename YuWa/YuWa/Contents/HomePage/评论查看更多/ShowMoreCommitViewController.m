@@ -8,6 +8,14 @@
 
 #import "ShowMoreCommitViewController.h"
 #import "CommentTableViewCell.h"
+#import "HUDFailureShowView.h"
+
+//#import "HUDLoadingShowView.h"   //加载图
+//#import "HUDFailureShowView.h"   //失败显示
+#import "JWTools.h"
+
+#import "CommentModel.h"
+
 
 #define CELL0  @"CommentTableViewCell"
 
@@ -15,6 +23,11 @@
 @interface ShowMoreCommitViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView*tableView;
+@property(nonatomic,strong)HUDFailureShowView*failView;
+
+@property(nonatomic,assign)int pagen;
+@property(nonatomic,assign)int pages;
+@property(nonatomic,strong)NSMutableArray*maMallDatas;
 @end
 
 @implementation ShowMoreCommitViewController
@@ -24,11 +37,103 @@
     self.title=@"更多评论";
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
+    [self setUpMJRefresh];
     
 }
 
+-(void)setUpMJRefresh{
+    self.pagen=10;
+    self.pages=0;
+    self.maMallDatas=[NSMutableArray array];
+    
+    
+    MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
+        self.pages=0;
+        self.maMallDatas=[NSMutableArray array];
+        [self getDatas];
+        
+    }];
+    self.tableView.mj_header=gifHeader;
+    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
+    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
+    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
+    //立即刷新
+    [self.tableView.mj_header beginRefreshing];
+    
+    
+    //上拉刷新
+    MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
+        self.pages++;
+        [self getDatas];
+        
+        
+    }];
+    self.tableView.mj_footer=gifFooter;
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
+    
+}
+
+-(void)getDatas{
+    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
+    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_MORECOMMIT];
+    NSDictionary*params=@{@"shop_id":self.shop_id,@"pagen":pagen,@"pages":pages};
+    HttpManager*manager=[[HttpManager alloc]init];
+    
+    
+
+    UIView*loadingView=[JWTools addLoadingViewWithframe:CGRectMake(0, 64, kScreen_Width, kScreen_Height-64)];
+    [self.view addSubview:loadingView];
+    
+    
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data[@"data"]);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            for (NSDictionary*dict in data[@"data"]) {
+                CommentModel*model=[CommentModel yy_modelWithDictionary:dict];
+                [self.maMallDatas addObject:model];
+                
+            }
+            [self.tableView reloadData];
+            
+            //如果没有数据
+            if (self.maMallDatas.count<1) {
+//                [self.view addSubview:self.failView];
+                UIView*failView=[JWTools addFailViewWithFrame:CGRectMake(0, 64, kScreen_Width, kScreen_Height-64) withTouchBlock:^{
+                    [failView removeFromSuperview];
+                    [self.tableView.mj_header beginRefreshing];
+                    
+                }];
+//                [self.view addSubview:failView];
+                [self.view insertSubview:failView belowSubview:loadingView];
+                
+            }
+
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [loadingView removeFromSuperview];    //移除
+
+        });
+              [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+    }];
+    
+}
+
+
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return self.maMallDatas.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
@@ -37,15 +142,19 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
     cell.selectionStyle=NO;
+    
+     CommentModel*model=self.maMallDatas[indexPath.section];
+     [cell giveValueWithModel:model];
       return cell;
     
-    return cell;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary*dict=@{@"title":@"舒服撒飞洒发书法家刘师傅几位司法解释雷锋节老司机覅发顺丰萨芬进来撒几时放假啊；就说法是否收费IE如期皮肤司法局；辣女你，你少发了",@"images":@[@"",@"",@"",@"",@"",@"",@""]};
-    return [CommentTableViewCell getCellHeight:dict];
+
+    CommentModel*model=self.maMallDatas[indexPath.row];
+    return [CommentTableViewCell getCellHeight:model];
+
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -79,5 +188,7 @@
     }
     return _tableView;
 }
+
+
 
 @end

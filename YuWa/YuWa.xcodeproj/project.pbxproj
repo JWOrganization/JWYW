@@ -488,6 +488,11 @@
 		B3FFF4941D94037D00EDD2AB /* RBPublicEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3FFF4921D94037D00EDD2AB /* RBPublicEditorViewController.xib */; };
 		B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFF4961D94051A00EDD2AB /* RBPublicTagSaveModel.m */; };
 		C102AE741DC9B9D200574411 /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C102AE731DC9B9D200574411 /* CouponModel.m */; };
+		C10E93A41DD1815300728B3D /* PHCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E93A31DD1815300728B3D /* PHCategoryModel.m */; };
+		C10E93A71DD19A2E00728B3D /* PHAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E93A61DD19A2E00728B3D /* PHAreaModel.m */; };
+		C10E93AA1DD19AEB00728B3D /* PHBusinessCircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E93A91DD19AEB00728B3D /* PHBusinessCircleModel.m */; };
+		C10E94A21DD1C57A00728B3D /* PHSubCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A11DD1C57A00728B3D /* PHSubCategoryModel.m */; };
+		C10E94A51DD1CCC400728B3D /* PHOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A41DD1CCC400728B3D /* PHOrderModel.m */; };
 		C11F14EF1DC83B92005C58CF /* banner_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */; };
 		C11F14F01DC83B92005C58CF /* banner_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */; };
 		C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */; };
@@ -1646,6 +1651,16 @@
 		BEA125C96C41FEDFE8078293 /* Pods-YuWa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuWa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YuWa/Pods-YuWa.release.xcconfig"; sourceTree = "<group>"; };
 		C102AE721DC9B9D200574411 /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		C102AE731DC9B9D200574411 /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
+		C10E93A21DD1815300728B3D /* PHCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHCategoryModel.h; sourceTree = "<group>"; };
+		C10E93A31DD1815300728B3D /* PHCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHCategoryModel.m; sourceTree = "<group>"; };
+		C10E93A51DD19A2E00728B3D /* PHAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHAreaModel.h; sourceTree = "<group>"; };
+		C10E93A61DD19A2E00728B3D /* PHAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHAreaModel.m; sourceTree = "<group>"; };
+		C10E93A81DD19AEB00728B3D /* PHBusinessCircleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHBusinessCircleModel.h; sourceTree = "<group>"; };
+		C10E93A91DD19AEB00728B3D /* PHBusinessCircleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHBusinessCircleModel.m; sourceTree = "<group>"; };
+		C10E94A01DD1C57A00728B3D /* PHSubCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSubCategoryModel.h; sourceTree = "<group>"; };
+		C10E94A11DD1C57A00728B3D /* PHSubCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSubCategoryModel.m; sourceTree = "<group>"; };
+		C10E94A31DD1CCC400728B3D /* PHOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHOrderModel.h; sourceTree = "<group>"; };
+		C10E94A41DD1CCC400728B3D /* PHOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHOrderModel.m; sourceTree = "<group>"; };
 		C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@2x.png"; sourceTree = "<group>"; };
 		C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@3x.png"; sourceTree = "<group>"; };
 		C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_selected@2x.png"; sourceTree = "<group>"; };
@@ -4622,6 +4637,16 @@
 			children = (
 				C1392DB21DBDB65F002418EF /* NewMainCategoryViewController.h */,
 				C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */,
+				C10E93A21DD1815300728B3D /* PHCategoryModel.h */,
+				C10E93A31DD1815300728B3D /* PHCategoryModel.m */,
+				C10E94A01DD1C57A00728B3D /* PHSubCategoryModel.h */,
+				C10E94A11DD1C57A00728B3D /* PHSubCategoryModel.m */,
+				C10E93A51DD19A2E00728B3D /* PHAreaModel.h */,
+				C10E93A61DD19A2E00728B3D /* PHAreaModel.m */,
+				C10E93A81DD19AEB00728B3D /* PHBusinessCircleModel.h */,
+				C10E93A91DD19AEB00728B3D /* PHBusinessCircleModel.m */,
+				C10E94A31DD1CCC400728B3D /* PHOrderModel.h */,
+				C10E94A41DD1CCC400728B3D /* PHOrderModel.m */,
 			);
 			path = "新的18分类";
 			sourceTree = "<group>";
@@ -5251,11 +5276,12 @@
 		C1F7BF021DB1CA0700CCAF96 /* 首页图 */ = {
 			isa = PBXGroup;
 			children = (
+				C1F7BF1B1DB1CA0700CCAF96 /* 临时图 */,
+				C13019BF1DB20B2400E24C88 /* 20个图标新 */,
 				C1A75DFD1DCC7B48000E76C2 /* messageImage.png */,
 				C1FB7F761DC73B910048EBC8 /* 火@2x.png */,
 				C1FB7F771DC73B910048EBC8 /* 垃圾桶@2x.png */,
 				C1FB7F781DC73B910048EBC8 /* 时间@2x.png */,
-				C13019BF1DB20B2400E24C88 /* 20个图标新 */,
 				C1F7BF031DB1CA0700CCAF96 /* back@2x.png */,
 				C1F7BF041DB1CA0700CCAF96 /* home_grayStar@2x.png */,
 				C1F7BF051DB1CA0700CCAF96 /* home_halfStar@2x.png */,
@@ -5280,7 +5306,6 @@
 				C1F7BF181DB1CA0700CCAF96 /* page_navi_sousuo.png */,
 				C1F7BF191DB1CA0700CCAF96 /* page_saomiao.png */,
 				C1F7BF1A1DB1CA0700CCAF96 /* placehoder_loading.png */,
-				C1F7BF1B1DB1CA0700CCAF96 /* 临时图 */,
 			);
 			path = "首页图";
 			sourceTree = "<group>";
@@ -5881,6 +5906,7 @@
 				B33A26B21D9A68040092CB12 /* EaseConversationCell.m in Sources */,
 				B33A26901D9A68040092CB12 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				B38B2E091D8FACD8004D5256 /* NSArray+MASAdditions.m in Sources */,
+				C10E93A41DD1815300728B3D /* PHCategoryModel.m in Sources */,
 				B33A269D1D9A68040092CB12 /* EaseUserCell.m in Sources */,
 				B38B2F141D8FC82F004D5256 /* RBNodeUserLevelModel.m in Sources */,
 				C1F7BE4F1DB1C95400CCAF96 /* YWFansTableViewCell.m in Sources */,
@@ -5972,6 +5998,7 @@
 				C1392DBA1DBDBC6D002418EF /* JSDropDownMenu.m in Sources */,
 				B33A26A01D9A68040092CB12 /* EaseMessageCell.m in Sources */,
 				C1F7BE611DB1C95400CCAF96 /* GetMoneyTableViewCell.m in Sources */,
+				C10E94A51DD1CCC400728B3D /* PHOrderModel.m in Sources */,
 				B38B2E3E1D8FACD8004D5256 /* JRSegmentViewController.m in Sources */,
 				B38B2DF81D8FACD8004D5256 /* AFSecurityPolicy.m in Sources */,
 				B38B2E351D8FACD8004D5256 /* UIImage+GIF.m in Sources */,
@@ -5994,6 +6021,7 @@
 				B38B2DF31D8FACD8004D5256 /* UserSession.m in Sources */,
 				B3A28A521DCA1059008A0A15 /* RBPublicLocationEditorViewController.m in Sources */,
 				B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */,
+				C10E93A71DD19A2E00728B3D /* PHAreaModel.m in Sources */,
 				B38B2E121D8FACD8004D5256 /* MJRefreshBackFooter.m in Sources */,
 				B33A26AF1D9A68040092CB12 /* EaseFacialView.m in Sources */,
 				B38B2DF01D8FACD8004D5256 /* VIPNavigationController.m in Sources */,
@@ -6040,6 +6068,7 @@
 				B3D219271DB1241800D661F5 /* YWSharedEditorViewController.m in Sources */,
 				C1F7BE3D1DB1C95400CCAF96 /* InfoSignatureTableViewCell.m in Sources */,
 				B38B2E5F1D8FACD8004D5256 /* AppDelegate.m in Sources */,
+				C10E93AA1DD19AEB00728B3D /* PHBusinessCircleModel.m in Sources */,
 				B33A268A1D9A68040092CB12 /* NSDate+Category.m in Sources */,
 				C1F7BE4C1DB1C95400CCAF96 /* PCNoteView.m in Sources */,
 				B33A26721D9A68040092CB12 /* UIImage+EMGIF.m in Sources */,
@@ -6136,6 +6165,7 @@
 				C1F7BDB01DB1C94500CCAF96 /* StorePhoneView.m in Sources */,
 				B3FFF48E1D93FF4700EDD2AB /* RBPublicSaveModel.m in Sources */,
 				B38B2F1E1D8FC82F004D5256 /* RBHomeSearchViewController.m in Sources */,
+				C10E94A21DD1C57A00728B3D /* PHSubCategoryModel.m in Sources */,
 				B33A268F1D9A68040092CB12 /* EaseChineseToPinyin.m in Sources */,
 				B34B56921DAFCBB000040D25 /* JWEmojisKeyBoards.m in Sources */,
 				B38B2E261D8FACD8004D5256 /* MJRefreshConst.m in Sources */,

@@ -21,6 +21,9 @@ typedef void(^resultBlock)(id data,NSError*error);
 -(void)postDatasNoHudWithUrl:(NSString*)urlStr withParams:(NSDictionary*)params compliation:(resultBlock)newBlock;
 //有HUD  post 请求
 -(void)postDatasWithUrl:(NSString*)urlStr withParams:(NSDictionary*)params compliation:(resultBlock)newBlock;
+
+
+
 #warning  
 //上传图片 post 带hud 不带 HUD 返回会终止线程？
 -(void)postUpdatePohotoWithUrl:(NSString*)urlStr withParams:(NSDictionary*)params withPhoto:(NSData*)data compliation:(resultBlock)newBlock;

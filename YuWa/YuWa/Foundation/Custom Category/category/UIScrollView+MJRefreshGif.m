@@ -16,6 +16,9 @@
 //    gifHeader.lastUpdatedTimeLabel.hidden= YES;
 //    gifHeader.stateLabel.hidden = YES;
 
+     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_0000" withImageCount:18 withPullWay:MJRefreshStateIdle];
+     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStatePulling];
+     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
     
   
      return gifHeader;
@@ -24,7 +27,7 @@
 
 +(void)setHeaderGIF:(MJRefreshGifHeader*)header WithImageName:(NSString*)imageName withImageCount:(NSInteger)imageCount withPullWay:(MJRefreshState)Brefresh{
     NSMutableArray *idleImages = [NSMutableArray array];
-    for (int i = 1; i<=imageCount; i++) {
+    for (int i = 0; i<imageCount; i++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%d",imageName,i]];
         [idleImages addObject:image];
     }
@@ -41,12 +44,18 @@
 //        gifFooter.stateLabel.hidden = YES;
 //        gifFooter.refreshingTitleHidden = YES;
 
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_0000" withImageCount:18 withPullWay:MJRefreshStateIdle];
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStatePulling];
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
+
+    
+    
     return gifFooter;
 }
 
 +(void)setFooterGIF:(MJRefreshAutoGifFooter*)footer WithImageName:(NSString*)imageName withImageCount:(NSInteger)imageCount withPullWay:(MJRefreshState)Brefresh{
     NSMutableArray *idleImages = [NSMutableArray array];
-    for (int i = 1; i<=imageCount; i++) {
+    for (int i = 0; i<imageCount; i++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%d",imageName,i]];
         [idleImages addObject:image];
     }
