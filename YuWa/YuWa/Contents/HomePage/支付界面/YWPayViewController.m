@@ -24,14 +24,10 @@
 
 @interface YWPayViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,CouponViewControllerDelegate>
 @property(nonatomic,strong)UITableView*tableView;
-@property(nonatomic,strong)UILabel*shouldPayMoneyLabel;
+@property(nonatomic,strong)UILabel*shouldPayMoneyLabel; //实际要付钱的label
 
-@property(nonatomic,assign)CGFloat payAllMoney;    //需要支付的总额
-@property(nonatomic,assign)CGFloat NOZheMoney;     //不打折的金额
-@property(nonatomic,assign)CGFloat shouldPayMoney;   //应该支付的钱
 
-@property(nonatomic,assign)CGFloat yueMoney;       //账户上的余额
-@property(nonatomic,assign)CGFloat CouponMoney;    //优惠券。
+@property(nonatomic,assign)CGFloat CouponMoney;    //优惠券减少多少钱。
 
 @end
 
@@ -46,17 +42,41 @@
     self.NOZheMoney=0;
     self.shouldPayMoney=0;
     
+    self.CouponMoney=0.f;
+    
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"inputNumberCell" bundle:nil] forCellReuseIdentifier:CELL0];
     [self.tableView registerNib:[UINib nibWithNibName:@"ZheTableViewCell" bundle:nil] forCellReuseIdentifier:CELL1];
     [self.tableView registerNib:[UINib nibWithNibName:@"TwoLabelShowTableViewCell" bundle:nil] forCellReuseIdentifier:CELL2];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"AccountMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"AccountMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
     
     
+
     
     
 }
+
+//得到哪个分类
+-(void)getWhitchCategory{
+    
+    switch (self.whichPay) {
+        case PayCategorySaoma:{
+            //扫码 扫码的话  不能修改 价格和非打折金额
+            
+            break;}
+        case PayCategoryAutoPay:{
+            //主动付款
+            
+            break;}
+ 
+        default:
+            break;
+    }
+    
+}
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[[self.navigationController.navigationBar subviews]objectAtIndex:0] setAlpha:1.0];
@@ -68,20 +88,18 @@
 
 #pragma mark  --UI
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
-        return 4;
+        return 3;
         
     }else if (section==1){
         return 2;
         
-    }else{
-        return 1;
     }
     
-    
+    return 0;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -100,6 +118,14 @@
         UITextField*textField=[cell viewWithTag:2];
         textField.delegate=self;
         textField.keyboardType=UIKeyboardTypeNamePhonePad;
+        textField.placeholder=@"请输入金额";
+        //扫码
+        if (self.whichPay==PayCategorySaoma) {
+            textField.userInteractionEnabled=NO;
+            textField.text=[NSString stringWithFormat:@"%.2f",self.payAllMoney];
+        }
+        
+        
         
         return cell;
         
@@ -113,10 +139,16 @@
         UILabel*titleLabel=[cell viewWithTag:1];
         titleLabel.text=@"非打折金额";
         
-        UITextField*textField2=[cell viewWithTag:2];
-        textField2.delegate=self;
-        textField2.placeholder=@"（选填）";
+//        UITextField*textField2=[cell viewWithTag:2];
+        textField.delegate=self;
+        textField.placeholder=@"（选填）";
 
+        //扫码
+        if (self.whichPay==PayCategorySaoma) {
+            textField.userInteractionEnabled=NO;
+            textField.text=[NSString stringWithFormat:@"%.2f",self.NOZheMoney];
+        }
+        
         
     }else if (indexPath.section==0&&indexPath.row==2){
         //打几折
@@ -125,8 +157,8 @@
         
         UILabel*zhekouLabel=[cell viewWithTag:2];
     
-        CGFloat zhe=self.shopZhekou*100;
-        NSString*zheStr=[NSString stringWithFormat:@"%.0f折",zhe];
+//        CGFloat zhe=self.shopZhekou*100;
+        NSString*zheStr=[NSString stringWithFormat:@"%.2f折",self.shopZhekou];
         NSString*firstStr=@"雨娃支付立享";
         NSMutableAttributedString*aa=[[NSMutableAttributedString alloc]initWithString:firstStr attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
         NSMutableAttributedString*bb=[[NSMutableAttributedString alloc]initWithString:zheStr attributes:@{NSForegroundColorAttributeName:CpriceColor}];
@@ -136,20 +168,22 @@
         
         return cell;
 
-    }else if (indexPath.section==0&&indexPath.row==3){
-        //应付金额
-        
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
-        cell.selectionStyle=NO;
-        
-        UILabel*payMoney=[cell viewWithTag:2];
-//        payMoney.text=[NSString stringWithFormat:@"￥200"];
-        self.shouldPayMoneyLabel=payMoney;
-        payMoney.text=[NSString stringWithFormat:@"￥%.2f",self.shouldPayMoney];
-        return cell;
-
-        
     }
+    
+//    else if (indexPath.section==0&&indexPath.row==3){
+//        //应付金额
+//        
+//        cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
+//        cell.selectionStyle=NO;
+//        
+//        UILabel*payMoney=[cell viewWithTag:2];
+////        payMoney.text=[NSString stringWithFormat:@"￥200"];
+//        self.shouldPayMoneyLabel=payMoney;
+//        payMoney.text=[NSString stringWithFormat:@"￥%.2f",self.shouldPayMoney];
+//        return cell;
+//
+//        
+//    }
     
     
     //section 1
@@ -165,36 +199,50 @@
         return cell;
         
     }else if (indexPath.section==1&&indexPath.row==1){
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL3];
+        cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
         cell.selectionStyle=NO;
-        
         UILabel*label1=[cell viewWithTag:1];
-        label1.text=@"使用雨娃余额";
+        label1.text=@"实付金额";
         
-        UILabel*labelMoney=[cell viewWithTag:2];
-        labelMoney.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
+        UILabel*label2=[cell viewWithTag:2];
+//        label2.text=[NSString stringWithFormat:@"$100"];
+        self.shouldPayMoneyLabel=label2;
+        [self calshouldPayMoney];
         
-        UISwitch*sButton=[cell viewWithTag:3];
-        [sButton setOn:NO];
-        [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-        
-        return cell;
     }
     
+    
+//    else if (indexPath.section==1&&indexPath.row==1){
+//        cell=[tableView dequeueReusableCellWithIdentifier:CELL3];
+//        cell.selectionStyle=NO;
+//        
+//        UILabel*label1=[cell viewWithTag:1];
+//        label1.text=@"使用雨娃余额";
+//        
+//        UILabel*labelMoney=[cell viewWithTag:2];
+//        labelMoney.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
+//        
+//        UISwitch*sButton=[cell viewWithTag:3];
+//        [sButton setOn:NO];
+//        [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+//        
+//        return cell;
+//    }
+    
     //section 2
-    else if (indexPath.section==2&&indexPath.row==0){
-        cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
-        cell.selectionStyle=NO;
-        UIImageView*imageView=[cell viewWithTag:1];
-        imageView.image=[UIImage imageNamed:@"home_money"];
-        
-        UILabel*label=[cell viewWithTag:2];
-        label.text=@"账户充值";
-        
-        UIImageView*imageView2=[cell viewWithTag:3];
-        imageView2.image=[UIImage imageNamed:@"home_rightArr"];
-        
-    }
+//    else if (indexPath.section==2&&indexPath.row==0){
+//        cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+//        cell.selectionStyle=NO;
+//        UIImageView*imageView=[cell viewWithTag:1];
+//        imageView.image=[UIImage imageNamed:@"home_money"];
+//        
+//        UILabel*label=[cell viewWithTag:2];
+//        label.text=@"账户充值";
+//        
+//        UIImageView*imageView2=[cell viewWithTag:3];
+//        imageView2.image=[UIImage imageNamed:@"home_rightArr"];
+//        
+//    }
 
     
     
@@ -209,27 +257,30 @@
         vc.shopID=self.shopID;
         [self.navigationController pushViewController:vc animated:YES];
         
-    }else if (indexPath.section==2&&indexPath.row==0){
-        //充值界面
-        PCPayViewController*vc=[[PCPayViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-        
     }
+    
+    
+//    else if (indexPath.section==2&&indexPath.row==0){
+//        //充值界面
+//        PCPayViewController*vc=[[PCPayViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//        
+//    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 10;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section==2) {
+    if (section==1) {
         return 50;
     }
     
     return 0.01;
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section==2) {
+    if (section==1) {
         UIView*bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 50)];
         bottomView.backgroundColor=[UIColor clearColor];
         
@@ -255,10 +306,10 @@
     
 }
 
--(void)switchAction:(UISwitch*)sender{
-    MyLog(@"%d",sender.isOn);
-    
-}
+//-(void)switchAction:(UISwitch*)sender{
+//    MyLog(@"%d",sender.isOn);
+//    
+//}
 
 #pragma mark  --delegate
 
@@ -298,8 +349,9 @@
 }
 
 
+#pragma 计算所要支付的钱
 -(void)calshouldPayMoney{
-    CGFloat payMoney=(self.payAllMoney-self.NOZheMoney)*self.shopZhekou;
+    CGFloat payMoney=(self.payAllMoney-self.NOZheMoney)*self.shopZhekou-self.CouponMoney;
     self.shouldPayMoney=payMoney;
     
     self.shouldPayMoneyLabel.text=[NSString stringWithFormat:@"￥%.2f",self.shouldPayMoney];
