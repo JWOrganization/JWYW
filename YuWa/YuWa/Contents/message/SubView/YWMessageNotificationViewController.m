@@ -117,7 +117,7 @@
 
 #pragma mark - Http
 - (void)requestShopArrDataWithPages:(NSInteger)page{
-    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":[UserSession instance].token,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page]};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_NOTCCAFICATIONJ_ORDER withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
@@ -130,13 +130,11 @@
         }
         NSArray * dataArr = responsObj[@"data"];
         if (dataArr.count>0) {
-            //23333333要删
-            for (int i = 0; i<15; i++) {
-                YWMessageNotificationModel * model = [[YWMessageNotificationModel alloc]init];
-                model.status = @"1";
+            for (int i = 0; i<dataArr.count; i++) {
+                YWMessageNotificationModel * model = [YWMessageNotificationModel yy_modelWithDictionary:dataArr[i]];
+                model.status = @"0";
                 [self.dataArr addObject:model];
             }
-            //23333333要删
             [self.tableView reloadData];
         }
     } failur:^(id responsObj, NSError *error) {
@@ -147,7 +145,7 @@
         }else{
             [self.tableView.mj_header endRefreshing];
         }
-    }];//h3333333
+    }];
 }
 
 

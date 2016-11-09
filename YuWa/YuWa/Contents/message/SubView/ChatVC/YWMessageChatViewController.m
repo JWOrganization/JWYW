@@ -74,9 +74,11 @@
                     if ([model.nickname isEqualToString:[UserSession instance].account]) {
                         emcell.nameLabel.text = [UserSession instance].nickName;
                         [emcell.avatarView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+                        emcell.hasRead.hidden = YES;
                     }else{
                         emcell.nameLabel.text = self.friendNikeName;
                         [emcell.avatarView sd_setImageWithURL:[NSURL URLWithString:self.friendIcon] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+                        emcell.hasRead.hidden = YES;
                     }
                 }
                 
@@ -109,9 +111,11 @@
                 if ([model.nickname isEqualToString:[UserSession instance].account]) {
                     sendCell.nameLabel.text = [UserSession instance].nickName;
                     [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+                    sendCell.hasRead.hidden = YES;
                 }else{
                     sendCell.nameLabel.text = self.friendNikeName;
                     [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:self.friendIcon] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+                    sendCell.hasRead.hidden = YES;
                 }
                 return sendCell;
             }
@@ -132,9 +136,11 @@
         if ([model.nickname isEqualToString:[UserSession instance].account]) {
             sendCell.nameLabel.text = [UserSession instance].nickName;
             [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+            sendCell.hasRead.hidden = YES;
         }else{
             sendCell.nameLabel.text = self.friendNikeName;
             [sendCell.avatarView sd_setImageWithURL:[NSURL URLWithString:self.friendIcon] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
+            sendCell.hasRead.hidden = YES;
         }
         return sendCell;
     }

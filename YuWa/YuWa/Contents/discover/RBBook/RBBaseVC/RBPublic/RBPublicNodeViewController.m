@@ -111,9 +111,10 @@
     if (!self.imgToolsBar) {
         self.imgToolsBar = [[[NSBundle mainBundle]loadNibNamed:@"RBPublicToolView" owner:nil options:nil]firstObject];
         WEAKSELF;
-        //    self.imgToolsBar.tagBlock = ^(){//标签
-        //        [weakSelf imageAddTagWithPoint:];
-        //    };
+        self.imgToolsBar.tagBlock = ^(){//标签
+            UIImageView * imageView = [weakSelf.scrollView viewWithTag:(self.imagePage+1)];
+            [weakSelf imageAddTagWithPoint:CGPointMake(kScreen_Width/2, imageView.center.y) withView:imageView];
+            };
         self.imgToolsBar.effectChooseBlock = ^(NSString * filterName,NSInteger typeIdx){//滤镜添加
             [weakSelf addEffectActionWithFilterName:filterName withIdx:typeIdx];
         };

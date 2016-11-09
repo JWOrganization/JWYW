@@ -190,6 +190,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 #pragma mark - Http
 - (void)requestSendComment{
 //    if (self.commentDic[@"userID"]) {
