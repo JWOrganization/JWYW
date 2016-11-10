@@ -10,4 +10,5 @@
 
 @interface PCPayViewController : UIViewController
 
+@property(nonatomic,assign)CGFloat blanceMoney;
 @end

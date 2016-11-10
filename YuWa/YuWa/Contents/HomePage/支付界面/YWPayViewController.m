@@ -17,6 +17,8 @@
 #import "PCPayViewController.h"    //充值界面
 #import "CouponViewController.h"
 
+
+
 #define CELL0  @"inputNumberCell"
 #define CELL1  @"ZheTableViewCell"
 #define CELL2  @"TwoLabelShowTableViewCell"
@@ -25,10 +27,13 @@
 @interface YWPayViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,CouponViewControllerDelegate>
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)UILabel*shouldPayMoneyLabel; //实际要付钱的label
+@property(nonatomic,strong)UIButton*payMoneyButton;   //确认付款的button
 
 
 @property(nonatomic,assign)CGFloat CouponMoney;    //优惠券减少多少钱。
-
+@property(nonatomic,assign)CGFloat accoutMoney;     //账户余额
+@property(nonatomic,assign)CGFloat shouldPayMoney;   //应该支付的钱
+@property(nonatomic,assign)CGFloat balanceMoney;     //差额
 @end
 
 @implementation YWPayViewController
@@ -44,12 +49,15 @@
     
     self.CouponMoney=0.f;
     
+    //默认的这个账户余额的钱
+      self.accoutMoney=[[UserSession instance].money floatValue];
+    
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"inputNumberCell" bundle:nil] forCellReuseIdentifier:CELL0];
     [self.tableView registerNib:[UINib nibWithNibName:@"ZheTableViewCell" bundle:nil] forCellReuseIdentifier:CELL1];
     [self.tableView registerNib:[UINib nibWithNibName:@"TwoLabelShowTableViewCell" bundle:nil] forCellReuseIdentifier:CELL2];
     
-//    [self.tableView registerNib:[UINib nibWithNibName:@"AccountMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AccountMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
     
     
 
@@ -57,24 +65,7 @@
     
 }
 
-//得到哪个分类
--(void)getWhitchCategory{
-    
-    switch (self.whichPay) {
-        case PayCategorySaoma:{
-            //扫码 扫码的话  不能修改 价格和非打折金额
-            
-            break;}
-        case PayCategoryAutoPay:{
-            //主动付款
-            
-            break;}
- 
-        default:
-            break;
-    }
-    
-}
+
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -95,7 +86,7 @@
         return 3;
         
     }else if (section==1){
-        return 2;
+        return 3;
         
     }
     
@@ -170,20 +161,7 @@
 
     }
     
-//    else if (indexPath.section==0&&indexPath.row==3){
-//        //应付金额
-//        
-//        cell=[tableView dequeueReusableCellWithIdentifier:CELL2];
-//        cell.selectionStyle=NO;
-//        
-//        UILabel*payMoney=[cell viewWithTag:2];
-////        payMoney.text=[NSString stringWithFormat:@"￥200"];
-//        self.shouldPayMoneyLabel=payMoney;
-//        payMoney.text=[NSString stringWithFormat:@"￥%.2f",self.shouldPayMoney];
-//        return cell;
-//
-//        
-//    }
+
     
     
     //section 1
@@ -211,38 +189,28 @@
         
     }
     
+    else if (indexPath.section==1&&indexPath.row==2){
+        cell=[tableView dequeueReusableCellWithIdentifier:CELL3];
+        cell.selectionStyle=NO;
+        
+        UILabel*label1=[cell viewWithTag:1];
+        label1.text=@"雨娃余额";
+        
+        UILabel*labelMoney=[cell viewWithTag:2];
+        labelMoney.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
+        
+        UISwitch*sButton=[cell viewWithTag:3];
+        [sButton setOn:YES];
+        sButton.userInteractionEnabled=NO;
+        [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        
+        return cell;
+        
+    }
     
-//    else if (indexPath.section==1&&indexPath.row==1){
-//        cell=[tableView dequeueReusableCellWithIdentifier:CELL3];
-//        cell.selectionStyle=NO;
-//        
-//        UILabel*label1=[cell viewWithTag:1];
-//        label1.text=@"使用雨娃余额";
-//        
-//        UILabel*labelMoney=[cell viewWithTag:2];
-//        labelMoney.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
-//        
-//        UISwitch*sButton=[cell viewWithTag:3];
-//        [sButton setOn:NO];
-//        [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-//        
-//        return cell;
-//    }
     
-    //section 2
-//    else if (indexPath.section==2&&indexPath.row==0){
-//        cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
-//        cell.selectionStyle=NO;
-//        UIImageView*imageView=[cell viewWithTag:1];
-//        imageView.image=[UIImage imageNamed:@"home_money"];
-//        
-//        UILabel*label=[cell viewWithTag:2];
-//        label.text=@"账户充值";
-//        
-//        UIImageView*imageView2=[cell viewWithTag:3];
-//        imageView2.image=[UIImage imageNamed:@"home_rightArr"];
-//        
-//    }
+// 实付金额= （总消费额-非打折额）*折扣-抵用券
+    //然后支付按钮 当账户余额 大于等于实付金额  那么显示 立即支付，  否则就显示  需要充值xx.00
 
     
     
@@ -258,15 +226,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }
-    
-    
-//    else if (indexPath.section==2&&indexPath.row==0){
-//        //充值界面
-//        PCPayViewController*vc=[[PCPayViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//        
-//        
-//    }
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -290,6 +250,7 @@
         button.backgroundColor=CNaviColor;
         button.layer.cornerRadius=6;
         button.layer.masksToBounds=YES;
+        _payMoneyButton=button;
         [bottomView addSubview:button];
         
         
@@ -302,18 +263,45 @@
 
 #pragma mark  --touch
 -(void)touchPay{
-    MyLog(@"pay");
+ //判断  钱够的话 就直接成功了 。    不够的话 去充值
+    
+    if (self.balanceMoney<=0) {
+        //钱够   直接吊 支付接口
+        
+        
+        
+    }else{
+        // 钱不够  跳支付界面  把差额传过去
+        PCPayViewController*vc=[[PCPayViewController alloc]init];
+         vc.blanceMoney=self.balanceMoney;
+        [self.navigationController pushViewController:vc animated:YES];
+
+        
+    }
+    
+    
+    
+  
     
 }
 
 //-(void)switchAction:(UISwitch*)sender{
 //    MyLog(@"%d",sender.isOn);
+//    if (sender.isOn) {
+//        //
+//        self.accoutMoney=[[UserSession instance].money floatValue];
+//    }else{
+//        self.accoutMoney=0.f;
+//    }
+//    
 //    
 //}
 
 #pragma mark  --delegate
 
 -(void)DelegateGetCouponInfo:(CouponModel *)model{
+    self.CouponMoney=100.f;
+    [self calshouldPayMoney];
     MyLog(@"aa");
 }
 
@@ -348,13 +336,41 @@
     
 }
 
+// 实付金额= （总消费额-非打折额）*折扣-抵用券
+//然后支付按钮 当账户余额 大于等于实付金额  那么显示 立即支付，  否则就显示  需要充值xx.00
 
 #pragma 计算所要支付的钱
 -(void)calshouldPayMoney{
+    //不能小于
+    if (self.payAllMoney<self.NOZheMoney) {
+        return;
+    }
+    
     CGFloat payMoney=(self.payAllMoney-self.NOZheMoney)*self.shopZhekou-self.CouponMoney;
     self.shouldPayMoney=payMoney;
     
+    //需要支付的钱
     self.shouldPayMoneyLabel.text=[NSString stringWithFormat:@"￥%.2f",self.shouldPayMoney];
+    
+    //这里判断下   钱够 就确认付款  钱不够 就需要充值钱
+    CGFloat accountMoney=[[UserSession instance].money floatValue];
+    //差额
+    CGFloat balance=self.shouldPayMoney-accountMoney;
+    _balanceMoney=balance;
+    if (balance<=0) {
+        //钱够了   吊支付的接口
+        [self.payMoneyButton setTitle:@"立即支付" forState:UIControlStateNormal];
+        
+        
+    }else{
+        //钱不够去充值
+         [self.payMoneyButton setTitle:[NSString stringWithFormat:@"需要支付￥%.2f",balance] forState:UIControlStateNormal];
+    }
+    
+    
+    
+   
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -18,14 +18,17 @@ typedef NS_ENUM(NSInteger,PayCategory){
 
 @interface YWPayViewController : UIViewController
 @property(nonatomic,assign)PayCategory whichPay;  //哪种支付
+@property(nonatomic,strong)NSString*shopID;  //店铺的id
+@property(nonatomic,assign)CGFloat shopZhekou;  //店铺的折扣
+
+//如果是  扫码支付 就得有下面的参数 否则就不需要
 @property(nonatomic,assign)CGFloat payAllMoney;    //需要支付的总额
 @property(nonatomic,assign)CGFloat NOZheMoney;     //不打折的金额
-@property(nonatomic,assign)CGFloat shouldPayMoney;   //应该支付的钱
+
 
 
 //----------------------------------------------
-@property(nonatomic,strong)NSString*shopID;  //店铺的id
-@property(nonatomic,assign)CGFloat shopZhekou;  //店铺的折扣
+
 
 
 @end

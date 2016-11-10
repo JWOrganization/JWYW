@@ -493,7 +493,15 @@
 		C10E93AA1DD19AEB00728B3D /* PHBusinessCircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E93A91DD19AEB00728B3D /* PHBusinessCircleModel.m */; };
 		C10E94A21DD1C57A00728B3D /* PHSubCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A11DD1C57A00728B3D /* PHSubCategoryModel.m */; };
 		C10E94A51DD1CCC400728B3D /* PHOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A41DD1CCC400728B3D /* PHOrderModel.m */; };
-		C10E94A81DD34A2600728B3D /* YWPayMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94A71DD34A2600728B3D /* YWPayMoneyViewController.m */; };
+		C10E94AE1DD3545300728B3D /* PayMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94AC1DD3545300728B3D /* PayMoneyTableViewCell.m */; };
+		C10E94AF1DD3545300728B3D /* PayMoneyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C10E94AD1DD3545300728B3D /* PayMoneyTableViewCell.xib */; };
+		C10E94B11DD356BE00728B3D /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94B01DD356BE00728B3D /* store.png */; };
+		C10E94B51DD356F600728B3D /* PayMoney1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94B31DD356F600728B3D /* PayMoney1TableViewCell.m */; };
+		C10E94B61DD356F600728B3D /* PayMoney1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C10E94B41DD356F600728B3D /* PayMoney1TableViewCell.xib */; };
+		C10E94B91DD3609B00728B3D /* home_cricle_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94B71DD3609B00728B3D /* home_cricle_ok.png */; };
+		C10E94BA1DD3609B00728B3D /* home_cricle_no.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94B81DD3609B00728B3D /* home_cricle_no.png */; };
+		C10E94BC1DD360A100728B3D /* home_yue.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94BB1DD360A100728B3D /* home_yue.png */; };
+		C10E94BF1DD36DC600728B3D /* YWPayMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94BE1DD36DC600728B3D /* YWPayMoneyViewController.m */; };
 		C11F14EF1DC83B92005C58CF /* banner_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */; };
 		C11F14F01DC83B92005C58CF /* banner_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */; };
 		C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */; };
@@ -1662,8 +1670,18 @@
 		C10E94A11DD1C57A00728B3D /* PHSubCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSubCategoryModel.m; sourceTree = "<group>"; };
 		C10E94A31DD1CCC400728B3D /* PHOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHOrderModel.h; sourceTree = "<group>"; };
 		C10E94A41DD1CCC400728B3D /* PHOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHOrderModel.m; sourceTree = "<group>"; };
-		C10E94A61DD34A2600728B3D /* YWPayMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayMoneyViewController.h; sourceTree = "<group>"; };
-		C10E94A71DD34A2600728B3D /* YWPayMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayMoneyViewController.m; sourceTree = "<group>"; };
+		C10E94AB1DD3545300728B3D /* PayMoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayMoneyTableViewCell.h; sourceTree = "<group>"; };
+		C10E94AC1DD3545300728B3D /* PayMoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayMoneyTableViewCell.m; sourceTree = "<group>"; };
+		C10E94AD1DD3545300728B3D /* PayMoneyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayMoneyTableViewCell.xib; sourceTree = "<group>"; };
+		C10E94B01DD356BE00728B3D /* store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = store.png; sourceTree = "<group>"; };
+		C10E94B21DD356F600728B3D /* PayMoney1TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayMoney1TableViewCell.h; sourceTree = "<group>"; };
+		C10E94B31DD356F600728B3D /* PayMoney1TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayMoney1TableViewCell.m; sourceTree = "<group>"; };
+		C10E94B41DD356F600728B3D /* PayMoney1TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayMoney1TableViewCell.xib; sourceTree = "<group>"; };
+		C10E94B71DD3609B00728B3D /* home_cricle_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_cricle_ok.png; sourceTree = "<group>"; };
+		C10E94B81DD3609B00728B3D /* home_cricle_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_cricle_no.png; sourceTree = "<group>"; };
+		C10E94BB1DD360A100728B3D /* home_yue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_yue.png; sourceTree = "<group>"; };
+		C10E94BD1DD36DC600728B3D /* YWPayMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayMoneyViewController.h; sourceTree = "<group>"; };
+		C10E94BE1DD36DC600728B3D /* YWPayMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayMoneyViewController.m; sourceTree = "<group>"; };
 		C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@2x.png"; sourceTree = "<group>"; };
 		C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@3x.png"; sourceTree = "<group>"; };
 		C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_selected@2x.png"; sourceTree = "<group>"; };
@@ -4474,10 +4492,19 @@
 			path = RBPublicEditorVC;
 			sourceTree = "<group>";
 		};
-		C10E94AA1DD353AF00728B3D /* 确认付款view */ = {
+		C10E94AA1DD353AF00728B3D /* 废弃 确认付款view */ = {
 			isa = PBXGroup;
 			children = (
+				C10E94BD1DD36DC600728B3D /* YWPayMoneyViewController.h */,
+				C10E94BE1DD36DC600728B3D /* YWPayMoneyViewController.m */,
+				C10E94AB1DD3545300728B3D /* PayMoneyTableViewCell.h */,
+				C10E94AC1DD3545300728B3D /* PayMoneyTableViewCell.m */,
+				C10E94AD1DD3545300728B3D /* PayMoneyTableViewCell.xib */,
+				C10E94B21DD356F600728B3D /* PayMoney1TableViewCell.h */,
+				C10E94B31DD356F600728B3D /* PayMoney1TableViewCell.m */,
+				C10E94B41DD356F600728B3D /* PayMoney1TableViewCell.xib */,
 			);
+			name = "废弃 确认付款view";
 			path = "确认付款view";
 			sourceTree = "<group>";
 		};
@@ -4897,9 +4924,7 @@
 				C1F7BD801DB1C94500CCAF96 /* view */,
 				C1F7BD8D1DB1C94500CCAF96 /* YWPayViewController.h */,
 				C1F7BD8E1DB1C94500CCAF96 /* YWPayViewController.m */,
-				C10E94A61DD34A2600728B3D /* YWPayMoneyViewController.h */,
-				C10E94A71DD34A2600728B3D /* YWPayMoneyViewController.m */,
-				C10E94AA1DD353AF00728B3D /* 确认付款view */,
+				C10E94AA1DD353AF00728B3D /* 废弃 确认付款view */,
 			);
 			path = "支付界面";
 			sourceTree = "<group>";
@@ -5289,9 +5314,13 @@
 		C1F7BF021DB1CA0700CCAF96 /* 首页图 */ = {
 			isa = PBXGroup;
 			children = (
+				C10E94BB1DD360A100728B3D /* home_yue.png */,
+				C10E94B71DD3609B00728B3D /* home_cricle_ok.png */,
+				C10E94B81DD3609B00728B3D /* home_cricle_no.png */,
 				C1F7BF1B1DB1CA0700CCAF96 /* 临时图 */,
 				C13019BF1DB20B2400E24C88 /* 20个图标新 */,
 				C1A75DFD1DCC7B48000E76C2 /* messageImage.png */,
+				C10E94B01DD356BE00728B3D /* store.png */,
 				C1FB7F761DC73B910048EBC8 /* 火@2x.png */,
 				C1FB7F771DC73B910048EBC8 /* 垃圾桶@2x.png */,
 				C1FB7F781DC73B910048EBC8 /* 时间@2x.png */,
@@ -5529,6 +5558,7 @@
 				B38B2E501D8FACD8004D5256 /* tb3.png in Resources */,
 				B3D219121DB0985100D661F5 /* README.txt in Resources */,
 				B38B2EF81D8FC82F004D5256 /* RBHomeCollectionViewCell.xib in Resources */,
+				C10E94B91DD3609B00728B3D /* home_cricle_ok.png in Resources */,
 				C13019E01DB20B2400E24C88 /* 汽车服务.png in Resources */,
 				B38B2F171D8FC82F004D5256 /* RBNodeShowViewController.xib in Resources */,
 				C1F7BF3E1DB1CA0700CCAF96 /* home_qianbao.png in Resources */,
@@ -5560,6 +5590,7 @@
 				C130199E1DB1FD2F00E24C88 /* qr_bottom_right@2x.png in Resources */,
 				C11F14EF1DC83B92005C58CF /* banner_normal@2x.png in Resources */,
 				B32E4AE51DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.xib in Resources */,
+				C10E94B11DD356BE00728B3D /* store.png in Resources */,
 				B38B2F571D8FC83A004D5256 /* 点进个人中心的一个专辑.json in Resources */,
 				C1F7BDBB1DB1C94500CCAF96 /* ZheTableViewCell.xib in Resources */,
 				C1F7BF391DB1CA0700CCAF96 /* home_pic@2x.png in Resources */,
@@ -5647,6 +5678,7 @@
 				B3FEBA041D9B64C1003CDEF2 /* YWMessageNotificationViewController.xib in Resources */,
 				B38B2F5F1D8FC83A004D5256 /* xhsemoji1.plist in Resources */,
 				C13019D71DB20B2400E24C88 /* 周边游.png in Resources */,
+				C10E94BA1DD3609B00728B3D /* home_cricle_no.png in Resources */,
 				B36C7F061D9D0C8900B022E0 /* YWMessageFriendAddCell.xib in Resources */,
 				B38B2E441D8FACD8004D5256 /* banner_normal6.png in Resources */,
 				C1F7BDB21DB1C94500CCAF96 /* StorePhotoCollectionViewCell.xib in Resources */,
@@ -5723,6 +5755,7 @@
 				C1F7BE3A1DB1C95400CCAF96 /* InfoChooseTableViewCell.xib in Resources */,
 				B3CD68A91D94CF4C00C26B1C /* RBPublicEditorScroll.xib in Resources */,
 				C130199C1DB1FD2F00E24C88 /* qr_bottom_left@2x.png in Resources */,
+				C10E94AF1DD3545300728B3D /* PayMoneyTableViewCell.xib in Resources */,
 				B3D2190F1DB0985100D661F5 /* WeiboSDK.bundle in Resources */,
 				C13019E31DB20B2400E24C88 /* 结婚.png in Resources */,
 				C13019AF1DB1FD2F00E24C88 /* qrcode_scan_btn_photo_down@2x.png in Resources */,
@@ -5737,6 +5770,7 @@
 				C1F7BF331DB1CA0700CCAF96 /* menuData.plist in Resources */,
 				C1F7BE501DB1C95400CCAF96 /* YWFansTableViewCell.xib in Resources */,
 				B38B2E491D8FACD8004D5256 /* h4.jpg in Resources */,
+				C10E94BC1DD360A100728B3D /* home_yue.png in Resources */,
 				C1A75DFE1DCC7B48000E76C2 /* messageImage.png in Resources */,
 				B38B2F4C1D8FC83A004D5256 /* tag  LV.json in Resources */,
 				C1F7BF531DB1CA0700CCAF96 /* icon_arrow_dropdown_selected.png in Resources */,
@@ -5769,6 +5803,7 @@
 				C1F7BD971DB1C94500CCAF96 /* YWMainCategoryViewController.xib in Resources */,
 				B3192AC61D92224A00FD6578 /* JWImagePickerCell.xib in Resources */,
 				C1F7BF521DB1CA0700CCAF96 /* icon_arrow_dropdown_normal.png in Resources */,
+				C10E94B61DD356F600728B3D /* PayMoney1TableViewCell.xib in Resources */,
 				B36C7EFF1D9CE18100B022E0 /* YWMessageFriendsAddViewController.xib in Resources */,
 				B315823B1D90F86B0096C194 /* YWForgetPassWordViewController.xib in Resources */,
 				B38B2F4D1D8FC83A004D5256 /* 个人中心 总的请求（可无视）.json in Resources */,
@@ -5851,6 +5886,7 @@
 				B33A266D1D9A68040092CB12 /* EMSDWebImageManager.m in Sources */,
 				B3CD68A01D94C96300C26B1C /* JWTextView.m in Sources */,
 				B35778B21D9962550058A998 /* YWStormPinAnnotationView.m in Sources */,
+				C10E94AE1DD3545300728B3D /* PayMoneyTableViewCell.m in Sources */,
 				B33A26681D9A68040092CB12 /* EMSDImageCache.m in Sources */,
 				C1F7BDBA1DB1C94500CCAF96 /* ZheTableViewCell.m in Sources */,
 				C1F7BE531DB1C95400CCAF96 /* CouponViewController.m in Sources */,
@@ -5949,6 +5985,7 @@
 				B38B2E221D8FACD8004D5256 /* MJDIYAutoFooter.m in Sources */,
 				B38B2E031D8FACD8004D5256 /* MASCompositeConstraint.m in Sources */,
 				C13019BE1DB2039200E24C88 /* H5LinkViewController.m in Sources */,
+				C10E94B51DD356F600728B3D /* PayMoney1TableViewCell.m in Sources */,
 				B33A26831D9A68040092CB12 /* PSTGridLayoutRow.m in Sources */,
 				C1A7D5011DC7736A004F3518 /* HPTopShopModel.m in Sources */,
 				B33A266A1D9A68040092CB12 /* EMSDWebImageDecoder.m in Sources */,
@@ -6057,6 +6094,7 @@
 				B38B2F101D8FC82F004D5256 /* RBNodeShowCommentTargetModel.m in Sources */,
 				C1F7BE511DB1C95400CCAF96 /* YWFansViewController.m in Sources */,
 				C1F7BD991DB1C94500CCAF96 /* YWShoppingDetailViewController.m in Sources */,
+				C10E94BF1DD36DC600728B3D /* YWPayMoneyViewController.m in Sources */,
 				C1B5E1311DCACFA8003769EF /* ShopdetailModel.m in Sources */,
 				B38B2E321D8FACD8004D5256 /* SDWebImageManager.m in Sources */,
 				B38B2F7B1D8FC8CD004D5256 /* JWCollectionViewFlowLayout.m in Sources */,
@@ -6155,7 +6193,6 @@
 				C1F7BE331DB1C95400CCAF96 /* imageDefineButton.m in Sources */,
 				B3AE4D771D91302B000A389F /* TZPhotoPreviewController.m in Sources */,
 				B38B2E081D8FACD8004D5256 /* MASViewConstraint.m in Sources */,
-				C10E94A81DD34A2600728B3D /* YWPayMoneyViewController.m in Sources */,
 				B3FEB9FD1D9B6465003CDEF2 /* YWMessageModel.m in Sources */,
 				B33A269E1D9A68040092CB12 /* EaseBaseMessageCell.m in Sources */,
 				B33A26AB1D9A68040092CB12 /* EaseChatToolbarItem.m in Sources */,

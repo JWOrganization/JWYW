@@ -57,6 +57,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor whiteColor];
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
     
     //得到title 上的内容   接口
