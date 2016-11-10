@@ -396,9 +396,7 @@
     [self requestDataWithPages:self.pages];
 }
 - (void)cancelRefreshWithIsHeader:(BOOL)isHeader{
-    if (isHeader) {
-        [self.tableView.mj_header endRefreshing];
-    }else{
+    if (!isHeader) {
         [self.tableView.mj_footer endRefreshing];
     }
 }
@@ -427,6 +425,9 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RefreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self cancelRefreshWithIsHeader:(page==0?YES:NO)];
     });
+    if (page==0) {
+        [self.tableView.mj_footer endRefreshing];
+    }
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_RELATED withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
