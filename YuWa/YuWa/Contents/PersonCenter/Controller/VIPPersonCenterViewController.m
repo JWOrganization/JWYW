@@ -70,6 +70,7 @@
 
 -(void)viewDidLoad{
 
+    //
     self.showWhichView=showViewCategoryNotes;
     
     self.automaticallyAdjustsScrollViewInsets=NO;
