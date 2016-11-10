@@ -156,9 +156,20 @@
     [self requestShopArrDataWithPages:self.pages];
 }
 
+- (void)cancelRefreshWithIsHeader:(BOOL)isHeader{
+    if (isHeader) {
+        [self.tableView.mj_header endRefreshing];
+    }else{
+        [self.tableView.mj_footer endRefreshing];
+    }
+}
+
 #pragma mark - Http
 - (void)requestHotShopArrData{
     NSDictionary * pragram = @{};
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RefreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self cancelRefreshWithIsHeader:NO];
+    });
     
     [[HttpObject manager]getNoHudWithType:YuWaType_STORM_SEARCH_HOT withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
@@ -175,7 +186,6 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-        [self.tableView.mj_footer endRefreshing];
     }];
 }
 - (void)requestShopArrDataWithPages:(NSInteger)page{
@@ -184,11 +194,8 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_STORM_SEARCH withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        if (page>0){
-            [self.tableView.mj_footer endRefreshing];
-        }else{
+        if (page==0){
             [self.dataArr removeAllObjects];
-            [self.tableView.mj_footer endRefreshing];
         }
         NSArray * dataArr = responsObj[@"data"];
         for (int i = 0; i < dataArr.count; i++) {
@@ -201,7 +208,6 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-        [self.tableView.mj_footer endRefreshing];
         self.pages--;
     }];
 }

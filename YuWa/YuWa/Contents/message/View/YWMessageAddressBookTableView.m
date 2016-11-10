@@ -144,11 +144,14 @@
     [self requestShopArrData];
 }
 
+
 #pragma mark - Http
 - (void)requestShopArrData{
     [self.dataArr removeAllObjects];
     [self.keyArr removeAllObjects];
-    [self.mj_header endRefreshing];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RefreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [self.mj_header endRefreshing];
+    });
     
     NSArray *userlist;
     EMError *error = nil;

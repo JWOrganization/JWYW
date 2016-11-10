@@ -136,19 +136,27 @@
     self.pages++;
     [self requestDataWithPages:self.pages];
 }
+- (void)cancelRefreshWithIsHeader:(BOOL)isHeader{
+    if (isHeader) {
+        [self.tableView.mj_header endRefreshing];
+    }else{
+        [self.tableView.mj_footer endRefreshing];
+    }
+}
 
 #pragma mark - Http
 - (void)requestDataWithPages:(NSInteger)page{
     NSDictionary * pragram = @{@"keyword":self.searchKey,@"pagen":self.pagens,@"pages":[NSString stringWithFormat:@"%zi",page],@"sort":@(self.states),@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RefreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self cancelRefreshWithIsHeader:(page==0?YES:NO)];
+    });
     
     [[HttpObject manager]postDataWithType:YuWaType_RB_SEARCH_RESULT withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         if (page == 0) {
             [self.dataArr removeAllObjects];
-            [self.tableView.mj_header endRefreshing];
-        }else{
-            [self.tableView.mj_footer endRefreshing];
         }
         NSArray * dataArr = responsObj[@"data"];
         [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -159,11 +167,6 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-        if (page == 0) {
-            [self.tableView.mj_header endRefreshing];
-        }else{
-            [self.tableView.mj_footer endRefreshing];
-        }
     }];
 }
 
