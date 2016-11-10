@@ -142,7 +142,7 @@
         if ([weakSelf.scrollView.conTextView.text isEqualToString:@""]) {
             [weakSelf showHUDWithStr:@"内容不能为空哟" withSuccess:NO];
         }else{
-            [self requestPublishNodeWithPhoto];
+            [weakSelf requestPublishNodeWithPhoto];
             [weakSelf.scrollView.conTextView resignFirstResponder];
         }
     };

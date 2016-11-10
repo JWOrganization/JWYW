@@ -33,11 +33,11 @@
 }
 
 - (void)makeTagBtn{
-    CGFloat btnHeight = 36.f;
-    for (int i = 0; i<self.tagArr.count; i++) {
-        CGFloat btnWidth = [JWTools sizeForText:self.tagArr[i] withFont:[UIFont systemFontOfSize:15.f] withSize:CGSizeMake(MAXFLOAT, 21.f)].width;
-        
-    }
+//    CGFloat btnHeight = 36.f;
+//    for (int i = 0; i<self.tagArr.count; i++) {
+//        CGFloat btnWidth = [JWTools sizeForText:self.tagArr[i] withFont:[UIFont systemFontOfSize:15.f] withSize:CGSizeMake(MAXFLOAT, 21.f)].width;
+//        
+//    }
     
 }
 
