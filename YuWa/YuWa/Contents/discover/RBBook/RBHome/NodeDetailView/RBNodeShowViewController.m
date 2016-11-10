@@ -198,7 +198,7 @@
                 }
             }
         };
-    } 
+    }
     if (self.dataModel&&!self.authorHeader.model){
         self.authorHeader.isUser = [self.dataModel.user.userid integerValue]==([UserSession instance].uid?[UserSession instance].uid:0)?YES:NO;
         self.authorHeader.infavs = self.dataModel.is_fans;
