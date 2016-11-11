@@ -210,28 +210,44 @@
     self.pagen=10;
     self.pages=-1;
 
- 
-
-   MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
-
+    self.tableView.mj_header=[UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
         [self getDatas];
-        
     }];
-    self.tableView.mj_header=gifHeader;
+    
+    //上拉刷新
+    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
+        [self loadingMoreShowInfo];
+    }];
+ 
+    
+    //立即刷新
+    [self.tableView.mj_header beginRefreshing];
+    
+//
+//   MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
+//
+//        [self getDatas];
+//        
+//    }];
+//    self.tableView.mj_header=gifHeader;
+    
+
+    
 //     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_0000" withImageCount:18 withPullWay:MJRefreshStateIdle];
 //    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStatePulling];
 //     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
-    //立即刷新
-    [self.tableView.mj_header beginRefreshing];
+
 //
 //    
-    //上拉刷新
-    MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
-      [self loadingMoreShowInfo];
-        
-        
-    }];
-    self.tableView.mj_footer=gifFooter;
+
+
+    
+//    MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
+//      [self loadingMoreShowInfo];
+//        
+//        
+//    }];
+//    self.tableView.mj_footer=gifFooter;
 //    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_0000" withImageCount:18 withPullWay:MJRefreshStateIdle];
 //    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStatePulling];
 //    [UIScrollView setFooterGIF:gifFooter WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
@@ -305,7 +321,7 @@
             [JRToast showWithText:@"errorMessage"];
         }
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshing];
 
@@ -345,7 +361,7 @@
         
         
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshing];
             

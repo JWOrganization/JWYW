@@ -114,25 +114,43 @@
     self.pages=0;
     self.tableViewDatasModel=[NSMutableArray array];
     
-    MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
+    
+    self.tableView.mj_header=[UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
         self.pages=0;
         self.tableViewDatasModel=[NSMutableArray array];
         [self getTableViewAllDatas];
-        
+
     }];
-    self.tableView.mj_header=gifHeader;
-     //立即刷新
-    //    [self.tableView.mj_header beginRefreshing];
-    
     
     //上拉刷新
-    MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
+    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
         self.pages++;
         [self getTableViewAllDatas];
-        
-        
+
     }];
-    self.tableView.mj_footer=gifFooter;
+    
+    
+    
+    //-----------------------------
+//    MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
+//        self.pages=0;
+//        self.tableViewDatasModel=[NSMutableArray array];
+//        [self getTableViewAllDatas];
+//        
+//    }];
+//    self.tableView.mj_header=gifHeader;
+//     //立即刷新
+//    //    [self.tableView.mj_header beginRefreshing];
+//    
+//    
+//    //上拉刷新
+//    MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
+//        self.pages++;
+//        [self getTableViewAllDatas];
+//        
+//        
+//    }];
+//    self.tableView.mj_footer=gifFooter;
     
 }
 

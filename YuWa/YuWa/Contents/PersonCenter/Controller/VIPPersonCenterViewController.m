@@ -299,19 +299,46 @@
     return 10;
 }
 
+-(NSArray*)animationImages{
+    NSFileManager*fileM=[NSFileManager defaultManager];
+    NSString*path=[[NSBundle mainBundle]pathForResource:@"波浪" ofType:@"bundle"];
+    NSArray*array=[fileM contentsOfDirectoryAtPath:path error:nil];
+    
+    NSMutableArray*imageArrays=[NSMutableArray array];
+    
+    for (NSString*imageStr in array) {
+        UIImage*image=[UIImage imageNamed:[@"波浪.bundle" stringByAppendingPathComponent:imageStr]];
+        [imageArrays addObject:image];
+        
+    }
+    
+    
+    return imageArrays;
+}
+
+
 -(void)addHeaderView{
     
     UIImageView*imageView=[[UIImageView alloc]init];
-    imageView.image=[UIImage imageNamed:@"backImage"];
+//    imageView.image=[UIImage imageNamed:@"backImage"];
     imageView.contentMode=UIViewContentModeScaleAspectFill;
+    imageView.animationImages=[self animationImages];
+    imageView.animationDuration=3;
+    imageView.animationRepeatCount=0;
+    [imageView startAnimating];
+
+    
+    
 
     //超出的图片的高度
-    CGFloat OTHERHEADER = ((kScreen_Width * imageView.image.size.height / imageView.image.size.width)-195);
-    imageView.frame=CGRectMake(0, 0, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER);
+//    CGFloat OTHERHEADER = ((kScreen_Width * imageView.image.size.height / imageView.image.size.width)-195);
+    //HEADERVIEWHEIGHT+OTHERHEADER
+    imageView.frame=CGRectMake(0, 0, kScreen_Width, 300);
 
     
     
-    self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, -OTHERHEADER, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER)];
+//    self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, -OTHERHEADER, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER)];
+        self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 300)];
     
    
     [self.belowImageViewView addSubview:imageView];
