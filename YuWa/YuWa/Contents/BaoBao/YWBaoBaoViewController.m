@@ -32,7 +32,6 @@
     self.title = @"雨娃宝宝";
     [self dataSet];
     [self makeUI];
-    
 }
 
 - (void)dataSet{
@@ -82,11 +81,9 @@
 
 }
 
-
 #pragma mark - Http
 - (void)requestLvUP{
     if (self.user.baobaoEXP < self.user.baobaoNeedEXP)return;
-    
     
     [self showLvInfo];//233333333请求成功后修改UserSession数据
     
