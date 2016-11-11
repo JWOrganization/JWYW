@@ -502,6 +502,7 @@
 		C10E94BA1DD3609B00728B3D /* home_cricle_no.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94B81DD3609B00728B3D /* home_cricle_no.png */; };
 		C10E94BC1DD360A100728B3D /* home_yue.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94BB1DD360A100728B3D /* home_yue.png */; };
 		C10E94BF1DD36DC600728B3D /* YWPayMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94BE1DD36DC600728B3D /* YWPayMoneyViewController.m */; };
+		C110DC2D1DD5CDB300CBC272 /* 波浪.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C110DC2C1DD5CDB300CBC272 /* 波浪.bundle */; };
 		C11F14EF1DC83B92005C58CF /* banner_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */; };
 		C11F14F01DC83B92005C58CF /* banner_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */; };
 		C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */; };
@@ -1682,6 +1683,7 @@
 		C10E94BB1DD360A100728B3D /* home_yue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_yue.png; sourceTree = "<group>"; };
 		C10E94BD1DD36DC600728B3D /* YWPayMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayMoneyViewController.h; sourceTree = "<group>"; };
 		C10E94BE1DD36DC600728B3D /* YWPayMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayMoneyViewController.m; sourceTree = "<group>"; };
+		C110DC2C1DD5CDB300CBC272 /* 波浪.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "波浪.bundle"; sourceTree = "<group>"; };
 		C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@2x.png"; sourceTree = "<group>"; };
 		C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@3x.png"; sourceTree = "<group>"; };
 		C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_selected@2x.png"; sourceTree = "<group>"; };
@@ -5264,6 +5266,7 @@
 		C1F7BEEC1DB1CA0700CCAF96 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				C110DC2C1DD5CDB300CBC272 /* 波浪.bundle */,
 				C1F7BEED1DB1CA0700CCAF96 /* menuData.plist */,
 				C1F7BEEE1DB1CA0700CCAF96 /* 个人中心 */,
 				C1F7BF021DB1CA0700CCAF96 /* 首页图 */,
@@ -5725,6 +5728,7 @@
 				B38B2DEE1D8FACD8004D5256 /* NewLanguage.strings in Resources */,
 				B38B2F4F1D8FC83A004D5256 /* 单条笔记.json in Resources */,
 				C1F7BF571DB1CA0700CCAF96 /* icon_homepage_upArrow@2x.png in Resources */,
+				C110DC2D1DD5CDB300CBC272 /* 波浪.bundle in Resources */,
 				B38B2F0C1D8FC82F004D5256 /* RBNodeDetailImageHeader.xib in Resources */,
 				B38B2F301D8FC82F004D5256 /* RBConnectionViewController.xib in Resources */,
 				B3FFF4861D93B45500EDD2AB /* RBPublicTagEditorViewController.xib in Resources */,

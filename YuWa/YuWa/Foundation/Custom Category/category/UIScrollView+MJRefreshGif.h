@@ -15,16 +15,16 @@
  下拉刷新
  
  */
-+(MJRefreshGifHeader*)scrollRefreshGifHeaderwithRefreshBlock:(MJRefreshComponentRefreshingBlock)refreshBlock;
-
-+(void)setHeaderGIF:(MJRefreshGifHeader*)header WithImageName:(NSString*)imageName withImageCount:(NSInteger)imageCount withPullWay:(MJRefreshState)Brefresh;
-
-
-/**
- 上拉刷新
- */
-+(MJRefreshAutoGifFooter*)scrollRefreshGifFooterWithRefreshBlock:(MJRefreshComponentRefreshingBlock)refreshBlock;
-+(void)setFooterGIF:(MJRefreshAutoGifFooter*)footer WithImageName:(NSString*)imageName withImageCount:(NSInteger)imageCount withPullWay:(MJRefreshState)Brefresh;
+//+(MJRefreshGifHeader*)scrollRefreshGifHeaderwithRefreshBlock:(MJRefreshComponentRefreshingBlock)refreshBlock;
+//
+//+(void)setHeaderGIF:(MJRefreshGifHeader*)header WithImageName:(NSString*)imageName withImageCount:(NSInteger)imageCount withPullWay:(MJRefreshState)Brefresh;
+//
+//
+///**
+// 上拉刷新
+// */
+//+(MJRefreshAutoGifFooter*)scrollRefreshGifFooterWithRefreshBlock:(MJRefreshComponentRefreshingBlock)refreshBlock;
+//+(void)setFooterGIF:(MJRefreshAutoGifFooter*)footer WithImageName:(NSString*)imageName withImageCount:(NSInteger)imageCount withPullWay:(MJRefreshState)Brefresh;
 
 
 @end

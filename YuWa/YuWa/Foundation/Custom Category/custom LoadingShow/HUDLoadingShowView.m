@@ -29,17 +29,24 @@
 }
 
 -(NSArray*)animationImages{
-    NSFileManager*fileM=[NSFileManager defaultManager];
-    NSString*path=[[NSBundle mainBundle]pathForResource:@"GifBundle" ofType:@"bundle"];
-    NSArray*array=[fileM contentsOfDirectoryAtPath:path error:nil];
+//    NSFileManager*fileM=[NSFileManager defaultManager];
+//    NSString*path=[[NSBundle mainBundle]pathForResource:@"GifBundle" ofType:@"bundle"];
+//    NSArray*array=[fileM contentsOfDirectoryAtPath:path error:nil];
+//    
+//    NSMutableArray*imageArrays=[NSMutableArray array];
+//    
+//    for (NSString*imageStr in array) {
+//        UIImage*image=[UIImage imageNamed:[@"GifBundle.bundle" stringByAppendingPathComponent:imageStr]];
+//        [imageArrays addObject:image];
+//        
+//    }
     
     NSMutableArray*imageArrays=[NSMutableArray array];
-    
-    for (NSString*imageStr in array) {
-        UIImage*image=[UIImage imageNamed:[@"GifBundle.bundle" stringByAppendingPathComponent:imageStr]];
+    for (int i=0; i<32; i++) {
+        UIImage*image=[UIImage imageNamed:[NSString stringWithFormat:@"赛亚人000%d",i]];
         [imageArrays addObject:image];
-        
     }
+    
     
     
     return imageArrays;

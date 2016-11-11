@@ -17,7 +17,7 @@
     gifHeader.stateLabel.hidden = YES;
     gifHeader.backgroundColor=RGBCOLOR(240, 239, 237, 1);
 
-     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_0000" withImageCount:36 withPullWay:MJRefreshStateIdle];
+     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_000" withImageCount:23 withPullWay:MJRefreshStateIdle];
 //     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStateRefreshing];
      [UIScrollView setHeaderGIF:gifHeader WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStatePulling];
     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
@@ -57,7 +57,7 @@
 //    [UIScrollView setFooterGIF:gifFooter WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateWillRefresh];
 //    [UIScrollView setFooterGIF:gifFooter WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateNoMoreData];
     
-    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_0000" withImageCount:36 withPullWay:MJRefreshStateIdle];
+    [UIScrollView setFooterGIF:gifFooter WithImageName:@"下拉刷新_000" withImageCount:23 withPullWay:MJRefreshStateIdle];
     //     [UIScrollView setHeaderGIF:gifHeader WithImageName:@"下拉刷新_000" withImageCount:20 withPullWay:MJRefreshStateRefreshing];
     [UIScrollView setFooterGIF:gifFooter WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStatePulling];
     [UIScrollView setFooterGIF:gifFooter WithImageName:@"发光_00" withImageCount:22 withPullWay:MJRefreshStateRefreshing];
