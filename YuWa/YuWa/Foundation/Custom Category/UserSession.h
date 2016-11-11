@@ -42,6 +42,10 @@
 //已经登录
 @property(nonatomic,assign)BOOL isLogin;   //是否登录
 
+@property (nonatomic,assign)NSInteger baobaoLV;
+@property (nonatomic,assign)NSInteger baobaoEXP;
+@property (nonatomic,assign)NSInteger baobaoNeedEXP;
+
 +(UserSession*)instance;  //创建单例
 +(void)clearUser;   //退出登录 删除数据
 

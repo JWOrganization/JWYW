@@ -31,6 +31,8 @@
 		B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */; };
 		B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */; };
 		B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */; };
+		B3263B011DD5B25A004788BB /* YWBaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3263AFF1DD5B25A004788BB /* YWBaoBaoViewController.m */; };
+		B3263B021DD5B25A004788BB /* YWBaoBaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3263B001DD5B25A004788BB /* YWBaoBaoViewController.xib */; };
 		B32975CF1DADCF1C002CA488 /* YWStormSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */; };
 		B32975D11DAE1DB1002CA488 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B32975D01DAE1DB1002CA488 /* Photos.framework */; };
 		B32975D41DAE7C07002CA488 /* JWThirdTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B32975D31DAE7C07002CA488 /* JWThirdTools.m */; };
@@ -797,6 +799,9 @@
 		B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBIMGToolsCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3192ADC1D927C3600FD6578 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
 		B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
+		B3263AFE1DD5B25A004788BB /* YWBaoBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWBaoBaoViewController.h; sourceTree = "<group>"; };
+		B3263AFF1DD5B25A004788BB /* YWBaoBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWBaoBaoViewController.m; sourceTree = "<group>"; };
+		B3263B001DD5B25A004788BB /* YWBaoBaoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWBaoBaoViewController.xib; sourceTree = "<group>"; };
 		B32975CD1DADCF1C002CA488 /* YWStormSortTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormSortTableView.h; sourceTree = "<group>"; };
 		B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormSortTableView.m; sourceTree = "<group>"; };
 		B32975D01DAE1DB1002CA488 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
@@ -2195,6 +2200,16 @@
 			path = ImageEditor;
 			sourceTree = "<group>";
 		};
+		B3263AFD1DD5B22F004788BB /* BaoBao */ = {
+			isa = PBXGroup;
+			children = (
+				B3263AFE1DD5B25A004788BB /* YWBaoBaoViewController.h */,
+				B3263AFF1DD5B25A004788BB /* YWBaoBaoViewController.m */,
+				B3263B001DD5B25A004788BB /* YWBaoBaoViewController.xib */,
+			);
+			path = BaoBao;
+			sourceTree = "<group>";
+		};
 		B32975CC1DADCED5002CA488 /* SortView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2954,6 +2969,7 @@
 		B38B2CA21D8FACD8004D5256 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
+				B3263AFD1DD5B22F004788BB /* BaoBao */,
 				C1F7BD3B1DB1C94500CCAF96 /* HomePage */,
 				C1F7BDBE1DB1C95400CCAF96 /* PersonCenter */,
 				B38B2E651D8FC160004D5256 /* Login */,
@@ -5609,6 +5625,7 @@
 				C1F7BE5F1DB1C95400CCAF96 /* PCPacketViewController.xib in Resources */,
 				C13019AA1DB1FD2F00E24C88 /* qrcode_scan_bar@2x.png in Resources */,
 				B3D2190A1DB0985100D661F5 /* ShareSDKUI.bundle in Resources */,
+				B3263B021DD5B25A004788BB /* YWBaoBaoViewController.xib in Resources */,
 				C13019E51DB20B2400E24C88 /* 购物.png in Resources */,
 				B38B2F2C1D8FC82F004D5256 /* RBNodeViewController.xib in Resources */,
 				B38B2F5A1D8FC83A004D5256 /* country.plist in Resources */,
@@ -6124,6 +6141,7 @@
 				C1F7BE4C1DB1C95400CCAF96 /* PCNoteView.m in Sources */,
 				B33A26721D9A68040092CB12 /* UIImage+EMGIF.m in Sources */,
 				C1F7BE341DB1C95400CCAF96 /* PersonCenterHeadView.m in Sources */,
+				B3263B011DD5B25A004788BB /* YWBaoBaoViewController.m in Sources */,
 				B38B2E1B1D8FACD8004D5256 /* MJRefreshBackStateFooter.m in Sources */,
 				B33A26791D9A68040092CB12 /* PSTCollectionView.m in Sources */,
 				B33A266C1D9A68040092CB12 /* EMSDWebImageDownloaderOperation.m in Sources */,
