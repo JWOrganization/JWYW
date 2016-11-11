@@ -109,8 +109,7 @@
 
 #pragma mark - Http
 - (void)requestRegisterWithAccount:(NSString *)account withPassword:(NSString *)password withCode:(NSString *)code{
-    
-    NSDictionary * pragram = @{@"phone":account,@"password":password,@"code":code,@"invite_phone":self.inviteTextField.text};
+    NSDictionary * pragram = @{@"phone":account,@"password":password,@"code":code,@"invite_phone":[JWTools stringWithNumberThirtyTwoBase:self.inviteTextField.text]};
     
     [[HttpObject manager]postDataWithType:YuWaType_Register withPragram:pragram success:^(id responsObj) {
         MyLog(@"Pragram is %@",pragram);

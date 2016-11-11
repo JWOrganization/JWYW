@@ -260,6 +260,24 @@
  */
 + (NSString *)stringWithFirstCharactor:(NSString *)str;
 
+/**
+ *  32进制转10进制
+ *
+ *  @param str 32进制str
+ *
+ *  @return 10进制
+ */
++ (NSString *)stringWithNumberThirtyTwoBase:(NSString *)str;
+
+/**
+ *  10进制转32进制
+ *
+ *  @param str 10进制str
+ *
+ *  @return 32进制
+ */
++ (NSString *)stringThirtyTwoWithNumberTenBase:(NSString *)numberStr;
+
 #pragma mark - QR Code 二维码
 /**
  *  创建二维码

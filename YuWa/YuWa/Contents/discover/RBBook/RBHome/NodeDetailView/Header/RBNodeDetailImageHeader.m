@@ -44,12 +44,10 @@
     WEAKSELF;
     [self.imageList enumerateObjectsUsingBlock:^(RBHomeListImagesModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(idx * kScreen_Width, 0.f, kScreen_Width, kScreen_Width * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320.f) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320.f))];
-        if (idx == 0) {
-            imageView.frame = CGRectMake(0.f, 0.f, 0.f, 0.f);
-        }
         __weak typeof(imageView) weakImageView = imageView;
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (idx == 0) {
+                imageView.frame = CGRectMake(0.f, 0.f, 0.f, 0.f);
                 [UIView animateWithDuration:0.4 animations:^{
                     weakImageView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Width * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320.f) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320.f));
                 } completion:^(BOOL finished) {

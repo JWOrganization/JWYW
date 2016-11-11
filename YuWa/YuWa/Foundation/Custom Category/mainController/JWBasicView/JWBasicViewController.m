@@ -81,12 +81,12 @@
     [shareParams SSDKEnableUseClientShare];
     if (shareType == SSDKPlatformTypeSinaWeibo) {
         //新浪微博
-        [shareParams SSDKSetupSinaWeiboShareParamsByText:@"雨娃" title:@"雨娃" image:imageArray[0] url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].account]] latitude:0.f longitude:0.f objectID:nil type:SSDKContentTypeAuto];
+        [shareParams SSDKSetupSinaWeiboShareParamsByText:@"雨娃" title:@"雨娃" image:imageArray[0] url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[JWTools stringThirtyTwoWithNumberTenBase:[UserSession instance].account]]] latitude:0.f longitude:0.f objectID:nil type:SSDKContentTypeAuto];
     }else if (shareType == SSDKPlatformSubTypeQZone){
-        [shareParams SSDKSetupQQParamsByText:@"" title:@"雨娃" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].account]] thumbImage:imageArray[0] image:imageArray[0] type:SSDKContentTypeAuto forPlatformSubType:shareType];//SSDKPlatformSubTypeQZone或者SSDKPlatformSubTypeQQFriend其中一个
+        [shareParams SSDKSetupQQParamsByText:@"" title:@"雨娃" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[JWTools stringThirtyTwoWithNumberTenBase:[UserSession instance].account]]] thumbImage:imageArray[0] image:imageArray[0] type:SSDKContentTypeAuto forPlatformSubType:shareType];//SSDKPlatformSubTypeQZone或者SSDKPlatformSubTypeQQFriend其中一个
     }else{
         //微信(微信好友SSDKPlatformSubTypeWechatSession，微信朋友圈SSDKPlatformSubTypeWechatTimeline)应用
-        [shareParams SSDKSetupWeChatParamsByText:@"" title:@"雨娃" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[UserSession instance].account]] thumbImage:imageArray[0] image:imageArray[0] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:shareType];
+        [shareParams SSDKSetupWeChatParamsByText:@"" title:@"雨娃" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SHARE_HTTP,[JWTools stringThirtyTwoWithNumberTenBase:[UserSession instance].account]]] thumbImage:imageArray[0] image:imageArray[0] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:shareType];
     }
     
     //3、直接分享
