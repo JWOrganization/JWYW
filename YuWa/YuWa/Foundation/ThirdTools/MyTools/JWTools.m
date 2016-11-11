@@ -557,6 +557,89 @@
 //    return [strFir capitalizedString];
 }
 
+/**
+ *  32进制转10进制
+ *
+ *  @param str 32进制str
+ *
+ *  @return 10进制
+ */
++ (NSString *)stringWithNumberThirtyTwoBase:(NSString *)str{
+    NSString * temp10 = [NSString stringWithFormat:@"%lu",strtoul([str UTF8String],0,32)];
+    return temp10;
+}
+
+/**
+ *  10进制转32进制
+ *
+ *  @param str 10进制str
+ *
+ *  @return 32进制
+ */
++ (NSString *)stringThirtyTwoWithNumberTenBase:(NSString *)numberStr{
+    NSString *nLetterValue;
+    NSString *str =@"";
+    NSInteger tmpid = [numberStr integerValue];
+    NSInteger ttmpig;
+    for (int i = 0; i<9; i++) {
+        ttmpig= tmpid%32;
+        tmpid= tmpid/32;
+        switch (ttmpig){
+            case 10:
+                nLetterValue =@"a";break;
+            case 11:
+                nLetterValue =@"b";break;
+            case 12:
+                nLetterValue =@"c";break;
+            case 13:
+                nLetterValue =@"d";break;
+            case 14:
+                nLetterValue =@"e";break;
+            case 15:
+                nLetterValue =@"f";break;
+            case 16:
+                nLetterValue =@"g";break;
+            case 17:
+                nLetterValue =@"h";break;
+            case 18:
+                nLetterValue =@"i";break;
+            case 19:
+                nLetterValue =@"j";break;
+            case 20:
+                nLetterValue =@"k";break;
+            case 21:
+                nLetterValue =@"l";break;
+            case 22:
+                nLetterValue =@"m";break;
+            case 23:
+                nLetterValue =@"n";break;
+            case 24:
+                nLetterValue =@"o";break;
+            case 25:
+                nLetterValue =@"p";break;
+            case 26:
+                nLetterValue =@"q";break;
+            case 27:
+                nLetterValue =@"r";break;
+            case 28:
+                nLetterValue =@"s";break;
+            case 29:
+                nLetterValue =@"t";break;
+            case 30:
+                nLetterValue =@"u";break;
+            case 31:
+                nLetterValue =@"v";break;
+            default:
+                nLetterValue = [NSString stringWithFormat:@"%zi",ttmpig];
+        }
+        str = [nLetterValue stringByAppendingString:str];
+        if (tmpid == 0) {
+            break;
+        }
+    }
+    return str;
+}
+
 #pragma mark - QR Code 二维码
 /**
  *  创建二维码

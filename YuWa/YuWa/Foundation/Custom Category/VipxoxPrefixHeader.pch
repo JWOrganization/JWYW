@@ -168,7 +168,7 @@
 #define KUSERDEFAULT [NSUserDefaults standardUserDefaults]
 
 
-#define SHARE_HTTP @"https://appsto.re/cn/l0dBeb.i"
+#define SHARE_HTTP @"http://114.215.252.104/"
 
 #endif /* VipxoxPrefixHeader_pch */
 
