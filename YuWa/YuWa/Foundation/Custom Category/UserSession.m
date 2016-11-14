@@ -123,7 +123,8 @@ static UserSession * user=nil;
     user.email = dataDic[@"email"];
     user.baobaoLV = [dataDic[@"level"] integerValue];
     user.baobaoEXP = [dataDic[@"energy"] integerValue];
-    user.baobaoNeedEXP = [dataDic[@"update_level_energy"] integerValue];
+    NSInteger needExp = [dataDic[@"update_level_energy"] integerValue];
+    user.baobaoNeedEXP = needExp?needExp>0?needExp:13500:13500;
     
     user.isLogin = YES;
 }

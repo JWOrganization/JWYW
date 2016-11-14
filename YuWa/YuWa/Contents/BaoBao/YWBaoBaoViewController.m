@@ -146,7 +146,8 @@
         NSDictionary * dataDic = responsObj[@"data"];
         self.user.baobaoLV = [dataDic[@"level"] integerValue];
         self.user.baobaoEXP = [dataDic[@"energy"] integerValue];
-        self.user.baobaoNeedEXP = [dataDic[@"update_level_energy"] integerValue];
+        NSInteger needExp = [dataDic[@"update_level_energy"] integerValue];
+        self.user.baobaoNeedEXP = needExp?needExp>0?needExp:13500:13500;
         for (int i = 0; i < 30; i++) {//Gif Set 2333333333
             //        [self.baobaoGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
             //        [self.baobaoBGGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
