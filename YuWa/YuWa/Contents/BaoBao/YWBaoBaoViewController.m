@@ -57,8 +57,6 @@
 - (void)dataSet{
     self.user = [UserSession instance];
     //23333333要删
-    self.user.baobaoLV = 1;
-    self.user.baobaoEXP = 200;
     self.user.baobaoNeedEXP = 1000;
     //23333333要删
     
@@ -144,19 +142,25 @@
 - (void)requestLvUP{
     if (self.user.baobaoEXP < self.user.baobaoNeedEXP)return;
     
-    //2333333 Success
-    //233333333请求成功后修改UserSession数据
-    for (int i = 0; i < 30; i++) {
-//        [self.baobaoGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
-//        [self.baobaoBGGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
-//        [self.baobaoLVUpGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
-    }
-    [self lvUpGifShow];
-    [self showLvInfo];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    [[HttpObject manager]postNoHudWithType:YuWaType_BAOBAO_LVUP withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        //233333333请求成功后修改UserSession数据
+        for (int i = 0; i < 30; i++) {
+            //        [self.baobaoGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
+            //        [self.baobaoBGGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
+            //        [self.baobaoLVUpGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
+        }
+        [self lvUpGifShow];
+        [self showLvInfo];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.LVUpBtn setUserInteractionEnabled:YES];
+    }];
     
-    
-    //2333333 Faild
-    [self.LVUpBtn setUserInteractionEnabled:YES];
+    //2333333333
 }
 
 - (void)requestLottery{

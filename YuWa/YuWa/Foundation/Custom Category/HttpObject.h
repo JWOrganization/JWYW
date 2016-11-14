@@ -52,6 +52,8 @@ typedef enum YuWaType{
     
     YuWaType_FRIENDS_INFO, //好友信息
     
+    YuWaType_BAOBAO_LVUP, //雨娃宝宝升级
+    
     YuWaType_
     
 }kYuWaType;

@@ -60,8 +60,8 @@
 #pragma mark - Friends
 #define HTTP_FRIENDS_INFO @"/api.php/User/getUserInfoByUserName/" //好友信息
 
-
-
+#pragma mark - BaoBao
+#define HTTP_BAOBAO_LVUP @"/api.php/User/updateMyLevel/" //雨娃宝宝升级
 
 
 #pragma mark  -- 首页

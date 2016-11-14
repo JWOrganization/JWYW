@@ -22,7 +22,7 @@
 }
 
 - (void)showFirstQuardrantWithXLineDataArr:(NSArray *)xLineDataArr withValueArr:(NSArray *)valueArr{
-    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(0.f, 64.f, kScreen_Width, (kScreen_Height - 64.f)/2) andLineChartType:JHChartLineValueNotForEveryX];
+    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(0.f, 64.f, kScreen_Width, (kScreen_Height - 72.f)/2) andLineChartType:JHChartLineValueNotForEveryX];
     NSInteger allValue = 0;
     for (int i = 0; i < [valueArr[0] count]; i++) {
         allValue += [valueArr[0][i] integerValue];
@@ -58,7 +58,7 @@
 }
 
 - (void)showColumnViewWithXShowInfoText:(NSArray *)xShowInfoText withValueArr:(NSArray *)valueArr{
-    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0.f, (kScreen_Height - 64.f)/2 + 64.f, kScreen_Width, (kScreen_Height - 64.f)/2)];
+    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0.f, (kScreen_Height - 64.f)/2 + 68.f, kScreen_Width, (kScreen_Height - 72.f)/2)];
     column.valueArr = valueArr;
     column.originSize = CGPointMake(30, 30);//The first column of the distance from the starting point
     column.drawFromOriginX = 10;//Column width
@@ -74,8 +74,8 @@
 #pragma mark - Http
 - (void)requestData{
     //2333333333333
-    [self showFirstQuardrantWithXLineDataArr:@[@0,@1,@2,@3,@4,@5,@6,@7] withValueArr:@[@[@100,@120,@100,@600,@400,@900,@600,@0]]];
-    [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@120],@[@180],@[@12],@[@2]]];
+    [self showFirstQuardrantWithXLineDataArr:@[@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13] withValueArr:@[@[@100,@120,@100,@600,@400,@900,@600,@0,@100,@120,@100,@600,@400,@900,@100,@120,@100,@600,@400,@900,@600,@0,@100,@120,@100,@600,@400,@900]]];
+    [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购",@"美食",@"周边游",@"生活服务",@"时尚购",@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@120],@[@180],@[@12],@[@2],@[@120],@[@180],@[@12],@[@2],@[@120],@[@180],@[@12],@[@2]]];
 }
 
 @end
