@@ -11,6 +11,7 @@
 #import "RBHomeSearchViewController.h"
 #import "YWLoginViewController.h"
 #import "TZImagePickerController.h"
+#import "YWBaoBaoViewController.h"
 
 #import "JWTagCollectionView.h"
 #import "JWCollectionViewFlowLayout.h"
@@ -112,6 +113,9 @@
 
 #pragma mark - UICollectionViewDataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    YWBaoBaoViewController * vv = [[YWBaoBaoViewController alloc]init];
+//    [self.navigationController pushViewController:vv animated:YES];//2333333333333
+//    return;
     RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
     vc.model = self.dataArr[indexPath.row];
     [self.navigationController pushViewController:vc animated:NO];
