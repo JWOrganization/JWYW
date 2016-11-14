@@ -56,9 +56,6 @@
 
 - (void)dataSet{
     self.user = [UserSession instance];
-    //23333333要删
-    self.user.baobaoNeedEXP = 1000;
-    //23333333要删
     
     self.baobaoGifArr = [NSMutableArray arrayWithCapacity:0];
     self.baobaoBGGifArr = [NSMutableArray arrayWithCapacity:0];
@@ -146,8 +143,11 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_BAOBAO_LVUP withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        //233333333请求成功后修改UserSession数据
-        for (int i = 0; i < 30; i++) {
+        NSDictionary * dataDic = responsObj[@"data"];
+        self.user.baobaoLV = [dataDic[@"level"] integerValue];
+        self.user.baobaoEXP = self.user.baobaoEXP - self.user.baobaoNeedEXP;
+//        self.user.baobaoNeedEXP
+        for (int i = 0; i < 30; i++) {//2333333333
             //        [self.baobaoGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
             //        [self.baobaoBGGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
             //        [self.baobaoLVUpGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
@@ -159,8 +159,6 @@
         MyLog(@"Regieter Code error is %@",responsObj);
         [self.LVUpBtn setUserInteractionEnabled:YES];
     }];
-    
-    //2333333333
 }
 
 - (void)requestLottery{
