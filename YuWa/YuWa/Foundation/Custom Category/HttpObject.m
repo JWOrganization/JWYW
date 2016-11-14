@@ -176,6 +176,11 @@
         case YuWaType_FRIENDS_INFO://好友信息
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_FRIENDS_INFO];
             break;
+#pragma mark - BaoBao
+        case YuWaType_BAOBAO_LVUP://雨娃宝宝升级
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BAOBAO_LVUP];
+            break;
+            
             
             //URLStr建立
         default:

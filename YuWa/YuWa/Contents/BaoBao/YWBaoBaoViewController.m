@@ -8,6 +8,7 @@
 
 #import "YWBaoBaoViewController.h"
 #import "YWPayAnalysisViewController.h"
+#import "YWForRecommendViewController.h"
 
 @interface YWBaoBaoViewController ()
 
@@ -55,11 +56,6 @@
 
 - (void)dataSet{
     self.user = [UserSession instance];
-    //23333333要删
-    self.user.baobaoLV = 2;
-    self.user.baobaoEXP = 200;
-    self.user.baobaoNeedEXP = 1000;
-    //23333333要删
     
     self.baobaoGifArr = [NSMutableArray arrayWithCapacity:0];
     self.baobaoBGGifArr = [NSMutableArray arrayWithCapacity:0];
@@ -117,8 +113,10 @@
 }
 
 - (IBAction)skillAction:(UIButton *)sender {
-    //2333333技能
-    if (sender.tag == 2) {
+    if (sender.tag == 1) {
+        YWForRecommendViewController * vc = [[YWForRecommendViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (sender.tag == 2) {
         YWPayAnalysisViewController * vc = [[YWPayAnalysisViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag>2) {
@@ -141,19 +139,26 @@
 - (void)requestLvUP{
     if (self.user.baobaoEXP < self.user.baobaoNeedEXP)return;
     
-    //2333333 Success
-    //233333333请求成功后修改UserSession数据
-    for (int i = 0; i < 30; i++) {
-//        [self.baobaoGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
-//        [self.baobaoBGGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
-//        [self.baobaoLVUpGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
-    }
-    [self lvUpGifShow];
-    [self showLvInfo];
-    
-    
-    //2333333 Faild
-    [self.LVUpBtn setUserInteractionEnabled:YES];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    [[HttpObject manager]postNoHudWithType:YuWaType_BAOBAO_LVUP withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        NSDictionary * dataDic = responsObj[@"data"];
+        self.user.baobaoLV = [dataDic[@"level"] integerValue];
+        self.user.baobaoEXP = self.user.baobaoEXP - self.user.baobaoNeedEXP;
+//        self.user.baobaoNeedEXP
+        for (int i = 0; i < 30; i++) {//2333333333
+            //        [self.baobaoGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
+            //        [self.baobaoBGGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
+            //        [self.baobaoLVUpGifArr replaceObjectAtIndex:i withObject:<#(nonnull id)#>];
+        }
+        [self lvUpGifShow];
+        [self showLvInfo];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.LVUpBtn setUserInteractionEnabled:YES];
+    }];
 }
 
 - (void)requestLottery{

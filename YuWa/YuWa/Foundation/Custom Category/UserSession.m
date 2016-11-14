@@ -121,6 +121,9 @@ static UserSession * user=nil;
     user.reg_time = dataDic[@"reg_time"];
     user.sale_id = dataDic[@"sale_id"];
     user.email = dataDic[@"email"];
+    user.baobaoLV = [dataDic[@"level"] integerValue];
+    user.baobaoEXP = [dataDic[@"energy"] integerValue];
+    user.baobaoNeedEXP = [dataDic[@"update_level_energy"] integerValue];
     
     user.isLogin = YES;
 }
