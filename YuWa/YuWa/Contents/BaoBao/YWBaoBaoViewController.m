@@ -117,7 +117,9 @@
 
 - (IBAction)skillAction:(UIButton *)sender {
     //2333333技能
-
+    if (sender.tag>2) {
+        [self requestLottery];
+    }
 }
 
 - (void)lvUpGifShow{
@@ -148,6 +150,10 @@
     
     //2333333 Faild
     [self.LVUpBtn setUserInteractionEnabled:YES];
+}
+
+- (void)requestLottery{
+    
 }
 
 
