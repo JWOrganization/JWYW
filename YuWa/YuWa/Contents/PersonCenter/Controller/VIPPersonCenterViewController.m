@@ -338,7 +338,7 @@
     
     
 //    self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, -OTHERHEADER, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER)];
-        self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 300)];
+        self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, HEADERVIEWHEIGHT-300, kScreen_Width, 300)];
     
    
     [self.belowImageViewView addSubview:imageView];
