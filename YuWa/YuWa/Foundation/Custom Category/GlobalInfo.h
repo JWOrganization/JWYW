@@ -79,9 +79,9 @@
 #define HTTP_HOME_CATEGORYSHOW    @"/api.php/Shop/checkShop/"    //18个分类的筛选
 
 
-
+#pragma mark  -- 个人中心
 #define HTTP_PERSON_COUPON         @"/api.php/User/getMyCoupon/"   //得到优惠券
-
+#define HTTP_PRESON_CHANGEINFO     @"/api.php/User/setMyBaseInfo/"  //修改个人中心
 
 
 

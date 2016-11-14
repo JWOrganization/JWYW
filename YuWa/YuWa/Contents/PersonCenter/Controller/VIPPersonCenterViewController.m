@@ -61,7 +61,7 @@
 @property(nonatomic,strong)YJSegmentedControl*segmentedControl;
 
 @property(nonatomic,strong)UITableView*tableView;
-@property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;
+@property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;   //collectionView 的cell
 
 
 @end
@@ -116,7 +116,7 @@
     CGFloat yoffset=scrollView.contentOffset.y;
     
     if (yoffset>=HEADERVIEWHEIGHT-64&&yoffset<=HEADERVIEWHEIGHT) {
-        self.navigationItem.title=@"bee";
+        self.navigationItem.title=[UserSession instance].nickName;
         CGFloat alpha=(yoffset-(HEADERVIEWHEIGHT-64))/64;
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:alpha];
         
@@ -126,7 +126,7 @@
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
 
     }else{
-        self.navigationItem.title=@"bee";
+        self.navigationItem.title=[UserSession instance].nickName;
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
 
     }
@@ -147,7 +147,8 @@
     if (indexPath.section==0&&indexPath.row==0) {
       PersonCenterZeroCell*  cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
         cell.selectionStyle=NO;
-        NSString*str=@"fjlsfjlskjalfjlkjlkajlkworuoiwerjfnvnvn,sfjfsaljfqowhgf\n sfjlajflkjflas;fkjslkfasf\n sfjlasfkj;as";
+//        NSString*str=@"fjlsfjlskjalfjlkjlkajlkworuoiwerjfnvnvn,sfjfsaljfqowhgf\n sfjlajflkjflas;fkjslkfasf\n sfjlasfkj;as";
+        NSString*str=[UserSession instance].personality;
         cell.titleString=str;
       
         
@@ -214,7 +215,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0&&indexPath.row==0) {
-        NSString*str=@"fjlsfjlskjalfjlkjlkajlkworuoiwerjfnvnvn,sfjfsaljfqowhgf\n sfjlajflkjflas;fkjslkfasf\n sfjlasfkj;as";
+        NSString*str=[UserSession instance].personality;
 
         return [PersonCenterZeroCell CalculateCellHeight:str];
         
@@ -358,6 +359,12 @@
     showView.backgroundColor=[UIColor clearColor];
     [self.headerView addSubview:showView];
     
+    UIImageView*headImageView=[showView viewWithTag:1];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+    
+    
     showView.touchImageBlock=^{
         MyLog(@"点击图片放大");
     };
@@ -371,7 +378,12 @@
     
     [PersonInfo addTarget:self action:@selector(touchPersonInfo) forControlEvents:UIControlEventTouchUpInside];
 
-    NSArray*fourArray=@[@[@"关注",@"8"],@[@"粉丝",@"18"],@[@"被赞",@"28"],@[@"被收藏",@"38"]];
+    NSMutableArray*fourArray=[NSMutableArray array];
+    [fourArray addObject:@[@"关注",[UserSession instance].attentionCount]];
+    [fourArray addObject:@[@"粉丝",[UserSession instance].fans]];
+    [fourArray addObject:@[@"被赞",[UserSession instance].praised]];
+    [fourArray addObject:@[@"被收藏",[UserSession instance].collected]];
+//    NSArray*fourArray=@[@[@"关注",@"8"],@[@"粉丝",@"18"],@[@"被赞",@"28"],@[@"被收藏",@"38"]];
     
     for (int i=0; i<4; i++) {
         defineButton*button=[showView viewWithTag:11+i];
@@ -388,6 +400,15 @@
         
         
     }
+    
+    //昵称
+    UILabel*nameLabel=[showView viewWithTag:2];
+    nameLabel.text=[UserSession instance].nickName;
+    
+    
+    // 地点
+    UILabel*locateLabel=[showView viewWithTag:3];
+    locateLabel.text=[UserSession instance].local;
     
   
 }
