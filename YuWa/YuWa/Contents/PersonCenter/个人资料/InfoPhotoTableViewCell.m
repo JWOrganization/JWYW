@@ -16,7 +16,7 @@
     UIImageView*imageView=[self viewWithTag:1];
     imageView.layer.cornerRadius=32.5;
     imageView.layer.masksToBounds=YES;
-    imageView.image=[UIImage imageNamed:@"placeholder"];
+//    imageView.image=[UIImage imageNamed:@"placeholder"];
     
     
 }

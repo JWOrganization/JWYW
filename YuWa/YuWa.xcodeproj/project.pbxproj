@@ -594,6 +594,7 @@
 		C149F44E1DCB0B0C00746A86 /* StorePhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F44D1DCB0B0C00746A86 /* StorePhotoModel.m */; };
 		C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */; };
 		C19EB03E1DD992E500C28F15 /* YWForRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19EB03D1DD992E500C28F15 /* YWForRecommendViewController.m */; };
+		C19EB0411DD9F6A200C28F15 /* YWChooseSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = C19EB0401DD9F6A200C28F15 /* YWChooseSexView.m */; };
 		C1A75DF61DCB7EB2000E76C2 /* DetailStorePreferentialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A75DF51DCB7EB2000E76C2 /* DetailStorePreferentialModel.m */; };
 		C1A75DF91DCC3554000E76C2 /* ShowShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A75DF81DCC3554000E76C2 /* ShowShoppingModel.m */; };
 		C1A75DFC1DCC5706000E76C2 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A75DFB1DCC5706000E76C2 /* CommentModel.m */; };
@@ -1844,6 +1845,8 @@
 		C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlbumViewController.m; sourceTree = "<group>"; };
 		C19EB03C1DD992E500C28F15 /* YWForRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWForRecommendViewController.h; sourceTree = "<group>"; };
 		C19EB03D1DD992E500C28F15 /* YWForRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWForRecommendViewController.m; sourceTree = "<group>"; };
+		C19EB03F1DD9F6A200C28F15 /* YWChooseSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseSexView.h; sourceTree = "<group>"; };
+		C19EB0401DD9F6A200C28F15 /* YWChooseSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWChooseSexView.m; sourceTree = "<group>"; };
 		C1A75DF41DCB7EB2000E76C2 /* DetailStorePreferentialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailStorePreferentialModel.h; sourceTree = "<group>"; };
 		C1A75DF51DCB7EB2000E76C2 /* DetailStorePreferentialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailStorePreferentialModel.m; sourceTree = "<group>"; };
 		C1A75DF71DCC3554000E76C2 /* ShowShoppingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowShoppingModel.h; sourceTree = "<group>"; };
@@ -5152,6 +5155,8 @@
 				C1F7BDDF1DB1C95400CCAF96 /* ChangeNibNameViewController.xib */,
 				C1F7BDE01DB1C95400CCAF96 /* DatePickerView.h */,
 				C1F7BDE11DB1C95400CCAF96 /* DatePickerView.m */,
+				C19EB03F1DD9F6A200C28F15 /* YWChooseSexView.h */,
+				C19EB0401DD9F6A200C28F15 /* YWChooseSexView.m */,
 				C1F7BDE21DB1C95400CCAF96 /* SignatureViewController.h */,
 				C1F7BDE31DB1C95400CCAF96 /* SignatureViewController.m */,
 				C1F7BDE41DB1C95400CCAF96 /* SignatureViewController.xib */,
@@ -6393,6 +6398,7 @@
 				B33A26881D9A68040092CB12 /* EaseMessageModel.m in Sources */,
 				B3AE4DC21D91812D000A389F /* JWImgPickerAlbumChooseView.m in Sources */,
 				B38B2E301D8FACD8004D5256 /* SDWebImageDownloader.m in Sources */,
+				C19EB0411DD9F6A200C28F15 /* YWChooseSexView.m in Sources */,
 				B33A267D1D9A68040092CB12 /* PSTCollectionViewFlowLayout.m in Sources */,
 				B38B2E561D8FACD8004D5256 /* ImageCache.m in Sources */,
 				B36C7EFE1D9CE18100B022E0 /* YWMessageFriendsAddViewController.m in Sources */,

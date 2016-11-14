@@ -27,7 +27,7 @@
     
     UITextView*textView=[self.view viewWithTag:2];
     textView.delegate=self;
-    textView.text=@"sfsj";
+//    textView.text=@"sfsj";
     
     NSInteger number=self.textNumber-textView.text.length;
     UILabel*numberLabel=[self.view viewWithTag:3];

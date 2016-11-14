@@ -10,7 +10,8 @@
 #import "InfoPhotoTableViewCell.h"
 #import "InfoChooseTableViewCell.h"
 #import "InfoSignatureTableViewCell.h"
-
+#import "JWTools.h"
+#import "ImageCache.h"
 
 
 #import "ChangeNibNameViewController.h"     //修改昵称
@@ -82,8 +83,12 @@
     if (indexPath.row==0) {
         cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
         cell.selectionStyle=NO;
-//        UIImageView*imageView=[cell viewWithTag:1];
-//     
+        UIImageView*imageView=[cell viewWithTag:1];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
+        
+        
 //        UILabel*subLabel=[cell viewWithTag:2];
   
 
@@ -100,25 +105,25 @@
         switch (indexPath.row) {
             case 1:
                 mainLabel.text=@"昵称";
-                subLabel.text=@"yellowbeee";
+                subLabel.text=[UserSession instance].nickName;
                 break;
             case 2:{
                 mainLabel.text=@"雨娃ID";
-                subLabel.text=@"13661475900";
+                subLabel.text=[UserSession instance].inviteID;
                 UIImageView*imageView=[cell viewWithTag:3];
                 imageView.hidden=YES;}
                 break;
             case 3:
                 mainLabel.text=@"性别";
-                subLabel.text=@"男性";
+                subLabel.text=[UserSession instance].sex;
                 break;
             case 4:
                 mainLabel.text=@"常住地";
-                subLabel.text=@"洛圣都";
+                subLabel.text=[UserSession instance].local;
                 break;
             case 5:
                 mainLabel.text=@"生日";
-                subLabel.text=@"1991-09-26";
+                subLabel.text=[JWTools getTime:[UserSession instance].birthDay];
                 break;
     
             default:
@@ -132,7 +137,9 @@
         cell.selectionStyle=NO;
         
 //        UILabel*mainLabel=[cell viewWithTag:1];
-//        UILabel*subLabel=[cell viewWithTag:2];
+        
+        UILabel*subLabel=[cell viewWithTag:2];
+        subLabel.text=[UserSession instance].personality;
 
         
         
@@ -197,8 +204,25 @@
         //生日
       __block  DatePickerView*datePicker=[[DatePickerView alloc]initWithCustomeHeight:215];
         self.datepicker=datePicker;
-        WEAKSELF;
+       
         datePicker.confirmBlock= ^(NSString *choseDate, NSString *restDate) {
+            //如果日期大于现在  return  提醒不能大于现在
+            NSString*str1=choseDate;
+            NSString*str2=[self getNowTime];
+           int aa= [self compareDate:str1 withDate:str2];
+            if (aa!=1) {
+                [JRToast showWithText:@"请正确选择您的生日"];
+                return ;
+            }
+            
+            
+            //接口
+            NSDictionary*dict=@{@"birthday":choseDate};
+            [self changePersonInfoWithDic:dict];
+
+            
+            
+            
             InfoChooseTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
             UILabel*subLabel=[cell viewWithTag:2];
             subLabel.text=choseDate;
@@ -231,6 +255,9 @@
     
 }
 
+
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
         return 94;
@@ -246,12 +273,109 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark  --  改变参数
+-(void)changePersonInfoWithDic:(NSDictionary*)dict{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_PRESON_CHANGEINFO];
+    NSMutableDictionary*params=[NSMutableDictionary dictionary];
+    [params setObject:[JWTools getUUID] forKey:@"device_id"];
+    [params setObject:[UserSession instance].token forKey:@"token"];
+    [params setObject:@([UserSession instance].uid) forKey:@"user_id"];
+    
+    //6种可能  如果是修改图片那么另一个发送方式
+    if ([[dict.allKeys firstObject] isEqualToString:@"header_img"]) {
+        NSData *fileData = [NSData dataWithContentsOfFile:dict.allValues.firstObject];
+        
+        NSString*postImageUrl=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_IMG_UP];
+         HttpManager*manager=[[HttpManager alloc]init];
+        [manager postUpdatePohotoWithUrl:postImageUrl withParams:nil withPhoto:fileData compliation:^(id data, NSError *error) {
+            MyLog(@"%@",data);
+            NSNumber*number=data[@"errorCode"];
+            NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+            if ([errorCode isEqualToString:@"0"]) {
+                
+                //改变
+                NSDictionary*dict=@{@"header_img":data[@"data"]};
+                [params setObject:dict.allValues.firstObject forKey:dict.allKeys.firstObject];
+                [manager postUpdatePohotoWithUrl:urlStr withParams:params withPhoto:fileData compliation:^(id data, NSError *error) {
+                    MyLog(@"%@",data);
+                    NSNumber*number=data[@"errorCode"];
+                    NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+                    if ([errorCode isEqualToString:@"0"]) {
+                        [UserSession instance].logo=dict[@"header_img"];
+                        
+                    }else{
+                        [JRToast showWithText:data[@"errorMessage"]];
+                    }
+
+
+                    
+                }];
+
+                
+                
+                
+            }else{
+                [JRToast showWithText:data[@"errorMessage"]];
+            }
+
+            
+            
+        }];
+        
+        
+        
+        
+        
+        return;
+    }
+    
+    
+    
+    //  其他的5种可能吊用
+//    [params setDictionary:dict];
+    [params setObject:dict.allValues.firstObject forKey:dict.allKeys.firstObject];
+    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            if ([dict.allKeys.firstObject isEqualToString:@"nickname"]) {
+                [UserSession instance].nickName=dict[@"nickname"];
+            }else if ([dict.allKeys.firstObject isEqualToString:@"address"]){
+                [UserSession instance].local=dict[@"address"];
+            }else if ([dict.allKeys.firstObject isEqualToString:@"birthday"]){
+                [UserSession instance].birthDay=dict[@"birthday"];
+            }else if ([dict.allKeys.firstObject isEqualToString:@"Mark"]){
+                [UserSession instance].personality=dict[@"Mark"];
+            }
+            
+            
+        }else{
+            [self.tableView reloadData];
+        }
+        
+    }];
+    
+    
+}
+
+
+
 #pragma mark  --delegate
 //PickerImage完成后的代理方法
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     //定义一个newPhoto，用来存放我们选择的图片。
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
    
+    
+    //吊接口  照片
+       NSString *str = [ImageCache headImagePath:newPhoto];
+    NSDictionary*dict=@{@"header_img":str};
+    [self changePersonInfoWithDic:dict];
+    
+    
     InfoPhotoTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     UIImageView*imageView=[cell viewWithTag:1];
     imageView.image=newPhoto;
@@ -267,6 +391,11 @@
 -(void)DelegateToChangeNibName:(NSString*)name andTouchType:(TouchType)type{
     MyLog(@"%@",name);
     if (type==TouchTypeNickName) {
+        //接口
+        NSDictionary*dict=@{@"nickname":name};
+        [self changePersonInfoWithDic:dict];
+        
+        
         //昵称
         InfoChooseTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         UILabel*subLabel=[cell viewWithTag:2];
@@ -274,6 +403,12 @@
 
     }else{
         //居住地
+        //接口
+        NSDictionary*dict=@{@"address":name};
+        [self changePersonInfoWithDic:dict];
+
+        
+        
         InfoChooseTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
         UILabel*subLabel=[cell viewWithTag:2];
         subLabel.text=name;
@@ -288,6 +423,11 @@
 //修改signature
 -(void)DelegateForGetSignature:(NSString *)string{
     MyLog(@"%@",string);
+    //接口
+    NSDictionary*dict=@{@"Mark":string};
+    [self changePersonInfoWithDic:dict];
+
+    
     InfoSignatureTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
     UILabel*label=[cell viewWithTag:2];
     label.text=string;
@@ -305,6 +445,41 @@
 }
 
 
+
+#pragma mark  -- 处理
+-(NSString*)getNowTime{
+    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    NSLog(@"dateString:%@",dateString);
+    
+    return dateString;
+}
+
+
+-(int)compareDate:(NSString*)date01 withDate:(NSString*)date02{
+    int ci;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    //    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    NSDate *dt1 = [[NSDate alloc] init];
+    NSDate *dt2 = [[NSDate alloc] init];
+    dt1 = [df dateFromString:date01];
+    dt2 = [df dateFromString:date02];
+    NSComparisonResult result = [dt1 compare:dt2];
+    switch (result)
+    {
+            //date02比date01大
+        case NSOrderedAscending: ci=1; break;
+            //date02比date01小
+        case NSOrderedDescending: ci=-1; break;
+            //date02=date01
+        case NSOrderedSame: ci=0; break;
+        default: NSLog(@"erorr dates %@, %@", dt2, dt1); break;
+    }
+    return ci;
+}
 
 
 @end
