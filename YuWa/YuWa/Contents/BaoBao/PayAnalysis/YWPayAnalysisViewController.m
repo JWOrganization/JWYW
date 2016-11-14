@@ -64,18 +64,17 @@
     column.drawFromOriginX = 10;//Column width
     column.columnWidth = 40;//X, Y axis font color
     column.drawTextColorForX_Y = [UIColor greenColor];//X, Y axis line color
-    column.colorForXYLine = [UIColor greenColor];//Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green
+    column.colorForXYLine = [UIColor greenColor];
     column.columnBGcolorsArr = @[CNaviColor,[UIColor greenColor],[UIColor orangeColor]];//Module prompt
     column.xShowInfoText = xShowInfoText;
     [column showAnimation];
     [self.view addSubview:column];
 }
 
-
 #pragma mark - Http
 - (void)requestData{
     //2333333333333
-    [self showFirstQuardrantWithXLineDataArr:@[@"0",@"1",@"2",@3,@4,@5,@6,@7] withValueArr:@[@[@"100",@"120",@"100",@600,@400,@900,@600,@0]]];
+    [self showFirstQuardrantWithXLineDataArr:@[@0,@1,@2,@3,@4,@5,@6,@7] withValueArr:@[@[@100,@120,@100,@600,@400,@900,@600,@0]]];
     [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@120],@[@180],@[@12],@[@2]]];
 }
 
