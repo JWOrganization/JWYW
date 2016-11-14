@@ -64,7 +64,7 @@
         _BGScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
 //        _BGScrollView.backgroundColor = [UIColor lightGrayColor];
         _BGScrollView.showsHorizontalScrollIndicator = NO;
-        _bgVewBackgoundColor = [UIColor blackColor];
+        _bgVewBackgoundColor = [UIColor whiteColor];
         [self addSubview:_BGScrollView];
         
     }
@@ -90,9 +90,8 @@
     
     
     if (self = [super initWithFrame:frame]) {
-
         _needXandYLine = YES;
-       
+        _yLineNumber = 10;
         
     }
     return self;

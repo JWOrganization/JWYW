@@ -73,4 +73,6 @@
  */
 @property (nonatomic, assign) CGFloat drawFromOriginX;
 
+@property (nonatomic, assign)NSInteger yLineNumber;
+
 @end

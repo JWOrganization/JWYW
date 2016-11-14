@@ -23,6 +23,25 @@
 
 - (void)showFirstQuardrantWithXLineDataArr:(NSArray *)xLineDataArr withValueArr:(NSArray *)valueArr{
     JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(0.f, 64.f, kScreen_Width, (kScreen_Height - 64.f)/2) andLineChartType:JHChartLineValueNotForEveryX];
+    NSInteger allValue = 0;
+    for (int i = 0; i < [valueArr[0] count]; i++) {
+        allValue += [valueArr[0][i] integerValue];
+    }
+    allValue = (allValue/[valueArr[0] count])*2/5;
+    NSInteger number = allValue;
+    for (int i = 0; i < 100; i++) {
+        if (number/10 <= 0) {
+            allValue = number;
+            for (int j = 0; j<i; j++) {
+                allValue = allValue * 10;
+            }
+            break;
+        }else{
+            number = number/10;
+        }
+    }
+    lineChart.yLineNumber = allValue;
+    
     lineChart.xLineDataArr = xLineDataArr;
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
     lineChart.valueArr = valueArr;
@@ -46,7 +65,7 @@
     column.columnWidth = 40;//X, Y axis font color
     column.drawTextColorForX_Y = [UIColor greenColor];//X, Y axis line color
     column.colorForXYLine = [UIColor greenColor];//Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green
-    column.columnBGcolorsArr = @[[UIColor redColor],[UIColor greenColor],[UIColor orangeColor]];//Module prompt
+    column.columnBGcolorsArr = @[CNaviColor,[UIColor greenColor],[UIColor orangeColor]];//Module prompt
     column.xShowInfoText = xShowInfoText;
     [column showAnimation];
     [self.view addSubview:column];
@@ -57,7 +76,7 @@
 - (void)requestData{
     
     [self showFirstQuardrantWithXLineDataArr:@[@"0",@"1",@"2",@3,@4,@5,@6,@7] withValueArr:@[@[@"100",@"120",@"100",@600,@400,@900,@600,@0]]];
-    [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@12],@[@22],@[@12],@[@2]]];
+    [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@120],@[@180],@[@12],@[@2]]];
 }
 
 @end

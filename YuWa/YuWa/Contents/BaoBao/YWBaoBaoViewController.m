@@ -56,7 +56,7 @@
 - (void)dataSet{
     self.user = [UserSession instance];
     //23333333要删
-    self.user.baobaoLV = 2;
+    self.user.baobaoLV = 1;
     self.user.baobaoEXP = 200;
     self.user.baobaoNeedEXP = 1000;
     //23333333要删
