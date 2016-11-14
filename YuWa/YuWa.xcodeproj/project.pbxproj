@@ -593,6 +593,7 @@
 		C1392DD81DC06108002418EF /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DD61DC06108002418EF /* Order.m */; };
 		C149F44E1DCB0B0C00746A86 /* StorePhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F44D1DCB0B0C00746A86 /* StorePhotoModel.m */; };
 		C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */; };
+		C19EB03E1DD992E500C28F15 /* YWForRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19EB03D1DD992E500C28F15 /* YWForRecommendViewController.m */; };
 		C1A75DF61DCB7EB2000E76C2 /* DetailStorePreferentialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A75DF51DCB7EB2000E76C2 /* DetailStorePreferentialModel.m */; };
 		C1A75DF91DCC3554000E76C2 /* ShowShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A75DF81DCC3554000E76C2 /* ShowShoppingModel.m */; };
 		C1A75DFC1DCC5706000E76C2 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A75DFB1DCC5706000E76C2 /* CommentModel.m */; };
@@ -1841,6 +1842,8 @@
 		C149F44D1DCB0B0C00746A86 /* StorePhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorePhotoModel.m; sourceTree = "<group>"; };
 		C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlbumViewController.h; sourceTree = "<group>"; };
 		C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlbumViewController.m; sourceTree = "<group>"; };
+		C19EB03C1DD992E500C28F15 /* YWForRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWForRecommendViewController.h; sourceTree = "<group>"; };
+		C19EB03D1DD992E500C28F15 /* YWForRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWForRecommendViewController.m; sourceTree = "<group>"; };
 		C1A75DF41DCB7EB2000E76C2 /* DetailStorePreferentialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailStorePreferentialModel.h; sourceTree = "<group>"; };
 		C1A75DF51DCB7EB2000E76C2 /* DetailStorePreferentialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailStorePreferentialModel.m; sourceTree = "<group>"; };
 		C1A75DF71DCC3554000E76C2 /* ShowShoppingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowShoppingModel.h; sourceTree = "<group>"; };
@@ -2247,6 +2250,7 @@
 		B3263AFD1DD5B22F004788BB /* BaoBao */ = {
 			isa = PBXGroup;
 			children = (
+				C19EB03B1DD992E500C28F15 /* 为你推荐 */,
 				B3B851131DD987B600E171C8 /* PayAnalysis */,
 				B3263AFE1DD5B25A004788BB /* YWBaoBaoViewController.h */,
 				B3263AFF1DD5B25A004788BB /* YWBaoBaoViewController.m */,
@@ -4848,6 +4852,15 @@
 			path = "我的专辑列表";
 			sourceTree = "<group>";
 		};
+		C19EB03B1DD992E500C28F15 /* 为你推荐 */ = {
+			isa = PBXGroup;
+			children = (
+				C19EB03C1DD992E500C28F15 /* YWForRecommendViewController.h */,
+				C19EB03D1DD992E500C28F15 /* YWForRecommendViewController.m */,
+			);
+			path = "为你推荐";
+			sourceTree = "<group>";
+		};
 		C1A7D4F51DC771C4004F3518 /* 首页model */ = {
 			isa = PBXGroup;
 			children = (
@@ -6413,6 +6426,7 @@
 				B33A26771D9A68040092CB12 /* UIView+EMWebCacheOperation.m in Sources */,
 				B33A26551D9A68040092CB12 /* EMCDDeviceManager+Microphone.m in Sources */,
 				C1F7BDA01DB1C94500CCAF96 /* HomeMenuCell.m in Sources */,
+				C19EB03E1DD992E500C28F15 /* YWForRecommendViewController.m in Sources */,
 				B32975D41DAE7C07002CA488 /* JWThirdTools.m in Sources */,
 				C1A75DF91DCC3554000E76C2 /* ShowShoppingModel.m in Sources */,
 				B38B2E241D8FACD8004D5256 /* MJDIYHeader.m in Sources */,
