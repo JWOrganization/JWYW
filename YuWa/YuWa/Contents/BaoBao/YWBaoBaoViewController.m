@@ -7,6 +7,7 @@
 //
 
 #import "YWBaoBaoViewController.h"
+#import "YWPayAnalysisViewController.h"
 
 @interface YWBaoBaoViewController ()
 
@@ -55,7 +56,7 @@
 - (void)dataSet{
     self.user = [UserSession instance];
     //23333333要删
-    self.user.baobaoLV = 1;
+    self.user.baobaoLV = 2;
     self.user.baobaoEXP = 200;
     self.user.baobaoNeedEXP = 1000;
     //23333333要删
@@ -92,7 +93,7 @@
     for (int i = 0; i<self.user.baobaoLV; i++) {//技能栏
         UIButton * skillBtn = [self.view viewWithTag:(i+1)];
         [skillBtn setUserInteractionEnabled:YES];
-        skillBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15.f];
+        skillBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13.f];
         [skillBtn setTitleColor:[UIColor colorWithHexString:@"#afe5ff"] forState:UIControlStateNormal];
     }
     
@@ -117,7 +118,10 @@
 
 - (IBAction)skillAction:(UIButton *)sender {
     //2333333技能
-    if (sender.tag>2) {
+    if (sender.tag == 2) {
+        YWPayAnalysisViewController * vc = [[YWPayAnalysisViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (sender.tag>2) {
         [self requestLottery];
     }
 }

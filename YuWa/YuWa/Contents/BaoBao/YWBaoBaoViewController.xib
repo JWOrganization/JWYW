@@ -86,7 +86,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="2JF-xx-45p"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="为你推荐">
                         <color key="titleColor" red="0.082352941176470587" green="0.27450980392156865" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -96,7 +96,7 @@
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-UQ-HlW">
                     <rect key="frame" x="151" y="528" width="99" height="27"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <state key="normal" title="消费分析">
                         <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -106,7 +106,7 @@
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivw-h7-PsQ">
                     <rect key="frame" x="250" y="528" width="100" height="27"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="抢!">
                         <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -116,7 +116,7 @@
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="co6-zK-f3e">
                     <rect key="frame" x="350" y="528" width="99" height="27"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="再抢!">
                         <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -126,7 +126,7 @@
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5E-IL-D0j">
                     <rect key="frame" x="449" y="528" width="99" height="27"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="加倍!">
                         <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>

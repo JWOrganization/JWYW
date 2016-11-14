@@ -427,6 +427,20 @@
 		B3AE4DC21D91812D000A389F /* JWImgPickerAlbumChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4DC11D91812D000A389F /* JWImgPickerAlbumChooseView.m */; };
 		B3AE4DC61D918170000A389F /* JWImgPickerAlbumChooseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE4DC51D918170000A389F /* JWImgPickerAlbumChooseTableView.m */; };
 		B3AE4DC81D918550000A389F /* JWImgPickerAlbumChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AE4DC71D918550000A389F /* JWImgPickerAlbumChooseView.xib */; };
+		B3B851071DD9879A00E171C8 /* JHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850EF1DD9879A00E171C8 /* JHChart.m */; };
+		B3B851081DD9879A00E171C8 /* JHColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850F21DD9879A00E171C8 /* JHColumnChart.m */; };
+		B3B851091DD9879A00E171C8 /* JHLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850F41DD9879A00E171C8 /* JHLineChart.m */; };
+		B3B8510A1DD9879A00E171C8 /* JHPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850F61DD9879A00E171C8 /* JHPieChart.m */; };
+		B3B8510B1DD9879A00E171C8 /* JHPieForeBGView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850F81DD9879A00E171C8 /* JHPieForeBGView.m */; };
+		B3B8510C1DD9879A00E171C8 /* JHPieItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850FA1DD9879A00E171C8 /* JHPieItemsView.m */; };
+		B3B8510D1DD9879A00E171C8 /* JHRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850FC1DD9879A00E171C8 /* JHRadarChart.m */; };
+		B3B8510E1DD9879A00E171C8 /* JHRingChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B850FE1DD9879A00E171C8 /* JHRingChart.m */; };
+		B3B8510F1DD9879A00E171C8 /* JHShowInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B851001DD9879A00E171C8 /* JHShowInfoView.m */; };
+		B3B851101DD9879A00E171C8 /* JHTableChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B851021DD9879A00E171C8 /* JHTableChart.m */; };
+		B3B851111DD9879A00E171C8 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B851041DD9879A00E171C8 /* JHTableDataRowModel.m */; };
+		B3B851121DD9879A00E171C8 /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B851061DD9879A00E171C8 /* JHWaveChart.m */; };
+		B3B851171DD987F900E171C8 /* YWPayAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B851151DD987F900E171C8 /* YWPayAnalysisViewController.m */; };
+		B3B851181DD987F900E171C8 /* YWPayAnalysisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3B851161DD987F900E171C8 /* YWPayAnalysisViewController.xib */; };
 		B3CD68A01D94C96300C26B1C /* JWTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD689F1D94C96300C26B1C /* JWTextView.m */; };
 		B3CD68A41D94CE4600C26B1C /* YWLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68A31D94CE4600C26B1C /* YWLocation.m */; };
 		B3CD68A71D94CF3200C26B1C /* RBPublicEditorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68A61D94CF3200C26B1C /* RBPublicEditorScrollView.m */; };
@@ -1555,6 +1569,34 @@
 		B3AE4DC41D918170000A389F /* JWImgPickerAlbumChooseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWImgPickerAlbumChooseTableView.h; sourceTree = "<group>"; };
 		B3AE4DC51D918170000A389F /* JWImgPickerAlbumChooseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWImgPickerAlbumChooseTableView.m; sourceTree = "<group>"; };
 		B3AE4DC71D918550000A389F /* JWImgPickerAlbumChooseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWImgPickerAlbumChooseView.xib; sourceTree = "<group>"; };
+		B3B850EE1DD9879A00E171C8 /* JHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHChart.h; sourceTree = "<group>"; };
+		B3B850EF1DD9879A00E171C8 /* JHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHChart.m; sourceTree = "<group>"; };
+		B3B850F01DD9879A00E171C8 /* JHChartHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHChartHeader.h; sourceTree = "<group>"; };
+		B3B850F11DD9879A00E171C8 /* JHColumnChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHColumnChart.h; sourceTree = "<group>"; };
+		B3B850F21DD9879A00E171C8 /* JHColumnChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHColumnChart.m; sourceTree = "<group>"; };
+		B3B850F31DD9879A00E171C8 /* JHLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHLineChart.h; sourceTree = "<group>"; };
+		B3B850F41DD9879A00E171C8 /* JHLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHLineChart.m; sourceTree = "<group>"; };
+		B3B850F51DD9879A00E171C8 /* JHPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHPieChart.h; sourceTree = "<group>"; };
+		B3B850F61DD9879A00E171C8 /* JHPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPieChart.m; sourceTree = "<group>"; };
+		B3B850F71DD9879A00E171C8 /* JHPieForeBGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHPieForeBGView.h; sourceTree = "<group>"; };
+		B3B850F81DD9879A00E171C8 /* JHPieForeBGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPieForeBGView.m; sourceTree = "<group>"; };
+		B3B850F91DD9879A00E171C8 /* JHPieItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHPieItemsView.h; sourceTree = "<group>"; };
+		B3B850FA1DD9879A00E171C8 /* JHPieItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPieItemsView.m; sourceTree = "<group>"; };
+		B3B850FB1DD9879A00E171C8 /* JHRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHRadarChart.h; sourceTree = "<group>"; };
+		B3B850FC1DD9879A00E171C8 /* JHRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHRadarChart.m; sourceTree = "<group>"; };
+		B3B850FD1DD9879A00E171C8 /* JHRingChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHRingChart.h; sourceTree = "<group>"; };
+		B3B850FE1DD9879A00E171C8 /* JHRingChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHRingChart.m; sourceTree = "<group>"; };
+		B3B850FF1DD9879A00E171C8 /* JHShowInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHShowInfoView.h; sourceTree = "<group>"; };
+		B3B851001DD9879A00E171C8 /* JHShowInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHShowInfoView.m; sourceTree = "<group>"; };
+		B3B851011DD9879A00E171C8 /* JHTableChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableChart.h; sourceTree = "<group>"; };
+		B3B851021DD9879A00E171C8 /* JHTableChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableChart.m; sourceTree = "<group>"; };
+		B3B851031DD9879A00E171C8 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
+		B3B851041DD9879A00E171C8 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
+		B3B851051DD9879A00E171C8 /* JHWaveChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHWaveChart.h; sourceTree = "<group>"; };
+		B3B851061DD9879A00E171C8 /* JHWaveChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHWaveChart.m; sourceTree = "<group>"; };
+		B3B851141DD987F900E171C8 /* YWPayAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayAnalysisViewController.h; sourceTree = "<group>"; };
+		B3B851151DD987F900E171C8 /* YWPayAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayAnalysisViewController.m; sourceTree = "<group>"; };
+		B3B851161DD987F900E171C8 /* YWPayAnalysisViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWPayAnalysisViewController.xib; sourceTree = "<group>"; };
 		B3CD689E1D94C96300C26B1C /* JWTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWTextView.h; sourceTree = "<group>"; };
 		B3CD689F1D94C96300C26B1C /* JWTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWTextView.m; sourceTree = "<group>"; };
 		B3CD68A21D94CE4600C26B1C /* YWLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWLocation.h; sourceTree = "<group>"; };
@@ -2205,6 +2247,7 @@
 		B3263AFD1DD5B22F004788BB /* BaoBao */ = {
 			isa = PBXGroup;
 			children = (
+				B3B851131DD987B600E171C8 /* PayAnalysis */,
 				B3263AFE1DD5B25A004788BB /* YWBaoBaoViewController.h */,
 				B3263AFF1DD5B25A004788BB /* YWBaoBaoViewController.m */,
 				B3263B001DD5B25A004788BB /* YWBaoBaoViewController.xib */,
@@ -3426,6 +3469,7 @@
 		B38B2D8C1D8FACD8004D5256 /* ThirdTools */ = {
 			isa = PBXGroup;
 			children = (
+				B3B850ED1DD9879A00E171C8 /* JHChart */,
 				C1392DB51DBDBC6D002418EF /* JSDropDownMenu */,
 				C1F7BF731DB1CB6500CCAF96 /* POPView */,
 				B38B2D8D1D8FACD8004D5256 /* color */,
@@ -4146,6 +4190,48 @@
 				B3192AC71D9229E000FD6578 /* JWImgPickerAlbumChooseTableView.xib */,
 			);
 			path = AlbumTableView;
+			sourceTree = "<group>";
+		};
+		B3B850ED1DD9879A00E171C8 /* JHChart */ = {
+			isa = PBXGroup;
+			children = (
+				B3B850EE1DD9879A00E171C8 /* JHChart.h */,
+				B3B850EF1DD9879A00E171C8 /* JHChart.m */,
+				B3B850F01DD9879A00E171C8 /* JHChartHeader.h */,
+				B3B850F11DD9879A00E171C8 /* JHColumnChart.h */,
+				B3B850F21DD9879A00E171C8 /* JHColumnChart.m */,
+				B3B850F31DD9879A00E171C8 /* JHLineChart.h */,
+				B3B850F41DD9879A00E171C8 /* JHLineChart.m */,
+				B3B850F51DD9879A00E171C8 /* JHPieChart.h */,
+				B3B850F61DD9879A00E171C8 /* JHPieChart.m */,
+				B3B850F71DD9879A00E171C8 /* JHPieForeBGView.h */,
+				B3B850F81DD9879A00E171C8 /* JHPieForeBGView.m */,
+				B3B850F91DD9879A00E171C8 /* JHPieItemsView.h */,
+				B3B850FA1DD9879A00E171C8 /* JHPieItemsView.m */,
+				B3B850FB1DD9879A00E171C8 /* JHRadarChart.h */,
+				B3B850FC1DD9879A00E171C8 /* JHRadarChart.m */,
+				B3B850FD1DD9879A00E171C8 /* JHRingChart.h */,
+				B3B850FE1DD9879A00E171C8 /* JHRingChart.m */,
+				B3B850FF1DD9879A00E171C8 /* JHShowInfoView.h */,
+				B3B851001DD9879A00E171C8 /* JHShowInfoView.m */,
+				B3B851011DD9879A00E171C8 /* JHTableChart.h */,
+				B3B851021DD9879A00E171C8 /* JHTableChart.m */,
+				B3B851031DD9879A00E171C8 /* JHTableDataRowModel.h */,
+				B3B851041DD9879A00E171C8 /* JHTableDataRowModel.m */,
+				B3B851051DD9879A00E171C8 /* JHWaveChart.h */,
+				B3B851061DD9879A00E171C8 /* JHWaveChart.m */,
+			);
+			path = JHChart;
+			sourceTree = "<group>";
+		};
+		B3B851131DD987B600E171C8 /* PayAnalysis */ = {
+			isa = PBXGroup;
+			children = (
+				B3B851141DD987F900E171C8 /* YWPayAnalysisViewController.h */,
+				B3B851151DD987F900E171C8 /* YWPayAnalysisViewController.m */,
+				B3B851161DD987F900E171C8 /* YWPayAnalysisViewController.xib */,
+			);
+			path = PayAnalysis;
 			sourceTree = "<group>";
 		};
 		B3CD689D1D94C96300C26B1C /* JWTextView */ = {
@@ -5709,6 +5795,7 @@
 				C1F7BE351DB1C95400CCAF96 /* PersonCenterHeadView.xib in Resources */,
 				B38B2E0E1D8FACD8004D5256 /* 37x-Checkmark.png in Resources */,
 				B38B2DED1D8FACD8004D5256 /* InfoPlist.strings in Resources */,
+				B3B851181DD987F900E171C8 /* YWPayAnalysisViewController.xib in Resources */,
 				B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */,
 				C130199D1DB1FD2F00E24C88 /* qr_bottom_left@3x.png in Resources */,
 				C13019AB1DB1FD2F00E24C88 /* qrcode_scan_btn_flash_down@2x.png in Resources */,
@@ -5912,6 +5999,7 @@
 				C1F7BDBA1DB1C94500CCAF96 /* ZheTableViewCell.m in Sources */,
 				C1F7BE531DB1C95400CCAF96 /* CouponViewController.m in Sources */,
 				B38B2E1E1D8FACD8004D5256 /* MJRefreshStateHeader.m in Sources */,
+				B3B851101DD9879A00E171C8 /* JHTableChart.m in Sources */,
 				B38B2EFD1D8FC82F004D5256 /* RBHomeRecommendModel.m in Sources */,
 				B38B2E271D8FACD8004D5256 /* NSBundle+MJRefresh.m in Sources */,
 				B38B2E1D1D8FACD8004D5256 /* MJRefreshNormalHeader.m in Sources */,
@@ -5934,8 +6022,10 @@
 				B38B2E4C1D8FACD8004D5256 /* TAAbstractDotView.m in Sources */,
 				B38B2E191D8FACD8004D5256 /* MJRefreshBackGifFooter.m in Sources */,
 				B33A26521D9A68040092CB12 /* EMAudioPlayerUtil.m in Sources */,
+				B3B8510A1DD9879A00E171C8 /* JHPieChart.m in Sources */,
 				B33A26AE1D9A68040092CB12 /* EaseFaceView.m in Sources */,
 				C1F7BDAF1DB1C94500CCAF96 /* StorePhotoViewController.m in Sources */,
+				B3B8510E1DD9879A00E171C8 /* JHRingChart.m in Sources */,
 				B38B2E291D8FACD8004D5256 /* UIScrollView+MJRefresh.m in Sources */,
 				B33A26601D9A68040092CB12 /* MWGridCell.m in Sources */,
 				B3FFF47A1D93A3C700EDD2AB /* XHFocusLayer.m in Sources */,
@@ -6033,11 +6123,13 @@
 				B33A26691D9A68040092CB12 /* EMSDWebImageCompat.m in Sources */,
 				C1FB7F691DC733AE0048EBC8 /* HeaderCollectionReusableView.m in Sources */,
 				C1F7BE561DB1C95400CCAF96 /* MyFavouriteViewController.m in Sources */,
+				B3B851091DD9879A00E171C8 /* JHLineChart.m in Sources */,
 				B3FEBA381D9C10DE003CDEF2 /* YWMessageChatViewController.m in Sources */,
 				B38B2DFE1D8FACD8004D5256 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				B38B2F111D8FC82F004D5256 /* RBNodeShowModel.m in Sources */,
 				B33A267B1D9A68040092CB12 /* PSTCollectionViewController.m in Sources */,
 				B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */,
+				B3B851171DD987F900E171C8 /* YWPayAnalysisViewController.m in Sources */,
 				B38B2EFE1D8FC82F004D5256 /* RBHomeUserModel.m in Sources */,
 				C1392DC91DBF5083002418EF /* WXApiResponseHandler.m in Sources */,
 				B33A26AA1D9A68040092CB12 /* EaseChatToolbar.m in Sources */,
@@ -6114,6 +6206,7 @@
 				B3FFF47B1D93A3C700EDD2AB /* XHBranchPoint.m in Sources */,
 				B38B2F101D8FC82F004D5256 /* RBNodeShowCommentTargetModel.m in Sources */,
 				C1F7BE511DB1C95400CCAF96 /* YWFansViewController.m in Sources */,
+				B3B851111DD9879A00E171C8 /* JHTableDataRowModel.m in Sources */,
 				C1F7BD991DB1C94500CCAF96 /* YWShoppingDetailViewController.m in Sources */,
 				C10E94BF1DD36DC600728B3D /* YWPayMoneyViewController.m in Sources */,
 				C1B5E1311DCACFA8003769EF /* ShopdetailModel.m in Sources */,
@@ -6179,12 +6272,14 @@
 				B38B2E391D8FACD8004D5256 /* UIImageView+WebCache.m in Sources */,
 				B38B2E4D1D8FACD8004D5256 /* TAAnimatedDotView.m in Sources */,
 				B38B2F051D8FC82F004D5256 /* RBNodeDetailCommendFooter.m in Sources */,
+				B3B851081DD9879A00E171C8 /* JHColumnChart.m in Sources */,
 				B33A26861D9A68040092CB12 /* EaseSDKHelper.m in Sources */,
 				C1F7BE571DB1C95400CCAF96 /* PCMyOrderViewController.m in Sources */,
 				B33A269C1D9A68040092CB12 /* EaseViewController.m in Sources */,
 				B33A26581D9A68040092CB12 /* EMCDDeviceManagerBase.m in Sources */,
 				C1F7BD951DB1C94500CCAF96 /* YWChooseTwoView.m in Sources */,
 				C1F7BE3F1DB1C95400CCAF96 /* YWPersonInfoViewController.m in Sources */,
+				B3B8510D1DD9879A00E171C8 /* JHRadarChart.m in Sources */,
 				B33A26751D9A68040092CB12 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				B38B2E131D8FACD8004D5256 /* MJRefreshComponent.m in Sources */,
 				B31582341D90F8620096C194 /* YWRegisterViewController.m in Sources */,
@@ -6211,6 +6306,7 @@
 				B38B2E161D8FACD8004D5256 /* MJRefreshAutoGifFooter.m in Sources */,
 				B35778AF1D9962180058A998 /* YWStormAnnotationModel.m in Sources */,
 				C1F7BE5A1DB1C95400CCAF96 /* PCPayRecordViewController.m in Sources */,
+				B3B8510C1DD9879A00E171C8 /* JHPieItemsView.m in Sources */,
 				C1F7BDBC1DB1C94500CCAF96 /* YWPayViewController.m in Sources */,
 				C1F7BE331DB1C95400CCAF96 /* imageDefineButton.m in Sources */,
 				B3AE4D771D91302B000A389F /* TZPhotoPreviewController.m in Sources */,
@@ -6244,6 +6340,7 @@
 				B38B2E261D8FACD8004D5256 /* MJRefreshConst.m in Sources */,
 				B301E7CA1DAC86BD0001336E /* YWMessageSearchFriendAddCell.m in Sources */,
 				B38B2F091D8FC82F004D5256 /* RBNodeDetailHeader.m in Sources */,
+				B3B8510B1DD9879A00E171C8 /* JHPieForeBGView.m in Sources */,
 				B33A26931D9A68040092CB12 /* EaseEmojiEmoticons.m in Sources */,
 				B33A26891D9A68040092CB12 /* EaseUserModel.m in Sources */,
 				C1F7BDBD1DB1C94500CCAF96 /* ShowMoreCommitViewController.m in Sources */,
@@ -6297,6 +6394,7 @@
 				B33A26A71D9A68040092CB12 /* EaseBubbleView+Video.m in Sources */,
 				B3FFF4851D93B45500EDD2AB /* RBPublicTagEditorViewController.m in Sources */,
 				B38B2EF71D8FC82F004D5256 /* RBHomeCollectionViewCell.m in Sources */,
+				B3B851071DD9879A00E171C8 /* JHChart.m in Sources */,
 				B33A26661D9A68040092CB12 /* MWZoomingScrollView.m in Sources */,
 				B38B2E3D1D8FACD8004D5256 /* JRSegmentControl.m in Sources */,
 				B38B2E341D8FACD8004D5256 /* UIButton+WebCache.m in Sources */,
@@ -6330,10 +6428,12 @@
 				B38B2E431D8FACD8004D5256 /* SAMTextView.m in Sources */,
 				B33A265E1D9A68040092CB12 /* MBProgressHUD+Add.m in Sources */,
 				B3FEBA321D9BE4EE003CDEF2 /* YWMessageNotificationCell.m in Sources */,
+				B3B8510F1DD9879A00E171C8 /* JHShowInfoView.m in Sources */,
 				B33A265B1D9A68040092CB12 /* EMVoiceConverter.mm in Sources */,
 				B3AE4D741D91302B000A389F /* TZImagePickerController.m in Sources */,
 				B38B2DFC1D8FACD8004D5256 /* AFURLSessionManager.m in Sources */,
 				C1F7BDA31DB1C94500CCAF96 /* JZMTBtnView.m in Sources */,
+				B3B851121DD9879A00E171C8 /* JHWaveChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
