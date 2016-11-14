@@ -8,6 +8,7 @@
 
 #import "YWBaoBaoViewController.h"
 #import "YWPayAnalysisViewController.h"
+#import "YWForRecommendViewController.h"
 
 @interface YWBaoBaoViewController ()
 
@@ -117,8 +118,10 @@
 }
 
 - (IBAction)skillAction:(UIButton *)sender {
-    //2333333技能
-    if (sender.tag == 2) {
+    if (sender.tag == 1) {
+        YWForRecommendViewController * vc = [[YWForRecommendViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (sender.tag == 2) {
         YWPayAnalysisViewController * vc = [[YWPayAnalysisViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag>2) {

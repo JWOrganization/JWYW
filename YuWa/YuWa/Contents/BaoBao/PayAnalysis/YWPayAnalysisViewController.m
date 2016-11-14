@@ -74,7 +74,7 @@
 
 #pragma mark - Http
 - (void)requestData{
-    
+    //2333333333333
     [self showFirstQuardrantWithXLineDataArr:@[@"0",@"1",@"2",@3,@4,@5,@6,@7] withValueArr:@[@[@"100",@"120",@"100",@600,@400,@900,@600,@0]]];
     [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@120],@[@180],@[@12],@[@2]]];
 }
