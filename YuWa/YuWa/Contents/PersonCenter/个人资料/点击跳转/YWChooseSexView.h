@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YWChooseSexView : UIView
 
+
+@interface YWChooseSexView : UIView
+@property(nonatomic,strong)UIPickerView*pickerView;
+@property(nonatomic,copy)void(^touchConfirmBlock)(NSString*value);
+@property(nonatomic,copy)void(^touchCancelBlock)();
+
+-(YWChooseSexView*)initWithCustomeHeight:(CGFloat)height;
 @end
