@@ -204,7 +204,7 @@
             }else if ([value isEqualToString:@"女"]){
                 xx=2;
             }else if ([value isEqualToString:@"未知"]){
-                xx=0;
+                xx=3;
             }
             NSDictionary*dict=@{@"sex":@(xx)};
 //            NSDictionary*dict=@{@"sex":value};
@@ -392,7 +392,7 @@
                 NSNumber*number=dict[@"sex"];
                 int aaa=[number intValue];
                 NSString*strNum;
-                if (aaa==0) {
+                if (aaa==3) {
                     strNum=@"未知";
                 }else if (aaa==1){
                     strNum=@"男";

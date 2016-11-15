@@ -88,7 +88,7 @@
     [self.tableView registerClass:[PersonCenterOneCell class] forCellReuseIdentifier:CELL1];
 
     
-        [self addHeaderView];
+//        [self addHeaderView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -102,6 +102,8 @@
     UIBarButtonItem*rightIte=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"center_set"] style:UIBarButtonItemStylePlain target:self action:@selector(touchRightItem)];
     self.navigationItem.rightBarButtonItem=rightIte;
     
+    
+     [self addHeaderView];
     
    }
 

@@ -106,10 +106,13 @@ static UserSession * user=nil;
     user.hxPassword = dataDic[@"mobile"];
     user.local = dataDic[@"address"];
     
-    NSArray * SexArr = @[@"未知",@"男",@"女"];
+    NSArray * SexArr = @[@"男",@"女",@"未知"];
     NSNumber* sexNum=dataDic[@"sex"];
     NSInteger sexInt=[sexNum integerValue];
-    user.sex = [NSString stringWithFormat:@"%@",SexArr[sexInt]];
+    if (sexInt>0&&sexInt<=3) {
+        user.sex = [NSString stringWithFormat:@"%@",SexArr[sexInt-1]];
+
+    }
     
     user.money = dataDic[@"money"];
     user.inviteID = dataDic[@"invite_uid"];
