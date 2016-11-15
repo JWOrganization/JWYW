@@ -105,7 +105,12 @@ static UserSession * user=nil;
     [KUSERDEFAULT setValue:user.password forKey:AUTOLOGINCODE];
     user.hxPassword = dataDic[@"mobile"];
     user.local = dataDic[@"address"];
-    user.sex = dataDic[@"sex"];
+    
+    NSArray * SexArr = @[@"未知",@"男",@"女"];
+    NSNumber* sexNum=dataDic[@"sex"];
+    NSInteger sexInt=[sexNum integerValue];
+    user.sex = [NSString stringWithFormat:@"%@",SexArr[sexInt]];
+    
     user.money = dataDic[@"money"];
     user.inviteID = dataDic[@"invite_uid"];
     user.logo = dataDic[@"header_img"];

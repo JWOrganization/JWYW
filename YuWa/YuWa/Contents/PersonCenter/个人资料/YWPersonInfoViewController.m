@@ -16,6 +16,7 @@
 
 #import "ChangeNibNameViewController.h"     //修改昵称
 #import "DatePickerView.h"                //修改时间
+#import "YWChooseSexView.h"       //修改性别
 #import "SignatureViewController.h"        //修改个性签名
 
 #define CELL0   @"InfoPhotoTableViewCell"
@@ -25,7 +26,7 @@
 @interface YWPersonInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ChangeNibNameViewControllerDelegate,SignatureViewControllerDelegate>
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)DatePickerView*datepicker;
-
+@property(nonatomic,strong)YWChooseSexView*pickerView;
 @end
 
 @implementation YWPersonInfoViewController
@@ -52,7 +53,8 @@
     [super viewWillDisappear:animated];
     [self.datepicker removeFromSuperview];
     self.datepicker=nil;
-    
+    [self.pickerView removeFromSuperview];
+    self.pickerView=nil;
 }
 
 -(void)addHeader{
@@ -113,10 +115,11 @@
                 UIImageView*imageView=[cell viewWithTag:3];
                 imageView.hidden=YES;}
                 break;
-            case 3:
+            case 3:{
+                
                 mainLabel.text=@"性别";
                 subLabel.text=[UserSession instance].sex;
-                break;
+                break;}
             case 4:
                 mainLabel.text=@"常住地";
                 subLabel.text=[UserSession instance].local;
@@ -190,6 +193,42 @@
         
     }else if (indexPath.row==3){
         //性别
+       __block YWChooseSexView*pickView=[[YWChooseSexView alloc]initWithCustomeHeight:215];
+        self.pickerView=pickView;
+        pickView.touchConfirmBlock=^(NSString*value){
+            
+            //接口
+            int xx;
+            if ([value isEqualToString:@"男"]) {
+                xx=1;
+            }else if ([value isEqualToString:@"女"]){
+                xx=2;
+            }else if ([value isEqualToString:@"未知"]){
+                xx=0;
+            }
+            NSDictionary*dict=@{@"sex":@(xx)};
+//            NSDictionary*dict=@{@"sex":value};
+            [self changePersonInfoWithDic:dict];
+
+            
+            
+            InfoChooseTableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+            UILabel*subLabel=[cell viewWithTag:2];
+            subLabel.text=value;
+
+            
+        };
+        
+        pickView.touchCancelBlock=^{
+            [pickView removeFromSuperview];
+            pickView=nil;
+
+        };
+        
+        UIWindow*window=[UIApplication sharedApplication].keyWindow;
+        pickView.frame=CGRectMake(0, kScreen_Height-215, kScreen_Width, 215);
+        [window addSubview:pickView];
+
       
     }else if (indexPath.row==4){
         //常住地
@@ -347,8 +386,21 @@
                 [UserSession instance].local=dict[@"address"];
             }else if ([dict.allKeys.firstObject isEqualToString:@"birthday"]){
                 [UserSession instance].birthDay=dict[@"birthday"];
-            }else if ([dict.allKeys.firstObject isEqualToString:@"Mark"]){
-                [UserSession instance].personality=dict[@"Mark"];
+            }else if ([dict.allKeys.firstObject isEqualToString:@"mark"]){
+                [UserSession instance].personality=dict[@"mark"];
+            }else if ([dict.allKeys.firstObject isEqualToString:@"sex"]){
+                NSNumber*number=dict[@"sex"];
+                int aaa=[number intValue];
+                NSString*strNum;
+                if (aaa==0) {
+                    strNum=@"未知";
+                }else if (aaa==1){
+                    strNum=@"男";
+                }else if (aaa==2){
+                    strNum=@"女";
+                }
+                
+                [UserSession instance].sex=strNum;
             }
             
             
@@ -424,7 +476,7 @@
 -(void)DelegateForGetSignature:(NSString *)string{
     MyLog(@"%@",string);
     //接口
-    NSDictionary*dict=@{@"Mark":string};
+    NSDictionary*dict=@{@"mark":string};
     [self changePersonInfoWithDic:dict];
 
     
