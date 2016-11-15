@@ -169,7 +169,7 @@
 #define KUSERDEFAULT [NSUserDefaults standardUserDefaults]
 
 
-#define SHARE_HTTP @"http://114.215.252.104/"
+#define SHARE_HTTP @"http://114.215.252.104/index.php/Home/share?shareid="
 
 #endif /* VipxoxPrefixHeader_pch */
 
