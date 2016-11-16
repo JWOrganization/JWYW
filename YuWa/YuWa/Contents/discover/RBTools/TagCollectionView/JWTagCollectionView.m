@@ -68,6 +68,7 @@
 
 #pragma mark - UICollectionViewDataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    _tagChoosed = NO;
     
     self.changeTagBlock([NSString stringWithFormat:@"%zi",indexPath.row]);
     self.choosedTag = indexPath.row;
@@ -97,7 +98,6 @@
     if (self.choosedTag == indexPath.row)self.tagVeiw.hidden = self.tagChoosed;
     if (self.choosedTag == indexPath.row && self.tagChoosed) {
         tagCell.choosed = NO;
-        self.tagChoosed = !self.tagChoosed;
     }
     tagCell.nameLabel.text = self.tagArr[indexPath.row];
     
