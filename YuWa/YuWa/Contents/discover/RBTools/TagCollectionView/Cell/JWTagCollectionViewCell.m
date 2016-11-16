@@ -12,15 +12,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.chooseColor = CNaviColor;
+    self.fontColor = [UIColor colorWithHexString:@"#333333"];
 }
 
 - (void)setChoosed:(BOOL)choosed{
     _choosed = choosed;
     if (_choosed) {
-        self.nameLabel.textColor = CNaviColor;
+        self.nameLabel.textColor = self.chooseColor;
     }else{
-        self.nameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
+        self.nameLabel.textColor = self.fontColor;
     }
 }
 

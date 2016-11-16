@@ -235,7 +235,9 @@
 - (void)imageAddTagWithPoint:(CGPoint)point withView:(UIView *)view{
     RBPublicTagEditorViewController * vc = [[RBPublicTagEditorViewController alloc]init];
     vc.tagAddBlock = ^(NSArray * tagArr){
-        [self tagViewmakeWithTagArr:tagArr withPoint:point withBaseView:view withStyle:XHTagAnimationStyleAllRight];
+        if (tagArr.count>0) {
+            [self tagViewmakeWithTagArr:tagArr withPoint:point withBaseView:view withStyle:XHTagAnimationStyleAllRight];
+        }
     };
     [self presentViewController:vc animated:YES completion:nil];
 }

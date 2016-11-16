@@ -11,6 +11,7 @@
 @interface RBPublishSession : NSObject
 
 @property (nonatomic,copy)NSString * name;
+@property (nonatomic,assign)NSInteger status;
 @property (nonatomic,copy)NSString * con;
 @property (nonatomic,copy)NSString * location;
 

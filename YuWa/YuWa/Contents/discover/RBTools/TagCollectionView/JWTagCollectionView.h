@@ -17,4 +17,8 @@
 @property (nonatomic,assign)NSInteger choosedTag;
 @property (nonatomic,strong)UIView * tagVeiw;//浮动滑块
 
+@property (nonatomic,strong)UIColor * fontColor;
+@property (nonatomic,strong)UIColor * chooseColor;
+@property (nonatomic,assign)BOOL tagChoosed;
+
 @end

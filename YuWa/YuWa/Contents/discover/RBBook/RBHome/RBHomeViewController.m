@@ -43,7 +43,7 @@
     [self makeNavi];
     [self setupRefresh];
     [self requestDataWithPages:0];
-    [self makeTagCollectionViewWithArr:@[@"推荐",@"男人",@"护肤",@"旅行",@"生活",@"时尚",@"彩妆"]];
+    [self makeTagCollectionViewWithArr:@[@"推荐",@"美食",@"电影",@"酒店",@"周边游",@"休闲娱乐",@"生活服务",@"旅游",@"宴会",@"时尚购",@"丽人",@"运动健身",@"母婴亲子",@"宠物",@"汽车服务",@"摄影写真",@"结婚",@"购物",@"家装",@"学习培训",@"医疗"]];
 }
 
 - (void)viewDidLayoutSubviews{

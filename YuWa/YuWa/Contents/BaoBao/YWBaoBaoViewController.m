@@ -62,7 +62,6 @@
     self.baobaoLVUpGifArr = [NSMutableArray arrayWithCapacity:0];
     //233333初始化初始Gif
 }
-
 - (void)makeUI{
     self.LVView.layer.borderColor = [UIColor colorWithHexString:@"#2f5bbe"].CGColor;
     self.LVView.layer.borderWidth = 2.f;

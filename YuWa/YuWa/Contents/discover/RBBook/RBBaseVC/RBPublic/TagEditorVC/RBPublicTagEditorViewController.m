@@ -8,6 +8,8 @@
 
 #import "RBPublicTagEditorViewController.h"
 #import "JWEditTextField.h"
+#import "JWTagCollectionView.h"
+#import "RBPublishSession.h"
 
 @interface RBPublicTagEditorViewController ()<UITextFieldDelegate>
 
@@ -20,6 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
+
+@property (nonatomic,strong)JWTagCollectionView * tagCollectionView;
+@property (nonatomic,assign)NSInteger states;
 
 @end
 
@@ -47,6 +52,8 @@
     self.submitBtn.layer.masksToBounds = YES;
     self.cancelBtn.layer.cornerRadius = 18.f;
     self.cancelBtn.layer.masksToBounds = YES;
+    
+    [self makeTagCollectionViewWithArr:@[@"美食",@"电影",@"酒店",@"周边游",@"休闲娱乐",@"生活服务",@"旅游",@"宴会",@"时尚购",@"丽人",@"运动健身",@"母婴亲子",@"宠物",@"汽车服务",@"摄影写真",@"结婚",@"购物",@"家装",@"学习培训",@"医疗"]];
 }
 
 - (void)layerSetWithSender:(UIView *)sender{
@@ -63,11 +70,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)makeTagCollectionViewWithArr:(NSArray *)tagArr{
+    UICollectionViewFlowLayout * flowLayout =[[UICollectionViewFlowLayout alloc]init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.tagCollectionView = [[JWTagCollectionView alloc]initWithFrame:CGRectMake(35.f, 372.f, kScreen_Width - 70.f, 44.f) collectionViewLayout:flowLayout];
+    self.tagCollectionView.tagArr = tagArr;
+    self.tagCollectionView.tagChoosed = YES;
+    self.tagCollectionView.changeTagBlock = ^(NSString * chooseTag){
+        //选中标签后操作
+        [RBPublishSession sharePublishSession].status = [chooseTag integerValue] + 1;
+        MyLog(@"选择了%@个标签",chooseTag);
+    };
+    [self.view addSubview:self.tagCollectionView];
+}
+
 - (BOOL)canSend{
-    if ([self.placeTextField.text isEqualToString:@""]&&[self.priceTextField.text isEqualToString:@""]&&[self.nameTextField.text isEqualToString:@""]){
-        [self showHUDWithStr:@"请输入内容" withSuccess:NO];
-        return NO;
-    }
+//    if ([self.placeTextField.text isEqualToString:@""]&&[self.priceTextField.text isEqualToString:@""]&&[self.nameTextField.text isEqualToString:@""]){
+//        [self showHUDWithStr:@"请输入内容" withSuccess:NO];
+//        return NO;
+//    }//111111
     return YES;
 }
 
