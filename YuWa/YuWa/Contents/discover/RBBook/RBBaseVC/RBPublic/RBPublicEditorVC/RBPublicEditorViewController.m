@@ -308,7 +308,7 @@
 - (void)requestPublishNode{
     NSString * tagStr = [self tagArrJsonCreate];
 //    MyLog(@"%@",tagStr);
-    NSInteger annotionCount = (arc4random() % 5) + 1;//cid111111111
+    NSInteger annotionCount = [RBPublishSession sharePublishSession].status;
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"cid":@(annotionCount),@"title":self.scrollView.nameTextField.text,@"location":[self.scrollView.locationnameLabel.text isEqualToString:@"添加地点"]?@"":self.scrollView.locationnameLabel.text,@"content":[JWTools UTF8WithStringJW:self.scrollView.conTextView.text],@"img_list":[JWTools jsonStrWithArr:self.picUrlArr],@"tag":tagStr};
     [[HttpObject manager]postDataWithType:YuWaType_RB_NODE_PUBLISH withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
@@ -327,10 +327,10 @@
 
 - (void)requestPublishNodeWithPhoto{
     if ([self.scrollView.nameTextField.text isEqualToString:@""]) {
-        [self showHUDWithStr:@"请输入标题" withSuccess:YES];
+        [self showHUDWithStr:@"请输入标题" withSuccess:NO];
         return;
     }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
-        [self showHUDWithStr:@"内容" withSuccess:YES];
+        [self showHUDWithStr:@"请输入内容" withSuccess:NO];
         return;
     }
     

@@ -11,6 +11,8 @@
 @interface JWTagCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic,assign)BOOL choosed;
+@property (nonatomic,strong)UIColor * chooseColor;
+@property (nonatomic,strong)UIColor * fontColor;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 

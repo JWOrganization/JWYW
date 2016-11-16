@@ -30,6 +30,7 @@ static RBPublishSession * publish = nil;
     publish.name= @"";
     publish.con = @"";
     publish.location = @"";
+    publish.status = 0;
 }
 
 @end

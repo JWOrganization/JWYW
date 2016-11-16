@@ -8,6 +8,7 @@
 
 #import "JWTagCollectionView.h"
 #import "JWTagCollectionViewCell.h"
+#import "RBPublishSession.h"
 
 #define TAGCELL @"JWTagCollectionViewCell"
 
@@ -20,6 +21,8 @@
         self.backgroundColor = [UIColor whiteColor];
         self.dataSource = self;
         self.delegate = self;
+        self.fontColor = [UIColor colorWithHexString:@"#333333"];
+        self.chooseColor = CNaviColor;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
         [self registerNib:[UINib nibWithNibName:TAGCELL bundle:nil] forCellWithReuseIdentifier:TAGCELL];
@@ -34,9 +37,32 @@
     [self reloadData];
 }
 
+- (void)setTagChoosed:(BOOL)tagChoosed{
+    _tagChoosed = tagChoosed;
+    if (tagChoosed) {
+        self.chooseColor = CNaviColor;
+        self.fontColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
+        _tagChoosed = [RBPublishSession sharePublishSession].status>0?NO:YES;
+        self.choosedTag = [RBPublishSession sharePublishSession].status>0?[RBPublishSession sharePublishSession].status - 1:0;
+        [self reloadData];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.choosedTag inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+            
+            JWTagCollectionViewCell * selectedCell = (JWTagCollectionViewCell *)[self collectionView:self cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.choosedTag inSection:0]];
+            self.tagVeiw.x = selectedCell.x;
+            self.tagVeiw.hidden = [RBPublishSession sharePublishSession].status == 0?YES:NO;
+            if (!self.tagVeiw.hidden) {
+                selectedCell.nameLabel.textColor = self.chooseColor;
+            }
+        });
+    }
+}
+
 - (void)makeTagView{
     self.tagVeiw = [[UIView alloc]initWithFrame:CGRectMake(self.choosedTag * TagWidth, self.height - 2.f, TagWidth, 2.f)];
-    self.tagVeiw.backgroundColor = CNaviColor;
+    self.tagVeiw.backgroundColor = self.chooseColor;
     [self addSubview:self.tagVeiw];
 }
 
@@ -49,13 +75,12 @@
     [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     
     JWTagCollectionViewCell * selectedCell = (JWTagCollectionViewCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    selectedCell.nameLabel.textColor = CNaviColor;
+    selectedCell.nameLabel.textColor = self.chooseColor;
     [UIView animateWithDuration:0.4 animations:^{
         self.tagVeiw.x = selectedCell.x;
     } completion:nil];
     [self reloadData];
 }
-
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -66,7 +91,14 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JWTagCollectionViewCell * tagCell = [collectionView dequeueReusableCellWithReuseIdentifier:TAGCELL forIndexPath:indexPath];
+    tagCell.fontColor = self.fontColor;
+    tagCell.chooseColor = self.chooseColor;
     tagCell.choosed = self.choosedTag == indexPath.row ? YES:NO;
+    if (self.choosedTag == indexPath.row)self.tagVeiw.hidden = self.tagChoosed;
+    if (self.choosedTag == indexPath.row && self.tagChoosed) {
+        tagCell.choosed = NO;
+        self.tagChoosed = !self.tagChoosed;
+    }
     tagCell.nameLabel.text = self.tagArr[indexPath.row];
     
     return tagCell;
