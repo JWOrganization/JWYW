@@ -17,14 +17,12 @@
     self.attentiionBtn.layer.borderWidth = 1.f;
     self.attentiionBtn.layer.cornerRadius = 5.f;
     self.attentiionBtn.layer.masksToBounds = YES;
+    [self.attentiionBtn setUserInteractionEnabled:NO];
     
     self.iconImageView.layer.cornerRadius = 13.f;
     self.iconImageView.layer.masksToBounds = YES;
     
     self.frame = CGRectMake(0.f, 0.f, kScreen_Width, 55.f);
-    
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
-    [self addGestureRecognizer:tap];
 }
 
 - (void)tapAction{
@@ -61,6 +59,10 @@
     self.nameLabel.text = self.model.nickname;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.images] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
     [self.levelImageView sd_setImageWithURL:[NSURL URLWithString:self.model.level.image] placeholderImage:[UIImage imageNamed:@"level"] completed:nil];
+    
+    [self.attentiionBtn setUserInteractionEnabled:YES];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
+    [self addGestureRecognizer:tap];
 }
 
 - (void)layoutSet{

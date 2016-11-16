@@ -18,7 +18,7 @@
                         <constraint firstAttribute="height" constant="26" id="fNh-Cj-Pbf"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="祈乃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNT-6y-V62">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNT-6y-V62">
                     <rect key="frame" x="51" y="9" width="100" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="GTP-Lx-KOD"/>
