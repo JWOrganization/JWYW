@@ -57,10 +57,10 @@
     textField.font=[UIFont systemFontOfSize:15];
     textField.userInteractionEnabled=NO;
 //    textField.placeholder=@"请输入金额";
-    if (self.blanceMoney!=0) {
-        
+//    if (self.blanceMoney!=0) {
+    
         textField.text=[NSString stringWithFormat:@"%.2f",self.blanceMoney];
-    }
+//    }
     textField.textColor=[UIColor blackColor];
     [topView addSubview:textField];
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {

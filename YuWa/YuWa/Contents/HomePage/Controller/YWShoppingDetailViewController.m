@@ -306,6 +306,14 @@
         }
         //------------------------------------------
         
+        //收藏按钮
+        UIButton*collectionButton=[cell viewWithTag:25];
+        if (!self.mainModel.cid) {
+            [collectionButton setBackgroundImage:[UIImage imageNamed:@"page_collection"] forState:UIControlStateNormal];
+        }else{
+             [collectionButton setBackgroundImage:[UIImage imageNamed:@"page_collection_selected"] forState:UIControlStateNormal];
+        }
+        
         WEAKSELF;
         cell.touchPayBlock=^(){
             //点击支付
@@ -319,6 +327,14 @@
         cell.touchPhoneBlock=^(){
           //跳电话
             [self alertShowPhone];
+        };
+        
+        //加入到收藏夹
+        cell.touchAddCollection=^(){
+            if ([UserSession instance].isLogin) {
+                 [self addToCollection];
+            }
+           
         };
         
         
@@ -873,6 +889,29 @@
 
         
         
+    }];
+    
+    
+}
+
+//加入到收藏
+-(void)addToCollection{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_ADDCOLLECTION];
+    NSDictionary*params=@{@"shop_id":self.mainModel.id,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode =[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            [JRToast showWithText:data[@"msg"]];
+        //xx 字段更改为1
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+
     }];
     
     

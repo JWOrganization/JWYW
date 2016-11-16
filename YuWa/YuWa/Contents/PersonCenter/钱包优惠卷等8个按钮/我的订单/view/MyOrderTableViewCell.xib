@@ -84,6 +84,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="HyM-rf-AL2" secondAttribute="trailing" constant="10" id="uQO-FG-IB6"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="TouchButton" destination="8Sq-J7-SeW" id="G2e-gF-xRZ"/>
+            </connections>
             <point key="canvasLocation" x="-121" y="37"/>
         </tableViewCell>
     </objects>

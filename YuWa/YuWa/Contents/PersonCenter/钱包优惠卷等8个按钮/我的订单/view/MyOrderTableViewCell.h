@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MyOrderTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *TouchButton;
 
 @end

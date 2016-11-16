@@ -9,12 +9,20 @@
 #import "MyFavouriteViewController.h"
 #import "YWMainShoppingTableViewCell.h"
 
+#import "HPRecommendShopModel.h"
+#import "JWTools.h"
+
+#import "YWShoppingDetailViewController.h"
 
 #define CELL0  @"YWMainShoppingTableViewCell"
 
 @interface MyFavouriteViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView*tableView;
+
+@property(nonatomic,strong)NSMutableArray*maMallDatas;
+@property(nonatomic,assign)int pages;
+@property(nonatomic,assign)int pagen;
 @end
 
 @implementation MyFavouriteViewController
@@ -24,22 +32,140 @@
     self.title=@"我的收藏";
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"YWMainShoppingTableViewCell" bundle:nil] forCellReuseIdentifier:CELL0];
+    [self getDatas];
+    [self setUpMJRefresh];
+    
+}
+
+#pragma mark-- UI
+
+-(void)setUpMJRefresh{
+    self.pagen=10;
+    self.pages=0;
+    self.maMallDatas=[NSMutableArray array];
+    
+    self.tableView.mj_header=[UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
+        self.pages=0;
+        self.maMallDatas=[NSMutableArray array];
+        [self getDatas];
+        
+    }];
+    
+    //上拉刷新
+    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
+        self.pages++;
+        [self getDatas];
+        
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
     
     
     
 }
 
-#pragma mark-- UI
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.maMallDatas.count;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+    YWMainShoppingTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
     cell.selectionStyle=NO;
+    
+    HPRecommendShopModel*model=self.maMallDatas[indexPath.row];
+    
+    
+    
+    //图片
+    UIImageView*photo=[cell viewWithTag:1];
+    [photo sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+    //标题
+    UILabel*titleLabel=[cell viewWithTag:2];
+    titleLabel.text=model.company_name;
+    
+    //星星数量 -------------------------------------------------------
+    CGFloat realZhengshu;
+    CGFloat realXiaoshu;
+    NSString*starNmuber=model.star;
+    NSString*zhengshu=[starNmuber substringToIndex:1];
+    realZhengshu=[zhengshu floatValue];
+    NSString*xiaoshu=[starNmuber substringFromIndex:1];
+    CGFloat CGxiaoshu=[xiaoshu floatValue];
+    
+    if (CGxiaoshu>0.5) {
+        realXiaoshu=0;
+        realZhengshu= realZhengshu+1;
+    }else if (CGxiaoshu>0&&CGxiaoshu<=0.5){
+        realXiaoshu=0.5;
+    }else{
+        realXiaoshu=0;
+        
+    }
+    
+    for (int i=30; i<35; i++) {
+        UIImageView*imageView=[cell viewWithTag:i];
+        if (imageView.tag-30<realZhengshu) {
+            //亮
+            imageView.image=[UIImage imageNamed:@"home_lightStar"];
+        }else if (imageView.tag-30==realZhengshu&&realXiaoshu!=0){
+            //半亮
+            imageView.image=[UIImage imageNamed:@"home_halfStar"];
+            
+        }else{
+            //不亮
+            imageView.image=[UIImage imageNamed:@"home_grayStar"];
+        }
+        
+        
+    }
+    //---------------------------------------------------------------------------
+    
+    
+    //人均
+    UILabel*per_capitaLabel=[cell viewWithTag:3];
+    per_capitaLabel.text=[NSString stringWithFormat:@"%@/人",model.per_capita];
+    
+    //分类
+    UILabel*categoryLabel=[cell viewWithTag:4];
+    categoryLabel.text=model.catname;   //model.catname
+    
+    //距离自己的位置多远
+    UILabel*nearLabel=[cell viewWithTag:5];
+    nearLabel.text=model.company_near;
+    
+    //折图片
+    //        UIImageView*imageZhe=[cell viewWithTag:6];
+    //这下面的文字
+    UILabel*zheLabel=[cell viewWithTag:7];
+    zheLabel.text=[NSString stringWithFormat:@"%@折，闪付立享",model.discount];
+    
+    //特图片
+    UIImageView*imageTe=[cell viewWithTag:8];
+    imageTe.hidden=YES;
+    //特旁边的文字
+    UILabel*teLabel=[cell viewWithTag:9];
+    teLabel.hidden=YES;
+    
+    //显示的特别活动   nsarray 里面string越多 显示越多的内容
+    
+    cell.holidayArray=model.holiday;
+    
+    
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     HPRecommendShopModel*model=self.maMallDatas[indexPath.row];
+    YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+    vc.shop_id=model.id;
+    [self.navigationController pushViewController:vc animated:YES];
+
+    
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -50,7 +176,13 @@
 - ( NSArray<UITableViewRowAction*> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     
   UITableViewRowAction*deleteAction=  [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        
+      
+      [self removeDataWithModel:self.maMallDatas[indexPath.row]];
+
+      [self.maMallDatas removeObjectAtIndex:indexPath.row];
+      [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      
+      
     }];
     return @[deleteAction];
 }
@@ -58,12 +190,72 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 145;
+    HPRecommendShopModel*model=self.maMallDatas[indexPath.row];
+    return [YWMainShoppingTableViewCell getCellHeight:model.holiday];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark  --Datas
+-(void)getDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_SHOWCOLLECTION];
+    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
+    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
+    
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            for (NSDictionary*dict in data[@"data"]) {
+                HPRecommendShopModel*model=[HPRecommendShopModel yy_modelWithDictionary:dict];
+                [self.maMallDatas addObject:model];
+            }
+            
+            [self.tableView reloadData];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+    }];
+    
+    
+}
+
+
+//删除收藏
+-(void)removeDataWithModel:(HPRecommendShopModel*)model{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_DELETECOLLECTION];
+    NSDictionary*params=@{@"shop_id":model.id,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            [JRToast showWithText:data[@"msg"]];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+            [self.tableView.mj_header beginRefreshing];
+        }
+
+        
+        
+    }];
+    
+    
+    
 }
 
 /*

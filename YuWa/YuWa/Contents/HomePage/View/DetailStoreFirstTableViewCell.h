@@ -13,5 +13,7 @@
 @property(nonatomic,strong)void(^touchPayBlock)();
 
 @property(nonatomic,strong)void(^touchLocateBlock)();
+
+@property(nonnull,strong)void(^touchAddCollection)();
 @property(nonatomic,strong)void(^touchPhoneBlock)();
 @end

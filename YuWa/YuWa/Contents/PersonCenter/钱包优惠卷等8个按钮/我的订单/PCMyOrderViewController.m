@@ -13,6 +13,9 @@
 #import "JWTools.h"
 #import "OrderModel.h"
 
+#import "PCPayViewController.h"
+
+
 #define CELL0   @"MyOrderTableViewCell"
 
 @interface PCMyOrderViewController ()<UITableViewDelegate,UITableViewDataSource,YJSegmentedControlDelegate>
@@ -39,7 +42,7 @@
 }
 
 -(void)addTopView{
-    NSArray*array=@[@"全部",@"待付款",@"待评论"];
+    NSArray*array=@[@"全部",@"待付款",@"待评价",@"已完成"];
     YJSegmentedControl*topView=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 64, kScreen_Width, 44) titleDataSource:array backgroundColor:[UIColor whiteColor] titleColor:[UIColor blackColor] titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
     [self.view addSubview:topView];
     
@@ -83,31 +86,51 @@
     return self.maAllDatasModel.count;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+    MyOrderTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
       cell.selectionStyle=NO;
 //    cell.textLabel.text=@"666";
+    OrderModel*model=self.maAllDatasModel[indexPath.row];
     
     UIImageView*imageView=[cell viewWithTag:1];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:model.shop_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
     
     
     UILabel*titleLabel=[cell viewWithTag:2];
+    titleLabel.text=model.shop_name;
     
     
     UILabel*whereLabel=[cell viewWithTag:3];
-    
+    whereLabel.text=model.shop_address;
     
     UILabel*timeLabel=[cell viewWithTag:4];
-    
+    timeLabel.text=[NSString stringWithFormat:@"%@",[JWTools getTime:model.create_time]];
     
     UILabel*moneyLabel=[cell viewWithTag:5];
-    
+    moneyLabel.text=[NSString stringWithFormat:@"总价：%@",model.pay_money];
     
     UILabel*assessLabel=[cell viewWithTag:6];
+    assessLabel.text=model.status;
     
     
-    UIButton*selectedButton=[cell viewWithTag:7];
+    UIButton*selectedButton=cell.TouchButton;
+    if ([model.status isEqualToString:@"待付款"]) {
+        selectedButton.tag=indexPath.row;
+        [selectedButton setTitle:@"付款" forState:UIControlStateNormal];
+        [selectedButton removeTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
+        [selectedButton addTarget:self action:@selector(touchPayMoney:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else if ([model.status isEqualToString:@"待评价"]){
+        selectedButton.tag=indexPath.row;
+        [selectedButton setTitle:@"评价" forState:UIControlStateNormal];
+        [selectedButton removeTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
+        [selectedButton addTarget:self action:@selector(touchCommit:) forControlEvents:UIControlEventTouchUpInside];
+    }else if ([model.status isEqualToString:@"已完成"]){
+        selectedButton.hidden=YES;
+    }
     
-    
+//    [selectedButton addTarget:self action:@selector(touchButton:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
     
@@ -120,6 +143,27 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 10;
 }
+
+
+
+#pragma mark  -- touchButton
+-(void)touchPayMoney:(UIButton*)sender{
+    MyLog(@"付钱");
+    OrderModel*model=self.maAllDatasModel[sender.tag];
+    PCPayViewController*vc=[[PCPayViewController alloc]init];
+    vc.blanceMoney=[model.pay_money floatValue];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+-(void)touchCommit:(UIButton*)sender{
+    MyLog(@"评论");
+    OrderModel*model=self.maAllDatasModel[sender.tag];
+    
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

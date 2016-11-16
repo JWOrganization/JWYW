@@ -12,9 +12,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    UIButton*button=[self viewWithTag:24];
-    [button addTarget:self action:@selector(touchLocate) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton*button=[self viewWithTag:24];
+//    [button addTarget:self action:@selector(touchLocate) forControlEvents:UIControlEventTouchUpInside];
     
+    //文字
+    UILabel*label=[self viewWithTag:22];
+    UITapGestureRecognizer*labelTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchLocate)];
+     label.userInteractionEnabled=YES;
+    [label addGestureRecognizer:labelTap];
+    
+    //左边的button
+    UIButton*button=[self viewWithTag:25];
+    [button addTarget:self action:@selector(addCollection) forControlEvents:UIControlEventTouchUpInside];
+    
+    //右边的图片
     UIImageView*imageView=[self viewWithTag:23];
     imageView.userInteractionEnabled=YES;
     UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchPhone)];
@@ -41,6 +52,15 @@
         self.touchLocateBlock();
     }
    
+    
+}
+
+
+-(void)addCollection{
+    //加入收藏
+    if (self.touchAddCollection) {
+        self.touchAddCollection();
+    }
     
 }
 
