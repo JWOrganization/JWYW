@@ -908,7 +908,10 @@
 -(void)gotoPay{
     MyLog(@"pay");
     if ([self isLogin]) {
-        YWPayViewController*vc=[[YWPayViewController alloc]init];
+//        YWPayViewController*vc=[[YWPayViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithManualAndShopName:@"xxx公司" andShopID:@"123" andZhekou:0.3];
         [self.navigationController pushViewController:vc animated:YES];
 
     }

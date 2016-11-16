@@ -12,6 +12,8 @@
 #import "PCPayViewController.h"    //支付界面
 #import "PCGetMoneyViewController.h"   //提现界面
 
+#import "JWTools.h"
+
 @interface PCPacketViewController ()
 
 @end
@@ -26,8 +28,9 @@
     self.navigationItem.rightBarButtonItem=item;
     
     
+    //当前有多少钱
+    [self getNumMoney];
     
-//    UILabel*label3=[self.view viewWithTag:3];
    
     UIButton*payButton=[self.view viewWithTag:4];
     payButton.layer.cornerRadius=6;
@@ -46,7 +49,19 @@
     [getMoney addTarget:self action:@selector(touchGetMoney) forControlEvents:UIControlEventTouchUpInside];
 
     
+    //接口
+    [self HttpGetMoney];
+    
 }
+
+//得到多少钱
+-(void)getNumMoney{
+    UILabel*label3=[self.view viewWithTag:3];
+    label3.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
+
+    
+}
+
 
 #pragma mark  --touch
 -(void)touchRightItem{
@@ -67,6 +82,32 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+
+#pragma mark  --  money
+-(void)HttpGetMoney{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETMONEY];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            [UserSession instance].money=data[@"data"][@"money"];
+            
+            [self getNumMoney];
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

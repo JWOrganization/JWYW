@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger,PayCategory){
-    PayCategoryAutoPay=0,   //主动支付
-    PayCategorySaoma //扫码
+    PayCategoryAutoPay=0,   //主动支付 扫码手填
+    PayCategoryManualPay //扫码自动   订单支付
     
     
 };
@@ -18,7 +18,9 @@ typedef NS_ENUM(NSInteger,PayCategory){
 
 @interface YWPayViewController : UIViewController
 @property(nonatomic,assign)PayCategory whichPay;  //哪种支付
+
 @property(nonatomic,strong)NSString*shopID;  //店铺的id
+@property(nonatomic,strong)NSString*shopName;  //店铺的名字
 @property(nonatomic,assign)CGFloat shopZhekou;  //店铺的折扣
 
 //如果是  扫码支付 就得有下面的参数 否则就不需要
@@ -29,6 +31,10 @@ typedef NS_ENUM(NSInteger,PayCategory){
 
 //----------------------------------------------
 
+//折扣多少
++(instancetype)payViewControllerCreatWithManualAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou;
+
++(instancetype)payViewControllerCreatWithAutoAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou andpayAllMoney:(CGFloat)payAllMoney andNOZheMoney:(CGFloat)NOZheMoney;
 
 
 @end

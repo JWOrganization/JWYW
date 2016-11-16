@@ -81,7 +81,11 @@
 
 #pragma mark  -- 个人中心
 #define HTTP_PERSON_COUPON         @"/api.php/User/getMyCoupon/"   //得到优惠券
-#define HTTP_PRESON_CHANGEINFO     @"/api.php/User/setMyBaseInfo/"  //修改个人中心
+#define HTTP_PRESON_CHANGEINFO     @"/api.php/User/setMyBaseInfo/"  //修改个人中心资料
+
+#define HTTP_GETMONEY              @"/api.php/User/getMyMoney/"   //得到钱
+#define HTTP_GETPAYDETAIL          @"/api.php/User/getMyAccount/"   //得到收入支出明细
+#define HTTP_MYORDER               @"/api.php/User/getMyOrder/"   //显示我的订单
 
 
 

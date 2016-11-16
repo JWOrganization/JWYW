@@ -7,6 +7,8 @@
 //
 
 #import "PCPayViewController.h"
+#import "AccountMoneyTableViewCell.h"
+
 #import "WXApiManager.h"
 #import "WXApiRequestHandler.h"
 
@@ -14,6 +16,10 @@
 #import "APAuthV2Info.h"
 //#import "DataSigner.h"
 #import <AlipaySDK/AlipaySDK.h>
+
+
+
+#define CELL3  @"AccountMoneyTableViewCell"
 
 
 @interface PCPayViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -25,8 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"充值";
+    self.title=@"支付";
     [self.view addSubview:self.tableView];
+    [self.tableView registerNib:[UINib nibWithNibName:CELL3 bundle:nil] forCellReuseIdentifier:CELL3];
     
     [self makeTableViewHeader];
 }
@@ -36,7 +43,7 @@
     topView.backgroundColor=CNaviColor;
     
     UILabel*titleLabel=[[UILabel alloc]initWithFrame:CGRectZero];
-    titleLabel.text=@"充值金额：￥";
+    titleLabel.text=@"实际支付：￥";
     titleLabel.font=[UIFont systemFontOfSize:17];
     titleLabel.textAlignment=NSTextAlignmentRight;
     [topView addSubview:titleLabel];
@@ -48,7 +55,8 @@
     
     UITextField*textField=[[UITextField alloc]initWithFrame:CGRectZero];
     textField.font=[UIFont systemFontOfSize:15];
-    textField.placeholder=@"请输入金额";
+    textField.userInteractionEnabled=NO;
+//    textField.placeholder=@"请输入金额";
     if (self.blanceMoney!=0) {
         
         textField.text=[NSString stringWithFormat:@"%.2f",self.blanceMoney];
@@ -67,10 +75,16 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    if (section==0) {
+        return 1;
+    }else{
+        return 2;
+    }
+    
+   
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -79,10 +93,35 @@
         
     }
     cell.selectionStyle=NO;
-    if (indexPath.row==0) {
+    
+    if (indexPath.section==0&&indexPath.row==0) {
+        //是否 开启余额支付
+        cell=[tableView dequeueReusableCellWithIdentifier:CELL3];
+        cell.selectionStyle=NO;
+        
+        UILabel*label1=[cell viewWithTag:1];
+        label1.text=@"雨娃余额";
+        
+        UILabel*labelMoney=[cell viewWithTag:2];
+        labelMoney.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
+        
+        UISwitch*sButton=[cell viewWithTag:3];
+        [sButton setOn:YES];
+//        sButton.userInteractionEnabled=NO;
+        [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        
+        return cell;
+ 
+        
+       
+    }
+    
+    
+    
+    if (indexPath.section==1&&indexPath.row==0) {
         
       
-        cell.textLabel.text=@"微信充值";
+        cell.textLabel.text=@"微信支付";
         
         //2、调整大小
         UIImage *image = [UIImage imageNamed:@"wechatPay"];
@@ -92,9 +131,9 @@
         [image drawInRect:imageRect];
         cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsGetImageFromCurrentImageContext();
-    }else if (indexPath.row==1){
+    }else if (indexPath.section==1&&indexPath.row==1){
 
-        cell.textLabel.text=@"支付宝充值";
+        cell.textLabel.text=@"支付宝支付";
         
         //2、调整大小
         UIImage *image = [UIImage imageNamed:@"zhifubaoPay"];
@@ -112,7 +151,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row==0) {
+    if (indexPath.section==1&&indexPath.row==0) {
         //微信支付
         NSString *res = [WXApiRequestHandler jumpToBizPay];
         if( ![@"" isEqual:res] ){
@@ -124,13 +163,54 @@
 
         
         
-    }else if (indexPath.row==1){
+    }else if (indexPath.section==1&&indexPath.row==1){
         //支付宝支付
         [self doAlipayPay];
         
     }
     
 }
+
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section==1) {
+        UIView*backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 40)];
+        backView.backgroundColor=[UIColor whiteColor];
+        
+        UILabel*leftLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 70, 20)];
+        leftLabel.font=[UIFont systemFontOfSize:14];
+        leftLabel.text=@"需要支付:";
+        [backView addSubview:leftLabel];
+        
+        UILabel*moneyLabel=[[UILabel alloc]initWithFrame:CGRectMake(kScreen_Width-200, 10, 180, 20)];
+        moneyLabel.font=[UIFont systemFontOfSize:14];
+        moneyLabel.textAlignment=NSTextAlignmentRight;
+        moneyLabel.text=@"￥20";
+        [backView addSubview:moneyLabel];
+        
+        
+        return backView;
+
+    }
+    
+    return nil;
+  }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==1) {
+        return 40;
+    }
+    
+    return 10;
+}
+
+
+#pragma mark  --touch
+-(void)switchAction:(UISwitch*)sender{
+    NSLog(@"%d",sender.on);
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
