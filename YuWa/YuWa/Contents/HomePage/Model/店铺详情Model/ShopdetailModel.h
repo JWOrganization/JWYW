@@ -63,6 +63,7 @@
 
 @property(nonatomic,strong)NSString*total_comment;   //总评论数
 @property(nonatomic,strong)NSString*top_than_other;  //高于同行
+@property(nonatomic,assign)BOOL is_collection;   //1为已经收藏  0为未收藏
 
 
 @property(nonatomic,strong)NSArray*infrastructure;           //商家详情

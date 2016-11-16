@@ -308,13 +308,22 @@
         
         //收藏按钮
         UIButton*collectionButton=[cell viewWithTag:25];
-        if (!self.mainModel.cid) {
+        if (!self.mainModel.is_collection) {
             [collectionButton setBackgroundImage:[UIImage imageNamed:@"page_collection"] forState:UIControlStateNormal];
         }else{
              [collectionButton setBackgroundImage:[UIImage imageNamed:@"page_collection_selected"] forState:UIControlStateNormal];
         }
         
         WEAKSELF;
+        //加入到收藏夹
+        cell.touchAddCollection=^(){
+            if ([UserSession instance].isLogin) {
+                [self addToCollection];
+            }
+            
+        };
+
+        
         cell.touchPayBlock=^(){
             //点击支付
               [weakSelf gotoPay];
@@ -329,13 +338,6 @@
             [self alertShowPhone];
         };
         
-        //加入到收藏夹
-        cell.touchAddCollection=^(){
-            if ([UserSession instance].isLogin) {
-                 [self addToCollection];
-            }
-           
-        };
         
         
         cell.selectionStyle=NO;
