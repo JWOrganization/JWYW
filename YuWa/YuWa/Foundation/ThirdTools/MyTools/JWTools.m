@@ -838,7 +838,7 @@
         strUUID = (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));//生成一个uuid的方法
         
         [JWTools save:KEY_USERNAME_PASSWORD data:strUUID];//将该uuid保存到keychain,KEY_USERNAME_PASSWORD为全局
-        
+        [[NSUserDefaults standardUserDefaults] setObject:strUUID forKey:KEY_USERNAME_PASSWORD];
     }
     return strUUID;
 }
