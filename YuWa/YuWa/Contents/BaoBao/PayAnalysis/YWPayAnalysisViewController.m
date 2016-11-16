@@ -40,7 +40,7 @@
             number = number/10;
         }
     }
-    lineChart.yLineNumber = allValue;
+    lineChart.yLineNumber = allValue>0?allValue:5;
     
     lineChart.xLineDataArr = xLineDataArr;
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;

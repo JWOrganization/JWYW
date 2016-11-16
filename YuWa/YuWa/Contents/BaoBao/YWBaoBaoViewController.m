@@ -95,15 +95,19 @@
     
     [self.LVUpBtn setUserInteractionEnabled:(self.user.baobaoEXP >= self.user.baobaoNeedEXP?YES:NO)];
     
+    //233333333333333正式Gif时去掉xib内BaoBaoTemp
+    self.BGView.image = [UIImage imageNamed:[NSString stringWithFormat:@"baobaoBG%zi",(self.user.baobaoLV - 1)]];
+    
+    
     //Gif动画
-    self.baobaoImageView.animationImages = self.baobaoGifArr;
-    self.baobaoImageView.animationDuration = 3;
-    self.baobaoImageView.animationRepeatCount = 0;
-    [self.baobaoImageView startAnimating];
-    self.BGView.animationImages = self.baobaoBGGifArr;
-    self.BGView.animationDuration = 3;
-    self.BGView.animationRepeatCount = 0;
-    [self.BGView startAnimating];
+//    self.baobaoImageView.animationImages = self.baobaoGifArr;
+//    self.baobaoImageView.animationDuration = 3;
+//    self.baobaoImageView.animationRepeatCount = 0;
+//    [self.baobaoImageView startAnimating];
+//    self.BGView.animationImages = self.baobaoBGGifArr;
+//    self.BGView.animationDuration = 3;
+//    self.BGView.animationRepeatCount = 0;
+//    [self.BGView startAnimating];
 }
 
 - (IBAction)lvUpAction:(id)sender {
