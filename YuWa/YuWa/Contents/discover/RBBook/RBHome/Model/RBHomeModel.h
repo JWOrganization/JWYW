@@ -14,6 +14,18 @@
 #import "RBHomeListCommentsModel.h"
 #import "RBHomeListImagesModel.h"
 
+
+//"note_id": "32",
+//"user_id": "4",
+//"info": "Sad%F0%9F%98%8A%F0%9F%98%8A",
+//"title": "dda23",
+//"likes": "0",
+//"nickname": "Scarlet",
+//"header_img": "",
+//"first_img": "http://114.215.252.104/Public/Upload/20161103/14781828997859.png",
+//"first_img_width": 750,
+//"first_img_height": 498
+
 @interface RBHomeModel : NSObject
 //Home&&NodeDetail
 @property (nonatomic,copy)NSString * time;

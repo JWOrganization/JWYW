@@ -12,6 +12,7 @@
 #import "ZheTableViewCell.h"
 #import "TwoLabelShowTableViewCell.h"
 #import "AccountMoneyTableViewCell.h"      //账户余额
+#import "JWTools.h"
 
 
 #import "PCPayViewController.h"    //充值界面
@@ -33,6 +34,8 @@
 @property(nonatomic,assign)CGFloat CouponMoney;    //优惠券减少多少钱。
 
 
+@property(nonatomic,assign)BOOL is_coupon;   //是否用优惠券
+@property(nonatomic,assign)int coupon_id;
 
 @end
 
@@ -313,6 +316,10 @@
 
 #pragma mark  --touch
 -(void)touchPay{
+    //确认付款的时候 先生成订单
+    [self jiekouADDOrder];
+    
+    
     
     PCPayViewController*vc=[[PCPayViewController alloc]init];
     vc.blanceMoney=self.shouldPayMoney;
@@ -354,9 +361,40 @@
 //    
 //}
 
+#pragma mark  --datas
+-(void)jiekouADDOrder{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_MAKEORDER];
+    NSDictionary*dict=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"seller_uid":self.shopID,@"total_money":@(self.payAllMoney),@"non_discount_money":@(self.NOZheMoney),@"discount":@(self.shopZhekou),@"is_coupon":@(self.is_coupon)};
+    NSMutableDictionary*params=[NSMutableDictionary dictionaryWithDictionary:dict];
+    if (self.is_coupon==YES) {
+        [params setObject:@(self.coupon_id) forKey:@"coupon_id"];
+    }
+    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
+    
+    
+}
+
 #pragma mark  --delegate
 
 -(void)DelegateGetCouponInfo:(CouponModel *)model{
+    self.is_coupon=YES;
+    self.coupon_id=[model.coupon_id intValue];
+    
     NSString*aa=model.discount_fee;
     self.CouponMoney=[aa floatValue];
     [self calshouldPayMoney];
