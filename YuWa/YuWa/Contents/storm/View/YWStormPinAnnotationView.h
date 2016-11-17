@@ -11,6 +11,9 @@
 
 @interface YWStormPinAnnotationView : MKAnnotationView
 
+@property (nonatomic,copy)void (^callViewBlock)();
+
+
 @property (nonatomic,strong)YWStormAnnotationModel * model;
 @property (nonatomic,strong)UIImageView * showImageView;
 

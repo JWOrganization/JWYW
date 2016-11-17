@@ -51,6 +51,23 @@
  */
 + (CGFloat)labelHeightWithLabel:(UILabel *)label withWidth:(CGFloat)width;
 
+/**
+ *  通过文字来计算文字所占的区域大小
+ *
+ *  @param label Label
+ *
+ *  @return 文字所占的区域大小
+ */
++ (CGFloat)labelWidthWithLabel:(UILabel *)label;
+
+/**
+ *  通过文字来计算文字所占的区域大小
+ *
+ *  @param label Label
+ *
+ *  @return 文字所占的区域大小
+ */
++ (CGFloat)labelWidthWithLabel:(UILabel *)label withHeight:(CGFloat)height;
 
 #pragma mark - FileRead
 /**

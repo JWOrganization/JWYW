@@ -7,6 +7,7 @@
 //
 
 #import "YWStormPinAnnotationView.h"
+#import "YWStormMapBtnView.h"
 
 @implementation YWStormPinAnnotationView
 
@@ -26,9 +27,26 @@
     if (!model)return;
     _model = model;
     self.size = CGSizeMake(50.f, 50.f);
-    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:nil];
+    WEAKSELF;
+    YWStormMapBtnView * btn = [[YWStormMapBtnView alloc]init];
+    
+    btn.nameLabel.text = model.company_name;
+    btn.distanceLabel.text = [NSString stringWithFormat:@"距离:%@m",model.distance];
+    [self.showImageView sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        btn.showImageView.image = image;
+    }];
+    btn.callViewBlock = ^{
+        weakSelf.callViewBlock();
+    };
+    [btn lengthSet];
+    self.leftCalloutAccessoryView = btn;
 }
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+- (void)tapAction{
+    self.callViewBlock();
 }
+
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//}
 
 @end

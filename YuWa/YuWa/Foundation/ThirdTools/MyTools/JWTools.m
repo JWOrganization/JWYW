@@ -80,6 +80,31 @@
     return conRect.size.height;
 }
 
+/**
+ *  通过文字来计算文字所占的区域大小
+ *
+ *  @param label Label
+ *
+ *  @return 文字所占的区域大小
+ */
++ (CGFloat)labelWidthWithLabel:(UILabel *)label{
+    NSDictionary * attributes = @{NSFontAttributeName:label.font};
+    CGRect conRect = [label.text boundingRectWithSize:CGSizeMake(MAXFLOAT,label.height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil];
+    return conRect.size.width + 5.f;
+}
+/**
+ *  通过文字来计算文字所占的区域大小
+ *
+ *  @param label Label
+ *
+ *  @return 文字所占的区域大小
+ */
++ (CGFloat)labelWidthWithLabel:(UILabel *)label withHeight:(CGFloat)height{
+    NSDictionary * attributes = @{NSFontAttributeName:label.font};
+    CGRect conRect = [label.text boundingRectWithSize:CGSizeMake(MAXFLOAT,height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil];
+    return conRect.size.width;
+}
+
 #pragma mark - FileRead
 /**
  *  根据文件名获取本地Json文件
