@@ -97,7 +97,8 @@
 
 #define HTTP_PAYRECORD             @"/api.php/User/myConsumption/"    //消费记录
 
-
+#define HTTP_GETNOTES              @"/api.php/Note/getMyNewNote/"    //得到笔记
+#define HTTP_GETALBUMS             @"/api.php/Note/getMyNewAlbum/"   //得到专辑
 
 
 #endif /* GlobalInfo_h */
