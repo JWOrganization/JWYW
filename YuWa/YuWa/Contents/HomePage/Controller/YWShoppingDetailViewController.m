@@ -308,13 +308,22 @@
         
         //收藏按钮
         UIButton*collectionButton=[cell viewWithTag:25];
-        if (!self.mainModel.cid) {
+        if (!self.mainModel.is_collection) {
             [collectionButton setBackgroundImage:[UIImage imageNamed:@"page_collection"] forState:UIControlStateNormal];
         }else{
              [collectionButton setBackgroundImage:[UIImage imageNamed:@"page_collection_selected"] forState:UIControlStateNormal];
         }
         
         WEAKSELF;
+        //加入到收藏夹
+        cell.touchAddCollection=^(){
+            if ([UserSession instance].isLogin) {
+                [self addToCollection];
+            }
+            
+        };
+
+        
         cell.touchPayBlock=^(){
             //点击支付
               [weakSelf gotoPay];
@@ -329,13 +338,6 @@
             [self alertShowPhone];
         };
         
-        //加入到收藏夹
-        cell.touchAddCollection=^(){
-            if ([UserSession instance].isLogin) {
-                 [self addToCollection];
-            }
-           
-        };
         
         
         cell.selectionStyle=NO;
@@ -850,7 +852,13 @@
 #pragma mark  -- 店铺详情
 -(void)getDatas{
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_SHOPDETAIL];
-    NSDictionary*params=@{@"shop_id":self.shop_id,@"device_id":[JWTools getUUID]};
+     NSDictionary*dict=@{@"shop_id":self.shop_id,@"device_id":[JWTools getUUID]};
+    NSMutableDictionary*params=[NSMutableDictionary dictionaryWithDictionary:dict];
+    if ([UserSession instance].isLogin) {
+        [params setObject:@([UserSession instance].uid) forKey:@"user_id"];
+        [params setObject:[UserSession instance].token forKey:@"token"];
+    }
+   
     HttpManager*manager=[[HttpManager alloc]init];
     [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
         MyLog(@"%@",data);
@@ -896,6 +904,13 @@
 
 //加入到收藏
 -(void)addToCollection{
+    if ( ![UserSession instance].isLogin) {
+        [JRToast showWithText:@"请先登录"];
+        return;
+        
+    }
+   
+    
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_ADDCOLLECTION];
     NSDictionary*params=@{@"shop_id":self.mainModel.id,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     HttpManager*manager=[[HttpManager alloc]init];
@@ -905,6 +920,8 @@
         NSString*errorCode =[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
             [JRToast showWithText:data[@"msg"]];
+            
+            self.mainModel.is_collection=1;
         //xx 字段更改为1
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
         
