@@ -31,6 +31,7 @@
 		B3192AD31D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192AD11D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.m */; };
 		B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */; };
 		B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */; };
+		B32220E21DDD711200166047 /* YWStormMapBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32220E11DDD711200166047 /* YWStormMapBtnView.m */; };
 		B3263B011DD5B25A004788BB /* YWBaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3263AFF1DD5B25A004788BB /* YWBaoBaoViewController.m */; };
 		B3263B021DD5B25A004788BB /* YWBaoBaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3263B001DD5B25A004788BB /* YWBaoBaoViewController.xib */; };
 		B32975CF1DADCF1C002CA488 /* YWStormSortTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32975CE1DADCF1C002CA488 /* YWStormSortTableView.m */; };
@@ -829,6 +830,8 @@
 		B3192AD21D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBIMGToolsCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3192ADC1D927C3600FD6578 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
 		B3192ADD1D927C3600FD6578 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
+		B32220E01DDD711200166047 /* YWStormMapBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWStormMapBtnView.h; sourceTree = "<group>"; };
+		B32220E11DDD711200166047 /* YWStormMapBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWStormMapBtnView.m; sourceTree = "<group>"; };
 		B3263AFE1DD5B25A004788BB /* YWBaoBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWBaoBaoViewController.h; sourceTree = "<group>"; };
 		B3263AFF1DD5B25A004788BB /* YWBaoBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWBaoBaoViewController.m; sourceTree = "<group>"; };
 		B3263B001DD5B25A004788BB /* YWBaoBaoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWBaoBaoViewController.xib; sourceTree = "<group>"; };
@@ -3127,6 +3130,8 @@
 			children = (
 				B35778B01D9962550058A998 /* YWStormPinAnnotationView.h */,
 				B35778B11D9962550058A998 /* YWStormPinAnnotationView.m */,
+				B32220E01DDD711200166047 /* YWStormMapBtnView.h */,
+				B32220E11DDD711200166047 /* YWStormMapBtnView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6173,6 +6178,7 @@
 				B38B2E0F1D8FACD8004D5256 /* MBHUD.m in Sources */,
 				B38B2E151D8FACD8004D5256 /* MJRefreshHeader.m in Sources */,
 				C1392DC71DBF5083002418EF /* WXApiManager.m in Sources */,
+				B32220E21DDD711200166047 /* YWStormMapBtnView.m in Sources */,
 				B38B2F7A1D8FC8CD004D5256 /* JWTagCollectionView.m in Sources */,
 				B38B2E0C1D8FACD8004D5256 /* ViewController+MASAdditions.m in Sources */,
 				B38B2E221D8FACD8004D5256 /* MJDIYAutoFooter.m in Sources */,
