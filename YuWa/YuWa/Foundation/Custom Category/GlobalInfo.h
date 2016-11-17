@@ -108,4 +108,6 @@
 #define HTTP_DELABOUT              @"/api.php/User/delAttention/"    //删除关注
 
 
+#define HTTP_SEEOTHERCENTER       @"/api.php/User/getUserInfo/"  //查看他人个人中心
+
 #endif /* GlobalInfo_h */

@@ -64,6 +64,7 @@
 
         
     }
+    
     RBAlbumCollectionViewCell * albumCell = [collectionView dequeueReusableCellWithReuseIdentifier:ALDUMCELL forIndexPath:indexPath];
     albumCell.model = self.allDatas[indexPath.row];
     return albumCell;

@@ -112,12 +112,12 @@
     
     //button
  
-    if (model.isABount) {
+    if (model.is_attention) {
         //已经关注了  那么取消关注
         [cell.touchButton removeTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
         cell.touchButton.layer.borderColor=CpriceColor.CGColor;
         [cell.touchButton setTitleColor:CpriceColor forState:UIControlStateNormal];
-        [cell.touchButton setTitle:@"+关注" forState:UIControlStateNormal];
+        [cell.touchButton setTitle:@"取消关注" forState:UIControlStateNormal];
         cell.touchButton.tag=indexPath.row;
         [cell.touchButton addTarget:self action:@selector(ButtonCancelAbount:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -137,7 +137,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger number=indexPath.row;
+    AbountAndFansModel*model=self.maMallDatas[number];
+    
     YWOtherSeePersonCenterViewController*vc=[[YWOtherSeePersonCenterViewController alloc]init];
+    vc.uid=model.uid;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -308,8 +311,9 @@
 -(void)ButtonCancelAbount:(UIButton*)sender{
     AbountAndFansModel*model=self.maMallDatas[sender.tag];
     //变成取消关注
-    model.isABount=NO;
-    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    model.is_attention=NO;
+//    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
     
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_DELABOUT];
 
@@ -339,8 +343,9 @@
 -(void)ButtonAddAbount:(UIButton*)sender{
     AbountAndFansModel*model=self.maMallDatas[sender.tag];
     //变成加为关注
-    model.isABount=YES;
-    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    model.is_attention=YES;
+//    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
     
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_ADDABOUT];
     

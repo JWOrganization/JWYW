@@ -32,7 +32,7 @@
 
 - (void)makeNavi{
     self.title = @"新建专辑";
-    self.navigationItem.rightBarButtonItem =[UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"确认" withTittleColor:[UIColor whiteColor] withTarget:self action:@selector(addAldumAction) forControlEvents:UIControlEventTouchUpInside withWidth:30.f];
+    self.navigationItem.rightBarButtonItem =[UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"确认" withTittleColor:[UIColor whiteColor] withTarget:self action:@selector(addAldumAction) forControlEvents:UIControlEventTouchUpInside withWidth:40.f];
 }
 - (void)dataSet{
     self.isPublic = YES;
