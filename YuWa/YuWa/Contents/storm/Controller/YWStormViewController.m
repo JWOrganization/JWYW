@@ -200,14 +200,6 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 //}
 
-//- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
-//    YWStormPinAnnotationView * annotationView = (YWStormPinAnnotationView *)view;
-//    MyLog(@"Select %@ AnnotationView",annotationView.model.type);
-//    YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-//    vc.shop_id = annotationView.model.annotationID;//商店ID1111111
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
-
 #pragma mark - Http
 - (void)requestAnnotationData{
     NSDictionary * pragram = @{@"tag_id":[NSString stringWithFormat:@"%zi",self.subType],@"coordinatex":[NSString stringWithFormat:@"%f",[YWLocation shareLocation].lon],@"coordinatey":[NSString stringWithFormat:@"%f",[YWLocation shareLocation].lat]};
@@ -221,7 +213,6 @@
         for (int i = 0; i<dataArr.count; i++) {
             YWStormAnnotationModel * model = [YWStormAnnotationModel yy_modelWithJSON:dataArr[i]];
             model.coordinate = (CLLocationCoordinate2D){[model.coordinatey floatValue],[model.coordinatex floatValue]};
-            [model setAccessibilityFrame:CGRectMake(0.f, 0.f, 1.f, 40.f)];
             [model setTitle:@" "];
             [self.mapView addAnnotation:model];
         }
