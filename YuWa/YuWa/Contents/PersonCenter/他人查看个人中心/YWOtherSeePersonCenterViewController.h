@@ -11,5 +11,6 @@
 
 
 @interface YWOtherSeePersonCenterViewController : UIViewController
-@property(nonatomic,assign)showViewCategory showWhichView;
+@property(nonatomic,strong)NSString*uid;
+
 @end

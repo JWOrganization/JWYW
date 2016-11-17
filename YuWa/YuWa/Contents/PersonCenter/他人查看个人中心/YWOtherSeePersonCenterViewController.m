@@ -38,8 +38,10 @@
 @property(nonatomic,strong)UIButton*FriendButton;        //好友按钮
 @property(nonatomic,strong)UIButton*followButton;        //关注按钮
 @property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;   //cell计算高度
-
 @property(nonatomic,strong)UITableView*tableView;
+
+
+@property(nonatomic,assign)showViewCategory showWhichView;    //点击的是那个view
 
 @end
 
@@ -62,7 +64,7 @@
     
     
     
-    [self addHeaderView];
+    [self getDatas];
 
     
     
@@ -73,7 +75,7 @@
     
     self.navigationItem.title=@"";
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
-
+    [self addHeaderView];
 }
 
 
@@ -396,6 +398,27 @@
 
 
 #pragma mark  --  getDatas
+
+-(void)getDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_SEEOTHERCENTER];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"other_uid":self.uid};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
+    
+}
+
 
 #pragma mark  --  getDatas
 //得到底部的数据

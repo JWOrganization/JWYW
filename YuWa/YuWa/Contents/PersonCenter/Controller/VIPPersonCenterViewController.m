@@ -18,8 +18,12 @@
 #import "YJSegmentedControl.h"
 #import "JWTools.h"
 #import "RBHomeModel.h"                   //笔记
+#import "RBCenterAlbumModel.h"           //专辑   可能没用
+#import "RBHomeModel.h"
+#import "RBCenterAlbumModel.h"
+
 #import "RBHomeCollectionViewCell.h"
-#import "RBCenterAlbumModel.h"           //专辑
+
 #import "CommentTableViewCell.h"//评论的cell
 #import "CommitViewModel.h"   //评论的model
 #import "FilmViewModel.h"      //电影的model
@@ -271,10 +275,10 @@
                     self.heighCell.model = model;
                     model.cellHeight = self.heighCell.cellHeight;
                 }
-                if (idx%2 == 1) {
-                    rightRowHeight += model.cellHeight + 6.f;
+                if (rightRowHeight<leftRowHeight) {
+                    rightRowHeight += model.cellHeight + 10.f;
                 }else{
-                    leftRowHeight += model.cellHeight + 6.f;
+                    leftRowHeight += model.cellHeight + 10.f;
                 }
             }];
             
@@ -332,6 +336,11 @@
     
     for (NSString*imageStr in array) {
         UIImage*image=[UIImage imageNamed:[@"波浪.bundle" stringByAppendingPathComponent:imageStr]];
+//        NSBundle*bundle=[NSBundle mainBundle];
+//        NSString*path=[bundle pathForResource:imageStr ofType:@"png"];
+//        
+//        UIImage*image=[UIImage imageWithContentsOfFile:path];
+        
         [imageArrays addObject:image];
         
     }
@@ -720,7 +729,7 @@
     
 }
 
-
+//得到专辑的内容
 -(void)getMyAlbum{
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETALBUMS];
     NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
@@ -735,6 +744,11 @@
             for (NSDictionary*dict in data[@"data"]) {
 //                RBHomeModel*model=[RBHomeModel yy_modelWithDictionary:dict];
 //                [self.maMallDatas addObject:model];
+            
+                RBCenterAlbumModel*model=[RBCenterAlbumModel yy_modelWithDictionary:dict];
+                model.user = [[RBHomeUserModel alloc]init];
+                model.user.nickname = dict[@"user_name"];
+                [self.maMallDatas addObject:model];
                 
             }
             
@@ -762,7 +776,7 @@
 #pragma mark  --set get
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height-49) style:UITableViewStyleGrouped];
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height) style:UITableViewStyleGrouped];
         _tableView.delegate=self;
         _tableView.dataSource=self;
         _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

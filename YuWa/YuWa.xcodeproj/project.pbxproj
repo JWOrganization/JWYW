@@ -5224,7 +5224,7 @@
 				C1F7BDE71DB1C95400CCAF96 /* YWOtherSeePersonCenterViewController.m */,
 			);
 			name = "他人查看个人中心";
-			path = "../../他人查看个人中心";
+			path = "../他人查看个人中心";
 			sourceTree = "<group>";
 		};
 		C1F7BDE81DB1C95400CCAF96 /* 笔记专辑影评评论 */ = {
@@ -5233,6 +5233,7 @@
 				C1F7BDE91DB1C95400CCAF96 /* PCBottomTableViewCell.h */,
 				C1F7BDEA1DB1C95400CCAF96 /* PCBottomTableViewCell.m */,
 				C1F7BDEB1DB1C95400CCAF96 /* 专辑 */,
+				C1F7BDE51DB1C95400CCAF96 /* 他人查看个人中心 */,
 				C1F7BDEE1DB1C95400CCAF96 /* 影评（废弃） */,
 				C1F7BDF61DB1C95400CCAF96 /* 笔记 */,
 				C1F7BDF91DB1C95400CCAF96 /* 评论 */,
@@ -5252,7 +5253,6 @@
 		C1F7BDEE1DB1C95400CCAF96 /* 影评（废弃） */ = {
 			isa = PBXGroup;
 			children = (
-				C1F7BDE51DB1C95400CCAF96 /* 他人查看个人中心 */,
 				C1F7BDEF1DB1C95400CCAF96 /* FilmView.h */,
 				C1F7BDF01DB1C95400CCAF96 /* FilmView.m */,
 				C1F7BDF11DB1C95400CCAF96 /* FilmViewModel.h */,
@@ -5291,11 +5291,11 @@
 		C1F7BDFE1DB1C95400CCAF96 /* 粉丝 */ = {
 			isa = PBXGroup;
 			children = (
+				C1F7BE021DB1C95400CCAF96 /* YWFansViewController.h */,
+				C1F7BE031DB1C95400CCAF96 /* YWFansViewController.m */,
 				C1F7BDFF1DB1C95400CCAF96 /* YWFansTableViewCell.h */,
 				C1F7BE001DB1C95400CCAF96 /* YWFansTableViewCell.m */,
 				C1F7BE011DB1C95400CCAF96 /* YWFansTableViewCell.xib */,
-				C1F7BE021DB1C95400CCAF96 /* YWFansViewController.h */,
-				C1F7BE031DB1C95400CCAF96 /* YWFansViewController.m */,
 				C135A0F41DDDB087002B78A5 /* AbountAndFansModel.h */,
 				C135A0F51DDDB087002B78A5 /* AbountAndFansModel.m */,
 			);

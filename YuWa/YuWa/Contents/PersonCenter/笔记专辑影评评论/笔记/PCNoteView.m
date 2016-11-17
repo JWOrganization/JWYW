@@ -114,6 +114,8 @@
             
             return newNodeCell;
         }
+    
+    
         RBHomeCollectionViewCell * homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:HOMECELL forIndexPath:indexPath];
         homeCell.model = self.allDatas[indexPath.row - 1];
         return homeCell;
