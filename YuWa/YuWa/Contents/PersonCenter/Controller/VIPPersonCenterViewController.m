@@ -750,6 +750,8 @@
                 model.user.nickname = dict[@"user_name"];
                 [self.maMallDatas addObject:model];
                 
+                
+                
             }
             
             
