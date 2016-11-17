@@ -55,10 +55,10 @@
             self.heighCell.model = model;
             model.cellHeight = self.heighCell.cellHeight;
         }
-        if (idx%2 == 1) {
-            rightRowHeight += model.cellHeight - 6.f;
+        if (rightRowHeight > leftRowHeight) {
+            leftRowHeight += model.cellHeight + 10.f;
         }else{
-            leftRowHeight += model.cellHeight - 6.f;
+            rightRowHeight += model.cellHeight + 10.f;
         }
     }];
     
