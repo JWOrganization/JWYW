@@ -14,7 +14,7 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.showImageView.layer.cornerRadius = self.imageView.height/2;
+    self.showImageView.layer.cornerRadius = 15.f;
     self.showImageView.layer.masksToBounds = YES;
 }
 

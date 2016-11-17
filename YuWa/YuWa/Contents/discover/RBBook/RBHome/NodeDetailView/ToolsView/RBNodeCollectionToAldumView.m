@@ -70,7 +70,6 @@
 }
 #pragma mark - Http
 - (void)aldumReload{
-    [self.dataArr removeAllObjects];
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_ALDUM withPragram:pragram success:^(id responsObj) {
@@ -79,6 +78,7 @@
         NSArray * dataArr = responsObj[@"data"];
         [UserSession instance].aldumCount = [NSString stringWithFormat:@"%zi",dataArr.count];
         if (dataArr.count>0) {
+            self.dataArr = [NSMutableArray arrayWithCapacity:0];
             for (int i = 0; i<dataArr.count; i++) {
                 [self.dataArr addObject:[RBNodeAddToAldumModel yy_modelWithDictionary:dataArr[i]]];
             }

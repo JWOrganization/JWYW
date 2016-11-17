@@ -291,7 +291,7 @@
     }
     
     self.recommendCell.dataArr = self.dataArr;
-    return self.recommendCell.cellHeight + 20.f;
+    return self.recommendCell.cellHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section ==0) {

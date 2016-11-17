@@ -56,7 +56,7 @@
 
 - (void)layoutSet{
     RBHomeListImagesModel * imageModel = self.model.images_list[0];
-    self.showImageViewHeigh.constant = CellWidth * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320);
+    self.showImageViewHeigh.constant = (([UIScreen mainScreen].bounds.size.width - 30.f)/2) * ([imageModel.height floatValue]>0?[imageModel.height floatValue]:320) / ([imageModel.width floatValue]>0?[imageModel.width floatValue]:320);
     self.nameLabelHeigh.constant = [self.nameLabel.text isEqualToString:@""]?0.f:[JWTools labelHeightWithLabel:self.nameLabel];
     
     CGFloat conHeight = [self.conLabel.text isEqualToString:@""]?0.f:[JWTools labelHeightWithLabel:self.conLabel];
@@ -65,7 +65,6 @@
     self.cellHeight = self.showImageViewHeigh.constant + self.nameLabelHeigh.constant + self.conLabelHeigh.constant + 62.f;
     [self setNeedsLayout];
 }
-
 
 - (void)setIsLike:(BOOL)isLike{
     _isLike = isLike;
