@@ -183,7 +183,7 @@
     annotationView.callViewBlock = ^(){
         MyLog(@"Select %@ AnnotationView",weakAnnotationView.model.type);
         YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-        vc.shop_id = weakAnnotationView.model.annotationID;//商店ID1111111
+        vc.shop_id = weakAnnotationView.model.annotationID;//商店ID11111111
         [self.navigationController pushViewController:vc animated:YES];
     };
     
