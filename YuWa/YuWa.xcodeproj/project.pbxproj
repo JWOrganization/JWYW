@@ -592,6 +592,7 @@
 		C135A0F11DDCAC86002B78A5 /* home_06.png in Resources */ = {isa = PBXBuildFile; fileRef = C135A0E91DDCAC86002B78A5 /* home_06.png */; };
 		C135A0F21DDCAC86002B78A5 /* home_07.png in Resources */ = {isa = PBXBuildFile; fileRef = C135A0EA1DDCAC86002B78A5 /* home_07.png */; };
 		C135A0F31DDCAC86002B78A5 /* home_08.png in Resources */ = {isa = PBXBuildFile; fileRef = C135A0EB1DDCAC86002B78A5 /* home_08.png */; };
+		C135A0F61DDDB087002B78A5 /* AbountAndFansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C135A0F51DDDB087002B78A5 /* AbountAndFansModel.m */; };
 		C1392DB41DBDB660002418EF /* NewMainCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */; };
 		C1392DB91DBDBC6D002418EF /* ico_make.png in Resources */ = {isa = PBXBuildFile; fileRef = C1392DB61DBDBC6D002418EF /* ico_make.png */; };
 		C1392DBA1DBDBC6D002418EF /* JSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DB81DBDBC6D002418EF /* JSDropDownMenu.m */; };
@@ -1848,6 +1849,8 @@
 		C135A0E91DDCAC86002B78A5 /* home_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_06.png; sourceTree = "<group>"; };
 		C135A0EA1DDCAC86002B78A5 /* home_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_07.png; sourceTree = "<group>"; };
 		C135A0EB1DDCAC86002B78A5 /* home_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_08.png; sourceTree = "<group>"; };
+		C135A0F41DDDB087002B78A5 /* AbountAndFansModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbountAndFansModel.h; sourceTree = "<group>"; };
+		C135A0F51DDDB087002B78A5 /* AbountAndFansModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbountAndFansModel.m; sourceTree = "<group>"; };
 		C1392DB01DB9D28F002418EF /* YuWa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YuWa.entitlements; sourceTree = "<group>"; };
 		C1392DB21DBDB65F002418EF /* NewMainCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMainCategoryViewController.h; sourceTree = "<group>"; };
 		C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMainCategoryViewController.m; sourceTree = "<group>"; };
@@ -5293,6 +5296,8 @@
 				C1F7BE011DB1C95400CCAF96 /* YWFansTableViewCell.xib */,
 				C1F7BE021DB1C95400CCAF96 /* YWFansViewController.h */,
 				C1F7BE031DB1C95400CCAF96 /* YWFansViewController.m */,
+				C135A0F41DDDB087002B78A5 /* AbountAndFansModel.h */,
+				C135A0F51DDDB087002B78A5 /* AbountAndFansModel.m */,
 			);
 			path = "粉丝";
 			sourceTree = "<group>";
@@ -6206,6 +6211,7 @@
 				B38B2E541D8FACD8004D5256 /* STCountDownConst.m in Sources */,
 				B33A269B1D9A68040092CB12 /* EaseUsersListViewController.m in Sources */,
 				B38B2F7C1D8FC8CD004D5256 /* JWSearchView.m in Sources */,
+				C135A0F61DDDB087002B78A5 /* AbountAndFansModel.m in Sources */,
 				B33A26731D9A68040092CB12 /* UIImage+EMMultiFormat.m in Sources */,
 				B38B2DF51D8FACD8004D5256 /* AFHTTPRequestOperationManager.m in Sources */,
 				C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */,

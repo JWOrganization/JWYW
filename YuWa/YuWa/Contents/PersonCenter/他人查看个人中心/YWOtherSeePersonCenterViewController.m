@@ -333,14 +333,16 @@
         case 0:{
             //关注
             YWFansViewController*vc=[[YWFansViewController alloc]init];
-            vc.titleStr=@"Ta的关注";
+//            vc.titleStr=@"Ta的关注";
+            vc.whichFriend=TheFirendsTaAbount;
             [self.navigationController pushViewController:vc animated:YES];
      
             break;}
         case 1:{
             //粉丝
             YWFansViewController*vc=[[YWFansViewController alloc]init];
-            vc.titleStr=@"Ta的粉丝";
+//            vc.titleStr=@"Ta的粉丝";
+            vc.whichFriend=TheFirendsTaFans;
             [self.navigationController pushViewController:vc animated:YES];
             break;}
         case 2:{
