@@ -449,7 +449,8 @@
 //        [self.navigationController pushViewController:vc animated:YES];
         
         YWFansViewController*vc=[[YWFansViewController alloc]init];
-        vc.titleStr=@"我的关注";
+//        vc.titleStr=@"我的关注";
+        vc.whichFriend=TheFirendsAbount;
         [self.navigationController pushViewController:vc animated:YES];
         
         
@@ -457,7 +458,8 @@
     }else if (number==1){
         //粉丝
         YWFansViewController*vc=[[YWFansViewController alloc]init];
-        vc.titleStr=@"我的粉丝";
+//        vc.titleStr=@"我的粉丝";
+        vc.whichFriend=TheFirendsFans;
         [self.navigationController pushViewController:vc animated:YES];
 
         
@@ -578,7 +580,7 @@
     }else{
         
         RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
-//        vc.model = self.dataArr[indexPath.row];
+        vc.model = self.maMallDatas[number];
         [self.navigationController pushViewController:vc animated:NO];
 
         

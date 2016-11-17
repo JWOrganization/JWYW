@@ -10,4 +10,5 @@
 
 @interface YWFansTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *touchButton;
 @end
