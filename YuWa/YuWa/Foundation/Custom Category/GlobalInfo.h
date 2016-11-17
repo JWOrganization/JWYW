@@ -85,8 +85,12 @@
 
 #define HTTP_GETMONEY              @"/api.php/User/getMyMoney/"   //得到钱
 #define HTTP_GETPAYDETAIL          @"/api.php/User/getMyAccount/"   //得到收入支出明细
+
 #define HTTP_MYORDER               @"/api.php/User/getMyOrder/"   //显示我的订单
 #define HTTP_MAKEORDER             @"/api.php/Index/addNoPayOrder/"  //生成未付款的订单
+#define HTTP_DELETEORDER           @"/api.php/Index/delOrder/"   //删除未付款的订单
+
+
 #define HTTP_SHOWCOLLECTION        @"/api.php/User/getMyCollection/"   //显示收藏
 #define HTTP_DELETECOLLECTION      @"/api.php/User/delCollection"     //删除收藏
 #define HTTP_ADDCOLLECTION         @"/api.php/User/addCollection"     //添加收藏

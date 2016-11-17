@@ -144,7 +144,38 @@
     return 10;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+       OrderModel*model=self.maAllDatasModel[indexPath.row];
+    if ([model.status isEqualToString:@"待付款"]) {
+        
+        return YES;
+    }
+    return NO;
+    
+}
 
+-(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewRowAction*delete=[UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        //先调接口  如果失败就刷新tableView
+        [self removeDatasWithModel:self.maAllDatasModel[indexPath.row]];
+        //先移除model
+        [self.maAllDatasModel removeObjectAtIndex:indexPath.row];
+        //在删除row
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+       
+        
+        
+//        [self removeDataWithModel:self.maMallDatas[indexPath.row]];
+        
+//        [self.maMallDatas removeObjectAtIndex:indexPath.row];
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+        
+    }];
+    
+    return @[delete];
+}
 
 #pragma mark  -- touchButton
 -(void)touchPayMoney:(UIButton*)sender{
@@ -208,6 +239,32 @@
     
 }
 
+//接口 删除订单
+-(void)removeDatasWithModel:(OrderModel*)model{
+    NSString*order_id=model.order_id;
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_DELETEORDER];
+    NSDictionary*params=@{@"order_id":order_id,@"user_id":@([UserSession instance].uid),@"token":[UserSession instance].token,@"device_id":[JWTools getUUID]};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            [JRToast showWithText:data[@"msg"]];
+        
+        
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+            [self.tableView.mj_header beginRefreshing];
+        }
+
+        
+        
+    }];
+    
+    
+}
 
 
 #pragma mark  --delegate
