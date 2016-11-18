@@ -656,6 +656,11 @@
 		C135A16D1DDE020F002B78A5 /* 波浪个人_0007.png in Resources */ = {isa = PBXBuildFile; fileRef = C135A1311DDE020F002B78A5 /* 波浪个人_0007.png */; };
 		C135A16E1DDE020F002B78A5 /* 波浪个人_0008.png in Resources */ = {isa = PBXBuildFile; fileRef = C135A1321DDE020F002B78A5 /* 波浪个人_0008.png */; };
 		C135A16F1DDE020F002B78A5 /* 波浪个人_0009.png in Resources */ = {isa = PBXBuildFile; fileRef = C135A1331DDE020F002B78A5 /* 波浪个人_0009.png */; };
+		C135A1731DDEB914002B78A5 /* PostCommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C135A1721DDEB914002B78A5 /* PostCommitViewController.m */; };
+		C135A1771DDEC49B002B78A5 /* PostCommitTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C135A1751DDEC49B002B78A5 /* PostCommitTextTableViewCell.m */; };
+		C135A1781DDEC49B002B78A5 /* PostCommitTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C135A1761DDEC49B002B78A5 /* PostCommitTextTableViewCell.xib */; };
+		C135A17B1DDEC6B1002B78A5 /* PostCommitImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C135A17A1DDEC6B1002B78A5 /* PostCommitImageTableViewCell.m */; };
+		C135A17D1DDEF3BC002B78A5 /* addImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C135A17C1DDEF3BC002B78A5 /* addImage.png */; };
 		C1392DB41DBDB660002418EF /* NewMainCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */; };
 		C1392DB91DBDBC6D002418EF /* ico_make.png in Resources */ = {isa = PBXBuildFile; fileRef = C1392DB61DBDBC6D002418EF /* ico_make.png */; };
 		C1392DBA1DBDBC6D002418EF /* JSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DB81DBDBC6D002418EF /* JSDropDownMenu.m */; };
@@ -1980,6 +1985,14 @@
 		C135A1311DDE020F002B78A5 /* 波浪个人_0007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "波浪个人_0007.png"; sourceTree = "<group>"; };
 		C135A1321DDE020F002B78A5 /* 波浪个人_0008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "波浪个人_0008.png"; sourceTree = "<group>"; };
 		C135A1331DDE020F002B78A5 /* 波浪个人_0009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "波浪个人_0009.png"; sourceTree = "<group>"; };
+		C135A1711DDEB914002B78A5 /* PostCommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCommitViewController.h; sourceTree = "<group>"; };
+		C135A1721DDEB914002B78A5 /* PostCommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCommitViewController.m; sourceTree = "<group>"; };
+		C135A1741DDEC49B002B78A5 /* PostCommitTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCommitTextTableViewCell.h; sourceTree = "<group>"; };
+		C135A1751DDEC49B002B78A5 /* PostCommitTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCommitTextTableViewCell.m; sourceTree = "<group>"; };
+		C135A1761DDEC49B002B78A5 /* PostCommitTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCommitTextTableViewCell.xib; sourceTree = "<group>"; };
+		C135A1791DDEC6B1002B78A5 /* PostCommitImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCommitImageTableViewCell.h; sourceTree = "<group>"; };
+		C135A17A1DDEC6B1002B78A5 /* PostCommitImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCommitImageTableViewCell.m; sourceTree = "<group>"; };
+		C135A17C1DDEF3BC002B78A5 /* addImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addImage.png; sourceTree = "<group>"; };
 		C1392DB01DB9D28F002418EF /* YuWa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YuWa.entitlements; sourceTree = "<group>"; };
 		C1392DB21DBDB65F002418EF /* NewMainCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMainCategoryViewController.h; sourceTree = "<group>"; };
 		C1392DB31DBDB660002418EF /* NewMainCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMainCategoryViewController.m; sourceTree = "<group>"; };
@@ -5049,6 +5062,20 @@
 			path = "新波浪";
 			sourceTree = "<group>";
 		};
+		C135A1701DDEB8EA002B78A5 /* 发评论 */ = {
+			isa = PBXGroup;
+			children = (
+				C135A1711DDEB914002B78A5 /* PostCommitViewController.h */,
+				C135A1721DDEB914002B78A5 /* PostCommitViewController.m */,
+				C135A1741DDEC49B002B78A5 /* PostCommitTextTableViewCell.h */,
+				C135A1751DDEC49B002B78A5 /* PostCommitTextTableViewCell.m */,
+				C135A1761DDEC49B002B78A5 /* PostCommitTextTableViewCell.xib */,
+				C135A1791DDEC6B1002B78A5 /* PostCommitImageTableViewCell.h */,
+				C135A17A1DDEC6B1002B78A5 /* PostCommitImageTableViewCell.m */,
+			);
+			path = "发评论";
+			sourceTree = "<group>";
+		};
 		C1392DB11DBDB644002418EF /* 新的18分类 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5577,6 +5604,7 @@
 		C1F7BE121DB1C95400CCAF96 /* 我的订单 */ = {
 			isa = PBXGroup;
 			children = (
+				C135A1701DDEB8EA002B78A5 /* 发评论 */,
 				C1F7BE131DB1C95400CCAF96 /* PCMyOrderViewController.h */,
 				C1F7BE141DB1C95400CCAF96 /* PCMyOrderViewController.m */,
 				C135A0B71DDB1CD5002B78A5 /* OrderModel.h */,
@@ -5679,6 +5707,7 @@
 			children = (
 				C135A0E31DDCAC86002B78A5 /* 个人中心icon */,
 				C1F7BEEF1DB1CA0700CCAF96 /* backImage.png */,
+				C135A17C1DDEF3BC002B78A5 /* addImage.png */,
 				C1F7BEF01DB1CA0700CCAF96 /* center_set@2x.png */,
 				C1F7BEF11DB1CA0700CCAF96 /* center_whiteLocate@2x.png */,
 				C1F7BEF21DB1CA0700CCAF96 /* dagou.png */,
@@ -6228,6 +6257,7 @@
 				C135A1621DDE020F002B78A5 /* 波浪个人_00050.png in Resources */,
 				B3192AD41D9257AA00FD6578 /* RBIMGToolsCollectionViewCell.xib in Resources */,
 				C135A16A1DDE020F002B78A5 /* 波浪个人_00058.png in Resources */,
+				C135A17D1DDEF3BC002B78A5 /* addImage.png in Resources */,
 				B3CD68AF1D94F9F300C26B1C /* RBPublicLocationViewController.xib in Resources */,
 				C11F14F01DC83B92005C58CF /* banner_normal@3x.png in Resources */,
 				B38B2F021D8FC82F004D5256 /* RBNodeDetailTableViewCell.xib in Resources */,
@@ -6263,6 +6293,7 @@
 				B38B2F0E1D8FC82F004D5256 /* RBNodeDetailRecommendHeader.xib in Resources */,
 				C135A15C1DDE020F002B78A5 /* 波浪个人_00045.png in Resources */,
 				B38B2DEB1D8FACD8004D5256 /* HUDLoadingShowView.xib in Resources */,
+				C135A1781DDEC49B002B78A5 /* PostCommitTextTableViewCell.xib in Resources */,
 				B31582451D9108200096C194 /* MDHotelChooseTypeTableVC.xib in Resources */,
 				B3FFF4801D93A3C700EDD2AB /* tag-center@3x.png in Resources */,
 				B32EFFAB1DB9C4F600A4FCFB /* JWLocalNotificationShowView.xib in Resources */,
@@ -6428,6 +6459,7 @@
 				B3192ADE1D927C3600FD6578 /* UIImage+Utility.m in Sources */,
 				B33A26871D9A68040092CB12 /* EaseConversationModel.m in Sources */,
 				B3FEBA071D9B6C6D003CDEF2 /* YWMessageAddressBookTableView.m in Sources */,
+				C135A17B1DDEC6B1002B78A5 /* PostCommitImageTableViewCell.m in Sources */,
 				B38B2E0B1D8FACD8004D5256 /* View+MASAdditions.m in Sources */,
 				B38B2DFB1D8FACD8004D5256 /* AFURLResponseSerialization.m in Sources */,
 				B33A26921D9A68040092CB12 /* EaseEmoji.m in Sources */,
@@ -6441,6 +6473,7 @@
 				B38B2E091D8FACD8004D5256 /* NSArray+MASAdditions.m in Sources */,
 				C10E93A41DD1815300728B3D /* PHCategoryModel.m in Sources */,
 				B33A269D1D9A68040092CB12 /* EaseUserCell.m in Sources */,
+				C135A1731DDEB914002B78A5 /* PostCommitViewController.m in Sources */,
 				B38B2F141D8FC82F004D5256 /* RBNodeUserLevelModel.m in Sources */,
 				C1F7BE4F1DB1C95400CCAF96 /* YWFansTableViewCell.m in Sources */,
 				B3CD68A71D94CF3200C26B1C /* RBPublicEditorScrollView.m in Sources */,
@@ -6683,6 +6716,7 @@
 				B33A26A21D9A68040092CB12 /* EaseBubbleView+File.m in Sources */,
 				B38B2E161D8FACD8004D5256 /* MJRefreshAutoGifFooter.m in Sources */,
 				B35778AF1D9962180058A998 /* YWStormAnnotationModel.m in Sources */,
+				C135A1771DDEC49B002B78A5 /* PostCommitTextTableViewCell.m in Sources */,
 				C1F7BE5A1DB1C95400CCAF96 /* PCPayRecordViewController.m in Sources */,
 				B3B8510C1DD9879A00E171C8 /* JHPieItemsView.m in Sources */,
 				C1F7BDBC1DB1C94500CCAF96 /* YWPayViewController.m in Sources */,
