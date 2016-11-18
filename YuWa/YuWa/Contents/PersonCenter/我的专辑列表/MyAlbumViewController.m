@@ -61,6 +61,8 @@
         UIBarButtonItem*rightItem=[[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(touchManger)];
         self.navigationItem.rightBarButtonItem=rightItem;
         [self requestData];
+    }else{
+        [self requestOtherData];
     }
     
     [self makeTopView];
@@ -262,6 +264,32 @@
 }
 
 - (void)requestData{
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"album_id":self.albumDetail};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RBAdd_AlbumDetail withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        NSDictionary * dic = responsObj[@"data"];
+        NSMutableDictionary * dataDic = [NSMutableDictionary dictionaryWithCapacity:0];
+        [dataDic setValue:dic[@"album"] forKey:@"album"];
+        NSArray * nodeArr = dataDic[@"note"];
+        NSMutableArray * nodeDataArr = [NSMutableArray arrayWithCapacity:0];
+        if (nodeArr.count>0) {
+            for (NSDictionary * nodeDic in nodeArr) {
+                [nodeDataArr addObject:[RBHomeModel dataDicSetWithDic:nodeDic]];
+            }
+        }
+        [dataDic setValue:nodeDataArr forKey:@"note"];
+        self.model = [YWAldumDetailModel yy_modelWithDictionary:dataDic];
+        self.allDatas = [NSMutableArray arrayWithArray:self.model.note];
+        [self reFreshData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+}
+
+- (void)requestOtherData{
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"album_id":self.albumDetail};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RBAdd_AlbumDetail withPragram:pragram success:^(id responsObj) {
