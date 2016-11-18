@@ -12,6 +12,8 @@
 		B301E7CA1DAC86BD0001336E /* YWMessageSearchFriendAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7C81DAC86BD0001336E /* YWMessageSearchFriendAddCell.m */; };
 		B301E7CB1DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */; };
 		B301E7CE1DAC8C010001336E /* YWMessageSearchFriendAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */; };
+		B30347EC1DDE964F00C18074 /* YWAldumDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B30347EB1DDE964F00C18074 /* YWAldumDetailModel.m */; };
+		B30347EF1DDE96B700C18074 /* YWAldumDetailIndoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B30347EE1DDE96B700C18074 /* YWAldumDetailIndoModel.m */; };
 		B30D93251DB7971A002390D0 /* HttpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B30D93241DB7971A002390D0 /* HttpObject.m */; };
 		B30F43FD1DC243AA00D7F13C /* JWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F43FC1DC243AA00D7F13C /* JWTabBar.m */; };
 		B31582341D90F8620096C194 /* YWRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31582321D90F8620096C194 /* YWRegisterViewController.m */; };
@@ -165,6 +167,8 @@
 		B34BCE131DAA811C001AB98D /* YWNodeAddAldumTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34BCE111DAA811C001AB98D /* YWNodeAddAldumTitleTableViewCell.xib */; };
 		B34BCE171DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34BCE151DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.m */; };
 		B34BCE181DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34BCE161DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.xib */; };
+		B351E84D1DDEA70000A15954 /* YWPersonCenterDelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B351E84C1DDEA70000A15954 /* YWPersonCenterDelView.m */; };
+		B351E84F1DDEA72B00A15954 /* YWPersonCenterDelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B351E84E1DDEA72B00A15954 /* YWPersonCenterDelView.xib */; };
 		B35778A11D98CD8E0058A998 /* JWLocationBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */; };
 		B35778A21D98CD8E0058A998 /* JWLocationBasicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */; };
 		B35778A41D99209E0058A998 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35778A31D99209E0058A998 /* MapKit.framework */; };
@@ -862,6 +866,10 @@
 		B301E7C91DAC86BD0001336E /* YWMessageSearchFriendAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWMessageSearchFriendAddCell.xib; sourceTree = "<group>"; };
 		B301E7CC1DAC8C010001336E /* YWMessageSearchFriendAddModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWMessageSearchFriendAddModel.h; sourceTree = "<group>"; };
 		B301E7CD1DAC8C010001336E /* YWMessageSearchFriendAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWMessageSearchFriendAddModel.m; sourceTree = "<group>"; };
+		B30347EA1DDE964F00C18074 /* YWAldumDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAldumDetailModel.h; sourceTree = "<group>"; };
+		B30347EB1DDE964F00C18074 /* YWAldumDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAldumDetailModel.m; sourceTree = "<group>"; };
+		B30347ED1DDE96B700C18074 /* YWAldumDetailIndoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAldumDetailIndoModel.h; sourceTree = "<group>"; };
+		B30347EE1DDE96B700C18074 /* YWAldumDetailIndoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAldumDetailIndoModel.m; sourceTree = "<group>"; };
 		B30D93231DB7971A002390D0 /* HttpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpObject.h; sourceTree = "<group>"; };
 		B30D93241DB7971A002390D0 /* HttpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpObject.m; sourceTree = "<group>"; };
 		B30F43FB1DC243AA00D7F13C /* JWTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWTabBar.h; sourceTree = "<group>"; };
@@ -1191,6 +1199,9 @@
 		B34BCE141DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWNodeAddAldumShowTableViewCell.h; sourceTree = "<group>"; };
 		B34BCE151DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWNodeAddAldumShowTableViewCell.m; sourceTree = "<group>"; };
 		B34BCE161DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWNodeAddAldumShowTableViewCell.xib; sourceTree = "<group>"; };
+		B351E84B1DDEA70000A15954 /* YWPersonCenterDelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPersonCenterDelView.h; sourceTree = "<group>"; };
+		B351E84C1DDEA70000A15954 /* YWPersonCenterDelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPersonCenterDelView.m; sourceTree = "<group>"; };
+		B351E84E1DDEA72B00A15954 /* YWPersonCenterDelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWPersonCenterDelView.xib; sourceTree = "<group>"; };
 		B357789E1D98CD8E0058A998 /* JWLocationBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWLocationBasicViewController.h; sourceTree = "<group>"; };
 		B357789F1D98CD8E0058A998 /* JWLocationBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWLocationBasicViewController.m; sourceTree = "<group>"; };
 		B35778A01D98CD8E0058A998 /* JWLocationBasicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JWLocationBasicViewController.xib; sourceTree = "<group>"; };
@@ -2330,6 +2341,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B30347E91DDE962900C18074 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B30347EA1DDE964F00C18074 /* YWAldumDetailModel.h */,
+				B30347EB1DDE964F00C18074 /* YWAldumDetailModel.m */,
+				B30347ED1DDE96B700C18074 /* YWAldumDetailIndoModel.h */,
+				B30347EE1DDE96B700C18074 /* YWAldumDetailIndoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B31582301D90F8620096C194 /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -3058,6 +3080,16 @@
 				B34BCE161DAA8165001AB98D /* YWNodeAddAldumShowTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B351E84A1DDEA6C900A15954 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B351E84B1DDEA70000A15954 /* YWPersonCenterDelView.h */,
+				B351E84C1DDEA70000A15954 /* YWPersonCenterDelView.m */,
+				B351E84E1DDEA72B00A15954 /* YWPersonCenterDelView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B35778B31D996AB80058A998 /* SubView */ = {
@@ -5086,6 +5118,7 @@
 		C18E7D5B1DB878BA003D0012 /* 我的专辑列表 */ = {
 			isa = PBXGroup;
 			children = (
+				B30347E91DDE962900C18074 /* Model */,
 				C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */,
 				C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */,
 			);
@@ -5334,6 +5367,7 @@
 		C1F7BDBF1DB1C95400CCAF96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B351E84A1DDEA6C900A15954 /* View */,
 				C1F7BDC01DB1C95400CCAF96 /* VIPPersonCenterViewController.h */,
 				C1F7BDC11DB1C95400CCAF96 /* VIPPersonCenterViewController.m */,
 			);
@@ -6130,6 +6164,7 @@
 				C13019D51DB20B2400E24C88 /* 休闲娱乐.png in Resources */,
 				B38B2F251D8FC82F004D5256 /* RBAlbumCollectionViewCell.xib in Resources */,
 				B38B2F1F1D8FC82F004D5256 /* RBHomeSearchViewController.xib in Resources */,
+				B351E84F1DDEA72B00A15954 /* YWPersonCenterDelView.xib in Resources */,
 				C1F7BF5D1DB1CA0700CCAF96 /* blueChoose.jpg in Resources */,
 				C1F7BE551DB1C95400CCAF96 /* PCCouponTableViewCell.xib in Resources */,
 				B3CD68B51D94FC5C00C26B1C /* RBPublicEditorCollectionViewCell.xib in Resources */,
@@ -6397,6 +6432,7 @@
 				B38B2DFB1D8FACD8004D5256 /* AFURLResponseSerialization.m in Sources */,
 				B33A26921D9A68040092CB12 /* EaseEmoji.m in Sources */,
 				B30136BE1DB86C1C00691F60 /* RBNodeTagModel.m in Sources */,
+				B30347EF1DDE96B700C18074 /* YWAldumDetailIndoModel.m in Sources */,
 				B38B2DF91D8FACD8004D5256 /* AFURLConnectionOperation.m in Sources */,
 				B3AE4DC61D918170000A389F /* JWImgPickerAlbumChooseTableView.m in Sources */,
 				C1F7BE361DB1C95400CCAF96 /* PersonCenterOneCell.m in Sources */,
@@ -6421,6 +6457,7 @@
 				B3FEBA031D9B64C1003CDEF2 /* YWMessageNotificationViewController.m in Sources */,
 				B38B2F331D8FC82F004D5256 /* UIBarButtonItem+SettingCustom.m in Sources */,
 				B38B2F261D8FC82F004D5256 /* RBNewAlbumCollectionViewCell.m in Sources */,
+				B351E84D1DDEA70000A15954 /* YWPersonCenterDelView.m in Sources */,
 				B38B2F161D8FC82F004D5256 /* RBNodeShowViewController.m in Sources */,
 				B38B2E531D8FACD8004D5256 /* STCountDownButton.m in Sources */,
 				B36AB95B1DB2345400FEAAAB /* YWStormSubSortCollectionView.m in Sources */,
@@ -6710,6 +6747,7 @@
 				B32E4AE41DB5B3BA00358076 /* YWStormSubSortCollectionViewCell.m in Sources */,
 				C1F7BD981DB1C94500CCAF96 /* VIPHomePageViewController.m in Sources */,
 				C1F7BE601DB1C95400CCAF96 /* PCPayViewController.m in Sources */,
+				B30347EC1DDE964F00C18074 /* YWAldumDetailModel.m in Sources */,
 				B31582441D9108200096C194 /* MDHotelChooseTypeTableVC.m in Sources */,
 				B33A26AC1D9A68040092CB12 /* EaseImageView.m in Sources */,
 				C1392DD71DC06108002418EF /* APAuthV2Info.m in Sources */,

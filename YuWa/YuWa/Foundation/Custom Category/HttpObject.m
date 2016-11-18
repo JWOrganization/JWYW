@@ -180,7 +180,13 @@
         case YuWaType_BAOBAO_LVUP://雨娃宝宝升级
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BAOBAO_LVUP];
             break;
-            
+#pragma mark - RBAdd
+        case YuWaType_RBAdd_AlbumDetail://专辑详情
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RBAdd_AlbumDetail];
+            break;
+        case YuWaType_RBAdd_DelNode://取消收藏单个笔记
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RBAdd_DelNode];
+            break;
             
             //URLStr建立
         default:

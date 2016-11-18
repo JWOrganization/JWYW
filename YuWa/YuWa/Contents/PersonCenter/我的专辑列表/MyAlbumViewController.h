@@ -2,12 +2,15 @@
 //  MyAlbumViewController.h
 //  YuWa
 //
-//  Created by 黄佳峰 on 16/10/20.
+//  Created by Tian Wei You on 16/10/20.
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JWBasicViewController.h"
 
-@interface MyAlbumViewController : UIViewController
-@property(nonatomic,strong)NSString*albumDetail;
+@interface MyAlbumViewController : JWBasicViewController
+@property(nonatomic,copy)NSString*albumDetail;
+
+@property(nonatomic,copy)NSString * otherUserID;
+
 @end

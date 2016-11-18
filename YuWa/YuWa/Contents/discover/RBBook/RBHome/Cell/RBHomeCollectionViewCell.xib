@@ -1,12 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -84,10 +80,38 @@
                             <constraint firstAttribute="width" constant="32" id="rrN-p9-BRi"/>
                         </constraints>
                     </imageView>
+                    <view hidden="YES" alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-kC-RAt">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="350"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0XL-BA-QcQ">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="350"/>
+                                <connections>
+                                    <action selector="choosedBtnAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qKZ-QG-m7c"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_def" translatesAutoresizingMaskIntoConstraints="NO" id="2zh-YN-i6K">
+                                <rect key="frame" x="132" y="4" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="Po0-tO-3Me"/>
+                                    <constraint firstAttribute="height" constant="24" id="uqt-io-kgN"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0XL-BA-QcQ" secondAttribute="trailing" id="5qk-Gu-k1r"/>
+                            <constraint firstItem="0XL-BA-QcQ" firstAttribute="top" secondItem="OUg-kC-RAt" secondAttribute="top" id="Gif-Bx-Bba"/>
+                            <constraint firstItem="0XL-BA-QcQ" firstAttribute="leading" secondItem="OUg-kC-RAt" secondAttribute="leading" id="ier-Tm-zu8"/>
+                            <constraint firstItem="2zh-YN-i6K" firstAttribute="top" secondItem="OUg-kC-RAt" secondAttribute="top" constant="4" id="o2w-2m-uD4"/>
+                            <constraint firstAttribute="trailing" secondItem="2zh-YN-i6K" secondAttribute="trailing" constant="4" id="tvh-VU-KoS"/>
+                            <constraint firstAttribute="bottom" secondItem="0XL-BA-QcQ" secondAttribute="bottom" id="zDO-XW-xiE"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" red="1" green="0.99994051456451416" blue="0.99998033046722412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="OUg-kC-RAt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2PO-6f-zxg"/>
                 <constraint firstItem="PTd-aM-zB4" firstAttribute="top" secondItem="3UO-0I-pMr" secondAttribute="top" id="7HY-EX-YDC"/>
                 <constraint firstItem="MwI-z9-Iwq" firstAttribute="leading" secondItem="S1d-0q-6Kg" secondAttribute="leading" id="7Z6-7d-nqy"/>
                 <constraint firstItem="e7D-PR-k8m" firstAttribute="bottom" secondItem="3UO-0I-pMr" secondAttribute="bottom" id="9Vw-k5-tvc"/>
@@ -101,8 +125,11 @@
                 <constraint firstItem="3UO-0I-pMr" firstAttribute="top" secondItem="MwI-z9-Iwq" secondAttribute="bottom" constant="8" id="Yla-H5-H2y"/>
                 <constraint firstItem="PTd-aM-zB4" firstAttribute="leading" secondItem="3UO-0I-pMr" secondAttribute="trailing" constant="5" id="aXx-cb-k3s"/>
                 <constraint firstItem="S1d-0q-6Kg" firstAttribute="top" secondItem="9Lj-Of-5ZW" secondAttribute="bottom" constant="10" id="bos-dP-fIC"/>
+                <constraint firstAttribute="trailing" secondItem="OUg-kC-RAt" secondAttribute="trailing" id="cw5-rG-7c0"/>
                 <constraint firstItem="PTd-aM-zB4" firstAttribute="bottom" secondItem="3UO-0I-pMr" secondAttribute="bottom" id="dg7-F2-h4d"/>
+                <constraint firstAttribute="bottom" secondItem="OUg-kC-RAt" secondAttribute="bottom" id="fgp-jl-q3d"/>
                 <constraint firstItem="xzQ-kz-mKn" firstAttribute="leading" secondItem="PTd-aM-zB4" secondAttribute="trailing" constant="5" id="fl3-Wh-MnO"/>
+                <constraint firstItem="OUg-kC-RAt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="gDu-bY-PlT"/>
                 <constraint firstAttribute="trailing" secondItem="S1d-0q-6Kg" secondAttribute="trailing" constant="10" id="he4-nF-WOC"/>
                 <constraint firstItem="9Lj-Of-5ZW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kmq-CS-JwN"/>
                 <constraint firstItem="MwI-z9-Iwq" firstAttribute="top" secondItem="S1d-0q-6Kg" secondAttribute="bottom" constant="8" id="mHh-x2-GIU"/>
@@ -123,6 +150,8 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="choosedImage" destination="2zh-YN-i6K" id="Vjw-k8-uBl"/>
+                <outlet property="choosedView" destination="OUg-kC-RAt" id="Xyi-eM-1fj"/>
                 <outlet property="conLabel" destination="MwI-z9-Iwq" id="pkM-oq-L1V"/>
                 <outlet property="conLabelHeigh" destination="BZr-DR-Lei" id="E5d-mW-yhU"/>
                 <outlet property="iconImageView" destination="3UO-0I-pMr" id="DoQ-FV-c85"/>
@@ -139,6 +168,7 @@
     </objects>
     <resources>
         <image name="icon-dislike" width="25" height="25"/>
+        <image name="photo_def" width="27" height="27"/>
         <image name="placeholder" width="250" height="250"/>
     </resources>
 </document>

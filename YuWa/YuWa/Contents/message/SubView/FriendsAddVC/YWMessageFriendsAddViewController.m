@@ -113,7 +113,7 @@
     if ([self isSearch]) {
         YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
         YWMessageSearchFriendAddModel * model = self.searchDataArr[indexPath.row];
-//        vc.idd = model.user_id;//2333333333进入他人主页
+        vc.uid = model.user_id;
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
@@ -141,7 +141,7 @@
     if (self.searchDataArr.count > 0) {
         YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
         YWMessageSearchFriendAddModel * model = self.searchDataArr[0];
-        //vc.idd = model.user_id;//2333333333进入他人主页
+        vc.uid = model.user_id;
         [self.navigationController pushViewController:vc animated:YES];
         return YES;
     }

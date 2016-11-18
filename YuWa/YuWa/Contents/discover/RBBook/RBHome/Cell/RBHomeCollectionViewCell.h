@@ -10,6 +10,7 @@
 #import "RBHomeModel.h"
 
 @interface RBHomeCollectionViewCell : UICollectionViewCell
+@property (nonatomic,copy)void (^choosedBlock)(NSString * nodeID,BOOL isChoosed);
 
 @property (nonatomic,strong)RBHomeModel * model;
 
@@ -31,6 +32,13 @@
 @property (nonatomic,assign)BOOL isLike;
 @property (nonatomic,assign)NSInteger likeCount;
 @property (nonatomic,assign)CGFloat cellHeight;
+
+@property (nonatomic,assign)BOOL isDel;
+@property (nonatomic,assign)BOOL isChoosed;
+@property (weak, nonatomic) IBOutlet UIView *choosedView;
+@property (weak, nonatomic) IBOutlet UIImageView *choosedImage;
+
+
 
 
 @end

@@ -150,7 +150,7 @@
     if ([model.nickname isEqualToString:[UserSession instance].account])return;
     MyLog(@"用户点击头像");
     YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
-//    vc.idd = self.friendID;//2333333333他人用户ID
+    vc.uid = self.friendID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
