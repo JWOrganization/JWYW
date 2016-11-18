@@ -391,6 +391,7 @@
         [self footerRereshing];
     }];
 }
+
 - (void)footerRereshing{
     self.pages++;
     self.failedCount = 0;
