@@ -10,12 +10,14 @@
 
 @implementation YWPersonCenterDelView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (IBAction)delAldumBtnAction:(id)sender {
+    self.delAldumClock();
 }
-*/
+
+- (IBAction)delNodeBtnAction:(id)sender {
+    self.delNodeClock();
+}
+
+
 
 @end

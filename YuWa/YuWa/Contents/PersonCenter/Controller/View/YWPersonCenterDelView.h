@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface YWPersonCenterDelView : UIView
+@property (nonatomic,copy)void (^delNodeClock)();
+@property (nonatomic,copy)void (^delAldumClock)();
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
 
 @end

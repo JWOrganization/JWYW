@@ -62,13 +62,13 @@
     if ([searchID isEqualToString:@""])return;
     
     YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-        vc.shop_id = searchID;//商店ID1111111111
+        vc.shop_id = searchID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)searchWithID:(NSString *)searchID{
     MyLog(@"%@",searchID);
     YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-        vc.shop_id = searchID;//商店ID1111111111
+        vc.shop_id = searchID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
