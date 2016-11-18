@@ -88,7 +88,7 @@
 //    if ([self.placeTextField.text isEqualToString:@""]&&[self.priceTextField.text isEqualToString:@""]&&[self.nameTextField.text isEqualToString:@""]){
 //        [self showHUDWithStr:@"请输入内容" withSuccess:NO];
 //        return NO;
-//    }//111111
+//    }
     return YES;
 }
 

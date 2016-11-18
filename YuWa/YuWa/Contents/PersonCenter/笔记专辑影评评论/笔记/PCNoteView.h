@@ -10,6 +10,10 @@
 
 @interface PCNoteView : UIView
 
+@property (nonatomic,assign)BOOL isOther;
+
+-(instancetype)initWithFrame:(CGRect)frame andArray:(NSMutableArray*)allDatas withIsOther:(BOOL)isOther;
+
 -(instancetype)initWithFrame:(CGRect)frame andArray:(NSMutableArray*)allDatas;
 
 @property(nonatomic,strong)void(^touchCellBlock)(NSInteger number);

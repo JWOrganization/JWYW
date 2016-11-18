@@ -34,7 +34,7 @@
 @property (nonatomic,assign)NSInteger isDelIng;
 @property (nonatomic,strong)NSMutableArray * delArr;
 @property (nonatomic,strong)YWAldumDetailModel * model;
-
+@property (nonatomic,strong)YWPersonCenterDelView * delView;
 
 @end
 
@@ -43,30 +43,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"专辑";
-    [self dataSet];
-    
-    if (!self.otherUserID) {
-        UIBarButtonItem*rightItem=[[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(touchManger)];
-        self.navigationItem.rightBarButtonItem=rightItem;
-    }
     
     self.waterFlowLayout=[[JWCollectionViewFlowLayout alloc]init];
     self.waterFlowLayout.delegate=self;
     
-    self.collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:self.waterFlowLayout];
+    self.collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0.f, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:self.waterFlowLayout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
     self.collectionView.backgroundColor=RGBCOLOR(239, 239, 244, 1);
     [self.view addSubview:self.collectionView];
+    [self dataSet];
+    
     [self.collectionView registerNib:[UINib nibWithNibName:NEWNODECELL bundle:nil] forCellWithReuseIdentifier:NEWNODECELL];
     self.heighCell = [[[NSBundle mainBundle] loadNibNamed:NEWNODECELL owner:nil options:nil] firstObject];
     
+    if (!self.otherUserID) {
+        UIBarButtonItem*rightItem=[[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(touchManger)];
+        self.navigationItem.rightBarButtonItem=rightItem;
+        [self requestData];
+    }else{
+        [self requestOtherData];
+    }
+    
     [self makeTopView];
-    [self requestData];
+    
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if (self.delView.hidden == YES) {
+        self.delView.frame = CGRectMake(0.f, kScreen_Height, kScreen_Width, 30.f);
+    }
 }
 
 - (void)dataSet{
+    self.allDatas = [NSMutableArray arrayWithCapacity:0];
     self.delArr = [NSMutableArray arrayWithCapacity:0];
+    if (!self.otherUserID) {
+        WEAKSELF;
+        self.delView = [[[NSBundle mainBundle]loadNibNamed:@"YWPersonCenterDelView" owner:nil options:nil]firstObject];
+        self.delView.delNodeClock = ^(){
+            [weakSelf touchFinish];
+        };
+        self.delView.delAldumClock = ^(){
+            [weakSelf requestDelAlbum];
+        };
+        self.delView.hidden = YES;
+        [self.view addSubview:self.delView];
+    }
 }
 
 -(void)makeTopView{
@@ -96,7 +120,7 @@
     
     
     subLabel=[[UILabel alloc]initWithFrame:CGRectZero];
-    subLabel.text=@"笔记*3 粉丝*0";
+    subLabel.text=@"笔记·3 粉丝·0";
     subLabel.textColor=CsubtitleColor;
     subLabel.font=[UIFont systemFontOfSize:14];
     [topView addSubview:subLabel];
@@ -104,10 +128,8 @@
         make.left.mas_equalTo(titleLabel.mas_left);
         make.top.mas_equalTo(titleLabel.mas_bottom).offset(5);
     }];
-
-
+    
     imageView=[[UIImageView alloc]initWithFrame:CGRectZero];
-    imageView.image=[UIImage imageNamed:@"placehoder_loading"];
     imageView.size=CGSizeMake(25, 25);
     imageView.layer.cornerRadius=25.f/2;
     imageView.layer.masksToBounds=YES;
@@ -118,7 +140,7 @@
         make.size.mas_equalTo(CGSizeMake(25, 25));
         
     }];
-    
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[UserSession instance].logo] placeholderImage:[UIImage imageNamed:@"placehoder_loading"] completed:nil];
     
     nameLabel=[[UILabel alloc]initWithFrame:CGRectZero];
     nameLabel.text= [UserSession instance].nickName;
@@ -180,27 +202,11 @@
             }else{
                 [self.delArr removeObject:@"111"];//233333要换nodeID
             }
+            self.delView.nameLabel.text = [NSString stringWithFormat:@"已选了%zi个笔记",self.delArr.count];
         };
     }
     
     return homeCell;
-}
-
-
-
-
--(NSMutableArray *)allDatas{
-    if (!_allDatas) {
-        _allDatas=[NSMutableArray array];
-        NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的笔记个人"];
-        
-        NSArray * dataArr = dataDic[@"data"][@"notes"];
-        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-            [_allDatas addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-        }];
-
-    }
-    return _allDatas;
 }
 
 #pragma mark  -- touch
@@ -208,13 +214,20 @@
     UIBarButtonItem*rightItem=[[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(touchFinish)];
     self.navigationItem.rightBarButtonItem=rightItem;
     self.isDelIng = YES;
+    self.delView.hidden = NO;
+    self.delView.alpha = 0.3;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.delView.alpha = 1.f;
+        self.delView.frame = CGRectMake(0.f, kScreen_Height - 30.f, kScreen_Width, 30.f);
+    } completion:nil];
     [self.collectionView reloadData];
 }
 - (void)touchFinish{
-    UIBarButtonItem*rightItem=[[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(touchManger)];
-    self.navigationItem.rightBarButtonItem=rightItem;
+    UIBarButtonItem * rightItem=[[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(touchManger)];
+    self.navigationItem.rightBarButtonItem = rightItem;
     self.isDelIng = NO;
-    [self.collectionView reloadData];
+    self.delView.hidden = YES;
+    self.delView.frame = CGRectMake(0.f, kScreen_Height, kScreen_Width, 30.f);
     [self requestDelNode];
 }
 
@@ -222,12 +235,15 @@
 - (void)reFreshData{
     titleLabel.text = self.model.album.title;
     signLabel.text = self.model.album.info;
-    subLabel.text = [NSString stringWithFormat:@"笔记*%@ 粉丝*%@",self.model.album.total,self.model.album.fans];
+    subLabel.text = [NSString stringWithFormat:@"笔记·%@ 粉丝·%@",self.model.album.total,self.model.album.fans];
+    if (!self.otherUserID) {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:@"otherUserIcon23333333"] placeholderImage:[UIImage imageNamed:@"placehoder_loading"] completed:nil];
+    }
     [self.collectionView reloadData];
 }
 
 - (void)reFreshCount{
-    subLabel.text = [NSString stringWithFormat:@"笔记*%@ 粉丝*%@",self.model.album.total,self.model.album.fans];
+    subLabel.text = [NSString stringWithFormat:@"笔记·%@ 粉丝·%@",self.model.album.total,self.model.album.fans];
 }
 
 #pragma mark  -- delegate
@@ -237,7 +253,14 @@
 
 #pragma mark - Http
 - (void)requestDelNode{
-    
+    if (self.delArr.count <= 0){
+        [self.collectionView reloadData];
+        return;
+    }
+    [self.collectionView setUserInteractionEnabled:NO];
+    for (int i = 0; i < self.delArr.count; i++) {
+        [self requestDelNodeWithID:self.delArr[i]];
+    }
 }
 
 - (void)requestData{
@@ -258,7 +281,33 @@
         }
         [dataDic setValue:nodeDataArr forKey:@"note"];
         self.model = [YWAldumDetailModel yy_modelWithDictionary:dataDic];
-//        self.allDatas = [NSMutableArray arrayWithArray:self.model.note];//233333
+        self.allDatas = [NSMutableArray arrayWithArray:self.model.note];
+        [self reFreshData];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
+}
+
+- (void)requestOtherData{//233333
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"album_id":self.albumDetail};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RBAdd_AlbumDetail withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        NSDictionary * dic = responsObj[@"data"];
+        NSMutableDictionary * dataDic = [NSMutableDictionary dictionaryWithCapacity:0];
+        [dataDic setValue:dic[@"album"] forKey:@"album"];
+        NSArray * nodeArr = dataDic[@"note"];
+        NSMutableArray * nodeDataArr = [NSMutableArray arrayWithCapacity:0];
+        if (nodeArr.count>0) {
+            for (NSDictionary * nodeDic in nodeArr) {
+                [nodeDataArr addObject:[RBHomeModel dataDicSetWithDic:nodeDic]];
+            }
+        }
+        [dataDic setValue:nodeDataArr forKey:@"note"];
+        self.model = [YWAldumDetailModel yy_modelWithDictionary:dataDic];
+        self.allDatas = [NSMutableArray arrayWithArray:self.model.note];
         [self reFreshData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
@@ -273,10 +322,24 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         
+        
+        [self.delArr removeObject:nodeid];
+        self.model.album.total = [NSString stringWithFormat:@"%zi",([self.model.album.total integerValue] - 1)];
+        [self reFreshCount];
+        if (self.delArr.count<=0) {
+            [self.collectionView reloadData];
+        }
+        [self.collectionView setUserInteractionEnabled:YES];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
+        [self.collectionView setUserInteractionEnabled:YES];
+        [self.collectionView reloadData];
     }];
+}
+
+- (void)requestDelAlbum{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

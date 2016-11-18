@@ -8,13 +8,13 @@
 
 #import "YWOtherSeePersonCenterViewController.h"
 #import "PersonCenterZeroCell.h"    //个性留言
-
+#import "MyAlbumViewController.h"
 #import "defineButton.h"      //关注那一块
 #import "YJSegmentedControl.h"   //笔记 专辑  评论 影评
 
 
 #import "YWFansViewController.h"   //粉丝
-
+#import "RBNodeShowViewController.h"
 
 #import "PCBottomTableViewCell.h"   //底部4种可能的cell
 #import "JWTools.h"
@@ -32,14 +32,15 @@
 
 #define HEADERVIEWHEIGHT   195     //头视图的高度
 
-@interface YWOtherSeePersonCenterViewController ()<UITableViewDelegate,UITableViewDataSource,YJSegmentedControlDelegate>
+@interface YWOtherSeePersonCenterViewController ()<PCBottomTableViewCellDelegate,UITableViewDelegate,UITableViewDataSource,YJSegmentedControlDelegate>
 @property(nonatomic,strong)UIView*belowImageViewView;   //图片下面的视图
 @property(nonatomic,strong)UIView*headerView;   //头视图
 @property(nonatomic,strong)UIButton*FriendButton;        //好友按钮
 @property(nonatomic,strong)UIButton*followButton;        //关注按钮
 @property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;   //cell计算高度
 @property(nonatomic,strong)UITableView*tableView;
-
+@property(nonatomic,strong)NSMutableArray * nodeArr;
+@property(nonatomic,strong)NSMutableArray * aldumArr;
 
 @property(nonatomic,assign)showViewCategory showWhichView;    //点击的是那个view
 
@@ -123,22 +124,20 @@
     }else if (indexPath.section==1&&indexPath.row==0){
         //笔记的内容
         NSMutableArray*array=[self getBottomDatas];;
-        
-        
-        PCBottomTableViewCell*cell=[[PCBottomTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil andDatas:array andWhichCategory:self.showWhichView];
+        self.nodeArr = array;
+        PCBottomTableViewCell*cell;
+        if (self.showWhichView<=1) {
+            cell=[[PCBottomTableViewCell alloc]initWithOtherStyle:UITableViewCellStyleValue1 reuseIdentifier:nil andDatas:array andWhichCategory:self.showWhichView];
+        }else{
+            cell=[[PCBottomTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil andDatas:array andWhichCategory:self.showWhichView];
+        }
+        cell.delegate = self;
         cell.selectionStyle=NO;
         return cell;
 
         
         
     }
-        
-        
-    
-    
-    
-  
-    
     return cell;
     
 }
@@ -156,17 +155,18 @@
         //        return 1000;
         if (self.showWhichView==showViewCategoryNotes) {
             NSMutableArray*alldatas=[self getBottomDatas];
+            self.nodeArr = alldatas;
             __block CGFloat rightRowHeight = 0.f;
-            __block CGFloat leftRowHeight = ACTUAL_HEIGHT(170);
+            __block CGFloat leftRowHeight = 0.f;
             [alldatas enumerateObjectsUsingBlock:^(RBHomeModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (model.cellHeight < 10.f){
                     self.heighCell.model = model;
                     model.cellHeight = self.heighCell.cellHeight;
                 }
-                if (idx%2 == 1) {
-                    rightRowHeight += model.cellHeight - 6.f;
+                if (rightRowHeight < leftRowHeight) {
+                    rightRowHeight += model.cellHeight + 10.f;
                 }else{
-                    leftRowHeight += model.cellHeight - 6.f;
+                    leftRowHeight += model.cellHeight + 10.f;
                 }
             }];
             
@@ -174,8 +174,9 @@
             
         }else if (self.showWhichView==showViewCategoryAlbum){
             NSMutableArray*alldatas=[self getBottomDatas];
+            self.aldumArr = alldatas;
             CGFloat height = 180.f - 55.25f + (kScreen_Width - 20.f - 75.f)/4;
-            return (height+10)*(alldatas.count+1);
+            return (height+10)*alldatas.count;
             
             
         }else if (self.showWhichView==showViewCategoryCommit){
@@ -318,6 +319,21 @@
 }
 
 #pragma mark  --delegate
+-(void)DelegateForNote:(NSInteger)number{
+    RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
+    vc.model = self.nodeArr[number];
+    [self.navigationController pushViewController:vc animated:NO];
+    
+}
+
+
+-(void)DelegateForAlbum:(NSInteger)number andMax:(NSInteger)maxNumber{
+    MyAlbumViewController*vc=[[MyAlbumViewController alloc]init];
+    vc.otherUserID = self.uid;
+    vc.albumDetail=[NSString stringWithFormat:@"%lu",number];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)segumentSelectionChange:(NSInteger)selection{
     MyLog(@"%ld",(long)selection);
     self.showWhichView=selection;

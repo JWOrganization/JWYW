@@ -12,6 +12,7 @@
 #import "YWLoginViewController.h"
 #import "RBNodeCollectionToAldumView.h"
 #import "RBNodeShowModel.h"
+#import "RBNodeAddToAldumModel.h"
 
 #import "RBNodeShowCommentDetailVC.h"
 #import "RBNodeDetailBottomView.h"
@@ -457,7 +458,10 @@
 }
 - (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
     MyLog(@"添加到专辑%@",aldumIdx);
-    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"album_id":aldumIdx,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};//album_id没有将创建默认
+    RBNodeAddToAldumModel * aldumModel = self.addToAldumView.dataArr[[aldumIdx integerValue]];
+    NSString * album_id = aldumModel.aldumID;
+    
+    NSDictionary * pragram = @{@"note_id":self.model.homeID,@"album_id":album_id,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};//album_id没有将创建默认
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_COLLECTION_TO_ALDUM withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);

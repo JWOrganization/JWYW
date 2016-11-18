@@ -183,7 +183,7 @@
     annotationView.callViewBlock = ^(){
         MyLog(@"Select %@ AnnotationView",weakAnnotationView.model.type);
         YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-        vc.shop_id = weakAnnotationView.model.annotationID;//商店ID11111111
+        vc.shop_id = weakAnnotationView.model.annotationID;
         [self.navigationController pushViewController:vc animated:YES];
     };
     
@@ -196,7 +196,7 @@
 //    YWStormPinAnnotationView * annotationView = (YWStormPinAnnotationView *)view;
 //    MyLog(@"Select %@ AnnotationView",annotationView.model.type);
 //    YWShoppingDetailViewController * vc = [[YWShoppingDetailViewController alloc]init];
-//    vc.shop_id = annotationView.model.annotationID;//商店ID1111111
+//    vc.shop_id = annotationView.model.annotationID;
 //    [self.navigationController pushViewController:vc animated:YES];
 //}
 

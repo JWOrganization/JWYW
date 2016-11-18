@@ -33,6 +33,15 @@
     [self requestDataWithPages:0];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if ([[[UIApplication sharedApplication].delegate.window.subviews lastObject] isKindOfClass:[MBProgressHUD class]])[[[UIApplication sharedApplication].delegate.window.subviews lastObject] removeFromSuperview];
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 - (void)dataSet{
     self.dataArr = [NSMutableArray arrayWithCapacity:0];
     self.pagens = @"20";
@@ -86,7 +95,7 @@
         userCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"userCell"];
     }
     userCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    userCell.imageView.layer.cornerRadius = userCell.imageView.height/2;
+    userCell.imageView.layer.cornerRadius = 22.f;
     userCell.imageView.layer.masksToBounds = YES;
     userCell.detailTextLabel.textColor = CsubtitleColor;
     if (![userCell viewWithTag:1001] && indexPath.row!=0) {
@@ -121,7 +130,7 @@
 //    [self.tableView.mj_footer endRefreshing];
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
-    [[HttpObject manager]postNoHudWithType:YuWaType_RB_ATTENTION withPragram:pragram success:^(id responsObj) {
+    [[HttpObject manager]postDataWithType:YuWaType_RB_ATTENTION withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         NSArray * dataArr = responsObj[@"data"];

@@ -70,6 +70,9 @@
         case YuWaType_RB_COMMENT://评论发布
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COMMENT];
             break;
+        case YuWaType_RB_ATTENTION://显示关注
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION];
+            break;
         case YuWaType_RB_SEARCH_RESULT://搜索结果
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_RESULT];
             break;

@@ -96,5 +96,83 @@
     
 }
 
+-(instancetype)initWithOtherStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andDatas:(NSMutableArray*)allDatas andWhichCategory:(showViewCategory)number{
+    self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        switch (number) {
+            case showViewCategoryNotes:{
+                
+                PCNoteView*view=[[PCNoteView alloc]initWithFrame:self.frame andArray:allDatas withIsOther:YES];
+                [self addSubview:view];
+                
+                [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(self);
+                    
+                    
+                }];
+                
+                //代理回控制器 来控制跳转
+                view.touchCellBlock=^(NSInteger number){
+                    if ([self.delegate respondsToSelector:@selector(DelegateForNote:)]) {
+                        [self.delegate DelegateForNote:number];
+                    }
+                    
+                };
+                
+                break;}
+            case showViewCategoryAlbum:{
+                
+                AlbumView*view=[[AlbumView alloc]initWithFrame:self.frame andArray:allDatas withIsOther:YES];
+                [self addSubview:view];
+                [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(self);
+                }];
+                view.touchCellBlock=^(NSInteger number,NSInteger maxNumber){
+                    if ([self.delegate respondsToSelector:@selector(DelegateForAlbum:andMax:)]) {
+                        [self.delegate DelegateForAlbum:number andMax:maxNumber];
+                    }
+                    
+                    
+                };
+                
+                
+                break;}
+            case showViewCategoryCommit:{
+                self.backgroundColor=[UIColor blueColor];
+                CommitView*view=[[CommitView alloc]initWithFrame:self.frame andArray:allDatas];
+                [self addSubview:view];
+                [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(self);
+                }];
+                
+                break;}
+                //            case showViewCategoryFilm:{
+                ////                self.backgroundColor=[UIColor greenColor];
+                //                FilmView*view=[[FilmView alloc]initWithFrame:self.frame andArray:allDatas];
+                //                [self addSubview:view];
+                //                [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                ////                    make.edges.mas_equalTo(self);
+                //                    make.top.mas_equalTo(self.mas_top);
+                //                    make.left.mas_equalTo(self.mas_left);
+                //                    make.right.mas_equalTo(self.mas_right);
+                //                    make.bottom.mas_equalTo(self.mas_bottom);
+                //                }];
+                //
+                //                
+                //                break;}
+                
+            default:
+                break;
+        }
+        
+        
+        
+        
+    }
+    
+    return self;
+    
+}
+
 
 @end

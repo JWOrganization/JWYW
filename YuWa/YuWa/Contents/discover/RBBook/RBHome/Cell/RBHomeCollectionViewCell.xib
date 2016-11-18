@@ -80,7 +80,7 @@
                             <constraint firstAttribute="width" constant="32" id="rrN-p9-BRi"/>
                         </constraints>
                     </imageView>
-                    <view hidden="YES" alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-kC-RAt">
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-kC-RAt">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="350"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0XL-BA-QcQ">
@@ -97,7 +97,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="0XL-BA-QcQ" secondAttribute="trailing" id="5qk-Gu-k1r"/>
                             <constraint firstItem="0XL-BA-QcQ" firstAttribute="top" secondItem="OUg-kC-RAt" secondAttribute="top" id="Gif-Bx-Bba"/>
