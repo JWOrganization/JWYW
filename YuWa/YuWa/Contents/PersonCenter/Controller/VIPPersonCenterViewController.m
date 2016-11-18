@@ -589,7 +589,7 @@
     }else{
         
         RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
-        vc.model = self.maMallDatas[number - 1];
+        vc.model = self.maMallDatas[number];
         [self.navigationController pushViewController:vc animated:NO];
 
         

@@ -289,7 +289,7 @@
     }];
 }
 
-- (void)requestOtherData{
+- (void)requestOtherData{//233333
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"album_id":self.albumDetail};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RBAdd_AlbumDetail withPragram:pragram success:^(id responsObj) {
