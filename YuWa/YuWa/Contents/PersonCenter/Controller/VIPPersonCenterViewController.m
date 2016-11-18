@@ -328,24 +328,33 @@
 }
 
 -(NSArray*)animationImages{
-    NSFileManager*fileM=[NSFileManager defaultManager];
-    NSString*path=[[NSBundle mainBundle]pathForResource:@"波浪" ofType:@"bundle"];
-    NSArray*array=[fileM contentsOfDirectoryAtPath:path error:nil];
+//    NSFileManager*fileM=[NSFileManager defaultManager];
+//    NSString*path=[[NSBundle mainBundle]pathForResource:@"波浪" ofType:@"bundle"];
+//    NSArray*array=[fileM contentsOfDirectoryAtPath:path error:nil];
+//    
+//    NSMutableArray*imageArrays=[NSMutableArray array];
+//    
+//    for (NSString*imageStr in array) {
+//        NSLog(@"%@",[@"波浪.bundle" stringByAppendingPathComponent:imageStr]);
+//        UIImage*image=[UIImage imageNamed:[@"波浪.bundle" stringByAppendingPathComponent:imageStr]];
+//        
+//        [imageArrays addObject:image];
+//        
+//    }
+//    
+//    
+//    return imageArrays;
+    
     
     NSMutableArray*imageArrays=[NSMutableArray array];
-    
-    for (NSString*imageStr in array) {
-        UIImage*image=[UIImage imageNamed:[@"波浪.bundle" stringByAppendingPathComponent:imageStr]];
-//        NSBundle*bundle=[NSBundle mainBundle];
-//        NSString*path=[bundle pathForResource:imageStr ofType:@"png"];
-//        
-//        UIImage*image=[UIImage imageWithContentsOfFile:path];
+    for (int i=0; i<60; i++) {
+        NSString*imageName=[NSString stringWithFormat:@"波浪个人_000%d",i];
+        NSBundle*bundle=[NSBundle mainBundle];
+        NSString*path=[bundle pathForResource:imageName ofType:@"png"];
         
+        UIImage*image=[UIImage imageWithContentsOfFile:path];
         [imageArrays addObject:image];
-        
     }
-    
-    
     return imageArrays;
 }
 
