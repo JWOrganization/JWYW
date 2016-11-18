@@ -63,6 +63,14 @@
 #pragma mark - BaoBao
 #define HTTP_BAOBAO_LVUP @"/api.php/User/updateMyLevel/" //雨娃宝宝升级
 
+#pragma mark - RBAdd
+#define HTTP_RBAdd_AlbumDetail @"/api.php/Note/getAlbumDetail/" //专辑详情
+//#define HTTP_RBAdd_DelAlbum @"/api.php/Note/delMyNoteAlbum/" //删除笔记
+#define HTTP_RBAdd_DelNode @"/api.php/Note/delMyNoteAlbum/"//取消收藏单个笔记
+
+
+
+
 
 #pragma mark  -- 首页
 #define HTTP_HOME_PAGE    @"/api.php/Index/index/"    //首页获取数据的接口

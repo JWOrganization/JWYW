@@ -23,8 +23,16 @@
     self.iconImageView.layer.masksToBounds = YES;
 }
 
+- (void)setIsDel:(BOOL)isDel{
+    _isDel = isDel;
+    self.choosedView.hidden = !isDel;
+}
 
-
+- (IBAction)choosedBtnAction:(id)sender {
+    self.isChoosed = !self.isChoosed;
+    self.choosedImage.image = [UIImage imageNamed:self.isChoosed?@"photo_sel":@"photo_def"];
+    self.choosedBlock(self.model.homeID,self.isChoosed);
+}
 - (void)setModel:(RBHomeModel *)model{
     if (!model)return;
     _model = model;

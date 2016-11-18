@@ -53,6 +53,8 @@ typedef enum YuWaType{
     YuWaType_FRIENDS_INFO, //好友信息
     
     YuWaType_BAOBAO_LVUP, //雨娃宝宝升级
+    YuWaType_RBAdd_AlbumDetail, //专辑详情
+    YuWaType_RBAdd_DelNode,//取消收藏单个笔记
     
     YuWaType_
     
