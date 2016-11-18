@@ -120,7 +120,7 @@
     
     
     subLabel=[[UILabel alloc]initWithFrame:CGRectZero];
-    subLabel.text=@"笔记*3 粉丝*0";
+    subLabel.text=@"笔记·3 粉丝·0";
     subLabel.textColor=CsubtitleColor;
     subLabel.font=[UIFont systemFontOfSize:14];
     [topView addSubview:subLabel];
@@ -235,7 +235,7 @@
 - (void)reFreshData{
     titleLabel.text = self.model.album.title;
     signLabel.text = self.model.album.info;
-    subLabel.text = [NSString stringWithFormat:@"笔记*%@ 粉丝*%@",self.model.album.total,self.model.album.fans];
+    subLabel.text = [NSString stringWithFormat:@"笔记·%@ 粉丝·%@",self.model.album.total,self.model.album.fans];
     if (!self.otherUserID) {
         [imageView sd_setImageWithURL:[NSURL URLWithString:@"otherUserIcon23333333"] placeholderImage:[UIImage imageNamed:@"placehoder_loading"] completed:nil];
     }
@@ -243,7 +243,7 @@
 }
 
 - (void)reFreshCount{
-    subLabel.text = [NSString stringWithFormat:@"笔记*%@ 粉丝*%@",self.model.album.total,self.model.album.fans];
+    subLabel.text = [NSString stringWithFormat:@"笔记·%@ 粉丝·%@",self.model.album.total,self.model.album.fans];
 }
 
 #pragma mark  -- delegate
