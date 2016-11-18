@@ -131,7 +131,7 @@
         }else{
             cell=[[PCBottomTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil andDatas:array andWhichCategory:self.showWhichView];
         }
-        
+        cell.delegate = self;
         cell.selectionStyle=NO;
         return cell;
 
