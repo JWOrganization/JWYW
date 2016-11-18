@@ -14,6 +14,7 @@
 #import "OrderModel.h"
 
 #import "PCPayViewController.h"
+#import "PostCommitViewController.h"   //发送评论界面
 
 
 #define CELL0   @"MyOrderTableViewCell"
@@ -190,6 +191,9 @@
 -(void)touchCommit:(UIButton*)sender{
     MyLog(@"评论");
     OrderModel*model=self.maAllDatasModel[sender.tag];
+    PostCommitViewController*vc=[[PostCommitViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
     
     
 }
