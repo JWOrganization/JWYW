@@ -69,7 +69,7 @@
 
 #pragma mark - RBAdd
 #define HTTP_RBAdd_AlbumDetail @"/api.php/Note/getAlbumDetail/" //专辑详情
-//#define HTTP_RBAdd_DelAlbum @"/api.php/Note/delMyNoteAlbum/" //删除笔记
+#define HTTP_RBAdd_DelAlbum @"/api.php/Note/delMyAlbum/" //删除笔记
 #define HTTP_RBAdd_DelNode @"/api.php/Note/delMyNoteAlbum/"//取消收藏单个笔记
 
 #pragma mark - Other

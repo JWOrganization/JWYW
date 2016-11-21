@@ -46,7 +46,7 @@
     effectBtn.backgroundColor = [UIColor whiteColor];
     [effectBtn setTitleColor:CtitleColor forState:UIControlStateNormal];
     [effectBtn setTitle:@"滤镜库" forState:UIControlStateNormal];
-    [effectBtn setUserInteractionEnabled:NO];//temp 2333 照片加美化后改
+    [effectBtn setUserInteractionEnabled:NO];//temp 233333 照片加美化后改
     effectBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [self.imageToolHeader addSubview:effectBtn];
     [self addSubview:self.imageToolHeader];

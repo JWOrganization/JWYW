@@ -200,11 +200,12 @@
     
     if (!self.otherUserID) {
         homeCell.isDel = self.isDelIng;
+        __weak typeof(homeCell) weakHomeCell = homeCell;
         homeCell.choosedBlock = ^(NSString * nodeID,BOOL isChoosded){
             if (isChoosded) {
-                [self.delArr addObject:@"111"];//233333要换nodeID
+                [self.delArr addObject:weakHomeCell.model.homeID];
             }else{
-                [self.delArr removeObject:@"111"];//233333要换nodeID
+                [self.delArr removeObject:weakHomeCell.model.homeID];
             }
             self.delView.nameLabel.text = [NSString stringWithFormat:@"已选了%zi个笔记",self.delArr.count];
         };
@@ -240,8 +241,9 @@
     titleLabel.text = self.model.album.title;
     signLabel.text = self.model.album.info;
     subLabel.text = [NSString stringWithFormat:@"笔记·%@ 粉丝·%@",self.model.album.total,self.model.album.fans];
-    if (!self.otherUserID) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:@"otherUserIcon23333333"] placeholderImage:[UIImage imageNamed:@"placehoder_loading"] completed:nil];
+    if (self.otherUserID) {
+        nameLabel.text = self.otherUserName;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.otherUserIcon] placeholderImage:[UIImage imageNamed:@"placehoder_loading"] completed:nil];
     }
     [self.collectionView reloadData];
 }
@@ -285,6 +287,7 @@
         }
         [dataDic setValue:nodeDataArr forKey:@"note"];
         self.model = [YWAldumDetailModel yy_modelWithDictionary:dataDic];
+        self.model.album.total = [NSString stringWithFormat:@"%zi",nodeDataArr.count];
         self.allDatas = [NSMutableArray arrayWithArray:self.model.note];
         [self reFreshData];
     } failur:^(id responsObj, NSError *error) {
@@ -293,7 +296,7 @@
     }];
 }
 
-- (void)requestOtherData{//233333
+- (void)requestOtherData{
     NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"album_id":self.albumDetail};
     
     [[HttpObject manager]postNoHudWithType:YuWaType_RBAdd_AlbumDetail withPragram:pragram success:^(id responsObj) {
@@ -311,6 +314,7 @@
         }
         [dataDic setValue:nodeDataArr forKey:@"note"];
         self.model = [YWAldumDetailModel yy_modelWithDictionary:dataDic];
+        self.model.album.total = [NSString stringWithFormat:@"%zi",nodeDataArr.count];
         self.allDatas = [NSMutableArray arrayWithArray:self.model.note];
         [self reFreshData];
     } failur:^(id responsObj, NSError *error) {
@@ -325,8 +329,13 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_RBAdd_DelNode withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
-        
-        
+        for (int i = 0; i<self.allDatas.count; i++) {
+            RBHomeModel * model = self.allDatas[i];
+            if ([model.homeID isEqualToString:nodeid]) {
+                [self.allDatas removeObjectAtIndex:i];
+                break;
+            }
+        }
         [self.delArr removeObject:nodeid];
         self.model.album.total = [NSString stringWithFormat:@"%zi",([self.model.album.total integerValue] - 1)];
         [self reFreshCount];
@@ -343,7 +352,16 @@
 }
 
 - (void)requestDelAlbum{
-    [self.navigationController popViewControllerAnimated:YES];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"album_id":self.albumDetail};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_RBAdd_DelAlbum withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.navigationController popViewControllerAnimated:YES];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];
 }
 
 @end

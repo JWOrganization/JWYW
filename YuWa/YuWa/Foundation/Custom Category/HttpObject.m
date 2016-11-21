@@ -143,6 +143,9 @@
         case YuWaType_RB_COLLECTION_TO_ALDUM://添加收藏到我的专辑
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COLLECTION_TO_ALDUM];
             break;
+        case YuWaType_RBAdd_DelAlbum://删除笔记
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RBAdd_DelAlbum];
+            break;
         case YuWaType_RB_COLLECTION_CANCEL://取消收藏
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COLLECTION_CANCEL];
             break;

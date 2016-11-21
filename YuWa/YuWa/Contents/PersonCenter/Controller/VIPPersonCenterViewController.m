@@ -115,10 +115,10 @@
     UIBarButtonItem*rightIte=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"center_set"] style:UIBarButtonItemStylePlain target:self action:@selector(touchRightItem)];
     self.navigationItem.rightBarButtonItem=rightIte;
     
+    [self addHeaderView];
     
-     [self addHeaderView];
-    
-   }
+    [self.tableView.mj_header beginRefreshing];
+}
 
 -(void)viewWillDisappear:(BOOL)animated{
       [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
@@ -169,11 +169,6 @@
         [self getBottomDatas];
         
     }];
-    
-    [self.tableView.mj_header beginRefreshing];
-    
-    
-    
 }
 
 
@@ -771,19 +766,12 @@
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
             for (NSDictionary*dict in data[@"data"]) {
-//                RBHomeModel*model=[RBHomeModel yy_modelWithDictionary:dict];
-//                [self.maMallDatas addObject:model];
-            
                 RBCenterAlbumModel*model=[RBCenterAlbumModel yy_modelWithDictionary:dict];
                 model.user = [[RBHomeUserModel alloc]init];
-                model.user.nickname = dict[@"user_name"];
+                model.user.nickname = [UserSession instance].nickName;
+                model.user.images = [UserSession instance].logo;
                 [self.maMallDatas addObject:model];
-                
-                
-                
             }
-            
-            
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
             
         }else{

@@ -196,6 +196,7 @@
                     YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
                     vc.uid = weakSelf.dataModel.user.userid;
                     vc.nickName = weakSelf.dataModel.user.nickname;
+                    vc.otherIcon = weakSelf.dataModel.user.images;
                     [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
             }
@@ -220,6 +221,7 @@
     }
     return self.imageHeader;
 }
+
 - (RBNodeDetailCommentHeader *)commentHeaderMake{
     if (!self.commentHeader) {
         self.commentHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailCommentHeader" owner:nil options:nil] firstObject];
