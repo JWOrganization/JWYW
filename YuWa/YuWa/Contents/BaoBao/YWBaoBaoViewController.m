@@ -9,6 +9,7 @@
 #import "YWBaoBaoViewController.h"
 #import "YWPayAnalysisViewController.h"
 #import "YWForRecommendViewController.h"
+#import "CouponViewController.h"
 
 @interface YWBaoBaoViewController ()
 
@@ -36,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [UserSession instance].baobaoLV = 2;
     [self dataSet];
     [self makeUI];
 }
@@ -166,7 +168,30 @@
 }
 
 - (void)requestLottery{
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
+    [[HttpObject manager]postNoHudWithType:YuWaType_BAOBAO_LuckyDraw withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        if ([responsObj[@"msg"] isEqualToString:@"恭喜您，中奖啦！"]) {
+            UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"查看优惠券" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                CouponViewController * vc = [[CouponViewController alloc]init];
+                vc.shopID = @"0";
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            NSDictionary * dataDic = responsObj[@"data"];
+            UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:responsObj[@"msg"] message:[NSString stringWithFormat:@"满%@减%@元\n%@",dataDic[@"min_fee"],dataDic[@"discount_fee"],dataDic[@"name"]] preferredStyle:UIAlertControllerStyleAlert];
+            [alertVC addAction:cancelAction];
+            [alertVC addAction:OKAction];
+            [self presentViewController:alertVC animated:YES completion:nil];
+        }else{
+            [self showHUDWithStr:@"本周次数已用光" withSuccess:NO];
+        }
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333次数
 }
 
 

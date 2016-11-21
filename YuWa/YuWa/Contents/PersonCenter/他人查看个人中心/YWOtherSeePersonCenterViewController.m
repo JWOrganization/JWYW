@@ -39,8 +39,10 @@
 @property(nonatomic,strong)UIButton*followButton;        //关注按钮
 @property (nonatomic,strong)RBHomeCollectionViewCell * heighCell;   //cell计算高度
 @property(nonatomic,strong)UITableView*tableView;
-@property(nonatomic,strong)NSMutableArray * nodeArr;
-@property(nonatomic,strong)NSMutableArray * aldumArr;
+@property(nonatomic,assign)NSInteger whichShow;
+@property(nonatomic,assign)int pagen;
+@property(nonatomic,assign)int pages;
+@property(nonatomic,strong)NSMutableArray * maMallDatas;
 
 @property(nonatomic,assign)showViewCategory showWhichView;    //点击的是那个view
 
@@ -64,11 +66,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
     
     
-    
+    [self setUpMJRefresh];
     [self getDatas];
-
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -123,8 +122,7 @@
         return cell;
     }else if (indexPath.section==1&&indexPath.row==0){
         //笔记的内容
-        NSMutableArray*array=[self getBottomDatas];;
-        self.nodeArr = array;
+        NSMutableArray*array=self.maMallDatas;
         PCBottomTableViewCell*cell;
         if (self.showWhichView<=1) {
             cell=[[PCBottomTableViewCell alloc]initWithOtherStyle:UITableViewCellStyleValue1 reuseIdentifier:nil andDatas:array andWhichCategory:self.showWhichView];
@@ -154,8 +152,7 @@
         //分所选的区域的
         //        return 1000;
         if (self.showWhichView==showViewCategoryNotes) {
-            NSMutableArray*alldatas=[self getBottomDatas];
-            self.nodeArr = alldatas;
+            NSMutableArray*alldatas=self.maMallDatas;
             __block CGFloat rightRowHeight = 0.f;
             __block CGFloat leftRowHeight = 0.f;
             [alldatas enumerateObjectsUsingBlock:^(RBHomeModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -170,13 +167,12 @@
                 }
             }];
             
-            return rightRowHeight>leftRowHeight?rightRowHeight:leftRowHeight;
+            return (rightRowHeight>leftRowHeight?rightRowHeight:leftRowHeight)+10.f;
             
         }else if (self.showWhichView==showViewCategoryAlbum){
-            NSMutableArray*alldatas=[self getBottomDatas];
-            self.aldumArr = alldatas;
+            NSMutableArray*alldatas=self.maMallDatas;
             CGFloat height = 180.f - 55.25f + (kScreen_Width - 20.f - 75.f)/4;
-            return (height+10)*alldatas.count;
+            return (height+10)*alldatas.count +10.f;
             
             
         }else if (self.showWhichView==showViewCategoryCommit){
@@ -241,7 +237,7 @@
     return 0.01;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
+    return section==1?0.001f:10;
 }
 
 -(void)addHeaderView{
@@ -320,8 +316,9 @@
 
 #pragma mark  --delegate
 -(void)DelegateForNote:(NSInteger)number{
+    number++;
     RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
-    vc.model = self.nodeArr[number];
+    vc.model = self.maMallDatas[number];
     [self.navigationController pushViewController:vc animated:NO];
     
 }
@@ -336,10 +333,10 @@
 
 -(void)segumentSelectionChange:(NSInteger)selection{
     MyLog(@"%ld",(long)selection);
-    self.showWhichView=selection;
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
-
+    self.whichShow=selection;
     
+    self.showWhichView=selection;
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark  --touch
@@ -412,7 +409,30 @@
     
 }
 
-
+-(void)setUpMJRefresh{
+    self.pagen=10;
+    self.pages=0;
+    self.maMallDatas=[NSMutableArray array];
+    
+    self.tableView.mj_header=[UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
+        self.pages=0;
+        self.maMallDatas=[NSMutableArray array];
+        [self getBottomDatas];
+        
+    }];
+    
+    //上拉刷新
+    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
+        self.pages++;
+        [self getBottomDatas];
+        
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+    
+    
+}
 #pragma mark  --  getDatas
 
 -(void)getDatas{
@@ -439,71 +459,80 @@
 #pragma mark  --  getDatas
 //得到底部的数据
 - (NSMutableArray*)getBottomDatas{
-    
-    if (self.showWhichView==showViewCategoryNotes) {
-        NSMutableArray*allDatas=[NSMutableArray array];
-        NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的笔记个人"];
-        
-        NSArray * dataArr = dataDic[@"data"][@"notes"];
-        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-            [allDatas addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-        }];
-        
-        return allDatas;
-        
-        
-        
-    }else if (self.showWhichView==showViewCategoryAlbum){
-        NSMutableArray*allDatas=[NSMutableArray array];
-        NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的专辑 个人中心展示小图"];
-        NSArray * dataArr = dataDic[@"data"];
-        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-            [allDatas addObject:[RBCenterAlbumModel yy_modelWithDictionary:dic]];
-        }];
-        
-        return allDatas;
-        
-        
-        
-        
-        
-    }else if (self.showWhichView==showViewCategoryCommit){
-        //评论
-        NSMutableArray*allDatas=[NSMutableArray array];
-        NSDictionary*dict=@{@"photoImage":@"xxx",@"userName":@"小雨娃",@"pointNumber":@"5",@"date":@"9月22日"
-                            ,@"content":@"是放假了司法局是浪费就撒了；副科级；按理说放假是咖啡机按理说放假萨拉放假啊；爱上了房间爱乱收费就拉上房间发家里是咖啡机拉法基；蓝思科技"
-                            ,@"images":@[@"",@"",@"",@""]};
-        NSArray*dataArr=@[dict,dict,dict,dict,dict];
-        [dataArr enumerateObjectsUsingBlock:^(NSDictionary*  _Nonnull dicc, NSUInteger idx, BOOL * _Nonnull stop) {
-            [allDatas addObject:[CommitViewModel yy_modelWithDictionary:dicc]];
-        }];
-        return allDatas;
-        
-        
-        
-        
-    }else if (self.showWhichView==showViewCategoryFilm){
-        
-        NSMutableArray*allDatas=[NSMutableArray array];
-        NSDictionary*dict=@{@"pointNumber":@"5",@"point":@"5星",@"content":@"是否家里是咖啡机爱上了；废旧塑料；付款加上了副科级爱上了；付款就撒了；付款就撒了；方会计师费拉斯克奖福利社；咖啡机按理说放假困死了房间卡萨类附近凯撒蓝废旧塑料；"
-                            ,@"image":@"xxxx",@"name":@"叶问2",@"category":@"动作，历史，传记",@"introduce":@"中国香港，中国大陆/105分钟"};
-        NSArray*dataArr=@[dict,dict,dict,dict,dict];
-        [dataArr enumerateObjectsUsingBlock:^(NSDictionary* _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-            [allDatas addObject:[FilmViewModel yy_modelWithDictionary:dic]];
+    switch (self.whichShow) {
+        case 0:{
+            //笔记
+            [self getMyNotes];
+            break;}
+        case 1:{
+            //专辑
+            [self getMyAlbum];
+            break;}
+        case 2:{
+            //评论
             
+            break;}
             
-        }];
-        return allDatas;
-        
-        
-        
+        default:
+            break;
     }
+    
+    
     
     
     return nil;
 }
 
 
+//底部的数据   笔记
+-(void)getMyNotes{
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([self.uid integerValue]),@"pagen":[NSString stringWithFormat:@"%d",self.pagen],@"pages":[NSString stringWithFormat:@"%d",self.pages]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_Other_Node withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        for (NSDictionary*dict in responsObj[@"data"]) {
+            NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dict];
+            [self.maMallDatas addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
+        }
+        [self.tableView reloadData];
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [JRToast showWithText:responsObj[@"errorMessage"]];
+    }];
+}
+
+//得到专辑的内容
+-(void)getMyAlbum{
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([self.uid integerValue]),@"pagen":[NSString stringWithFormat:@"%d",self.pagen],@"pages":[NSString stringWithFormat:@"%d",self.pages]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_Other_Aldum withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        for (NSDictionary*dict in responsObj[@"data"]) {
+            RBCenterAlbumModel*model=[RBCenterAlbumModel yy_modelWithDictionary:dict];
+            model.user = [[RBHomeUserModel alloc]init];
+            model.user.nickname = self.nickName?self.nickName:dict[@"user_name"];
+            model.desc = dict[@"info"];
+            [self.maMallDatas addObject:model];
+        }
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [JRToast showWithText:responsObj[@"errorMessage"]];
+    }];
+}
 
 -(void)getFitstDatas{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

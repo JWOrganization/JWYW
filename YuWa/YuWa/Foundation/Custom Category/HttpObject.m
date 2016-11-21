@@ -183,6 +183,23 @@
         case YuWaType_BAOBAO_LVUP://雨娃宝宝升级
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BAOBAO_LVUP];
             break;
+        case YuWaType_BAOBAO_SevenConsume://近7次消费金额
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BAOBAO_SevenConsume];
+            break;
+        case YuWaType_BAOBAO_ConsumeType://消费在哪个大类里面
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BAOBAO_ConsumeType];
+            break;
+        case YuWaType_BAOBAO_LuckyDraw://抢优惠券
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BAOBAO_LuckyDraw];
+            break;
+            
+#pragma mark - Other
+        case YuWaType_Other_Node://别人的笔记
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_Other_Node];
+            break;
+        case YuWaType_Other_Aldum://别人的专辑
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_Other_Aldum];
+            break;
 #pragma mark - RBAdd
         case YuWaType_RBAdd_AlbumDetail://专辑详情
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RBAdd_AlbumDetail];

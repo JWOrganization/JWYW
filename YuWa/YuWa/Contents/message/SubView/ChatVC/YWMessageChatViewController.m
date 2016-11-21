@@ -151,6 +151,7 @@
     MyLog(@"用户点击头像");
     YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
     vc.uid = self.friendID;
+    vc.nickName = self.friendNikeName;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

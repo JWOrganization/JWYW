@@ -202,9 +202,10 @@
             _showInfoView.hidden = YES;
             [_pieForeView addSubview:_showInfoView];
         }
+        WEAKSELF;
         _pieForeView.select = ^(CGFloat angle,CGPoint p){
            
-            [self judgeWhitchOneIsNowAngle:angle andShowPoint:p];
+            [weakSelf judgeWhitchOneIsNowAngle:angle andShowPoint:p];
             
         };
         

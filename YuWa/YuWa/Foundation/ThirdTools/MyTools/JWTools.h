@@ -169,6 +169,15 @@
  */
 + (NSString *)dateWithOutYearDate:(NSDate *)date;
 
+/**
+ *  传一个日期字符串日期字符串返回月日
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithDate:(NSString *)dateStr;
+
 #pragma mark - Json
 /**
  *  单个数组组成Json文件

@@ -62,11 +62,23 @@
 
 #pragma mark - BaoBao
 #define HTTP_BAOBAO_LVUP @"/api.php/User/updateMyLevel/" //雨娃宝宝升级
+#define HTTP_BAOBAO_SevenConsume @"/api.php/User/getSevenConsume/" //近7次消费金额
+#define HTTP_BAOBAO_ConsumeType @"/api.php/User/consumeType/" //消费在哪个大类里面
+#define HTTP_BAOBAO_LuckyDraw @"/api.php/User/luckyDraw/" //抢优惠券
+
 
 #pragma mark - RBAdd
 #define HTTP_RBAdd_AlbumDetail @"/api.php/Note/getAlbumDetail/" //专辑详情
 //#define HTTP_RBAdd_DelAlbum @"/api.php/Note/delMyNoteAlbum/" //删除笔记
 #define HTTP_RBAdd_DelNode @"/api.php/Note/delMyNoteAlbum/"//取消收藏单个笔记
+
+#pragma mark - Other
+#define HTTP_Other_Node @"/api.php/Note/getOtherNewNote/"//别人的笔记
+#define HTTP_Other_Aldum @"/api.php/Note/getOtherAlbum/"//别人的专辑
+
+
+
+
 
 
 

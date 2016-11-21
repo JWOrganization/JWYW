@@ -36,8 +36,6 @@ typedef enum YuWaType{
     YuWaType_RB_SEARCH_KEY, //搜索相关
     YuWaType_RB_SEARCH_RESULT, //搜索结果
     YuWaType_RB_NODE_PUBLISH, //发布笔记
-    //    YuWaType_RB_, //添加地点
-    //    YuWaType_RB_, //搜索地点
     YuWaType_RB_ATTENTION, //我的关注
     
     YuWaType_IMG_UP, //上传图片
@@ -55,6 +53,13 @@ typedef enum YuWaType{
     YuWaType_BAOBAO_LVUP, //雨娃宝宝升级
     YuWaType_RBAdd_AlbumDetail, //专辑详情
     YuWaType_RBAdd_DelNode,//取消收藏单个笔记
+    
+    YuWaType_BAOBAO_SevenConsume, //近7次消费金额
+    YuWaType_BAOBAO_ConsumeType, //消费在哪个大类里面
+    YuWaType_BAOBAO_LuckyDraw, //抢优惠券
+    
+    YuWaType_Other_Node,//别人的笔记
+    YuWaType_Other_Aldum,//别人的专辑
     
     YuWaType_
     

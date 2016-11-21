@@ -141,6 +141,7 @@
     
     YWOtherSeePersonCenterViewController*vc=[[YWOtherSeePersonCenterViewController alloc]init];
     vc.uid=model.uid;
+    vc.nickName = model.nickname;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

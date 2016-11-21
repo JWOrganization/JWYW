@@ -11,7 +11,7 @@
 #import "PersonCenterOneCell.h"
 #import "PersonCenterHeadView.h"
 #import "PCBottomTableViewCell.h"   //底部4种可能的cell
-
+#import "YWBaoBaoViewController.h"
 
 #import "defineButton.h"
 #import "imageDefineButton.h"
@@ -525,11 +525,11 @@
             
             break;}
 
-        case 2:
+        case 2:{
             //雨娃宝宝
-            
-            break;
-
+            YWBaoBaoViewController * vc = [[YWBaoBaoViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;}
         case 3:
             //商务会员
             

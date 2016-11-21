@@ -272,7 +272,7 @@
         NSDictionary * dic = responsObj[@"data"];
         NSMutableDictionary * dataDic = [NSMutableDictionary dictionaryWithCapacity:0];
         [dataDic setValue:dic[@"album"] forKey:@"album"];
-        NSArray * nodeArr = dataDic[@"note"];
+        NSArray * nodeArr = dic[@"note"];
         NSMutableArray * nodeDataArr = [NSMutableArray arrayWithCapacity:0];
         if (nodeArr.count>0) {
             for (NSDictionary * nodeDic in nodeArr) {
