@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -69,9 +70,9 @@
                     <state key="normal" title="取消关注"/>
                 </button>
                 <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzq-vE-cco">
-                    <rect key="frame" x="240" y="155" width="120" height="25"/>
+                    <rect key="frame" x="210" y="155" width="150" height="25"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="koZ-dJ-o8U"/>
+                        <constraint firstAttribute="width" constant="150" id="koZ-dJ-o8U"/>
                         <constraint firstAttribute="height" constant="25" id="mf5-S4-Bqu"/>
                     </constraints>
                     <state key="normal" title="个人资料">
@@ -113,7 +114,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="75" y="-8"/>
+            <point key="canvasLocation" x="-106" y="3"/>
         </view>
     </objects>
     <resources>

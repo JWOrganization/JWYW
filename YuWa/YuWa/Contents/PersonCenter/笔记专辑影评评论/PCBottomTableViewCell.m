@@ -12,7 +12,9 @@
 #import "FilmView.h"
 #import "CommitView.h"
 
+@interface PCBottomTableViewCell()<CommitViewDelegate>
 
+@end
 
 
 @implementation PCBottomTableViewCell
@@ -62,6 +64,7 @@
             case showViewCategoryCommit:{
                 self.backgroundColor=[UIColor blueColor];
                 CommitView*view=[[CommitView alloc]initWithFrame:self.frame andArray:allDatas];
+                view.delegate=self;
                 [self addSubview:view];
                 [view mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(self);
@@ -140,6 +143,7 @@
             case showViewCategoryCommit:{
                 self.backgroundColor=[UIColor blueColor];
                 CommitView*view=[[CommitView alloc]initWithFrame:self.frame andArray:allDatas];
+                view.delegate=self;
                 [self addSubview:view];
                 [view mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(self);
@@ -171,6 +175,13 @@
     }
     
     return self;
+    
+}
+
+-(void)DelegateForSelectedChange:(NSInteger)selection{
+    if ([self.delegate respondsToSelector:@selector(DelegateForSelectedWhichButton:)]) {
+        [self.delegate DelegateForSelectedWhichButton:selection];
+    }
     
 }
 

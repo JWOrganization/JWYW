@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CommitViewDelegate <NSObject>
+
+-(void)DelegateForSelectedChange:(NSInteger)selection;
+
+@end
+
 @interface CommitView : UIView
 
 -(instancetype)initWithFrame:(CGRect)frame andArray:(NSMutableArray*)allDatas;
 
+@property(nonatomic,assign)id<CommitViewDelegate>delegate;
 @end
