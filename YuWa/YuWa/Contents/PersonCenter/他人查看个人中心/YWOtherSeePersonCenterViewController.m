@@ -327,7 +327,8 @@
 -(void)DelegateForAlbum:(NSInteger)number andMax:(NSInteger)maxNumber{
     MyAlbumViewController*vc=[[MyAlbumViewController alloc]init];
     vc.otherUserID = self.uid;
-    vc.albumDetail=[NSString stringWithFormat:@"%lu",number];
+    RBCenterAlbumModel * model = self.maMallDatas[number];
+    vc.albumDetail = model.aldumID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

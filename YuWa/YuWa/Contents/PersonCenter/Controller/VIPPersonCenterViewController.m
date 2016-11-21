@@ -619,7 +619,8 @@
     }else{
         MyLog(@"点击某个专辑%lu",number);
         MyAlbumViewController*vc=[[MyAlbumViewController alloc]init];
-        vc.albumDetail=[NSString stringWithFormat:@"%lu",number];
+        RBCenterAlbumModel * model = self.maMallDatas[number];
+        vc.albumDetail = model.aldumID;
         [self.navigationController pushViewController:vc animated:YES];
         
     }
