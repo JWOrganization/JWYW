@@ -459,53 +459,6 @@
 #pragma mark  --  getDatas
 //得到底部的数据
 - (NSMutableArray*)getBottomDatas{
-    
-    //    if (self.showWhichView==showViewCategoryNotes) {
-    //        NSMutableArray*allDatas=[NSMutableArray array];
-    //        NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的笔记个人"];
-    //
-    //        NSArray * dataArr = dataDic[@"data"][@"notes"];
-    //        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-    //            [allDatas addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-    //        }];
-    //
-    //        return allDatas;
-    //
-    //
-    //
-    //    }else if (self.showWhichView==showViewCategoryAlbum){
-    //         NSMutableArray*allDatas=[NSMutableArray array];
-    //          NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的专辑 个人中心展示小图"];
-    //        NSArray * dataArr = dataDic[@"data"];
-    //        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-    //            [allDatas addObject:[RBCenterAlbumModel yy_modelWithDictionary:dic]];
-    //        }];
-    //
-    //        return allDatas;
-    //
-    //
-    //
-    //
-    //
-    //    }else if (self.showWhichView==showViewCategoryCommit){
-    //        //评论
-    //        NSMutableArray*allDatas=[NSMutableArray array];
-    //        NSDictionary*dict=@{@"photoImage":@"xxx",@"userName":@"小雨娃",@"pointNumber":@"5",@"date":@"9月22日"
-    //                            ,@"content":@"是放假了司法局是浪费就撒了；副科级；按理说放假是咖啡机按理说放假萨拉放假啊；爱上了房间爱乱收费就拉上房间发家里是咖啡机拉法基；蓝思科技"
-    //                            ,@"images":@[@"",@"",@"",@""]};
-    //        NSArray*dataArr=@[dict,dict,dict,dict,dict];
-    //        [dataArr enumerateObjectsUsingBlock:^(NSDictionary*  _Nonnull dicc, NSUInteger idx, BOOL * _Nonnull stop) {
-    //              [allDatas addObject:[CommitViewModel yy_modelWithDictionary:dicc]];
-    //        }];
-    //        return allDatas;
-    //
-    //
-    //
-    //
-    //    }
-    
-    
-    //
     switch (self.whichShow) {
         case 0:{
             //笔记
@@ -533,83 +486,53 @@
 
 //底部的数据   笔记
 -(void)getMyNotes{
-    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETNOTES];
-    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
-    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
-    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages};
-    HttpManager*manager=[[HttpManager alloc]init];
-    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
-        MyLog(@"%@",data);
-        NSNumber*number=data[@"errorCode"];
-        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
-        if ([errorCode isEqualToString:@"0"]) {
-            for (NSDictionary*dict in data[@"data"]) {
-                //                RBHomeModel*model=[RBHomeModel yy_modelWithDictionary:dict];
-                //                [self.maMallDatas addObject:model];
-                NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dict];
-                [self.maMallDatas addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
-                
-            }
-            
-            
-            //            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView reloadData];
-            
-        }else{
-            [JRToast showWithText:data[@"errorMessage"]];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([self.uid integerValue]),@"pagen":[NSString stringWithFormat:@"%d",self.pagen],@"pages":[NSString stringWithFormat:@"%d",self.pages]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_Other_Node withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        for (NSDictionary*dict in responsObj[@"data"]) {
+            NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dict];
+            [self.maMallDatas addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
         }
+        [self.tableView reloadData];
         
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [JRToast showWithText:responsObj[@"errorMessage"]];
     }];
-    
-    
 }
 
 //得到专辑的内容
 -(void)getMyAlbum{
-    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETALBUMS];
-    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
-    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
-    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages};
-    HttpManager*manager=[[HttpManager alloc]init];
-    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
-        MyLog(@"%@",data);
-        NSNumber*number=data[@"errorCode"];
-        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
-        if ([errorCode isEqualToString:@"0"]) {
-            for (NSDictionary*dict in data[@"data"]) {
-                //                RBHomeModel*model=[RBHomeModel yy_modelWithDictionary:dict];
-                //                [self.maMallDatas addObject:model];
-                
-                RBCenterAlbumModel*model=[RBCenterAlbumModel yy_modelWithDictionary:dict];
-                model.user = [[RBHomeUserModel alloc]init];
-                model.user.nickname = dict[@"user_name"];
-                [self.maMallDatas addObject:model];
-                
-                
-                
-            }
-            
-            
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
-            
-        }else{
-            [JRToast showWithText:data[@"errorMessage"]];
-        }
-        
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([self.uid integerValue]),@"pagen":[NSString stringWithFormat:@"%d",self.pagen],@"pages":[NSString stringWithFormat:@"%d",self.pages]};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_Other_Aldum withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        
+        for (NSDictionary*dict in responsObj[@"data"]) {
+            RBCenterAlbumModel*model=[RBCenterAlbumModel yy_modelWithDictionary:dict];
+            model.user = [[RBHomeUserModel alloc]init];
+            model.user.nickname = self.nickName?self.nickName:dict[@"user_name"];
+            model.desc = dict[@"info"];
+            [self.maMallDatas addObject:model];
+        }
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [JRToast showWithText:responsObj[@"errorMessage"]];
     }];
-    
-    
-    
-    
 }
-
-
 
 -(void)getFitstDatas{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

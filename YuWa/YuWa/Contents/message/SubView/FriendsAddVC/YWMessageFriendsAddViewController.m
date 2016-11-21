@@ -114,6 +114,7 @@
         YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
         YWMessageSearchFriendAddModel * model = self.searchDataArr[indexPath.row];
         vc.uid = model.user_id;
+        vc.nickName = model.nickName;
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
@@ -142,6 +143,7 @@
         YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
         YWMessageSearchFriendAddModel * model = self.searchDataArr[0];
         vc.uid = model.user_id;
+        vc.nickName = model.nickName;
         [self.navigationController pushViewController:vc animated:YES];
         return YES;
     }

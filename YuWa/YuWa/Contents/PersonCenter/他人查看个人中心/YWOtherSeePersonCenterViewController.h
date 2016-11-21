@@ -12,5 +12,6 @@
 
 @interface YWOtherSeePersonCenterViewController : UIViewController
 @property(nonatomic,strong)NSString*uid;
+@property(nonatomic,copy)NSString * nickName;
 
 @end

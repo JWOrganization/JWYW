@@ -195,6 +195,7 @@
                 if ([weakSelf isLogin]) {
                     YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
                     vc.uid = weakSelf.dataModel.user.userid;
+                    vc.nickName = weakSelf.dataModel.user.nickname;
                     [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
             }

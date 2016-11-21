@@ -73,9 +73,29 @@
 
 #pragma mark - Http
 - (void)requestData{
-    //2333333333333
-    [self showFirstQuardrantWithXLineDataArr:@[@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13] withValueArr:@[@[@100,@120,@100,@600,@400,@900,@600,@0,@100,@120,@100,@600,@400,@900,@100,@120,@100,@600,@400,@900,@600,@0,@100,@120,@100,@600,@400,@900]]];
-    [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购",@"美食",@"周边游",@"生活服务",@"时尚购",@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@120],@[@180],@[@12],@[@2],@[@120],@[@180],@[@12],@[@2],@[@120],@[@180],@[@12],@[@2]]];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_BAOBAO_SevenConsume withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        
+        [self showFirstQuardrantWithXLineDataArr:@[@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13] withValueArr:@[@[@100,@120,@100,@600,@400,@900,@600,@0,@100,@120,@100,@600,@400,@900,@100,@120,@100,@600,@400,@900,@600,@0,@100,@120,@100,@600,@400,@900]]];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
+    
+    
+    
+    [[HttpObject manager]postNoHudWithType:YuWaType_BAOBAO_ConsumeType withPragram:pragram success:^(id responsObj) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code is %@",responsObj);
+        
+        [self showColumnViewWithXShowInfoText:@[@"美食",@"周边游",@"生活服务",@"时尚购",@"美食",@"周边游",@"生活服务",@"时尚购",@"美食",@"周边游",@"生活服务",@"时尚购"] withValueArr:@[@[@120],@[@180],@[@12],@[@2],@[@120],@[@180],@[@12],@[@2],@[@120],@[@180],@[@12],@[@2]]];
+    } failur:^(id responsObj, NSError *error) {
+        MyLog(@"Regieter Code pragram is %@",pragram);
+        MyLog(@"Regieter Code error is %@",responsObj);
+    }];//h333333333
 }
 
 @end
