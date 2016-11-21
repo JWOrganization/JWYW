@@ -69,6 +69,10 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
+}
+
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if (self.delView.hidden == YES) {
