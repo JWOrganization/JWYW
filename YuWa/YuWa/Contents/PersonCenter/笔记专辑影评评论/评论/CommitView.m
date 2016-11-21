@@ -17,6 +17,8 @@
 
 @interface CommitView()<UITableViewDataSource,UITableViewDelegate,YJSegmentedControlDelegate>
 @property(nonatomic,strong)UITableView*tableView;
+@property(nonatomic,strong)UIView*topView; //顶部的view
+
 @property(nonatomic,strong)NSMutableArray*allDatas;
 @end
 @implementation CommitView
@@ -47,10 +49,14 @@
 #pragma mark  --tableView
 
 -(void)addTableHeaderView{
+
     UIView*topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
     topView.backgroundColor=[UIColor whiteColor];
-    NSArray*titleArray=@[@"全部",@"评论",@"电影",@"酒店"];
+    self.topView=topView;
+    NSArray*titleArray=@[@"评论",@"电影",@"酒店"];
     YJSegmentedControl*chooseView=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 30) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
+    [chooseView selectTheSegument:2];
+    
     [topView addSubview:chooseView];
     
     self.tableView.tableHeaderView=topView;
@@ -112,6 +118,11 @@
 #pragma mark  --delegate
 -(void)segumentSelectionChange:(NSInteger)selection{
     MyLog(@"xxx");
+    //代理回去 刷新
+    if ([self.delegate respondsToSelector:@selector(DelegateForSelectedChange:)]) {
+        [self.delegate DelegateForSelectedChange:selection];
+    }
+    
 }
 
 /*

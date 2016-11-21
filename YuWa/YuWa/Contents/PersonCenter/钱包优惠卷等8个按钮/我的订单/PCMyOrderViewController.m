@@ -192,6 +192,7 @@
     MyLog(@"评论");
     OrderModel*model=self.maAllDatasModel[sender.tag];
     PostCommitViewController*vc=[[PostCommitViewController alloc]init];
+    vc.shop_id=model.shop_id;
     [self.navigationController pushViewController:vc animated:YES];
     
     

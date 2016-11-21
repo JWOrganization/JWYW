@@ -16,6 +16,9 @@
 -(void)DelegateForAlbum:(NSInteger)number andMax:(NSInteger)maxNumber;  //专辑
 
 
+//选中了评论下面的 那个按钮
+-(void)DelegateForSelectedWhichButton:(NSInteger)section;
+
 @end
 
 @interface PCBottomTableViewCell : UITableViewCell

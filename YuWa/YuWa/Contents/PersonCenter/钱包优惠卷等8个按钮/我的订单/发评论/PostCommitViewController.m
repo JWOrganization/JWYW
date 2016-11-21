@@ -11,6 +11,7 @@
 #import "PostCommitImageTableViewCell.h"
 #import "TZImagePickerController.h"
 #import "ImageCache.h"
+#import "JWTools.h"
 
 #define CELL0   @"PostCommitTextTableViewCell"
 #define CELL1   @"PostCommitImageTableViewCell"
@@ -24,6 +25,7 @@
 @property(nonatomic,assign)BOOL canSave;  //能够被提交
 @property(nonatomic,assign)NSInteger commitStar;  //评了多少颗星
 @property(nonatomic,assign)NSInteger numberInputWord; //总共输入了多少个字
+@property(nonatomic,strong)NSString*saveCommitContent;  //保存评论的内容
 @property(nonatomic,strong)NSMutableArray*saveAllImage;  //保存所有的图片
 @end
 
@@ -151,6 +153,7 @@
 #pragma  mark  -- delegate
 - (void)textViewDidChange:(UITextView *)textView{
     self.numberInputWord=textView.text.length;
+    self.saveCommitContent=textView.text;
     MyLog(@"%@",textView.text);
     
     NSInteger chaNumber=15-self.numberInputWord;
@@ -260,10 +263,109 @@
         return;
     }
     
+    
+    //如果没有图片的时候也能吊接口成功
+    if (_saveAllImage.count<1) {
+        [self postCommitWitharray:nil];
+    }else{
+    
+    
+    
+    NSMutableArray*saveImageUrl=[NSMutableArray array];
     //接口
+    for (int i=0; i<_saveAllImage.count; i++) {
+        UIImage*image=self.saveAllImage[i];
+        NSData*data=UIImageJPEGRepresentation(image, 1.0);
+        
+        NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_IMG_UP];
+        HttpManager*manager=[[HttpManager alloc]init];
+        [manager postUpdatePohotoWithUrl:urlStr withParams:nil withPhoto:data compliation:^(id data, NSError *error) {
+            MyLog(@"%@",data);
+            NSNumber*number=data[@"errorCode"];
+            NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+            if ([errorCode isEqualToString:@"0"]) {
+                [saveImageUrl addObject:data[@"data"]];
+                
+            }else{
+                [JRToast showWithText:data[@"errorMessage"]];
+            }
+            
+            if (saveImageUrl.count==_saveAllImage.count) {
+                [self postCommitWitharray:saveImageUrl];
+            }
+            
+        }];
+    
+    }
+    
+    
+      
+        
+       
+
+    
+    
+
+    
+    }
+    
+}
+
+//发送评论的接口
+-(void)postCommitWitharray:(NSMutableArray*)array{
+    //,@"img_url":jsonStr   self.shop_id
+    CGFloat shopidFloat=[self.shop_id floatValue];
+    NSNumber*shopid=@(shopidFloat);
+    NSDictionary*dictt=@{@"shop_id":shopid,@"user_id":@([UserSession instance].uid),@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"customer_content":self.saveCommitContent  ,@"score":@(self.commitStar)};
+    NSMutableDictionary*params=[NSMutableDictionary dictionaryWithDictionary:dictt];
+    
+    if (array.count>0&&array.count==_saveAllImage.count) {
+        NSData*data= [self toJSONData:array];
+        NSString*jsonStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        [params setObject:jsonStr forKey:@"img_url"];
+
+    }
+    
+  
+    
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_POSTCOMMIT];
+    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+    }];
+
     
     
 }
+
+
+// 将字典或者数组转化为JSON串
+-(NSData *)toJSONData:(id)theData{
+    
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:theData
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    if ([jsonData length] > 0 && error == nil){
+        return jsonData;
+    }else{
+        return nil;
+    }
+}
+
 
 -(NSString*)judgeCanSave{
     if (_commitStar==0) {

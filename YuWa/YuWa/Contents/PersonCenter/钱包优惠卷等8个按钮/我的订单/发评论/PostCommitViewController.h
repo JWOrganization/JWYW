@@ -10,4 +10,5 @@
 
 @interface PostCommitViewController : UIViewController
 
+@property(nonatomic,strong)NSString*shop_id;   //店铺的id
 @end

@@ -69,6 +69,7 @@
 
 
 @property(nonatomic,assign)NSInteger whichShow;   // 0笔记 1专辑 2评论
+@property(nonatomic,assign)NSInteger commitSelectedWhichRow;  //现在评论这一栏选中的是哪一个
 @property(nonatomic,assign)int pagen;
 @property(nonatomic,assign)int pages;
 @property(nonatomic,strong)NSMutableArray*maMallDatas;  //所有数据
@@ -190,6 +191,7 @@
     }else if (indexPath.section==1&&indexPath.row==0){
         //8个 按钮
         PersonCenterOneCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+        cell.selectionStyle=NO;
         NSArray*array=@[@"钱包",@"优惠券",@"雨娃宝宝",@"商务会员",@"我的订单",@"收藏",@"消费记录",@"通知"];
 //        NSArray*imageArray=@[@"home_qianbao",@"home_youhuijuan",@"home_yuwa.png",@"home_huiyuan",@"home_dindan",@"home_shoucangjia",@"home_xiaofeijilu",@"home_tongzhi"];
         NSArray*imageArray=@[@"home_01",@"home_02",@"home_03",@"home_04",@"home_05",@"home_06",@"home_07",@"home_08"];
@@ -370,12 +372,12 @@
     //超出的图片的高度
 //    CGFloat OTHERHEADER = ((kScreen_Width * imageView.image.size.height / imageView.image.size.width)-195);
     //HEADERVIEWHEIGHT+OTHERHEADER
-    imageView.frame=CGRectMake(0, 0, kScreen_Width, 300);
+    imageView.frame=CGRectMake(0, 0, kScreen_Width, ACTUAL_HEIGHT(300));
 
     
     
 //    self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, -OTHERHEADER, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER)];
-        self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, HEADERVIEWHEIGHT-300, kScreen_Width, 300)];
+        self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, HEADERVIEWHEIGHT-ACTUAL_HEIGHT(300), kScreen_Width, ACTUAL_HEIGHT(300))];
     
    
     [self.belowImageViewView addSubview:imageView];
@@ -403,16 +405,21 @@
     
     showView.touchImageBlock=^{
         MyLog(@"点击图片放大");
+        [self touchPersonInfo];
+        
+        
     };
     
     UIButton*PersonInfo=[showView viewWithTag:4];
     PersonInfo.hidden=NO;
+    [PersonInfo setTitle:@"今日收益：$10.00" forState:UIControlStateNormal];
+    
     UIButton*follow=[showView viewWithTag:5];
     follow.hidden=YES;
     UIButton*friend=[showView viewWithTag:6];
     friend.hidden=YES;
     
-    [PersonInfo addTarget:self action:@selector(touchPersonInfo) forControlEvents:UIControlEventTouchUpInside];
+//    [PersonInfo addTarget:self action:@selector(touchPersonInfo) forControlEvents:UIControlEventTouchUpInside];
 
     NSMutableArray*fourArray=[NSMutableArray array];
     [fourArray addObject:@[@"关注",[UserSession instance].attentionCount]];
@@ -623,6 +630,16 @@
     
 }
 
+//选中了哪个按钮 评论下面的三个按钮
+-(void)DelegateForSelectedWhichButton:(NSInteger)section{
+    MyLog(@"1111  %ld",(long)section);
+    _commitSelectedWhichRow=section;
+    [self getMyCommitwithType:section];
+    
+}
+
+
+
 #pragma mark  --  getDatas
 //得到底部的数据
 - (NSMutableArray*)getBottomDatas{
@@ -684,7 +701,7 @@
             break;}
         case 2:{
             //评论
-            
+            [self getMyCommitwithType:0];
             break;}
             
         default:
@@ -769,6 +786,47 @@
     
 }
 
+
+//得到我的评论
+-(void)getMyCommitwithType:(NSInteger)number{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETCOMMIT];
+    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
+    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages,@"type":@(number)};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            for (NSDictionary*dict in data[@"data"]) {
+                //                RBHomeModel*model=[RBHomeModel yy_modelWithDictionary:dict];
+                //                [self.maMallDatas addObject:model];
+                
+                RBCenterAlbumModel*model=[RBCenterAlbumModel yy_modelWithDictionary:dict];
+                model.user = [[RBHomeUserModel alloc]init];
+                model.user.nickname = dict[@"user_name"];
+                [self.maMallDatas addObject:model];
+                
+                
+                
+            }
+            
+            
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+    }];
+    
+
+    
+}
 
 
 

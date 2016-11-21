@@ -119,6 +119,7 @@
 
 #define HTTP_GETNOTES              @"/api.php/Note/getMyNewNote/"    //得到笔记
 #define HTTP_GETALBUMS             @"/api.php/Note/getMyNewAlbum/"   //得到专辑
+#define HTTP_GETCOMMIT             @"/api.php/Shop/getUserComment"   //得到评论
 
 #define HTTP_MYABOUNT              @"/api.php/User/myAttention/"   //我的关注
 #define HTTP_MYFANS                @"/api.php/User/myFans/"        //我的粉丝
@@ -126,6 +127,7 @@
 #define HTTP_TAFANS                @"/api.php/User/otherFans/"       //他的粉丝
 #define HTTP_ADDABOUT              @"/api.php/User/addAttention/"    //加关注
 #define HTTP_DELABOUT              @"/api.php/User/delAttention/"    //删除关注
+#define HTTP_POSTCOMMIT            @"api.php/Shop/addShopComment/"   //发布评价
 
 
 #define HTTP_SEEOTHERCENTER       @"/api.php/User/getUserInfo/"  //查看他人个人中心
