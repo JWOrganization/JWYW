@@ -221,6 +221,7 @@
     }
     return self.imageHeader;
 }
+
 - (RBNodeDetailCommentHeader *)commentHeaderMake{
     if (!self.commentHeader) {
         self.commentHeader = [[[NSBundle mainBundle]loadNibNamed:@"RBNodeDetailCommentHeader" owner:nil options:nil] firstObject];
