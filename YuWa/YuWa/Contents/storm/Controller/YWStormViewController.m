@@ -213,7 +213,7 @@
         for (int i = 0; i<dataArr.count; i++) {
             YWStormAnnotationModel * model = [YWStormAnnotationModel yy_modelWithJSON:dataArr[i]];
             model.coordinate = (CLLocationCoordinate2D){[model.coordinatey floatValue],[model.coordinatex floatValue]};
-            [model setTitle:@" "];
+            [model setTitle:@"\n"];
             [self.mapView addAnnotation:model];
         }
     } failur:^(id responsObj, NSError *error) {
