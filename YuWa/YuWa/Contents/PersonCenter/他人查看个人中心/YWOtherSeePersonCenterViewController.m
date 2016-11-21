@@ -105,7 +105,7 @@
 
 #pragma mark  --UI
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
@@ -167,12 +167,12 @@
                 }
             }];
             
-            return rightRowHeight>leftRowHeight?rightRowHeight:leftRowHeight;
+            return (rightRowHeight>leftRowHeight?rightRowHeight:leftRowHeight)+10.f;
             
         }else if (self.showWhichView==showViewCategoryAlbum){
             NSMutableArray*alldatas=self.maMallDatas;
             CGFloat height = 180.f - 55.25f + (kScreen_Width - 20.f - 75.f)/4;
-            return (height+10)*alldatas.count;
+            return (height+10)*alldatas.count +10.f;
             
             
         }else if (self.showWhichView==showViewCategoryCommit){
@@ -237,7 +237,7 @@
     return 0.01;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
+    return section==1?0.001f:10;
 }
 
 -(void)addHeaderView{
@@ -316,6 +316,7 @@
 
 #pragma mark  --delegate
 -(void)DelegateForNote:(NSInteger)number{
+    number++;
     RBNodeShowViewController * vc = [[RBNodeShowViewController alloc]init];
     vc.model = self.maMallDatas[number];
     [self.navigationController pushViewController:vc animated:NO];
