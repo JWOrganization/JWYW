@@ -152,6 +152,7 @@
     YWOtherSeePersonCenterViewController * vc = [[YWOtherSeePersonCenterViewController alloc]init];
     vc.uid = self.friendID;
     vc.nickName = self.friendNikeName;
+    vc.otherIcon = self.friendIcon;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

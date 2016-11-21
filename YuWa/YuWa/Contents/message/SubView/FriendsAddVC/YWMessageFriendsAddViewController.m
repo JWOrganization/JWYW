@@ -115,6 +115,7 @@
         YWMessageSearchFriendAddModel * model = self.searchDataArr[indexPath.row];
         vc.uid = model.user_id;
         vc.nickName = model.nickName;
+        vc.otherIcon = model.header_img;
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
@@ -144,6 +145,7 @@
         YWMessageSearchFriendAddModel * model = self.searchDataArr[0];
         vc.uid = model.user_id;
         vc.nickName = model.nickName;
+        vc.otherIcon = model.header_img;
         [self.navigationController pushViewController:vc animated:YES];
         return YES;
     }

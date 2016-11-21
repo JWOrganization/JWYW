@@ -12,5 +12,6 @@
 @property(nonatomic,copy)NSString*albumDetail;
 
 @property(nonatomic,copy)NSString * otherUserID;
+@property(nonatomic,copy)NSString * otherUserIcon;
 
 @end
