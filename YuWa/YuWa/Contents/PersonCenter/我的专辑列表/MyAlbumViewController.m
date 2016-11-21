@@ -287,6 +287,7 @@
         }
         [dataDic setValue:nodeDataArr forKey:@"note"];
         self.model = [YWAldumDetailModel yy_modelWithDictionary:dataDic];
+        self.model.album.total = [NSString stringWithFormat:@"%zi",nodeDataArr.count];
         self.allDatas = [NSMutableArray arrayWithArray:self.model.note];
         [self reFreshData];
     } failur:^(id responsObj, NSError *error) {
@@ -313,6 +314,7 @@
         }
         [dataDic setValue:nodeDataArr forKey:@"note"];
         self.model = [YWAldumDetailModel yy_modelWithDictionary:dataDic];
+        self.model.album.total = [NSString stringWithFormat:@"%zi",nodeDataArr.count];
         self.allDatas = [NSMutableArray arrayWithArray:self.model.note];
         [self reFreshData];
     } failur:^(id responsObj, NSError *error) {
