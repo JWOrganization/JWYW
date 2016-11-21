@@ -60,6 +60,8 @@
 @property(nonatomic,strong)NSString*ctime;
 @property(nonatomic,strong)NSString*total_photo;       //总共图片的个数
 @property(nonatomic,strong)NSString*back_photo;
+@property(nonatomic,strong)NSString*catname; //那个大类
+@property(nonatomic,strong)NSString*tag;   //标签
 
 @property(nonatomic,strong)NSString*total_comment;   //总评论数
 @property(nonatomic,strong)NSString*top_than_other;  //高于同行

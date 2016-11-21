@@ -15,5 +15,7 @@
 @property(nonatomic,strong)void(^touchLocateBlock)();
 
 @property(nonnull,strong)void(^touchAddCollection)();
-@property(nonatomic,strong)void(^touchPhoneBlock)();
+@property(nonatomic,copy)void(^touchPhoneBlock)();
+
+@property(nonatomic,copy)void(^touchQiangBlock)();
 @end

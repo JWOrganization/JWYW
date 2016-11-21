@@ -32,6 +32,12 @@
     [imageView addGestureRecognizer:tap];
     
     
+    //抢店铺的优惠券
+    UIImageView*QiangImageView=[self viewWithTag:31];
+    QiangImageView.userInteractionEnabled=YES;
+    UITapGestureRecognizer*tapp=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchQiang)];
+    [QiangImageView addGestureRecognizer:tapp];
+    
     
 }
 
@@ -71,5 +77,13 @@
     }
 
 }
+
+-(void)touchQiang{
+    if (self.touchQiangBlock) {
+        self.touchQiangBlock();
+    }
+    
+}
+
 
 @end

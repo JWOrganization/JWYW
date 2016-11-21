@@ -127,7 +127,7 @@
 #define HTTP_TAFANS                @"/api.php/User/otherFans/"       //他的粉丝
 #define HTTP_ADDABOUT              @"/api.php/User/addAttention/"    //加关注
 #define HTTP_DELABOUT              @"/api.php/User/delAttention/"    //删除关注
-#define HTTP_POSTCOMMIT            @"api.php/Shop/addShopComment/"   //发布评价
+#define HTTP_POSTCOMMIT            @"/api.php/Shop/addShopComment/"   //发布评价
 
 
 #define HTTP_SEEOTHERCENTER       @"/api.php/User/getUserInfo/"  //查看他人个人中心

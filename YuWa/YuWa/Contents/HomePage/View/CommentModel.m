@@ -10,4 +10,9 @@
 
 @implementation CommentModel
 
+//+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass{
+//    return @{@"shop":ShopdetailModel.class};
+//    
+//}
+
 @end

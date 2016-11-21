@@ -19,6 +19,7 @@
 #import "JWTools.h"
 #import "RBHomeModel.h"                   //笔记
 #import "RBCenterAlbumModel.h"           //专辑   可能没用
+#import "CommentModel.h"                //评论接口
 #import "RBHomeModel.h"
 #import "RBCenterAlbumModel.h"
 
@@ -302,12 +303,13 @@
             NSMutableArray*alldatas=self.maMallDatas;
 
             for (int i=0; i<alldatas.count; i++) {
-                CommitViewModel*model=alldatas[i];
-                  NSDictionary*dict=@{@"title":model.content,@"images":model.images};
-               cellHeight=cellHeight+10+60+ [CommentTableViewCell getCellHeight:dict];
+                CommentModel*model=alldatas[i];
+                
+               cellHeight=cellHeight+10+60+ [CommentTableViewCell getCellHeight:model];
             }
             
             return cellHeight;
+          
             
             
         }
@@ -812,14 +814,10 @@
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
             for (NSDictionary*dict in data[@"data"]) {
-                //                RBHomeModel*model=[RBHomeModel yy_modelWithDictionary:dict];
-                //                [self.maMallDatas addObject:model];
+
                 
-                RBCenterAlbumModel*model=[RBCenterAlbumModel yy_modelWithDictionary:dict];
-                model.user = [[RBHomeUserModel alloc]init];
-                model.user.nickname = dict[@"user_name"];
+                CommentModel*model=[CommentModel yy_modelWithDictionary:dict];
                 [self.maMallDatas addObject:model];
-                
                 
                 
             }

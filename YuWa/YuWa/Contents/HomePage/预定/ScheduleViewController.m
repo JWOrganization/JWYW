@@ -11,18 +11,17 @@
 
 @interface ScheduleViewController ()
 
+
 @end
 
 @implementation ScheduleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets=NO;
+    self.automaticallyAdjustsScrollViewInsets=YES;
    self.title=@"预约";
     
-    SAMTextView*textView=[self.view viewWithTag:1];
-    textView.placeholder=@"请留言";
-    
+      
 }
 
 - (void)didReceiveMemoryWarning {

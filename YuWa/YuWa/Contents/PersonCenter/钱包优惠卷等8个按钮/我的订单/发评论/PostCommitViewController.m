@@ -284,7 +284,9 @@
             NSNumber*number=data[@"errorCode"];
             NSString*errorCode=[NSString stringWithFormat:@"%@",number];
             if ([errorCode isEqualToString:@"0"]) {
-                [saveImageUrl addObject:data[@"data"]];
+                NSDictionary*dict=@{@"url":data[@"data"]};
+                
+                [saveImageUrl addObject:dict];
                 
             }else{
                 [JRToast showWithText:data[@"errorMessage"]];
@@ -316,7 +318,7 @@
     //,@"img_url":jsonStr   self.shop_id
     CGFloat shopidFloat=[self.shop_id floatValue];
     NSNumber*shopid=@(shopidFloat);
-    NSDictionary*dictt=@{@"shop_id":shopid,@"user_id":@([UserSession instance].uid),@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"customer_content":self.saveCommitContent  ,@"score":@(self.commitStar)};
+    NSDictionary*dictt=@{@"shop_id":shopid,@"user_id":@([UserSession instance].uid),@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"customer_content":self.saveCommitContent  ,@"score":@(self.commitStar),@"order_id":self.order_id};
     NSMutableDictionary*params=[NSMutableDictionary dictionaryWithDictionary:dictt];
     
     if (array.count>0&&array.count==_saveAllImage.count) {
@@ -337,7 +339,7 @@
         NSNumber*number=data[@"errorCode"];
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
-            
+            [JRToast showWithText:data[@"msg"]];
             
             [self.navigationController popViewControllerAnimated:YES];
         }else{

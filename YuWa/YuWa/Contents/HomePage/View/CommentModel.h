@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ShopdetailModel.h"
 
 @interface CommentModel : NSObject
 
@@ -28,5 +29,12 @@
 @property(nonatomic,strong)NSString*customer_name;
 @property(nonatomic,strong)NSString*customer_header_img;
 
+//一些店铺的信息  只有个人中心才有
+//@property(nonatomic,strong)NSString*company_name;
+//@property(nonatomic,strong)NSString*company_address;
+//@property(nonatomic,strong)NSString*company_img;
+//@property(nonatomic,strong)NSString*catname
+//@property(nonatomic,strong)NSString*tag
+@property(nonatomic,strong)ShopdetailModel*shop;   //店铺详情里面的数据
 
 @end

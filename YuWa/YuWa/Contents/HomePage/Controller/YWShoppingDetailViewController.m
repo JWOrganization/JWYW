@@ -338,6 +338,11 @@
             [self alertShowPhone];
         };
         
+        cell.touchQiangBlock=^{
+          //抢优惠券
+            MyLog(@"抢优惠券");
+            
+        };
         
         
         cell.selectionStyle=NO;
@@ -759,7 +764,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section==2) {
-        return 40;
+        return 10;
     }else if (section==3){
         return 30+10;   //10是空余的
     }
