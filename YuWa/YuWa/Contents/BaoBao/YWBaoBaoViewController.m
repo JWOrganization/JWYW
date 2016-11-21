@@ -37,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [UserSession instance].baobaoLV = 2;
     [self dataSet];
     [self makeUI];
 }

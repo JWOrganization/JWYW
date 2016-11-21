@@ -390,6 +390,25 @@
     return [dateFormatter stringFromDate:date];
 }
 
+/**
+ *  传一个日期字符串日期字符串返回月日
+ *
+ *  @param dateStr 日期字符串
+ *
+ *  @return 修改完的日期字符串
+ */
++ (NSString *)dateWithDate:(NSString *)dateStr{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    
+    if (!date) {
+        date = [NSDate dateWithTimeIntervalSince1970:[dateStr doubleValue]];
+    }
+    dateFormatter.dateFormat = @"MM-dd";
+    return [dateFormatter stringFromDate:date];
+}
+
 #pragma mark - Json
 /**
  *  单个数组组成Json文件
