@@ -75,7 +75,6 @@
 - (IBAction)attentiionBtnAction:(id)sender {
     if ([UserSession instance].isLogin) {
         self.infavs = [self.infavs isEqualToString:@"0"]?@"1":@"0";
-        //    dispatch_get_main_queue()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if ([self.infavs isEqualToString:@"1"]) {
                 [self requestAttention];

@@ -253,15 +253,14 @@
 #pragma mark - Set ScrollImageView Height
 - (void)setScrollImageHeight:(CGFloat)scrollImageHeight{
     if (scrollImageHeight == _scrollImageHeight || !self.dataModel)return;
-    _scrollImageHeight = scrollImageHeight;
-    //重置高度
+    _scrollImageHeight = scrollImageHeight;//重置高度
     [self tableView:self.tableView heightForHeaderInSection:1];
     [self tableView:self.tableView viewForHeaderInSection:1];
-    //重置位置
+    
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    cell.y = scrollImageHeight + 54.f;
-    //重置位置取消动画
-    [UIView performWithoutAnimation:^{
+    cell.y = scrollImageHeight + 54.f;//重置位置
+    
+    [UIView performWithoutAnimation:^{//重置位置取消动画
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
@@ -370,7 +369,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataModel?section == 0?0: section == 2?self.dataModel.comments_list.count >3?3:self.dataModel.comments_list.count: 1 : 0;
+    return self.dataModel?section == 0?0: section == 2?self.dataModel.comments_list.count >3?3:self.dataModel.comments_list.count:1:0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -400,10 +399,9 @@
     self.failedCount = 0;
     [self requestDataWithPages:self.pages];
 }
+
 - (void)cancelRefreshWithIsHeader:(BOOL)isHeader{
-    if (!isHeader) {
-        [self.tableView.mj_footer endRefreshing];
-    }
+    if (!isHeader)[self.tableView.mj_footer endRefreshing];
 }
 
 #pragma mark - Http
@@ -473,9 +471,7 @@
         self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
         self.dataModel.infavs = @"1";
         self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] + 1)];
-        if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
-            [UserSession instance].aldumCount = @"1";//成功后若无专辑则创建
-        }
+        if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0)[UserSession instance].aldumCount = @"1";//成功后若无专辑则创建
         [self reSetBottomToolsView];
         [self.addToAldumView removeFromSuperview];
     } failur:^(id responsObj, NSError *error) {

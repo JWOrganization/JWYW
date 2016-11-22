@@ -62,8 +62,7 @@
     
 }
 
-//滑动刷新
-- (void)refreshWithHeight:(CGFloat)height{
+- (void)refreshWithHeight:(CGFloat)height{//滑动刷新
     if (self.height == height)return;
     self.height = height;
     self.scrollImageView.height = height;
@@ -74,9 +73,7 @@
     }
 }
 
-
-//清除缓存
-- (void)clearTmpPics{
+- (void)clearTmpPics{//清除缓存
     [[SDImageCache sharedImageCache] clearDisk];
     [[SDImageCache sharedImageCache] clearMemory];//可有可无
 }
@@ -100,9 +97,7 @@
     }else{
         _tagArr = tagArr;
     }
-    if (isShowed) {
-        [self showTag];
-    }
+    if (isShowed) [self showTag];
 }
 
 - (void)showTag{
