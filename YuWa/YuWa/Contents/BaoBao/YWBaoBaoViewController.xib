@@ -140,10 +140,10 @@
                         <constraint firstAttribute="height" constant="20" id="ga4-zg-Rc6"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbB-4u-Yw7">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbB-4u-Yw7">
                     <rect key="frame" x="0.0" y="86" width="600" height="419"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baobaoTemp" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-eM-g9r">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baobaoTemp" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-eM-g9r">
                             <rect key="frame" x="140" y="50" width="320" height="320"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="320" id="hLS-so-vc9"/>
@@ -157,7 +157,7 @@
                         <constraint firstItem="TgE-eM-g9r" firstAttribute="centerX" secondItem="cbB-4u-Yw7" secondAttribute="centerX" id="cpt-Z7-HKI"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-wA-NN8">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-wA-NN8">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
                 <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ivc-jr-TcX">
