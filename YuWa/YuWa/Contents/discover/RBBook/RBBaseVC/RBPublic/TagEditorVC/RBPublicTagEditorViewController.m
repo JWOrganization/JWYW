@@ -76,8 +76,7 @@
     self.tagCollectionView = [[JWTagCollectionView alloc]initWithFrame:CGRectMake(35.f, 372.f, kScreen_Width - 70.f, 44.f) collectionViewLayout:flowLayout];
     self.tagCollectionView.tagArr = tagArr;
     self.tagCollectionView.tagChoosed = YES;
-    self.tagCollectionView.changeTagBlock = ^(NSString * chooseTag){
-        //选中标签后操作
+    self.tagCollectionView.changeTagBlock = ^(NSString * chooseTag){//选中标签后操作
         [RBPublishSession sharePublishSession].status = [chooseTag integerValue] + 1;
         MyLog(@"选择了%@个标签",chooseTag);
     };

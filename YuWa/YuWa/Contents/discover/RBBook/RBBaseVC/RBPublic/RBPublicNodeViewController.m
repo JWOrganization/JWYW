@@ -26,7 +26,6 @@
 @property (nonatomic,strong)NSMutableArray * tagSaveArr;//图片改变标签数据(保存)
 @property (nonatomic,strong)NSMutableArray * tagSaveTempArr;//图片改变标签数据(读取)
 @property (nonatomic,assign)BOOL isChanged;
-
 @property (nonatomic,strong)ALAssetsLibrary *library;
 
 #ifdef __IPHONE_9_0
@@ -81,6 +80,7 @@
         [self.tagSaveArr addObject:[NSMutableArray arrayWithCapacity:0]];
         [self.tagSaveTempArr addObject:[NSMutableArray arrayWithCapacity:0]];
     }];
+    
     if (self.imageChangeSaveArr) {//有修改
         [self.imageChangeSaveArr enumerateObjectsUsingBlock:^(RBPublicSaveModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.photos enumerateObjectsUsingBlock:^(UIImage * _Nonnull photo, NSUInteger photoIdx, BOOL * _Nonnull stop) {
@@ -98,6 +98,7 @@
 - (void)makeTittleStrWithIndex:(NSInteger)index{
     self.title = [NSString stringWithFormat:@"编辑照片 (%zi/%zi)",index,self.photos.count];
 }
+
 - (void)makeNavi{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImageName:@"img_navi_back" withSelectImage:@"img_navi_back" withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTarget:self action:@selector(backBarAction) forControlEvents:UIControlEventTouchUpInside withWidth:20.f];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"继续" withTittleColor:[UIColor colorWithHexString:@"#ff2741"] withTarget:self action:@selector(pushAction) forControlEvents:UIControlEventTouchUpInside withWidth:40.f];
@@ -148,6 +149,7 @@
             imageView = nil;
         }
     }
+    
     self.scrollView.contentSize = CGSizeMake(kScreen_Width * self.photos.count, self.scrollView.height);
     CGFloat x = 0.f;
     for (int i = 1; i<=self.imagesArr.count; i++) {
@@ -186,9 +188,8 @@
     for (NSMutableArray * effectArr in self.tagSaveArr) {
         effectCount += effectArr.count;
     }
-    if (self.isChanged) {
-        effectCount++;
-    }
+    if (self.isChanged)effectCount++;
+    
     if (effectCount >0) {//照片已修改
         UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -213,9 +214,7 @@
 
 - (void)pushAction{
     [self.typeArr enumerateObjectsUsingBlock:^(NSNumber * _Nonnull count, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([count integerValue]>0) {//修改了滤镜,保存至相册
-            [self saveImgToAlbumWithImgIdx:idx];
-        }
+        if ([count integerValue]>0)[self saveImgToAlbumWithImgIdx:idx];//修改了滤镜,保存至相册
     }];
     
     RBPublicEditorViewController * vc = [[RBPublicEditorViewController alloc]init];
@@ -275,10 +274,12 @@
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     [actionView addGestureRecognizer:tap];
 }
+
 - (void)tapAction:(UITapGestureRecognizer *)tap{
     XHTagView * tagView = [tap.view viewWithTag:1009];
     [tagView animation];
 }
+
 - (void)panAction:(UIPanGestureRecognizer *)pan{//移动手势
     CGPoint point = [pan translationInView:pan.view];
     pan.view.transform = CGAffineTransformTranslate(pan.view.transform, point.x, point.y);
@@ -286,6 +287,7 @@
     XHTagView * view = [pan.view viewWithTag:1009];
     view.centerLocationPoint = CGPointMake(view.centerLocationPoint.x + point.x, view.centerLocationPoint.y + point.y);
 }
+
 - (void)longPressAction:(UILongPressGestureRecognizer *)longPress{
     UIAlertAction * OKAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSMutableArray * dataArr = self.tagSaveArr[self.imagePage];
@@ -388,19 +390,19 @@
 
 #ifdef __IPHONE_9_0
 /**同步方式保存图片到系统的相机胶卷中---返回的是当前保存成功后相册图片对象集合*/
-- (PHFetchResult<PHAsset *> *)syncSaveImageWithPhotosWithImage:(UIImage *)photo{//--1 创建 ID 这个参数可以获取到图片保存后的 asset对象
+- (PHFetchResult<PHAsset *> *)syncSaveImageWithPhotosWithImage:(UIImage *)photo{//1 创建 ID 这个参数可以获取到图片保存后的 asset对象
     __block NSString *createdAssetID = nil;
     
-    //--2 保存图片
+    //2 保存图片
     NSError *error = nil;
-    [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{//----block 执行的时候还没有保存成功--获取占位图片的 id，通过 id 获取图片---同步
+    [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{//block 执行的时候还没有保存成功--获取占位图片的 id，通过 id 获取图片---同步
         createdAssetID = [PHAssetChangeRequest             creationRequestForAssetFromImage:photo].placeholderForCreatedAsset.localIdentifier;
     } error:&error];
     
-    //--3 如果失败，则返回空
+    //3 如果失败，则返回空
     if (error)return nil;
     
-    //--4 成功后，返回对象//获取保存到系统相册成功后的 asset 对象集合，并返回
+    //4 成功后，返回对象//获取保存到系统相册成功后的 asset 对象集合，并返回
     PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsWithLocalIdentifiers:@[createdAssetID] options:nil];
     return assets;
     
