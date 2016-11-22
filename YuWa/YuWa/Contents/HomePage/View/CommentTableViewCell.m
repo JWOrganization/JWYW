@@ -177,10 +177,17 @@
 //        int HNmuber=i%3;
 //        int VNumber=i/3;
 //    }
+    CGFloat imageBottom;
     
-    NSUInteger VNumber=(imageArray.count-1)/3;
-    CGFloat imageVHeight=Height+(Height+VJianJu)*VNumber+10;
-    CGFloat imageBottom=imageTop+imageVHeight;
+    if (imageArray.count>0) {
+        NSUInteger VNumber=(imageArray.count-1)/3;
+        CGFloat imageVHeight=Height+(Height+VJianJu)*VNumber+10;
+        imageBottom=imageTop+imageVHeight;
+
+    }else{
+        imageBottom=imageTop;
+    }
+    
     
     if (model.seller_content==nil||[model.seller_content isEqualToString:@""]) {
         return imageBottom;

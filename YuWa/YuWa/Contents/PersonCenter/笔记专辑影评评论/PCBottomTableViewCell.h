@@ -16,8 +16,10 @@
 -(void)DelegateForAlbum:(NSInteger)number andMax:(NSInteger)maxNumber;  //专辑
 
 
-//选中了评论下面的 那个按钮
--(void)DelegateForSelectedWhichButton:(NSInteger)section;
+////选中了评论下面的 那个按钮
+//-(void)DelegateForSelectedWhichButton:(NSInteger)section;
+//点击了评论那里的店铺按钮
+-(void)DelegateForToShopDetail:(NSString*)shopid;
 
 @end
 

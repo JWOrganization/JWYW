@@ -168,7 +168,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    CommentModel*model=self.maMallDatas[indexPath.row];
+    CommentModel*model=self.maMallDatas[indexPath.section];
     return [CommentTableViewCell getCellHeight:model];
 
 

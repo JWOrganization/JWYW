@@ -12,6 +12,7 @@
 #import "PersonCenterHeadView.h"
 #import "PCBottomTableViewCell.h"   //底部4种可能的cell
 #import "YWBaoBaoViewController.h"
+#import "YWShoppingDetailViewController.h"   //店铺详情
 
 #import "defineButton.h"
 #import "imageDefineButton.h"
@@ -70,7 +71,7 @@
 
 
 @property(nonatomic,assign)NSInteger whichShow;   // 0笔记 1专辑 2评论
-@property(nonatomic,assign)NSInteger commitSelectedWhichRow;  //现在评论这一栏选中的是哪一个
+//@property(nonatomic,assign)NSInteger commitSelectedWhichRow;  //现在评论这一栏选中的是哪一个
 @property(nonatomic,assign)int pagen;
 @property(nonatomic,assign)int pages;
 @property(nonatomic,strong)NSMutableArray*maMallDatas;  //所有数据
@@ -293,7 +294,7 @@
             
         }else if (self.showWhichView==showViewCategoryCommit){
             //评论
-            CGFloat cellHeight=0.f+30;
+            CGFloat cellHeight=0.f;
 //            NSMutableArray*alldatas=[self getBottomDatas];
             NSMutableArray*alldatas=self.maMallDatas;
 
@@ -305,7 +306,7 @@
             
             return cellHeight;
           
-            
+//            return 2000;
             
         }
         
@@ -632,15 +633,21 @@
     
 }
 
-//选中了哪个按钮 评论下面的三个按钮
--(void)DelegateForSelectedWhichButton:(NSInteger)section{
-    MyLog(@"1111  %ld",(long)section);
-    _commitSelectedWhichRow=section;
-    [self getMyCommitwithType:section];
+////选中了哪个按钮 评论下面的三个按钮
+//-(void)DelegateForSelectedWhichButton:(NSInteger)section{
+//    MyLog(@"1111  %ld",(long)section);
+//    _commitSelectedWhichRow=section;
+//    [self getMyCommitwithType:section];
+//    
+//}
+
+//需要跳转到店铺
+-(void)DelegateForToShopDetail:(NSString*)shopid{
+    YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+    vc.shop_id=shopid;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
-
-
 
 #pragma mark  --  getDatas
 //得到底部的数据
@@ -703,7 +710,7 @@
             break;}
         case 2:{
             //评论
-            [self getMyCommitwithType:0];
+            [self getMyCommit];
             break;}
             
         default:
@@ -790,11 +797,13 @@
 
 
 //得到我的评论
--(void)getMyCommitwithType:(NSInteger)number{
+-(void)getMyCommit{
+    
+    
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETCOMMIT];
     NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
     NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
-    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages,@"type":@(number)};
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages};
     HttpManager*manager=[[HttpManager alloc]init];
     [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
         MyLog(@"%@",data);

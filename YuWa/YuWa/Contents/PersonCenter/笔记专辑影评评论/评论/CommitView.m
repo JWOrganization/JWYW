@@ -18,7 +18,7 @@
 
 @interface CommitView()<UITableViewDataSource,UITableViewDelegate,YJSegmentedControlDelegate>
 @property(nonatomic,strong)UITableView*tableView;
-@property(nonatomic,strong)UIView*topView; //顶部的view
+//@property(nonatomic,strong)UIView*topView; //顶部的view
 
 @property(nonatomic,strong)NSMutableArray*allDatas;
 @end
@@ -37,7 +37,7 @@
         [self addSubview:self.tableView];
         [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
 
-        [self addTableHeaderView];
+//        [self addTableHeaderView];
         
     }
     
@@ -49,20 +49,20 @@
 
 #pragma mark  --tableView
 
--(void)addTableHeaderView{
-
-    UIView*topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
-    topView.backgroundColor=[UIColor whiteColor];
-    self.topView=topView;
-    NSArray*titleArray=@[@"评论",@"电影",@"酒店"];
-    YJSegmentedControl*chooseView=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 30) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
-//    [chooseView selectTheSegument:2];
-    
-    [topView addSubview:chooseView];
-    
-    self.tableView.tableHeaderView=topView;
-    
-}
+//-(void)addTableHeaderView{
+//
+//    UIView*topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
+//    topView.backgroundColor=[UIColor whiteColor];
+//    self.topView=topView;
+//    NSArray*titleArray=@[@"评论",@"电影",@"酒店"];
+//    YJSegmentedControl*chooseView=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 30) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
+////    [chooseView selectTheSegument:2];
+//    
+//    [topView addSubview:chooseView];
+//    
+//    self.tableView.tableHeaderView=topView;
+//    
+//}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.allDatas.count;
@@ -77,7 +77,7 @@
     cell.selectionStyle=NO;
     CommentModel *model=self.allDatas[indexPath.section];
     [cell giveValueWithModel:model];
-    
+//    cell.backgroundColor=[UIColor yellowColor];
    
     
     return cell;
@@ -124,7 +124,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentModel *model=self.allDatas[indexPath.section];
-    return [CommentTableViewCell getCellHeight:model];
+    CGFloat aa=[CommentTableViewCell getCellHeight:model];
+    return aa;
 //    return 200;
     
 }
@@ -138,14 +139,14 @@
 
 
 #pragma mark  --delegate
--(void)segumentSelectionChange:(NSInteger)selection{
-    MyLog(@"xxx");
-    //代理回去 刷新
-    if ([self.delegate respondsToSelector:@selector(DelegateForSelectedChange:)]) {
-        [self.delegate DelegateForSelectedChange:selection];
-    }
-    
-}
+//-(void)segumentSelectionChange:(NSInteger)selection{
+//    MyLog(@"xxx");
+//    //代理回去 刷新
+//    if ([self.delegate respondsToSelector:@selector(DelegateForSelectedChange:)]) {
+//        [self.delegate DelegateForSelectedChange:selection];
+//    }
+//    
+//}
 
 /*
  #pragma mark - Navigation

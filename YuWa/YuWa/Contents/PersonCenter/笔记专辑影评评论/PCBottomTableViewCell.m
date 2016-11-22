@@ -70,7 +70,8 @@
                     make.edges.mas_equalTo(self);
                 }];
                 
-                break;}
+                break;
+            }
 //            case showViewCategoryFilm:{
 ////                self.backgroundColor=[UIColor greenColor];
 //                FilmView*view=[[FilmView alloc]initWithFrame:self.frame andArray:allDatas];
@@ -178,14 +179,19 @@
     
 }
 
--(void)DelegateForSelectedChange:(NSInteger)selection{
-    if ([self.delegate respondsToSelector:@selector(DelegateForSelectedWhichButton:)]) {
-        [self.delegate DelegateForSelectedWhichButton:selection];
+//-(void)DelegateForSelectedChange:(NSInteger)selection{
+//    if ([self.delegate respondsToSelector:@selector(DelegateForSelectedWhichButton:)]) {
+//        [self.delegate DelegateForSelectedWhichButton:selection];
+//    }
+//    
+//}
+
+//跳转到店铺的  转代理
+-(void)DelegateToShop:(NSString*)shopid{
+    if ([self.delegate respondsToSelector:@selector(DelegateForToShopDetail:)]) {
+        [self.delegate DelegateForToShopDetail:shopid];
     }
     
 }
-
-//跳转到店铺的
-
 
 @end

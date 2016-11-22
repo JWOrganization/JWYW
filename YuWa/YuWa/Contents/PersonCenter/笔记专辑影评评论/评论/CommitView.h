@@ -10,7 +10,7 @@
 
 @protocol CommitViewDelegate <NSObject>
 
--(void)DelegateForSelectedChange:(NSInteger)selection;
+//-(void)DelegateForSelectedChange:(NSInteger)selection;
 //代理跳到 店铺
 -(void)DelegateToShop:(NSString*)shopid;
 

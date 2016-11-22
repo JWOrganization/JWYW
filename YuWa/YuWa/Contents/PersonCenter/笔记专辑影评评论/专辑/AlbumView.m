@@ -91,6 +91,7 @@
     
     RBAlbumCollectionViewCell * albumCell = [collectionView dequeueReusableCellWithReuseIdentifier:ALDUMCELL forIndexPath:indexPath];
     albumCell.model = self.allDatas[indexPath.row];
+//    albumCell.backgroundColor=[UIColor redColor];
     return albumCell;
 
     
