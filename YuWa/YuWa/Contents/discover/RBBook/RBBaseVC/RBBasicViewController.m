@@ -21,27 +21,24 @@
     [super viewDidLoad];
     [self makeEmojisKeyBoards];
     [self makeCommentToolsView];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //键盘弹出
-    [self addTextViewNotification];
+    
+    [self addTextViewNotification];//键盘弹出
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    //取消键盘监听
+    
     [self cancelComment];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];//取消键盘监听
 }
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    if (self.commentToolsView.height != 44.f) {
-        self.commentToolsView.frame = CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f);
-    }
+    if (self.commentToolsView.height != 44.f)self.commentToolsView.frame = CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f);
 }
 
 - (BOOL)isLogin{
@@ -67,6 +64,7 @@
         };
         [weakSelf presentViewController:vc animated:YES completion:nil];
     };
+    
     self.commentToolsView.showEmojisBlock = ^(BOOL isShowEmojis){
         weakSelf.isShowEmojis = isShowEmojis;
         [weakSelf.commentToolsView.sendTextField resignFirstResponder];
@@ -79,6 +77,7 @@
             [weakSelf.commentToolsView.sendTextField becomeFirstResponder];
         });
     };
+    
     self.commentToolsView.sendTextField.delegate = self;
     [self.view addSubview:self.commentToolsView];
 }
@@ -94,6 +93,7 @@
             [weakSelf.commentToolsView.sendTextField resignFirstResponder];
         }
     };
+    
     self.emojisKeyBoards.deleteStrBlock = ^(){
         if (self.commentToolsView.sendTextField.text.length > 0) {
             NSMutableString * strTemp = [NSMutableString stringWithString:weakSelf.commentToolsView.sendTextField.text];
@@ -108,14 +108,13 @@
             weakSelf.commentToolsView.sendTextField.text = strTemp;
         }
     };
+    
     self.emojisKeyBoards.addStrBlock = ^(NSString * addStr){
         weakSelf.commentToolsView.sendTextField.text = [NSString stringWithFormat:@"%@%@",weakSelf.commentToolsView.sendTextField.text,addStr];
     };
-    
 }
 
-//发笔记
-- (void)publishNodeAction{
+- (void)publishNodeAction{//发笔记
     if (![self isLogin])return;
     TZImagePickerController *imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
     imagePickerVC.allowPickingVideo = NO;
@@ -126,14 +125,12 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
-//发专辑
-- (void)publishAlbumAction{
+- (void)publishAlbumAction{//发专辑
     if (![self isLogin])return;
     MyLog(@"Add Album");
 }
 
-//添加评论
-- (void)commentActionWithNodeDic:(NSDictionary *)node{
+- (void)commentActionWithNodeDic:(NSDictionary *)node{//添加评论
     if (![self isLogin])return;
     self.commentToolsView.hidden = NO;
     if (self.commentToolsView.y > kScreen_Height - 44.f)self.commentToolsView.y = kScreen_Height - 44.f;
@@ -143,8 +140,8 @@
     self.commentSendDic = [NSMutableDictionary dictionaryWithDictionary:node];
     [self.commentToolsView.sendTextField becomeFirstResponder];
 }
-//回复用户评论
-- (void)commentActionWithUserDic:(NSDictionary *)user{
+
+- (void)commentActionWithUserDic:(NSDictionary *)user{//回复用户评论
     if (![self isLogin])return;
     self.commentToolsView.hidden = NO;
     if (self.commentToolsView.y > kScreen_Height - 44.f)self.commentToolsView.y = kScreen_Height - 44.f;
@@ -157,11 +154,6 @@
 
 - (void)cancelComment{
     [self.commentToolsView.sendTextField resignFirstResponder];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - KeyBoard KVO
@@ -178,7 +170,6 @@
 - (void)addTextViewNotification{
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
-
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

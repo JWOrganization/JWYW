@@ -15,7 +15,6 @@
 @property (nonatomic,strong)UIImage * changedImage;
 @property (nonatomic,assign)NSInteger type;//滤镜类型
 
-
 @property (nonatomic,strong)NSMutableArray<RBPublicTagSaveModel *> * tagArr;
 
 @end

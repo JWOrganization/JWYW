@@ -397,7 +397,6 @@
 		B38B2F551D8FC83A004D5256 /* 总的专辑 个人中心展示小图.json in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F3F1D8FC83A004D5256 /* 总的专辑 个人中心展示小图.json */; };
 		B38B2F561D8FC83A004D5256 /* 总的笔记个人.json in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F401D8FC83A004D5256 /* 总的笔记个人.json */; };
 		B38B2F571D8FC83A004D5256 /* 点进个人中心的一个专辑.json in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F411D8FC83A004D5256 /* 点进个人中心的一个专辑.json */; };
-		B38B2F581D8FC83A004D5256 /* 红领巾 下载的.zip in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F421D8FC83A004D5256 /* 红领巾 下载的.zip */; };
 		B38B2F591D8FC83A004D5256 /* 首页数据.json in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F431D8FC83A004D5256 /* 首页数据.json */; };
 		B38B2F5A1D8FC83A004D5256 /* country.plist in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F451D8FC83A004D5256 /* country.plist */; };
 		B38B2F5B1D8FC83A004D5256 /* countrycoderule.plist in Resources */ = {isa = PBXBuildFile; fileRef = B38B2F461D8FC83A004D5256 /* countrycoderule.plist */; };
@@ -1608,7 +1607,6 @@
 		B38B2F3F1D8FC83A004D5256 /* 总的专辑 个人中心展示小图.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "总的专辑 个人中心展示小图.json"; sourceTree = "<group>"; };
 		B38B2F401D8FC83A004D5256 /* 总的笔记个人.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "总的笔记个人.json"; sourceTree = "<group>"; };
 		B38B2F411D8FC83A004D5256 /* 点进个人中心的一个专辑.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "点进个人中心的一个专辑.json"; sourceTree = "<group>"; };
-		B38B2F421D8FC83A004D5256 /* 红领巾 下载的.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "红领巾 下载的.zip"; sourceTree = "<group>"; };
 		B38B2F431D8FC83A004D5256 /* 首页数据.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "首页数据.json"; sourceTree = "<group>"; };
 		B38B2F451D8FC83A004D5256 /* country.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = country.plist; sourceTree = "<group>"; };
 		B38B2F461D8FC83A004D5256 /* countrycoderule.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = countrycoderule.plist; sourceTree = "<group>"; };
@@ -4231,7 +4229,6 @@
 				B38B2F3F1D8FC83A004D5256 /* 总的专辑 个人中心展示小图.json */,
 				B38B2F401D8FC83A004D5256 /* 总的笔记个人.json */,
 				B38B2F411D8FC83A004D5256 /* 点进个人中心的一个专辑.json */,
-				B38B2F421D8FC83A004D5256 /* 红领巾 下载的.zip */,
 				B38B2F431D8FC83A004D5256 /* 首页数据.json */,
 			);
 			path = Json;
@@ -6239,7 +6236,6 @@
 				B3D219141DB0985100D661F5 /* ShareSDK.bundle in Resources */,
 				B38B2DE71D8FACD8004D5256 /* GifBundle.bundle in Resources */,
 				C13019E61DB20B2400E24C88 /* 运动健身.png in Resources */,
-				B38B2F581D8FC83A004D5256 /* 红领巾 下载的.zip in Resources */,
 				B3FEB9FF1D9B6465003CDEF2 /* YWMessageTableViewCell.xib in Resources */,
 				B3D2190D1DB0985100D661F5 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				B38B2F531D8FC83A004D5256 /* 地点城市.json in Resources */,
