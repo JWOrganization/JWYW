@@ -20,9 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *LVShowImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *skillView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *baobaoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *baobaoLVUpImageView;
-
 
 @property (weak, nonatomic) IBOutlet UIButton *LVUpBtn;
 
@@ -104,7 +102,7 @@
     for (int i=0; i<120; i++) {
         NSString * path= [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%zibaobaoBG%zi@2x",lvCount,i] ofType:@"jpg"];
         if (path) {
-            if (self.baobaoBGGifArr.count>120) {
+            if (self.baobaoBGGifArr.count>i) {
                 [self.baobaoBGGifArr replaceObjectAtIndex:i withObject:[UIImage imageWithContentsOfFile:path]];
             }else{
                 [self.baobaoBGGifArr addObject:[UIImage imageWithContentsOfFile:path]];

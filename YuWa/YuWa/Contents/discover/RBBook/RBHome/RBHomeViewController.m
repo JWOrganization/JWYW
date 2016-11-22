@@ -67,8 +67,7 @@
     self.tagCollectionView = [[JWTagCollectionView alloc]initWithFrame:CGRectMake(0.f, NavigationHeight, kScreen_Width, 44.f) collectionViewLayout:flowLayout];
     self.tagCollectionView.tagArr = tagArr;
     WEAKSELF;
-    self.tagCollectionView.changeTagBlock = ^(NSString * chooseTag){
-        //选中标签后操作
+    self.tagCollectionView.changeTagBlock = ^(NSString * chooseTag){//选中标签后操作
         weakSelf.states = chooseTag;
         MyLog(@"选择了%@个标签",chooseTag);
         [weakSelf.collectionView.mj_header beginRefreshing];
@@ -130,7 +129,6 @@
 
 #pragma mark - Collection Refresh
 - (void)setupRefresh{
-    
     self.collectionView.mj_header = [UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
         [self headerRereshing];
     }];
@@ -183,7 +181,5 @@
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
 }
-
-
 
 @end
