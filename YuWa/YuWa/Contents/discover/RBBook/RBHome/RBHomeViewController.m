@@ -100,9 +100,7 @@
 #pragma mark - JWWaterFlowLayoutDelegate
 - (CGFloat)waterflowlayout:(JWCollectionViewFlowLayout *)waterlayout heightForItemAtIndex:(NSUInteger)index itemWidth:(CGFloat)itemWidth{
     RBHomeModel * model = self.dataArr[index];
-    if (model.cellHeight > 10.f) {
-        return model.cellHeight;
-    }
+    if (model.cellHeight > 10.f) return model.cellHeight;
     
     self.heighCell.model = model;
     model.cellHeight = self.heighCell.cellHeight;

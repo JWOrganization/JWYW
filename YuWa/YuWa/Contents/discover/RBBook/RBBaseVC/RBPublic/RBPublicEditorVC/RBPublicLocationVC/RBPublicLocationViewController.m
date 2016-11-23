@@ -98,7 +98,7 @@
         return;
     }
     
-    [self selectLocationWithLocation:self.dataArr[indexPath.row]];//3333333要改
+    [self selectLocationWithLocation:self.dataArr[indexPath.row]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -139,7 +139,7 @@
         lineView.tag = 10086;
         [locationCell addSubview:lineView];
     }
-    locationCell.textLabel.text = self.dataArr[indexPath.row];//3333333要换
+    locationCell.textLabel.text = self.dataArr[indexPath.row];
     locationCell.detailTextLabel.text = @"3333333";
     return locationCell;
 }
@@ -178,19 +178,15 @@
 
 #pragma mark - Http
 - (void)requestLocationArrDataWithPages:(NSInteger)page{
-    //3333333 根据定位获取数据
     if (page>0){
         [self.tableView.mj_footer endRefreshing];
     }else{
         [self.dataArr removeAllObjects];
     }
     
-    
-    //33333333要删
     for (int i = 0; i<15; i++) {
         [self.dataArr addObject:@"上海"];
     }
-    //33333333要删
     
     [self.tableView reloadData];
 }
@@ -201,18 +197,15 @@
         return;
     }
     
-    //3333333 根据搜索数据
     if (page>0){
         [self.tableView.mj_footer endRefreshing];
     }else{
         [self.dataArr removeAllObjects];
     }
     
-    //33333333要删
     for (int i = 0; i<15; i++) {
         [self.dataArr addObject:self.locTextField.text];
     }
-    //33333333要删
     
     [self.tableView reloadData];
 }
