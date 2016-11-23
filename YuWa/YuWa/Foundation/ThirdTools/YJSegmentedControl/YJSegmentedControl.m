@@ -92,4 +92,17 @@
     }
 }
 
+
+//改变button的标题的title
+-(void)changeButtonName:(NSArray*)buttonTitles{
+ 
+    
+    for (int i=0; i<buttonTitles.count; i++) {
+        UIButton*button=self.btnTitleSource[i];
+        [button setTitle:buttonTitles[i] forState:UIControlStateNormal];
+        
+    }
+    
+}
+
 @end

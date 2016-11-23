@@ -11,6 +11,7 @@
 
 
 @interface YWOtherSeePersonCenterViewController : UIViewController
+
 @property(nonatomic,strong)NSString * uid;
 @property(nonatomic,copy)NSString * nickName;
 @property(nonatomic,copy)NSString * otherIcon;   //此人的头像

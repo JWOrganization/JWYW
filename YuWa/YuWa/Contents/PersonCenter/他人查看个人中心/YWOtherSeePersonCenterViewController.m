@@ -8,30 +8,27 @@
 
 #import "YWOtherSeePersonCenterViewController.h"
 #import "PersonCenterZeroCell.h"    //个性留言
-#import "MyAlbumViewController.h"
-#import "defineButton.h"      //关注那一块
-#import "YJSegmentedControl.h" //笔记 专辑  评论 影评
-
-
-#import "YWFansViewController.h"   //粉丝
-#import "RBNodeShowViewController.h"
-
 #import "PCBottomTableViewCell.h"   //底部4种可能的cell
-#import "JWTools.h"
-#import "RBHomeModel.h"                   //笔记
 #import "RBHomeCollectionViewCell.h"
-#import "RBCenterAlbumModel.h"           //专辑
 #import "CommentTableViewCell.h"//评论的cell
-#import "CommitViewModel.h"   //评论的model
-#import "FilmViewModel.h"      //电影的model
 
 #import "OtherPersonCenterModel.h"   //一开始返回的数据
+#import "RBHomeModel.h"                   //笔记
+#import "RBCenterAlbumModel.h"           //专辑
+#import "CommentModel.h"   //评论的model
+
+#import "defineButton.h"      //关注那一块
+#import "YJSegmentedControl.h" //笔记 专辑  评论 影评
+#import "JWTools.h"
+
+#import "YWFansViewController.h"   //粉丝
+#import "MyAlbumViewController.h"
+#import "RBNodeShowViewController.h"
+
 
 
 #define SECTION0CELL  @"cell"    //默认cell
 #define CELL0         @"PersonCenterZeroCell"
-
-
 #define HEADERVIEWHEIGHT   195     //头视图的高度
 
 @interface YWOtherSeePersonCenterViewController ()<PCBottomTableViewCellDelegate,UITableViewDelegate,UITableViewDataSource,YJSegmentedControlDelegate>
@@ -46,7 +43,6 @@
 @property(nonatomic,assign)int pages;
 @property(nonatomic,strong) OtherPersonCenterModel*HeaderModel;   //这个model 用来给头赋值的
 @property(nonatomic,strong)NSMutableArray * maMallDatas;
-
 @property(nonatomic,assign)showViewCategory showWhichView;    //点击的是那个view
 
 @end
@@ -55,8 +51,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //只是为了得到cell 高度
     self.heighCell = [[[NSBundle mainBundle]loadNibNamed:@"RBHomeCollectionViewCell" owner:nil options:nil]firstObject];
-    self.showWhichView=0;
+
     
     self.view.backgroundColor=[UIColor whiteColor];
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
@@ -78,9 +75,13 @@
     
     self.navigationItem.title=@"";
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
-//    [self addHeaderView];
+
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
+    
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     MyLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
@@ -116,8 +117,9 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:SECTION0CELL];
     if (indexPath.section==0&&indexPath.row==0) {
+        //个性签名
         PersonCenterZeroCell*  cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
-        NSString*str=@"查看他人的个人中心";
+        NSString*str=self.HeaderModel.mark;
         cell.titleString=str;
         cell.selectionStyle=NO;
         
@@ -137,6 +139,9 @@
         return cell;
 
         
+        
+        
+     
         
     }
     return cell;
@@ -181,39 +186,19 @@
         }else if (self.showWhichView==showViewCategoryCommit){
             //评论
             CGFloat cellHeight=0.f;
-            NSMutableArray*alldatas=[self getBottomDatas];
+            //            NSMutableArray*alldatas=[self getBottomDatas];
+            NSMutableArray*alldatas=self.maMallDatas;
             
             for (int i=0; i<alldatas.count; i++) {
-                CommitViewModel*model=alldatas[i];
-                NSDictionary*dict=@{@"title":model.content,@"images":model.images};
-                cellHeight=cellHeight+10+ [CommentTableViewCell getCellHeight:dict];
+                CommentModel*model=alldatas[i];
+                
+                cellHeight=cellHeight+10+60+ [CommentTableViewCell getCellHeight:model];
             }
             
             return cellHeight;
             
-            
-        }else if (self.showWhichView==showViewCategoryFilm) {
-            //影评
-            CGFloat cellHeight=25;
-            
-            NSMutableArray*alldatas=[self getBottomDatas];
-            for (int i=0; i<alldatas.count; i++) {
-                FilmViewModel*model=alldatas[i];
-                NSString*str=model.content;
-                CGFloat strHeight=[str boundingRectWithSize:CGSizeMake(kScreen_Width-16, 105) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
-                
-                cellHeight=cellHeight+160+10+strHeight-3;
-                
-            }
-            
-            
-            return cellHeight;
         }
         
-        
-        
-        
-    
 
         
     }
@@ -224,7 +209,15 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==1) {
         //4个按钮
-        NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3"];
+    
+        NSString*aa=[NSString stringWithFormat:@"笔记*%@",self.HeaderModel.note_nums];
+        NSString*bb=[NSString stringWithFormat:@"专辑*%@",self.HeaderModel.album_nums];
+        NSString*cc=[NSString stringWithFormat:@"评论*%@",self.HeaderModel.comment_nums];
+        NSMutableArray*titleArray=[NSMutableArray array];
+        [titleArray addObject:aa];
+        [titleArray addObject:bb];
+        [titleArray addObject:cc];
+
         YJSegmentedControl*view=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
         return view;
         
@@ -305,15 +298,23 @@
     [follow setTitle:@"关注" forState:UIControlStateNormal];
     [follow setTitle:@"取消关注" forState:UIControlStateSelected];
     [friend setTitle:@"加好友" forState:UIControlStateNormal];
-    [friend setTitle:@"解除好友" forState:UIControlStateSelected];
+    [friend setTitle:@"等待验证" forState:UIControlStateSelected];
     
+
     [follow addTarget:self action:@selector(addGuanzhu:) forControlEvents:UIControlEventTouchUpInside];
-    [follow addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
+    [friend addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
     
+    //一开始没有关注
+    if ([self.HeaderModel.is_fans isEqualToString:@"0"]) {
+        //没有关注的  显示关注
+        follow.selected=NO;
+    }else{
+        follow.selected=YES;
+    }
     
+   
+
     
-    
-//    NSArray*fourArray=@[@[@"关注",@"8"],@[@"粉丝",@"18"],@[@"被赞",@"28"],@[@"被收藏",@"38"]];
     NSMutableArray*fourArray=[NSMutableArray array];
       [fourArray addObject:@[@"关注",self.HeaderModel.attentioncount]];
     [fourArray addObject:@[@"粉丝",self.HeaderModel.fans]];
@@ -377,7 +378,6 @@
         case 0:{
             //关注
             YWFansViewController*vc=[[YWFansViewController alloc]init];
-//            vc.titleStr=@"Ta的关注";
             vc.whichFriend=TheFirendsTaAbount;
             [self.navigationController pushViewController:vc animated:YES];
      
@@ -385,7 +385,6 @@
         case 1:{
             //粉丝
             YWFansViewController*vc=[[YWFansViewController alloc]init];
-//            vc.titleStr=@"Ta的粉丝";
             vc.whichFriend=TheFirendsTaFans;
             [self.navigationController pushViewController:vc animated:YES];
             break;}
@@ -411,8 +410,12 @@
     //加关注
   
     if (sender.selected) {
+        //取消关注接口
+        [self ButtonCancelAbount];
         sender.selected=NO;
     }else{
+        //加上关注接口
+        [self ButtonAddAbount];
         sender.selected=YES;
     }
     
@@ -421,9 +424,17 @@
 -(void)addFriend:(UIButton*)sender{
     //加好友
     if (sender.selected) {
-        sender.selected=NO;
+        return;
+       
     }else{
         sender.selected=YES;
+        EMError *error = [[EMClient sharedClient].contactManager addContact:self.HeaderModel.username message:@"我想加您为好友"];
+        if (!error) {
+            MyLog(@"添加成功");
+        }else{
+            sender.selected=NO;
+        }
+        
     }
 
 }
@@ -580,11 +591,23 @@
         NSNumber*number=data[@"errorCode"];
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
-            
+            for (NSDictionary*dict in data[@"data"]) {
+                
+                
+                CommentModel*model=[CommentModel yy_modelWithDictionary:dict];
+                [self.maMallDatas addObject:model];
+                
+                
+            }
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
+
             
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
         }
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         
         
     }];
@@ -593,16 +616,65 @@
 
 }
 
-//-(void)getFitstDatas{
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        [self.tableView.mj_header endRefreshing];
-//        [self.tableView.mj_footer endRefreshing];
-//        
-//        [self.tableView.mj_footer resetNoMoreData];
-//    });
-//    
-//}
+
+
+#pragma mark  -- 加关注和  取消关注
+-(void)ButtonCancelAbount{
+
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_DELABOUT];
+    
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"attention_id":self.uid};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            [JRToast showWithText:data[@"msg"]];
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+            [self getDatas];
+        }
+        
+        
+    }];
+    
+    
+    
+    
+}
+
+
+-(void)ButtonAddAbount{
+      //变成加为关注
+  
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_ADDABOUT];
+    
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"attention_id":self.uid};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            [JRToast showWithText:data[@"msg"]];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+             [self getDatas];
+        }
+        
+        
+    }];
+    
+    
+    
+    
+}
+
 
 
 

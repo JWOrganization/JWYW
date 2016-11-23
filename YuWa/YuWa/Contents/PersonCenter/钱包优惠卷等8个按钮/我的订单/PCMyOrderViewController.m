@@ -116,6 +116,7 @@
     
     
     UIButton*selectedButton=cell.TouchButton;
+    selectedButton.hidden=NO;
     if ([model.status isEqualToString:@"待付款"]) {
         selectedButton.tag=indexPath.row;
         [selectedButton setTitle:@"付款" forState:UIControlStateNormal];

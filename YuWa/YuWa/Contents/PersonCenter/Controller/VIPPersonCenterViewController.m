@@ -183,7 +183,7 @@
     if (indexPath.section==0&&indexPath.row==0) {
       PersonCenterZeroCell*  cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
         cell.selectionStyle=NO;
-//        NSString*str=@"fjlsfjlskjalfjlkjlkajlkworuoiwerjfnvnvn,sfjfsaljfqowhgf\n sfjlajflkjflas;fkjslkfasf\n sfjlasfkj;as";
+
         NSString*str=[UserSession instance].personality;
         cell.titleString=str;
       
@@ -233,14 +233,20 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==2) {
         //4个按钮
+        NSString*aa=[NSString stringWithFormat:@"笔记*%@",[UserSession instance].note_nums];
+        NSString*bb=[NSString stringWithFormat:@"专辑*%@",[UserSession instance].album_nums];
+        NSString*cc=[NSString stringWithFormat:@"评论*%@",[UserSession instance].comment_nums];
         
+        NSArray*titleArray=@[aa,bb,cc];
      
         if (!self.segmentedControl) {
-            NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3"];
+    
             self.segmentedControl=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
 
            
         }
+        
+        [self.segmentedControl changeButtonName:titleArray];
         
         return self.segmentedControl;
         
@@ -398,7 +404,8 @@
     
     UIButton*PersonInfo=[showView viewWithTag:4];
     PersonInfo.hidden=NO;
-    [PersonInfo setTitle:@"今日收益：$10.00" forState:UIControlStateNormal];
+    NSString*str=[NSString stringWithFormat:@"今日收益:￥%@",[UserSession instance].today_money];
+    [PersonInfo setTitle:str forState:UIControlStateNormal];
     
     UIButton*follow=[showView viewWithTag:5];
     follow.hidden=YES;
@@ -669,6 +676,7 @@
                 NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dict];
                 [self.maMallDatas addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
 
+                [UserSession instance].note_nums =data[@"total_nums"];
             }
             
             [self.tableView reloadData];
@@ -703,9 +711,13 @@
                 model.user.nickname = [UserSession instance].nickName;
                 model.user.images = [UserSession instance].logo;
                 [self.maMallDatas addObject:model];
+                
+                //有多少内容
+                [UserSession instance].album_nums=data[@"total_nums"];
             }
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
-            
+//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadData];
+
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
         }
@@ -741,11 +753,13 @@
                 CommentModel*model=[CommentModel yy_modelWithDictionary:dict];
                 [self.maMallDatas addObject:model];
                 
-                
+             
             }
             
-            
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+               [UserSession instance].comment_nums=data[@"total_nums"];
+//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadData];
+
             
         }else{
             [JRToast showWithText:data[@"errorMessage"]];

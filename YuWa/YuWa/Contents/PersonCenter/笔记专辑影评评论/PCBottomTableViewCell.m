@@ -72,20 +72,7 @@
                 
                 break;
             }
-//            case showViewCategoryFilm:{
-////                self.backgroundColor=[UIColor greenColor];
-//                FilmView*view=[[FilmView alloc]initWithFrame:self.frame andArray:allDatas];
-//                [self addSubview:view];
-//                [view mas_makeConstraints:^(MASConstraintMaker *make) {
-////                    make.edges.mas_equalTo(self);
-//                    make.top.mas_equalTo(self.mas_top);
-//                    make.left.mas_equalTo(self.mas_left);
-//                    make.right.mas_equalTo(self.mas_right);
-//                    make.bottom.mas_equalTo(self.mas_bottom);
-//                }];
-//
-//                
-//                break;}
+
 
             default:
                 break;

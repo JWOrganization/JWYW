@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.title=_titleStr;
+    self.automaticallyAdjustsScrollViewInsets=YES;
     switch (self.whichFriend) {
         case TheFirendsAbount:
             self.title=@"我的关注";

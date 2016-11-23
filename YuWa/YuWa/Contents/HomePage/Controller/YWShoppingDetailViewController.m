@@ -73,7 +73,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
         [self.tableView registerNib:[UINib nibWithNibName:CELL5 bundle:nil] forCellReuseIdentifier:CELL5];
  
-    
+    // 得到浏览量
+    [self getPageView];
 }
 //登录
 - (BOOL)isLogin{
@@ -939,6 +940,30 @@
     
     
 }
+
+//浏览量
+-(void)getPageView{
+    if (![UserSession instance].isLogin) {
+        return;
+    }
+    
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETPAGEVIEW];
+    NSDictionary*params=@{@"user_id":@([UserSession instance].uid),@"shop_id":self.shop_id};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+        }
+        
+    }];
+    
+}
+
 
 #pragma mark  --  touch
 

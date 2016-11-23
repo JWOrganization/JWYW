@@ -134,6 +134,11 @@ static UserSession * user=nil;
     NSInteger needExp = [dataDic[@"update_level_energy"] integerValue];
     user.baobaoNeedEXP = needExp?needExp>0?needExp:13500:13500;
     
+    user.note_nums=dataDic[@"note_nums"];
+    user.album_nums=dataDic[@"album_nums"];
+    user.comment_nums=dataDic[@"comment_nums"];
+    user.today_money=dataDic[@"today_money"];
+    
     user.isLogin = YES;
 }
 
