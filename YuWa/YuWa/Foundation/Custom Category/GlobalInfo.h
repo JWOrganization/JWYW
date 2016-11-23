@@ -75,6 +75,7 @@
 #pragma mark - Other
 #define HTTP_Other_Node @"/api.php/Note/getOtherNewNote/"//别人的笔记
 #define HTTP_Other_Aldum @"/api.php/Note/getOtherAlbum/"//别人的专辑
+#define HTTP_OTHERCOMMIT   @"/api.php/Shop/getUserComment"   //别人的评论
 
 
 
@@ -92,6 +93,7 @@
 #define HTTP_HOME_SEARCH            @"/api.php/Index/searchResult/"     //搜索
 
 #define HTTP_HOME_SHOPDETAIL        @"/api.php/Shop/index/"      //店铺详情
+#define HTTP_HOME_SCHEDULE          @"/api.php/User/addReserve/" //店铺预定
 #define HTTP_HOME_SHOPPHOTO         @"/api.php/Shop/getShopPhoto/"  //店铺相册
 #define HTTP_HOME_MOREGOODS       @"/api.php/Shop/moreGoods/"  //更多商品
 #define HTTP_HOME_MORECOMMIT      @"/api.php/Shop/moreComment/"  //更多评论
@@ -120,6 +122,7 @@
 #define HTTP_GETNOTES              @"/api.php/Note/getMyNewNote/"    //得到笔记
 #define HTTP_GETALBUMS             @"/api.php/Note/getMyNewAlbum/"   //得到专辑
 #define HTTP_GETCOMMIT             @"/api.php/Shop/getUserComment"   //得到评论
+
 
 #define HTTP_MYABOUNT              @"/api.php/User/myAttention/"   //我的关注
 #define HTTP_MYFANS                @"/api.php/User/myFans/"        //我的粉丝

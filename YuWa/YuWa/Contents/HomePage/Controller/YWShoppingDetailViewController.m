@@ -828,7 +828,8 @@
     }];
 #pragma 咨询
     UIAlertAction*consult=[UIAlertAction actionWithTitle:@"预约" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        ScheduleViewController*vc=[[ScheduleViewController alloc]initWithNibName:@"ScheduleViewController" bundle:nil];
+        ScheduleViewController*vc=[[ScheduleViewController alloc]init];
+        vc.shopid=self.shop_id;
         [self.navigationController pushViewController:vc animated:NO];
     }];
     

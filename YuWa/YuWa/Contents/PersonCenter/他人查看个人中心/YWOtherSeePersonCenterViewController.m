@@ -10,7 +10,7 @@
 #import "PersonCenterZeroCell.h"    //个性留言
 #import "MyAlbumViewController.h"
 #import "defineButton.h"      //关注那一块
-#import "YJSegmentedControl.h"   //笔记 专辑  评论 影评
+#import "YJSegmentedControl.h" //笔记 专辑  评论 影评
 
 
 #import "YWFansViewController.h"   //粉丝
@@ -24,6 +24,8 @@
 #import "CommentTableViewCell.h"//评论的cell
 #import "CommitViewModel.h"   //评论的model
 #import "FilmViewModel.h"      //电影的model
+
+#import "OtherPersonCenterModel.h"   //一开始返回的数据
 
 
 #define SECTION0CELL  @"cell"    //默认cell
@@ -42,6 +44,7 @@
 @property(nonatomic,assign)NSInteger whichShow;
 @property(nonatomic,assign)int pagen;
 @property(nonatomic,assign)int pages;
+@property(nonatomic,strong) OtherPersonCenterModel*HeaderModel;   //这个model 用来给头赋值的
 @property(nonatomic,strong)NSMutableArray * maMallDatas;
 
 @property(nonatomic,assign)showViewCategory showWhichView;    //点击的是那个view
@@ -75,7 +78,7 @@
     
     self.navigationItem.title=@"";
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
-    [self addHeaderView];
+//    [self addHeaderView];
 }
 
 
@@ -84,7 +87,7 @@
     CGFloat yoffset=scrollView.contentOffset.y;
     
     if (yoffset>=HEADERVIEWHEIGHT-64&&yoffset<=HEADERVIEWHEIGHT) {
-        self.navigationItem.title=@"XX的个人中心";
+        self.navigationItem.title=self.nickName;
         CGFloat alpha=(yoffset-(HEADERVIEWHEIGHT-64))/64;
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:alpha];
         
@@ -94,7 +97,7 @@
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
         
     }else{
-        self.navigationItem.title=@"XXX的个人中心";
+        self.navigationItem.title=self.nickName;
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
         
     }
@@ -243,16 +246,13 @@
 -(void)addHeaderView{
     
     UIImageView*imageView=[[UIImageView alloc]init];
-    imageView.image=[UIImage imageNamed:@"backImage"];
+    imageView.image=[UIImage imageNamed:@"otherPersonImage"];
     imageView.contentMode=UIViewContentModeScaleAspectFill;
     
-    //超出的图片的高度
-    CGFloat OTHERHEADER = ((kScreen_Width * imageView.image.size.height / imageView.image.size.width)-195);
-    imageView.frame=CGRectMake(0, 0, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER);
     
-    
-    
-    self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, -OTHERHEADER, kScreen_Width, HEADERVIEWHEIGHT+OTHERHEADER)];
+     imageView.frame=CGRectMake(0, 0, kScreen_Width, ACTUAL_HEIGHT(300));
+     self.belowImageViewView=[[UIView alloc]initWithFrame:CGRectMake(0, HEADERVIEWHEIGHT-ACTUAL_HEIGHT(300), kScreen_Width, ACTUAL_HEIGHT(300))];
+
     
     
     [self.belowImageViewView addSubview:imageView];
@@ -265,12 +265,32 @@
     
     self.tableView.tableHeaderView=self.headerView;
     
-    
     //图片界面装在 上面
     UIView*showView= [[NSBundle mainBundle]loadNibNamed:@"PersonCenterHeadView" owner:nil options:nil].firstObject;
     showView.frame=CGRectMake(0, 0, kScreen_Width, HEADERVIEWHEIGHT);
     showView.backgroundColor=[UIColor clearColor];
     [self.headerView addSubview:showView];
+    
+    
+    UIImageView*headImageView=[showView viewWithTag:1];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:self.HeaderModel.header_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+    
+    
+    //昵称
+    UILabel*nameLabel=[showView viewWithTag:2];
+    nameLabel.text=self.HeaderModel.nickname;
+    
+    
+    // 地点
+    UILabel*locateLabel=[showView viewWithTag:3];
+    locateLabel.text=self.HeaderModel.address;
+
+    
+
+
+    
     
    //创建两个按钮 关注和加好友
     UIButton*PersonInfo=[showView viewWithTag:4];
@@ -293,7 +313,13 @@
     
     
     
-    NSArray*fourArray=@[@[@"关注",@"8"],@[@"粉丝",@"18"],@[@"被赞",@"28"],@[@"被收藏",@"38"]];
+//    NSArray*fourArray=@[@[@"关注",@"8"],@[@"粉丝",@"18"],@[@"被赞",@"28"],@[@"被收藏",@"38"]];
+    NSMutableArray*fourArray=[NSMutableArray array];
+      [fourArray addObject:@[@"关注",self.HeaderModel.attentioncount]];
+    [fourArray addObject:@[@"粉丝",self.HeaderModel.fans]];
+    [fourArray addObject:@[@"被赞",self.HeaderModel.praised]];
+    [fourArray addObject:@[@"被收藏",self.HeaderModel.collected]];
+
     
     for (int i=0; i<4; i++) {
         defineButton*button=[showView viewWithTag:11+i];
@@ -447,7 +473,12 @@
         NSNumber*number=data[@"errorCode"];
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
-            
+            NSDictionary*dict=data[@"data"];
+            self.HeaderModel=[OtherPersonCenterModel yy_modelWithDictionary:dict];
+          
+//            [self.tableView.tableHeaderView reloadInputViews];
+            [self addHeaderView];
+
             
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
@@ -459,7 +490,7 @@
 }
 
 
-#pragma mark  --  getDatas
+#pragma mark  -- 其他接口
 //得到底部的数据
 - (NSMutableArray*)getBottomDatas{
     switch (self.whichShow) {
@@ -473,7 +504,7 @@
             break;}
         case 2:{
             //评论
-            
+            [self getCommit];
             break;}
             
         default:
@@ -537,16 +568,41 @@
     }];
 }
 
--(void)getFitstDatas{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+//得到专辑的内容
+-(void)getCommit{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_OTHERCOMMIT];
+    NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([self.uid integerValue]),@"pagen":[NSString stringWithFormat:@"%d",self.pagen],@"pages":[NSString stringWithFormat:@"%d",self.pages]};
+
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:pragram compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
         
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
         
-        [self.tableView.mj_footer resetNoMoreData];
-    });
+    }];
     
+    
+
 }
+
+//-(void)getFitstDatas{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        [self.tableView.mj_header endRefreshing];
+//        [self.tableView.mj_footer endRefreshing];
+//        
+//        [self.tableView.mj_footer resetNoMoreData];
+//    });
+//    
+//}
 
 
 
