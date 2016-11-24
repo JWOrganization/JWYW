@@ -49,6 +49,7 @@
 #import "PCMyOrderViewController.h"    //我的订单
 #import "MyFavouriteViewController.h"   //我的收藏
 #import "PCPayRecordViewController.h"   //消费记录
+#import "YWBusinessMemberViewController.h"   //商务会员
 
 
 
@@ -520,10 +521,11 @@
             YWBaoBaoViewController * vc = [[YWBaoBaoViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
             break;}
-        case 3:
+        case 3:{
             //商务会员
-            
-            break;
+            YWBusinessMemberViewController*vc=[[YWBusinessMemberViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;}
 
         case 4:{
             //我的订单
