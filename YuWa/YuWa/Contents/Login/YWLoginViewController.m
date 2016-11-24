@@ -87,6 +87,8 @@
 
 - (void)backBarAction{
     [self.navigationController popViewControllerAnimated:YES];
+    [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)hiddenPasswordBtnAction:(id)sender {
@@ -200,6 +202,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [JPUSHService setAlias:[UserSession instance].account callbackSelector:nil object:nil];
             [self.navigationController popViewControllerAnimated:YES];
+            [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+            [self dismissViewControllerAnimated:YES completion:nil];
         });
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Pragram is %@",pragram);
@@ -229,6 +233,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [JPUSHService setAlias:[JWTools getUUID] callbackSelector:nil object:nil];
             [self.navigationController popViewControllerAnimated:YES];
+             [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+             [self dismissViewControllerAnimated:YES completion:nil];
         });
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Pragram is %@",pragram);
@@ -255,6 +261,31 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
     }];
+}
+
+
+//隐藏键盘
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+//    [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+//}
+//
+////touch began
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+//}
+
+
+- (UIView*)findFirstResponderBeneathView:(UIView*)view
+{
+    // Search recursively for first responder
+    for ( UIView *childView in view.subviews ) {
+        if ( [childView respondsToSelector:@selector(isFirstResponder)] && [childView isFirstResponder] )
+            return childView;
+        UIView *result = [self findFirstResponderBeneathView:childView];
+        if ( result )
+            return result;
+    }
+    return nil;
 }
 
 @end

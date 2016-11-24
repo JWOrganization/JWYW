@@ -18,6 +18,7 @@
 #import "VIPPersonCenterViewController.h"
 
 
+#import "YWLoginViewController.h"
 
 @implementation VIPTabBarController
 
@@ -27,6 +28,8 @@
     [UITabBar appearance].tintColor=CNaviColor;
     [self addChildViewControllers];
     [self delTopLine];
+    
+    self.delegate=self;
 }
 
 - (void)delTopLine{
@@ -77,6 +80,31 @@
     [self addChildViewController:navi];
     
 }
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    if ([viewController.tabBarItem.title isEqualToString:@"个人中心"]) {
+        if (![UserSession instance].isLogin) {
+            YWLoginViewController * vc = [[YWLoginViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            UINavigationController*navi=[[UINavigationController alloc]initWithRootViewController:vc];
+//            LoginController *vc = [LoginController new];
+            [self presentViewController:navi animated:YES completion:nil];
+            
+            return NO;
+        }else{
+            return YES;
+        }
+        
+    }
+    
+    return YES;
+}
+
+//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+//    if ([viewController isKindOfClass:[VIPPersonCenterViewController class]]) {
+//        MyLog(@"11");
+//    }
+//    
+//}
 
 
 @end

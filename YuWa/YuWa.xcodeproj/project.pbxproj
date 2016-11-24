@@ -5623,6 +5623,13 @@
 			path = "选择人数体重等";
 			sourceTree = "<group>";
 		};
+		C1E5B7821DE5C96B00EB1F85 /* 商务会员 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "商务会员";
+			sourceTree = "<group>";
+		};
 		C1F7BD3B1DB1C94500CCAF96 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
@@ -5816,6 +5823,7 @@
 		C1F7BDBE1DB1C95400CCAF96 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				C1E5B7821DE5C96B00EB1F85 /* 商务会员 */,
 				C18E7D5B1DB878BA003D0012 /* 我的专辑列表 */,
 				C1F7BDBF1DB1C95400CCAF96 /* Controller */,
 				C1F7BDC21DB1C95400CCAF96 /* Model */,
@@ -6392,7 +6400,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};

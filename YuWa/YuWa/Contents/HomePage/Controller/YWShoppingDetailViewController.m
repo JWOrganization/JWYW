@@ -23,7 +23,6 @@
 #import "ScheduleViewController.h"    //预定
 #import "YWLoginViewController.h"
 
-
 #import "ShopdetailModel.h"     //店铺详情
 #import "ShowShoppingModel.h"   //推荐商品
 #import "CommentModel.h"   //推荐评论
@@ -77,7 +76,7 @@
     [self getPageView];
 }
 //登录
-- (BOOL)isLogin{
+- (BOOL)judgeLogin{
     if (![UserSession instance].isLogin) {
         YWLoginViewController * vc = [[YWLoginViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -257,13 +256,13 @@
         //人均
         UILabel*per_capita=[cell viewWithTag:3];
         per_capita.text=[NSString stringWithFormat:@"人均：￥%@",self.mainModel.per_capita];
-        //优惠买单
-        UIButton*disBuy=[cell viewWithTag:4];
+//        //优惠买单
+//        UIButton*disBuy=[cell viewWithTag:4];
         
         
-        //月消费人次
-        UILabel*monthPay=[cell viewWithTag:5];
-        monthPay.text=[NSString stringWithFormat:@""];
+//        //月消费人次
+//        UILabel*monthPay=[cell viewWithTag:5];
+//        monthPay.text=[NSString stringWithFormat:@""];
         
         //地址
         UILabel*addresslabel=[cell viewWithTag:22];
@@ -318,9 +317,9 @@
         WEAKSELF;
         //加入到收藏夹
         cell.touchAddCollection=^(){
-            if ([UserSession instance].isLogin) {
-                [self addToCollection];
-            }
+          
+         [self addToCollection];
+            
             
         };
 
@@ -341,8 +340,8 @@
         
         cell.touchQiangBlock=^{
           //抢优惠券
-            MyLog(@"抢优惠券");
-            
+//            MyLog(@"抢优惠券");
+            [self rushCoupon];
         };
         
         
@@ -806,6 +805,9 @@
 
 //打电话
 -(void)alertShowPhone{
+    if ([self judgeLogin]) {
+
+    
     UIAlertController*alertVC=[UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction*alertAC=[UIAlertAction actionWithTitle:self.mainModel.company_first_tel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
@@ -846,9 +848,19 @@
     
     [self presentViewController:alertVC animated:YES completion:nil];
     
-    
+    }
 }
 
+
+//抢优惠券
+-(void)rushCoupon{
+    if ([self judgeLogin]) {
+        MyLog(@"抢优惠券");
+        
+        
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -911,13 +923,8 @@
 
 //加入到收藏
 -(void)addToCollection{
-    if ( ![UserSession instance].isLogin) {
-        [JRToast showWithText:@"请先登录"];
-        return;
-        
-    }
-   
-    
+    if ([self judgeLogin]) {
+ 
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_ADDCOLLECTION];
     NSDictionary*params=@{@"shop_id":self.mainModel.id,@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     HttpManager*manager=[[HttpManager alloc]init];
@@ -938,7 +945,7 @@
 
     }];
     
-    
+    }
 }
 
 //浏览量
@@ -994,10 +1001,7 @@
 
 -(void)gotoPay{
     MyLog(@"pay");
-    if ([self isLogin]) {
-//        YWPayViewController*vc=[[YWPayViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-        
+    if ([self judgeLogin]) {
         YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithManualAndShopName:@"xxx公司" andShopID:@"123" andZhekou:0.3];
         [self.navigationController pushViewController:vc animated:YES];
 

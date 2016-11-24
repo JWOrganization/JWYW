@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VIPTabBarController : UITabBarController
+@interface VIPTabBarController : UITabBarController<UITabBarControllerDelegate>
 
 @end
