@@ -219,7 +219,7 @@
         [UserSession saveUserInfoWithDic:responsObj[@"data"]];
         [self showHUDWithStr:@"登录成功" withSuccess:YES];
         
-        [UserSession saveUserLoginWithAccount:account withPassword:[UserSession instance].hxPassword];
+        [UserSession saveUserLoginWithAccount:account withPassword:[UserSession instance].password];
         EMError *errorLog = [[EMClient sharedClient] loginWithUsername:account password:[UserSession instance].hxPassword];
         if (!errorLog){
             [[EMClient sharedClient].options setIsAutoLogin:NO];
