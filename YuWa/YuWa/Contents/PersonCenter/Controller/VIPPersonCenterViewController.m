@@ -71,7 +71,6 @@
 
 
 @property(nonatomic,assign)NSInteger whichShow;   // 0笔记 1专辑 2评论
-//@property(nonatomic,assign)NSInteger commitSelectedWhichRow;  //现在评论这一栏选中的是哪一个
 @property(nonatomic,assign)int pagen;
 @property(nonatomic,assign)int pages;
 @property(nonatomic,strong)NSMutableArray*maMallDatas;  //所有数据
@@ -102,7 +101,7 @@
 
     [self setUpMJRefresh];
     
-//        [self addHeaderView];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -184,7 +183,7 @@
     if (indexPath.section==0&&indexPath.row==0) {
       PersonCenterZeroCell*  cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
         cell.selectionStyle=NO;
-//        NSString*str=@"fjlsfjlskjalfjlkjlkajlkworuoiwerjfnvnvn,sfjfsaljfqowhgf\n sfjlajflkjflas;fkjslkfasf\n sfjlasfkj;as";
+
         NSString*str=[UserSession instance].personality;
         cell.titleString=str;
       
@@ -195,7 +194,6 @@
         PersonCenterOneCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
         NSArray*array=@[@"钱包",@"优惠券",@"雨娃宝宝",@"商务会员",@"我的订单",@"收藏",@"消费记录",@"通知"];
-//        NSArray*imageArray=@[@"home_qianbao",@"home_youhuijuan",@"home_yuwa.png",@"home_huiyuan",@"home_dindan",@"home_shoucangjia",@"home_xiaofeijilu",@"home_tongzhi"];
         NSArray*imageArray=@[@"home_01",@"home_02",@"home_03",@"home_04",@"home_05",@"home_06",@"home_07",@"home_08"];
         
         
@@ -235,14 +233,20 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==2) {
         //4个按钮
+        NSString*aa=[NSString stringWithFormat:@"笔记*%@",[UserSession instance].note_nums];
+        NSString*bb=[NSString stringWithFormat:@"专辑*%@",[UserSession instance].album_nums];
+        NSString*cc=[NSString stringWithFormat:@"评论*%@",[UserSession instance].comment_nums];
         
+        NSArray*titleArray=@[aa,bb,cc];
      
         if (!self.segmentedControl) {
-            NSArray*titleArray=@[@"笔记·40",@"专辑·4",@"评论·3"];
+    
             self.segmentedControl=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 0, kScreen_Width, 44) titleDataSource:titleArray backgroundColor:[UIColor whiteColor] titleColor:CsubtitleColor titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
 
            
         }
+        
+        [self.segmentedControl changeButtonName:titleArray];
         
         return self.segmentedControl;
         
@@ -328,22 +332,7 @@
 }
 
 -(NSArray*)animationImages{
-//    NSFileManager*fileM=[NSFileManager defaultManager];
-//    NSString*path=[[NSBundle mainBundle]pathForResource:@"波浪" ofType:@"bundle"];
-//    NSArray*array=[fileM contentsOfDirectoryAtPath:path error:nil];
-//    
-//    NSMutableArray*imageArrays=[NSMutableArray array];
-//    
-//    for (NSString*imageStr in array) {
-//        NSLog(@"%@",[@"波浪.bundle" stringByAppendingPathComponent:imageStr]);
-//        UIImage*image=[UIImage imageNamed:[@"波浪.bundle" stringByAppendingPathComponent:imageStr]];
-//        
-//        [imageArrays addObject:image];
-//        
-//    }
-//    
-//    
-//    return imageArrays;
+
     
     
     NSMutableArray*imageArrays=[NSMutableArray array];
@@ -415,21 +404,21 @@
     
     UIButton*PersonInfo=[showView viewWithTag:4];
     PersonInfo.hidden=NO;
-    [PersonInfo setTitle:@"今日收益：$10.00" forState:UIControlStateNormal];
+    NSString*str=[NSString stringWithFormat:@"今日收益:￥%@",[UserSession instance].today_money];
+    [PersonInfo setTitle:str forState:UIControlStateNormal];
     
     UIButton*follow=[showView viewWithTag:5];
     follow.hidden=YES;
     UIButton*friend=[showView viewWithTag:6];
     friend.hidden=YES;
     
-//    [PersonInfo addTarget:self action:@selector(touchPersonInfo) forControlEvents:UIControlEventTouchUpInside];
 
     NSMutableArray*fourArray=[NSMutableArray array];
     [fourArray addObject:@[@"关注",[UserSession instance].attentionCount]];
     [fourArray addObject:@[@"粉丝",[UserSession instance].fans]];
     [fourArray addObject:@[@"被赞",[UserSession instance].praised]];
     [fourArray addObject:@[@"被收藏",[UserSession instance].collected]];
-//    NSArray*fourArray=@[@[@"关注",@"8"],@[@"粉丝",@"18"],@[@"被赞",@"28"],@[@"被收藏",@"38"]];
+
     
     for (int i=0; i<4; i++) {
         defineButton*button=[showView viewWithTag:11+i];
@@ -467,12 +456,9 @@
     NSInteger number =sender.tag-11;
     MyLog(@"%lu",number);
     if (number==0) {
-        //关注
-//        YWOtherSeePersonCenterViewController*vc=[[YWOtherSeePersonCenterViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-        
+
+        // 关注
         YWFansViewController*vc=[[YWFansViewController alloc]init];
-//        vc.titleStr=@"我的关注";
         vc.whichFriend=TheFirendsAbount;
         [self.navigationController pushViewController:vc animated:YES];
         
@@ -481,7 +467,6 @@
     }else if (number==1){
         //粉丝
         YWFansViewController*vc=[[YWFansViewController alloc]init];
-//        vc.titleStr=@"我的粉丝";
         vc.whichFriend=TheFirendsFans;
         [self.navigationController pushViewController:vc animated:YES];
 
@@ -633,13 +618,7 @@
     
 }
 
-////选中了哪个按钮 评论下面的三个按钮
-//-(void)DelegateForSelectedWhichButton:(NSInteger)section{
-//    MyLog(@"1111  %ld",(long)section);
-//    _commitSelectedWhichRow=section;
-//    [self getMyCommitwithType:section];
-//    
-//}
+
 
 //需要跳转到店铺
 -(void)DelegateForToShopDetail:(NSString*)shopid{
@@ -652,51 +631,6 @@
 #pragma mark  --  getDatas
 //得到底部的数据
 - (NSMutableArray*)getBottomDatas{
-    
-//    if (self.showWhichView==showViewCategoryNotes) {
-//        NSMutableArray*allDatas=[NSMutableArray array];
-//        NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的笔记个人"];
-//
-//        NSArray * dataArr = dataDic[@"data"][@"notes"];
-//        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-//            [allDatas addObject:[RBHomeModel yy_modelWithDictionary:dic]];
-//        }];
-//        
-//        return allDatas;
-//
-//        
-//        
-//    }else if (self.showWhichView==showViewCategoryAlbum){
-//         NSMutableArray*allDatas=[NSMutableArray array];
-//          NSDictionary * dataDic = [JWTools jsonWithFileName:@"总的专辑 个人中心展示小图"];
-//        NSArray * dataArr = dataDic[@"data"];
-//        [dataArr enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dic, NSUInteger idx, BOOL * _Nonnull stop) {
-//            [allDatas addObject:[RBCenterAlbumModel yy_modelWithDictionary:dic]];
-//        }];
-//    
-//        return allDatas;
-//
-//        
-//        
-//        
-//        
-//    }else if (self.showWhichView==showViewCategoryCommit){
-//        //评论
-//        NSMutableArray*allDatas=[NSMutableArray array];
-//        NSDictionary*dict=@{@"photoImage":@"xxx",@"userName":@"小雨娃",@"pointNumber":@"5",@"date":@"9月22日"
-//                            ,@"content":@"是放假了司法局是浪费就撒了；副科级；按理说放假是咖啡机按理说放假萨拉放假啊；爱上了房间爱乱收费就拉上房间发家里是咖啡机拉法基；蓝思科技"
-//                            ,@"images":@[@"",@"",@"",@""]};
-//        NSArray*dataArr=@[dict,dict,dict,dict,dict];
-//        [dataArr enumerateObjectsUsingBlock:^(NSDictionary*  _Nonnull dicc, NSUInteger idx, BOOL * _Nonnull stop) {
-//              [allDatas addObject:[CommitViewModel yy_modelWithDictionary:dicc]];
-//        }];
-//        return allDatas;
-//        
-//        
-//        
-//        
-//    }
-    
 
     //
     switch (self.whichShow) {
@@ -742,10 +676,9 @@
                 NSMutableDictionary * dataDic = [RBHomeModel dataDicSetWithDic:dict];
                 [self.maMallDatas addObject:[RBHomeModel yy_modelWithDictionary:dataDic]];
 
+                [UserSession instance].note_nums =data[@"total_nums"];
             }
             
-            
-//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
             [self.tableView reloadData];
             
         }else{
@@ -778,9 +711,13 @@
                 model.user.nickname = [UserSession instance].nickName;
                 model.user.images = [UserSession instance].logo;
                 [self.maMallDatas addObject:model];
+                
+                //有多少内容
+                [UserSession instance].album_nums=data[@"total_nums"];
             }
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
-            
+//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadData];
+
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
         }
@@ -816,11 +753,13 @@
                 CommentModel*model=[CommentModel yy_modelWithDictionary:dict];
                 [self.maMallDatas addObject:model];
                 
-                
+             
             }
             
-            
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+               [UserSession instance].comment_nums=data[@"total_nums"];
+//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadData];
+
             
         }else{
             [JRToast showWithText:data[@"errorMessage"]];

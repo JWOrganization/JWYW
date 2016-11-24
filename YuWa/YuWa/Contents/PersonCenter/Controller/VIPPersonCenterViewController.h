@@ -12,7 +12,7 @@ typedef NS_ENUM(NSInteger,showViewCategory){
     showViewCategoryNotes=0,
     showViewCategoryAlbum=1,
     showViewCategoryCommit=2,
-    showViewCategoryFilm
+
     
     
 };

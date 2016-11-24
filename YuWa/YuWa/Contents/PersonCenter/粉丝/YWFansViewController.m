@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.title=_titleStr;
+    self.automaticallyAdjustsScrollViewInsets=YES;
     switch (self.whichFriend) {
         case TheFirendsAbount:
             self.title=@"我的关注";
@@ -103,12 +104,16 @@
     
     //图片
     UIImageView*imageView=[cell viewWithTag:1];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:model.header_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
     
     //名字
     UILabel*nameLabel=[cell viewWithTag:2];
-    
+    nameLabel.text=model.nickname;
     //info
     UILabel*infoLabel=[cell viewWithTag:3];
+    infoLabel.text=[NSString stringWithFormat:@"%@条笔记，%@个粉丝",model.note_num,model.fans];
     
     //button
  

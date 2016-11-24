@@ -10,4 +10,5 @@
 
 @interface ScheduleViewController : UIViewController
 
+@property(nonatomic,strong)NSString*shopid;
 @end

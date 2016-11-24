@@ -73,7 +73,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:CELL3];
         [self.tableView registerNib:[UINib nibWithNibName:CELL5 bundle:nil] forCellReuseIdentifier:CELL5];
  
-    
+    // 得到浏览量
+    [self getPageView];
 }
 //登录
 - (BOOL)isLogin{
@@ -828,7 +829,8 @@
     }];
 #pragma 咨询
     UIAlertAction*consult=[UIAlertAction actionWithTitle:@"预约" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        ScheduleViewController*vc=[[ScheduleViewController alloc]initWithNibName:@"ScheduleViewController" bundle:nil];
+        ScheduleViewController*vc=[[ScheduleViewController alloc]init];
+        vc.shopid=self.shop_id;
         [self.navigationController pushViewController:vc animated:NO];
     }];
     
@@ -938,6 +940,30 @@
     
     
 }
+
+//浏览量
+-(void)getPageView{
+    if (![UserSession instance].isLogin) {
+        return;
+    }
+    
+    
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETPAGEVIEW];
+    NSDictionary*params=@{@"user_id":@([UserSession instance].uid),@"shop_id":self.shop_id};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+        }
+        
+    }];
+    
+}
+
 
 #pragma mark  --  touch
 
