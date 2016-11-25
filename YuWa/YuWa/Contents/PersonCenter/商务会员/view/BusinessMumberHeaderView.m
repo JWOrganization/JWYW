@@ -27,12 +27,17 @@
 
 
 -(void)touchTotailTap{
-    MyLog(@"1");
+   
+    if (self.TotailBlock) {
+        self.TotailBlock();
+    }
     
 }
 
 -(void)touchWillTap{
-      MyLog(@"2");
+    if (self.waitBlock) {
+        self.waitBlock();
+    }
     
 }
 

@@ -824,6 +824,21 @@
 		C1A7D5041DC773D0004F3518 /* HPRecommendShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7D5031DC773D0004F3518 /* HPRecommendShopModel.m */; };
 		C1A7D5071DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7D5061DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m */; };
 		C1B5E1311DCACFA8003769EF /* ShopdetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B5E1301DCACFA8003769EF /* ShopdetailModel.m */; };
+		C1C148051DE817F1001FCBC3 /* 右上角问号.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C147FE1DE817F1001FCBC3 /* 右上角问号.png */; };
+		C1C148061DE817F1001FCBC3 /* 积分分红.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C147FF1DE817F1001FCBC3 /* 积分分红.png */; };
+		C1C148071DE817F1001FCBC3 /* 介绍分红.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C148001DE817F1001FCBC3 /* 介绍分红.png */; };
+		C1C148081DE817F1001FCBC3 /* 商务会员分红.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C148011DE817F1001FCBC3 /* 商务会员分红.png */; };
+		C1C148091DE817F1001FCBC3 /* 绑定的人.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C148021DE817F1001FCBC3 /* 绑定的人.png */; };
+		C1C1480A1DE817F1001FCBC3 /* 椭圆实.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C148031DE817F1001FCBC3 /* 椭圆实.png */; };
+		C1C1480B1DE817F1001FCBC3 /* 椭圆虚.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C148041DE817F1001FCBC3 /* 椭圆虚.png */; };
+		C1C1480E1DE82C89001FCBC3 /* IntroduceMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C1480D1DE82C89001FCBC3 /* IntroduceMoneyViewController.m */; };
+		C1C148121DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C148101DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.m */; };
+		C1C148131DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C148111DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.xib */; };
+		C1C148161DE83380001FCBC3 /* BusinessMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C148151DE83380001FCBC3 /* BusinessMoneyViewController.m */; };
+		C1C148191DE837E4001FCBC3 /* PointMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C148181DE837E4001FCBC3 /* PointMoneyViewController.m */; };
+		C1C1481B1DE838A0001FCBC3 /* pointMoneyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C1481A1DE838A0001FCBC3 /* pointMoneyHeaderView.xib */; };
+		C1C1481E1DE83B44001FCBC3 /* pointMoneyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C1481D1DE83B44001FCBC3 /* pointMoneyHeaderView.m */; };
+		C1C148201DE8417E001FCBC3 /* pointBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C1481F1DE8417E001FCBC3 /* pointBottom.png */; };
 		C1E5B74F1DE3211B00EB1F85 /* qiang.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5B74E1DE3211B00EB1F85 /* qiang.png */; };
 		C1E5B7551DE41A7E00EB1F85 /* otherPersonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5B7541DE41A7E00EB1F85 /* otherPersonImage.png */; };
 		C1E5B7581DE41C7E00EB1F85 /* OtherPersonCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E5B7571DE41C7E00EB1F85 /* OtherPersonCenterModel.m */; };
@@ -2339,6 +2354,26 @@
 		C1A7D5061DC77DDB004F3518 /* UIScrollView+MJRefreshGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefreshGif.m"; sourceTree = "<group>"; };
 		C1B5E12F1DCACFA8003769EF /* ShopdetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopdetailModel.h; sourceTree = "<group>"; };
 		C1B5E1301DCACFA8003769EF /* ShopdetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopdetailModel.m; sourceTree = "<group>"; };
+		C1C147FE1DE817F1001FCBC3 /* 右上角问号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "右上角问号.png"; sourceTree = "<group>"; };
+		C1C147FF1DE817F1001FCBC3 /* 积分分红.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "积分分红.png"; sourceTree = "<group>"; };
+		C1C148001DE817F1001FCBC3 /* 介绍分红.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "介绍分红.png"; sourceTree = "<group>"; };
+		C1C148011DE817F1001FCBC3 /* 商务会员分红.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商务会员分红.png"; sourceTree = "<group>"; };
+		C1C148021DE817F1001FCBC3 /* 绑定的人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绑定的人.png"; sourceTree = "<group>"; };
+		C1C148031DE817F1001FCBC3 /* 椭圆实.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "椭圆实.png"; sourceTree = "<group>"; };
+		C1C148041DE817F1001FCBC3 /* 椭圆虚.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "椭圆虚.png"; sourceTree = "<group>"; };
+		C1C1480C1DE82C89001FCBC3 /* IntroduceMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceMoneyViewController.h; sourceTree = "<group>"; };
+		C1C1480D1DE82C89001FCBC3 /* IntroduceMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceMoneyViewController.m; sourceTree = "<group>"; };
+		C1C1480F1DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceMoneyTableViewCell.h; sourceTree = "<group>"; };
+		C1C148101DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceMoneyTableViewCell.m; sourceTree = "<group>"; };
+		C1C148111DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroduceMoneyTableViewCell.xib; sourceTree = "<group>"; };
+		C1C148141DE83380001FCBC3 /* BusinessMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMoneyViewController.h; sourceTree = "<group>"; };
+		C1C148151DE83380001FCBC3 /* BusinessMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMoneyViewController.m; sourceTree = "<group>"; };
+		C1C148171DE837E4001FCBC3 /* PointMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointMoneyViewController.h; sourceTree = "<group>"; };
+		C1C148181DE837E4001FCBC3 /* PointMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointMoneyViewController.m; sourceTree = "<group>"; };
+		C1C1481A1DE838A0001FCBC3 /* pointMoneyHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pointMoneyHeaderView.xib; sourceTree = "<group>"; };
+		C1C1481C1DE83B44001FCBC3 /* pointMoneyHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pointMoneyHeaderView.h; sourceTree = "<group>"; };
+		C1C1481D1DE83B44001FCBC3 /* pointMoneyHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pointMoneyHeaderView.m; sourceTree = "<group>"; };
+		C1C1481F1DE8417E001FCBC3 /* pointBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointBottom.png; sourceTree = "<group>"; };
 		C1E5B74E1DE3211B00EB1F85 /* qiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qiang.png; sourceTree = "<group>"; };
 		C1E5B7541DE41A7E00EB1F85 /* otherPersonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otherPersonImage.png; sourceTree = "<group>"; };
 		C1E5B7561DE41C7E00EB1F85 /* OtherPersonCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherPersonCenterModel.h; sourceTree = "<group>"; };
@@ -5313,6 +5348,12 @@
 			children = (
 				C12315411DE6B89400B9D0FE /* YWBusinessMemberViewController.h */,
 				C12315421DE6B89400B9D0FE /* YWBusinessMemberViewController.m */,
+				C1C1480C1DE82C89001FCBC3 /* IntroduceMoneyViewController.h */,
+				C1C1480D1DE82C89001FCBC3 /* IntroduceMoneyViewController.m */,
+				C1C148141DE83380001FCBC3 /* BusinessMoneyViewController.h */,
+				C1C148151DE83380001FCBC3 /* BusinessMoneyViewController.m */,
+				C1C148171DE837E4001FCBC3 /* PointMoneyViewController.h */,
+				C1C148181DE837E4001FCBC3 /* PointMoneyViewController.m */,
 				C12315551DE6DFD700B9D0FE /* YWShowGetMoneyViewController.h */,
 				C12315561DE6DFD700B9D0FE /* YWShowGetMoneyViewController.m */,
 				C12315641DE70F0B00B9D0FE /* MoneyDetailViewController.h */,
@@ -5332,6 +5373,9 @@
 				C123156E1DE7166100B9D0FE /* PayDetailView.h */,
 				C123156F1DE7166100B9D0FE /* PayDetailView.m */,
 				C123156C1DE7126100B9D0FE /* PayDetailView.xib */,
+				C1C1481C1DE83B44001FCBC3 /* pointMoneyHeaderView.h */,
+				C1C1481D1DE83B44001FCBC3 /* pointMoneyHeaderView.m */,
+				C1C1481A1DE838A0001FCBC3 /* pointMoneyHeaderView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5351,6 +5395,9 @@
 				C12315671DE70FEB00B9D0FE /* MoneyDetailTableViewCell.h */,
 				C12315681DE70FEB00B9D0FE /* MoneyDetailTableViewCell.m */,
 				C12315691DE70FEB00B9D0FE /* MoneyDetailTableViewCell.xib */,
+				C1C1480F1DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.h */,
+				C1C148101DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.m */,
+				C1C148111DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -5358,6 +5405,14 @@
 		C12315581DE6FF0E00B9D0FE /* 商务会员image */ = {
 			isa = PBXGroup;
 			children = (
+				C1C1481F1DE8417E001FCBC3 /* pointBottom.png */,
+				C1C147FE1DE817F1001FCBC3 /* 右上角问号.png */,
+				C1C147FF1DE817F1001FCBC3 /* 积分分红.png */,
+				C1C148001DE817F1001FCBC3 /* 介绍分红.png */,
+				C1C148011DE817F1001FCBC3 /* 商务会员分红.png */,
+				C1C148021DE817F1001FCBC3 /* 绑定的人.png */,
+				C1C148031DE817F1001FCBC3 /* 椭圆实.png */,
+				C1C148041DE817F1001FCBC3 /* 椭圆虚.png */,
 				C12315711DE718F100B9D0FE /* rightTo.png */,
 				C123155B1DE6FFDA00B9D0FE /* 下拉按钮.png */,
 			);
@@ -6590,9 +6645,12 @@
 				C1392DB91DBDBC6D002418EF /* ico_make.png in Resources */,
 				C12315631DE708B000B9D0FE /* ShowGetMoneyTableViewCell.xib in Resources */,
 				C135A0EC1DDCAC86002B78A5 /* home_01.png in Resources */,
+				C1C1481B1DE838A0001FCBC3 /* pointMoneyHeaderView.xib in Resources */,
 				B3FEBA1A1D9B9C46003CDEF2 /* YWMessageViewController.xib in Resources */,
 				C1F7BDAD1DB1C94500CCAF96 /* YWMainShoppingTableViewCell.xib in Resources */,
+				C1C148061DE817F1001FCBC3 /* 积分分红.png in Resources */,
 				B310968C1DE3E2500033A984 /* 0baobaoBG111@2x.jpg in Resources */,
+				C1C148081DE817F1001FCBC3 /* 商务会员分红.png in Resources */,
 				C1F7BF501DB1CA0700CCAF96 /* home_te@2x.png in Resources */,
 				B3192ACE1D92470F00FD6578 /* RBPublicToolView.xib in Resources */,
 				B31096881DE3E2500033A984 /* 0baobaoBG108@2x.jpg in Resources */,
@@ -6650,6 +6708,7 @@
 				C1F7BE3C1DB1C95400CCAF96 /* InfoPhotoTableViewCell.xib in Resources */,
 				C1FB7F791DC73B910048EBC8 /* 火@2x.png in Resources */,
 				C13019B11DB1FD2F00E24C88 /* zbar-back.png in Resources */,
+				C1C148131DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.xib in Resources */,
 				C135A1551DDE020F002B78A5 /* 波浪个人_00039.png in Resources */,
 				B310968D1DE3E2500033A984 /* 0baobaoBG112@2x.jpg in Resources */,
 				B31096BE1DE3E2500033A984 /* 0baobaoBG49@2x.jpg in Resources */,
@@ -6753,8 +6812,10 @@
 				C1F7BF4A1DB1CA0700CCAF96 /* home_jian@2x.png in Resources */,
 				B31096EE1DE3E2500033A984 /* 0baobaoBG92@2x.jpg in Resources */,
 				B31096D31DE3E2500033A984 /* 0baobaoBG68@2x.jpg in Resources */,
+				C1C1480A1DE817F1001FCBC3 /* 椭圆实.png in Resources */,
 				B31096E21DE3E2500033A984 /* 0baobaoBG81@2x.jpg in Resources */,
 				B31096D01DE3E2500033A984 /* 0baobaoBG65@2x.jpg in Resources */,
+				C1C148051DE817F1001FCBC3 /* 右上角问号.png in Resources */,
 				C1F7BF411DB1CA0700CCAF96 /* home_xiaofeijilu.png in Resources */,
 				C135A13A1DDE020F002B78A5 /* 波浪个人_00014.png in Resources */,
 				B31096A11DE3E2500033A984 /* 0baobaoBG22@2x.jpg in Resources */,
@@ -6819,6 +6880,7 @@
 				B31096C11DE3E2500033A984 /* 0baobaoBG51@2x.jpg in Resources */,
 				B3B851181DD987F900E171C8 /* YWPayAnalysisViewController.xib in Resources */,
 				B31096B51DE3E2500033A984 /* 0baobaoBG40@2x.jpg in Resources */,
+				C1C148201DE8417E001FCBC3 /* pointBottom.png in Resources */,
 				B38B2F7D1D8FC8CD004D5256 /* JWSearchView.xib in Resources */,
 				C130199D1DB1FD2F00E24C88 /* qr_bottom_left@3x.png in Resources */,
 				C13019AB1DB1FD2F00E24C88 /* qrcode_scan_btn_flash_down@2x.png in Resources */,
@@ -6897,6 +6959,7 @@
 				B31096D71DE3E2500033A984 /* 0baobaoBG71@2x.jpg in Resources */,
 				B31096811DE3E2500033A984 /* 0baobaoBG101@2x.jpg in Resources */,
 				B31096EA1DE3E2500033A984 /* 0baobaoBG89@2x.jpg in Resources */,
+				C1C148071DE817F1001FCBC3 /* 介绍分红.png in Resources */,
 				B38B2F1B1D8FC82F004D5256 /* RBNodeDetailBottomView.xib in Resources */,
 				C1E5B7621DE456B700EB1F85 /* scheduleTwoTableViewCell.xib in Resources */,
 				C1F7BF4B1DB1CA0700CCAF96 /* home_leftArr@2x.png in Resources */,
@@ -6957,6 +7020,7 @@
 				B38B2E491D8FACD8004D5256 /* h4.jpg in Resources */,
 				C10E94BC1DD360A100728B3D /* home_yue.png in Resources */,
 				B31096E91DE3E2500033A984 /* 0baobaoBG88@2x.jpg in Resources */,
+				C1C148091DE817F1001FCBC3 /* 绑定的人.png in Resources */,
 				C1A75DFE1DCC7B48000E76C2 /* messageImage.png in Resources */,
 				B38B2F4C1D8FC83A004D5256 /* tag  LV.json in Resources */,
 				C1F7BF531DB1CA0700CCAF96 /* icon_arrow_dropdown_selected.png in Resources */,
@@ -6976,6 +7040,7 @@
 				C1F7BE641DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib in Resources */,
 				B31096CA1DE3E2500033A984 /* 0baobaoBG5@2x.jpg in Resources */,
 				B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */,
+				C1C1480B1DE817F1001FCBC3 /* 椭圆虚.png in Resources */,
 				C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */,
 				C1F7BDA51DB1C94500CCAF96 /* PaytheBillView.xib in Resources */,
 				B310969B1DE3E2500033A984 /* 0baobaoBG17@2x.jpg in Resources */,
@@ -7193,6 +7258,7 @@
 				B33A26561D9A68040092CB12 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B3FEBA031D9B64C1003CDEF2 /* YWMessageNotificationViewController.m in Sources */,
 				B38B2F331D8FC82F004D5256 /* UIBarButtonItem+SettingCustom.m in Sources */,
+				C1C1481E1DE83B44001FCBC3 /* pointMoneyHeaderView.m in Sources */,
 				B38B2F261D8FC82F004D5256 /* RBNewAlbumCollectionViewCell.m in Sources */,
 				B351E84D1DDEA70000A15954 /* YWPersonCenterDelView.m in Sources */,
 				B38B2F161D8FC82F004D5256 /* RBNodeShowViewController.m in Sources */,
@@ -7312,6 +7378,7 @@
 				B38B2E111D8FACD8004D5256 /* MJRefreshAutoFooter.m in Sources */,
 				B38B2E3A1D8FACD8004D5256 /* UIView+WebCacheOperation.m in Sources */,
 				C1F7BE5B1DB1C95400CCAF96 /* PCDetailMoneyViewController.m in Sources */,
+				C1C148121DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.m in Sources */,
 				C102AE741DC9B9D200574411 /* CouponModel.m in Sources */,
 				B33A26951D9A68040092CB12 /* EaseEmotionManager.m in Sources */,
 				B34BCE121DAA811C001AB98D /* YWNodeAddAldumTitleTableViewCell.m in Sources */,
@@ -7397,8 +7464,10 @@
 				C1F7BE571DB1C95400CCAF96 /* PCMyOrderViewController.m in Sources */,
 				B33A269C1D9A68040092CB12 /* EaseViewController.m in Sources */,
 				B33A26581D9A68040092CB12 /* EMCDDeviceManagerBase.m in Sources */,
+				C1C148191DE837E4001FCBC3 /* PointMoneyViewController.m in Sources */,
 				C1F7BD951DB1C94500CCAF96 /* YWChooseTwoView.m in Sources */,
 				C1F7BE3F1DB1C95400CCAF96 /* YWPersonInfoViewController.m in Sources */,
+				C1C1480E1DE82C89001FCBC3 /* IntroduceMoneyViewController.m in Sources */,
 				B3B8510D1DD9879A00E171C8 /* JHRadarChart.m in Sources */,
 				B33A26751D9A68040092CB12 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				B38B2E131D8FACD8004D5256 /* MJRefreshComponent.m in Sources */,
@@ -7439,6 +7508,7 @@
 				B3FEB9FD1D9B6465003CDEF2 /* YWMessageModel.m in Sources */,
 				B33A269E1D9A68040092CB12 /* EaseBaseMessageCell.m in Sources */,
 				B33A26AB1D9A68040092CB12 /* EaseChatToolbarItem.m in Sources */,
+				C1C148161DE83380001FCBC3 /* BusinessMoneyViewController.m in Sources */,
 				B3FEBA191D9B9C46003CDEF2 /* YWMessageViewController.m in Sources */,
 				B38B2EF91D8FC82F004D5256 /* RBHomeListCommentsModel.m in Sources */,
 				B38B2F151D8FC82F004D5256 /* RBNodeUserModel.m in Sources */,

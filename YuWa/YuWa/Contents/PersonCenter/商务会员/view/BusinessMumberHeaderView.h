@@ -10,4 +10,7 @@
 
 @interface BusinessMumberHeaderView : UIView
 
+@property(nonatomic,strong)void(^TotailBlock)();
+@property(nonatomic,strong)void(^waitBlock)();
+
 @end

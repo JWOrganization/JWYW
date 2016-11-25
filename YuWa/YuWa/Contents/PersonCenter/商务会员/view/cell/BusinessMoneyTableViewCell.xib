@@ -16,10 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="214.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0BH-em-lio">
+                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="介绍分红.png" translatesAutoresizingMaskIntoConstraints="NO" id="0BH-em-lio">
                         <rect key="frame" x="20" y="20" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="0sG-eN-Fbt"/>
@@ -175,10 +175,11 @@
                     <constraint firstItem="lXv-iZ-Fw3" firstAttribute="top" secondItem="kbd-EJ-z1H" secondAttribute="bottom" constant="15" id="wlP-vW-kX2"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-17" y="68"/>
+            <point key="canvasLocation" x="-116" y="67"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="home_rightArr.png" width="32" height="32"/>
+        <image name="介绍分红.png" width="40" height="40"/>
     </resources>
 </document>
