@@ -35,7 +35,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [UserSession instance].baobaoLV = 2;
     [self dataSet];
     [self makeUI];
 }
@@ -99,7 +98,7 @@
 //    self.baobaoImageView.animationRepeatCount = 0;
 //    [self.baobaoImageView startAnimating];
     NSInteger lvCount = [UserSession instance].baobaoLV - 1;
-    for (int i=0; i<120; i++) {
+    for (int i=0; i<60; i++) {
         NSString * path= [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%zibaobaoBG%zi@2x",lvCount,i] ofType:@"jpg"];
         if (path) {
             if (self.baobaoBGGifArr.count>i) {
