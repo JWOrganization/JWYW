@@ -10,6 +10,8 @@
 #import "YJSegmentedControl.h"
 #import "ShowGetMoneyTableViewCell.h"
 
+#import "JWTools.h"
+
 
 
 #import "MoneyDetailViewController.h"   //详情
@@ -140,6 +142,26 @@
 -(void)getDatas{
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
+    
+    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
+    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BUSINESS_SALEINFO];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages,@"time":self.time,@"type":self.type};
+    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
     
 }
 

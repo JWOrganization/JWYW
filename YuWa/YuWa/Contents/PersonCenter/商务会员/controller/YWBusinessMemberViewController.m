@@ -13,6 +13,10 @@
 
 
 
+#import "JWTools.h"
+
+
+
 #import "IntroduceMoneyViewController.h"   //介绍分红
 #import "BusinessMoneyViewController.h"   //商务分红
 #import "PointMoneyViewController.h"     //积分分红界面
@@ -24,6 +28,12 @@
 
 @interface YWBusinessMemberViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView*tableView;
+
+@property(nonatomic,strong)NSDictionary*allDatas;   //总的  直接绑定和间接绑定
+@property(nonatomic,strong)NSDictionary*base_info;
+@property(nonatomic,strong)NSDictionary*introduce;
+@property(nonatomic,strong)NSDictionary*business;
+@property(nonatomic,strong)NSDictionary*score;
 @end
 
 @implementation YWBusinessMemberViewController
@@ -39,6 +49,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:CELL1 bundle:nil] forCellReuseIdentifier:CELL1];
     
     [self setUpMJRefresh];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -221,6 +232,8 @@
         //总共的 详情
         view.TotailBlock=^(){
             YWShowGetMoneyViewController*vc=[[YWShowGetMoneyViewController alloc]init];
+            vc.time=@"4";
+            vc.type=@"3";
             [self.navigationController pushViewController:vc animated:YES];
 
         };
@@ -228,6 +241,8 @@
         //总的待结算
         view.waitBlock=^(){
             YWShowGetMoneyViewController*vc=[[YWShowGetMoneyViewController alloc]init];
+            vc.time=@"4";
+            vc.type=@"4";
             [self.navigationController pushViewController:vc animated:YES];
 
             
@@ -260,6 +275,25 @@
 
 #pragma mark  --getDatas
 -(void)getDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BUSINESS_HOME];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
+    
+    
+    
     
     [self.tableView.mj_header endRefreshing];
 }

@@ -101,6 +101,7 @@
 #define HTTP_HOME_CATEGORYSHOW    @"/api.php/Shop/checkShop/"    //18个分类的筛选
 #define HTTP_GETPAGEVIEW          @"/api.php/Shop/addLog"      //得到浏览量
 
+
 #pragma mark  -- 个人中心
 #define HTTP_PERSON_COUPON         @"/api.php/User/getMyCoupon/"   //得到优惠券
 #define HTTP_PRESON_CHANGEINFO     @"/api.php/User/setMyBaseInfo/"  //修改个人中心资料
@@ -132,7 +133,13 @@
 #define HTTP_DELABOUT              @"/api.php/User/delAttention/"    //删除关注
 #define HTTP_POSTCOMMIT            @"/api.php/Shop/addShopComment/"   //发布评价
 
+//商务会员
+#define HTTP_BUSINESS_HOME         @"/api.php/Sale/getBaseInfo/"    //商务会员首页
+#define HTTP_BUSINESS_SALEINFO     @"/api.php/Sale/detail/"    //交易详情信息
+
+
 
 #define HTTP_SEEOTHERCENTER       @"/api.php/User/getUserInfo/"  //查看他人个人中心
+
 
 #endif /* GlobalInfo_h */
