@@ -646,6 +646,11 @@
 		C11F14F01DC83B92005C58CF /* banner_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */; };
 		C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */; };
 		C11F14F21DC83B92005C58CF /* banner_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EE1DC83B92005C58CF /* banner_selected@3x.png */; };
+		C1214BF31DEBE33900FFC63C /* BusinessBaseInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1214BF21DEBE33900FFC63C /* BusinessBaseInfoModel.m */; };
+		C1214BF61DEBE3C100FFC63C /* introduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1214BF51DEBE3C100FFC63C /* introduceModel.m */; };
+		C1214BF91DEBE9AF00FFC63C /* BusinessMoneyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1214BF81DEBE9AF00FFC63C /* BusinessMoneyModel.m */; };
+		C1214BFC1DEBE9FE00FFC63C /* ScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1214BFB1DEBE9FE00FFC63C /* ScoreModel.m */; };
+		C1214BFF1DEBEA5A00FFC63C /* BindingPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1214BFE1DEBEA5A00FFC63C /* BindingPersonModel.m */; };
 		C122FBE61DB5F5C1009A518A /* CommitShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C122FBE51DB5F5C1009A518A /* CommitShopView.xib */; };
 		C122FBE91DB5F72D009A518A /* CommitShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C122FBE81DB5F72D009A518A /* CommitShopView.m */; };
 		C122FBF61DB60CF6009A518A /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C122FBF41DB60CF6009A518A /* ScheduleViewController.m */; };
@@ -2113,6 +2118,16 @@
 		C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@3x.png"; sourceTree = "<group>"; };
 		C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_selected@2x.png"; sourceTree = "<group>"; };
 		C11F14EE1DC83B92005C58CF /* banner_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_selected@3x.png"; sourceTree = "<group>"; };
+		C1214BF11DEBE33900FFC63C /* BusinessBaseInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessBaseInfoModel.h; sourceTree = "<group>"; };
+		C1214BF21DEBE33900FFC63C /* BusinessBaseInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessBaseInfoModel.m; sourceTree = "<group>"; };
+		C1214BF41DEBE3C100FFC63C /* introduceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = introduceModel.h; sourceTree = "<group>"; };
+		C1214BF51DEBE3C100FFC63C /* introduceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = introduceModel.m; sourceTree = "<group>"; };
+		C1214BF71DEBE9AF00FFC63C /* BusinessMoneyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMoneyModel.h; sourceTree = "<group>"; };
+		C1214BF81DEBE9AF00FFC63C /* BusinessMoneyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMoneyModel.m; sourceTree = "<group>"; };
+		C1214BFA1DEBE9FE00FFC63C /* ScoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreModel.h; sourceTree = "<group>"; };
+		C1214BFB1DEBE9FE00FFC63C /* ScoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreModel.m; sourceTree = "<group>"; };
+		C1214BFD1DEBEA5A00FFC63C /* BindingPersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingPersonModel.h; sourceTree = "<group>"; };
+		C1214BFE1DEBEA5A00FFC63C /* BindingPersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingPersonModel.m; sourceTree = "<group>"; };
 		C122FBE51DB5F5C1009A518A /* CommitShopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitShopView.xib; sourceTree = "<group>"; };
 		C122FBE71DB5F72D009A518A /* CommitShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitShopView.h; sourceTree = "<group>"; };
 		C122FBE81DB5F72D009A518A /* CommitShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitShopView.m; sourceTree = "<group>"; };
@@ -5339,6 +5354,16 @@
 		C123153E1DE6B85200B9D0FE /* model */ = {
 			isa = PBXGroup;
 			children = (
+				C1214BF11DEBE33900FFC63C /* BusinessBaseInfoModel.h */,
+				C1214BF21DEBE33900FFC63C /* BusinessBaseInfoModel.m */,
+				C1214BF41DEBE3C100FFC63C /* introduceModel.h */,
+				C1214BF51DEBE3C100FFC63C /* introduceModel.m */,
+				C1214BF71DEBE9AF00FFC63C /* BusinessMoneyModel.h */,
+				C1214BF81DEBE9AF00FFC63C /* BusinessMoneyModel.m */,
+				C1214BFA1DEBE9FE00FFC63C /* ScoreModel.h */,
+				C1214BFB1DEBE9FE00FFC63C /* ScoreModel.m */,
+				C1214BFD1DEBEA5A00FFC63C /* BindingPersonModel.h */,
+				C1214BFE1DEBEA5A00FFC63C /* BindingPersonModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -7310,6 +7335,7 @@
 				B33A267B1D9A68040092CB12 /* PSTCollectionViewController.m in Sources */,
 				B315823A1D90F86B0096C194 /* YWForgetPassWordViewController.m in Sources */,
 				B3B851171DD987F900E171C8 /* YWPayAnalysisViewController.m in Sources */,
+				C1214BFF1DEBEA5A00FFC63C /* BindingPersonModel.m in Sources */,
 				B38B2EFE1D8FC82F004D5256 /* RBHomeUserModel.m in Sources */,
 				C1392DC91DBF5083002418EF /* WXApiResponseHandler.m in Sources */,
 				B33A26AA1D9A68040092CB12 /* EaseChatToolbar.m in Sources */,
@@ -7338,6 +7364,7 @@
 				B30D93251DB7971A002390D0 /* HttpObject.m in Sources */,
 				B33A26A61D9A68040092CB12 /* EaseBubbleView+Text.m in Sources */,
 				C1F7BE431DB1C95400CCAF96 /* SignatureViewController.m in Sources */,
+				C1214BF61DEBE3C100FFC63C /* introduceModel.m in Sources */,
 				B33A26821D9A68040092CB12 /* PSTGridLayoutItem.m in Sources */,
 				C1392DBA1DBDBC6D002418EF /* JSDropDownMenu.m in Sources */,
 				B33A26A01D9A68040092CB12 /* EaseMessageCell.m in Sources */,
@@ -7410,6 +7437,7 @@
 				C1E5B76F1DE45DA400EB1F85 /* ScheduleTextFieldTableViewCell.m in Sources */,
 				C135A0B61DDAFDC4002B78A5 /* MoneyPackModel.m in Sources */,
 				B38B2EF51D8FC82F004D5256 /* RBBasicViewController.m in Sources */,
+				C1214BFC1DEBE9FE00FFC63C /* ScoreModel.m in Sources */,
 				B33A269F1D9A68040092CB12 /* EaseCustomMessageCell.m in Sources */,
 				B38B2E521D8FACD8004D5256 /* UIView+SDExtension.m in Sources */,
 				B33A26621D9A68040092CB12 /* MWPhoto.m in Sources */,
@@ -7428,6 +7456,7 @@
 				B3263B011DD5B25A004788BB /* YWBaoBaoViewController.m in Sources */,
 				B38B2E1B1D8FACD8004D5256 /* MJRefreshBackStateFooter.m in Sources */,
 				B33A26791D9A68040092CB12 /* PSTCollectionView.m in Sources */,
+				C1214BF31DEBE33900FFC63C /* BusinessBaseInfoModel.m in Sources */,
 				B33A266C1D9A68040092CB12 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				B33A268E1D9A68040092CB12 /* UIViewController+HUD.m in Sources */,
 				C1F7BE321DB1C95400CCAF96 /* defineButton.m in Sources */,
@@ -7631,6 +7660,7 @@
 				B3FEBA321D9BE4EE003CDEF2 /* YWMessageNotificationCell.m in Sources */,
 				B3B8510F1DD9879A00E171C8 /* JHShowInfoView.m in Sources */,
 				B33A265B1D9A68040092CB12 /* EMVoiceConverter.mm in Sources */,
+				C1214BF91DEBE9AF00FFC63C /* BusinessMoneyModel.m in Sources */,
 				B3AE4D741D91302B000A389F /* TZImagePickerController.m in Sources */,
 				B38B2DFC1D8FACD8004D5256 /* AFURLSessionManager.m in Sources */,
 				C1F7BDA31DB1C94500CCAF96 /* JZMTBtnView.m in Sources */,

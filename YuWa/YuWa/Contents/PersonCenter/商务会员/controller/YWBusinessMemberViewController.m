@@ -11,10 +11,13 @@
 #import "BusinessMoneyTableViewCell.h" //3个cell
 #import "MyUserCell.h"       //底部的cell
 
-
-
 #import "JWTools.h"
 
+#import "BusinessBaseInfoModel.h"   
+#import "introduceModel.h"
+#import "BusinessMoneyModel.h"
+#import "ScoreModel.h"
+#import "BindingPersonModel.h"
 
 
 #import "IntroduceMoneyViewController.h"   //介绍分红
@@ -29,11 +32,13 @@
 @interface YWBusinessMemberViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView*tableView;
 
-@property(nonatomic,strong)NSDictionary*allDatas;   //总的  直接绑定和间接绑定
-@property(nonatomic,strong)NSDictionary*base_info;
-@property(nonatomic,strong)NSDictionary*introduce;
-@property(nonatomic,strong)NSDictionary*business;
-@property(nonatomic,strong)NSDictionary*score;
+
+@property(nonatomic,strong)BusinessBaseInfoModel*base_infoModel;
+@property(nonatomic,strong)introduceModel*introduceModel;
+@property(nonatomic,strong)BusinessMoneyModel*businessModel;
+@property(nonatomic,strong)ScoreModel*scoreModel;
+@property(nonatomic,strong)BindingPersonModel*BiningModel;
+
 @end
 
 @implementation YWBusinessMemberViewController
@@ -88,11 +93,9 @@
 }
 
 -(void)setUpMJRefresh{
-//    self.maMallDatas=[NSMutableArray array];
+
     
     self.tableView.mj_header=[UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
-       
-//        self.maMallDatas=[NSMutableArray array];
         [self getDatas];
         
     }];
@@ -283,19 +286,28 @@
         NSNumber*number=data[@"errorCode"];
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
+            self.base_infoModel=[BusinessBaseInfoModel yy_modelWithDictionary:data[@"data"][@"base_info"]];
+            self.introduceModel=[introduceModel yy_modelWithDictionary:data[@"data"][@"introduce"]];
+            self.businessModel=[BusinessMoneyModel yy_modelWithDictionary:data[@"data"][@"base_info"]];
+            self.scoreModel=[ScoreModel yy_modelWithDictionary:data[@"data"][@"score"]];
+            self.BiningModel=[[BindingPersonModel alloc]init];
+            self.BiningModel.my_direct_user_nums=data[@"data"][@"my_direct_user_nums"];
+            self.BiningModel.my_indirect_user_nums=data[@"data"][@"my_indirect_user_nums"];
             
+            [self.tableView reloadData];
             
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
         }
         
+          [self.tableView.mj_header endRefreshing];
         
     }];
     
     
     
     
-    [self.tableView.mj_header endRefreshing];
+  
 }
 
 - (void)didReceiveMemoryWarning {
