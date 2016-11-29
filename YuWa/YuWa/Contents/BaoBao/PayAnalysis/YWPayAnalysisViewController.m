@@ -27,7 +27,7 @@
     for (int i = 0; i < [valueArr[0] count]; i++) {
         allValue += [valueArr[0][i] integerValue];
     }
-    allValue = (allValue/[valueArr[0] count])*2/5;
+    allValue = (allValue/([valueArr[0] count]>0?[valueArr[0] count]:1))*2/5;
     NSInteger number = allValue;
     for (int i = 0; i < 100; i++) {
         if (number/10 <= 0) {
@@ -85,7 +85,14 @@
             [timeArr insertObject:[JWTools dateWithDate:dataDic[@"ctime"]] atIndex:0];
             [moneyArr insertObject:dataDic[@"money"] atIndex:0];
         }
-        [self showFirstQuardrantWithXLineDataArr:timeArr withValueArr:@[moneyArr]];
+        if (dataArr.count>0) {
+            [self showFirstQuardrantWithXLineDataArr:timeArr withValueArr:@[moneyArr]];
+        }else{
+            if (![[[UIApplication sharedApplication].delegate.window.subviews lastObject] isKindOfClass:[MBProgressHUD class]]){
+                [self showHUDWithStr:@"您暂无消费记录哟" withSuccess:NO];
+            }
+        }
+        
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
@@ -98,29 +105,38 @@
         NSMutableArray * typeArr = [NSMutableArray arrayWithCapacity:0];
         NSMutableArray * moneyArr = [NSMutableArray arrayWithCapacity:0];
         NSArray * dataArr = responsObj[@"data"];
-        for (NSDictionary * dataDic in dataArr) {
-            NSString * type = dataDic[@"type"];
-            if (!type||[type isEqualToString:@""])type = @"其他";
-            NSArray * typeArrTemp = [NSArray arrayWithArray:typeArr];
-            BOOL isSame = NO;
-            for (int i = 0; i < typeArrTemp.count; i++) {
-                if ([type isEqualToString:typeArrTemp[i]]) {
-                    CGFloat money = [moneyArr[i] floatValue] + [dataDic[@"money"] floatValue];
-                    [moneyArr replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%.2f",money]];
-                    isSame = YES;
+        if (dataArr.count>0) {
+            for (NSDictionary * dataDic in dataArr) {
+                NSString * type = dataDic[@"type"];
+                if (!type||[type isEqualToString:@""])type = @"其他";
+                NSArray * typeArrTemp = [NSArray arrayWithArray:typeArr];
+                BOOL isSame = NO;
+                for (int i = 0; i < typeArrTemp.count; i++) {
+                    if ([type isEqualToString:typeArrTemp[i]]) {
+                        CGFloat money = [moneyArr[i] floatValue] + [dataDic[@"money"] floatValue];
+                        [moneyArr replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%.2f",money]];
+                        isSame = YES;
+                    }
+                }
+                if (!isSame) {
+                    [typeArr addObject:[dataDic[@"type"] isEqualToString:@""]?@"其他":dataDic[@"type"]];
+                    [moneyArr addObject:dataDic[@"money"]];
                 }
             }
-            if (!isSame) {
-                [typeArr addObject:[dataDic[@"type"] isEqualToString:@""]?@"其他":dataDic[@"type"]];
-                [moneyArr addObject:dataDic[@"money"]];
+            NSMutableArray * moneyData = [NSMutableArray arrayWithCapacity:0];
+            for (int i = 0; i<moneyArr.count; i++) {
+                [moneyData addObject:@[moneyArr[i]]];
+            }
+            
+            [self showColumnViewWithXShowInfoText:typeArr withValueArr:moneyData];
+        }else{
+            if (![[[UIApplication sharedApplication].delegate.window.subviews lastObject] isKindOfClass:[MBProgressHUD class]]){
+                [self showHUDWithStr:@"您暂无消费记录哟" withSuccess:NO];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
             }
         }
-        NSMutableArray * moneyData = [NSMutableArray arrayWithCapacity:0];
-        for (int i = 0; i<moneyArr.count; i++) {
-            [moneyData addObject:@[moneyArr[i]]];
-        }
-        
-        [self showColumnViewWithXShowInfoText:typeArr withValueArr:moneyData];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
