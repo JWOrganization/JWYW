@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "introduceModel.h"
 
 @interface IntroduceMoneyViewController : UIViewController
+@property(nonatomic,strong)introduceModel *model;
 
 @end

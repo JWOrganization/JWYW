@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScoreModel.h"
 
 @interface PointMoneyViewController : UIViewController
 
+@property(nonatomic,strong)ScoreModel*model;
 @end

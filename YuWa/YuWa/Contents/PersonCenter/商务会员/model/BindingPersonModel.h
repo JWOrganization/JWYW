@@ -13,7 +13,7 @@
 
 @interface BindingPersonModel : NSObject
 //这个就能用 yy model了 要一个一个加
-@property(nonatomic,strong)NSString*my_direct_user_nums;
-@property(nonatomic,strong)NSString*my_indirect_user_nums;
+@property(nonatomic,strong)NSNumber*my_direct_user_nums;
+@property(nonatomic,strong)NSNumber*my_indirect_user_nums;
 
 @end

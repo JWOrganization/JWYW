@@ -14,9 +14,9 @@
 //"my_shop_nums" = 2,
 @interface BusinessMoneyModel : NSObject
 
-@property(nonatomic,strong)NSString*settlement_business;
-@property(nonatomic,strong)NSString*total_business;
-@property(nonatomic,strong)NSString*today_business;
-@property(nonatomic,strong)NSString*my_shop_nums;
+@property(nonatomic,strong)NSString*settlement_business;   //待结算的收益
+@property(nonatomic,strong)NSString*total_business;      //总共的收益
+@property(nonatomic,strong)NSString*today_business;  //今天的收益
+@property(nonatomic,strong)NSString*my_shop_nums;   //多少家签约店铺
 
 @end

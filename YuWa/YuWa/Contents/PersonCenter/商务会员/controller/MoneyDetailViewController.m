@@ -10,7 +10,7 @@
 #import "MoneyDetailTableViewCell.h"
 #import "PayDetailView.h"   //header
 
-
+#import "JWTools.h"
 
 #define CELL0     @"MoneyDetailTableViewCell"
 
@@ -27,6 +27,7 @@
     
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
+    [self getDatas];
 }
 
 
@@ -130,6 +131,28 @@
     }
     return 0.01;
 }
+
+#pragma mark  --getDatas
+-(void)getDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_DEAL_DETAIL];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"id":self.idd};
+    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+
+    }];
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning {

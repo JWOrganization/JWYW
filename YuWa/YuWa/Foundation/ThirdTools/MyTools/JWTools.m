@@ -965,4 +965,16 @@
     return failView;
 }
 
+//得到当前的时间
++(NSString*)currentTime{
+    NSDate*current=[NSDate date];
+    NSDateFormatter*dateFormatter=[[NSDateFormatter alloc]init];
+    //   hh:mm:ss
+    [dateFormatter setDateFormat:@"YYYY/MM/dd"];
+    NSString*strTime=[dateFormatter stringFromDate:current];
+    
+    return strTime;
+}
+
+
 @end

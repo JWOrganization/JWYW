@@ -10,6 +10,8 @@
 #import "YJSegmentedControl.h"
 #import "ShowGetMoneyTableViewCell.h"
 
+#import "ShowDetailModel.h"
+
 #import "JWTools.h"
 
 
@@ -23,6 +25,8 @@
 @property(nonatomic,strong)UITableView*tableView;
 
 @property(nonatomic,strong)NSMutableArray*maMallDatas;
+@property(nonatomic,strong)NSString*total_money;       //总的钱
+@property(nonatomic,strong)NSString*total_settlement;   //总的待结算
 
 @property(nonatomic,assign)int pagen;
 @property(nonatomic,assign)int pages;
@@ -47,12 +51,10 @@
    YJSegmentedControl*view=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 64, kScreen_Width, 40) titleDataSource:array backgroundColor:[UIColor whiteColor] titleColor:[UIColor blackColor] titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
     [self.view addSubview:view];
     
-    
-    UIButton*rightButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [rightButton addTarget:self action:@selector(touchRightButton) forControlEvents:UIControlEventTouchUpInside];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"下拉按钮"] forState:UIControlStateNormal];
-    UIBarButtonItem*item=[[UIBarButtonItem alloc]initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem=item;
+  
+    NSInteger number=[self.time integerValue];
+    [view selectTheSegument:number];
+
     
 }
 
@@ -86,25 +88,33 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.maMallDatas.count;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShowGetMoneyTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
     
+    if (self.maMallDatas.count<1) {
+        return cell;
+    }
+    ShowDetailModel*model=self.maMallDatas[indexPath.row];
+    
+    
     UILabel*timeLabel=[cell viewWithTag:1];
-    timeLabel.text=@"2016.5.5";
+    timeLabel.text=[JWTools getTime:model.ctime];
     
     UILabel*categoryLabel=[cell viewWithTag:2];
-    categoryLabel.text=@"商务会员分红";
+    categoryLabel.text=model.type;
     
     UILabel*moneyLabel=[cell viewWithTag:3];
-    moneyLabel.text=@"5元";
+    moneyLabel.text=model.money;
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+      ShowDetailModel*model=self.maMallDatas[indexPath.row];
     MoneyDetailViewController*vc=[[MoneyDetailViewController alloc]init];
+    vc.idd=model.id;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -114,6 +124,13 @@
     if (section==0) {
         UIView*view=[[NSBundle mainBundle]loadNibNamed:@"IncomeDetailView" owner:nil options:nil].firstObject;
         
+        UILabel*label1=[view viewWithTag:1];
+        label1.text=self.total_money;
+        
+        UILabel*label3=[view viewWithTag:3];
+        label3.text=self.total_settlement;
+        
+        
         UILabel*label5=[view viewWithTag:5];
         label5.text=@"时间";
         
@@ -121,8 +138,13 @@
         label6.text=@"款项类型";
         
         UILabel*label7=[view viewWithTag:7];
-        label7.text=@"金额";
+        if ([self.type isEqualToString:@"2"]) {
+            label7.text=@"积分";
+        }else{
+            label7.text=@"金额";
 
+        }
+      
         
         return view;
     }
@@ -155,6 +177,16 @@
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
             
+            self.total_money=data[@"data"][@"total_money"];
+            self.total_settlement=data[@"data"][@"total_settlement"];
+            
+            for (NSDictionary*dict in data[@"data"][@"lists"]) {
+            ShowDetailModel*model=[ShowDetailModel yy_modelWithDictionary:dict];
+                [self.maMallDatas addObject:model];
+                [self.tableView reloadData];
+                
+            }
+            
             
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
@@ -166,13 +198,35 @@
 }
 
 #pragma mark  --touch
--(void)touchRightButton{
-    
-}
+//-(void)touchRightButton{
+//    
+//}
 
 #pragma mark  --delegate
 -(void)segumentSelectionChange:(NSInteger)selection{
     MyLog(@"%lu",selection);
+    switch (selection) {
+        case 0:
+            self.time=@"0";
+            break;
+        case 1:
+            self.time=@"1";
+            break;
+        case 2:
+            self.time=@"2";
+            break;
+        case 3:
+            self.time=@"3";
+            break;
+        case 4:
+            self.time=@"4";
+            break;
+
+        default:
+            break;
+    }
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {

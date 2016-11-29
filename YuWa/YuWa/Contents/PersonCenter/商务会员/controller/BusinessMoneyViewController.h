@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusinessMoneyModel.h"
 
 @interface BusinessMoneyViewController : UIViewController
+
+@property(nonatomic,strong)BusinessMoneyModel*model;
 
 @end

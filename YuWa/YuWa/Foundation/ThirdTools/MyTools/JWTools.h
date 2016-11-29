@@ -404,4 +404,9 @@
  */
 +(UIView*)addFailViewWithFrame:(CGRect)frame withTouchBlock:(void(^)())touchBlock;
 
+//得到当前时间
++(NSString*)currentTime;
+
+
+
 @end

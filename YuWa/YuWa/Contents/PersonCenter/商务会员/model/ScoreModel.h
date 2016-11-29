@@ -22,5 +22,6 @@
 @property(nonatomic,strong)NSString*total_score;
 @property(nonatomic,strong)NSString*my_score;
 @property(nonatomic,strong)NSString*today_score;
+@property(nonatomic,strong)NSString*pay_scale;    //支付的比例
 
 @end

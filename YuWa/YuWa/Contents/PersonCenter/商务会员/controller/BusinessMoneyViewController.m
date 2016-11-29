@@ -7,10 +7,16 @@
 //
 
 #import "BusinessMoneyViewController.h"
+#import "BusinessMoneyTableViewCell.h"
 #import "IntroduceMoneyTableViewCell.h"
 
+#import "JWTools.h"
 
-#define CELL0   @"IntroduceMoneyTableViewCell"
+#import "YWShowGetMoneyViewController.h"
+#import "SignShopViewController.h"
+
+#define CELL0    @"BusinessMoneyTableViewCell"
+#define CELL1    @"IntroduceMoneyTableViewCell"
 
 @interface BusinessMoneyViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -23,7 +29,8 @@
     [super viewDidLoad];
    self.title=@"商务会员分红";
     [self.view addSubview:self.tableView];
-    [self.tableView registerNib:[UINib nibWithNibName:CELL0 bundle:nil] forCellReuseIdentifier:CELL0];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BusinessMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL0];
+    [self.tableView registerNib:[UINib nibWithNibName:@"IntroduceMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL1];
 }
 
 #pragma mark  --UI
@@ -37,36 +44,101 @@
     return 2;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    IntroduceMoneyTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+    if (indexPath.section==0) {
+        BusinessMoneyTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL0];
+        cell.selectionStyle=NO;
+        
+        //图标
+        UIImageView*imageView=[cell viewWithTag:1];
+        //titleLabel
+        UILabel*titleLabel=[cell viewWithTag:2];
+        //topLabel
+        UILabel*topLabel=[cell viewWithTag:4];
+        //
+        UILabel*subLabel=[cell viewWithTag:5];
+        //
+        UILabel*timeLabel=[cell viewWithTag:6];
+        
+        
+        //
+        UILabel*totailLabel=[cell viewWithTag:12];
+        //
+        UILabel*todayLabel=[cell viewWithTag:14];
+        //
+        UILabel*waitLabel=[cell viewWithTag:16];
+        
+        UIImageView*imageV=[cell viewWithTag:3];
+        imageV.hidden=YES;
+        //商务分红
+        imageView.image=[UIImage imageNamed:@"商务会员分红"];
+        titleLabel.text=@"商务会员分红";
+        topLabel.text=[NSString stringWithFormat:@"%@",self.model.my_shop_nums];
+        subLabel.text=@"门店数量";
+        timeLabel.text=[JWTools currentTime];
+        
+        totailLabel.text=[NSString stringWithFormat:@"%@",self.model.total_business];
+        todayLabel.text=[NSString stringWithFormat:@"%@",self.model.today_business];
+        waitLabel.text=[NSString stringWithFormat:@"%@",self.model.settlement_business];
+        
+        return cell;
+
+        
+    }else{
+    
+    
+    IntroduceMoneyTableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
+        cell.selectionStyle=NO;
+
     
     UILabel*titleLabel=[cell viewWithTag:1];
     UILabel*detailLabel=[cell viewWithTag:2];
-    if (indexPath.section==0&&indexPath.row==0) {
-        titleLabel.text=@"我的商铺";
-        detailLabel.text=@"6家";
         
-    }else if(indexPath.section==1&&indexPath.row==0) {
-        titleLabel.text=@"总收益";
-        detailLabel.text=@"10000";
-    }else if (indexPath.section==1&&indexPath.row==1){
-        titleLabel.text=@"待结算收益";
-        detailLabel.text=@"1000";
-
+        detailLabel.hidden=YES;
+        
+        if (indexPath.section==1&&indexPath.row==0) {
+            titleLabel.text=@"商务会员分红详情";
+        }else if (indexPath.section==1&&indexPath.row==1){
+            titleLabel.text=@"我签约的商铺";
+        }
+    
+        return cell;
+        
     }
-    return cell;
-}
+ }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0&&indexPath.row==0) {
-        //我的店铺
-        
-    }else if (indexPath.section==1&&indexPath.row==0){
-        
-    }else if (indexPath.section==1&&indexPath.row==1){
-        
-        
+    if (indexPath.section==1&&indexPath.row==0) {
+        //商务会员分红详情
+     
+        YWShowGetMoneyViewController*vc=[[YWShowGetMoneyViewController alloc]init];
+        vc.time=@"4";
+        vc.type=@"1";
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }else{
+        //我签约的店铺
+        SignShopViewController*vc=[[SignShopViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+      
     }
-    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return 0.01;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==0) {
+        return 215;
+    }else{
+        return 44;
+    }
+   
 }
 
 - (void)didReceiveMemoryWarning {

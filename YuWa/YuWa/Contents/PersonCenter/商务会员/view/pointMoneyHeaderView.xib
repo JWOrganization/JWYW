@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -43,31 +44,42 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGm-gC-XMl">
-                    <rect key="frame" x="138" y="189" width="100" height="34"/>
+                    <rect key="frame" x="113" y="179" width="150" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="ZBk-Ae-984"/>
+                        <constraint firstAttribute="width" constant="150" id="ZBk-Ae-984"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="提现"/>
+                </button>
+                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pX-4z-fhB">
+                    <rect key="frame" x="113" y="227" width="150" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="2sv-AS-ubL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="查看积分详情"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.23012551665306091" green="0.73476451635360718" blue="0.91849935054779053" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="0pX-4z-fhB" firstAttribute="top" secondItem="dGm-gC-XMl" secondAttribute="bottom" constant="15" id="2hf-it-Ren"/>
                 <constraint firstItem="dGm-gC-XMl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="66n-UF-aqX"/>
                 <constraint firstItem="xZI-en-2Dh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="73h-BI-PXx"/>
                 <constraint firstItem="q7H-LP-ntz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8AX-i0-crj"/>
                 <constraint firstAttribute="trailing" secondItem="21h-QG-LbK" secondAttribute="trailing" constant="15" id="AzX-7F-b6n"/>
                 <constraint firstItem="eMy-2E-h5e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="65" id="DDE-tO-JJq"/>
+                <constraint firstItem="0pX-4z-fhB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VFp-OK-Eqk"/>
                 <constraint firstItem="eMy-2E-h5e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="XWG-wL-ScZ"/>
                 <constraint firstItem="q7H-LP-ntz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cSc-HN-mki"/>
                 <constraint firstAttribute="bottom" secondItem="xZI-en-2Dh" secondAttribute="bottom" constant="10" id="cmk-WE-41r"/>
-                <constraint firstItem="dGm-gC-XMl" firstAttribute="top" secondItem="q7H-LP-ntz" secondAttribute="bottom" constant="25" id="fTR-Y4-FID"/>
+                <constraint firstItem="dGm-gC-XMl" firstAttribute="top" secondItem="q7H-LP-ntz" secondAttribute="bottom" constant="15" id="fTR-Y4-FID"/>
                 <constraint firstAttribute="bottom" secondItem="dnK-hR-xPs" secondAttribute="bottom" constant="10" id="hxg-k7-TOl"/>
                 <constraint firstAttribute="trailing" secondItem="dnK-hR-xPs" secondAttribute="trailing" constant="15" id="kPA-vc-3BO"/>
                 <constraint firstItem="21h-QG-LbK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="65" id="n4A-gZ-jpX"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="14.5" y="-236"/>
+            <point key="canvasLocation" x="-266" y="-299"/>
         </view>
     </objects>
 </document>

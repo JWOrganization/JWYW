@@ -24,6 +24,7 @@
 #import "BusinessMoneyViewController.h"   //商务分红
 #import "PointMoneyViewController.h"     //积分分红界面
 #import "YWShowGetMoneyViewController.h"   //展示收入界面
+#import "SignUserViewController.h"    //我锁定的人
 
 #define CELL0  @"BusinessMoneyTableViewCell"
 #define CELL1  @"MyUserCell"
@@ -143,38 +144,38 @@
         //介绍分红
         imageView.image=[UIImage imageNamed:@"介绍分红"];
         titleLabel.text=@"介绍分红";
-        topLabel.text=@"5.55%";
+        topLabel.text=[NSString stringWithFormat:@"%@",self.introduceModel.rose_introduce];
         subLabel.text=@"近一周涨幅";
-        timeLabel.text=@"2016.11.14";
+        timeLabel.text=[JWTools currentTime];
         
-        totailLabel.text=@"111";
-        todayLabel.text=@"111";
-        waitLabel.text=@"111";
+        totailLabel.text=self.introduceModel.total_introduce;
+        todayLabel.text=self.introduceModel.today_introduce;
+        waitLabel.text=self.introduceModel.settlement_introduce;
         
     }else if (indexPath.section==1){
         //商务分红
         imageView.image=[UIImage imageNamed:@"商务会员分红"];
         titleLabel.text=@"商务会员分红";
-        topLabel.text=@"6家";
+        topLabel.text=[NSString stringWithFormat:@"%@",self.businessModel.my_shop_nums];
         subLabel.text=@"门店数量";
-        timeLabel.text=@"2016.11.14";
+        timeLabel.text=[JWTools currentTime];
         
-        totailLabel.text=@"111";
-        todayLabel.text=@"111";
-        waitLabel.text=@"111";
+        totailLabel.text=[NSString stringWithFormat:@"%@",self.businessModel.total_business];
+        todayLabel.text=[NSString stringWithFormat:@"%@",self.businessModel.today_business];
+        waitLabel.text=[NSString stringWithFormat:@"%@",self.businessModel.settlement_business];
 
         
     }else if (indexPath.section==2){
         // 积分分红
          imageView.image=[UIImage imageNamed:@"积分分红"];
         titleLabel.text=@"积分分红";
-        topLabel.text=@"120";
+        topLabel.text=[NSString stringWithFormat:@"%@",self.scoreModel.my_score];
         subLabel.text=@"当前积分";
-        timeLabel.text=@"2016.11.14";
+        timeLabel.text=[JWTools currentTime];
         
-        totailLabel.text=@"111";
-        todayLabel.text=@"111";
-        waitLabel.text=@"111";
+        totailLabel.text=self.scoreModel.total_score;
+        todayLabel.text=self.scoreModel.today_score;
+        waitLabel.text=self.scoreModel.settlement_score;
 
         
         
@@ -185,6 +186,12 @@
         MyUserCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
         
+        UILabel*directBinding=[cell viewWithTag:1];   //直接锁定
+        directBinding.text=[NSString stringWithFormat:@"%@人",self.BiningModel.my_direct_user_nums];
+        
+        UILabel*indirectBinding=[cell viewWithTag:22];  //间接锁定
+        indirectBinding.text=[NSString stringWithFormat:@"%@人",self.BiningModel.my_indirect_user_nums];
+        
         return cell;
     }
     
@@ -194,18 +201,22 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         IntroduceMoneyViewController*vc=[[IntroduceMoneyViewController alloc]init];
+        vc.model=self.introduceModel;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section==1){
         BusinessMoneyViewController*vc=[[BusinessMoneyViewController alloc]init];
+        vc.model=self.businessModel;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else if (indexPath.section==2){
         PointMoneyViewController*vc=[[PointMoneyViewController alloc]init];
+        vc.model=self.scoreModel;
         [self.navigationController pushViewController:vc animated:YES];
         
         
     }else if (indexPath.section==3){
-        
+        SignUserViewController*vc=[[SignUserViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     }
     
@@ -218,18 +229,18 @@
         
         //今日收益
         UILabel*label2=[view viewWithTag:2];
-        label2.text=@"600.00";
+        label2.text=self.base_infoModel.today_money;
         
         //总收益
         UILabel*label4=[view viewWithTag:4];
-        label4.text=@"2000";
+        label4.text=self.base_infoModel.total_money;
         
         //总待结算收益
         UILabel*label5=[view viewWithTag:5];
         label5.text=@"总待结算收益";
         
         UILabel*label6=[view viewWithTag:6];
-        label6.text=@"200";
+        label6.text=self.base_infoModel.total_settlement;
         
         
         //总共的 详情
@@ -274,6 +285,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 215;
 }
+
+
 
 
 #pragma mark  --getDatas

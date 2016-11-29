@@ -10,4 +10,5 @@
 
 @interface MoneyDetailViewController : UIViewController
 
+@property(nonatomic,strong)NSString*idd;
 @end
