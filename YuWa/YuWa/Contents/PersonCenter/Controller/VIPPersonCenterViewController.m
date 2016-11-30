@@ -49,6 +49,7 @@
 #import "PCMyOrderViewController.h"    //我的订单
 #import "MyFavouriteViewController.h"   //我的收藏
 #import "PCPayRecordViewController.h"   //消费记录
+#import "CommonUserViewController.h"    //非商务会员
 #import "YWBusinessMemberViewController.h"   //商务会员
 
 
@@ -523,8 +524,15 @@
             break;}
         case 3:{
             //商务会员
-            YWBusinessMemberViewController*vc=[[YWBusinessMemberViewController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([[UserSession instance].isVIP isEqualToString:@"2"]) {
+                //商务会员
+                 YWBusinessMemberViewController*vc=[[YWBusinessMemberViewController alloc]init];
+                  [self.navigationController pushViewController:vc animated:YES];
+            }else if ([[UserSession instance].isVIP isEqualToString:@"1"]){
+                CommonUserViewController*vc=[[CommonUserViewController alloc]init];
+                  [self.navigationController pushViewController:vc animated:YES];
+            }
+            
             break;}
 
         case 4:{

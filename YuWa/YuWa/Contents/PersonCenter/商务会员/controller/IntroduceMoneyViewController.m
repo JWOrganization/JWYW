@@ -30,6 +30,21 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"BusinessMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL0];
     [self.tableView registerNib:[UINib nibWithNibName:@"IntroduceMoneyTableViewCell" bundle:nil] forCellReuseIdentifier:CELL1];
+
+    
+    switch (self.introduceType) {
+        case IntroduceTypeBusinesser:
+            
+            break;
+        case IntroduceTypeUser:{
+            
+            //只有个人身份 才需要
+            [self getPersonDatas];
+            break;
+        }
+        default:
+            break;
+    }
     
 }
 
@@ -116,12 +131,14 @@
         YWShowGetMoneyViewController*vc=[[YWShowGetMoneyViewController alloc]init];
         vc.time=@"4";
         vc.type=@"0";
+        vc.introducetype=self.introduceType;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else if (indexPath.section==1&&indexPath.row==1){
         YWShowGetMoneyViewController*vc=[[YWShowGetMoneyViewController alloc]init];
         vc.time=@"4";
         vc.type=@"5";
+        vc.introducetype=self.introduceType;
         [self.navigationController pushViewController:vc animated:YES];
 
         
@@ -129,6 +146,7 @@
         YWShowGetMoneyViewController*vc=[[YWShowGetMoneyViewController alloc]init];
         vc.time=@"4";
         vc.type=@"6";
+        vc.introducetype=self.introduceType;
         [self.navigationController pushViewController:vc animated:YES];
 
         
@@ -174,6 +192,31 @@
         _tableView.dataSource=self;
     }
     return _tableView;
+}
+
+#pragma mark  -- 非商务会员
+-(void)getPersonDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_SEEOTHERCENTER];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSNumber*number=data[@"errorCode"];
+        NSString*errorCode=[NSString stringWithFormat:@"%@",number];
+        if ([errorCode isEqualToString:@"0"]) {
+            self.model=[introduceModel yy_modelWithDictionary:data[@"data"]];
+            [self.tableView reloadData];
+            
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
+    
 }
 
 @end

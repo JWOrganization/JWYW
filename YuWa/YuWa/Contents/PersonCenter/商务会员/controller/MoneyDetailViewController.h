@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IntroduceMoneyViewController.h"
 
 @interface MoneyDetailViewController : UIViewController
 
 @property(nonatomic,strong)NSString*idd;
+
+@property(nonatomic,assign)IntroduceType introducetype;
 @end
