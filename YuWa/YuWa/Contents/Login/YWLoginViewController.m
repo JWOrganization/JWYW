@@ -149,7 +149,6 @@
         self.timer = nil;
         self.time = 60;
         [self.secuirtyCodeBtn setTitle:[NSString stringWithFormat:@"重获验证码"] forState:UIControlStateNormal];
-//        self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
         [self.secuirtyCodeBtn setUserInteractionEnabled:YES];
         return;
     }
@@ -254,7 +253,7 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self.secuirtyCodeBtn setUserInteractionEnabled:NO];
-        self.secuirtyCodeBtn.backgroundColor = [UIColor colorWithHexString:@"#F5F5F5"];
+        self.secuirtyCodeBtn.backgroundColor = CNaviColor;
         [self securityCodeBtnTextSet];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(securityCodeBtnTextSet) userInfo:nil repeats:YES];
     } failur:^(id responsObj, NSError *error) {
