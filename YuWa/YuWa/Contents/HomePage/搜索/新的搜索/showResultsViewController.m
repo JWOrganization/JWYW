@@ -8,7 +8,10 @@
 
 #import "showResultsViewController.h"
 #import "YWMainShoppingTableViewCell.h"
+
 #import "HPRecommendShopModel.h"
+
+#import "YWShoppingDetailViewController.h"
 
 #import "HUDLoadingShowView.h"
 
@@ -137,7 +140,16 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HPRecommendShopModel*model=self.ModelArray[indexPath.section];
 
+    
+    YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+    vc.shop_id=model.id;
+    [self.navigationController pushViewController:vc animated:YES];
+
+    
+}
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

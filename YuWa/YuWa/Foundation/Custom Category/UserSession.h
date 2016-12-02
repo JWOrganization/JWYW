@@ -46,11 +46,11 @@
 
 //@property(nonatomic,copy)NSString * currency; //货币
 //已经登录
-@property(nonatomic,assign)BOOL isLogin;   //是否登录
+@property(nonatomic,assign)BOOL isLogin;   //是否登录   （这个要自己给他）
 
-@property (nonatomic,assign)NSInteger baobaoLV;
-@property (nonatomic,assign)NSInteger baobaoEXP;
-@property (nonatomic,assign)NSInteger baobaoNeedEXP;
+@property (nonatomic,assign)NSInteger baobaoLV;    //雨娃宝宝等级
+@property (nonatomic,assign)NSInteger baobaoEXP;    //宝宝的经验
+@property (nonatomic,assign)NSInteger baobaoNeedEXP;   //宝宝升级需要的经验
 
 +(UserSession*)instance;  //创建单例
 +(void)clearUser;   //退出登录 删除数据

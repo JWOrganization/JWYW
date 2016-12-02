@@ -575,7 +575,7 @@
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     
     if ([categoryName isEqualToString:subCategoryName]) {
-        //一样的话 就不传tag
+        //大分类的名字和小标签的名字 一样的话 就不传tag的id
         
     }else{
         NSNumber*aa=[numberFormatter numberFromString:subModel.tag_id];

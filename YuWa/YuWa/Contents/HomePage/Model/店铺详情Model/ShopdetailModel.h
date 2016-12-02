@@ -69,6 +69,7 @@
 
 
 @property(nonatomic,strong)NSArray*infrastructure;           //商家详情
+
 @property(nonatomic,strong)NSArray*holiday;           // 活动
 @property(nonatomic,strong)NSArray*goods;           //  推荐商品
 @property(nonatomic,strong)NSArray*comment;           //  评论

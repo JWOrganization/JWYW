@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JWTools.h"
 @interface UIImage (imageColor)
+
 +(UIImage *)imageWithColor:(UIColor *)aColor;
 @end

@@ -12,7 +12,7 @@
 
 @interface JWTools : NSObject
 /**
- *  通过文字来计算文字所占的区域大小
+ *  通过文字来计算文字所占的区域大小   这个加了5
  *
  *  @param label Label
  *
@@ -379,6 +379,12 @@
  *  @return 获取UUDID
  */
 + (NSString *)getUUID;
+
+/**
+ *  给图片 得到该颜色的图片
+ *
+ */
++(UIImage *)imageWithColor:(UIColor *)aColor;
 
 
 /**

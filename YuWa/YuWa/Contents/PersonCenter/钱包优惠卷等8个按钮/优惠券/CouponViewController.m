@@ -55,10 +55,10 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     switch (self.whichCategory) {
         case 0:
-            return self.modelUsed.count;
+            return self.modelUnused.count;
             break;
         case 1:
-            return self.modelUnused.count;
+            return self.modelUsed.count;
             break;
         case 2:
             return self.modelOvertime.count;
@@ -79,10 +79,10 @@
     NSMutableArray*mtArray=[NSMutableArray array];
     switch (self.whichCategory) {
         case 0:
-            mtArray=self.modelUsed;
+            mtArray=self.modelUnused;
             break;
         case 1:
-            mtArray=self.modelUnused;
+            mtArray=self.modelUsed;
 
             break;
         case 2:
@@ -184,17 +184,20 @@
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
             //成功  给三个model 数组赋值
+            NSArray*unused=data[@"data"][@"unused"];
+            for (NSDictionary*dict in unused) {
+                CouponModel*model=[CouponModel yy_modelWithDictionary:dict];
+                [self.modelUnused addObject:model];
+            }
+            
+            
             NSArray*used=data[@"data"][@"used"];
             for (NSDictionary*dict in used) {
               CouponModel*model=[CouponModel yy_modelWithDictionary:dict];
                 [self.modelUsed addObject:model];
             }
             
-            NSArray*unused=data[@"data"][@"unused"];
-            for (NSDictionary*dict in unused) {
-                  CouponModel*model=[CouponModel yy_modelWithDictionary:dict];
-                [self.modelUnused addObject:model];
-            }
+         
             
             NSArray*overtime=data[@"data"][@"overtime"];
             for (NSDictionary*dict in overtime) {
