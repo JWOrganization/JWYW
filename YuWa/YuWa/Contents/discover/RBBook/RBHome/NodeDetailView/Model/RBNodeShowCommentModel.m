@@ -19,7 +19,8 @@
     NSMutableDictionary * commentDic = [NSMutableDictionary dictionaryWithCapacity:0];
     [commentDic setObject:dic[@"status"]?dic[@"status"]:@"" forKey:@"status"];
     NSString * content = dic[@"customer_content"]?dic[@"customer_content"]:@"";
-    [commentDic setObject:[JWTools stringWithUTF8JW:content] forKey:@"content"];
+    NSString * desc = [JWTools stringWithUTF8JW:content]?[JWTools stringWithUTF8JW:content]:@"";
+    [commentDic setObject:desc forKey:@"content"];
     [commentDic setObject:dic[@"ctime"]?dic[@"ctime"]:@"" forKey:@"time"];
     
     NSMutableDictionary * userDicTemp = [NSMutableDictionary dictionaryWithCapacity:0];

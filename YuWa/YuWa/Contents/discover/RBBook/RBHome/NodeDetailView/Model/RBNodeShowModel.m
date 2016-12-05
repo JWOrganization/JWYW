@@ -38,7 +38,8 @@
     [dataDic setObject:dic[@"infavs"]?dic[@"infavs"]:@"0" forKey:@"infavs"];
     [dataDic setObject:dic[@"favs"]?dic[@"favs"]:@"0" forKey:@"fav_count"];
     [dataDic setObject:dic[@"comments"]?dic[@"comments"]:@"" forKey:@"comments"];
-    [dataDic setObject:[JWTools stringWithUTF8JW:dic[@"content"]?dic[@"content"]:@""] forKey:@"desc"];
+    NSString * desc = [JWTools stringWithUTF8JW:dic[@"content"]?dic[@"content"]:@""]?[JWTools stringWithUTF8JW:dic[@"content"]?dic[@"content"]:@""]:@"";
+    [dataDic setObject:desc forKey:@"desc"];
     [dataDic setObject:dic[@"is_fans"]?dic[@"is_fans"]:@"0" forKey:@"is_fans"];
         
     [userDic setObject:dic[@"header_img"]?dic[@"header_img"]:@"" forKey:@"images"];
@@ -62,7 +63,8 @@
         NSMutableDictionary * commentDic = [NSMutableDictionary dictionaryWithCapacity:0];
         [commentDic setObject:commentDicTemp[@"status"]?commentDicTemp[@"status"]:@"" forKey:@"status"];
         NSString * content = commentDicTemp[@"customer_content"]?commentDicTemp[@"customer_content"]:@"";
-        [commentDic setObject:[JWTools stringWithUTF8JW:content] forKey:@"content"];
+        NSString * descComment = [JWTools stringWithUTF8JW:content]?[JWTools stringWithUTF8JW:content]:@"";
+        [commentDic setObject:descComment forKey:@"content"];
         [commentDic setObject:commentDicTemp[@"ctime"]?commentDicTemp[@"ctime"]:@"" forKey:@"time"];
         
         NSMutableDictionary * userDicTemp = [NSMutableDictionary dictionaryWithCapacity:0];
