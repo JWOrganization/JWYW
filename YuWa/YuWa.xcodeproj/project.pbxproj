@@ -731,6 +731,7 @@
 		B3B851121DD9879A00E171C8 /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B851061DD9879A00E171C8 /* JHWaveChart.m */; };
 		B3B851171DD987F900E171C8 /* YWPayAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B851151DD987F900E171C8 /* YWPayAnalysisViewController.m */; };
 		B3B851181DD987F900E171C8 /* YWPayAnalysisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3B851161DD987F900E171C8 /* YWPayAnalysisViewController.xib */; };
+		B3BE98271DF98F8F00B82FB3 /* JWHttpManger.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BE98261DF98F8F00B82FB3 /* JWHttpManger.m */; };
 		B3CD68A01D94C96300C26B1C /* JWTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD689F1D94C96300C26B1C /* JWTextView.m */; };
 		B3CD68A41D94CE4600C26B1C /* YWLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68A31D94CE4600C26B1C /* YWLocation.m */; };
 		B3CD68A71D94CF3200C26B1C /* RBPublicEditorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CD68A61D94CF3200C26B1C /* RBPublicEditorScrollView.m */; };
@@ -2342,6 +2343,8 @@
 		B3B851141DD987F900E171C8 /* YWPayAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayAnalysisViewController.h; sourceTree = "<group>"; };
 		B3B851151DD987F900E171C8 /* YWPayAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayAnalysisViewController.m; sourceTree = "<group>"; };
 		B3B851161DD987F900E171C8 /* YWPayAnalysisViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWPayAnalysisViewController.xib; sourceTree = "<group>"; };
+		B3BE98251DF98F8F00B82FB3 /* JWHttpManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWHttpManger.h; sourceTree = "<group>"; };
+		B3BE98261DF98F8F00B82FB3 /* JWHttpManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWHttpManger.m; sourceTree = "<group>"; };
 		B3CD689E1D94C96300C26B1C /* JWTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWTextView.h; sourceTree = "<group>"; };
 		B3CD689F1D94C96300C26B1C /* JWTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWTextView.m; sourceTree = "<group>"; };
 		B3CD68A21D94CE4600C26B1C /* YWLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWLocation.h; sourceTree = "<group>"; };
@@ -4432,6 +4435,8 @@
 				B38B2CE81D8FACD8004D5256 /* VipxoxPrefixHeader.pch */,
 				B3CD68A21D94CE4600C26B1C /* YWLocation.h */,
 				B3CD68A31D94CE4600C26B1C /* YWLocation.m */,
+				B3BE98251DF98F8F00B82FB3 /* JWHttpManger.h */,
+				B3BE98261DF98F8F00B82FB3 /* JWHttpManger.m */,
 			);
 			path = "Custom Category";
 			sourceTree = "<group>";
@@ -8098,6 +8103,7 @@
 				B36AB95B1DB2345400FEAAAB /* YWStormSubSortCollectionView.m in Sources */,
 				B3192ACC1D9246FB00FD6578 /* RBPublicToolView.m in Sources */,
 				B38B2E0F1D8FACD8004D5256 /* MBHUD.m in Sources */,
+				B3BE98271DF98F8F00B82FB3 /* JWHttpManger.m in Sources */,
 				B38B2E151D8FACD8004D5256 /* MJRefreshHeader.m in Sources */,
 				C1392DC71DBF5083002418EF /* WXApiManager.m in Sources */,
 				B32220E21DDD711200166047 /* YWStormMapBtnView.m in Sources */,
