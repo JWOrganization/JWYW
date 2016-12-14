@@ -93,6 +93,7 @@
 #define HTTP_HOME_SEARCH            @"/api.php/Index/searchResult/"     //搜索
 
 #define HTTP_HOME_SHOPDETAIL        @"/api.php/Shop/index/"      //店铺详情
+#define HTTP_GET_CONPON             @"/api.php/User/robCoupon/"  //抢优惠券
 #define HTTP_HOME_SCHEDULE          @"/api.php/User/addReserve/" //店铺预定
 #define HTTP_HOME_SHOPPHOTO         @"/api.php/Shop/getShopPhoto/"  //店铺相册
 #define HTTP_HOME_MOREGOODS       @"/api.php/Shop/moreGoods/"  //更多商品

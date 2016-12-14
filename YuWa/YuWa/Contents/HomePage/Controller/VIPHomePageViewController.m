@@ -468,11 +468,18 @@
         
         //分类
         UILabel*categoryLabel=[cell viewWithTag:4];
-        categoryLabel.text=model.catname;   //model.catname
+        NSArray*array=model.tag_name;
+        NSString*arrayStr=[array componentsJoinedByString:@" "];
+        categoryLabel.text=[NSString stringWithFormat:@"%@ %@",model.catname,arrayStr];   //model.catname
+        
+        //店铺所在的商圈
+        UILabel*shopLocLabel=[cell viewWithTag:6];
+        shopLocLabel.text=@"店铺所在商圈XX";
+        
         
         //距离自己的位置多远
         UILabel*nearLabel=[cell viewWithTag:5];
-        nearLabel.text=model.company_near;
+        nearLabel.text=[NSString stringWithFormat:@"%@km",model.company_near];
         
         //折图片
 //        UIImageView*imageZhe=[cell viewWithTag:6];
@@ -531,7 +538,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return 125;
+        return ACTUAL_HEIGHT(125);
         
     }else if (section==2){
         return 40;
@@ -552,7 +559,7 @@
         
         
         
-        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 125) imagesGroup:mtArray andPlaceholder:@"placehoder_loading"];
+        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, ACTUAL_HEIGHT(125)) imagesGroup:mtArray andPlaceholder:@"placehoder_loading"];
         sdView.autoScrollTimeInterval=5.0;
         sdView.delegate=self;
         return sdView;

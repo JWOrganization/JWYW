@@ -18,6 +18,7 @@
 @property(nonatomic,strong)NSString*catname;    //属于哪一类
 @property(nonatomic,strong)NSString*discount;   //打多少折
 @property(nonatomic,strong)NSArray*holiday;     //特别活动
+@property(nonatomic,strong)NSArray*tag_name;   //美食等 小标签
 
 @property(nonatomic,strong)NSString*company_near;  //距离我多远
 @property(nonatomic,strong)NSString*id;     //本店的id

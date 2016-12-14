@@ -28,7 +28,7 @@
 
 #import "CommentTableViewCell.h"//评论的cell
 #import "CommitViewModel.h"   //评论的model
-#import "FilmViewModel.h"      //电影的model
+
 
 
 
@@ -524,13 +524,18 @@
             break;}
         case 3:{
             //商务会员
-            if ([[UserSession instance].isVIP isEqualToString:@"2"]) {
+            if ([[UserSession instance].isVIP isEqualToNumber:@(2)]) {
                 //商务会员
                  YWBusinessMemberViewController*vc=[[YWBusinessMemberViewController alloc]init];
                   [self.navigationController pushViewController:vc animated:YES];
-            }else if ([[UserSession instance].isVIP isEqualToString:@"1"]){
+            }else if ([[UserSession instance].isVIP isEqualToNumber:@(1)]){
                 CommonUserViewController*vc=[[CommonUserViewController alloc]init];
                   [self.navigationController pushViewController:vc animated:YES];
+            }else {
+                //商务会员   3的情况也弄商务会员吧
+                YWBusinessMemberViewController*vc=[[YWBusinessMemberViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+
             }
             
             break;}
@@ -617,7 +622,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }else{
-        MyLog(@"点击某个专辑%lu",number);
+        MyLog(@"点击某个专辑%lu",(long)number);
         MyAlbumViewController*vc=[[MyAlbumViewController alloc]init];
         RBCenterAlbumModel * model = self.maMallDatas[number];
         vc.albumDetail = model.aldumID;
