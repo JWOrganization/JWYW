@@ -1041,6 +1041,7 @@
 		C1E5B77C1DE549FC00EB1F85 /* MHSelectPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E5B7791DE549FC00EB1F85 /* MHSelectPickerView.m */; };
 		C1E5B77D1DE549FC00EB1F85 /* MHSelectPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1E5B77A1DE549FC00EB1F85 /* MHSelectPickerView.xib */; };
 		C1E5B7811DE55A2700EB1F85 /* PickerChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E5B7801DE55A2700EB1F85 /* PickerChoiceView.m */; };
+		C1E912E51E038E9D002076F2 /* OpenBusinessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1E912E41E038E9D002076F2 /* OpenBusinessViewController.xib */; };
 		C1F7BD921DB1C94500CCAF96 /* YWChooseOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */; };
 		C1F7BD931DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */; };
 		C1F7BD941DB1C94500CCAF96 /* YWChooseOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BD431DB1C94500CCAF96 /* YWChooseOneView.m */; };
@@ -2796,6 +2797,7 @@
 		C1E5B77A1DE549FC00EB1F85 /* MHSelectPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHSelectPickerView.xib; sourceTree = "<group>"; };
 		C1E5B77F1DE55A2700EB1F85 /* PickerChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerChoiceView.h; sourceTree = "<group>"; };
 		C1E5B7801DE55A2700EB1F85 /* PickerChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerChoiceView.m; sourceTree = "<group>"; };
+		C1E912E41E038E9D002076F2 /* OpenBusinessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenBusinessViewController.xib; sourceTree = "<group>"; };
 		C1F7BD3F1DB1C94500CCAF96 /* YWChooseOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseOneTableViewCell.h; sourceTree = "<group>"; };
 		C1F7BD401DB1C94500CCAF96 /* YWChooseOneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWChooseOneTableViewCell.m; sourceTree = "<group>"; };
 		C1F7BD411DB1C94500CCAF96 /* YWChooseOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWChooseOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -5932,6 +5934,7 @@
 				C1214C221DEE685900FFC63C /* CommonUserViewController.m */,
 				C1214C2A1DEE831B00FFC63C /* OpenBusinessViewController.h */,
 				C1214C2B1DEE831B00FFC63C /* OpenBusinessViewController.m */,
+				C1E912E41E038E9D002076F2 /* OpenBusinessViewController.xib */,
 			);
 			path = "普通用户界面";
 			sourceTree = "<group>";
@@ -7672,6 +7675,7 @@
 				C135A14D1DDE020F002B78A5 /* 波浪个人_00031.png in Resources */,
 				B34B56981DAFCCBB00040D25 /* JWEmojisKeyBoards.xib in Resources */,
 				C135A1361DDE020F002B78A5 /* 波浪个人_00010.png in Resources */,
+				C1E912E51E038E9D002076F2 /* OpenBusinessViewController.xib in Resources */,
 				B3FEBA391D9C10DE003CDEF2 /* YWMessageChatViewController.xib in Resources */,
 				B317AF091DE5850D0093C511 /* 4baobaoBG57@2x.jpg in Resources */,
 				C13019D61DB20B2400E24C88 /* 医疗.png in Resources */,

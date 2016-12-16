@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger,PayCategory){
-    PayCategoryAutoPay=0,   //主动支付 扫码手填
-    PayCategoryManualPay //扫码自动   订单支付
+    PayCategoryQRCodePay=0,   //二维码支付
+    PayCategoryWritePay //手写支付
     
     
 };
@@ -32,9 +32,9 @@ typedef NS_ENUM(NSInteger,PayCategory){
 //----------------------------------------------
 
 //折扣多少
-+(instancetype)payViewControllerCreatWithManualAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou;
++(instancetype)payViewControllerCreatWithWritePayAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou;
 
-+(instancetype)payViewControllerCreatWithAutoAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou andpayAllMoney:(CGFloat)payAllMoney andNOZheMoney:(CGFloat)NOZheMoney;
++(instancetype)payViewControllerCreatWithQRCodePayAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou andpayAllMoney:(CGFloat)payAllMoney andNOZheMoney:(CGFloat)NOZheMoney;
 
 
 @end

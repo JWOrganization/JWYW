@@ -22,6 +22,7 @@
 #import "YWShoppingDetailViewController.h"    //店铺详情
 #import "NewSearchViewController.h"        //搜索界面
 #import "WLBarcodeViewController.h"     //新的扫2维码
+#import "YWPayViewController.h"      //优惠买单界面
 #import "H5LinkViewController.h"    //webView
 
 
@@ -360,8 +361,28 @@
         
         
     }];
+  
+}
+
+
+-(void)getDatasWithIDD:(NSString*)idd{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_QRCODE_ID];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"code":idd};
     
-    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        
+        NSString*name=@"name";   //这个 名字 需要改。
+        NSString*shopID=data[@"data"][@"seller_uid"];
+        CGFloat discount=[data[@"data"][@"discount"] floatValue];
+        CGFloat total_money=[data[@"data"][@"total_money"] floatValue];
+        CGFloat non_discount_money=[data[@"data"][@"non_discount_money"] floatValue];
+        
+        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithQRCodePayAndShopName:name andShopID:shopID andZhekou:discount andpayAllMoney:total_money andNOZheMoney:non_discount_money];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }];
     
 }
 
@@ -605,6 +626,18 @@
             self.saveQRCode=str;
             
             
+            if (![str hasPrefix:@"yvwa.com/"]) {
+                NSArray*array=[str componentsSeparatedByString:@"/"];
+                NSString*idd=array.lastObject;
+                
+                //这里吊接口 通过这 idd
+                [self getDatasWithIDD:idd];
+                
+                
+                return ;
+            }else{
+            
+            
             
             
             //不是我们的二维码
@@ -616,7 +649,7 @@
             //
             
             
-            
+            }
             
             
             

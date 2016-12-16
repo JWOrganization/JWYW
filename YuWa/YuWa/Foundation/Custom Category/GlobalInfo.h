@@ -69,7 +69,7 @@
 
 #pragma mark - RBAdd
 #define HTTP_RBAdd_AlbumDetail @"/api.php/Note/getAlbumDetail/" //专辑详情
-#define HTTP_RBAdd_DelAlbum @"/api.php/Note/delMyAlbum/" //删除笔记
+#define HTTP_RBAdd_DelAlbum @"/api.php/Note/delMyAlbum/" //删除整个专辑
 #define HTTP_RBAdd_DelNode @"/api.php/Note/delMyNoteAlbum/"//取消收藏单个笔记
 
 #pragma mark - Other
@@ -94,6 +94,9 @@
 
 #define HTTP_HOME_SHOPDETAIL        @"/api.php/Shop/index/"      //店铺详情
 #define HTTP_GET_CONPON             @"/api.php/User/robCoupon/"  //抢优惠券
+#define HTTP_QRCODE_ID              @"/api.php/User/getQrcode/"  //得到买单的详情
+
+
 #define HTTP_HOME_SCHEDULE          @"/api.php/User/addReserve/" //店铺预定
 #define HTTP_HOME_SHOPPHOTO         @"/api.php/Shop/getShopPhoto/"  //店铺相册
 #define HTTP_HOME_MOREGOODS       @"/api.php/Shop/moreGoods/"  //更多商品

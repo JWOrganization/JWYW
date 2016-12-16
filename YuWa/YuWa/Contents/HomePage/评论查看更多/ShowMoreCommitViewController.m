@@ -63,31 +63,6 @@
     [self.tableView.mj_header beginRefreshing];
     
     
-//    MJRefreshGifHeader*gifHeader=[UIScrollView scrollRefreshGifHeaderwithRefreshBlock:^{
-//        self.pages=0;
-//        self.maMallDatas=[NSMutableArray array];
-//        [self getDatas];
-//        
-//    }];
-//    self.tableView.mj_header=gifHeader;
-//    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
-//    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
-//    [UIScrollView setHeaderGIF:gifHeader WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
-//    //立即刷新
-//    [self.tableView.mj_header beginRefreshing];
-//    
-//    
-//    //上拉刷新
-//    MJRefreshAutoGifFooter*gifFooter=[UIScrollView scrollRefreshGifFooterWithRefreshBlock:^{
-//        self.pages++;
-//        [self getDatas];
-//        
-//        
-//    }];
-//    self.tableView.mj_footer=gifFooter;
-//    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_anim__000" withImageCount:60 withPullWay:MJRefreshStateIdle];
-//    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStatePulling];
-//    [UIScrollView setFooterGIF:gifFooter WithImageName:@"dropdown_loading_0" withImageCount:3 withPullWay:MJRefreshStateRefreshing];
     
 }
 

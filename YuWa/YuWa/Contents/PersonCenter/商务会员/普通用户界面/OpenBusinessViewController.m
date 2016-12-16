@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.title=@"开通商务会员";
-    self.view.backgroundColor=[UIColor redColor];
+    self.view.backgroundColor=[UIColor whiteColor];
     
 }
 
@@ -36,5 +36,31 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+//隐藏键盘
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+}
+
+//touch began
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+}
+
+
+- (UIView*)findFirstResponderBeneathView:(UIView*)view
+{
+    // Search recursively for first responder
+    for ( UIView *childView in view.subviews ) {
+        if ( [childView respondsToSelector:@selector(isFirstResponder)] && [childView isFirstResponder] )
+            return childView;
+        UIView *result = [self findFirstResponderBeneathView:childView];
+        if ( result )
+            return result;
+    }
+    return nil;
+}
+
+
 
 @end

@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YWBaoBaoViewController">
@@ -20,30 +24,30 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baobaoBG0" translatesAutoresizingMaskIntoConstraints="NO" id="fpm-V4-929">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="57L-4y-n3g">
-                    <rect key="frame" x="52" y="64" width="461" height="22"/>
+                    <rect key="frame" x="52" y="64" width="236" height="22"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baobaoLvBG" translatesAutoresizingMaskIntoConstraints="NO" id="NFq-nb-pIO">
-                            <rect key="frame" x="-20" y="-4" width="501" height="30"/>
+                            <rect key="frame" x="-20" y="-4" width="276" height="30"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kF-7d-UJL">
-                            <rect key="frame" x="0.0" y="0.0" width="461" height="22"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <rect key="frame" x="0.0" y="0.0" width="236" height="22"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abk-BA-PEb">
-                            <rect key="frame" x="25" y="0.0" width="411" height="22"/>
+                            <rect key="frame" x="25" y="0.0" width="186" height="22"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <color key="textColor" red="0.18431372549019609" green="0.35686274509803922" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.18431372549019609" green="0.35686274509803922" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="2kF-7d-UJL" secondAttribute="bottom" id="49l-ec-YAR"/>
                         <constraint firstAttribute="trailing" secondItem="2kF-7d-UJL" secondAttribute="trailing" id="6OF-Hn-h89"/>
@@ -61,13 +65,13 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkX-Rt-Op5">
-                    <rect key="frame" x="523" y="61" width="55" height="28"/>
+                    <rect key="frame" x="298" y="61" width="55" height="28"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="43L-5F-UYy"/>
                         <constraint firstAttribute="width" constant="55" id="BMD-2i-aOn"/>
                     </constraints>
                     <state key="normal" backgroundImage="baobaoLvUp">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="lvUpAction:" destination="-1" eventType="touchUpInside" id="5br-jB-pP1"/>
@@ -81,69 +85,69 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Im-ZI-vHb">
-                    <rect key="frame" x="52" y="528" width="99" height="27"/>
+                    <rect key="frame" x="52" y="595" width="54" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="2JF-xx-45p"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="为你推荐">
-                        <color key="titleColor" red="0.082352941176470587" green="0.27450980392156865" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.082352941176470587" green="0.27450980392156865" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="skillAction:" destination="-1" eventType="touchUpInside" id="1dd-JD-phv"/>
                     </connections>
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-UQ-HlW">
-                    <rect key="frame" x="151" y="528" width="99" height="27"/>
+                    <rect key="frame" x="106" y="595" width="54.5" height="27"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <state key="normal" title="消费分析">
-                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="skillAction:" destination="-1" eventType="touchUpInside" id="hme-LN-64I"/>
                     </connections>
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivw-h7-PsQ">
-                    <rect key="frame" x="250" y="528" width="100" height="27"/>
+                    <rect key="frame" x="160.5" y="595" width="54" height="27"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="抢!">
-                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="skillAction:" destination="-1" eventType="touchUpInside" id="ESb-oc-g7T"/>
                     </connections>
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="co6-zK-f3e">
-                    <rect key="frame" x="350" y="528" width="99" height="27"/>
+                    <rect key="frame" x="214.5" y="595" width="54.5" height="27"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="再抢!">
-                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="skillAction:" destination="-1" eventType="touchUpInside" id="4vS-yv-QMU"/>
                     </connections>
                 </button>
                 <button opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5E-IL-D0j">
-                    <rect key="frame" x="449" y="528" width="99" height="27"/>
+                    <rect key="frame" x="269" y="595" width="54" height="27"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <state key="normal" title="加倍!">
-                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.08235294118" green="0.27450980390000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="skillAction:" destination="-1" eventType="touchUpInside" id="MCU-6t-ToX"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baobaoSkill0" translatesAutoresizingMaskIntoConstraints="NO" id="D3m-Wg-hLI">
-                    <rect key="frame" x="52" y="505" width="496" height="20"/>
+                    <rect key="frame" x="52" y="572" width="271" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="ga4-zg-Rc6"/>
                     </constraints>
                 </imageView>
                 <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ivc-jr-TcX">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="co6-zK-f3e" firstAttribute="leading" secondItem="Ivw-h7-PsQ" secondAttribute="trailing" id="1Ft-aF-9eh"/>
                 <constraint firstItem="s5E-IL-D0j" firstAttribute="height" secondItem="9Im-ZI-vHb" secondAttribute="height" id="548-8I-wG5"/>

@@ -1019,7 +1019,9 @@
 -(void)gotoPay{
     MyLog(@"pay");
     if ([self judgeLogin]) {
-        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithManualAndShopName:@"xxx公司" andShopID:@"123" andZhekou:0.3];
+        CGFloat zhekou=[self.mainModel.discount floatValue];
+        
+        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithWritePayAndShopName:self.mainModel.company_name andShopID:self.mainModel.id andZhekou:zhekou];
         [self.navigationController pushViewController:vc animated:YES];
 
     }
