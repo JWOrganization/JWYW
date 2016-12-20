@@ -13,22 +13,15 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>雨娃</string>
-    
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>此 App 需要您的同意才能读取媒体资料库</string>
-    <key>NSCameraUsageDescription</key>
-    <string>cameraDesciption</string>
-    
-    <key>NSContactsUsageDescription</key>
-    <string>contactsDesciption</string>
-    
-    <key>NSMicrophoneUsageDescription</key>
-    <string>microphoneDesciption</string>
-    
-    
-    
-    
+	<string>雨娃宝</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>此 App 需要您的同意才能读取媒体资料库</string>
+	<key>NSCameraUsageDescription</key>
+	<string>cameraDesciption</string>
+	<key>NSContactsUsageDescription</key>
+	<string>contactsDesciption</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>microphoneDesciption</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

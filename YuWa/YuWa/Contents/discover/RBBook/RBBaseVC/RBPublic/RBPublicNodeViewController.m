@@ -320,16 +320,16 @@
 #endif
     if (!self.library) {//创建相册iOS9之前方法
         self.library = [[ALAssetsLibrary alloc] init];
-        [self.library addAssetsGroupAlbumWithName:@"雨娃" resultBlock:^(ALAssetsGroup *group) {
+        [self.library addAssetsGroupAlbumWithName:@"雨娃宝" resultBlock:^(ALAssetsGroup *group) {
             //创建相簿成功
-            [weakSelf saveToAlbumWithMetadata:@{} imageData:UIImagePNGRepresentation(weakSelf.imagesArr[idx]) customAlbumName:@"雨娃" completionBlock:nil failureBlock:nil];
+            [weakSelf saveToAlbumWithMetadata:@{} imageData:UIImagePNGRepresentation(weakSelf.imagesArr[idx]) customAlbumName:@"雨娃宝" completionBlock:nil failureBlock:nil];
         } failureBlock:^(NSError *error) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"存储失败" message:@"请打开 设置-隐私-照片 来进行设置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }];
     }else{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self saveToAlbumWithMetadata:@{} imageData:UIImagePNGRepresentation(self.imagesArr[idx]) customAlbumName:@"雨娃" completionBlock:nil failureBlock:nil];
+            [self saveToAlbumWithMetadata:@{} imageData:UIImagePNGRepresentation(self.imagesArr[idx]) customAlbumName:@"雨娃宝" completionBlock:nil failureBlock:nil];
         });
     }
     
@@ -409,7 +409,7 @@
 }
 /**拥有与 APP 同名的自定义相册--如果没有则创建*/
 -(PHAssetCollection *)getAssetCollectionWithAppNameAndCreateIfNo{//1 获取以 APP 的名称
-    NSString *title = @"雨娃";
+    NSString *title = @"雨娃宝";
     //2 获取与 APP 同名的自定义相册
     PHFetchResult<PHAssetCollection *> *collections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     for (PHAssetCollection *collection in collections) {//遍历
