@@ -9,7 +9,7 @@
 #import "PCBottomTableViewCell.h"
 #import "PCNoteView.h"
 #import "AlbumView.h"
-#import "FilmView.h"
+//#import "FilmView.h"
 #import "CommitView.h"
 
 @interface PCBottomTableViewCell()<CommitViewDelegate>

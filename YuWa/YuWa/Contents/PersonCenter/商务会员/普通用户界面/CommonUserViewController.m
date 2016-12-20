@@ -100,7 +100,7 @@
 
 
 -(void)touchTap{
-    OpenBusinessViewController*vc=[[OpenBusinessViewController alloc]init];
+    OpenBusinessViewController*vc=[[OpenBusinessViewController alloc]initWithNibName:@"OpenBusinessViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -22,6 +22,7 @@
 #import "YWShoppingDetailViewController.h"    //店铺详情
 #import "NewSearchViewController.h"        //搜索界面
 #import "WLBarcodeViewController.h"     //新的扫2维码
+#import "YWPayViewController.h"      //优惠买单界面
 #import "H5LinkViewController.h"    //webView
 
 
@@ -360,8 +361,28 @@
         
         
     }];
+  
+}
+
+
+-(void)getDatasWithIDD:(NSString*)idd{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_QRCODE_ID];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"code":idd};
     
-    
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        
+        NSString*name=@"name";   //这个 名字 需要改。
+        NSString*shopID=data[@"data"][@"seller_uid"];
+        CGFloat discount=[data[@"data"][@"discount"] floatValue];
+        CGFloat total_money=[data[@"data"][@"total_money"] floatValue];
+        CGFloat non_discount_money=[data[@"data"][@"non_discount_money"] floatValue];
+        
+        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithQRCodePayAndShopName:name andShopID:shopID andZhekou:discount andpayAllMoney:total_money andNOZheMoney:non_discount_money];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }];
     
 }
 
@@ -468,11 +489,18 @@
         
         //分类
         UILabel*categoryLabel=[cell viewWithTag:4];
-        categoryLabel.text=model.catname;   //model.catname
+        NSArray*array=model.tag_name;
+        NSString*arrayStr=[array componentsJoinedByString:@" "];
+        categoryLabel.text=[NSString stringWithFormat:@"%@ %@",model.catname,arrayStr];   //model.catname
+        
+        //店铺所在的商圈
+        UILabel*shopLocLabel=[cell viewWithTag:6];
+        shopLocLabel.text=@"店铺所在商圈XX";
+        
         
         //距离自己的位置多远
         UILabel*nearLabel=[cell viewWithTag:5];
-        nearLabel.text=model.company_near;
+        nearLabel.text=[NSString stringWithFormat:@"%@km",model.company_near];
         
         //折图片
 //        UIImageView*imageZhe=[cell viewWithTag:6];
@@ -531,7 +559,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return 125;
+        return ACTUAL_HEIGHT(125);
         
     }else if (section==2){
         return 40;
@@ -552,7 +580,7 @@
         
         
         
-        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, 125) imagesGroup:mtArray andPlaceholder:@"placehoder_loading"];
+        SDCycleScrollView*sdView=[SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreen_Width, ACTUAL_HEIGHT(125)) imagesGroup:mtArray andPlaceholder:@"placehoder_loading"];
         sdView.autoScrollTimeInterval=5.0;
         sdView.delegate=self;
         return sdView;
@@ -598,6 +626,18 @@
             self.saveQRCode=str;
             
             
+            if (![str hasPrefix:@"yvwa.com/"]) {
+                NSArray*array=[str componentsSeparatedByString:@"/"];
+                NSString*idd=array.lastObject;
+                
+                //这里吊接口 通过这 idd
+                [self getDatasWithIDD:idd];
+                
+                
+                return ;
+            }else{
+            
+            
             
             
             //不是我们的二维码
@@ -609,7 +649,7 @@
             //
             
             
-            
+            }
             
             
             

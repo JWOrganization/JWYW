@@ -24,9 +24,10 @@
     [super viewDidLoad];
    self.title=@"钱包";
     
+    /*
     UIBarButtonItem*item=[[UIBarButtonItem alloc]initWithTitle:@"收入明细" style:UIBarButtonItemStylePlain target:self action: @selector(touchRightItem) ];
     self.navigationItem.rightBarButtonItem=item;
-    
+    */
     
     //当前有多少钱
     [self getNumMoney];
@@ -64,18 +65,18 @@
 
 
 #pragma mark  --touch
--(void)touchRightItem{
-    PCDetailMoneyViewController*vc=[[PCDetailMoneyViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-}
+//-(void)touchRightItem{
+//    PCDetailMoneyViewController*vc=[[PCDetailMoneyViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    
+//}
 
 //充值
--(void)touchPayMoney{
-    PCPayViewController*vc=[[PCPayViewController alloc]init];
-    [self.navigationController pushViewController: vc animated:YES];
-    
-}
+//-(void)touchPayMoney{
+//    PCPayViewController*vc=[[PCPayViewController alloc]init];
+//    [self.navigationController pushViewController: vc animated:YES];
+//    
+//}
 //提现
 -(void)touchGetMoney{
     PCGetMoneyViewController*vc=[[PCGetMoneyViewController alloc]init];

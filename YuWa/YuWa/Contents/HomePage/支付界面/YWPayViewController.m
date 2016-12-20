@@ -41,21 +41,23 @@
 
 @implementation YWPayViewController
 
-+(instancetype)payViewControllerCreatWithManualAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou{
+//手动支付
++(instancetype)payViewControllerCreatWithWritePayAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou{
     
    YWPayViewController *payVC = [[self alloc] init];
     payVC.shopName=shopName;
     payVC.shopID=shopID;
     payVC.shopZhekou=shopZhekou;
     
-    payVC.whichPay=PayCategoryManualPay;
+    payVC.whichPay=PayCategoryWritePay;
    
     
     
     return payVC;
 }
 
-+(instancetype)payViewControllerCreatWithAutoAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou andpayAllMoney:(CGFloat)payAllMoney andNOZheMoney:(CGFloat)NOZheMoney{
+//扫码支付
++(instancetype)payViewControllerCreatWithQRCodePayAndShopName:(NSString*)shopName andShopID:(NSString*)shopID andZhekou:(CGFloat)shopZhekou andpayAllMoney:(CGFloat)payAllMoney andNOZheMoney:(CGFloat)NOZheMoney{
     
     YWPayViewController *payVC = [[self alloc] init];
     payVC.shopName=shopName;
@@ -65,7 +67,7 @@
     payVC.NOZheMoney=NOZheMoney;
     
     
-    payVC.whichPay=PayCategoryAutoPay;
+    payVC.whichPay=PayCategoryQRCodePay;
 
     return payVC;
 }
@@ -75,12 +77,7 @@
     [super viewDidLoad];
     self.title=@"优惠买单";
 
-//    self.shopZhekou=0.5;
-//    self.payAllMoney=0;
-//    self.NOZheMoney=0;
-//    self.shouldPayMoney=0;
-    
-//    self.CouponMoney=0.f;
+
     
 
     
@@ -143,7 +140,7 @@
         textField.keyboardType=UIKeyboardTypeNamePhonePad;
         textField.placeholder=@"请输入金额";
         //扫码
-        if (self.whichPay==PayCategoryAutoPay) {
+        if (self.whichPay==PayCategoryQRCodePay) {
             textField.userInteractionEnabled=NO;
             textField.text=[NSString stringWithFormat:@"%.2f",self.payAllMoney];
         }
@@ -167,7 +164,7 @@
         textField.placeholder=@"（选填）";
 
         //扫码
-        if (self.whichPay==PayCategoryAutoPay) {
+        if (self.whichPay==PayCategoryQRCodePay) {
             textField.userInteractionEnabled=NO;
             textField.text=[NSString stringWithFormat:@"%.2f",self.NOZheMoney];
         }
@@ -221,28 +218,6 @@
         
     }
     
-//    else if (indexPath.section==1&&indexPath.row==2){
-//        cell=[tableView dequeueReusableCellWithIdentifier:CELL3];
-//        cell.selectionStyle=NO;
-//        
-//        UILabel*label1=[cell viewWithTag:1];
-//        label1.text=@"雨娃余额";
-//        
-//        UILabel*labelMoney=[cell viewWithTag:2];
-//        labelMoney.text=[NSString stringWithFormat:@"￥%@",[UserSession instance].money];
-//        
-//        UISwitch*sButton=[cell viewWithTag:3];
-//        [sButton setOn:YES];
-//        sButton.userInteractionEnabled=NO;
-//        [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-//        
-//        return cell;
-//        
-//    }
-    
-    
-// 实付金额= （总消费额-非打折额）*折扣-抵用券
-    //然后支付按钮 当账户余额 大于等于实付金额  那么显示 立即支付，  否则就显示  需要充值xx.00
 
     
     
@@ -327,39 +302,14 @@
 
     
     
-// //判断  钱够的话 就直接成功了 。    不够的话 去充值
-//    
-//    if (self.balanceMoney<=0) {
-//        //钱够   直接吊 支付接口
-//        
-//        
-//        
-//    }else{
-//        // 钱不够  跳支付界面  把差额传过去
-//        PCPayViewController*vc=[[PCPayViewController alloc]init];
-//         vc.blanceMoney=self.balanceMoney;
-//        [self.navigationController pushViewController:vc animated:YES];
-//
-//        
-//    }
-    
+
     
     
   
     
 }
 
-//-(void)switchAction:(UISwitch*)sender{
-//    MyLog(@"%d",sender.isOn);
-//    if (sender.isOn) {
-//        //
-//        self.accoutMoney=[[UserSession instance].money floatValue];
-//    }else{
-//        self.accoutMoney=0.f;
-//    }
-//    
-//    
-//}
+
 
 #pragma mark  --datas
 -(void)jiekouADDOrder{
@@ -390,7 +340,7 @@
 }
 
 #pragma mark  --delegate
-
+//使用了优惠券
 -(void)DelegateGetCouponInfo:(CouponModel *)model{
     self.is_coupon=YES;
     self.coupon_id=[model.coupon_id intValue];

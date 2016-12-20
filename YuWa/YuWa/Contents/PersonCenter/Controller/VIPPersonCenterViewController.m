@@ -28,7 +28,7 @@
 
 #import "CommentTableViewCell.h"//评论的cell
 #import "CommitViewModel.h"   //评论的model
-#import "FilmViewModel.h"      //电影的model
+
 
 
 
@@ -195,7 +195,7 @@
         //8个 按钮
         PersonCenterOneCell*cell=[tableView dequeueReusableCellWithIdentifier:CELL1];
         cell.selectionStyle=NO;
-        NSArray*array=@[@"钱包",@"优惠券",@"雨娃宝宝",@"商务会员",@"我的订单",@"收藏",@"消费记录",@"通知"];
+        NSArray*array=@[@"钱包",@"优惠券",@"雨娃宝宝",@"商务会员",@"我的订单",@"收藏",@"收支明细",@"通知"];
         NSArray*imageArray=@[@"home_01",@"home_02",@"home_03",@"home_04",@"home_05",@"home_06",@"home_07",@"home_08"];
         
         
@@ -524,13 +524,18 @@
             break;}
         case 3:{
             //商务会员
-            if ([[UserSession instance].isVIP isEqualToString:@"2"]) {
+            if ([[UserSession instance].isVIP isEqualToNumber:@(2)]) {
                 //商务会员
                  YWBusinessMemberViewController*vc=[[YWBusinessMemberViewController alloc]init];
                   [self.navigationController pushViewController:vc animated:YES];
-            }else if ([[UserSession instance].isVIP isEqualToString:@"1"]){
+            }else if ([[UserSession instance].isVIP isEqualToNumber:@(1)]){
                 CommonUserViewController*vc=[[CommonUserViewController alloc]init];
                   [self.navigationController pushViewController:vc animated:YES];
+            }else {
+                //商务会员   3的情况也弄商务会员吧
+                YWBusinessMemberViewController*vc=[[YWBusinessMemberViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+
             }
             
             break;}
@@ -617,7 +622,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }else{
-        MyLog(@"点击某个专辑%lu",number);
+        MyLog(@"点击某个专辑%lu",(long)number);
         MyAlbumViewController*vc=[[MyAlbumViewController alloc]init];
         RBCenterAlbumModel * model = self.maMallDatas[number];
         vc.albumDetail = model.aldumID;

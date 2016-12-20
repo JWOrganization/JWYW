@@ -206,10 +206,10 @@
             for (NSDictionary*dict in data[@"data"][@"lists"]) {
                 ShowDetailModel*model=[ShowDetailModel yy_modelWithDictionary:dict];
                 [self.maMallDatas addObject:model];
-                [self.tableView reloadData];
+               
                 
             }
-            
+             [self.tableView reloadData];
             
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
@@ -242,11 +242,11 @@
             for (NSDictionary*dict in data[@"data"][@"lists"]) {
                 ShowDetailModel*model=[ShowDetailModel yy_modelWithDictionary:dict];
                 [self.maMallDatas addObject:model];
-                [self.tableView reloadData];
+               
                 
             }
             
-            
+             [self.tableView reloadData];
         }else{
             [JRToast showWithText:data[@"errorMessage"]];
         }

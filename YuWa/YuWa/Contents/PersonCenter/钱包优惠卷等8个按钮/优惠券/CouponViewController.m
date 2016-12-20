@@ -21,9 +21,12 @@
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,assign)NSUInteger whichCategory; //0 1 2  可用 已使用 已过期
 
+
 @property(nonatomic,strong)NSMutableArray*modelUsed;
 @property(nonatomic,strong)NSMutableArray*modelUnused;
 @property(nonatomic,strong)NSMutableArray*modelOvertime;
+
+
 
 @end
 
@@ -31,12 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //点进来的店铺的店铺 id
-//    if (self.shopID==nil) {
-//        self.shopID=@"0";
-//    }
-    
-    
+   
     self.title=@"优惠券";
     [self getDatas];
     
@@ -124,26 +122,30 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.whichCategory==0) {
         
-        if (!self.shopID) {
+        if (!self.shopID||!self.totailPayMoney) {
             return;
         }
+        
+        
+        
         
         NSInteger number=indexPath.section;
         CouponModel*model=self.modelUsed[number];
         
-        NSString*shopID=model.shop_id;
-        //店铺的id 和  传过来的 id 是一样的才能用这张有会员   或者这里相约的为0 的时候 通用的优惠券
-        //另一层  这个优惠券的最低金额要大于等于这次消费的最低金额才能使用优惠券
-        CGFloat minUse=[model.min_fee floatValue];
-
-        if (self.totailPayMoney>=minUse) {
-             [JRToast showWithText:@"不能使用这张优惠券"];
+        CGFloat min_free=[model.min_fee floatValue];
+        if (min_free>self.totailPayMoney) {
+            [JRToast showWithText:@"为满足最低消费金额，不能使用该优惠券"];
             return;
         }
         
-        
-        if ([self.shopID isEqualToString:shopID]||[shopID isEqualToString:@"0"]) {
+        if (![model.shop_id isEqualToString:@"0"]||![model.shop_id isEqualToString:self.shopID]) {
+            [JRToast showWithText:@"该店铺不能使用这张优惠券"];
+            return;
             
+        }
+        
+        
+        
             
             if ([self.delegate respondsToSelector:@selector(DelegateGetCouponInfo:)]) {
                 [self.delegate DelegateGetCouponInfo:self.modelUsed[number]];
@@ -151,16 +153,14 @@
             
             [self.navigationController popViewControllerAnimated:YES];
 
-        }else{
-            
-            [JRToast showWithText:@"不能使用这张优惠券"];
-        }
         
         
         
     }
     return;
 }
+
+
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

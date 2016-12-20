@@ -42,7 +42,7 @@
 @property(nonatomic,strong)NSString*comment_nums;  //多少条评论
 @property(nonatomic,strong)NSString*today_money;  //今日收益
 
-@property (nonatomic,strong)NSString*isVIP;//是否是会员 1普通用户2销售3商家
+@property (nonatomic,strong)NSNumber*isVIP;//是否是会员 1普通用户2销售3商家
 
 //@property(nonatomic,copy)NSString * currency; //货币
 //已经登录

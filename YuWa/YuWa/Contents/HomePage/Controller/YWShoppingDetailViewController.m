@@ -261,7 +261,7 @@
         
         
 //        //月消费人次
-//        UILabel*monthPay=[cell viewWithTag:5];
+        UILabel*monthPay=[cell viewWithTag:5];
 //        monthPay.text=[NSString stringWithFormat:@""];
         
         //地址
@@ -855,7 +855,24 @@
 //抢优惠券
 -(void)rushCoupon{
     if ([self judgeLogin]) {
-        MyLog(@"抢优惠券");
+      
+        NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GET_CONPON];
+        NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"shop_id":self.shop_id};
+        HttpManager*manager=[[HttpManager alloc]init];
+        [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+            MyLog(@"%@",data);
+            NSNumber*number=data[@"errorCode"];
+            NSString*errorCode =[NSString stringWithFormat:@"%@",number];
+            if ([errorCode isEqualToString:@"0"]) {
+                [JRToast showWithText:data[@"data"]];
+                
+            }else{
+                [JRToast showWithText:data[@"errorMessage"]];
+            }
+
+            
+        }];
+        
         
         
     }
@@ -1002,7 +1019,9 @@
 -(void)gotoPay{
     MyLog(@"pay");
     if ([self judgeLogin]) {
-        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithManualAndShopName:@"xxx公司" andShopID:@"123" andZhekou:0.3];
+        CGFloat zhekou=[self.mainModel.discount floatValue];
+        
+        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithWritePayAndShopName:self.mainModel.company_name andShopID:self.mainModel.id andZhekou:zhekou];
         [self.navigationController pushViewController:vc animated:YES];
 
     }

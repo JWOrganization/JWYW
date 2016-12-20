@@ -129,6 +129,10 @@
         NSNumber*number=data[@"errorCode"];
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
+            if ([data[@"data"]  isKindOfClass:[NSNull class]]) {
+                return ;
+            }
+            
             for (NSDictionary*dict in data[@"data"]) {
                 SignUserModel*model=[SignUserModel yy_modelWithDictionary:dict];
                 [self.maMallDatas addObject:model];

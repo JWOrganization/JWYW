@@ -10,10 +10,14 @@
 #import "YWMainShoppingTableViewCell.h"
 #import "HPRecommendShopModel.h"
 
+#import "YWShoppingDetailViewController.h"  //跳转到店铺
+
 #define CELL0   @"YWMainShoppingTableViewCell"
 @interface YWForRecommendViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView*tableView;
 
+@property(nonatomic,assign)int pagen;
+@property(nonatomic,assign)int pages;
 @property(nonatomic,strong)NSMutableArray*mADatasModel;
 @end
 
@@ -24,8 +28,35 @@
     self.title=@"为你推荐";
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"YWMainShoppingTableViewCell" bundle:nil] forCellReuseIdentifier:CELL0];
-    [self getDatas];
+  
+    [self setUpMJRefresh];
 }
+
+-(void)setUpMJRefresh{
+    self.pagen=10;
+    self.pages=0;
+    self.mADatasModel=[NSMutableArray array];
+    
+    self.tableView.mj_header=[UIScrollView scrollRefreshGifHeaderWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
+        self.pages=0;
+        self.mADatasModel=[NSMutableArray array];
+        [self getDatas];
+        
+    }];
+    
+    //上拉刷新
+    self.tableView.mj_footer = [UIScrollView scrollRefreshGifFooterWithImgName:@"newheader" withImageCount:60 withRefreshBlock:^{
+        self.pages++;
+        [self getDatas];
+        
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+    
+    
+}
+
 
 #pragma mark  -- UI
 
@@ -122,6 +153,17 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger number=indexPath.section;
+    HPRecommendShopModel*model=self.mADatasModel[number];
+    YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
+    vc.shop_id=model.id;
+    [self.navigationController pushViewController:vc animated:YES];
+
+    
+}
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     HPRecommendShopModel*model=self.mADatasModel[indexPath.section];
     return [YWMainShoppingTableViewCell getCellHeight:model.holiday];
@@ -138,15 +180,34 @@
 
 #pragma mark  --Datas
 -(void)getDatas{
-    self.mADatasModel=[NSMutableArray array];
-    NSArray*array=@[@{},@{},@{},@{},@{},@{}];
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_MORELOADING];
+    NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
+    NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"pagen":pagen,@"pages":pages};
     
-    for (NSDictionary*dict in array) {
-        HPRecommendShopModel*model=[HPRecommendShopModel yy_modelWithDictionary:dict];
-        [self.mADatasModel addObject:model];
-    }
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSInteger number=[data[@"errorCode"] integerValue];
+        if (number==0) {
+            for (NSDictionary*dict in data[@"data"]) {
+                HPRecommendShopModel*model=[HPRecommendShopModel yy_modelWithDictionary:dict];
+                [self.mADatasModel addObject:model];
+            }
+
+            [self.tableView reloadData];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+    }];
     
-   
+    
+ 
 }
 
 - (void)didReceiveMemoryWarning {
