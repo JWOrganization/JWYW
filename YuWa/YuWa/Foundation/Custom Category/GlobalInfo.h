@@ -95,6 +95,8 @@
 #define HTTP_HOME_SHOPDETAIL        @"/api.php/Shop/index/"      //店铺详情
 #define HTTP_GET_CONPON             @"/api.php/User/robCoupon/"  //抢优惠券
 #define HTTP_QRCODE_ID              @"/api.php/User/getQrcode/"  //得到买单的详情
+#define HTTP_PAYRECORD              @"/api.php/User/payPushNotice/" //付款记录
+#define HTTP_RESERVE                @"/api.php/User/reservePushNotice/" //预定记录
 
 
 #define HTTP_HOME_SCHEDULE          @"/api.php/User/addReserve/" //店铺预定
@@ -105,12 +107,15 @@
 #define HTTP_HOME_CATEGORYSHOW    @"/api.php/Shop/checkShop/"    //18个分类的筛选
 #define HTTP_GETPAGEVIEW          @"/api.php/Shop/addLog"      //得到浏览量
 
+#define HTTP_BALANCE_PAY          @"/api.php/index/payForBalanceMoney/"  //全部余额支付
+#define HTTP_THIRD_PAY            @"/api.php/index/payForNoBalanceMoney/" //第三方支付
+
 
 #pragma mark  -- 个人中心
 #define HTTP_PERSON_COUPON         @"/api.php/User/getMyCoupon/"   //得到优惠券
 #define HTTP_PRESON_CHANGEINFO     @"/api.php/User/setMyBaseInfo/"  //修改个人中心资料
 
-#define HTTP_GETMONEY              @"/api.php/User/getMyMoney/"   //得到钱
+#define HTTP_GETMONEY              @"/api.php/User/getMyMoney/"   //得到钱 账户余额
 #define HTTP_GETPAYDETAIL          @"/api.php/User/getMyAccount/"   //得到收入支出明细
 
 #define HTTP_MYORDER               @"/api.php/User/getMyOrder/"   //显示我的订单

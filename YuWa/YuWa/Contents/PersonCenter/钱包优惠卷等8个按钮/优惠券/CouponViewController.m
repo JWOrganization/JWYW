@@ -134,7 +134,7 @@
         
         CGFloat min_free=[model.min_fee floatValue];
         if (min_free>self.totailPayMoney) {
-            [JRToast showWithText:@"为满足最低消费金额，不能使用该优惠券"];
+            [JRToast showWithText:@"不满足最低消费金额，不能使用该优惠券"];
             return;
         }
         

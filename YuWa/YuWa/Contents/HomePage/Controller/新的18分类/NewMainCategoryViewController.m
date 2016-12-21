@@ -557,7 +557,7 @@
 -(void)getTableViewAllDatas{
     NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
     NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
-//    NSMutableDictionary*params=[NSMutableDictionary dictionaryWithDictionary:@{@"device_id":[JWTools getUUID],@"pagen":pagen,@"pages":pages}];
+
     NSMutableDictionary*params=[NSMutableDictionary dictionary];
     [params setObject:[JWTools getUUID] forKey:@"device_id"];
     [params setObject:pagen forKey:@"pagen"];
@@ -603,7 +603,7 @@
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_CATEGORYSHOW];
     HttpManager*manager=[[HttpManager alloc]init];
     [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
-        MyLog(@"%@",data[@"data"]);
+        MyLog(@"%@",data);
         NSNumber*number=data[@"errorCode"];
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {

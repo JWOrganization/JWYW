@@ -51,7 +51,8 @@
 #import "PCPayRecordViewController.h"   //消费记录
 #import "CommonUserViewController.h"    //非商务会员
 #import "YWBusinessMemberViewController.h"   //商务会员
-
+#import "YWMessageNotificationViewController.h"   //通知
+//#import "YWInfoViewController.h"      //通知
 
 
 #define SECTION0CELL  @"cell"
@@ -561,10 +562,12 @@
             
             break;}
 
-        case 7:
+        case 7:{
             //通知
+           YWMessageNotificationViewController *vc=[[YWMessageNotificationViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             
-            break;
+            break;}
 
             
         default:

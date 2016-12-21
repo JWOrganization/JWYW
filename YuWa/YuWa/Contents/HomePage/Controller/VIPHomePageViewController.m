@@ -24,6 +24,7 @@
 #import "WLBarcodeViewController.h"     //新的扫2维码
 #import "YWPayViewController.h"      //优惠买单界面
 #import "H5LinkViewController.h"    //webView
+#import "YWMessageNotificationViewController.h"  //通知
 
 
 
@@ -186,7 +187,7 @@
     UILabel*showLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, 5, self.centerView.width-60, 20)];
     showLabel.font=[UIFont systemFontOfSize:14];
     showLabel.textColor=CtitleColor;
-    showLabel.text=@"公园";
+    showLabel.text=@"美食";
     [self.centerView addSubview:showLabel];
     
     UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchinPut)];
@@ -373,13 +374,13 @@
     [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
         MyLog(@"%@",data);
         
-        NSString*name=@"name";   //这个 名字 需要改。
+        NSString*company_name=data[@"data"][@"company_name"];   //这个 名字 需要改。
         NSString*shopID=data[@"data"][@"seller_uid"];
         CGFloat discount=[data[@"data"][@"discount"] floatValue];
         CGFloat total_money=[data[@"data"][@"total_money"] floatValue];
         CGFloat non_discount_money=[data[@"data"][@"non_discount_money"] floatValue];
         
-        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithQRCodePayAndShopName:name andShopID:shopID andZhekou:discount andpayAllMoney:total_money andNOZheMoney:non_discount_money];
+        YWPayViewController*vc=[YWPayViewController payViewControllerCreatWithQRCodePayAndShopName:company_name andShopID:shopID andZhekou:discount andpayAllMoney:total_money andNOZheMoney:non_discount_money];
         [self.navigationController pushViewController:vc animated:YES];
         
     }];
@@ -682,7 +683,8 @@
 
 
 -(void)touchLingdang{
-    
+    YWMessageNotificationViewController*vc=[[YWMessageNotificationViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 
     
     

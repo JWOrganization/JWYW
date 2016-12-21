@@ -809,6 +809,7 @@
 		C10E94BA1DD3609B00728B3D /* home_cricle_no.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94B81DD3609B00728B3D /* home_cricle_no.png */; };
 		C10E94BC1DD360A100728B3D /* home_yue.png in Resources */ = {isa = PBXBuildFile; fileRef = C10E94BB1DD360A100728B3D /* home_yue.png */; };
 		C10E94BF1DD36DC600728B3D /* YWPayMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E94BE1DD36DC600728B3D /* YWPayMoneyViewController.m */; };
+		C110394F1E080C8F00149ECB /* YWInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C110394E1E080C8F00149ECB /* YWInfoViewController.m */; };
 		C11F14EF1DC83B92005C58CF /* banner_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */; };
 		C11F14F01DC83B92005C58CF /* banner_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */; };
 		C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */; };
@@ -2475,6 +2476,8 @@
 		C10E94BB1DD360A100728B3D /* home_yue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_yue.png; sourceTree = "<group>"; };
 		C10E94BD1DD36DC600728B3D /* YWPayMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPayMoneyViewController.h; sourceTree = "<group>"; };
 		C10E94BE1DD36DC600728B3D /* YWPayMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPayMoneyViewController.m; sourceTree = "<group>"; };
+		C110394D1E080C8F00149ECB /* YWInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWInfoViewController.h; sourceTree = "<group>"; };
+		C110394E1E080C8F00149ECB /* YWInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWInfoViewController.m; sourceTree = "<group>"; };
 		C11F14EB1DC83B92005C58CF /* banner_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@2x.png"; sourceTree = "<group>"; };
 		C11F14EC1DC83B92005C58CF /* banner_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_normal@3x.png"; sourceTree = "<group>"; };
 		C11F14ED1DC83B92005C58CF /* banner_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_selected@2x.png"; sourceTree = "<group>"; };
@@ -5916,6 +5919,39 @@
 			path = "确认付款view";
 			sourceTree = "<group>";
 		};
+		C11039491E080A5200149ECB /* 通知 */ = {
+			isa = PBXGroup;
+			children = (
+				C110394A1E080A7400149ECB /* controller */,
+				C110394B1E080A7400149ECB /* view */,
+				C110394C1E080A7400149ECB /* model */,
+			);
+			path = "通知";
+			sourceTree = "<group>";
+		};
+		C110394A1E080A7400149ECB /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C110394D1E080C8F00149ECB /* YWInfoViewController.h */,
+				C110394E1E080C8F00149ECB /* YWInfoViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C110394B1E080A7400149ECB /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		C110394C1E080A7400149ECB /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		C11F14EA1DC83B92005C58CF /* banner图片 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6642,6 +6678,7 @@
 		C1F7BDBE1DB1C95400CCAF96 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				C11039491E080A5200149ECB /* 通知 */,
 				C1E5B7821DE5C96B00EB1F85 /* 商务会员 */,
 				C18E7D5B1DB878BA003D0012 /* 我的专辑列表 */,
 				C1F7BDBF1DB1C95400CCAF96 /* Controller */,
@@ -8267,6 +8304,7 @@
 				C1F7BDAC1DB1C94500CCAF96 /* YWMainShoppingTableViewCell.m in Sources */,
 				B3FEBA241D9BA0AB003CDEF2 /* YWMessageAddressBookTableViewCell.m in Sources */,
 				B32EFFA91DB9C4E500A4FCFB /* JWLocalNotificationShowView.m in Sources */,
+				C110394F1E080C8F00149ECB /* YWInfoViewController.m in Sources */,
 				B33A26651D9A68040092CB12 /* MWTapDetectingView.m in Sources */,
 				B33A26B11D9A68040092CB12 /* EaseRecordView.m in Sources */,
 				B3FFF4971D94051A00EDD2AB /* RBPublicTagSaveModel.m in Sources */,

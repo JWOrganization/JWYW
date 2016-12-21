@@ -25,17 +25,24 @@
 @interface PCPayViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView*tableView;
+@property(nonatomic,strong)UILabel*needPayLabel;  //需要支付的钱
+@property(nonatomic,strong)UISwitch*Myswitch;
+
+@property(nonatomic,assign)CGFloat accountMoney;  //账户余额   这个吊接口
+@property(nonatomic,assign)BOOL isSelectedOn;  //选择了是否使用余额
+@property(nonatomic,assign)CGFloat needPayMoney;  //需要付的钱
 @end
 
 @implementation PCPayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"支付";
+        self.title=@"支付";
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:CELL3 bundle:nil] forCellReuseIdentifier:CELL3];
     
     [self makeTableViewHeader];
+    [self getAccountMoney];   //接口得到账户金额
 }
 
 -(void)makeTableViewHeader{
@@ -109,7 +116,7 @@
         [sButton setOn:YES];
 //        sButton.userInteractionEnabled=NO;
         [sButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-        
+        self.Myswitch=sButton;
         return cell;
  
         
@@ -151,21 +158,27 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+ 
     if (indexPath.section==1&&indexPath.row==0) {
-        //微信支付
-        NSString *res = [WXApiRequestHandler jumpToBizPay];
-        if( ![@"" isEqual:res] ){
-            UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"支付失败" message:res delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            
-            [alter show];
-           
-        }
+        [self payWith:@"weixin"];
+        
+//        //微信支付
+//        NSString *res = [WXApiRequestHandler jumpToBizPay];
+//        if( ![@"" isEqual:res] ){
+//            UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"支付失败" message:res delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            
+//            [alter show];
+//           
+//        }
 
         
         
     }else if (indexPath.section==1&&indexPath.row==1){
-        //支付宝支付
-        [self doAlipayPay];
+        
+        [self payWith:@"ali"];
+        
+//        //支付宝支付
+//        [self doAlipayPay];
         
     }
     
@@ -185,7 +198,8 @@
         UILabel*moneyLabel=[[UILabel alloc]initWithFrame:CGRectMake(kScreen_Width-200, 10, 180, 20)];
         moneyLabel.font=[UIFont systemFontOfSize:14];
         moneyLabel.textAlignment=NSTextAlignmentRight;
-        moneyLabel.text=@"￥20";
+        moneyLabel.text=[NSString stringWithFormat:@"￥%.2f",self.needPayMoney];
+        self.needPayLabel=moneyLabel;
         [backView addSubview:moneyLabel];
         
         
@@ -207,10 +221,57 @@
 
 #pragma mark  --touch
 -(void)switchAction:(UISwitch*)sender{
-    NSLog(@"%d",sender.on);
+   
+    self.isSelectedOn=sender.on;
+   
+    if (self.isSelectedOn) {
+         self.needPayMoney=self.blanceMoney-self.accountMoney;
+        self.needPayLabel.text=[NSString stringWithFormat:@"￥%.2f",self.needPayMoney];
+        
+#warning <= 的
+         //当钱够的时候  跳警示框 是否要支付    <=
+        if (self.needPayMoney<=0) {
+            
+            [self pushAlertView];
+        }
+        
+        
+    }else{
+        self.needPayMoney=self.blanceMoney;
+        self.needPayLabel.text=[NSString stringWithFormat:@"￥%.2f",self.needPayMoney];
+
+        
+    }
+    
+    
+   
+    
+
+    
+    
     
 }
 
+
+-(void)pushAlertView{
+    UIAlertController*alertVC=[UIAlertController alertControllerWithTitle:@"余额支付" message:@"确实要用余额支付？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction*action1=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+       //接口
+        [self BlancePayDatas];
+        
+    }];
+    
+    UIAlertAction*action2=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self.Myswitch setOn:NO];
+        
+    }];
+    
+    [alertVC addAction:action1];
+    [alertVC addAction:action2];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -218,93 +279,94 @@
 }
 
 #pragma mark --  支付宝支付
-- (void)doAlipayPay
+- (void)doAlipayPay:(NSString*)orderString
 {
-    //重要说明
-    //这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
-    //真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
-    //防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
-    /*============================================================================*/
-    /*=======================需要填写商户app申请的===================================*/
-    /*============================================================================*/
-    NSString *appID = @"2016030901196933";
-    NSString *privateKey = @"MIICXAIBAAKBgQDoZ//0A8Msvns4NUq8oq3ZNqbR6hfkcHGS5KGjuqiTlXjV4sdpubISPqs7cJQUrzbJUuQrEVfRw2Ips9Pytovc6vbTFKIuU8wdpsbaRHt8G2TiMF6TOq8+oj/X2z8+QIihvKlPtoFgH5l2jf9UCdrpPzBm0IuGhNfEJgZ/gHLJAwIDAQABAoGAYPo8uML1J2+YlTzPoeU0LAZ9F+zZ6W3uRoB23o5eF69wi7ekxH5DSw+xfg0dDYCLmPio0zvabGJeTM6IK6h2tX4Du6gVXyogzmBu8XL/ohogHMCvf3tD9vxwNKBAITdGcdh3GnPPEiOgyD0yDIIQx5+J+Ru409yrXeZkunAP/ckCQQD7GS0LktCN4n6rpxkXuOXN8j6wnLT9v3WAJOo8WbcyvxTpQsmjXLSHUYlA8MB13TEX34rl0JOmV/LshocE1NVFAkEA7PFpwEuczBT1YeDuz6TMhlMEjFiBrU3TXt3ki6Iyl/O4lxF1oytaysHUU1q0Tb39zDd5j9pEBp5/dP5d5PkVpwJAA2b77UQ3/zQqczj4ZhHjSz8VCl+VNDr75Jibc+XjTZS5O8/j24rOB2dbbL3WXcJ5f9FPmH2TApX+fKX1/mLD4QJAEcQgO8zvmtXPeGFXRraCp2e+JY/VWVtGiAx3QIkO5hneM2WZvnxXuHBELWPVtSaTyyY1tTWWeDCWOf2AqNSMbQJBAMOewDNHrAVeHQFTWh8mO+KupLl7zHapt1UeFYKol00nETr+GllRMEBGFboH40tq3sDI+SJjTPqZ+iJDGEp6KqI=";
-    /*============================================================================*/
-    /*============================================================================*/
-    /*============================================================================*/
-    
-    //partner和seller获取失败,提示
-    if ([appID length] == 0 ||
-        [privateKey length] == 0)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"缺少appId或者私钥。"
-                                                       delegate:self
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
-    
-    /*
-     *生成订单信息及签名
-     */
-    //将商品信息赋予AlixPayOrder的成员变量
-    Order* order = [Order new];
-    
-    // NOTE: app_id设置
-    order.app_id = appID;
-    
-    // NOTE: 支付接口名称
-    order.method = @"alipay.trade.app.pay";
-    
-    // NOTE: 参数编码格式
-    order.charset = @"utf-8";
-    
-    // NOTE: 当前时间点
-    NSDateFormatter* formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    order.timestamp = [formatter stringFromDate:[NSDate date]];
-    
-    // NOTE: 支付版本
-    order.version = @"1.0";
-    
-    // NOTE: sign_type设置
-    order.sign_type = @"RSA";
-    
-    // NOTE: 商品数据
-    order.biz_content = [BizContent new];
-    order.biz_content.body = @"我是测试数据";
-    order.biz_content.subject = @"1";
-    order.biz_content.out_trade_no = [self generateTradeNO]; //订单ID（由商家自行制定）
-    order.biz_content.timeout_express = @"30m"; //超时时间设置
-    order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", 0.01]; //商品价格
-    
-    //将商品信息拼接成字符串
-    NSString *orderInfo = [order orderInfoEncoded:NO];
-    NSString *orderInfoEncoded = [order orderInfoEncoded:YES];
-    NSLog(@"orderSpec = %@",orderInfo);
-    
-    // NOTE: 获取私钥并将商户信息签名，外部商户的加签过程请务必放在服务端，防止公私钥数据泄露；
-    //       需要遵循RSA签名规范，并将签名字符串base64编码和UrlEncode
-//    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-//    NSString *signedString = [signer signString:orderInfo];
-    NSString * signedString=@"1234214214124124124";
-    
-    // NOTE: 如果加签成功，则继续执行支付
-    if (signedString != nil) {
-        //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
+  
+//    //重要说明
+//    //这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
+//    //真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
+//    //防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
+//    /*============================================================================*/
+//    /*=======================需要填写商户app申请的===================================*/
+//    /*============================================================================*/
+//    NSString *appID = @"2016030901196933";
+//    NSString *privateKey = @"MIICXAIBAAKBgQDoZ//0A8Msvns4NUq8oq3ZNqbR6hfkcHGS5KGjuqiTlXjV4sdpubISPqs7cJQUrzbJUuQrEVfRw2Ips9Pytovc6vbTFKIuU8wdpsbaRHt8G2TiMF6TOq8+oj/X2z8+QIihvKlPtoFgH5l2jf9UCdrpPzBm0IuGhNfEJgZ/gHLJAwIDAQABAoGAYPo8uML1J2+YlTzPoeU0LAZ9F+zZ6W3uRoB23o5eF69wi7ekxH5DSw+xfg0dDYCLmPio0zvabGJeTM6IK6h2tX4Du6gVXyogzmBu8XL/ohogHMCvf3tD9vxwNKBAITdGcdh3GnPPEiOgyD0yDIIQx5+J+Ru409yrXeZkunAP/ckCQQD7GS0LktCN4n6rpxkXuOXN8j6wnLT9v3WAJOo8WbcyvxTpQsmjXLSHUYlA8MB13TEX34rl0JOmV/LshocE1NVFAkEA7PFpwEuczBT1YeDuz6TMhlMEjFiBrU3TXt3ki6Iyl/O4lxF1oytaysHUU1q0Tb39zDd5j9pEBp5/dP5d5PkVpwJAA2b77UQ3/zQqczj4ZhHjSz8VCl+VNDr75Jibc+XjTZS5O8/j24rOB2dbbL3WXcJ5f9FPmH2TApX+fKX1/mLD4QJAEcQgO8zvmtXPeGFXRraCp2e+JY/VWVtGiAx3QIkO5hneM2WZvnxXuHBELWPVtSaTyyY1tTWWeDCWOf2AqNSMbQJBAMOewDNHrAVeHQFTWh8mO+KupLl7zHapt1UeFYKol00nETr+GllRMEBGFboH40tq3sDI+SJjTPqZ+iJDGEp6KqI=";
+//    /*============================================================================*/
+//    /*============================================================================*/
+//    /*============================================================================*/
+//    
+//    //partner和seller获取失败,提示
+//    if ([appID length] == 0 ||
+//        [privateKey length] == 0)
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                        message:@"缺少appId或者私钥。"
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"确定"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//        return;
+//    }
+//    
+//    /*
+//     *生成订单信息及签名
+//     */
+//    //将商品信息赋予AlixPayOrder的成员变量
+//    Order* order = [Order new];
+//    
+//    // NOTE: app_id设置
+//    order.app_id = appID;
+//    
+//    // NOTE: 支付接口名称
+//    order.method = @"alipay.trade.app.pay";
+//    
+//    // NOTE: 参数编码格式
+//    order.charset = @"utf-8";
+//    
+//    // NOTE: 当前时间点
+//    NSDateFormatter* formatter = [NSDateFormatter new];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    order.timestamp = [formatter stringFromDate:[NSDate date]];
+//    
+//    // NOTE: 支付版本
+//    order.version = @"1.0";
+//    
+//    // NOTE: sign_type设置
+//    order.sign_type = @"RSA";
+//    
+//    // NOTE: 商品数据
+//    order.biz_content = [BizContent new];
+//    order.biz_content.body = @"我是测试数据";
+//    order.biz_content.subject = @"1";
+//    order.biz_content.out_trade_no = [self generateTradeNO]; //订单ID（由商家自行制定）
+//    order.biz_content.timeout_express = @"30m"; //超时时间设置
+//    order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", 0.01]; //商品价格
+//    
+//    //将商品信息拼接成字符串
+//    NSString *orderInfo = [order orderInfoEncoded:NO];
+//    NSString *orderInfoEncoded = [order orderInfoEncoded:YES];
+//    NSLog(@"orderSpec = %@",orderInfo);
+//    
+//    // NOTE: 获取私钥并将商户信息签名，外部商户的加签过程请务必放在服务端，防止公私钥数据泄露；
+//    //       需要遵循RSA签名规范，并将签名字符串base64编码和UrlEncode
+////    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+////    NSString *signedString = [signer signString:orderInfo];
+//    NSString * signedString=@"1234214214124124124";
+//    
+//    // NOTE: 如果加签成功，则继续执行支付
+//    if (signedString != nil) {
+//        //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
         NSString *appScheme = @"alisdkdemo";
-        
-        // NOTE: 将签名成功字符串格式化为订单字符串,请严格按照该格式
-        NSString *orderString = [NSString stringWithFormat:@"%@&sign=%@",
-                                 orderInfoEncoded, signedString];
-        
+//
+//        // NOTE: 将签名成功字符串格式化为订单字符串,请严格按照该格式
+//        NSString *orderString = [NSString stringWithFormat:@"%@&sign=%@",
+//                                 orderInfoEncoded, signedString];
+
         // NOTE: 调用支付结果开始支付
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
         }];
-    }
+//    }
 }
 
 
@@ -323,6 +385,93 @@
     }
     return resultStr;
 }
+
+
+#pragma mark  --jiekou
+//得到余额
+-(void)getAccountMoney{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_GETMONEY];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSInteger number=[data[@"errorCode"] integerValue];
+        if (number==0) {
+            [UserSession instance].money=data[@"data"][@"money"];
+            
+            self.accountMoney=[[UserSession instance].money floatValue];
+            self.isSelectedOn=YES;
+            [self switchAction:self.Myswitch];
+
+//            [self.tableView reloadData];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
+    
+    
+}
+
+//全部用余额支付的接口
+-(void)BlancePayDatas{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_BALANCE_PAY];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"order_id":@(self.order_id)};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSInteger number=[data[@"errorCode"] floatValue];
+        if (number==0) {
+            [JRToast showWithText:data[@"data"]];
+            UIViewController*vc=[self.navigationController.viewControllers objectAtIndex:1];
+            [self.navigationController popToViewController:vc animated:YES];
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+            [self.Myswitch setOn:NO];
+        }
+        
+    }];
+    
+    
+}
+
+
+-(void)payWith:(NSString*)aa{
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_THIRD_PAY];
+    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"order_id":@(self.order_id),@"is_balance":@(self.isSelectedOn),@"pay_method":aa};
+    HttpManager*manager=[[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+        MyLog(@"%@",data);
+        NSInteger number=[data[@"errorCode"] integerValue];
+        if (number==0) {
+            //微信支付还是支付宝支付
+            if ([aa isEqualToString:@"ali"]) {
+                //支付宝
+                NSString*orderString=data[@"data"][@"pay_sign"];
+                [self doAlipayPay:orderString];
+                
+            }else{
+                //微信
+                
+                
+            }
+            
+            
+            
+        }else{
+            [JRToast showWithText:data[@"errorMessage"]];
+        }
+        
+        
+    }];
+    
+    
+    
+}
+
 
 /*
 #pragma mark - Navigation

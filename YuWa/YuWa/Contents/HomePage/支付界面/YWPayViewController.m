@@ -29,10 +29,11 @@
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)UILabel*shouldPayMoneyLabel; //实际要付钱的label
 @property(nonatomic,strong)UIButton*payMoneyButton;   //确认付款的button
+@property(nonatomic,strong)UILabel*couponLabel;   //使用抵用券按钮
 
-@property(nonatomic,assign)CGFloat shouldPayMoney;   //应该支付的钱
+@property(nonatomic,assign)CGFloat shouldPayMoney;   //应该支付的钱（减去了折扣的）
 @property(nonatomic,assign)CGFloat CouponMoney;    //优惠券减少多少钱。
-
+@property(nonatomic,assign)CGFloat noCouponPayMoney;  //没有减去折扣需要付的钱
 
 @property(nonatomic,assign)BOOL is_coupon;   //是否用优惠券
 @property(nonatomic,assign)int coupon_id;
@@ -202,6 +203,7 @@
         
         UILabel*label2=[cell viewWithTag:2];
         label2.text=@"使用抵用券";
+        self.couponLabel=label2;
         
         return cell;
         
@@ -212,7 +214,6 @@
         label1.text=@"实付金额";
         
         UILabel*label2=[cell viewWithTag:2];
-//        label2.text=[NSString stringWithFormat:@"$100"];
         self.shouldPayMoneyLabel=label2;
         [self calshouldPayMoney];
         
@@ -230,7 +231,7 @@
         CouponViewController*vc=[[CouponViewController alloc]init];
         vc.delegate=self;
         vc.shopID=self.shopID;
-        vc.totailPayMoney=self.shouldPayMoney;
+        vc.totailPayMoney=self.noCouponPayMoney;
         [self.navigationController pushViewController:vc animated:YES];
         
     }
@@ -293,26 +294,30 @@
 -(void)touchPay{
     //确认付款的时候 先生成订单
     [self jiekouADDOrder];
-    
-    
-    
-    PCPayViewController*vc=[[PCPayViewController alloc]init];
-    vc.blanceMoney=self.shouldPayMoney;
-    [self.navigationController pushViewController:vc animated:YES];
-
-    
-    
-
-    
-    
-  
-    
+   
 }
 
 
 
 #pragma mark  --datas
 -(void)jiekouADDOrder{
+    [[self findFirstResponderBeneathView:self.view] resignFirstResponder];
+
+    
+    
+    if (self.payAllMoney<self.NOZheMoney) {
+        [JRToast showWithText:@"不打折金额不能大于消费总金额"];
+        return;
+    }
+
+    
+    
+    if (self.payAllMoney==0) {
+        [JRToast showWithText:@"请输入消费总额"];
+        return;
+    }
+    
+    
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_MAKEORDER];
     NSDictionary*dict=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"seller_uid":self.shopID,@"total_money":@(self.payAllMoney),@"non_discount_money":@(self.NOZheMoney),@"discount":@(self.shopZhekou),@"is_coupon":@(self.is_coupon)};
     NSMutableDictionary*params=[NSMutableDictionary dictionaryWithDictionary:dict];
@@ -327,6 +332,13 @@
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
             
+            CGFloat shouldPay=[data[@"data"][@"pay_money"] floatValue];
+            CGFloat  order_id=[data[@"data"][@"order_id"] floatValue];
+            PCPayViewController*vc=[[PCPayViewController alloc]init];
+            vc.blanceMoney=shouldPay;
+            vc.order_id=order_id;
+            [self.navigationController pushViewController:vc animated:YES];
+
             
             
         }else{
@@ -345,16 +357,21 @@
     self.is_coupon=YES;
     self.coupon_id=[model.coupon_id intValue];
     
+    self.couponLabel.text=[NSString stringWithFormat:@"满%@抵%@",model.min_fee,model.discount_fee];
+    
     NSString*aa=model.discount_fee;
     self.CouponMoney=[aa floatValue];
     [self calshouldPayMoney];
-    MyLog(@"aa");
+   
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField endEditing:YES];
     return NO;
 }
+
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     UITableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -387,40 +404,30 @@
 
 #pragma 计算所要支付的钱
 -(void)calshouldPayMoney{
+    
+    self.noCouponPayMoney=(self.payAllMoney-self.NOZheMoney)*self.shopZhekou+self.NOZheMoney;
+    
     //不能小于
     if (self.payAllMoney<self.NOZheMoney) {
+        
+        [JRToast showWithText:@"不打折金额不能大于消费总额"];
+//        UITableViewCell*cell=[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+//        UITextField*textField=[cell viewWithTag:2];
+//        textField.text=@"0";
+//
+//        
+//        self.NOZheMoney=0;
+    
         return;
     }
     
     
     
-    CGFloat payMoney=(self.payAllMoney-self.NOZheMoney)*self.shopZhekou-self.CouponMoney;
+    CGFloat payMoney=(self.payAllMoney-self.NOZheMoney)*self.shopZhekou+self.NOZheMoney-self.CouponMoney;
     self.shouldPayMoney=payMoney;
     
     //需要支付的钱
     self.shouldPayMoneyLabel.text=[NSString stringWithFormat:@"￥%.2f",self.shouldPayMoney];
-    
-    
-    
-    
-//    //这里判断下   钱够 就确认付款  钱不够 就需要充值钱
-//    CGFloat accountMoney=[[UserSession instance].money floatValue];
-//    //差额
-//    CGFloat balance=self.shouldPayMoney-accountMoney;
-//    _balanceMoney=balance;
-//    if (balance<=0) {
-//        //钱够了   吊支付的接口
-//        [self.payMoneyButton setTitle:@"立即支付" forState:UIControlStateNormal];
-//        
-//        
-//    }else{
-        //钱不够去充值
-//         [self.payMoneyButton setTitle:[NSString stringWithFormat:@"需要支付￥%.2f",balance] forState:UIControlStateNormal];
-//    }
-    
-    
-    
-   
     
 }
 
