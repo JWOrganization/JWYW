@@ -343,7 +343,7 @@ fetchCompletionHandler:
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
 //    center.delegate = self;
-    content.title = @"雨娃";// 标题
+    content.title = @"雨娃宝";// 标题
     content.subtitle = @"";// 子标题
     content.body = con;// 内容
     content.badge = @0;// 标记个数
@@ -386,7 +386,7 @@ fetchCompletionHandler:
 }
 
 //- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"雨娃" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"雨娃宝" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //
 //    [alert show];
 ////    application.applicationIconBadgeNumber -= 1;// 图标上的数字减1
