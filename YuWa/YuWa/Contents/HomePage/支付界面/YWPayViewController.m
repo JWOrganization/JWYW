@@ -138,7 +138,7 @@
         
         UITextField*textField=[cell viewWithTag:2];
         textField.delegate=self;
-        textField.keyboardType=UIKeyboardTypeNamePhonePad;
+//        textField.keyboardType=UIKeyboardTypeNamePhonePad;
         textField.placeholder=@"请输入金额";
         //扫码
         if (self.whichPay==PayCategoryQRCodePay) {

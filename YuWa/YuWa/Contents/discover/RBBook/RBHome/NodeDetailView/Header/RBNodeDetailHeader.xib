@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,24 +28,24 @@
                         <constraint firstAttribute="width" constant="100" id="GTP-Lx-KOD"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nu7-FQ-NoY">
                     <rect key="frame" x="290" y="9" width="70" height="26"/>
-                    <color key="backgroundColor" red="0.23529411764705882" green="0.792156862745098" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.23529411764705882" green="0.792156862745098" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="SwY-s8-sOQ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="+ 关注">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="attentiionBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="CF6-1x-wsG"/>
                     </connections>
                 </button>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="level" translatesAutoresizingMaskIntoConstraints="NO" id="604-1a-if3">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="level22" translatesAutoresizingMaskIntoConstraints="NO" id="604-1a-if3">
                     <rect key="frame" x="156" y="12" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="Add-8b-59N"/>
@@ -49,7 +53,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="nu7-FQ-NoY" firstAttribute="leading" secondItem="cNT-6y-V62" secondAttribute="trailing" constant="10" id="3ho-nu-a9a"/>
                 <constraint firstItem="cNT-6y-V62" firstAttribute="bottom" secondItem="qvR-AF-swL" secondAttribute="bottom" id="6En-UG-TCj"/>
@@ -81,6 +85,6 @@
     </objects>
     <resources>
         <image name="Head-portrait" width="80" height="80"/>
-        <image name="level" width="31" height="31"/>
+        <image name="level22" width="16" height="16"/>
     </resources>
 </document>

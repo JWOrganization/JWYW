@@ -365,6 +365,15 @@
         // NOTE: 调用支付结果开始支付
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
+            if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
+                UIAlertView*alert=[[UIAlertView alloc]initWithTitle:@"支付结果" message:@"支付成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+              
+                
+            }
+
+            
+            
         }];
 //    }
 }
