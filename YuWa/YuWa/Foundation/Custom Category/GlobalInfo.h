@@ -109,6 +109,7 @@
 
 #define HTTP_BALANCE_PAY          @"/api.php/index/payForBalanceMoney/"  //全部余额支付
 #define HTTP_THIRD_PAY            @"/api.php/index/payForNoBalanceMoney/" //第三方支付
+#define HTTP_PAY_RESULT           @"/api.php/index/payToGetMoney/"     //支付结果
 
 
 #pragma mark  -- 个人中心
