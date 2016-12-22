@@ -471,6 +471,11 @@ fetchCompletionHandler:
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             //用户中途退出
             NSLog(@"result = %@",resultDic);
+            if (self.aliPayBlock) {
+                self.aliPayBlock(resultDic);
+            }
+            
+            
         }];
         
         // 授权跳转支付宝钱包进行支付，处理支付结果

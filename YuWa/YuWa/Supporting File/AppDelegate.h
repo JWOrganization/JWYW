@@ -15,5 +15,8 @@
 ///本地添加
 - (void)addLocalPushNotificationWithTime:(NSTimeInterval)secs withAlertBody:(NSString *)con;
 
+//支付宝的支付结果传到控制其中
+@property(nonatomic,strong)void(^aliPayBlock)(NSDictionary*resultDatas);
+
 @end
 

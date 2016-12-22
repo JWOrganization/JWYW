@@ -160,7 +160,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
  
     if (indexPath.section==1&&indexPath.row==0) {
-        [self payWith:@"weixin"];
+//        [self payWith:@"weixin"];
+        [JRToast showWithText:@"暂未开放，敬请期待"];
         
 //        //微信支付
 //        NSString *res = [WXApiRequestHandler jumpToBizPay];
@@ -376,6 +377,30 @@
             
         }];
 //    }
+    
+    
+    
+    AppDelegate*delegate   =(AppDelegate*)  [UIApplication sharedApplication].delegate;
+    delegate.aliPayBlock=^(NSDictionary*resultDic){
+        
+//        [self judgePaySuccessOrNot];
+        
+        [UserSession instance].money=0;
+        
+        NSLog(@"reslut = %@",resultDic);
+        if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
+            UIAlertView*alert=[[UIAlertView alloc]initWithTitle:@"支付结果" message:@"支付成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            
+          UIViewController*vc=[self.navigationController.viewControllers objectAtIndex:1];
+            [self.navigationController popToViewController:vc animated:YES];
+            
+        }
+
+
+        
+    };
+    
 }
 
 
@@ -480,6 +505,40 @@
     
     
 }
+
+
+////判断支付成功  还是 失败
+//-(void)judgePaySuccessOrNot{
+//    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_PAY_RESULT];
+//    NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"order_id":@(self.order_id)};
+//    
+//    HttpManager*manager=[[HttpManager alloc]init];
+//    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
+//        MyLog(@"%@",data);
+//        NSInteger number=[data[@"errorCode"] integerValue];
+//        if (number==0) {
+//            if ([data[@"data"][@"is_paid"] isEqualToString:@"1"]) {
+//                
+//                [UserSession instance].money=data[@"data"][@"money"];
+//                
+//                UIAlertView*alert=[[UIAlertView alloc]initWithTitle:@"支付结果" message:@"支付成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [alert show];
+//
+//            }else{
+//                [JRToast showWithText:@"支付失败"];
+//            }
+//            
+//            
+//            
+//        }else{
+//            [JRToast showWithText:data[@"errorMessage"]];
+//        }
+//        
+//        
+//    }];
+//    
+//    
+//}
 
 
 /*
