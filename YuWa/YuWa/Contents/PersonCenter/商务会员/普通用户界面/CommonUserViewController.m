@@ -35,6 +35,12 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
+    
+}
+
+
 //这个是轮播图
 -(void)addScrollView{
     UIScrollView*scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, kScreen_Width, kScreen_Height-64)];

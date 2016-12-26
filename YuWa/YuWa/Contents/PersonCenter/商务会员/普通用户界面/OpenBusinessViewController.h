@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface OpenBusinessViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *orderTextField;
+@property (weak, nonatomic) IBOutlet UIButton *orderInFont;
+@property (weak, nonatomic) IBOutlet UIButton *orderBlow;
 
 @end

@@ -32,6 +32,14 @@
     [self setUpMJRefresh];
 }
 
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[[self.navigationController.navigationBar subviews]objectAtIndex:0] setAlpha:1];
+    
+}
+
 #pragma mark  --UI
 -(void)setUpMJRefresh{
     self.pagen=10;
@@ -70,14 +78,21 @@
     PayRecordModel*model=self.maMallDatas[indexPath.row];
     
     UILabel*label1=[cell viewWithTag:1];
-    label1.text=model.log_info;
+    label1.text=model.type_name;
     
     UILabel*label2=[cell viewWithTag:2];
-    label2.text=model.log_time;
+    label2.text=model.ctime;
     
     UILabel*label3=[cell viewWithTag:3];
-    label3.text=[NSString stringWithFormat:@"-%@",model.money];
-    return cell;
+    if (model.type==0) {
+        label3.text=[NSString stringWithFormat:@"-%@",model.money];
+
+    }else{
+        label3.text=[NSString stringWithFormat:@"+%@",model.money];
+
+    }
+    
+       return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -91,7 +106,7 @@
 
 #pragma mark  -- Datas
 -(void)getDatas{
-    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_PAYRECORD];
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_INCOMEOUT];
     NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
     NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
     NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"pagen":pagen,@"pages":pages};
