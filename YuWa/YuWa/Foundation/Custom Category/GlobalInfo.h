@@ -9,7 +9,7 @@
 #ifndef GlobalInfo_h
 #define GlobalInfo_h
 
-#define HTTP_ADDRESS        @"http://114.215.252.104"    //地址
+#define HTTP_ADDRESS        @"https://www.yuwabao.cn"    //地址
 
 #pragma mark - Logion & Register
 #define HTTP_REGISTER       @"/api.php/Login/reg/" //注册账号
