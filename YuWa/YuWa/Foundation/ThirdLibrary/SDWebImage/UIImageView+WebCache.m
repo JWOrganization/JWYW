@@ -18,11 +18,11 @@ static char TAG_ACTIVITY_SHOW;
 @implementation UIImageView (WebCache)
 
 - (void)sd_setImageWithURL:(NSURL *)url {
-    [self sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
+    [self sd_setImageWithURL:url placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:nil];
 }
 
 - (void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder {
-    [self sd_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:nil];
+    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:nil];
 }
 
 - (void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
@@ -30,11 +30,11 @@ static char TAG_ACTIVITY_SHOW;
 }
 
 - (void)sd_setImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock {
-    [self sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:completedBlock];
+    [self sd_setImageWithURL:url placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:completedBlock];
 }
 
 - (void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock {
-    [self sd_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:completedBlock];
+    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:completedBlock];
 }
 
 - (void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
@@ -115,7 +115,7 @@ static char TAG_ACTIVITY_SHOW;
     NSMutableArray *operationsArray = [[NSMutableArray alloc] init];
 
     for (NSURL *logoImageURL in arrayOfURLs) {
-        id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:logoImageURL options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:logoImageURL options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if (!wself) return;
             dispatch_main_sync_safe(^{
                 __strong UIImageView *sself = wself;
@@ -221,11 +221,11 @@ static char TAG_ACTIVITY_SHOW;
 }
 
 - (void)setImageWithURL:(NSURL *)url {
-    [self sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
+    [self sd_setImageWithURL:url placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:nil];
 }
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder {
-    [self sd_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:nil];
+    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:nil];
 }
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
@@ -233,7 +233,7 @@ static char TAG_ACTIVITY_SHOW;
 }
 
 - (void)setImageWithURL:(NSURL *)url completed:(SDWebImageCompletedBlock)completedBlock {
-    [self sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self sd_setImageWithURL:url placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (completedBlock) {
             completedBlock(image, error, cacheType);
         }
@@ -241,7 +241,7 @@ static char TAG_ACTIVITY_SHOW;
 }
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletedBlock)completedBlock {
-    [self sd_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (completedBlock) {
             completedBlock(image, error, cacheType);
         }
