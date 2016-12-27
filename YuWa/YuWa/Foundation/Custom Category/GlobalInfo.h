@@ -128,7 +128,7 @@
 #define HTTP_DELETECOLLECTION      @"/api.php/User/delCollection"     //删除收藏
 #define HTTP_ADDCOLLECTION         @"/api.php/User/addCollection"     //添加收藏
 
-#define HTTP_PAYRECORD             @"/api.php/User/myConsumption/"    //消费记录
+//#define HTTP_PAYRECORD             @"/api.php/User/myConsumption/"    //消费记录
 
 #define HTTP_GETNOTES              @"/api.php/Note/getMyNewNote/"    //得到笔记
 #define HTTP_GETALBUMS             @"/api.php/Note/getMyNewAlbum/"   //得到专辑
@@ -150,6 +150,8 @@
 #define HTTP_MY_USER               @"/api.php/Sale/myDirectUser/"  //我的绑定用户
 #define HTTP_POINTGETMONEY         @"/api.php/Sale/scoreToMoney/" //积分提现
 #define HTTP_DEAL_DETAIL           @"/api.php/Sale/detailShow/"  //每一条交易详情
+#define OPEN_BUSINESS              @"/api.php/Sale/toBeSale/"   //开通商务会员
+
 //收支明细
 #define HTTP_INCOMEOUT             @"/api.php/Sale/myMoneyHistory/"  //收支明细
 //普通消费者

@@ -9,14 +9,20 @@
 #import <Foundation/Foundation.h>
 
 @interface PayRecordModel : NSObject
-//"log_time" = 1454197290,
-//"money" = 0.00,
-//"log_info" = 在2016-01-31 07:41:30注册成功,
+//{
+//    "money" = 20.00,
+//    "order_id" = 1,
+//    "ctime" = 1481779417,
+//    "type" = 1,
+//    "type_name" = 直接介绍分红,
+//}
 
 
-@property(nonatomic,strong)NSString*log_time;
+@property(nonatomic,strong)NSString*ctime;
 @property(nonatomic,strong)NSString*money;
-@property(nonatomic,strong)NSString*log_info;
+@property(nonatomic,strong)NSString*type_name;
+
+@property(nonatomic,strong)NSString*type;  //收支类型,1为收入,0为支出
 
 
 
