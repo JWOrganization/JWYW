@@ -94,7 +94,7 @@
     self.segmentedControl = [self makeSegmentedControl];
     self.navigationItem.titleView = self.segmentedControl;
     
-    self.rightBarBtn = [UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"通知" withTittleColor:[UIColor whiteColor] withTarget:self action:@selector(pushMessagesViewAction) forControlEvents:UIControlEventTouchUpInside withWidth:30.f];
+    self.rightBarBtn = [UIBarButtonItem barItemWithImageName:nil withSelectImage:nil withHorizontalAlignment:UIControlContentHorizontalAlignmentCenter withTittle:@"通知" withTittleColor:[UIColor whiteColor] withTarget:self action:@selector(pushMessagesViewAction) forControlEvents:UIControlEventTouchUpInside withWidth:35.f];
     CGFloat redWidth = 8.f;
     UILabel * redLabel = [[UILabel alloc]initWithFrame:CGRectMake(25.f, 5.f, redWidth, redWidth)];
     redLabel.backgroundColor = [UIColor redColor];
