@@ -464,6 +464,13 @@
 }
 - (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
     MyLog(@"添加到专辑%@",aldumIdx);
+    if (self.addToAldumView.dataArr.count<=0) {
+        YWNodeAddAldumViewController * vc = [[YWNodeAddAldumViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        [self.addToAldumView setUserInteractionEnabled:YES];
+        [self.addToAldumView removeFromSuperview];
+        return;
+    }
     RBNodeAddToAldumModel * aldumModel = self.addToAldumView.dataArr[[aldumIdx integerValue]];
     NSString * album_id = aldumModel.aldumID;
     
