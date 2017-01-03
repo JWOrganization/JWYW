@@ -86,6 +86,7 @@
 
 
 #pragma mark  -- 首页
+
 #define HTTP_HOME_PAGE    @"/api.php/Index/index/"    //首页获取数据的接口
 #define HTTP_HOME_MORELOADING     @"/api.php/Index/pullRefresh/"   //加载更多的数据
 #define HTTP_HOME_UPDATECOORDINATE    @"/api.php/Index/updateCoordinate/"   //更新经纬度
@@ -113,6 +114,7 @@
 
 
 #pragma mark  -- 个人中心
+
 #define HTTP_PERSON_COUPON         @"/api.php/User/getMyCoupon/"   //得到优惠券
 #define HTTP_PRESON_CHANGEINFO     @"/api.php/User/setMyBaseInfo/"  //修改个人中心资料
 
@@ -134,7 +136,7 @@
 #define HTTP_GETALBUMS             @"/api.php/Note/getMyNewAlbum/"   //得到专辑
 #define HTTP_GETCOMMIT             @"/api.php/Shop/getUserComment"   //得到评论
 
-
+#define HTTP_SEEOTHERCENTER       @"/api.php/User/getUserInfo/"  //查看他人个人中心
 #define HTTP_MYABOUNT              @"/api.php/User/myAttention/"   //我的关注
 #define HTTP_MYFANS                @"/api.php/User/myFans/"        //我的粉丝
 #define HTTP_TAABOUNT              @"/api.php/User/otherAttention/"  //他的关注
@@ -155,7 +157,7 @@
 //收支明细
 #define HTTP_INCOMEOUT             @"/api.php/Sale/myMoneyHistory/"  //收支明细
 //普通消费者
-#define HTTP_PERSON_INTRODUCE      @"/api.php/Customer/getBaseInfo/"  //普通消费者的介绍分红
+#define HTTP_PERSON_INTRODUCE      @"/api.php/Customer/getBaseInfo/"  //普通消费者的介绍分红   //非商务会员分红首页
 #define HTTP_PERSON_SALEINFO       @"/api.php/Customer/detail/"   //普通消费者的交易详情
 #define HTTP_PERSON_DETAIL         @"/api.php/Customer/detailShow/"  //普通消费者的详情
 
@@ -163,7 +165,8 @@
 
 
 
-#define HTTP_SEEOTHERCENTER       @"/api.php/Customer/getBaseInfo/"  //查看他人个人中心
+
+
 
 
 
