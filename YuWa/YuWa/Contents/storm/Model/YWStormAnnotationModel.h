@@ -21,5 +21,10 @@
 @property (nonatomic,strong) NSArray * tag_name;
 @property (nonatomic,copy) NSString * company_name;
 @property (nonatomic,copy) NSString * distance;
+@property (nonatomic,copy) NSString * star;
+@property (nonatomic,copy) NSString * company_near;
+@property (nonatomic,copy) NSString * discount;
+@property (nonatomic,copy) NSString * cid;
+
 
 @end
