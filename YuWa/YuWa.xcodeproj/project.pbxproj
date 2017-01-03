@@ -7254,7 +7254,6 @@
 				C1F7BD501DB1C94500CCAF96 /* View */,
 				C1F7BD701DB1C94500CCAF96 /* 商品查看更多 */,
 				C1F7BD731DB1C94500CCAF96 /* 商家相册 */,
-				C1F7BD7C1DB1C94500CCAF96 /* 搜索 */,
 				C1F7BD7F1DB1C94500CCAF96 /* 优惠买单界面 */,
 				C1F7BD8F1DB1C94500CCAF96 /* 评论查看更多 */,
 			);
@@ -7392,12 +7391,14 @@
 			children = (
 				C1FB7F561DC733AE0048EBC8 /* 新的搜索 */,
 			);
-			path = "搜索";
+			name = "搜索";
+			path = "../搜索";
 			sourceTree = "<group>";
 		};
 		C1F7BD7F1DB1C94500CCAF96 /* 优惠买单界面 */ = {
 			isa = PBXGroup;
 			children = (
+				C1F7BD7C1DB1C94500CCAF96 /* 搜索 */,
 				C1F7BD801DB1C94500CCAF96 /* view */,
 				C1F7BD8D1DB1C94500CCAF96 /* YWPayViewController.h */,
 				C1F7BD8E1DB1C94500CCAF96 /* YWPayViewController.m */,

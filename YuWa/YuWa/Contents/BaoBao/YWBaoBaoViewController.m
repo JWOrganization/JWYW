@@ -55,7 +55,6 @@
 
 - (void)dataSet{
     self.user = [UserSession instance];
-    self.user.baobaoLV = 1;
     self.baobaoGifArr = [NSMutableArray arrayWithCapacity:0];
     self.baobaoBGGifArr = [NSMutableArray arrayWithCapacity:0];
     self.baobaoLVUpGifArr = [NSMutableArray arrayWithCapacity:0];
@@ -179,12 +178,12 @@
         MyLog(@"Regieter Code is %@",responsObj);
         NSDictionary * dataDic = responsObj[@"data"];
         self.user.baobaoLV = [dataDic[@"level"] integerValue];
+        [UserSession instance].baobaoLV = self.user.baobaoLV;
         self.user.baobaoEXP = [dataDic[@"energy"] integerValue];
         NSInteger needExp = [dataDic[@"update_level_energy"] integerValue];
         self.user.baobaoNeedEXP = needExp?needExp>0?needExp:13500:13500;
         [self.LVUpBtn setUserInteractionEnabled:YES];
         [self lvUpGifShow];
-        self.user.baobaoLV++;
         [self showLvInfo];
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);

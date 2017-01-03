@@ -196,7 +196,7 @@
 
 #pragma mark  -- 非商务会员
 -(void)getPersonDatas{
-    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_SEEOTHERCENTER];
+    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_PERSON_INTRODUCE];
     NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid)};
     
     HttpManager*manager=[[HttpManager alloc]init];

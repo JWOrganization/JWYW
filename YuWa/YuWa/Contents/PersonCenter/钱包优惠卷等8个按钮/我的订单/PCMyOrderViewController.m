@@ -42,6 +42,13 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
+
+    
+}
+
 -(void)addTopView{
     NSArray*array=@[@"全部",@"待付款",@"待评价",@"已完成"];
     YJSegmentedControl*topView=[YJSegmentedControl segmentedControlFrame:CGRectMake(0, 64, kScreen_Width, 44) titleDataSource:array backgroundColor:[UIColor whiteColor] titleColor:[UIColor blackColor] titleFont:[UIFont systemFontOfSize:14] selectColor:CNaviColor buttonDownColor:CNaviColor Delegate:self];
