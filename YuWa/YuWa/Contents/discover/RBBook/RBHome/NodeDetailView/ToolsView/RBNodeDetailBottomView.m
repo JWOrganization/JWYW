@@ -23,6 +23,7 @@
 - (void)setIsLike:(BOOL)isLike{
     if (_isLike == isLike)return;
     _isLike = isLike;
+    [self.likeBtn setImage:[UIImage imageNamed:_isLike == YES?@"icon-like":@"icon-dislike"] forState:UIControlStateNormal];
 }
 
 - (void)likeBtnImageAnimation{

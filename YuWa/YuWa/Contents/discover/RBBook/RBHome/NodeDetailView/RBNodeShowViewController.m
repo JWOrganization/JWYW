@@ -161,7 +161,10 @@
 
 - (void)addToAldumViewmake{
     if (![UserSession instance].aldumCount||[[UserSession instance].aldumCount integerValue]<=0) {
-        if (self.addToAldumView)[self requestAddToAldumWithIdx:@"0"];
+        if (self.addToAldumView){
+            [self.addToAldumView setUserInteractionEnabled:NO];
+            [self requestAddToAldumWithIdx:@"0"];
+        }
     }
     WEAKSELF;
     if (!self.addToAldumView) {
@@ -171,6 +174,7 @@
         };
         self.addToAldumView.frame = CGRectMake(0.f, 0.f, kScreen_Width, kScreen_Height);
         self.addToAldumView.addToAlbumBlock = ^(NSInteger aldumIdx){
+            [weakSelf.addToAldumView setUserInteractionEnabled:NO];
             [weakSelf requestAddToAldumWithIdx:[NSString stringWithFormat:@"%zi",aldumIdx]];
         };
         self.addToAldumView.newAlbumBlock = ^(){
@@ -460,6 +464,13 @@
 }
 - (void)requestAddToAldumWithIdx:(NSString *)aldumIdx{
     MyLog(@"添加到专辑%@",aldumIdx);
+    if (self.addToAldumView.dataArr.count<=0) {
+        YWNodeAddAldumViewController * vc = [[YWNodeAddAldumViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        [self.addToAldumView setUserInteractionEnabled:YES];
+        [self.addToAldumView removeFromSuperview];
+        return;
+    }
     RBNodeAddToAldumModel * aldumModel = self.addToAldumView.dataArr[[aldumIdx integerValue]];
     NSString * album_id = aldumModel.aldumID;
     
@@ -468,6 +479,7 @@
     [[HttpObject manager]postNoHudWithType:YuWaType_RB_COLLECTION_TO_ALDUM withPragram:pragram success:^(id responsObj) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
+        [self.addToAldumView setUserInteractionEnabled:YES];
         self.toolsBottomView.isCollection = !self.toolsBottomView.isCollection;
         self.dataModel.infavs = @"1";
         self.dataModel.fav_count = [NSString stringWithFormat:@"%zi",([self.dataModel.fav_count integerValue] + 1)];
@@ -477,6 +489,7 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
+        [self.addToAldumView setUserInteractionEnabled:YES];
     }];
 }
 

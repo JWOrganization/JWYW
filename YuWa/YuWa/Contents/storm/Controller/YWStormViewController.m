@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
-    self.subType = 1;
+    self.subType = 24;
     [self makeNavi];
     [self makeUI];
 }
@@ -121,6 +121,7 @@
         weakSelf.sortSubCollectionView.choosedTypeIdx = subType;
         weakSelf.sortSubCollectionView.dataArr = subArr;
         weakSelf.sortSubCollectionView.dataTagArr = subTagArr;
+        weakSelf.subType = [subTagArr[0] integerValue];
     };
     self.sortTableView.hidden = YES;
     self.sortSubCollectionView.hidden = self.sortTableView.hidden;
@@ -210,6 +211,8 @@
         MyLog(@"Regieter Code is %@",responsObj);
         self.isSearch = YES;
         [self.mapView removeAnnotations:self.mapView.annotations];
+//        NSDictionary * dataDic = responsObj[@"data"];
+//        NSArray * dataArr = [dataDic allValues];
         NSArray * dataArr = responsObj[@"data"];
         for (int i = 0; i<dataArr.count; i++) {
             YWStormAnnotationModel * model = [YWStormAnnotationModel yy_modelWithJSON:dataArr[i]];
