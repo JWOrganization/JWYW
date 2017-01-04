@@ -11,6 +11,14 @@
 
 #define HTTP_ADDRESS        @"https://www.yuwabao.cn"    //地址
 
+
+#pragma mark - push Image
+
+#define HTTP_IMG_UP @"/api.php/Index/uploadImg/" //1上传图片
+
+
+
+
 #pragma mark - Logion & Register
 
 #define HTTP_REGISTER       @"/api.php/Login/reg/" //1注册账号
@@ -20,48 +28,6 @@
 #define HTTP_LOGIN          @"/api.php/Login/login/" //1登入
 #define HTTP_LOGIN_Quick      @"/api.php/Login/phoneLogin/" //1快捷登录  验证码登录
 #define HTTP_LOGIN_FORGET_TEL @"/api.php/Login/resetPassword/" //1找回密码
-
-
-#pragma mark - Red Book
-
-#define HTTP_RB_HOME @"/api.php/Note/index/" //1发现首页
-#define HTTP_RB_DETAIL @"/api.php/Note/detail/" //1笔记详情
-#define HTTP_RB_RELATED @"/api.php/Note/getRelationNote/" //1相关笔记
-#define HTTP_RB_LIKE @"/api.php/Note/addLikes/" //1添加点赞（喜欢）
-#define HTTP_RB_LIKE_CANCEL @"/api.php/Note/delLikes/" //1取消点赞（喜欢）
-#define HTTP_RB_ALDUM @"/api.php/Note/getUserAlbumLists/" //1获取用户专辑列表
-#define HTTP_RB_CREATE_ALDUM @"/api.php/Note/addAlbum/" //1创建专辑
-#define HTTP_RB_COLLECTION_TO_ALDUM @"/api.php/Note/addToMyAlbum/" //1添加收藏到我的专辑
-#define HTTP_RB_COLLECTION_CANCEL @"/api.php/Note/delMyNoteAlbum/" //1取消收藏单条笔记
-#define HTTP_RB_COMMENT @"/api.php/Note/addNoteComment/" //1评论发布
-#define HTTP_RB_COMMENT_LIST @"/api.php/Note/getCommentListByNoteId/" //1笔记的评论列表
-#define HTTP_RB_SEARCH_QUICK @"/api.php/Note/hotSearch/" //1笔记热门搜索
-#define HTTP_RB_SEARCH_KEY @"/api.php/Note/getRelationKeywords/" //1搜索相关 词语
-#define HTTP_RB_SEARCH_RESULT @"/api.php/Note/searchResult/" //1搜索结果
-#define HTTP_RB_NODE_PUBLISH @"/api.php/Note/addNote/" //1发布笔记
-
-//#define HTTP_RB_ @"/api.php/Login/resetPassword/" //添加地点
-//#define HTTP_RB_ @"/api.php/Login/resetPassword/" //搜索地点
-//#define HTTP_STORM_SEARCH_HOT @"/api.php/Index/hotSearch/" //1热门搜索
-//#define HTTP_STORM_SEARCH @"/api.php/Shop/searchResult/" //1搜索店铺 旋风
-//#define HTTP_GETPAYDETAIL          @"/api.php/User/getMyAccount/"   //废 钱包中得到收入支出明细
-
-
-
-#pragma mark - IMG
-
-#define HTTP_IMG_UP @"/api.php/Index/uploadImg/" //1上传图片
-
-
-#pragma mark - Storm
-
-#define HTTP_STORM_NEARSHOP @"/api.php/Shop/getMyNearShop/" //1商家
-#define HTTP_STORM_TAG @"/api.php/Shop/getTagNameByCid/" //1子标签
-
-#pragma mark - Friends
-#define HTTP_FRIENDS_INFO @"/api.php/User/getUserInfoByUserName/" //1好友信息
-
-
 
 
 #pragma mark  -- 首页
@@ -97,6 +63,55 @@
 
 
 
+
+#pragma mark - discover
+
+#define HTTP_RB_HOME @"/api.php/Note/index/" //1发现首页
+#define HTTP_RB_DETAIL @"/api.php/Note/detail/" //1笔记详情
+#define HTTP_RB_RELATED @"/api.php/Note/getRelationNote/" //1相关笔记
+#define HTTP_RB_LIKE @"/api.php/Note/addLikes/" //1添加点赞（喜欢）
+#define HTTP_RB_LIKE_CANCEL @"/api.php/Note/delLikes/" //1取消点赞（喜欢）
+#define HTTP_RB_ALDUM @"/api.php/Note/getUserAlbumLists/" //1获取用户专辑列表
+#define HTTP_RB_CREATE_ALDUM @"/api.php/Note/addAlbum/" //1创建专辑
+#define HTTP_RB_COLLECTION_TO_ALDUM @"/api.php/Note/addToMyAlbum/" //1添加收藏到我的专辑
+#define HTTP_RB_COLLECTION_CANCEL @"/api.php/Note/delMyNoteAlbum/" //1取消收藏单条笔记
+#define HTTP_RB_COMMENT @"/api.php/Note/addNoteComment/" //1评论发布
+#define HTTP_RB_COMMENT_LIST @"/api.php/Note/getCommentListByNoteId/" //1笔记的评论列表
+#define HTTP_RB_SEARCH_QUICK @"/api.php/Note/hotSearch/" //1笔记热门搜索
+#define HTTP_RB_SEARCH_KEY @"/api.php/Note/getRelationKeywords/" //1搜索相关 词语
+#define HTTP_RB_SEARCH_RESULT @"/api.php/Note/searchResult/" //1搜索结果
+#define HTTP_RB_NODE_PUBLISH @"/api.php/Note/addNote/" //1发布笔记
+
+//#define HTTP_RB_ @"/api.php/Login/resetPassword/" //添加地点
+//#define HTTP_RB_ @"/api.php/Login/resetPassword/" //搜索地点
+//#define HTTP_STORM_SEARCH_HOT @"/api.php/Index/hotSearch/" //1热门搜索
+//#define HTTP_STORM_SEARCH @"/api.php/Shop/searchResult/" //1搜索店铺 旋风
+//#define HTTP_GETPAYDETAIL          @"/api.php/User/getMyAccount/"   //废 钱包中得到收入支出明细
+
+
+
+
+
+
+#pragma mark - Storm
+
+#define HTTP_STORM_NEARSHOP @"/api.php/Shop/getMyNearShop/" //1商家
+#define HTTP_STORM_TAG @"/api.php/Shop/getTagNameByCid/" //1子标签
+
+
+
+
+
+#pragma mark - message
+#define HTTP_FRIENDS_INFO @"/api.php/User/getUserInfoByUserName/" //1好友信息 得到好友的名字和头像
+
+
+
+
+
+
+
+
 #pragma mark  -- 个人中心
 
 
@@ -105,7 +120,6 @@
 #define HTTP_NOTCCAFICATIONJ_ORDER @"/api.php/User/reservePushNotice/" //1预约通知
 #define HTTP_NOTCCAFICATIONJ_PAY @"/api.php/User/payPushNotice/" //1付款通知
 #define HTTP_GETMONEY              @"/api.php/User/getMyMoney/"   //1得到钱 账户余额
-
 
 #define HTTP_MYORDER               @"/api.php/User/getMyOrder/"      //1显示我的订单
 #define HTTP_DELETEORDER           @"/api.php/Index/delOrder/"       //1 删除未付款的订单
