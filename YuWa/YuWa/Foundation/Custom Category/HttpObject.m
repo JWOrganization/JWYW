@@ -33,7 +33,7 @@
             break;
 #pragma mark - Storm
         case YuWaType_STORM_SEARCH_HOT://热门搜索
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_SEARCH_HOT];
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_HOTSEARCH];
             break;
             //URLStr建立
         default:
@@ -71,7 +71,7 @@
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COMMENT];
             break;
         case YuWaType_RB_ATTENTION://显示关注
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION];
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_MYABOUNT];
             break;
         case YuWaType_RB_SEARCH_RESULT://搜索结果
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_RESULT];
@@ -149,13 +149,13 @@
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COLLECTION_CANCEL];
             break;
         case YuWaType_RB_ATTENTION_ADD://关注发布者
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION_ADD];
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_ADDABOUT];
             break;
         case YuWaType_RB_ATTENTION_CANCEL://删除关注
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION_CANCEL];
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_DELABOUT];
             break;
         case YuWaType_RB_ATTENTION://显示关注
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_ATTENTION];
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_MYABOUNT];
             break;
         case YuWaType_RB_SEARCH_KEY://搜索相关
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_SEARCH_KEY];
@@ -168,7 +168,7 @@
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_TAG];
             break;
         case YuWaType_STORM_SEARCH://搜索店铺
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_SEARCH];
+          //  urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_STORM_SEARCH];
             break;
 #pragma mark - Noticafication
         case YuWaType_NOTCCAFICATIONJ_ORDER://预约通知
@@ -207,7 +207,7 @@
             urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RBAdd_AlbumDetail];
             break;
         case YuWaType_RBAdd_DelNode://取消收藏单个笔记
-            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RBAdd_DelNode];
+            urlStr = [NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_RB_COLLECTION_CANCEL];
             break;
             
             //URLStr建立

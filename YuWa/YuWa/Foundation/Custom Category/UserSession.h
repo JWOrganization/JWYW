@@ -40,9 +40,9 @@
 @property(nonatomic,strong)NSString*note_nums;    //多少条笔记
 @property(nonatomic,strong)NSString*album_nums;    //多少个专辑
 @property(nonatomic,strong)NSString*comment_nums;  //多少条评论
-@property(nonatomic,strong)NSString*today_money;  //今日收益
+@property(nonatomic,strong)NSString*today_money;  //今日收益    今天到登录为止时候的介绍分红和商务分红相加的钱（不算积分分红）7天后才会结算这部分钱
 
-@property (nonatomic,strong)NSNumber*isVIP;//是否是会员 1普通用户2销售3商家
+@property (nonatomic,strong)NSNumber*isVIP;//是否是会员    1普通用户2销售        没有3商家了移除
 
 //@property(nonatomic,copy)NSString * currency; //货币
 //已经登录

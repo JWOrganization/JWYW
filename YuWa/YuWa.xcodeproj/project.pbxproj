@@ -1241,6 +1241,10 @@
 		C1392DD81DC06108002418EF /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392DD61DC06108002418EF /* Order.m */; };
 		C149F44E1DCB0B0C00746A86 /* StorePhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F44D1DCB0B0C00746A86 /* StorePhotoModel.m */; };
 		C18E7D5E1DB878D4003D0012 /* MyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */; };
+		C199A6A81E1D11AA003FBCDE /* PCDetailMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C199A6A31E1D11AA003FBCDE /* PCDetailMoneyViewController.m */; };
+		C199A6A91E1D11AA003FBCDE /* PCDetailMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C199A6A41E1D11AA003FBCDE /* PCDetailMoneyViewController.xib */; };
+		C199A6AA1E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C199A6A61E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.m */; };
+		C199A6AB1E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C199A6A71E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.xib */; };
 		C19EB03E1DD992E500C28F15 /* YWForRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19EB03D1DD992E500C28F15 /* YWForRecommendViewController.m */; };
 		C19EB0411DD9F6A200C28F15 /* YWChooseSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = C19EB0401DD9F6A200C28F15 /* YWChooseSexView.m */; };
 		C1A75DF61DCB7EB2000E76C2 /* DetailStorePreferentialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A75DF51DCB7EB2000E76C2 /* DetailStorePreferentialModel.m */; };
@@ -1364,16 +1368,12 @@
 		C1F7BE581DB1C95400CCAF96 /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE171DB1C95400CCAF96 /* MyOrderTableViewCell.m */; };
 		C1F7BE591DB1C95400CCAF96 /* MyOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BE181DB1C95400CCAF96 /* MyOrderTableViewCell.xib */; };
 		C1F7BE5A1DB1C95400CCAF96 /* PCPayRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE1B1DB1C95400CCAF96 /* PCPayRecordViewController.m */; };
-		C1F7BE5B1DB1C95400CCAF96 /* PCDetailMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE1F1DB1C95400CCAF96 /* PCDetailMoneyViewController.m */; };
-		C1F7BE5C1DB1C95400CCAF96 /* PCDetailMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BE201DB1C95400CCAF96 /* PCDetailMoneyViewController.xib */; };
 		C1F7BE5D1DB1C95400CCAF96 /* PCGetMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE221DB1C95400CCAF96 /* PCGetMoneyViewController.m */; };
 		C1F7BE5E1DB1C95400CCAF96 /* PCPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE241DB1C95400CCAF96 /* PCPacketViewController.m */; };
 		C1F7BE5F1DB1C95400CCAF96 /* PCPacketViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BE251DB1C95400CCAF96 /* PCPacketViewController.xib */; };
 		C1F7BE601DB1C95400CCAF96 /* PCPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE271DB1C95400CCAF96 /* PCPayViewController.m */; };
 		C1F7BE611DB1C95400CCAF96 /* GetMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE2A1DB1C95400CCAF96 /* GetMoneyTableViewCell.m */; };
 		C1F7BE621DB1C95400CCAF96 /* GetMoneyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BE2B1DB1C95400CCAF96 /* GetMoneyTableViewCell.xib */; };
-		C1F7BE631DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7BE2D1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.m */; };
-		C1F7BE641DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BE2E1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib */; };
 		C1F7BF331DB1CA0700CCAF96 /* menuData.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BEED1DB1CA0700CCAF96 /* menuData.plist */; };
 		C1F7BF341DB1CA0700CCAF96 /* backImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BEEF1DB1CA0700CCAF96 /* backImage.png */; };
 		C1F7BF351DB1CA0700CCAF96 /* center_set@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F7BEF01DB1CA0700CCAF96 /* center_set@2x.png */; };
@@ -3216,6 +3216,12 @@
 		C149F44D1DCB0B0C00746A86 /* StorePhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorePhotoModel.m; sourceTree = "<group>"; };
 		C18E7D5C1DB878D4003D0012 /* MyAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlbumViewController.h; sourceTree = "<group>"; };
 		C18E7D5D1DB878D4003D0012 /* MyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlbumViewController.m; sourceTree = "<group>"; };
+		C199A6A21E1D11AA003FBCDE /* PCDetailMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCDetailMoneyViewController.h; sourceTree = "<group>"; };
+		C199A6A31E1D11AA003FBCDE /* PCDetailMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCDetailMoneyViewController.m; sourceTree = "<group>"; };
+		C199A6A41E1D11AA003FBCDE /* PCDetailMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCDetailMoneyViewController.xib; sourceTree = "<group>"; };
+		C199A6A51E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCMoneyDetailTableViewCell.h; sourceTree = "<group>"; };
+		C199A6A61E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCMoneyDetailTableViewCell.m; sourceTree = "<group>"; };
+		C199A6A71E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCMoneyDetailTableViewCell.xib; sourceTree = "<group>"; };
 		C19EB03C1DD992E500C28F15 /* YWForRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWForRecommendViewController.h; sourceTree = "<group>"; };
 		C19EB03D1DD992E500C28F15 /* YWForRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWForRecommendViewController.m; sourceTree = "<group>"; };
 		C19EB03F1DD9F6A200C28F15 /* YWChooseSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseSexView.h; sourceTree = "<group>"; };
@@ -3419,9 +3425,6 @@
 		C1F7BE181DB1C95400CCAF96 /* MyOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderTableViewCell.xib; sourceTree = "<group>"; };
 		C1F7BE1A1DB1C95400CCAF96 /* PCPayRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCPayRecordViewController.h; sourceTree = "<group>"; };
 		C1F7BE1B1DB1C95400CCAF96 /* PCPayRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCPayRecordViewController.m; sourceTree = "<group>"; };
-		C1F7BE1E1DB1C95400CCAF96 /* PCDetailMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCDetailMoneyViewController.h; sourceTree = "<group>"; };
-		C1F7BE1F1DB1C95400CCAF96 /* PCDetailMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCDetailMoneyViewController.m; sourceTree = "<group>"; };
-		C1F7BE201DB1C95400CCAF96 /* PCDetailMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCDetailMoneyViewController.xib; sourceTree = "<group>"; };
 		C1F7BE211DB1C95400CCAF96 /* PCGetMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCGetMoneyViewController.h; sourceTree = "<group>"; };
 		C1F7BE221DB1C95400CCAF96 /* PCGetMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCGetMoneyViewController.m; sourceTree = "<group>"; };
 		C1F7BE231DB1C95400CCAF96 /* PCPacketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCPacketViewController.h; sourceTree = "<group>"; };
@@ -3432,9 +3435,6 @@
 		C1F7BE291DB1C95400CCAF96 /* GetMoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMoneyTableViewCell.h; sourceTree = "<group>"; };
 		C1F7BE2A1DB1C95400CCAF96 /* GetMoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMoneyTableViewCell.m; sourceTree = "<group>"; };
 		C1F7BE2B1DB1C95400CCAF96 /* GetMoneyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetMoneyTableViewCell.xib; sourceTree = "<group>"; };
-		C1F7BE2C1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCMoneyDetailTableViewCell.h; sourceTree = "<group>"; };
-		C1F7BE2D1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCMoneyDetailTableViewCell.m; sourceTree = "<group>"; };
-		C1F7BE2E1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCMoneyDetailTableViewCell.xib; sourceTree = "<group>"; };
 		C1F7BEED1DB1CA0700CCAF96 /* menuData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menuData.plist; sourceTree = "<group>"; };
 		C1F7BEEF1DB1CA0700CCAF96 /* backImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImage.png; sourceTree = "<group>"; };
 		C1F7BEF01DB1CA0700CCAF96 /* center_set@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "center_set@2x.png"; sourceTree = "<group>"; };
@@ -4688,18 +4688,19 @@
 			isa = PBXGroup;
 			children = (
 				B32975CC1DADCED5002CA488 /* SortView */,
-				B35778B41D996ACD0058A998 /* SearchView */,
+				B35778B41D996ACD0058A998 /* SearchView 废弃 没吊用 */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
 		};
-		B35778B41D996ACD0058A998 /* SearchView */ = {
+		B35778B41D996ACD0058A998 /* SearchView 废弃 没吊用 */ = {
 			isa = PBXGroup;
 			children = (
 				B35778B51D996B0B0058A998 /* YWStormSearchViewController.h */,
 				B35778B61D996B0B0058A998 /* YWStormSearchViewController.m */,
 				B35778B71D996B0B0058A998 /* YWStormSearchViewController.xib */,
 			);
+			name = "SearchView 废弃 没吊用";
 			path = SearchView;
 			sourceTree = "<group>";
 		};
@@ -6679,13 +6680,14 @@
 			path = "确认付款view";
 			sourceTree = "<group>";
 		};
-		C11039491E080A5200149ECB /* 通知 */ = {
+		C11039491E080A5200149ECB /* 通知 废 */ = {
 			isa = PBXGroup;
 			children = (
 				C110394A1E080A7400149ECB /* controller */,
 				C110394B1E080A7400149ECB /* view */,
 				C110394C1E080A7400149ECB /* model */,
 			);
+			name = "通知 废";
 			path = "通知";
 			sourceTree = "<group>";
 		};
@@ -7179,6 +7181,19 @@
 			path = "我的专辑列表";
 			sourceTree = "<group>";
 		};
+		C199A6A11E1D11AA003FBCDE /* 废 钱包中详情 */ = {
+			isa = PBXGroup;
+			children = (
+				C199A6A21E1D11AA003FBCDE /* PCDetailMoneyViewController.h */,
+				C199A6A31E1D11AA003FBCDE /* PCDetailMoneyViewController.m */,
+				C199A6A41E1D11AA003FBCDE /* PCDetailMoneyViewController.xib */,
+				C199A6A51E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.h */,
+				C199A6A61E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.m */,
+				C199A6A71E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.xib */,
+			);
+			path = "废 钱包中详情";
+			sourceTree = "<group>";
+		};
 		C19EB03B1DD992E500C28F15 /* 为你推荐 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7439,7 +7454,7 @@
 		C1F7BDBE1DB1C95400CCAF96 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
-				C11039491E080A5200149ECB /* 通知 */,
+				C11039491E080A5200149ECB /* 通知 废 */,
 				C1E5B7821DE5C96B00EB1F85 /* 商务会员 */,
 				C18E7D5B1DB878BA003D0012 /* 我的专辑列表 */,
 				C1F7BDBF1DB1C95400CCAF96 /* Controller */,
@@ -7695,9 +7710,7 @@
 		C1F7BE1D1DB1C95400CCAF96 /* 钱包 */ = {
 			isa = PBXGroup;
 			children = (
-				C1F7BE1E1DB1C95400CCAF96 /* PCDetailMoneyViewController.h */,
-				C1F7BE1F1DB1C95400CCAF96 /* PCDetailMoneyViewController.m */,
-				C1F7BE201DB1C95400CCAF96 /* PCDetailMoneyViewController.xib */,
+				C199A6A11E1D11AA003FBCDE /* 废 钱包中详情 */,
 				C135A0B41DDAFDC4002B78A5 /* MoneyPackModel.h */,
 				C135A0B51DDAFDC4002B78A5 /* MoneyPackModel.m */,
 				C1F7BE211DB1C95400CCAF96 /* PCGetMoneyViewController.h */,
@@ -7718,9 +7731,6 @@
 				C1F7BE291DB1C95400CCAF96 /* GetMoneyTableViewCell.h */,
 				C1F7BE2A1DB1C95400CCAF96 /* GetMoneyTableViewCell.m */,
 				C1F7BE2B1DB1C95400CCAF96 /* GetMoneyTableViewCell.xib */,
-				C1F7BE2C1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.h */,
-				C1F7BE2D1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.m */,
-				C1F7BE2E1DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -8149,9 +8159,9 @@
 				C1F7BDA71DB1C94500CCAF96 /* ShoppingCollectionViewCell.xib in Resources */,
 				C135A14B1DDE020F002B78A5 /* 波浪个人_0003.png in Resources */,
 				B317AECE1DE5850D0093C511 /* 3baobaoBG58@2x.jpg in Resources */,
+				C199A6A91E1D11AA003FBCDE /* PCDetailMoneyViewController.xib in Resources */,
 				C135A1631DDE020F002B78A5 /* 波浪个人_00051.png in Resources */,
 				B38B2F5C1D8FC83A004D5256 /* EmojisList.plist in Resources */,
-				C1F7BE5C1DB1C95400CCAF96 /* PCDetailMoneyViewController.xib in Resources */,
 				B37E57851E0CD8CD000977F6 /* 3baobaoLVUP6@2x.jpg in Resources */,
 				B317AEB51DE5850D0093C511 /* 3baobaoBG35@2x.jpg in Resources */,
 				B317AD221DE584E40093C511 /* 0baobaoBG49@2x.jpg in Resources */,
@@ -8318,6 +8328,7 @@
 				C1F7BF551DB1CA0700CCAF96 /* icon_homepage_map_old.png in Resources */,
 				B38B2F541D8FC83A004D5256 /* 定位.json in Resources */,
 				B37E57911E0CD8CD000977F6 /* 4baobaoLVUP17@2x.jpg in Resources */,
+				C199A6AB1E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.xib in Resources */,
 				B317AEC71DE5850D0093C511 /* 3baobaoBG51@2x.jpg in Resources */,
 				B317AE411DE5850D0093C511 /* 1baobaoBG39@2x.jpg in Resources */,
 				B38B2F501D8FC83A004D5256 /* 单条笔记下面的 相关笔记.json in Resources */,
@@ -8842,7 +8853,6 @@
 				B37E57701E0CD8CD000977F6 /* 3baobaoLVUP41@2x.jpg in Resources */,
 				B317AE991DE5850D0093C511 /* 3baobaoBG0@2x.jpg in Resources */,
 				C135A13D1DDE020F002B78A5 /* 波浪个人_00017.png in Resources */,
-				C1F7BE641DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.xib in Resources */,
 				B31582351D90F8620096C194 /* YWRegisterViewController.xib in Resources */,
 				C1C1480B1DE817F1001FCBC3 /* 椭圆虚.png in Resources */,
 				C11F14F11DC83B92005C58CF /* banner_selected@2x.png in Resources */,
@@ -9033,6 +9043,7 @@
 				B38B2E1F1D8FACD8004D5256 /* MJChiBaoZiFooter.m in Sources */,
 				B38B2F2D1D8FC82F004D5256 /* RBNodeBGView.m in Sources */,
 				B3AE4D711D91302B000A389F /* TZAssetModel.m in Sources */,
+				C199A6AA1E1D11AA003FBCDE /* PCMoneyDetailTableViewCell.m in Sources */,
 				C1FB7F6E1DC733AE0048EBC8 /* ResultsTableViewCell.m in Sources */,
 				B38B2E4C1D8FACD8004D5256 /* TAAbstractDotView.m in Sources */,
 				C135A0B91DDB1CD5002B78A5 /* OrderModel.m in Sources */,
@@ -9128,6 +9139,7 @@
 				C13019BE1DB2039200E24C88 /* H5LinkViewController.m in Sources */,
 				C10E94B51DD356F600728B3D /* PayMoney1TableViewCell.m in Sources */,
 				B33A26831D9A68040092CB12 /* PSTGridLayoutRow.m in Sources */,
+				C199A6A81E1D11AA003FBCDE /* PCDetailMoneyViewController.m in Sources */,
 				C1A7D5011DC7736A004F3518 /* HPTopShopModel.m in Sources */,
 				B33A266A1D9A68040092CB12 /* EMSDWebImageDecoder.m in Sources */,
 				B38B2E591D8FACD8004D5256 /* AdvertiseView.m in Sources */,
@@ -9231,7 +9243,6 @@
 				B38B2E371D8FACD8004D5256 /* UIImage+WebP.m in Sources */,
 				B38B2E111D8FACD8004D5256 /* MJRefreshAutoFooter.m in Sources */,
 				B38B2E3A1D8FACD8004D5256 /* UIView+WebCacheOperation.m in Sources */,
-				C1F7BE5B1DB1C95400CCAF96 /* PCDetailMoneyViewController.m in Sources */,
 				C1C148121DE82CF0001FCBC3 /* IntroduceMoneyTableViewCell.m in Sources */,
 				C102AE741DC9B9D200574411 /* CouponModel.m in Sources */,
 				B33A26951D9A68040092CB12 /* EaseEmotionManager.m in Sources */,
@@ -9382,7 +9393,6 @@
 				B38B2DEF1D8FACD8004D5256 /* InternationalLanguage.m in Sources */,
 				B38B2E1C1D8FACD8004D5256 /* MJRefreshGifHeader.m in Sources */,
 				B38B2E0D1D8FACD8004D5256 /* README.md in Sources */,
-				C1F7BE631DB1C95400CCAF96 /* PCMoneyDetailTableViewCell.m in Sources */,
 				B36C7F071D9D0C8900B022E0 /* YWMessageFriendAddCell.m in Sources */,
 				C1F7BDB01DB1C94500CCAF96 /* StorePhoneView.m in Sources */,
 				B3FFF48E1D93FF4700EDD2AB /* RBPublicSaveModel.m in Sources */,

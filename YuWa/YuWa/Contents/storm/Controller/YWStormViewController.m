@@ -9,7 +9,8 @@
 #import "YWStormViewController.h"
 #import "YWStormSortTableView.h"
 #import "YWStormPinAnnotationView.h"
-#import "YWStormSearchViewController.h"
+//#import "YWStormSearchViewController.h"
+#import "NewSearchViewController.h"        //搜索界面
 #import "YWShoppingDetailViewController.h"
 #import "YWStormSubSortCollectionView.h"
 
@@ -139,7 +140,7 @@
 
 #pragma mark - Control Action
 - (void)searchAction{
-    YWStormSearchViewController * vc = [[YWStormSearchViewController alloc]init];
+    NewSearchViewController * vc = [[NewSearchViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)sortAction{
