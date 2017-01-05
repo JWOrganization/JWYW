@@ -85,6 +85,6 @@
     </objects>
     <resources>
         <image name="Head-portrait" width="80" height="80"/>
-        <image name="level22" width="16" height="16"/>
+        <image name="level22" width="85" height="85"/>
     </resources>
 </document>

@@ -60,7 +60,7 @@
     self.nameLabel.text = self.model.nickname;
     if(self.model.user_type)self.levelImageView.hidden = [self.model.user_type integerValue]>=2?NO:YES;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.images] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
-    [self.levelImageView sd_setImageWithURL:[NSURL URLWithString:self.model.level.image] placeholderImage:[UIImage imageNamed:@"level"] completed:nil];
+    [self.levelImageView sd_setImageWithURL:[NSURL URLWithString:self.model.level.image] placeholderImage:[UIImage imageNamed:@"level22"] completed:nil];
     
     [self.attentiionBtn setUserInteractionEnabled:YES];
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
