@@ -20,6 +20,7 @@
 }
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     self.alwaysBounceVertical = YES;
     self.conTextView.placeholder = @"说说你的心得吧~";
     self.conTextView.placeholderColor = [UIColor colorWithHexString:@"#C4C4C9"];

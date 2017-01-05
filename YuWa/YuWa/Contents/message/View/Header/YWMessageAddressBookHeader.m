@@ -11,6 +11,7 @@
 @implementation YWMessageAddressBookHeader
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
 }
 
 @end
