@@ -13,6 +13,7 @@
 @implementation RBNodeDetailHeader
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     self.attentiionBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.attentiionBtn.layer.borderWidth = 1.f;
     self.attentiionBtn.layer.cornerRadius = 5.f;
@@ -57,7 +58,7 @@
 
 - (void)dataSet{
     self.nameLabel.text = self.model.nickname;
-    //    self.levelImageView.hidden = self.model.
+    if(self.model.user_type)self.levelImageView.hidden = [self.model.user_type integerValue]>=2?:NO;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.images] placeholderImage:[UIImage imageNamed:@"Head-portrait"] completed:nil];
     [self.levelImageView sd_setImageWithURL:[NSURL URLWithString:self.model.level.image] placeholderImage:[UIImage imageNamed:@"level"] completed:nil];
     

@@ -17,6 +17,7 @@
 @property (nonatomic,copy)NSString * fans_total;
 @property (nonatomic,copy)NSString * discoverys_total;
 @property (nonatomic,copy)NSString * relationship_info;
+@property (nonatomic,copy)NSString * user_type;
 
 @property (nonatomic,strong)RBNodeUserLevelModel * level;
 
