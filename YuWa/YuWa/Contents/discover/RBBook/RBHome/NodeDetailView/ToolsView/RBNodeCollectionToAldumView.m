@@ -23,6 +23,7 @@
 }
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [self.alphaBGView addGestureRecognizer:tap];
     self.tableView.delegate = self;

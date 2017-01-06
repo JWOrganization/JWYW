@@ -54,6 +54,7 @@ NSString * const ID = @"cycleCell";
 }
 
 -(void)awakeFromNib{
+    [super awakeFromNib];
     self.backgroundColor=[UIColor redColor];
     self.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _autoScrollTimeInterval = 3.0;

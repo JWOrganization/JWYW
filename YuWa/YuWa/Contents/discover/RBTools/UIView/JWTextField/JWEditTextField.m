@@ -11,6 +11,7 @@
 @implementation JWEditTextField
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     [self setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 }
 

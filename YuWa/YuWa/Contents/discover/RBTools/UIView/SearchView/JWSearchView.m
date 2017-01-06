@@ -11,6 +11,7 @@
 @implementation JWSearchView
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     self.layer.cornerRadius = 5.f;
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]init];
     [tap addTarget:self action:@selector(tapAction:)];

@@ -11,6 +11,7 @@
 @implementation RBNodeBGView
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     self.publishBtn.layer.cornerRadius = 5.f;
     self.publishBtn.layer.borderColor = [UIColor colorWithHexString:@"#B82E34"].CGColor;
     self.publishBtn.layer.borderWidth = 1.f;

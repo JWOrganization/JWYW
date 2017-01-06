@@ -11,6 +11,7 @@
 @implementation RBNodeDetailCommentHeader
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     self.iconImageView.layer.cornerRadius = 16.f;
     self.iconImageView.layer.masksToBounds = YES;
     self.nameLabel.layer.cornerRadius = 5.f;

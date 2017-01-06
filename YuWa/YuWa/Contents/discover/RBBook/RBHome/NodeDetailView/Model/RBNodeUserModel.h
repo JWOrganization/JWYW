@@ -18,6 +18,7 @@
 @property (nonatomic,copy)NSString * discoverys_total;
 @property (nonatomic,copy)NSString * relationship_info;
 
+
 @property (nonatomic,strong)RBNodeUserLevelModel * level;
 
 @end

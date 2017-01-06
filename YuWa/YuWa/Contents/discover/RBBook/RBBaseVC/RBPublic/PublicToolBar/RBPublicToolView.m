@@ -32,6 +32,7 @@
 }
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     [self makeUI];
     [self.collectionView registerNib:[UINib nibWithNibName:IMGTOOLSCELL bundle:nil] forCellWithReuseIdentifier:IMGTOOLSCELL];
 }

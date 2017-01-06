@@ -22,5 +22,6 @@
 
 //RBNodeShowModel
 @property (nonatomic,copy)NSString * likes;
+@property (nonatomic,copy)NSString * user_type;
 
 @end
