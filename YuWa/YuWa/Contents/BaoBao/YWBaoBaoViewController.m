@@ -216,7 +216,9 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
-        [self showHUDWithStr:@"本周次数已用光" withSuccess:NO];
+        if (responsObj[@"errorMessage"]&&[responsObj[@"errorMessage"] isEqualToString:@"本周抽奖次数已经用完"]) {
+            [self showHUDWithStr:@"本周抽奖次数已经用完" withSuccess:NO];
+        }
     }];
 }
 
