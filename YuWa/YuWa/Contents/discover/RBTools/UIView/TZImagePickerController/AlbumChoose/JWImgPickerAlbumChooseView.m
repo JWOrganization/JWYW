@@ -11,6 +11,7 @@
 @implementation JWImgPickerAlbumChooseView
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]init];
     [tap addTarget:self action:@selector(tapAction)];
     [self addGestureRecognizer:tap];
@@ -29,6 +30,8 @@
             self.typeTableV.choosedTypeBlock = ^(NSString * index,NSString *chooseStr){
                 weakSelf.chooseTypeBlock(index);
                 weakSelf.nameLabel.text = chooseStr;
+                weakSelf.nameLabelWidth.constant = [JWTools labelWidthWithLabel:weakSelf.nameLabel];
+                [weakSelf setNeedsLayout];
                 [weakSelf tapAction];
             };
             UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]init];
