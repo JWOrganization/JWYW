@@ -257,8 +257,14 @@
         UILabel*per_capita=[cell viewWithTag:3];
         per_capita.text=[NSString stringWithFormat:@"人均：￥%@",self.mainModel.per_capita];
 //        //优惠买单
-//        UIButton*disBuy=[cell viewWithTag:4];
-        
+        UIButton*disBuy=[cell viewWithTag:4];
+        CGFloat aa=[self.mainModel.discount floatValue];
+        if (aa>=1) {
+            disBuy.enabled=NO;
+            [disBuy setTitle:@"不能购买" forState:UIControlStateDisabled];
+        }else{
+            disBuy.enabled=YES;
+        }
         
 //        //月消费人次
         UILabel*monthPay=[cell viewWithTag:5];
@@ -1053,6 +1059,24 @@
     if (!_topView) {
         _topView=[[NSBundle mainBundle]loadNibNamed:@"PaytheBillView" owner:nil options:nil].firstObject;
         _topView.frame=CGRectMake(0, 64, kScreen_Width, 65);
+        
+        UILabel*titLabel=[_topView viewWithTag:1];
+        UIButton*button=[_topView viewWithTag:2];
+        
+        CGFloat moneyF=[self.mainModel.discount floatValue];
+        if (moneyF>=1) {
+            button.enabled=NO;
+            titLabel.text=@"不打折";
+            [button setTitle:@"不能购买" forState:UIControlStateDisabled];
+            
+        }else{
+            button.enabled=YES;
+            NSString*zhe=[self.mainModel.discount substringFromIndex:2];
+            titLabel.text=[NSString stringWithFormat:@"雨娃闪付立享%@折",zhe];
+            [button setTitle:@"优惠买单" forState:UIControlStateNormal];
+        }
+        
+        
         WEAKSELF;
         _topView.touchPayBlock=^(){
             [weakSelf gotoPay];
