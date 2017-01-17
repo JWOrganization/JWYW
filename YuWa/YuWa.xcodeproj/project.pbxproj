@@ -723,7 +723,6 @@
 		B38B2C8A1D8FAC5A004D5256 /* YuWaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C891D8FAC5A004D5256 /* YuWaTests.m */; };
 		B38B2C951D8FAC5A004D5256 /* YuWaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2C941D8FAC5A004D5256 /* YuWaUITests.m */; };
 		B38B2DE61D8FACD8004D5256 /* UIImage+imageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CCA1D8FACD8004D5256 /* UIImage+imageColor.m */; };
-		B38B2DE71D8FACD8004D5256 /* GifBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B38B2CCC1D8FACD8004D5256 /* GifBundle.bundle */; };
 		B38B2DE81D8FACD8004D5256 /* HUDFailureShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CCE1D8FACD8004D5256 /* HUDFailureShowView.m */; };
 		B38B2DE91D8FACD8004D5256 /* HUDFailureShowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38B2CCF1D8FACD8004D5256 /* HUDFailureShowView.xib */; };
 		B38B2DEA1D8FACD8004D5256 /* HUDLoadingShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B38B2CD11D8FACD8004D5256 /* HUDLoadingShowView.m */; };
@@ -2383,7 +2382,6 @@
 		B38B2C961D8FAC5A004D5256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B38B2CC91D8FACD8004D5256 /* UIImage+imageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+imageColor.h"; sourceTree = "<group>"; };
 		B38B2CCA1D8FACD8004D5256 /* UIImage+imageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+imageColor.m"; sourceTree = "<group>"; };
-		B38B2CCC1D8FACD8004D5256 /* GifBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GifBundle.bundle; sourceTree = "<group>"; };
 		B38B2CCD1D8FACD8004D5256 /* HUDFailureShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFailureShowView.h; sourceTree = "<group>"; };
 		B38B2CCE1D8FACD8004D5256 /* HUDFailureShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFailureShowView.m; sourceTree = "<group>"; };
 		B38B2CCF1D8FACD8004D5256 /* HUDFailureShowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HUDFailureShowView.xib; sourceTree = "<group>"; };
@@ -5216,7 +5214,6 @@
 		B38B2CCB1D8FACD8004D5256 /* custom LoadingShow */ = {
 			isa = PBXGroup;
 			children = (
-				B38B2CCC1D8FACD8004D5256 /* GifBundle.bundle */,
 				B38B2CCD1D8FACD8004D5256 /* HUDFailureShowView.h */,
 				B38B2CCE1D8FACD8004D5256 /* HUDFailureShowView.m */,
 				B38B2CCF1D8FACD8004D5256 /* HUDFailureShowView.xib */,
@@ -8722,7 +8719,6 @@
 				C1F7BDAA1DB1C94500CCAF96 /* ShowShoppingTableViewCell.xib in Resources */,
 				B3D219141DB0985100D661F5 /* ShareSDK.bundle in Resources */,
 				B37E56E21E0CD8CD000977F6 /* 1baobaoLVUP21@2x.jpg in Resources */,
-				B38B2DE71D8FACD8004D5256 /* GifBundle.bundle in Resources */,
 				C13019E61DB20B2400E24C88 /* 运动健身.png in Resources */,
 				B3FEB9FF1D9B6465003CDEF2 /* YWMessageTableViewCell.xib in Resources */,
 				B3D2190D1DB0985100D661F5 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
