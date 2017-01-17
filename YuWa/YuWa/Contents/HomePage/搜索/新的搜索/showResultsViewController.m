@@ -113,17 +113,26 @@
     
     //分类
     UILabel*categoryLabel=[cell viewWithTag:4];
-    categoryLabel.text=model.catname;   //model.catname
+    NSArray*array=model.tag_name;
+    NSString*arrayStr=[array componentsJoinedByString:@" "];
+    categoryLabel.text=[NSString stringWithFormat:@"%@ %@",model.catname,arrayStr];   //model.catname
     
-    //距离自己的位置多远
-    UILabel*nearLabel=[cell viewWithTag:5];
-    nearLabel.text=model.company_near;
+    //店铺所在的商圈
+    UILabel*shopLocLabel=[cell viewWithTag:6];
+    shopLocLabel.text=model.company_near;
+
     
-    //折图片
-    //        UIImageView*imageZhe=[cell viewWithTag:6];
+    
     //这下面的文字
     UILabel*zheLabel=[cell viewWithTag:7];
-    zheLabel.text=[NSString stringWithFormat:@"%@折，闪付立享",model.discount];
+    NSString*zheNum=[model.discount substringFromIndex:2];
+    zheLabel.text=[NSString stringWithFormat:@"%@折，闪付立享",zheNum];
+    
+    CGFloat num=[model.discount floatValue];
+    if (num>=1) {
+        zheLabel.text=@"不打折";
+    }
+
     
     //特图片
     UIImageView*imageTe=[cell viewWithTag:8];

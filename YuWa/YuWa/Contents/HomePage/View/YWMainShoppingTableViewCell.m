@@ -64,8 +64,15 @@
             [self.contentView addSubview:specailLabel];
             [self.saveAllLabel addObject:specailLabel];
             NSDictionary*dict=specail[i];
-            specailLabel.text=[NSString stringWithFormat:@"%@折，%@",dict[@"rebate"],dict[@"title"]];
-            
+           NSString*zheNum=[dict[@"rebate"] substringFromIndex:2];
+           specailLabel.text=[NSString stringWithFormat:@"%@折,闪付特享",zheNum];
+           
+           CGFloat numF=[dict[@"rebate"] floatValue];
+           if (numF>=1) {
+                specailLabel.text=@"无特惠";
+           }
+//            specailLabel.text=[NSString stringWithFormat:@"%@折，%@",dict[@"rebate"],dict[@"title"]];
+           
             
             top=top+18+10;
         }

@@ -177,9 +177,14 @@
         cell.selectionStyle=NO;
         
         UILabel*zhekouLabel=[cell viewWithTag:2];
-    
-//        CGFloat zhe=self.shopZhekou*100;
-        NSString*zheStr=[NSString stringWithFormat:@" %.2f折",self.shopZhekou];
+        NSString*strZhekou=[NSString stringWithFormat:@"%.2f",self.shopZhekou];
+        NSString* zhe=[strZhekou substringFromIndex:2];
+        NSString*zheStr=[NSString stringWithFormat:@" %@折",zhe];
+        if (self.shopZhekou>=1) {
+            zheStr=@"不打折";
+            
+        }
+        
         NSString*firstStr=@"雨娃支付立享";
         NSMutableAttributedString*aa=[[NSMutableAttributedString alloc]initWithString:firstStr attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
         NSMutableAttributedString*bb=[[NSMutableAttributedString alloc]initWithString:zheStr attributes:@{NSForegroundColorAttributeName:CpriceColor}];

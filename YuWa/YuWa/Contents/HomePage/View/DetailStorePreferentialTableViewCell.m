@@ -150,10 +150,16 @@
 
 -(void)setDefultZhe:(NSString *)defultZhe{
     _defultZhe=defultZhe;
-    CGFloat cgNum=[defultZhe floatValue];
-    CGFloat cgRealNum=cgNum*100;
+    NSString*number=[defultZhe substringFromIndex:2];
     
-    self.defaultZheLabel.text=[NSString stringWithFormat:@"闪付立享%.0f折",cgRealNum];
+    
+    self.defaultZheLabel.text=[NSString stringWithFormat:@"闪付立享%@折",number];
+    
+    
+    CGFloat num=[defultZhe floatValue];
+    if (num>=1) {
+        self.defaultZheLabel.text=@"不打折";
+    }
     
 }
 
