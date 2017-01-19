@@ -8003,7 +8003,7 @@
 					B38B2C6B1D8FAC5A004D5256 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = CL7JKSS9Z7;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -9692,7 +9692,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "45406b64-eedd-43b9-bdc3-55577ebacac6";
+				PROVISIONING_PROFILE_SPECIFIER = YvWaDevelop;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -9705,7 +9706,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = CL7JKSS9Z7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -9740,7 +9741,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "27a5be77-59f3-40a0-b291-6aa239d8255d";
+				PROVISIONING_PROFILE_SPECIFIER = YvWaDistribution;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
