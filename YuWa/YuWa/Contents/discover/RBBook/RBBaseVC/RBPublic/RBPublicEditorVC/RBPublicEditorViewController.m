@@ -19,6 +19,7 @@
 @property (nonatomic,strong)UILongPressGestureRecognizer * longPress;//collectionCell move
 @property (nonatomic,strong)NSMutableArray * picUrlArr;
 @property (nonatomic,assign)NSInteger picUpCount;
+@property (nonatomic,strong)UIButton * publishBtn;
 
 @end
 
@@ -96,11 +97,11 @@
     };
     [self.view addSubview:self.scrollView];
     
-    UIButton * publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f)];
-    [publishBtn setTitle:@"发布 ➔" forState:UIControlStateNormal];
-    publishBtn.backgroundColor = CNaviColor;
-    [publishBtn addTarget:self action:@selector(publishBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:publishBtn];
+    self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0.f, kScreen_Height - 44.f, kScreen_Width, 44.f)];
+    [self.publishBtn setTitle:@"发布 ➔" forState:UIControlStateNormal];
+    self.publishBtn.backgroundColor = CNaviColor;
+    [self.publishBtn addTarget:self action:@selector(publishBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.publishBtn];
     
     self.commentToolsView.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
     [self.commentToolsView removeFromSuperview];
@@ -170,6 +171,7 @@
 }
 
 - (void)publishBtnAction{//数据发布
+    [self.publishBtn setUserInteractionEnabled:NO];
     [self requestPublishNodeWithPhoto];
 }
 
@@ -314,6 +316,7 @@
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code is %@",responsObj);
         [self showHUDWithStr:responsObj[@"msg"] withSuccess:YES];
+        [self.publishBtn setUserInteractionEnabled:YES];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController dismissViewControllerAnimated:YES completion:^{
                 [RBPublishSession clearPublish];
@@ -322,15 +325,18 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
+        [self.publishBtn setUserInteractionEnabled:YES];
     }];
 }
 
 - (void)requestPublishNodeWithPhoto{
     if ([self.scrollView.nameTextField.text isEqualToString:@""]) {
         [self showHUDWithStr:@"请输入标题" withSuccess:NO];
+        [self.publishBtn setUserInteractionEnabled:YES];
         return;
     }else if ([self.scrollView.conTextView.text isEqualToString:@""]){
         [self showHUDWithStr:@"请输入内容" withSuccess:NO];
+        [self.publishBtn setUserInteractionEnabled:YES];
         return;
     }
     
@@ -356,6 +362,7 @@
     } failur:^(id errorData, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",error);
+        [self.publishBtn setUserInteractionEnabled:YES];
     } withPhoto:UIImagePNGRepresentation(model.origionalImage)];
     
 }
