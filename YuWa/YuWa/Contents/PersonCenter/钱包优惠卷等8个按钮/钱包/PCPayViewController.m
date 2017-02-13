@@ -17,12 +17,19 @@
 //#import "DataSigner.h"
 #import <AlipaySDK/AlipaySDK.h>
 
+//applePay
+#import "UPAPayPluginDelegate.h"
+#include <sys/sysctl.h>
+#include <net/if.h>
+#include <net/if_dl.h>
+#import "UPAPayPlugin.h"
+#import <PassKit/PassKit.h>
 
 
 #define CELL3  @"AccountMoneyTableViewCell"
 
 
-@interface PCPayViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface PCPayViewController ()<UITableViewDataSource,UITableViewDelegate,UPAPayPluginDelegate>
 
 @property(nonatomic,strong)UITableView*tableView;
 @property(nonatomic,strong)UILabel*needPayLabel;  //需要支付的钱
@@ -88,7 +95,7 @@
     if (section==0) {
         return 1;
     }else{
-        return 2;
+        return 3;
     }
     
    
@@ -151,6 +158,20 @@
         cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsGetImageFromCurrentImageContext();
         
+    }else if (indexPath.section==1&&indexPath.row==2){
+        
+        cell.textLabel.text=@"apple pay";
+        
+        //2、调整大小
+        UIImage *image = [UIImage imageNamed:@"applePay"];
+        CGSize imageSize = CGSizeMake(30, 30);
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+        CGRect imageRect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
+        [image drawInRect:imageRect];
+        cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsGetImageFromCurrentImageContext();
+
+        
     }
     
     
@@ -162,6 +183,8 @@
     if (indexPath.section==1&&indexPath.row==0) {
 //        [self payWith:@"weixin"];
         [JRToast showWithText:@"暂未开放，敬请期待"];
+        
+#warning 微信支付审核没有通过  原因微信那边 需要店铺入驻的协议  否则不给过   所以微信支付没有做
         
 //        //微信支付
 //        NSString *res = [WXApiRequestHandler jumpToBizPay];
@@ -180,6 +203,11 @@
         
 //        //支付宝支付
 //        [self doAlipayPay];
+        
+    }else if (indexPath.section==1&&indexPath.row==2){
+        //apple pay
+        MyLog(@"applePay");
+        [self makeApplePay];
         
     }
     
@@ -278,6 +306,60 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark  --  applePay
+-(void)makeApplePay{
+#warning   先需要调 接口  来获取tn的信息         这个 01测试模式      00是正式模式     这里需要后台对接  后台没对接
+    NSString*tnMode=@"01";
+     NSString* tn = @"798394209868293893400";
+    
+    if([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks:@[PKPaymentNetworkChinaUnionPay]])
+    {
+        
+        [UPAPayPlugin startPay:tn mode:tnMode viewController:self delegate:self andAPMechantID:@"merchant.cn.duruikeji.YuWa"];
+    }else{
+        [JRToast showWithText:@"您的系统不支持"];
+    }
+
+    
+    
+    
+}
+
+#pragma mark -
+#pragma mark 响应控件返回的支付结果
+#pragma mark -
+- (void)UPAPayPluginResult:(UPPayResult *)result
+{
+    if(result.paymentResultStatus == UPPaymentResultStatusSuccess) {
+        NSString *otherInfo = result.otherInfo?result.otherInfo:@"";
+        NSString *successInfo = [NSString stringWithFormat:@"支付成功\n%@",otherInfo];
+     
+        [JRToast showWithText:successInfo];
+        
+    }
+    else if(result.paymentResultStatus == UPPaymentResultStatusCancel){
+        
+       
+         [JRToast showWithText:@"支付取消"];
+    }
+    else if (result.paymentResultStatus == UPPaymentResultStatusFailure) {
+        
+        NSString *errorInfo = [NSString stringWithFormat:@"%@",result.errorDescription];
+     
+        [JRToast showWithText:errorInfo];
+    }
+    else if (result.paymentResultStatus == UPPaymentResultStatusUnknownCancel)  {
+        
+        //TODO UPPAymentResultStatusUnknowCancel表示发起支付以后用户取消，导致支付状态不确认，需要查询商户后台确认真实的支付结果
+        NSString *errorInfo = [NSString stringWithFormat:@"支付过程中用户取消了，请查询后台确认订单"];
+    
+        [JRToast showWithText:errorInfo];
+        
+    }
+}
+
+
 
 #pragma mark --  支付宝支付
 - (void)doAlipayPay:(NSString*)orderString

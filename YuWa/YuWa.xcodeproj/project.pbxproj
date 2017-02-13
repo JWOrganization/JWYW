@@ -1270,6 +1270,9 @@
 		C1C148191DE837E4001FCBC3 /* PointMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C148181DE837E4001FCBC3 /* PointMoneyViewController.m */; };
 		C1C1481B1DE838A0001FCBC3 /* pointMoneyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C1481A1DE838A0001FCBC3 /* pointMoneyHeaderView.xib */; };
 		C1C1481E1DE83B44001FCBC3 /* pointMoneyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C1481D1DE83B44001FCBC3 /* pointMoneyHeaderView.m */; };
+		C1DB58F31E51A8C5004B386F /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DB58F21E51A8C5004B386F /* PassKit.framework */; };
+		C1DB58FA1E51AC06004B386F /* libUPAPayPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DB58F91E51AC06004B386F /* libUPAPayPlugin.a */; };
+		C1DB58FC1E51B4EA004B386F /* applePay.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DB58FB1E51B4EA004B386F /* applePay.png */; };
 		C1E5B74F1DE3211B00EB1F85 /* qiang.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5B74E1DE3211B00EB1F85 /* qiang.png */; };
 		C1E5B7551DE41A7E00EB1F85 /* otherPersonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5B7541DE41A7E00EB1F85 /* otherPersonImage.png */; };
 		C1E5B7581DE41C7E00EB1F85 /* OtherPersonCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E5B7571DE41C7E00EB1F85 /* OtherPersonCenterModel.m */; };
@@ -3262,6 +3265,11 @@
 		C1C1481A1DE838A0001FCBC3 /* pointMoneyHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pointMoneyHeaderView.xib; sourceTree = "<group>"; };
 		C1C1481C1DE83B44001FCBC3 /* pointMoneyHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pointMoneyHeaderView.h; sourceTree = "<group>"; };
 		C1C1481D1DE83B44001FCBC3 /* pointMoneyHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pointMoneyHeaderView.m; sourceTree = "<group>"; };
+		C1DB58F21E51A8C5004B386F /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		C1DB58F61E51AC06004B386F /* UPAPayPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPAPayPlugin.h; sourceTree = "<group>"; };
+		C1DB58F71E51AC06004B386F /* UPAPayPluginDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPAPayPluginDelegate.h; sourceTree = "<group>"; };
+		C1DB58F91E51AC06004B386F /* libUPAPayPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUPAPayPlugin.a; sourceTree = "<group>"; };
+		C1DB58FB1E51B4EA004B386F /* applePay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = applePay.png; sourceTree = "<group>"; };
 		C1E5B74E1DE3211B00EB1F85 /* qiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qiang.png; sourceTree = "<group>"; };
 		C1E5B7541DE41A7E00EB1F85 /* otherPersonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otherPersonImage.png; sourceTree = "<group>"; };
 		C1E5B7561DE41C7E00EB1F85 /* OtherPersonCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherPersonCenterModel.h; sourceTree = "<group>"; };
@@ -3510,15 +3518,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1392DD21DC042EC002418EF /* CoreMotion.framework in Frameworks */,
+				B36C7F1C1D9D490700B022E0 /* SystemConfiguration.framework in Frameworks */,
+				C1DB58F31E51A8C5004B386F /* PassKit.framework in Frameworks */,
 				B36C7F161D9D48EA00B022E0 /* CFNetwork.framework in Frameworks */,
+				C1392DD21DC042EC002418EF /* CoreMotion.framework in Frameworks */,
 				B36C7F201D9D491F00B022E0 /* Foundation.framework in Frameworks */,
 				B36C7F221D9D492800B022E0 /* UIKit.framework in Frameworks */,
 				B36C7F1E1D9D491200B022E0 /* CoreGraphics.framework in Frameworks */,
 				C1392DD01DC042A5002418EF /* CoreText.framework in Frameworks */,
 				C13019B91DB1FD8D00E24C88 /* QuartzCore.framework in Frameworks */,
 				B36C7F1A1D9D490000B022E0 /* CoreTelephony.framework in Frameworks */,
-				B36C7F1C1D9D490700B022E0 /* SystemConfiguration.framework in Frameworks */,
 				B33A1BFB1D9A46E90092CB12 /* libz.tbd in Frameworks */,
 				B33A1BF91D9A46DC0092CB12 /* libc++.tbd in Frameworks */,
 				B33A1BF31D9A46B90092CB12 /* AVFoundation.framework in Frameworks */,
@@ -3535,6 +3544,7 @@
 				B32975D11DAE1DB1002CA488 /* Photos.framework in Frameworks */,
 				B3D2190C1DB0985100D661F5 /* TencentOpenAPI.framework in Frameworks */,
 				B36C7F241D9D492F00B022E0 /* Security.framework in Frameworks */,
+				C1DB58FA1E51AC06004B386F /* libUPAPayPlugin.a in Frameworks */,
 				B3D219131DB0985100D661F5 /* MOBFoundation.framework in Frameworks */,
 				B3D219091DB0985100D661F5 /* ShareSDKExtension.framework in Frameworks */,
 				B36C7F181D9D48F600B022E0 /* CoreFoundation.framework in Frameworks */,
@@ -4062,6 +4072,7 @@
 		B33A1A6A1D9A45EF0092CB12 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				C1DB58F41E51AC06004B386F /* applePaySDK */,
 				C1392DCA1DC0423C002418EF /* aliPay */,
 				C1392DBB1DBF505D002418EF /* weChatSDK */,
 				C13019631DB1FD2E00E24C88 /* ZBar */,
@@ -7224,6 +7235,32 @@
 			path = "店铺详情Model";
 			sourceTree = "<group>";
 		};
+		C1DB58F41E51AC06004B386F /* applePaySDK */ = {
+			isa = PBXGroup;
+			children = (
+				C1DB58F51E51AC06004B386F /* inc */,
+				C1DB58F81E51AC06004B386F /* libs */,
+			);
+			path = applePaySDK;
+			sourceTree = "<group>";
+		};
+		C1DB58F51E51AC06004B386F /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				C1DB58F61E51AC06004B386F /* UPAPayPlugin.h */,
+				C1DB58F71E51AC06004B386F /* UPAPayPluginDelegate.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		C1DB58F81E51AC06004B386F /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				C1DB58F91E51AC06004B386F /* libUPAPayPlugin.a */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
 		C1E5B7751DE549FC00EB1F85 /* MHDatePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -7774,6 +7811,7 @@
 				C1F7BEF41DB1CA0700CCAF96 /* home_pic@2x.png */,
 				C1F7BEF51DB1CA0700CCAF96 /* wechatPay.png */,
 				C1F7BEF61DB1CA0700CCAF96 /* zhifubaoPay.png */,
+				C1DB58FB1E51B4EA004B386F /* applePay.png */,
 				C1F7BEF71DB1CA0700CCAF96 /* 个人中心八张图 */,
 				C1F7BF001DB1CA0700CCAF96 /* 临时图 */,
 				C1F7BF011DB1CA0700CCAF96 /* 钻石.png */,
@@ -7898,6 +7936,7 @@
 		EDD1BC4F3FB283CECFE57A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1DB58F21E51A8C5004B386F /* PassKit.framework */,
 				C1392DD11DC042EC002418EF /* CoreMotion.framework */,
 				C1392DCF1DC042A5002418EF /* CoreText.framework */,
 				C13019BA1DB1FD9A00E24C88 /* CoreVideo.framework */,
@@ -8003,12 +8042,18 @@
 					B38B2C6B1D8FAC5A004D5256 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = CL7JKSS9Z7;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
 								enabled = 1;
 							};
 						};
@@ -8725,6 +8770,7 @@
 				B37E57A61E0CD8CD000977F6 /* 4baobaoLVUP36@2x.jpg in Resources */,
 				B317AED81DE5850D0093C511 /* 4baobaoBG12@2x.jpg in Resources */,
 				B37E57531E0CD8CD000977F6 /* 3baobaoLVUP15@2x.jpg in Resources */,
+				C1DB58FC1E51B4EA004B386F /* applePay.png in Resources */,
 				B38B2F531D8FC83A004D5256 /* 地点城市.json in Resources */,
 				C135A0EF1DDCAC86002B78A5 /* home_04.png in Resources */,
 				B317AEB61DE5850D0093C511 /* 3baobaoBG36@2x.jpg in Resources */,
@@ -9658,7 +9704,7 @@
 				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CL7JKSS9Z7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9689,11 +9735,12 @@
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/ZBar",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/weChatSDK",
+					"$(PROJECT_DIR)/YuWa/Foundation/SDK/applePaySDK/libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "45406b64-eedd-43b9-bdc3-55577ebacac6";
-				PROVISIONING_PROFILE_SPECIFIER = YvWaDevelop;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -9706,8 +9753,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = CL7JKSS9Z7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9738,11 +9785,12 @@
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/ZBar",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/weChatSDK",
+					"$(PROJECT_DIR)/YuWa/Foundation/SDK/applePaySDK/libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27a5be77-59f3-40a0-b291-6aa239d8255d";
-				PROVISIONING_PROFILE_SPECIFIER = YvWaDistribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

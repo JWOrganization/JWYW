@@ -13,6 +13,7 @@
 #import "JWTools.h"
 
 #import "YWShowGetMoneyViewController.h"
+#import "SignUserViewController.h"      //锁定会员
 
 #define CELL0    @"BusinessMoneyTableViewCell"
 #define CELL1    @"IntroduceMoneyTableViewCell"
@@ -55,7 +56,7 @@
     if (section==0) {
         return 1;
     }else{
-        return 3;
+        return 4;
     }
    
 }
@@ -118,6 +119,8 @@
             titleLabel.text=@"直接介绍分红详情";
         }else if (indexPath.row==2){
             titleLabel.text=@"间接介绍分红详情";
+        }else if (indexPath.row==3){
+            titleLabel.text=@"我的用户";
         }
         return cell;
     }
@@ -150,7 +153,12 @@
         [self.navigationController pushViewController:vc animated:YES];
 
         
+    }else if (indexPath.section==1&&indexPath.row==3){
+       //我的用户
+        SignUserViewController*vc=[[SignUserViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
+
     
 }
 
