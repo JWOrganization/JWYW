@@ -95,9 +95,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>请开启以搜索附近商家</string>
+	<string>开启以搜索附近商家</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>请开启以搜索附近商家</string>
+	<string>开启以搜索附近商家</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
