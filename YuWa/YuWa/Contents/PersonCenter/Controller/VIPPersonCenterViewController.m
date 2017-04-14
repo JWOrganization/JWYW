@@ -236,9 +236,9 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==2) {
         //4个按钮
-        NSString*aa=[NSString stringWithFormat:@"笔记*%@",[UserSession instance].note_nums];
-        NSString*bb=[NSString stringWithFormat:@"专辑*%@",[UserSession instance].album_nums];
-        NSString*cc=[NSString stringWithFormat:@"评论*%@",[UserSession instance].comment_nums];
+        NSString*aa= @"笔记";
+        NSString*bb= @"专辑";
+        NSString*cc= @"评论";
         
         NSArray*titleArray=@[aa,bb,cc];
      

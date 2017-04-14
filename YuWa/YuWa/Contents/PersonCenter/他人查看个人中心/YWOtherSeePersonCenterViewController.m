@@ -210,9 +210,9 @@
     if (section==1) {
         //4个按钮
     
-        NSString*aa=[NSString stringWithFormat:@"笔记*%@",self.HeaderModel.note_nums];
-        NSString*bb=[NSString stringWithFormat:@"专辑*%@",self.HeaderModel.album_nums];
-        NSString*cc=[NSString stringWithFormat:@"评论*%@",self.HeaderModel.comment_nums];
+        NSString*aa= @"笔记";
+        NSString*bb= @"专辑";
+        NSString*cc= @"评论";
         NSMutableArray*titleArray=[NSMutableArray array];
         [titleArray addObject:aa];
         [titleArray addObject:bb];

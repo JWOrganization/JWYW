@@ -491,6 +491,12 @@
         //分类
         UILabel*categoryLabel=[cell viewWithTag:4];
         NSArray*array=model.tag_name;
+//        if (!model.catname) {
+            model.catname = @"";
+//            if (model.tag_name.count>0) {
+//                model.catname = model.tag_name[0];
+//            }
+//        }
         NSString*arrayStr=[array componentsJoinedByString:@" "];
         categoryLabel.text=[NSString stringWithFormat:@"%@ %@",model.catname,arrayStr];   //model.catname
         

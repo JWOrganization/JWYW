@@ -77,7 +77,13 @@
     
     HPRecommendShopModel*model=self.maMallDatas[indexPath.row];
     
-    
+    //        if (!model.catname) {
+    model.catname = @"";
+    //            if (model.tag_name.count>0) {
+    //                model.catname = model.tag_name[0];
+    //            }
+    //        }
+
     
     //图片
     UIImageView*photo=[cell viewWithTag:1];

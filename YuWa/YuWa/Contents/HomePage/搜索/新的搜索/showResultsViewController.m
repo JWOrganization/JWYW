@@ -59,7 +59,13 @@
     
     HPRecommendShopModel*model=self.ModelArray[indexPath.section];
     
-    
+    //        if (!model.catname) {
+    model.catname = @"";
+    //            if (model.tag_name.count>0) {
+    //                model.catname = model.tag_name[0];
+    //            }
+    //        }
+
     //图片
     UIImageView*photo=[cell viewWithTag:1];
     [photo sd_setImageWithURL:[NSURL URLWithString:model.company_img] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

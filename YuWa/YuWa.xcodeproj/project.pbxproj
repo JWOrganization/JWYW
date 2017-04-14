@@ -9704,7 +9704,7 @@
 				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CL7JKSS9Z7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9737,7 +9737,7 @@
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/weChatSDK",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/applePaySDK/libs",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.yongwenhui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -9754,7 +9754,7 @@
 				CODE_SIGN_ENTITLEMENTS = YuWa/YuWa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CL7JKSS9Z7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9787,7 +9787,7 @@
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/weChatSDK",
 					"$(PROJECT_DIR)/YuWa/Foundation/SDK/applePaySDK/libs",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.YuWa;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.duruikeji.yongwenhui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

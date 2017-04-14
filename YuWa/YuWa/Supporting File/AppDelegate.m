@@ -40,14 +40,14 @@
     [self registerShareSDK];//ShareSDK配置
     [self registerEMClientWithApplication:application withOptions:(NSDictionary *)launchOptions];//registerEMClient
     [self registerJPushWithOptions:launchOptions];
-    
+    //cn.duruikeji.yongwenhui    cn.duruikeji.YuWa
     
     [UserSession instance];
     [YWLocation shareLocation];
     
 #pragma mark  --微信支付
-    //向微信注册wxd930ea5d5a258f4f
-    [WXApi registerApp:@"wxb4ba3c02aa476ea1" withDescription:@"demo 2.0"];
+    //向微信注册wxb4ba3c02aa476ea1
+    [WXApi registerApp:@"wx79c6b799fa438d81" withDescription:@"demo 2.0"];
     
     
     
@@ -124,18 +124,32 @@
               
               switch (platformType){
                   case SSDKPlatformTypeSinaWeibo:
-                      [appInfo SSDKSetupSinaWeiboByAppKey:@"2515778668" appSecret:@"918c341ba8373fc356e1f308c6ee9305" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];
+                      [appInfo SSDKSetupSinaWeiboByAppKey:@"199545722" appSecret:@"5bec427e8680af6f3f9e7bfdb9ceb3c4" redirectUri:@"http://sns.whalecloud.com/sina2/callback" authType:SSDKAuthTypeBoth];
                       break;
                   case SSDKPlatformTypeQQ:
-                      [appInfo SSDKSetupQQByAppId:@"101358926" appKey:@"4156927df9c4853af6f383f0e78bd9e8" authType:SSDKAuthTypeBoth];
+                      [appInfo SSDKSetupQQByAppId:@"1105312092" appKey:@"7txdjRcPvCoeLCpg" authType:SSDKAuthTypeBoth];
                       break;
                       
                   case SSDKPlatformTypeWechat:
-                      [appInfo SSDKSetupWeChatByAppId:@"wxe1688beb5d248457" appSecret:@"0a8cc210c9d05f4841ddcf9815f1d491"];
+                      [appInfo SSDKSetupWeChatByAppId:@"wx79c6b799fa438d81" appSecret:@"2911fb763ffa7dea4d160fb148800ee4"];
                       break;
                   default:
                       break;
               }
+//              switch (platformType){
+//                  case SSDKPlatformTypeSinaWeibo:
+//                      [appInfo SSDKSetupSinaWeiboByAppKey:@"2515778668" appSecret:@"918c341ba8373fc356e1f308c6ee9305" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];
+//                      break;
+//                  case SSDKPlatformTypeQQ:
+//                      [appInfo SSDKSetupQQByAppId:@"101358926" appKey:@"4156927df9c4853af6f383f0e78bd9e8" authType:SSDKAuthTypeBoth];
+//                      break;
+//                      
+//                  case SSDKPlatformTypeWechat:
+//                      [appInfo SSDKSetupWeChatByAppId:@"wxe1688beb5d248457" appSecret:@"0a8cc210c9d05f4841ddcf9815f1d491"];
+//                      break;
+//                  default:
+//                      break;
+//              }
           }];
 }
 
