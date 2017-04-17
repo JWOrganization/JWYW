@@ -2,7 +2,7 @@
 //  YWAldumDetailModel.h
 //  YuWa
 //
-//  Created by Tian Wei You on 16/11/18.
+//  Created by 蒋威 on 16/11/18.
 //  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
 //
 
