@@ -2,8 +2,8 @@
 //  FontsAndColors.h
 //  GKAPP
 //
-//  Created by 黄佳峰 on 16/2/27.
-//  Copyright © 2016年 黄佳峰. All rights reserved.
+//  Created by 蒋威 on 16/2/27.
+//  Copyright © 2016年 蒋威. All rights reserved.
 //
 
 #ifndef FontsAndColors_h

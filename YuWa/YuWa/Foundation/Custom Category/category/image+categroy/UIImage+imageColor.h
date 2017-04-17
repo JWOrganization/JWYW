@@ -2,7 +2,7 @@
 //  UIImage+imageColor.h
 //  Vipxox
 //
-//  Created by 黄佳峰 on 16/8/1.
+//  Created by 蒋威 on 16/8/1.
 //  Copyright © 2016年 拥吻汇. All rights reserved.
 //
 

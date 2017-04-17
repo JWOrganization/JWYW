@@ -2,8 +2,8 @@
 //  MBHUD.h
 //  GKAPP
 //
-//  Created by 黄佳峰 on 15/11/11.
-//  Copyright © 2015年 黄佳峰. All rights reserved.
+//  Created by 蒋威 on 15/11/11.
+//  Copyright © 2015年 蒋威. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
