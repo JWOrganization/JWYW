@@ -266,7 +266,7 @@
 
 #pragma mark  --delegate
 -(void)segumentSelectionChange:(NSInteger)selection{
-    MyLog(@"%lu",selection);
+    MyLog(@"%zi",selection);
     switch (selection) {
         case 0:
             self.time=@"0";

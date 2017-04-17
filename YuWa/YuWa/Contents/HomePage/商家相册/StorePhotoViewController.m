@@ -94,7 +94,7 @@
 
 #pragma mark  --delegate
 -(void)segumentSelectionChange:(NSInteger)selection{
-    MyLog(@"%lu",selection);
+    MyLog(@"%zi",selection);
     
     [UIView animateWithDuration:0.5 animations:^{
         [self.scrollview setContentOffset:CGPointMake(selection*kScreen_Width, 0)];

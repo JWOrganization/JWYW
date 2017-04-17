@@ -222,7 +222,7 @@
 -(void)segumentSelectionChange:(NSInteger)selection{
     self.whichCategory=selection;
     [self.tableView reloadData];
-    MyLog(@"%lu",selection);
+    MyLog(@"%zi",selection);
     
 }
 

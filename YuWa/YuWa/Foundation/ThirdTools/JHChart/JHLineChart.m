@@ -188,8 +188,8 @@
         if (max<=_yLineNumber) {
             for (NSInteger i = 0; i<_yLineNumber; i++) {
                     
-                [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*1]];
-                [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*1]];
+                [arr addObject:[NSString stringWithFormat:@"%d",(i+1)*1]];
+                [minArr addObject:[NSString stringWithFormat:@"-%d",(i+1)*1]];
                 }
             }
             
@@ -198,16 +198,16 @@
                 
             for (NSInteger i = 0; i<_yLineNumber; i++) {
                     
-                    [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*2]];
-                [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*2]];
+                    [arr addObject:[NSString stringWithFormat:@"%d",(i+1)*2]];
+                [minArr addObject:[NSString stringWithFormat:@"-%d",(i+1)*2]];
 
                 }
                 
             }else if(max>_yLineNumber*2){
                 
                 for (NSInteger i = 0; i<max/_yLineNumber; i++) {
-                    [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*_yLineNumber]];
-                    [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*_yLineNumber]];
+                    [arr addObject:[NSString stringWithFormat:@"%d",(i+1)*_yLineNumber]];
+                    [minArr addObject:[NSString stringWithFormat:@"-%d",(i+1)*_yLineNumber]];
                 }
                 
             }

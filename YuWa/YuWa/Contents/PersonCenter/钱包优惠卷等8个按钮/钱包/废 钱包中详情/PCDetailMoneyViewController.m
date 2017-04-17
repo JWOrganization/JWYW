@@ -116,7 +116,7 @@
 #pragma mark  --Datas
 -(void)getDatas{
     //,HTTP_GETPAYDETAIL
-    NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS];
+    NSString*urlStr=[NSString stringWithFormat:@"%@",HTTP_ADDRESS];
     NSString*pagen=[NSString stringWithFormat:@"%d",self.pagen];
     NSString*pages=[NSString stringWithFormat:@"%d",self.pages];
     NSDictionary*params=@{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"type":@(self.payType),@"pagen":pagen,@"pages":pages};

@@ -92,7 +92,7 @@
     CommentModel*model=_allDatas[section];
 
     footView.touchBlock=^(){
-        MyLog(@"section=%lu",section);
+        MyLog(@"section=%zi",section);
         NSString*shopid=model.shop.id;
         if ([self.delegate respondsToSelector:@selector(DelegateToShop:)]) {
             [self.delegate DelegateToShop:shopid];
