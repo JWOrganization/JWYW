@@ -3,7 +3,7 @@
 //  YuWaShop
 //
 //  Created by 蒋威 on 16/12/8.
-//  Copyright © 2016年 Shanghai DuRui Information Technology Company. All rights reserved.
+//  Copyright © 2016年 蒋威. All rights reserved.
 //
 
 #import "JWHttpManger.h"
