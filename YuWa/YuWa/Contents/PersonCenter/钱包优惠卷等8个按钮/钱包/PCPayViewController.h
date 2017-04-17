@@ -11,7 +11,7 @@
 @interface PCPayViewController : UIViewController
 
 @property(nonatomic,assign)CGFloat blanceMoney;  //需要付多少钱
-@property(nonatomic,assign)CGFloat order_id;  //订单号
+@property(nonatomic,assign)NSInteger order_id;  //订单号
 
 
 

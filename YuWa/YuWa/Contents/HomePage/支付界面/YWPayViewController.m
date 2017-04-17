@@ -333,12 +333,13 @@
     HttpManager*manager=[[HttpManager alloc]init];
     [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
         MyLog(@"%@",data);
+        data = (NSDictionary *)data;
         NSNumber*number=data[@"errorCode"];
         NSString*errorCode=[NSString stringWithFormat:@"%@",number];
         if ([errorCode isEqualToString:@"0"]) {
-            
-            CGFloat shouldPay=[data[@"data"][@"pay_money"] floatValue];
-            CGFloat  order_id=[data[@"data"][@"order_id"] floatValue];
+            NSDictionary * dataDic = data[@"data"];
+            CGFloat shouldPay=[dataDic[@"data"][@"pay_money"] floatValue];
+            NSInteger  order_id=[dataDic[@"data"][@"order_id"] integerValue];
             PCPayViewController*vc=[[PCPayViewController alloc]init];
             vc.blanceMoney=shouldPay;
             vc.order_id=order_id;
