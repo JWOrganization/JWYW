@@ -163,6 +163,7 @@
     }
     
     NSMutableArray * sortArr = [NSMutableArray arrayWithCapacity:0];
+    __block NSInteger requestCount = 0;
                                   
     for (int i = 0; i < userlist.count; i++) {
         NSDictionary * pragram = @{@"device_id":[JWTools getUUID],@"token":[UserSession instance].token,@"user_id":@([UserSession instance].uid),@"other_username":userlist[i]};
@@ -172,7 +173,8 @@
             YWMessageAddressBookModel * model = [YWMessageAddressBookModel yy_modelWithDictionary:responsObj[@"data"]];
             model.hxID = userlist[i];//无昵称时设为环信ID
             [sortArr addObject:model];
-            if (sortArr.count >= userlist.count) {
+            requestCount++;
+            if (requestCount >= userlist.count) {
                 if (userlist.count == 1) {
                     [self.dataArr addObject:@[model]];
                     [self.keyArr addObject:[JWTools stringWithFirstCharactor:[model.nikeName substringToIndex:1]]];
@@ -184,15 +186,9 @@
         } failur:^(id responsObj, NSError *error) {
             MyLog(@"Regieter Code pragram is %@",pragram);
             MyLog(@"Regieter Code error is %@",responsObj);
-            if (sortArr.count>0) {
-                if (sortArr.count == 1) {
-                    YWMessageAddressBookModel * model = sortArr[0];
-                    [self.dataArr addObject:@[model]];
-                    [self.keyArr addObject:[JWTools stringWithFirstCharactor:[model.nikeName substringToIndex:1]]];
-                    [self reloadData];
-                }else{
-                    [self sortedArry:sortArr];
-                }
+            requestCount++;
+            if (requestCount >= userlist.count && sortArr.count>0) {
+                [self sortedArry:sortArr];
             }
         }];
     }
