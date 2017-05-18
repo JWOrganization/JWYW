@@ -267,7 +267,7 @@
         }
         
 //        //月消费人次
-        UILabel*monthPay=[cell viewWithTag:5];
+//        UILabel*monthPay=[cell viewWithTag:5];
 //        monthPay.text=[NSString stringWithFormat:@""];
         
         //地址

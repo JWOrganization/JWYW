@@ -11,6 +11,7 @@
 #import "HomeMenuCell.h"
 #import "ShoppingTableViewCell.h"
 #import "YWMainShoppingTableViewCell.h"
+#import "UserSession.h"
 
 #import "HPBannerModel.h"
 #import "HPCategoryModel.h"
@@ -26,10 +27,9 @@
 #import "H5LinkViewController.h"    //webView
 #import "YWMessageNotificationViewController.h"  //通知
 
+#import "YWLoginViewController.h"
 
 
-
-//
 #define CELL0   @"HomeMenuCell"
 #define CELL1   @"ShoppingTableViewCell"
 #define CELL2   @"YWMainShoppingTableViewCell"
@@ -42,8 +42,6 @@
 @property(nonatomic,strong)UIBarButtonItem*rightItem2;
 @property(nonatomic,strong)NSString *saveQRCode;   //保存二维码
 
-
-
 @property(nonatomic,strong)NSMutableArray*meunArrays;   //20个类
 @property (nonatomic,strong)CLGeocoder * geocoder;
 @property(nonatomic,strong)NSString*coordinatex;   //经度
@@ -51,7 +49,6 @@
 @property(nonatomic,assign)int pages;
 @property(nonatomic,assign)int pagen;
 
-//都是model
 @property(nonatomic,strong)NSMutableArray*mtModelArrBanner;
 @property(nonatomic,strong)NSMutableArray*mtModelArrCategory;
 @property(nonatomic,strong)NSMutableArray*mtModelArrTopShop;
@@ -65,7 +62,6 @@
     [super viewDidLoad];
     //得到坐标
     [self getLocalSubName];
-
     
     [self makeNaviBar];
     
@@ -75,8 +71,6 @@
     [self.tableView registerClass:[ShoppingTableViewCell class] forCellReuseIdentifier:CELL1];
     [self.tableView registerNib:[UINib nibWithNibName:CELL2 bundle:nil] forCellReuseIdentifier:CELL2];
     [self setUpMJRefresh];
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -84,7 +78,6 @@
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0 ]setAlpha:1];
     
 //    [self makeNoticeWithTime:0 withAlertBody:@"您已购买了xxxx"];
-    
 }
 
 #pragma mark  -- 得到地理位置
@@ -112,14 +105,11 @@
             }else{
                 //泉州市    就是没有定位
                 MyLog(@"11");
-                
-                
             }
         }];
     }];
     
 //     self.location.lat,self.location.lon
-    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -169,7 +159,7 @@
     
     UIButton*button2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [button2 setBackgroundImage:[UIImage imageNamed:@"page_lingdang"] forState:UIControlStateNormal];
-    [button2 addTarget:self action:@selector(touchLingdang) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(touchNoticationBtn) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem*rightItem2=[[UIBarButtonItem alloc]initWithCustomView:button2];
     
     self.navigationItem.leftBarButtonItem=leftItem;
@@ -186,22 +176,17 @@
     
     UILabel*showLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, 5, self.centerView.width-60, 20)];
     showLabel.font=[UIFont systemFontOfSize:14];
-    showLabel.textColor=CtitleColor;
+    showLabel.textColor=CsubtitleColor;
     showLabel.text=@"美食";
     [self.centerView addSubview:showLabel];
     
     UITapGestureRecognizer*tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchinPut)];
     [self.centerView addGestureRecognizer:tap];
     
-    
-    
     self.navigationItem.titleView=centerView;
     self.leftItem=leftItem;
     self.rightItem=rightItem;
     self.rightItem2=rightItem2;
-    
-    
-    
     
 }
 
@@ -224,12 +209,6 @@
     
     //立即刷新
     [self.tableView.mj_header beginRefreshing];
-    
-
-    
-    
- 
-    
 }
 
 
@@ -288,8 +267,6 @@
                 [self.mtModelArrRecommend addObject:model];
             }
             
-            
-            
             [self.tableView reloadData];
             
         }else{
@@ -301,8 +278,6 @@
             [self.tableView.mj_footer endRefreshing];
 
         });
-        
-        
         
     }];
     
@@ -334,8 +309,6 @@
             
         }
         
-        
-        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshing];
@@ -355,12 +328,9 @@
     
     NSString*urlStr=[NSString stringWithFormat:@"%@%@",HTTP_ADDRESS,HTTP_HOME_UPDATECOORDINATE];
     NSDictionary*params=@{@"device_id":[JWTools getUUID],@"coordinatex":self.coordinatex,@"coordinatey":self.coordinatey};
-   HttpManager*manager= [[HttpManager alloc]init];
-    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {
-        //更新成功
+    HttpManager*manager= [[HttpManager alloc]init];
+    [manager postDatasNoHudWithUrl:urlStr withParams:params compliation:^(id data, NSError *error) {//更新成功
         MyLog(@"%@",data);
-        
-        
     }];
   
 }
@@ -425,8 +395,6 @@
             [weakSelf.navigationController pushViewController:vc animated:YES];
             
         };
-            
-
         
         return cell;
         
@@ -446,7 +414,6 @@
         UILabel*titleLabel=[cell viewWithTag:2];
         titleLabel.text=model.company_name;
         
-//星星数量 -------------------------------------------------------
         CGFloat realZhengshu;
         CGFloat realXiaoshu;
         NSString*starNmuber=model.star;
@@ -481,7 +448,6 @@
             
             
         }
-//---------------------------------------------------------------------------
         
         
         //人均
@@ -519,8 +485,6 @@
         if (num>=1) {
               zheLabel.text=@"不打折";
         }
-        
-        
         
         //特图片
         UIImageView*imageTe=[cell viewWithTag:8];
@@ -617,8 +581,6 @@
         
         
         return view;
-
-        
     }
     
     return nil;
@@ -647,25 +609,14 @@
                 //这里吊接口 通过这 idd
                 [self getDatasWithIDD:idd];
                 
-                
                 return ;
             }else{
-            
-            
-            
             
             //不是我们的二维码
             NSString*strr=[NSString stringWithFormat:@"可能存在风险，是否打开此链接?\n %@",str];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:strr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"打开链接", nil];
             [alert show];
-
-            
-            //
-            
-            
             }
-            
-            
             
         }else{
            //扫描结果不成功
@@ -674,9 +625,6 @@
             [alert show];
         }
     }];
-    
-    
-    
     
     [self presentViewController:vc animated:YES completion:nil];
     
@@ -688,20 +636,18 @@
         H5LinkViewController *h5LinkVC = [[H5LinkViewController alloc]init];
         h5LinkVC.h5LinkString = self.saveQRCode;
         [self.navigationController pushViewController:h5LinkVC animated:YES];
-        
     }
-    
-    
 }
 
 
--(void)touchLingdang{
+-(void)touchNoticationBtn{
+    if (![UserSession instance].uid) {
+        YWLoginViewController * logionVC = [[YWLoginViewController alloc]init];
+        [self.navigationController pushViewController:logionVC animated:YES];
+        return;
+    }
     YWMessageNotificationViewController*vc=[[YWMessageNotificationViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-
-    
-   
-    
 }
 //点击输入框
 -(void)touchinPut{
@@ -717,18 +663,16 @@
 //    MyLog(@"%ld",(long)index);    //缺少id
     HPBannerModel*model=self.mtModelArrBanner[index];
     //这个就是id
-    model.url;
+//    model.url;
     
     YWShoppingDetailViewController*vc=[[YWShoppingDetailViewController alloc]init];
     vc.shop_id=model.url;
     [self.navigationController pushViewController:vc animated:YES];
-    
-    
 }
 
 
 -(void)DelegateToChooseCategory:(NSInteger)number andCategoryID:(NSString *)idd{
-    MyLog(@"aaa%lu,bbb%@",number,idd);
+    MyLog(@"aaa%zi,bbb%@",number,idd);
     if (number==1) {
         //电影
         
@@ -745,11 +689,7 @@
         NewMainCategoryViewController*vc=[[NewMainCategoryViewController alloc]init];
         vc.categoryTouch=number;
         [self.navigationController pushViewController:vc animated:YES];
-        
-        
     }
-    
-    
 }
 
 
@@ -764,8 +704,6 @@
     }
     return _tableView;
 }
-
-
 
 
 -(NSMutableArray *)mtModelArrBanner{

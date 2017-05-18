@@ -72,11 +72,11 @@
 //}
 
 //充值
-//-(void)touchPayMoney{
+-(void)touchPayMoney{
 //    PCPayViewController*vc=[[PCPayViewController alloc]init];
 //    [self.navigationController pushViewController: vc animated:YES];
 //    
-//}
+}
 //提现
 -(void)touchGetMoney{
     PCGetMoneyViewController*vc=[[PCGetMoneyViewController alloc]init];

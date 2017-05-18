@@ -40,8 +40,6 @@
 
 @implementation NewSearchViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self falseDatas];

@@ -142,7 +142,6 @@
     if (indexPath.section==0) {
         return 200;
     }else{
-#warning 这里的告诉要根据图片的多少来的
         PostCommitImageTableViewCell*cell=[[PostCommitImageTableViewCell alloc]init];
         return [cell getCellHeightWith:self.saveAllImage];
     }
@@ -173,8 +172,8 @@
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     
     
-    //吊接口  照片
-    NSString *str = [ImageCache headImagePath:newPhoto];
+    //照片
+//    NSString *str = [ImageCache headImagePath:newPhoto];
     
     if (self.saveAllImage.count>=9) {
         [JRToast showWithText:@"最多只能穿9张照片"];

@@ -257,27 +257,16 @@
          self.needPayMoney=self.blanceMoney-self.accountMoney;
         self.needPayLabel.text=[NSString stringWithFormat:@"￥%.2f",self.needPayMoney];
         
-#warning <= 的
          //当钱够的时候  跳警示框 是否要支付    <=
         if (self.needPayMoney<=0) {
-            
             [self pushAlertView];
         }
-        
-        
     }else{
         self.needPayMoney=self.blanceMoney;
         self.needPayLabel.text=[NSString stringWithFormat:@"￥%.2f",self.needPayMoney];
 
         
     }
-    
-    
-   
-    
-
-    
-    
     
 }
 

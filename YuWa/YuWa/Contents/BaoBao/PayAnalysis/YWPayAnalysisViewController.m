@@ -83,7 +83,11 @@
         NSArray * dataArr = responsObj[@"data"];
         for (NSDictionary * dataDic in dataArr) {
             [timeArr insertObject:[JWTools dateWithDate:dataDic[@"ctime"]] atIndex:0];
-            [moneyArr insertObject:dataDic[@"money"] atIndex:0];
+            NSString * money = dataDic[@"money"];
+            while ([money hasSuffix:@"0"]||[money hasSuffix:@"."]) {
+                money = [money substringToIndex:(money.length-1)];
+            }
+            [moneyArr insertObject:money atIndex:0];
         }
         if (dataArr.count>0) {
             [self showFirstQuardrantWithXLineDataArr:timeArr withValueArr:@[moneyArr]];
@@ -130,12 +134,12 @@
             
             [self showColumnViewWithXShowInfoText:typeArr withValueArr:moneyData];
         }else{
-            if (![[[UIApplication sharedApplication].delegate.window.subviews lastObject] isKindOfClass:[MBProgressHUD class]]){
-                [self showHUDWithStr:@"您暂无消费记录哟" withSuccess:NO];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                });
-            }
+//            if (![[[UIApplication sharedApplication].delegate.window.subviews lastObject] isKindOfClass:[MBProgressHUD class]]){
+//                [self showHUDWithStr:@"您暂无消费记录哟" withSuccess:NO];
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                });
+//            }
         }
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
