@@ -208,7 +208,7 @@
         MyLog(@"Pragram is %@",pragram);
         MyLog(@"Data Error error is %@",responsObj);
         MyLog(@"Error is %@",error);
-//        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
+        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
     }];
 }
 
@@ -259,6 +259,7 @@
     } failur:^(id responsObj, NSError *error) {
         MyLog(@"Regieter Code pragram is %@",pragram);
         MyLog(@"Regieter Code error is %@",responsObj);
+        [self showHUDWithStr:responsObj[@"errorMessage"] withSuccess:NO];
     }];
 }
 

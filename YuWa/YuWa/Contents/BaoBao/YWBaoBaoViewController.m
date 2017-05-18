@@ -46,6 +46,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    if (self.user.baobaoLV<5) {
+        self.user.baobaoLV++;
+    }
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1.f];
 }
 
